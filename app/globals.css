@@ -60,15 +60,22 @@ body {
   color: var(--foreground);
 }
 
-/* One h1 per page, and headings carry the display face.
-   Montserrat is geometric and goes loose at display sizes — pull the tracking in. */
-h1,
-h2,
-h3 {
-  font-family: var(--font-heading), system-ui, sans-serif;
-  color: var(--ink);
-  text-wrap: balance;
-  letter-spacing: -0.02em;
+/* Headings carry the display face. Montserrat is geometric and goes loose at display
+   sizes — pull the tracking in.
+ *
+ * MUST stay inside @layer base. Unlayered CSS beats every layered Tailwind utility no
+ * matter the specificity, so an unlayered `color` here silently overrides `text-white`
+ * on every heading sitting on the slate field — the hero h1 renders near-black on navy.
+ * Inside the layer, utilities win as intended. */
+@layer base {
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-heading), system-ui, sans-serif;
+    color: var(--ink);
+    text-wrap: balance;
+    letter-spacing: -0.02em;
+  }
 }
 
 /* Visible focus is an accessibility floor, not a style choice. Gold reads on both the

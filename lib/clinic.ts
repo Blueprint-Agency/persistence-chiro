@@ -36,7 +36,13 @@ export const clinic = {
     facebook: 'https://www.facebook.com/Persistence-Chiropractic-Care-107415958154457',
   },
 
-  mapsUrl: 'https://www.google.com/maps/search/?api=1&query=3.129237,101.721961',
+  /**
+   * The clinic's own Google Maps short link — it resolves to the actual Business Profile
+   * listing, where the previous coordinate search only dropped a pin at lat/lng. Landing
+   * on the real listing is what lets a visitor read reviews and tap "Directions", and it
+   * ties the citation to the GBP entity Google already ranks.
+   */
+  mapsUrl: 'https://maps.app.goo.gl/mZYSyTztLbi95GHGA',
 
   /**
    * schema.org dayOfWeek names. Open 7 days.
