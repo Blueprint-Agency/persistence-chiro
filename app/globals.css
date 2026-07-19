@@ -122,6 +122,61 @@ body {
 .vertebrae > i:nth-child(3) { opacity: 0.5; }
 .vertebrae > i:nth-child(4) { opacity: 0.28; }
 
+/**
+ * Blog post body. The MDX files carry bare prose with no classes, so the styling has to
+ * come from here. A handful of element rules covers every post — @tailwindcss/typography
+ * would be a dependency for the same result.
+ *
+ * Inside @layer components so page-level utilities still override it.
+ */
+@layer components {
+  .post-body {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: var(--ink-muted);
+  }
+  .post-body > * + * {
+    margin-top: 1.25rem;
+  }
+  .post-body h2 {
+    margin-top: 2.75rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+  .post-body h3 {
+    margin-top: 2rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+  .post-body ul,
+  .post-body ol {
+    padding-left: 1.25rem;
+  }
+  .post-body ul {
+    list-style: disc;
+  }
+  .post-body ol {
+    list-style: decimal;
+  }
+  .post-body li + li {
+    margin-top: 0.5rem;
+  }
+  .post-body strong {
+    color: var(--ink);
+    font-weight: 650;
+  }
+  .post-body a {
+    color: var(--brand-slate);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .post-body blockquote {
+    border-left: 3px solid var(--brand-gold);
+    padding-left: 1.25rem;
+    font-style: italic;
+  }
+}
+
 /* Native <details> accordion — no JS, so every FAQ answer ships in the static HTML where
    Google reads it alongside the FAQPage JSON-LD. */
 .faq > summary {

@@ -8,6 +8,8 @@ import { conditionBySlug } from '@/lib/conditions'
 import { modalityBySlug } from '@/lib/physiotherapy'
 import { JsonLd } from '@/components/JsonLd'
 import { blogPostingSchema } from '@/lib/schema'
+import { clinic } from '@/lib/clinic'
+import { CtaBand, Eyebrow } from '@/components/ui'
 
 export function generateStaticParams() {
   return publishedPosts().map((p) => ({ slug: p.slug }))
@@ -49,7 +51,7 @@ export default async function PostPage({ params }: Props) {
     : `/physiotherapy/${post.linksTo}`
 
   return (
-    <article className="mx-auto max-w-3xl px-4 py-12">
+    <>
       <JsonLd
         data={blogPostingSchema({
           title: post.title,
@@ -62,38 +64,61 @@ export default async function PostPage({ params }: Props) {
 
       {/* h1 renders from the index, not the MDX — the body files carry prose only, so the
           title can't drift between the listing page and the post. */}
-      <h1 className="text-3xl font-semibold">{post.title}</h1>
-      <p className="mt-2 text-sm text-neutral-500">
-        <time dateTime={post.datePublished}>
-          {new Date(post.datePublished).toLocaleDateString('en-MY', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-          })}
-        </time>
-        {' · '}
-        {post.author}
-      </p>
+      <section className="bg-brand-slate-deep text-white">
+        <div className="mx-auto max-w-3xl px-4 py-14 lg:py-20">
+          <Eyebrow tone="light">Spine notes</Eyebrow>
+          <h1 className="mt-6 text-3xl font-extrabold leading-[1.15] text-white sm:text-4xl">
+            {post.title}
+          </h1>
+          <p className="mt-6 text-sm text-white/60">
+            <time dateTime={post.datePublished}>
+              {new Date(post.datePublished).toLocaleDateString('en-GB', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric',
+              })}
+            </time>
+            {' · '}
+            {post.author}
+          </p>
+        </div>
+      </section>
 
-      <div className="mt-8">
-        <Body />
-      </div>
+      <article className="mx-auto max-w-3xl px-4 py-14 lg:py-20">
+        <div className="post-body">
+          <Body />
+        </div>
 
-      {target && (
-        <section className="mt-12 rounded border border-neutral-200 bg-neutral-50 p-6">
-          <h2 className="text-xl font-semibold">{target.title.split(' in ')[0]}</h2>
-          <p className="mt-2 text-ink-muted">{target.metaDescription}</p>
-          <Link href={targetHref} className="mt-4 inline-block text-brand-slate underline">
-            Read more
+        {target && (
+          <section className="mt-14 rounded-3xl border border-line bg-white p-8">
+            <Eyebrow>Related</Eyebrow>
+            <h2 className="mt-4 text-xl font-bold">{target.title.split(' in ')[0]}</h2>
+            <p className="mt-2 leading-relaxed text-ink-muted">{target.metaDescription}</p>
+            <Link
+              href={targetHref}
+              className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-slate"
+            >
+              Read more
+              <span aria-hidden="true">&rarr;</span>
+            </Link>
+          </section>
+        )}
+
+        <p className="mt-12">
+          <Link
+            href="/blog"
+            className="text-sm font-semibold text-brand-slate underline underline-offset-4"
+          >
+            &larr; All posts
           </Link>
-        </section>
-      )}
+        </p>
+      </article>
 
-      <p className="mt-12">
-        <Link href="/blog" className="text-brand-slate underline">
-          ← All posts
-        </Link>
-      </p>
-    </article>
+      <CtaBand
+        bookingUrl={clinic.bookingUrl}
+        phone={clinic.phone}
+        phoneE164={clinic.phoneE164}
+      />
+    </>
   )
 }

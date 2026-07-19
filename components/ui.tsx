@@ -105,6 +105,93 @@ export function WhatsAppIcon({ className = 'h-4 w-4' }: { className?: string }) 
   )
 }
 
+/**
+ * Inner-page hero. The homepage builds its own (it carries the photo and the booking
+ * CTAs); every other route uses this so the slate field, the eyebrow and the h1 sit in
+ * the same place sitewide. `eyebrow` is the section the page belongs to, not a tagline —
+ * it tells a visitor arriving from search where they've landed.
+ */
+export function PageHero({
+  eyebrow,
+  title,
+  intro,
+  children,
+}: {
+  eyebrow: string
+  title: string
+  intro?: string
+  children?: ReactNode
+}) {
+  return (
+    <section className="bg-brand-slate-deep text-white">
+      <div className="mx-auto max-w-6xl px-4 py-14 lg:py-20">
+        <Eyebrow tone="light">{eyebrow}</Eyebrow>
+        <h1 className="mt-6 max-w-3xl text-4xl font-extrabold leading-[1.1] text-white sm:text-5xl">
+          {title}
+        </h1>
+        {intro && (
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/75">{intro}</p>
+        )}
+        {children && <div className="mt-8">{children}</div>}
+      </div>
+    </section>
+  )
+}
+
+/**
+ * The gold conversion band. Repeated at the foot of every content page — booking is the
+ * only thing any of these pages is ultimately for.
+ */
+export function CtaBand({
+  heading = 'Ready to stop working around the pain?',
+  body = 'Consult our Gonstead chiropractors today. Open seven days, right next to Sunway Velocity.',
+  bookingUrl,
+  phone,
+  phoneE164,
+}: {
+  heading?: string
+  body?: string
+  bookingUrl: string
+  phone: string
+  phoneE164: string
+}) {
+  return (
+    <section className="bg-brand-gold">
+      <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-12 md:flex-row md:items-center md:justify-between lg:py-14">
+        <div>
+          <h2 className="text-2xl font-extrabold leading-tight sm:text-3xl">{heading}</h2>
+          <p className="mt-2 max-w-xl text-ink/70">{body}</p>
+        </div>
+        <div className="flex flex-none flex-wrap gap-3">
+          <a
+            href={bookingUrl}
+            target="_blank"
+            rel="noopener"
+            className="inline-flex items-center justify-center rounded-full bg-ink px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-slate-deep"
+          >
+            Book now
+          </a>
+          <a
+            href={`tel:${phoneE164}`}
+            className="inline-flex items-center justify-center rounded-full border border-ink/25 px-6 py-3 text-sm font-semibold text-ink hover:bg-ink/5"
+          >
+            Call {phone}
+          </a>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+/** Standard content well. Keeps measure readable — long clinical prose at full width isn't. */
+export function Prose({ children }: { children: ReactNode }) {
+  return (
+    <div className="space-y-5 text-lg leading-relaxed text-ink-muted [&_strong]:text-ink">
+      {children}
+    </div>
+  )
+}
+
 /** Check glyph for trust/benefit lists. */
 export function CheckIcon({ className = 'h-4 w-4' }: { className?: string }) {
   return (

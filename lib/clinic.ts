@@ -91,6 +91,7 @@ export const practitioners = [
     name: 'Dr. Valerie Na',
     role: 'Director & Principal Chiropractor',
     slug: 'valerie-na',
+    photo: '/img/dr-valerie-na.webp',
     credentials: 'BAppSc (Chiropractic), BHSc — RMIT University, Melbourne',
     registrations: ['ACM-2021-384', 'MOH T&CM CP-PPB2024/10096'],
     memberships: [
@@ -103,6 +104,7 @@ export const practitioners = [
     name: 'Dr. Kee Shan Lim',
     role: 'Chiropractor',
     slug: 'kee-shan-lim',
+    photo: '/img/dr-kee-shan-lim.webp',
     credentials: '',
     registrations: ['ACM-2023-508', 'MOH T&CM CP-PPB2025/18923'],
     memberships: [
@@ -115,6 +117,7 @@ export const practitioners = [
     name: 'Dr. Rynn Hoh',
     role: 'Chiropractor',
     slug: 'rynn-hoh',
+    photo: '/img/dr-rynn-hoh.webp',
     credentials: '',
     registrations: ['MOH T&CM CP-PP2026/15619'],
     memberships: [

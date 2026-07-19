@@ -7,6 +7,7 @@ import { conditionBySlug } from '@/lib/conditions'
 import { clinic } from '@/lib/clinic'
 import { JsonLd } from '@/components/JsonLd'
 import { medicalProcedureSchema } from '@/lib/schema'
+import { CtaBand, Eyebrow, GoldButton, PageHero, Vertebrae } from '@/components/ui'
 
 export function generateStaticParams() {
   return publishedModalities().map((m) => ({ slug: m.slug }))
@@ -38,8 +39,12 @@ export default async function ModalityPage({ params }: Props) {
 
   const treats = modality.treats.map(conditionBySlug).filter(Boolean)
 
+  // The first section IS the page's subject, so its heading would duplicate the h1.
+  // Folded-in services (see the header comment in physiotherapy.ts) keep theirs.
+  const [lead, ...folded] = modality.sections
+
   return (
-    <article className="mx-auto max-w-3xl px-4 py-12">
+    <>
       <JsonLd
         data={medicalProcedureSchema({
           name: modality.title,
@@ -48,46 +53,63 @@ export default async function ModalityPage({ params }: Props) {
         })}
       />
 
-      <h1 className="text-3xl font-semibold">{modality.title}</h1>
+      <PageHero eyebrow="Physiotherapy" title={modality.title} intro={lead?.body} />
 
-      {modality.sections.map((s, i) => (
-        <section key={s.heading} className={i === 0 ? 'mt-6' : 'mt-10'}>
-          {/* The first section IS the page's subject, so its heading would duplicate the
-              h1 — skip it and lead with the copy. Folded-in services keep their heading. */}
-          {i > 0 && <h2 className="text-2xl font-semibold">{s.heading}</h2>}
-          <p className={`${i > 0 ? 'mt-2' : ''} text-lg text-ink-muted`}>{s.body}</p>
-        </section>
-      ))}
+      <article className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
+        <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
+          <div>
+            {folded.length > 0 && (
+              <div className="divide-y divide-line border-y border-line">
+                {folded.map((s) => (
+                  <section key={s.heading} className="py-7">
+                    <h2 className="text-xl font-bold">{s.heading}</h2>
+                    <p className="mt-3 leading-relaxed text-ink-muted">{s.body}</p>
+                  </section>
+                ))}
+              </div>
+            )}
+          </div>
 
-      {treats.length > 0 && (
-        <section className="mt-12">
-          <h2 className="text-2xl font-semibold">What we treat with it</h2>
-          <ul className="mt-4 space-y-2">
-            {treats.map((c) => (
-              <li key={c!.slug}>
-                <Link href={`/conditions/${c!.slug}`} className="text-brand-slate underline">
-                  {c!.title.split(' in ')[0]}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
+          <aside className="lg:sticky lg:top-32 lg:self-start">
+            {treats.length > 0 && (
+              <div className="rounded-3xl border border-line bg-white p-8">
+                <Eyebrow>What we treat with it</Eyebrow>
+                <ul className="mt-5 space-y-2.5">
+                  {treats.map((c) => (
+                    <li key={c!.slug}>
+                      <Link
+                        href={`/conditions/${c!.slug}`}
+                        className="flex items-start gap-2.5 text-ink-muted hover:text-brand-slate"
+                      >
+                        <Vertebrae className="mt-1.5 text-brand-gold" />
+                        {c!.title.split(' in ')[0]}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
 
-      <section className="mt-12 rounded border border-neutral-200 bg-neutral-50 p-6">
-        <h2 className="text-xl font-semibold">Book an assessment</h2>
-        <p className="mt-2 text-ink-muted">
-          Chiropractic and physiotherapy in Cheras, Maluri. Open seven days.
-        </p>
-        <a
-          href={clinic.bookingUrl}
-          target="_blank"
-          rel="noopener"
-          className="mt-4 inline-block rounded bg-brand-gold px-5 py-2.5 font-medium text-ink"
-        >
-          Book an appointment
-        </a>
-      </section>
-    </article>
+            <div className="mt-6 rounded-3xl bg-brand-aqua/50 p-8">
+              <h2 className="text-xl font-bold">Book an assessment</h2>
+              <p className="mt-2 leading-relaxed text-ink-muted">
+                Chiropractic and physiotherapy in Cheras, Maluri. Open seven days.
+              </p>
+              <div className="mt-5">
+                <GoldButton href={clinic.bookingUrl} external>
+                  Book an appointment
+                </GoldButton>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </article>
+
+      <CtaBand
+        bookingUrl={clinic.bookingUrl}
+        phone={clinic.phone}
+        phoneE164={clinic.phoneE164}
+      />
+    </>
   )
 }

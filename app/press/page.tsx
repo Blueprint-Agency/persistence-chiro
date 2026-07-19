@@ -1,5 +1,8 @@
 import type { Metadata } from 'next'
 
+import { clinic } from '@/lib/clinic'
+import { CtaBand, PageHero, Vertebrae } from '@/components/ui'
+
 export const metadata: Metadata = {
   title: 'Press & Publications',
   description:
@@ -34,32 +37,49 @@ const features = [
 
 export default function PressPage() {
   return (
-    <div className="mx-auto max-w-3xl px-4 py-12">
-      <h1 className="text-3xl font-semibold">Press &amp; Publications</h1>
-      <p className="mt-4 text-lg text-ink-muted">
-        We&apos;re in the news. Some of the prints and newsletters we&apos;ve been featured in
-        recently.
-      </p>
+    <>
+      <PageHero
+        eyebrow="Press"
+        title="Press & publications"
+        intro="Some of the prints and newsletters we've been featured in recently."
+      />
 
-      <ul className="mt-8 space-y-8">
-        {features.map((f) => (
-          <li key={f.title}>
-            <h2 className="text-lg font-medium">
-              {f.url ? (
-                <a href={f.url} target="_blank" rel="noopener" className="text-brand-slate underline">
-                  {f.title}
-                </a>
-              ) : (
-                f.title
-              )}
-            </h2>
-            <p className="mt-1 text-sm text-neutral-500">
-              {f.publication} · {f.date}
-            </p>
-            <p className="mt-2 text-ink-muted">{f.blurb}</p>
-          </li>
-        ))}
-      </ul>
-    </div>
+      <section className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
+        <ul className="grid gap-6 md:grid-cols-2">
+          {features.map((f) => (
+            <li
+              key={f.title}
+              className="flex flex-col rounded-3xl border border-line bg-white p-8 lg:p-10"
+            >
+              <Vertebrae className="text-brand-gold" />
+              <p className="mt-5 label text-brand-slate">
+                {f.publication} &middot; {f.date}
+              </p>
+              <h2 className="mt-3 text-xl font-bold leading-snug">
+                {f.url ? (
+                  <a
+                    href={f.url}
+                    target="_blank"
+                    rel="noopener"
+                    className="hover:text-brand-slate"
+                  >
+                    {f.title}
+                  </a>
+                ) : (
+                  f.title
+                )}
+              </h2>
+              <p className="mt-3 flex-1 leading-relaxed text-ink-muted">{f.blurb}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <CtaBand
+        bookingUrl={clinic.bookingUrl}
+        phone={clinic.phone}
+        phoneE164={clinic.phoneE164}
+      />
+    </>
   )
 }

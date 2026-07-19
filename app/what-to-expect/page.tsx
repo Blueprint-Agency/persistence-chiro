@@ -5,6 +5,7 @@ import { clinic } from '@/lib/clinic'
 import { clinicFaqs, postTreatmentCare, postTreatmentIntro } from '@/lib/faqs'
 import { JsonLd } from '@/components/JsonLd'
 import { faqSchema } from '@/lib/schema'
+import { CtaBand, Eyebrow, PageHero, Vertebrae } from '@/components/ui'
 
 export const metadata: Metadata = {
   title: 'What to Expect on Your First Chiropractic Visit',
@@ -15,66 +16,103 @@ export const metadata: Metadata = {
 
 export default function WhatToExpectPage() {
   return (
-    <div className="mx-auto max-w-3xl px-4 py-12">
+    <>
       {/* Every answer below renders on the page, so the schema is legitimate. */}
       <JsonLd data={faqSchema(clinicFaqs)} />
 
-      <h1 className="text-3xl font-semibold">What to Expect</h1>
-      <p className="mt-4 text-lg text-ink-muted">
-        Healing is a process, not an event. Persistence is the key.
-      </p>
+      <PageHero
+        eyebrow="What to expect"
+        title="Healing is a process, not an event."
+        intro="Persistence is the key — and knowing what happens before you walk in makes the first visit a lot easier."
+      />
 
-      <section className="mt-12">
-        <h2 className="text-2xl font-semibold">Your first visit</h2>
-        <p className="mt-2 text-ink-muted">
-          Your first appointment follows the{' '}
-          <Link href="/chiropractic" className="text-brand-slate underline">
-            Gonstead six-step assessment
-          </Link>
-          {' '}— history, visualisation, instrumentation, palpation, X-ray analysis, and only
-          then an adjustment.
-        </p>
-        {/* TODO(content): the live site has a separate 4-step first-visit walkthrough in
-            content-migration/what-to-expect.md. It overlaps heavily with the Gonstead six
-            steps — the clinic should decide which framing to keep rather than shipping both. */}
+      {/* ------------------------------------------------------- Your first visit */}
+      <section className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
+        <div className="max-w-2xl">
+          <Eyebrow>Your first visit</Eyebrow>
+          <h2 className="mt-5 text-3xl font-extrabold leading-tight sm:text-4xl">
+            We assess before we adjust.
+          </h2>
+          <p className="mt-5 text-lg leading-relaxed text-ink-muted">
+            Your first appointment follows the{' '}
+            <Link
+              href="/chiropractic"
+              className="font-semibold text-brand-gold-ink underline underline-offset-4"
+            >
+              Gonstead six-step assessment
+            </Link>{' '}
+            — history, visualisation, instrumentation, palpation, X-ray analysis, and only then
+            an adjustment.
+          </p>
+          {/* TODO(content): the live site has a separate 4-step first-visit walkthrough in
+              content-migration/what-to-expect.md. It overlaps heavily with the Gonstead six
+              steps — the clinic should decide which framing to keep rather than shipping both. */}
+        </div>
       </section>
 
-      <section className="mt-12">
-        <h2 className="text-2xl font-semibold">After your adjustment</h2>
-        <p className="mt-2 leading-relaxed text-ink-muted">{postTreatmentIntro}</p>
-        <dl className="mt-6 space-y-6">
-          {postTreatmentCare.map((item) => (
-            <div key={item.heading}>
-              <dt className="font-medium text-ink">{item.heading}</dt>
-              <dd className="mt-1 leading-relaxed text-ink-muted">{item.body}</dd>
+      {/* ------------------------------------------------------------- Aftercare */}
+      <section className="border-y border-line bg-white">
+        <div className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
+          <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
+            <div className="lg:sticky lg:top-32 lg:self-start">
+              <Eyebrow>After your adjustment</Eyebrow>
+              <h2 className="mt-5 text-3xl font-extrabold leading-tight sm:text-4xl">
+                What you do next matters as much as the adjustment.
+              </h2>
+              <p className="mt-5 leading-relaxed text-ink-muted">{postTreatmentIntro}</p>
             </div>
-          ))}
-        </dl>
+
+            <dl className="divide-y divide-line border-y border-line">
+              {postTreatmentCare.map((item) => (
+                <div key={item.heading} className="flex gap-5 py-7">
+                  <Vertebrae className="mt-2 text-brand-gold" />
+                  <div>
+                    <dt className="text-xl font-bold text-ink">{item.heading}</dt>
+                    <dd className="mt-3 leading-relaxed text-ink-muted">{item.body}</dd>
+                  </div>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </div>
       </section>
 
-      <section className="mt-12">
-        <h2 className="text-2xl font-semibold">Frequently asked questions</h2>
-        <dl className="mt-6 space-y-6">
-          {clinicFaqs.map((faq) => (
-            <div key={faq.q}>
-              <dt className="font-medium text-ink">{faq.q}</dt>
-              <dd className="mt-1 leading-relaxed text-ink-muted">{faq.a}</dd>
-            </div>
-          ))}
-        </dl>
+      {/* ------------------------------------------------------------------ FAQs */}
+      <section className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
+        <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+          <div>
+            <Eyebrow>Questions</Eyebrow>
+            <h2 className="mt-5 text-3xl font-extrabold leading-tight sm:text-4xl">
+              Frequently asked questions
+            </h2>
+          </div>
+
+          <div className="divide-y divide-line border-y border-line">
+            {clinicFaqs.map((faq) => (
+              <details key={faq.q} className="faq py-5">
+                <summary className="flex items-start justify-between gap-6 text-lg font-semibold text-ink">
+                  {faq.q}
+                  <span
+                    aria-hidden="true"
+                    className="faq-sign mt-1 flex-none text-2xl font-light leading-none text-brand-slate transition-transform"
+                  >
+                    +
+                  </span>
+                </summary>
+                <p className="mt-4 leading-relaxed text-ink-muted">{faq.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
       </section>
 
-      <section className="mt-12 rounded border border-neutral-200 bg-neutral-50 p-6">
-        <h2 className="text-xl font-semibold">Ready to book?</h2>
-        <a
-          href={clinic.bookingUrl}
-          target="_blank"
-          rel="noopener"
-          className="mt-4 inline-block rounded bg-brand-gold px-5 py-2.5 font-medium text-ink"
-        >
-          Book an appointment
-        </a>
-      </section>
-    </div>
+      <CtaBand
+        heading="Ready to book?"
+        body="Registered chiropractors in Cheras, Maluri. Open seven days, right next to Sunway Velocity."
+        bookingUrl={clinic.bookingUrl}
+        phone={clinic.phone}
+        phoneE164={clinic.phoneE164}
+      />
+    </>
   )
 }
