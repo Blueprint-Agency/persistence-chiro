@@ -16,9 +16,24 @@ import { modalities } from './physiotherapy.ts'
 import { posts, publishedPosts } from './posts.ts'
 import { HELD_POST_SLUGS, LEGACY_POST_SLUGS, redirects } from '../redirects.ts'
 import { staticRoutes } from './routes.ts'
+import { clinicFaqs, homeFaqs } from './faqs.ts'
 
 const conditionSlugs = new Set(conditions.map((c) => c.slug))
 const modalitySlugs = new Set(modalities.map((m) => m.slug))
+
+/**
+ * FAQPage schema is emitted on whichever route renders the answers — homeFaqs on `/`,
+ * clinicFaqs on /what-to-expect. If the same Q&A appears in both, two routes publish
+ * identical FAQPage markup, which is the duplicate-content case Google penalises.
+ * Compare answers, not questions: the two arrays already carry near-identical wordings
+ * of "what should I wear" that differ only in phrasing.
+ */
+test('no answer is published on two routes', () => {
+  const normalise = (s: string) => s.toLowerCase().replace(/\s+/g, ' ').trim()
+  const homeAnswers = new Set(homeFaqs.map((f) => normalise(f.a)))
+  const collisions = clinicFaqs.filter((f) => homeAnswers.has(normalise(f.a))).map((f) => f.q)
+  assert.deepEqual(collisions, [], `answer duplicated across routes: ${collisions.join(', ')}`)
+})
 
 test('no two pages target the same keyword', () => {
   const targets = [...conditions, ...modalities].map((p) => p.targetKeyword.toLowerCase())

@@ -53,6 +53,36 @@ export const clinicFaqs: Faq[] = [
 ]
 
 /**
+ * Homepage FAQs. VERBATIM from the live homepage — a different five from `clinicFaqs`,
+ * which is deliberate: these are the pre-booking questions ("where are you", "what
+ * happens on my first visit"), so they belong on the page that has to convert.
+ *
+ * No question appears in both arrays, so FAQPage schema is never emitted twice for the
+ * same text. `content.test.ts` enforces that.
+ */
+export const homeFaqs: Faq[] = [
+  {
+    q: 'Where is Persistence Chiropractic Care located?',
+    a: 'Our chiropractic center is based in Cheras, Kuala Lumpur. Located right next to Sunway Medical Center Velocity and Sunway Velocity.',
+  },
+  {
+    q: 'What should I expect during my first visit?',
+    a: "Your first visit will include a full health history and symptom review, followed by a physical assessment such as posture, movement, range of motion, and joint/muscle testing (and spinal checks when relevant). Your practitioner will then explain what's happening, share the working diagnosis, and outline a personalised treatment plan and timeline. First visits run about 30–60 minutes; follow-ups are 20–45 minutes depending on the case. Bring any previous reports, scans or MRI/X-ray results if you have them. If you're not sure whether to start with chiropractic or physiotherapy, text us your main concern and we'll advise you.",
+  },
+  {
+    q: 'Do I need an X-Ray before starting my chiropractic treatments?',
+    a: 'An X-Ray imaging is an essential tool for us to know how each of your joints are positioned respectively, essentially the alignment of each spinal segment. It helps to identify pathologies and developmental issues such as scoliosis or curvature assessment from your X-Rays. However, an X-Ray is not mandatory for pregnant women and children (depending on the situation). If you are still having doubts, feel free to contact us to know more.',
+  },
+  // "What should I wear" is deliberately absent: `clinicFaqs` already carries it with the
+  // same answer, and it renders on /what-to-expect. Duplicating it here would put
+  // identical FAQPage schema on two routes.
+  {
+    q: 'Do chiropractic adjustments hurt?',
+    a: 'Rest assured, the chiropractic adjustments are painless. You may feel cracks or slight discomfort from a recent trauma, but you should not feel intense pain.',
+  },
+]
+
+/**
  * Post-treatment aftercare. VERBATIM from the live site.
  * Genuinely useful content and a strong internal-link magnet — patients search
  * "sore after chiropractic adjustment" and this answers it.

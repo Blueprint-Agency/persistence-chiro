@@ -1,20 +1,40 @@
 @import "tailwindcss";
 
 /**
- * Brand tokens. Colours are lifted from the existing Wix site so the rebuild stays
- * recognisable to returning patients.
+ * Brand tokens.
+ *
+ * Gold and slate are the client's, unchanged. Everything else is sampled from the
+ * clinic's own photography rather than invented: the walls are warm cream, the reception
+ * desk is aqua glass, and there is a live plant wall in almost every frame. That gives
+ * the palette a ground and a tint without adding a colour the brand doesn't own.
  *
  * No dark-mode block: the clinic has no dark design, and inheriting
  * prefers-color-scheme would invert brand colours unpredictably against gold.
  */
 :root {
-  --background: #ffffff;
+  --background: #faf8f4;
   --foreground: #212121;
 
+  /* Brand, as supplied. */
   --brand-gold: #e8c111;
   --brand-slate: #2b5672;
+
+  /* Derived. Each exists because a raw brand value fails somewhere specific. */
+
+  /* Hero/footer field. #2B5672 is too light to carry white body text at small sizes;
+     this is the same hue darkened until it clears AA comfortably. */
+  --brand-slate-deep: #17364a;
+  /* The pale blue from the logo wordmark — for secondary type on dark slate. */
+  --brand-slate-soft: #93b4c8;
+  /* The reception desk glass. Section tint, never type. */
+  --brand-aqua: #dff0f3;
+  /* Gold dark enough to be read as text on the bone ground. #E8C111 as type is illegible. */
+  --brand-gold-ink: #7d6407;
+
   --ink: #212121;
   --ink-muted: #414141;
+  /* Warm hairline — a neutral grey rule reads cold against the cream ground. */
+  --line: #e5dfd4;
 }
 
 @theme inline {
@@ -22,9 +42,14 @@
   --color-foreground: var(--foreground);
 
   --color-brand-gold: var(--brand-gold);
+  --color-brand-gold-ink: var(--brand-gold-ink);
   --color-brand-slate: var(--brand-slate);
+  --color-brand-slate-deep: var(--brand-slate-deep);
+  --color-brand-slate-soft: var(--brand-slate-soft);
+  --color-brand-aqua: var(--brand-aqua);
   --color-ink: var(--ink);
   --color-ink-muted: var(--ink-muted);
+  --color-line: var(--line);
 
   --font-sans: var(--font-body);
   --font-heading: var(--font-heading);
@@ -35,17 +60,81 @@ body {
   color: var(--foreground);
 }
 
-/* One h1 per page, and headings carry the display face. */
+/* One h1 per page, and headings carry the display face.
+   Montserrat is geometric and goes loose at display sizes — pull the tracking in. */
 h1,
 h2,
 h3 {
   font-family: var(--font-heading), system-ui, sans-serif;
   color: var(--ink);
   text-wrap: balance;
+  letter-spacing: -0.02em;
 }
 
-/* Visible focus is an accessibility floor, not a style choice. */
+/* Visible focus is an accessibility floor, not a style choice. Gold reads on both the
+   bone ground and the slate field, so one ring works sitewide. */
 :focus-visible {
-  outline: 2px solid var(--brand-slate);
-  outline-offset: 2px;
+  outline: 2px solid var(--brand-gold);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Eyebrow / label / data voice. Montserrat again rather than a third family — the brand
+   specifies it, and at this size and tracking it reads as a separate voice anyway. */
+.label {
+  font-family: var(--font-heading), system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 0.6875rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/**
+ * Signature: the vertebral rule.
+ *
+ * A stack of segments lifted from the spine in the clinic's own logo mark, marking every
+ * section eyebrow. It earns its place because Gonstead is a segment-by-segment technique —
+ * the marker describes the method rather than decorating the page.
+ */
+.vertebrae {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: none;
+}
+.vertebrae > i {
+  display: block;
+  width: 0.5rem;
+  height: 0.3125rem;
+  border-radius: 1.5px;
+  background: currentColor;
+}
+/* Tapering down, the way the segments taper in the mark. */
+.vertebrae > i:nth-child(1) { opacity: 1; }
+.vertebrae > i:nth-child(2) { opacity: 0.75; }
+.vertebrae > i:nth-child(3) { opacity: 0.5; }
+.vertebrae > i:nth-child(4) { opacity: 0.28; }
+
+/* Native <details> accordion — no JS, so every FAQ answer ships in the static HTML where
+   Google reads it alongside the FAQPage JSON-LD. */
+.faq > summary {
+  list-style: none;
+  cursor: pointer;
+}
+.faq > summary::-webkit-details-marker {
+  display: none;
+}
+.faq[open] .faq-sign {
+  transform: rotate(45deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
