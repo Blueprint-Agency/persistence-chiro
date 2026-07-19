@@ -1,0 +1,39 @@
+# What to Expect When Going to the Chiropractor for the First Time?
+
+"Does chiropractic adjustments hurt?"
+
+"What to do before you go to the chiropractor?"
+
+It is completely normal to feel anxious or stress before your first chiropractic appointment. To combat your doctor's office anxiety, we have prepared a step-by-step video of your first visit to Persistence Chiropractic Care here.
+
+During your first chiropractic visit, there are several important steps that you can expect.
+
+History Taking
+
+Our chiropractors will gather a thorough medical history from you to understand your background and relevant health information.
+
+Visualisation
+
+Observation of your spine provides valuable information about its curves, as well as the alignment of your head, ears, shoulders, hips, and knees, giving insights into your spinal health.
+
+Instrumentation
+
+The use of a "nervoscope" measures skin temperature on either side of your spine, as changes in spinal function can affect nerve function and blood flow, helping determine the root cause.
+
+Palpation
+
+Your chiropractor will feel your spine and surrounding tissues for any problems, such as swelling, tenderness, and tight muscle fibers. They will also conduct a full-motion assessment to evaluate spinal and pelvic joints.
+
+Full spine X-Ray
+
+In most cases, a full spine x-ray is required after the initial consultation session to gain a comprehensive understanding of your spine's structure. You may be referred to the nearest preferred hospital for this.
+
+Specific adjustments
+
+Following a thorough assessment, tailored adjustments will be delivered to address any identified issues and promote optimal spinal health.
+
+We hope that the video helps you to get a sneak peak of what to expect and what to prepare for your first visit. Don't worry! Our friendly chiropractors and chiropractic assistants will assist you and ensure that your first visit will progress smoothly.
+
+If there are any enquiries on our chiropractic services, do contact us here.
+
+_Author: Persistence Chiropractic Care_

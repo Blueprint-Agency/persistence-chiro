@@ -1,0 +1,21 @@
+# Health Benefits of Ergonomic Chairs: Why You Need One
+
+One of the most common myths we hear are "Ergonomic chairs are just a normal chair, there is no difference". On an average, a person spends 51 hours and 44 minutes seated during a typical week.
+
+Our chiropractors have highlighted numerous health benefits of using ergonomic chairs in the workplace. From reducing aches and pains to improving posture and circulation, the video covers the key reasons why ergonomic chairs are a must-have for anyone who spends a lot of time sitting at a desk.
+
+Whether you're looking to upgrade your home office or improve your work, this video provides valuable insights into the many health benefits of ergonomic chairs.
+
+If you're looking for top-quality ergonomic products, have a look at our favourite chiropractic-approved local brand - Little Office!
+
+With a wide range of ergonomic chairs, desks, and accessories, they have everything you need to create a comfortable and healthy workspace. All their products are designed with the user's well-being in mind, and they use only the finest materials to ensure durability and comfort.
+
+Head over to their website today to check out their selection of ergonomic products and take the first step towards a healthier and more comfortable work environment.
+
+Don't forget to like and share this video and follow us on Facebook and Instagram to get further discounts on selected ergonomic furnitures from Little Office and also your first consultation in Persistence Chiropractic!
+
+Discount code : PCC2023
+
+Chair Product : 10% discount
+
+_Author: Persistence Chiropractic Care_

@@ -1,0 +1,63 @@
+# Are House Chores a Pain in the Back? Here's What Chiropractors Say.
+
+## Doing House Chores Can Be Pain Free?
+
+Author: Pristencia Chow
+
+House chores are a pain in the back, but only when it is done wrongly! For many homemakers, daily life is a constant rhythm of bending, lifting, and twisting. From doing laundry to cooking meals. These every day tasks may seem harmless, however gradually they place repeated strain on your body, especially your back. It’s no surprise that so many people who manage a home find themselves living with persistent back pain, stiffness, and fatigue. [2]
+
+Back pain often becomes something we simply learn to “live with”, but pain is more than just an inconvenience. It’s your body’s way of telling you something is out of balance. But, relief is possible! By understanding how daily activities affect your spine and how chiropractic care restores proper function to your nervous system, you can take steps toward a healthier, more comfortable life, all while continuing to care for the ones you love.
+
+As mentioned, back pain often comes from the simple tasks done every day. Activities like:
+
+Loading and unloading the washing machine or carrying heavy laundry baskets can place a lot of pressure on the lower back, especially when lifting without proper technique.
+
+Cleaning the floors without an ergonomic posture often causes people to bend their backs just to see where they are cleaning, which creates strain on the spine.
+
+Standing in one place for long periods while cooking or washing dishes can also lead to back stiffness, especially when leaning forward over the sink. [1, 2]
+
+Lifting or moving heavy objects without bending the knees and using the correct posture can make the pain even worse. [4]
+
+So what is Chiropractic and how does it help?
+
+Your brain and body stay connected through the nervous system, which sends messages to help your body function and heal. When the spine is misaligned, it can put pressure on the nerves, blocking or slowing down these messages. This is called “nerve interference”. When this happens, the body can’t work as well and may develop pain, stiffness, or other health issues.
+
+Hence, Chiropractic focuses on relieving this pressure along the spine, helping to remove what is known as “nerve interference.” When the nervous system is clear and communication between the brain and body is restored, the body can return to a natural state of ease and balance, Hence, the body can heal naturally.
+
+It’s important to understand that chiropractors don’t treat disease directly. Instead, the goal is to support and restore the body’s ability to function as it was designed to. “Chiropractic is designed to make you instantly heal better, not feel better.” [3]
+
+How correcting little posture helps in the long run?
+
+Correcting small posture habits during daily chores can make a big difference in protecting your back over time. Simple adjustments can help reduce unnecessary strain and prevent long-term pain.
+
+For example, while washing dishes, stand up tall and keep your spine straight to ease the pressure on your lower back. When cleaning the floors, try to stay upright while moving around with the mop or vacuum.
+
+When lifting laundry, face the basket squarely, bend your knees into a squat position, and use the strength of your legs to lift rather than relying on your back. Whether you are loading or unloading the washing machine, always remember to bend your knees before reaching down, instead of bending from the waist. [4, 5]
+
+These simple posture corrections may seem small, but when practiced daily, they go a long way in keeping your back strong, healthy, and pain-free.
+
+What if the problem is not addressed?
+
+When spinal misalignment and poor posture are left unaddressed, the body often starts to show signs of wear and tear. What begins as mild back pain, stiffness, or muscle tension can slowly develop into more serious and long-lasting problems. Over time, the stress on your spine can cause joint or disc degeneration, nerve irritation, reduced mobility, and even chronic pain that affects your daily activities.
+
+Without chiropractic care to help realign the spine and remove nerve interference, your body continues to work under extra unnecessary pressure. As a result, your body’s natural ability to heal, move, and stay balanced is affected, which can lower your overall quality of life. [3]
+
+Hence, taking care of your posture and getting regular chiropractic adjustments is not only about relieving pain, but it’s about helping your body stay strong, flexible, and able to handle the physical demands of everyday life for years to come.
+
+Watch: How Ergonomic Design Transforms Laundry into a Back-Friendly Task
+
+In this video, PCC had the chance to collaborate with Panasonic to explore how poor ergonomics during household chores, like laundry, can contribute to back pain. The user-friendly features aim to reduce physical strain during laundry tasks. Combined with chiropractic care, such ergonomic solutions can help patients alleviate and prevent back pain associated with daily chores.
+
+References:
+
+Orthopedic & Laser Spine Surgery.5 household chores that may be hurting your back [Internet]. 2023 [cited 2025 Apr 30]. Available from: https://www.orthopedicandlaserspinesurgery.com/5-household-chores-that-may-be-hurting-your-back/
+
+Regenerative Spine and Joint Center.Common home chores contribute to low back disc pain [Internet]. 2023 Nov 21 [cited 2025 Apr 30]. Available from: https://regenerativespineandjoint.com/2023/11/21/common-home-chores-contribute-to-low-back-disc-pain/
+
+Cox J.Honorary Chiropractic Philosophy Diplomate [Virtual workshop on the Internet]. Zoom; 2025 Apr 4 [cited 2025 Apr 30]. Available from: https://us06web.zoom.us/j/82037561708
+
+Medical News.Chiropractor-approved tips to manage and prevent back pain [Internet]. [date unknown] [cited 2025 Apr 30]. Available from: https://medical-news.org/chiropractor-approved-tips-to-manage-and-prevent-back-pain/66883/
+
+Washmuth NB, McAfee AD, Bickel CS.Lifting techniques: why are we not using evidence to optimize movement? Int J Sports Phys Ther. 2022;17(1):104–10. doi:10.26603/001c.30023
+
+_Author: Persistence Chiropractic Care_

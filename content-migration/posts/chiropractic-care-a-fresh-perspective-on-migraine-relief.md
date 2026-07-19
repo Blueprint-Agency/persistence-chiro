@@ -1,0 +1,61 @@
+# Chiropractic Care: A Fresh Perspective on Migraine Relief
+
+Author: Derek Tan (Chiropractor) , Lim Kee Shan (Chiropractor)
+
+> Migraines?
+
+Yes, Migraines are more than just headaches; they are a complex neurological condition that can cause a variety of symptoms, including severe head pain, blurry vision, nausea, and sensitivity to light and sound (1).
+
+> Chiropractic Care in Cheras: A Fresh Perspective on Migraine Relief
+
+Migraines can turn your day upside down, but there’s a ray of hope for those who haven’t found relief through usual treatments. Chiropractic care, a form of therapy that involves adjusting the body to relieve pain, is stepping into the spotlight. Let’s break down what recent research says about this approach.
+
+What’s the Deal with Chiropractic Care?
+
+Imagine your body as a complex network of wires (nerves) and poles (bones). If a pole is out of place, the wires can get stretched and cause problems – like migraines. Chiropractors are like the technicians who adjust the poles to keep the wires (your nerves) working smoothly.
+
+The Research Speaks
+
+A study diving into the world of chiropractors found that many of them see migraine patients regularly (2). They’re not just cracking backs; they’re looking at the big picture to figure out the best way to help you.
+
+> Beyond the Back Crack
+
+Benefits of Chiropractic Care
+
+Reduce nerve interference
+
+Allowing body to self heal
+
+Relieve muscle tension
+
+Improve blood flow to the brain
+
+Improve lifestyle function - reduce Years Lived with Disability
+
+Based on research, a study shows that chiropractic was the preferred non-pharmacological approach for migraine treatment (3). Aside from this, chiropractic isn’t just about spine adjustments. It’s a whole package deal. Another study showed that women with migraines who tried chiropractic care learned about how muscle tension and posture could trigger their headache (4). They found new ways to manage their symptoms that they hadn’t thought of before.
+
+> X-ray as a toolkit
+
+As mentioned above, migraines are complex neurological conditions that cause a variety of symptoms, which sometimes overlaps with regular headaches. It could be very similar to the general public but, as a chiropractor, we treat various types of headaches and understand the differences of it. By using X-rays, we are able to differentiate between headaches that are caused by spinal subluxation or primary migraines that are not caused by another condition. From here, we can analyse the X-ray to provide the best care that the patient needs (5).
+
+Why It Might Work for You
+
+The idea is that by fixing the structure of your body, especially the spine, you can help your body heal itself. It’s like hitting the reset button on your body’s pain management system.
+
+> Get a Handle on Your Migraines
+
+Are you tired of being knocked down by nasty migraines? Chiropractic care might just be the trick you need! All you body needs is to get back into tune without any fuss or surgery. If you need any help or to know more about your condition. Look up a chiropractor near you or make a booking to start your journey to migraine relief today!
+
+Reference:
+
+Pleș, H. et al. (2023) ‘Migraine: Advances in the pathogenesis and treatment’, Neurology International, 15(3), pp. 1052–1105. doi:10.3390/neurolint15030067.
+
+Moore, C. et al. (2017) ‘The treatment of migraine patients within Chiropractic: Analysis of a nationally representative survey of 1869 chiropractors’, BMC Complementary and Alternative Medicine, 17(1). doi:10.1186/s12906-017-2026-3.
+
+Pirthiraj, A. and Bhagwan, R. (2023) ‘The physical impact of migraines on female chiropractic patients: A qualitative study’, Health SA Gesondheid, 28. doi:10.4102/hsag.v28i0.2283.
+
+Connor, J.P. et al. (2021) ‘Perceptions of chiropractic care among women with Migraine: A qualitative substudy using a grounded-theory framework’, Journal of Manipulative and Physiological Therapeutics, 44(2), pp. 154–163. doi:10.1016/j.jmpt.2020.07.001.
+
+Moore, C. et al. (2017a) ‘The treatment of migraine patients within Chiropractic: Analysis of a nationally representative survey of 1869 chiropractors’, BMC Complementary and Alternative Medicine, 17(1). doi:10.1186/s12906-017-2026-3.
+
+_Author: Kee Shan Lim_

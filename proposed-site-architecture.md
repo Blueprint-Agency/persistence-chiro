@@ -1,128 +1,168 @@
-# Persistence Chiropractic — Proposed Site Architecture
+# Persistence Chiropractic — Site Architecture (Next.js rebuild)
 
-*Supersedes `seo-strategy.md` §3 Phase 3. Grounded in `current-url-structure.md` (Wix, live 2026-07-19).*
+*Supersedes `seo-strategy.md` §3 Phase 3. Sources: live-site audit 2026-07-19,
+`current-url-structure.md` (Wix sitemap), Ubersuggest MY (locId 2458) re-pull 2026-07-19.*
 
-## Design decisions (and why they differ from the old plan)
+## Business facts (from live-site audit)
 
-1. **The homepage IS the Cheras page.** The old plan retitles `/` to "Chiropractor in
-   Cheras (Maluri)" *and* builds `/locations/cheras-maluri`. Those two pages compete for
-   the same query — classic cannibalisation, and `/` already ranks #16 for it with the
-   strongest internal link equity on the site. Don't split it. One clinic, one location,
-   one page.
-2. **No area/location pages at all.** The clinic serves Cheras/Maluri only. The one area
-   page worth having would be Cheras — that's the homepage. Kepong and Bangsar pages
-   would be doorway pages for areas they don't serve; 2026 guidance treats those as a
-   quality liability, not a ranking asset. KL-wide terms ("chiro kuala lumpur", SD 9)
-   get targeted from the homepage and `/services/*` copy, since Maluri *is* in KL.
-3. **Services get a hub + spokes.** `/our-services` is one flat page trying to rank for
-   six intents. Split it: each service page owns one symptom cluster and one intent.
-   With the blog gone, these pages carry the entire content load — they must be deep.
-4. **No blog.** Removed at client direction. See the trade-off note at the bottom.
-5. **Three-click depth max.** Every money page is one click from the homepage nav.
-
-## Target URL map
-
-```
-/                                  Chiropractor in Cheras (Maluri), Kuala Lumpur   [canonical local page]
-│
-├── /services                      hub — overview + links to all six
-│   ├── /services/back-pain
-│   ├── /services/slipped-disc
-│   ├── /services/sciatica
-│   ├── /services/scoliosis
-│   ├── /services/neck-pain-posture
-│   └── /services/sports-injury
-│
-├── /gonstead-technique            differentiator page; absorbs the "tit tar vs chiro" angle
-├── /what-to-expect                keep — first-visit intent
-├── /about-us                      keep (+ practitioner bios w/ Person schema)
-├── /contact-us                    NAP, map, hours + booking form (absorbs /book-now)
-│
-└── /press                         was /press-and-publications
-    └── /press/{slug}              was /going-places-magazine-september-feature
-```
-
-**11 pages → 11.** Flat page count, but six of them are now money pages instead of one.
-Every page one click from home.
-
-## Redirect table (301)
-
-| Old | New |
+| | |
 |---|---|
-| `/our-services` | `/services` |
+| Legal name | Persistence Chiropractic Care |
+| Address | VO6-G-02, Signature 2, Lingkaran SV, Sunway Velocity, 55100 Kuala Lumpur |
+| Phone | 018-2014088 |
+| Email | info@persistencechiropractic.com |
+| Hours | Mon–Thu 10:00–20:00 · Fri 10:00–17:00 · Sat 10:00–20:00 · Sun 10:00–15:00 |
+| Geo | 3.1292534, 101.7219458 |
+| Booking | External — SweetPew (`sweetpew.com/en/my/persistence-chiropratic-care`) |
+| Practitioners | Valerie Na (Director), Rynn Hoh, Kee Shan, Pristencia Chow |
+| Socials | IG `persistencechiromy` · FB `Persistence-Chiropractic-Care-107415958154457` · wa.link/b0541h |
+
+## URL map
+
+```
+/                                    Chiropractor in Cheras (Maluri), KL
+│
+├── /conditions                      hub
+│   ├── /conditions/back-pain
+│   ├── /conditions/slipped-disc
+│   ├── /conditions/sciatica
+│   ├── /conditions/scoliosis
+│   ├── /conditions/neck-pain-posture
+│   └── /conditions/sports-injury
+│
+├── /chiropractic                    Gonstead 6-step method
+│
+├── /physiotherapy                   hub
+│   ├── /physiotherapy/dry-needling
+│   ├── /physiotherapy/manual-therapy
+│   ├── /physiotherapy/sports-rehab
+│   └── /physiotherapy/rehab-programming
+│
+├── /blog
+│   └── /blog/[slug]                 14 migrated + new
+│
+├── /what-to-expect
+├── /about-us                        4 practitioners + partners
+├── /press
+└── /contact-us                      NAP, map, hours, SweetPew booking
+```
+
+**16 pages + 14 posts = 30 URLs** (from 26). Max two levels.
+
+## Why conditions and modalities are split
+
+Symptom-first ("back pain treatment KL") and modality-first ("dry needling kuala lumpur") are
+different queries. Splitting them means every URL answers one question and no two pages compete.
+`/chiropractic` gives the Gonstead 6-step content — already written on the live site — a real
+home instead of stranding it on a hub.
+
+Seven physio services collapse to four pages: "Therapeutic Modalities & Recovery Technologies"
+and "Spinal & Core Stability Conditioning" fold into sports-rehab and rehab-programming;
+"Biomechanical, Orthotics & Movement Analysis" into manual-therapy. Four substantial pages beat
+seven thin near-duplicates.
+
+## Decisions locked
+
+| Decision | Rationale |
+|---|---|
+| **No location page** | Single clinic. Location pages exist to reach cities you have no premises in. `/` already ranks #16 for "chiro cheras" and holds most of the 40 referring domains — a second page competes with it from zero. `/contact-us` covers "where are you". |
+| **No `/services/tit-tar`** | Clinic does not offer tit tar; the live site never mentions it. Captured instead by `/blog/tit-tar-vs-chiropractic`, which makes no service claim. |
+| **`/press` flat, no `[slug]`** | One press feature exists. Cards link out to the publication — better for the backlink story than hosting a copy. |
+| **No `/pricing`** | No pricing exists anywhere on the live site; nothing to publish. |
+| **Booking stays on SweetPew** | Preserves staff workflow. Embedded on `/contact-us`, lazy-loaded so it doesn't cost LCP. |
+| **MDX in repo, no CMS** | Agency edits content. Zero CMS cost, static export. |
+| **Portable redirects** | `redirects.ts` consumed by `next.config.mjs` — not host-specific. |
+
+## Redirects (301)
+
+| Legacy | New |
+|---|---|
+| `/our-services` | `/conditions` |
 | `/press-and-publications` | `/press` |
-| `/going-places-magazine-september-feature` | `/press/going-places-september-feature` |
+| `/going-places-magazine-september-feature` | `/press` |
 | `/our-partners` | `/about-us#partners` |
-| `/landingpage` | `/` — stray Wix default, kill it |
-| `/book-now` | `/contact-us` — booking form moves there |
-| `/blog` | `/services` |
-| `/post/a-deeper-understanding-of-scoliosis` | `/services/scoliosis` |
-| `/post/chiropractic-care-for-athletes-...` | `/services/sports-injury` |
-| `/post/spike-higher-play-longer` | `/services/sports-injury` |
-| `/post/derek-s-journey-with-gonstead-chiropractic-care` | `/gonstead-technique` |
-| `/post/less-pain-more-gain-with-regular-chiropractic-care` | `/services` |
-| `/post/what-to-expect-when-going-to-the-chiropractor-...` | `/what-to-expect` |
-| `/post/chiropractic-care-a-fresh-perspective-on-migraine-relief` | `/services/neck-pain-posture` |
-| `/post/sleeping-well-waking-better-...` | `/services/neck-pain-posture` |
-| `/post/are-house-chores-a-pain-in-the-back-...` | `/services/back-pain` |
-| `/post/health-benefits-of-ergonomic-chairs` | `/services/neck-pain-posture` |
-| `/post/chiropractic-care-through-the-stages-of-a-woman-s-life` | `/services` |
-| remaining 3 `/post/*` (webinar, charity talk, anniversary) | `/about-us` |
+| `/book-now` | `/contact-us` |
+| `/landingpage` | `/` |
+| `/post/[slug]` | `/blog/[slug]` — all 14, slug byte-identical |
 
-**301 every post — never 404 them.** They hold the site's existing crawl history and
-whatever link equity the 40 referring domains point at. Redirecting to the closest
-service page recycles it; deleting throws it away.
+301 every post — they hold the crawl history and whatever equity the 40 referring domains carry.
 
-## Internal linking rules
+## Content migration
 
-- Homepage links to all six service pages and `/gonstead-technique`.
-- Every service page links **up** to `/services`, **across** to two related services, and
-  ends with a booking CTA to `/contact-us`.
-- `/gonstead-technique` links to all six services (it's the how, they're the what).
-- Footer carries NAP + `/contact-us` sitewide.
+**Migrates as-is (already written):**
 
-## Schema per template
+| Live content | New home |
+|---|---|
+| Gonstead 6-step approach | `/chiropractic` |
+| Post-Treatment Care article | `/what-to-expect` |
+| "Are X-Rays Really Necessary?" | `/what-to-expect` |
+| FAQ blocks (home + services) | split per condition page, each with `FAQPage` schema |
+| Valerie Na bio + Education | `/about-us` |
+| 7 physiotherapy service descriptions | `/physiotherapy/*` |
+| 43 partner logos | `/about-us#partners` |
+| 2 testimonials | homepage + relevant condition pages |
+
+**Must be written fresh:** six condition pages, four physio pages, bios for Rynn Hoh / Kee Shan
+/ Pristencia Chow (currently names + registration numbers only).
+
+## Page targeting
+
+| URL | Primary target |
+|---|---|
+| `/` | chiro cheras, chiropractor cheras, chiropractor near me |
+| `/conditions/back-pain` | back pain treatment KL |
+| `/conditions/slipped-disc` | slipped disc treatment malaysia |
+| `/conditions/sciatica` | sciatica treatment |
+| `/conditions/scoliosis` | scoliosis treatment malaysia |
+| `/conditions/neck-pain-posture` | neck pain, posture correction |
+| `/conditions/sports-injury` | sports injury chiropractic |
+| `/chiropractic` | gonstead chiropractic malaysia |
+| `/physiotherapy` | physio cheras (260/mo, SD 19 — unclaimed by any chiro in the area) |
+| `/physiotherapy/dry-needling` | dry needling kuala lumpur |
+| `/contact-us` | chiropractor cheras contact, directions |
+
+### Keyword caveats
+
+**Ubersuggest cannot validate the clinical pages.** Its MY index returns zero volume for slipped
+disc, sciatica, scoliosis treatment, frozen shoulder, chiropractic, physiotherapy, sakit
+belakang — sparse-database artefact, not absent demand. Build on presenting complaints; confirm
+with Google Keyword Planner + GSC once connected.
+
+**Tit tar is not the cheap win `seo-strategy.md` claims.** That doc lists SD 9–12; the
+2026-07-19 re-pull shows `tit tar` at **SD 31** and `tit tar near me` at **SD 29**, both
+brand-dominated (Chris Leong Method, CLM, HKD). Blog post only; do not build a service page.
+
+**Do NOT chase "urut."** `urut near me` (18,100/mo) and `urut` (9,900/mo) are the biggest numbers
+in the dataset and the wrong target — relaxation-massage intent, with a tail heavily contaminated
+by adult services (`urut b2b`, `urut lelaki near me`, `incall urut`). Brand and trust liability
+for a registered clinic. Recorded so nobody reopens it.
+
+## Internal linking
+
+- Homepage → `/conditions` hub, `/chiropractic`, `/physiotherapy`.
+- Condition page → up to `/conditions`, across to two related conditions, down to the modality
+  that treats it, CTA to `/contact-us`.
+- Physio modality → up to `/physiotherapy`, across to the conditions it treats.
+- Every blog post → exactly one condition or modality page, descriptive anchor.
+- Footer: NAP + `/contact-us` sitewide.
+
+## Schema
 
 | Template | JSON-LD |
 |---|---|
-| `/` | `Chiropractic` + `LocalBusiness` (NAP, Maluri geo, hours, `areaServed: Cheras`) |
-| `/services/*` | `MedicalWebPage` + `FAQPage` |
-| `/contact-us` | `LocalBusiness` + `ReserveAction` for the booking form |
+| `/` | `Chiropractic` + `LocalBusiness` (NAP, geo, hours, `areaServed: Cheras`) |
+| `/conditions/*` | `MedicalWebPage` + `FAQPage` |
+| `/physiotherapy/*` | `MedicalProcedure` |
+| `/blog/[slug]` | `BlogPosting` + author |
+| `/contact-us` | `LocalBusiness` + `ReserveAction` |
 | `/about-us` | `Person` per practitioner |
 
-## Wix implementation constraint
+## Stack
 
-Wix static pages are flat (`/back-pain`, not `/services/back-pain`). To get the nested
-paths above you must build `/services/*` as **CMS dynamic pages** with a URL prefix —
-one collection, one design template. Flat slugs are the fallback and cost little
-ranking-wise, but you lose the crawl-clarity of the silo.
+Next.js App Router · TypeScript · Tailwind · MDX via `next-mdx-remote` · static export.
+No CMS, no database. `lib/clinic.ts` is the single source of truth for NAP, hours, and schema.
 
-## Build order
+## Deliverable
 
-1. Homepage retitle + schema + nav rebuild → unlocks everything downstream.
-2. `/services/back-pain`, `/services/slipped-disc`, `/services/sciatica` (highest intent).
-3. All redirects + `/landingpage` removal, deployed **before** the blog comes down.
-4. Remaining services + `/gonstead-technique`.
-
-## Trade-off: removing the blog
-
-Recorded so the decision is deliberate, not accidental:
-
-- `seo-strategy.md` §4 Phase 4 was entirely blog-driven, and the competitor analysis
-  (§3) shows Ian The Chiro wins this market *with blog content* — "tit tar" (1,000
-  vol/mo, SD 9) and "muscle knots" (1,000 vol/mo) are informational queries that no
-  service page can rank for. Those keywords are now out of reach.
-- Excellence ranks #9 for "chiropractor malaysia kuala lumpur" via a blog listicle.
-  That route is closed too.
-- Without a blog there is no new-content cadence, which removes the main lever for
-  building the 32 → 50 referring domains in §5.
-
-**What partly covers the gap:** `/gonstead-technique` can absorb the tit-tar comparison
-angle as a service-adjacent page rather than a post, and deep `/services/*` pages with
-FAQ schema can capture some symptom-level informational intent. This recovers maybe a
-third of what the blog reached.
-
-**If the objection is cadence/effort rather than the blog itself**, a lower-cost option
-is keeping `/post/*` frozen — no new posts, no deletion — so the existing 14 URLs keep
-their equity while the effort goes into service pages. Say the word and I'll rework it
-that way.
+Final sign-off as an HTML redirect map matching
+`C:\Users\chris\Desktop\blueprint\kaiteki\redirect-map.html`.

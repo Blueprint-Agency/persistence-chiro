@@ -1,0 +1,182 @@
+# Scoliosis: A Deeper Understanding
+
+## Let's Deal with Scoliosis
+
+Author: Lim Kee Shan, Chiropractor
+
+What is Scoliosis?
+
+Have you heard of people saying they have a curved back and/or “C” or “S” shape spine?
+
+Well it isn't a myth and it is a condition known as scoliosis.
+
+There are cases for severe scoliosis that you may see muscle imbalance and visible curving of the back.
+
+However in most cases, scoliosis cannot be easily seen with our eyes by looking at our backs. Hence, when a full spine x-ray is taken, people are shocked at their backs being curved. This emphasises the importance of X-Ray imaging in uncovering our spinal condition.
+
+How do you detect Scoliosis?
+
+As scoliosis can happen as early as birth and up to adulthood, it is important to create an awareness of this condition. Generally as early as 10 years old till 50 to 60 years old, people with scoliosis will tend to have several symptoms such as pain, soreness, and stiffness. However, at early stages, children with scoliosis will not have any symptoms.
+
+Hence, the best way for parents to detect it is by looking for these signs: (1)
+
+Head tilted to one side
+
+Uneven Shoulders
+
+More obvious shoulder blades as compared to other sides
+
+Visible rib hump on one side of the back when bending forward
+
+Clothes may hung unevenly
+
+Uneven Waist Curve
+
+Uneven Hip
+
+As these are a general guideline, further examinations and specific diagnostic imaging are required to be performed by a professional to accurately diagnose this condition.
+
+Not all curves are Scoliosis
+
+When people look at their spine, they might see their backs are not entirely straight and they might wonder:
+
+“Do I have scoliosis?”
+
+Well let us break it down to you on the types of scoliosis:
+
+Types of Scoliosis
+
+AIS (Adolescent Idiopathic Scoliosis)- The most common type of Scoliosis, whereby the cause is unknown or hereditary and it commonly starts at a young age.
+
+Functional Scoliosis-
+
+Common Causes:
+
+Prolonged sitting with bad posture
+
+functional leg length imbalance
+
+past traumas.
+
+Figure 1: Activities of Daily Living
+
+Are you doing these in your daily life? These are the common ways to cause spinal and pelvic misalignment.
+
+Figure 2: Leaning tower of Pisa during construction
+
+Have you heard of the leaning tower of Pisa in Italy? The building was built during the 12th century and at that point, it was built on soft ground, which could not support the structure’s weight. Hence as decade goes by, the structure starts to tilt and increases till its completion in the 14th century.
+
+Figure 3: Scoliotic Spine due to pelvic misalignment
+
+Now this will also happen to our spine if we do not have a strong foundation. Our pelvic is the foundation of the spine, when there is a pelvic or spinal misalignment, it could not properly support the body's weight.
+
+Hence it will exert more pressure and create more instability to the spinal segments above to compensate. Our body is a smart structure, it will try to adapt to the changes to maintain its centre of gravity, hence spinal curvature happens.
+
+However, over time, if these misalignments persist without correction, a cascade of issues will inevitably emerge. This includes uneven weight distribution, pain, fatigue, muscle imbalance, muscle weakness and many more.
+
+Gonstead Chiropractors are trained to detect the root cause / misaligned structure with detailed assessment and fix the misaligned bone with specific adjustments.
+
+CLASSIFICATION OF SCOLIOSIS
+
+How do you know if you have scoliosis?
+
+One widely used guideline is the Cobb’s Angle’s measurement. (2)
+
+Definition of scoliosis -> 10 degree is considered as scoliosis.
+
+Severity
+
+Spinal Curvature
+
+Mild
+
+Moderate
+
+Severe
+
+Cobb’s Angle
+
+0-10
+
+11-19
+
+20-40
+
+>40
+
+Figure 4: Types of Scoliotic curve (5)
+Sources: Peter Newton/Rady Children’s Hospital San Diego; American Academy of Orthopaedic Surgeons; The Wall Street Journal
+
+Figure 5: Mild Scoliotic curve (8)
+
+Figure 6: Moderate Scoliosis Curve (9)
+
+Figure 7: Severe Scoliosis curve (10)
+
+What should you do when you are diagnosed with Scoliosis?
+
+Scoliosis at younger ages have a higher tendency to progress further/ worsen due to the ongoing growth and development of the spine in younger individuals whereas at older ages when their bones are fully mature ( age 18-25 ) still have a tendency but at a slower rate compared to younger age. (3)
+
+The optimal age to be checked and treated is 3-18 years old. As at this age, their bones are not fully matured and are very responsive to treatment. Hence there is a better chance of correction. (4)
+
+It is important for people to be aware about scoliosis, as if it is not treated well, it will progress to back pain and discomfort that may affect the quality of daily living.If you wonder who to look for when you are diagnosed with scoliosis, do visit our instagram for further information.
+
+Chiropractic Adjustment
+
+Now that you have understand what is scoliosis, let's take a look at the benefits of chiropractic treatments:
+
+Better Quality of Life
+
+Lesser Pain and Discomfort
+
+Decrease pressure on spinal disc
+
+Increase Spinal Range of Motion
+
+Preventing it from further progressing
+
+And many more!
+
+Physiotherapist
+
+On the other hand, physiotherapist could work hand in hand with chiropractor as it will give the following benefits:
+
+Activating the weaken muscles
+
+Stretching the tight muscles
+
+Strengthening core muscles
+
+Bracing
+
+Lastly, depending on the severity of the scoliosis and the likelihood of progressing, a brace may be prescribed to wear to prevent the curve from further progressing.
+
+Figure 8: A scoliotic brace (7)
+
+Figure 9: Rigid brace and soft brace (6)
+
+If there are any enquiries on our chiropractic services, do contact us here!
+
+References:
+
+Popko J, Kwiatkowski M, Gałczyk M. Scoliosis: review of diagnosis and treatment. Polish Journal of Applied Sciences. 2018 Jul 26;4(1):31-5.
+
+Horng M-H, Kuok C-P, Fu M-J, Lin C-J, Sun Y-N. Cobb angle measurement of spine from x-ray images using convolutional neural network. Computational and Mathematical Methods in Medicine. 2019;2019:1–18. doi:10.1155/2019/6357171
+
+Cech DJ, Martin ST. Functional movement development across the life span. Elsevier Health Sciences; 2011 Sep 6.
+
+Adamczewska K, Wiernicka M, Malchrowicz-Mośko E, Małecka J, Lewandowski J. The angle of trunk rotation in school children: A study from an idiopathic scoliosis screening. Prevalence and optimal age screening value. International Journal of Environmental Research and Public Health. 2019 Sep;16(18):3426.
+
+Landro L. Weighing new treatment options for scoliosis [Internet]. Dow Jones & Company; 2012 [cited 2023 Nov 15]. Available from: http://on.wsj.com/L2vhvn
+
+Karavidas N. <p>bracing in the treatment of adolescent idiopathic scoliosis: Evidence to date</p>. Adolescent Health, Medicine and Therapeutics. 2019;Volume 10:153–72. doi:10.2147/ahmt.s190565
+
+A M, N A. Comparative study of the relationship between manual and scanning ... [Internet]. 2019 [cited 2023 Nov 15]. Available from: https://www.semanticscholar.org/paper/Comparative-study-of-the-relationship-between-and-Mohammed-Albadwi/a24739301d23ee1caa5841621aa5686130f4b25f
+
+Modi H, Srinivasalu S, SMehta S, Yang J-H, Song H-R, Suh SW. Muscle imbalance in volleyball players initiates scoliosis in immature spines: A screening analysis. Asian Spine Journal. 2008;2(1):38. doi:10.4184/asj.2008.2.1.38
+
+Kluszczyński M, Mosler D, Wąsik J. Morphological differences in scoliosis curvatures as a cause of difficulties in its early detection based on angle of trunk inclination. BMC Musculoskeletal Disorders. 2022;23(1). doi:10.1186/s12891-022-05878-6
+
+Gaillard F. Scoliosis: Radiology case [Internet]. Radiopaedia.org; 2023 [cited 2023 Nov 16]. Available from: https://radiopaedia.org/cases/scoliosis-7
+
+_Author: Kee Shan Lim_
