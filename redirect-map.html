@@ -49,9 +49,9 @@
 </table>
 
 <div class="warn">
-<b>Codes are 308, not 301.</b> Next.js emits 308 for <code>permanent: true</code>. Google treats 308 as
-equivalent to 301 for consolidating signals, so ranking behaviour is unchanged &mdash; but any directory or
-legacy client that only understands 301 will see a different number.
+<b>Every rule is a literal 301.</b> Set via Next's <code>statusCode</code> rather than the
+<code>permanent: true</code> shorthand, which would emit 308. Google consolidates signals identically for
+either, but 301 is what this document promises and what a header audit will show.
 </div>
 
 <div class="warn">
@@ -75,13 +75,13 @@ orphaned pages the sitemap never listed. A full crawl of the live site is needed
 <p class="note">Legacy pages whose content now lives at a different URL.</p>
 <table>
 <tr><th>New URL</th><th></th><th>Legacy URL</th><th>Code</th></tr>
-<tr><td><a href="https://www.persistencechiropractic.com/conditions">/conditions</a></td><td class="arrow">&larr;</td><td class="old"><code>/our-services</code></td><td class="code">308</td></tr>
-<tr><td><a href="https://www.persistencechiropractic.com/press">/press</a></td><td class="arrow">&larr;</td><td class="old"><code>/press-and-publications</code></td><td class="code">308</td></tr>
-<tr><td><a href="https://www.persistencechiropractic.com/press">/press</a></td><td class="arrow">&larr;</td><td class="old"><code>/going-places-magazine-september-feature</code></td><td class="code">308</td></tr>
-<tr><td><a href="https://www.persistencechiropractic.com/press">/press</a></td><td class="arrow">&larr;</td><td class="old"><code>/big-pharmacy-less-pain-more-gain-with-regular-chiropractic</code></td><td class="code">308</td></tr>
-<tr><td><a href="https://www.persistencechiropractic.com/about-us#partners">/about-us#partners</a></td><td class="arrow">&larr;</td><td class="old"><code>/our-partners</code></td><td class="code">308</td></tr>
-<tr><td><a href="https://www.persistencechiropractic.com/contact-us">/contact-us</a></td><td class="arrow">&larr;</td><td class="old"><code>/book-now</code></td><td class="code">308</td></tr>
-<tr><td><a href="https://www.persistencechiropractic.com/">/</a></td><td class="arrow">&larr;</td><td class="old"><code>/landingpage</code></td><td class="code">308</td></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/conditions">/conditions</a></td><td class="arrow">&larr;</td><td class="old"><code>/our-services</code></td><td class="code">301</td></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/press">/press</a></td><td class="arrow">&larr;</td><td class="old"><code>/press-and-publications</code></td><td class="code">301</td></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/press">/press</a></td><td class="arrow">&larr;</td><td class="old"><code>/going-places-magazine-september-feature</code></td><td class="code">301</td></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/press">/press</a></td><td class="arrow">&larr;</td><td class="old"><code>/big-pharmacy-less-pain-more-gain-with-regular-chiropractic</code></td><td class="code">301</td></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/about-us#partners">/about-us#partners</a></td><td class="arrow">&larr;</td><td class="old"><code>/our-partners</code></td><td class="code">301</td></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/contact-us">/contact-us</a></td><td class="arrow">&larr;</td><td class="old"><code>/book-now</code></td><td class="code">301</td></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/">/</a></td><td class="arrow">&larr;</td><td class="old"><code>/landingpage</code></td><td class="code">301</td></tr>
 </table>
 
 <h2>Conditions</h2>
@@ -121,26 +121,26 @@ orphaned pages the sitemap never listed. A full crawl of the live site is needed
 <p class="note">Slugs are preserved byte-identical; only the <code>/post/</code> prefix changes. Shipped as one wildcard rule (<code>/post/:slug &rarr; /blog/:slug</code>), listed here in full for sign-off.</p>
 <table>
 <tr><th>New URL</th><th></th><th>Legacy URL</th><th>Code</th></tr>
-<tr><td><a href="https://www.persistencechiropractic.com/blog/a-deeper-understanding-of-scoliosis">/blog/a-deeper-understanding-of-scoliosis</a></td><td class="arrow">&larr;</td><td class="old"><code>/post/a-deeper-understanding-of-scoliosis</code></td><td class="code">308</td></tr>
-<tr><td><a href="https://www.persistencechiropractic.com/blog/chiropractic-care-through-the-stages-of-a-woman-s-life">/blog/chiropractic-care-through-the-stages-of-a-woman-s-life</a></td><td class="arrow">&larr;</td><td class="old"><code>/post/chiropractic-care-through-the-stages-of-a-woman-s-life</code></td><td class="code">308</td></tr>
-<tr><td><a href="https://www.persistencechiropractic.com/blog/chiropractic-care-for-athletes-optimising-performance-and-preventing-injuries">/blog/chiropractic-care-for-athletes-optimising-performance-and-preventing-injuries</a></td><td class="arrow">&larr;</td><td class="old"><code>/post/chiropractic-care-for-athletes-optimising-performance-and-preventing-injuries</code></td><td class="code">308</td></tr>
-<tr><td><a href="https://www.persistencechiropractic.com/blog/spike-higher-play-longer">/blog/spike-higher-play-longer</a></td><td class="arrow">&larr;</td><td class="old"><code>/post/spike-higher-play-longer</code></td><td class="code">308</td></tr>
-<tr><td><a href="https://www.persistencechiropractic.com/blog/derek-s-journey-with-gonstead-chiropractic-care">/blog/derek-s-journey-with-gonstead-chiropractic-care</a></td><td class="arrow">&larr;</td><td class="old"><code>/post/derek-s-journey-with-gonstead-chiropractic-care</code></td><td class="code">308</td></tr>
-<tr><td><a href="https://www.persistencechiropractic.com/blog/three-years-of-gratitude-and-growth-celebrating-wellness-world-spine-day-and-our-community">/blog/three-years-of-gratitude-and-growth-celebrating-wellness-world-spine-day-and-our-community</a></td><td class="arrow">&larr;</td><td class="old"><code>/post/three-years-of-gratitude-and-growth-celebrating-wellness-world-spine-day-and-our-community</code></td><td class="code">308</td></tr>
-<tr><td><a href="https://www.persistencechiropractic.com/blog/less-pain-more-gain-with-regular-chiropractic-care">/blog/less-pain-more-gain-with-regular-chiropractic-care</a></td><td class="arrow">&larr;</td><td class="old"><code>/post/less-pain-more-gain-with-regular-chiropractic-care</code></td><td class="code">308</td></tr>
-<tr><td><a href="https://www.persistencechiropractic.com/blog/sleeping-well-waking-better-the-key-to-spinal-health-and-quality-sleep">/blog/sleeping-well-waking-better-the-key-to-spinal-health-and-quality-sleep</a></td><td class="arrow">&larr;</td><td class="old"><code>/post/sleeping-well-waking-better-the-key-to-spinal-health-and-quality-sleep</code></td><td class="code">308</td></tr>
-<tr><td><a href="https://www.persistencechiropractic.com/blog/chiropractic-care-charity-talk-for-ti-ratana-welfare">/blog/chiropractic-care-charity-talk-for-ti-ratana-welfare</a></td><td class="arrow">&larr;</td><td class="old"><code>/post/chiropractic-care-charity-talk-for-ti-ratana-welfare</code></td><td class="code">308</td></tr>
-<tr><td><a href="https://www.persistencechiropractic.com/blog/what-to-expect-when-going-to-the-chiropractor-for-the-first-time">/blog/what-to-expect-when-going-to-the-chiropractor-for-the-first-time</a></td><td class="arrow">&larr;</td><td class="old"><code>/post/what-to-expect-when-going-to-the-chiropractor-for-the-first-time</code></td><td class="code">308</td></tr>
-<tr><td><a href="https://www.persistencechiropractic.com/blog/are-house-chores-a-pain-in-the-back-here-s-what-chiropractors-say">/blog/are-house-chores-a-pain-in-the-back-here-s-what-chiropractors-say</a></td><td class="arrow">&larr;</td><td class="old"><code>/post/are-house-chores-a-pain-in-the-back-here-s-what-chiropractors-say</code></td><td class="code">308</td></tr>
-<tr><td><a href="https://www.persistencechiropractic.com/blog/chiropractic-care-a-fresh-perspective-on-migraine-relief">/blog/chiropractic-care-a-fresh-perspective-on-migraine-relief</a></td><td class="arrow">&larr;</td><td class="old"><code>/post/chiropractic-care-a-fresh-perspective-on-migraine-relief</code></td><td class="code">308</td></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/blog/a-deeper-understanding-of-scoliosis">/blog/a-deeper-understanding-of-scoliosis</a></td><td class="arrow">&larr;</td><td class="old"><code>/post/a-deeper-understanding-of-scoliosis</code></td><td class="code">301</td></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/blog/chiropractic-care-through-the-stages-of-a-woman-s-life">/blog/chiropractic-care-through-the-stages-of-a-woman-s-life</a></td><td class="arrow">&larr;</td><td class="old"><code>/post/chiropractic-care-through-the-stages-of-a-woman-s-life</code></td><td class="code">301</td></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/blog/chiropractic-care-for-athletes-optimising-performance-and-preventing-injuries">/blog/chiropractic-care-for-athletes-optimising-performance-and-preventing-injuries</a></td><td class="arrow">&larr;</td><td class="old"><code>/post/chiropractic-care-for-athletes-optimising-performance-and-preventing-injuries</code></td><td class="code">301</td></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/blog/spike-higher-play-longer">/blog/spike-higher-play-longer</a></td><td class="arrow">&larr;</td><td class="old"><code>/post/spike-higher-play-longer</code></td><td class="code">301</td></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/blog/derek-s-journey-with-gonstead-chiropractic-care">/blog/derek-s-journey-with-gonstead-chiropractic-care</a></td><td class="arrow">&larr;</td><td class="old"><code>/post/derek-s-journey-with-gonstead-chiropractic-care</code></td><td class="code">301</td></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/blog/three-years-of-gratitude-and-growth-celebrating-wellness-world-spine-day-and-our-community">/blog/three-years-of-gratitude-and-growth-celebrating-wellness-world-spine-day-and-our-community</a></td><td class="arrow">&larr;</td><td class="old"><code>/post/three-years-of-gratitude-and-growth-celebrating-wellness-world-spine-day-and-our-community</code></td><td class="code">301</td></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/blog/less-pain-more-gain-with-regular-chiropractic-care">/blog/less-pain-more-gain-with-regular-chiropractic-care</a></td><td class="arrow">&larr;</td><td class="old"><code>/post/less-pain-more-gain-with-regular-chiropractic-care</code></td><td class="code">301</td></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/blog/sleeping-well-waking-better-the-key-to-spinal-health-and-quality-sleep">/blog/sleeping-well-waking-better-the-key-to-spinal-health-and-quality-sleep</a></td><td class="arrow">&larr;</td><td class="old"><code>/post/sleeping-well-waking-better-the-key-to-spinal-health-and-quality-sleep</code></td><td class="code">301</td></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/blog/chiropractic-care-charity-talk-for-ti-ratana-welfare">/blog/chiropractic-care-charity-talk-for-ti-ratana-welfare</a></td><td class="arrow">&larr;</td><td class="old"><code>/post/chiropractic-care-charity-talk-for-ti-ratana-welfare</code></td><td class="code">301</td></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/blog/what-to-expect-when-going-to-the-chiropractor-for-the-first-time">/blog/what-to-expect-when-going-to-the-chiropractor-for-the-first-time</a></td><td class="arrow">&larr;</td><td class="old"><code>/post/what-to-expect-when-going-to-the-chiropractor-for-the-first-time</code></td><td class="code">301</td></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/blog/are-house-chores-a-pain-in-the-back-here-s-what-chiropractors-say">/blog/are-house-chores-a-pain-in-the-back-here-s-what-chiropractors-say</a></td><td class="arrow">&larr;</td><td class="old"><code>/post/are-house-chores-a-pain-in-the-back-here-s-what-chiropractors-say</code></td><td class="code">301</td></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/blog/chiropractic-care-a-fresh-perspective-on-migraine-relief">/blog/chiropractic-care-a-fresh-perspective-on-migraine-relief</a></td><td class="arrow">&larr;</td><td class="old"><code>/post/chiropractic-care-a-fresh-perspective-on-migraine-relief</code></td><td class="code">301</td></tr>
 </table>
 
 <h2>Held posts</h2>
 <p class="note">These two need editorial work before republication, so <code>/blog/&lt;slug&gt;</code> does not exist for them. They redirect to the blog index rather than falling through the wildcard into a 404 — and their rules are ordered ahead of it.</p>
 <table>
 <tr><th>New URL</th><th></th><th>Legacy URL</th><th>Code</th></tr>
-<tr><td><a href="https://www.persistencechiropractic.com/blog">/blog</a></td><td class="arrow">&larr;</td><td class="old"><code>/post/blog-boost-your-bone-health-webinar</code></td><td class="code">308</td></tr>
-<tr><td><a href="https://www.persistencechiropractic.com/blog">/blog</a></td><td class="arrow">&larr;</td><td class="old"><code>/post/health-benefits-of-ergonomic-chairs</code></td><td class="code">308</td></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/blog">/blog</a></td><td class="arrow">&larr;</td><td class="old"><code>/post/blog-boost-your-bone-health-webinar</code></td><td class="code">301</td></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/blog">/blog</a></td><td class="arrow">&larr;</td><td class="old"><code>/post/health-benefits-of-ergonomic-chairs</code></td><td class="code">301</td></tr>
 </table>
 
 <div class="warn">

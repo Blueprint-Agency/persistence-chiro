@@ -20,7 +20,7 @@ const SITE = 'https://www.persistencechiropractic.com'
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
 
 /** A redirected row: new URL on the left, the legacy URL it absorbs on the right. */
-const row = (newUrl, legacy, code = '308') =>
+const row = (newUrl, legacy, code = '301') =>
   `<tr><td><a href="${SITE}${esc(newUrl)}">${esc(newUrl)}</a></td><td class="arrow">&larr;</td>` +
   `<td class="old"><code>${esc(legacy)}</code></td><td class="code">${code}</td></tr>`
 
@@ -187,9 +187,9 @@ const html = `<!DOCTYPE html>
 ${summary}
 
 <div class="warn">
-<b>Codes are 308, not 301.</b> Next.js emits 308 for <code>permanent: true</code>. Google treats 308 as
-equivalent to 301 for consolidating signals, so ranking behaviour is unchanged &mdash; but any directory or
-legacy client that only understands 301 will see a different number.
+<b>Every rule is a literal 301.</b> Set via Next's <code>statusCode</code> rather than the
+<code>permanent: true</code> shorthand, which would emit 308. Google consolidates signals identically for
+either, but 301 is what this document promises and what a header audit will show.
 </div>
 
 <div class="warn">

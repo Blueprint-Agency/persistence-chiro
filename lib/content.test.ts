@@ -70,7 +70,7 @@ test('every legacy blog post is covered by a redirect', () => {
   const postRule = redirects.find((r) => r.source === '/post/:slug')
   assert.ok(postRule, 'no /post/:slug redirect rule')
   assert.equal(postRule.destination, '/blog/:slug')
-  assert.ok(postRule.permanent, 'post redirect must be permanent, not temporary')
+  assert.equal(postRule.statusCode, 301, 'post redirect must be a permanent 301, not temporary')
   // The wildcard only works because slugs are preserved byte-identical. If a slug is ever
   // renamed it needs its own explicit rule, so assert the list is non-empty and clean.
   assert.ok(LEGACY_POST_SLUGS.length === 14, 'expected 14 legacy posts')
@@ -79,9 +79,15 @@ test('every legacy blog post is covered by a redirect', () => {
   }
 })
 
-test('all redirects are permanent (308)', () => {
+/**
+ * Every rule must be a literal 301. `permanent: true` would emit 308, which Google treats
+ * the same but which contradicts the signed-off redirect map and surprises anyone auditing
+ * response headers. A 302/307 would pass no equity at all.
+ */
+test('every redirect is a 301', () => {
   for (const r of redirects) {
-    assert.ok(r.permanent, `${r.source} is temporary — a 307 does not pass link equity`)
+    assert.equal(r.statusCode, 301, `${r.source} is not a 301 — got ${JSON.stringify(r.statusCode)}`)
+    assert.ok(!('permanent' in r), `${r.source} sets both statusCode and permanent; Next allows only one`)
   }
 })
 

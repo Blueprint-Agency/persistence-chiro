@@ -4,9 +4,14 @@
  * Every legacy URL that was in the Wix sitemap must appear here. A 404 on any of
  * them throws away crawl history and whatever equity the 40 referring domains carry.
  *
- * `permanent: true` emits **308**, not 301 (Next's documented behaviour). Google treats
- * 308 as equivalent to 301 for consolidation, so this is correct — but if a legacy client
- * or directory chokes on 308, that's the reason why.
+ * These emit a literal **301**, set via `statusCode`.
+ *
+ * Next's `permanent: true` shorthand would emit 308 instead. Google consolidates signals
+ * identically for both, so 308 would not have cost ranking — but 301 is what the redirect
+ * map promises the client, what an auditor checking response headers expects to see, and
+ * what older directory crawlers and link checkers reliably understand.
+ *
+ * Next accepts `statusCode` or `permanent`, never both on the same rule.
  *
  * ⚠️ These only apply on a Node/edge host. `redirects()` is unsupported under
  * `output: 'export'` — if the site ever moves to a pure static export, this list has to be
@@ -14,7 +19,7 @@
  * why the data lives here as plain objects rather than inline in next.config.ts.
  */
 
-export type Redirect = { source: string; destination: string; permanent: boolean }
+export type Redirect = { source: string; destination: string; statusCode: 301 }
 
 /** Blog posts keep their slug byte-identical; only the prefix changes. */
 export const LEGACY_POST_SLUGS = [
@@ -35,20 +40,20 @@ export const LEGACY_POST_SLUGS = [
 ] as const
 
 const PAGE_REDIRECTS: Redirect[] = [
-  { source: '/our-services', destination: '/conditions', permanent: true },
-  { source: '/press-and-publications', destination: '/press', permanent: true },
-  { source: '/going-places-magazine-september-feature', destination: '/press', permanent: true },
+  { source: '/our-services', destination: '/conditions', statusCode: 301 },
+  { source: '/press-and-publications', destination: '/press', statusCode: 301 },
+  { source: '/going-places-magazine-september-feature', destination: '/press', statusCode: 301 },
   // NOT in the Wix sitemap — found only by following a "Read More" link off
   // /press-and-publications. current-url-structure.md is therefore incomplete; there may
   // be more orphaned pages that the sitemap never listed. Worth a crawl before launch.
   {
     source: '/big-pharmacy-less-pain-more-gain-with-regular-chiropractic',
     destination: '/press',
-    permanent: true,
+    statusCode: 301,
   },
-  { source: '/our-partners', destination: '/about-us#partners', permanent: true },
-  { source: '/book-now', destination: '/contact-us', permanent: true },
-  { source: '/landingpage', destination: '/', permanent: true },
+  { source: '/our-partners', destination: '/about-us#partners', statusCode: 301 },
+  { source: '/book-now', destination: '/contact-us', statusCode: 301 },
+  { source: '/landingpage', destination: '/', statusCode: 301 },
 ]
 
 /**
@@ -67,7 +72,7 @@ export const HELD_POST_SLUGS = [
 const HELD_POST_REDIRECTS: Redirect[] = HELD_POST_SLUGS.map((slug) => ({
   source: `/post/${slug}`,
   destination: '/blog',
-  permanent: true,
+  statusCode: 301,
 }))
 
 // ponytail: one wildcard rule instead of 12 rows. Slugs are preserved byte-identical,
@@ -76,7 +81,7 @@ const HELD_POST_REDIRECTS: Redirect[] = HELD_POST_SLUGS.map((slug) => ({
 const POST_REDIRECT: Redirect = {
   source: '/post/:slug',
   destination: '/blog/:slug',
-  permanent: true,
+  statusCode: 301,
 }
 
 export const redirects: Redirect[] = [...PAGE_REDIRECTS, ...HELD_POST_REDIRECTS, POST_REDIRECT]
