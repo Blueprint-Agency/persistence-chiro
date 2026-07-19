@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>persistencechiropractic.com — New vs Legacy URL structure (redirect map)</title>
+<style>
+  body { font: 14px/1.6 ui-monospace, SFMono-Regular, Menlo, monospace; max-width: 980px; margin: 2rem auto; padding: 0 1.5rem; color: #1a1a1a; }
+  h1 { font-size: 1.1rem; }
+  h2 { font-size: 0.95rem; margin: 2rem 0 0.5rem; }
+  small { color: #888; font-weight: normal; }
+  table { border-collapse: collapse; width: 100%; margin: 0.4rem 0 0; font-size: 0.82rem; table-layout: fixed; }
+  th, td { text-align: left; padding: 4px 10px; border-bottom: 1px solid #eee; vertical-align: top; overflow-wrap: anywhere; }
+  th:nth-child(1), td:nth-child(1) { width: 46%; }
+  td.arrow { width: 1.5rem; }
+  td.code { width: 3rem; }
+  th { color: #888; font-weight: 600; border-bottom: 1px solid #ccc; }
+  td.old { color: #a33; }
+  td.isnew { color: #178f4e; }
+  td.arrow { color: #bbb; text-align: center; }
+  code { color: inherit; }
+  a { color: #0b57d0; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .code { color: #888; font-size: 0.78rem; white-space: nowrap; }
+  .note { color: #888; font-size: 0.78rem; max-width: 760px; margin: 0.2rem 0 0.4rem; }
+  .warn { border-left: 3px solid #e8c111; padding: 0.6rem 0 0.6rem 0.9rem; margin: 1.2rem 0; color: #555; font-size: 0.8rem; }
+  @media (prefers-color-scheme: dark) {
+    body { background: #111; color: #ddd; }
+    th, td { border-color: #2a2a2a; } th { border-color: #444; color: #999; }
+    small, .note { color: #777; }
+    td.old { color: #e88; } td.isnew { color: #4ecb83; } td.arrow { color: #555; }
+    a { color: #7aa7ff; } .warn { color: #aaa; }
+  }
+</style>
+</head>
+<body>
+<h1>persistencechiropractic.com <small>&mdash; new vs legacy URL structure &amp; redirects</small></h1>
+
+<h2>Summary</h2>
+<table>
+<tr><th>Metric</th><th>Count</th></tr>
+<tr><td>New site URLs (built)</td><td><b>34</b></td></tr>
+<tr><td>&nbsp;&nbsp;&bull; submitted in sitemap</td><td>32</td></tr>
+<tr><td>&nbsp;&nbsp;&bull; reachable but noindex</td><td>2</td></tr>
+<tr><td>Legacy URLs redirected</td><td>21</td></tr>
+<tr><td>&nbsp;&nbsp;&bull; pages</td><td>7</td></tr>
+<tr><td>&nbsp;&nbsp;&bull; blog posts</td><td>14</td></tr>
+<tr><td>Legacy URLs dropped (404)</td><td class="old">0</td></tr>
+</table>
+
+<div class="warn">
+<b>Codes are 308, not 301.</b> Next.js emits 308 for <code>permanent: true</code>. Google treats 308 as
+equivalent to 301 for consolidating signals, so ranking behaviour is unchanged &mdash; but any directory or
+legacy client that only understands 301 will see a different number.
+</div>
+
+<div class="warn">
+<b>The legacy inventory is known-incomplete.</b> <code>/big-pharmacy-less-pain-more-gain-with-regular-chiropractic</code>
+is live today but absent from the Wix sitemap &mdash; it was found only by following a link. There may be further
+orphaned pages the sitemap never listed. A full crawl of the live site is needed before launch, or those URLs 404.
+</div>
+
+<h2>Unchanged paths</h2>
+<p class="note">Same path on Wix and on the new site. No redirect required — these keep their history by staying put.</p>
+<table>
+<tr><th>New URL</th><th></th><th>Legacy URL</th><th>Code</th></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/">/</a></td><td class="arrow">&larr;</td><td class="old"><code>/</code></td><td class="code">n/a</td></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/about-us">/about-us</a></td><td class="arrow">&larr;</td><td class="old"><code>/about-us</code></td><td class="code">n/a</td></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/contact-us">/contact-us</a></td><td class="arrow">&larr;</td><td class="old"><code>/contact-us</code></td><td class="code">n/a</td></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/what-to-expect">/what-to-expect</a></td><td class="arrow">&larr;</td><td class="old"><code>/what-to-expect</code></td><td class="code">n/a</td></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/blog">/blog</a></td><td class="arrow">&larr;</td><td class="old"><code>/blog</code></td><td class="code">n/a</td></tr>
+</table>
+
+<h2>Pages redirected</h2>
+<p class="note">Legacy pages whose content now lives at a different URL.</p>
+<table>
+<tr><th>New URL</th><th></th><th>Legacy URL</th><th>Code</th></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/conditions">/conditions</a></td><td class="arrow">&larr;</td><td class="old"><code>/our-services</code></td><td class="code">308</td></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/press">/press</a></td><td class="arrow">&larr;</td><td class="old"><code>/press-and-publications</code></td><td class="code">308</td></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/press">/press</a></td><td class="arrow">&larr;</td><td class="old"><code>/going-places-magazine-september-feature</code></td><td class="code">308</td></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/press">/press</a></td><td class="arrow">&larr;</td><td class="old"><code>/big-pharmacy-less-pain-more-gain-with-regular-chiropractic</code></td><td class="code">308</td></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/about-us#partners">/about-us#partners</a></td><td class="arrow">&larr;</td><td class="old"><code>/our-partners</code></td><td class="code">308</td></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/contact-us">/contact-us</a></td><td class="arrow">&larr;</td><td class="old"><code>/book-now</code></td><td class="code">308</td></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/">/</a></td><td class="arrow">&larr;</td><td class="old"><code>/landingpage</code></td><td class="code">308</td></tr>
+</table>
+
+<h2>Conditions</h2>
+<p class="note">New symptom-intent pages. No Wix equivalent existed — the old site had no per-condition content, so nothing redirects in.</p>
+<table>
+<tr><th>New URL</th><th></th><th>Legacy URL</th><th>Code</th></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/conditions/back-pain">/conditions/back-pain</a></td><td class="arrow">&mdash;</td><td class="isnew">new</td><td class="code"></td></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/conditions/slipped-disc">/conditions/slipped-disc</a></td><td class="arrow">&mdash;</td><td class="isnew">new</td><td class="code"></td></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/conditions/sciatica">/conditions/sciatica</a></td><td class="arrow">&mdash;</td><td class="isnew">new</td><td class="code"></td></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/conditions/scoliosis">/conditions/scoliosis</a></td><td class="arrow">&mdash;</td><td class="isnew">new</td><td class="code"></td></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/conditions/neck-pain-posture">/conditions/neck-pain-posture</a></td><td class="arrow">&mdash;</td><td class="isnew">new</td><td class="code"></td></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/conditions/sports-injury">/conditions/sports-injury</a></td><td class="arrow">&mdash;</td><td class="isnew">new</td><td class="code"></td></tr>
+</table>
+
+<h2>Chiropractic &amp; physiotherapy</h2>
+<p class="note">The live site sold seven physio services with no dedicated pages; these four absorb all seven (three fold in, keeping their own headings).</p>
+<table>
+<tr><th>New URL</th><th></th><th>Legacy URL</th><th>Code</th></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/chiropractic">/chiropractic</a></td><td class="arrow">&mdash;</td><td class="isnew">new — Gonstead method, content lifted from /our-services</td><td class="code"></td></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/physiotherapy">/physiotherapy</a></td><td class="arrow">&mdash;</td><td class="isnew">new — hub</td><td class="code"></td></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/physiotherapy/dry-needling">/physiotherapy/dry-needling</a></td><td class="arrow">&mdash;</td><td class="isnew">new</td><td class="code"></td></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/physiotherapy/manual-therapy">/physiotherapy/manual-therapy</a></td><td class="arrow">&mdash;</td><td class="isnew">new</td><td class="code"></td></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/physiotherapy/sports-rehab">/physiotherapy/sports-rehab</a></td><td class="arrow">&mdash;</td><td class="isnew">new</td><td class="code"></td></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/physiotherapy/rehab-programming">/physiotherapy/rehab-programming</a></td><td class="arrow">&mdash;</td><td class="isnew">new</td><td class="code"></td></tr>
+</table>
+
+<h2>Team</h2>
+<p class="note">New per-practitioner pages. Two carry <code>robots: noindex</code> and are excluded from the sitemap until the clinic supplies real bios.</p>
+<table>
+<tr><th>New URL</th><th></th><th>Legacy URL</th><th>Code</th></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/about-us/valerie-na">/about-us/valerie-na</a></td><td class="arrow">&mdash;</td><td class="isnew">new</td><td class="code"></td></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/about-us/kee-shan-lim">/about-us/kee-shan-lim</a></td><td class="arrow">&mdash;</td><td class="isnew">new — noindex, awaiting bio</td><td class="code"></td></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/about-us/rynn-hoh">/about-us/rynn-hoh</a></td><td class="arrow">&mdash;</td><td class="isnew">new — noindex, awaiting bio</td><td class="code"></td></tr>
+</table>
+
+<h2>Blog posts</h2>
+<p class="note">Slugs are preserved byte-identical; only the <code>/post/</code> prefix changes. Shipped as one wildcard rule (<code>/post/:slug &rarr; /blog/:slug</code>), listed here in full for sign-off.</p>
+<table>
+<tr><th>New URL</th><th></th><th>Legacy URL</th><th>Code</th></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/blog/a-deeper-understanding-of-scoliosis">/blog/a-deeper-understanding-of-scoliosis</a></td><td class="arrow">&larr;</td><td class="old"><code>/post/a-deeper-understanding-of-scoliosis</code></td><td class="code">308</td></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/blog/chiropractic-care-through-the-stages-of-a-woman-s-life">/blog/chiropractic-care-through-the-stages-of-a-woman-s-life</a></td><td class="arrow">&larr;</td><td class="old"><code>/post/chiropractic-care-through-the-stages-of-a-woman-s-life</code></td><td class="code">308</td></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/blog/chiropractic-care-for-athletes-optimising-performance-and-preventing-injuries">/blog/chiropractic-care-for-athletes-optimising-performance-and-preventing-injuries</a></td><td class="arrow">&larr;</td><td class="old"><code>/post/chiropractic-care-for-athletes-optimising-performance-and-preventing-injuries</code></td><td class="code">308</td></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/blog/spike-higher-play-longer">/blog/spike-higher-play-longer</a></td><td class="arrow">&larr;</td><td class="old"><code>/post/spike-higher-play-longer</code></td><td class="code">308</td></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/blog/derek-s-journey-with-gonstead-chiropractic-care">/blog/derek-s-journey-with-gonstead-chiropractic-care</a></td><td class="arrow">&larr;</td><td class="old"><code>/post/derek-s-journey-with-gonstead-chiropractic-care</code></td><td class="code">308</td></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/blog/three-years-of-gratitude-and-growth-celebrating-wellness-world-spine-day-and-our-community">/blog/three-years-of-gratitude-and-growth-celebrating-wellness-world-spine-day-and-our-community</a></td><td class="arrow">&larr;</td><td class="old"><code>/post/three-years-of-gratitude-and-growth-celebrating-wellness-world-spine-day-and-our-community</code></td><td class="code">308</td></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/blog/less-pain-more-gain-with-regular-chiropractic-care">/blog/less-pain-more-gain-with-regular-chiropractic-care</a></td><td class="arrow">&larr;</td><td class="old"><code>/post/less-pain-more-gain-with-regular-chiropractic-care</code></td><td class="code">308</td></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/blog/sleeping-well-waking-better-the-key-to-spinal-health-and-quality-sleep">/blog/sleeping-well-waking-better-the-key-to-spinal-health-and-quality-sleep</a></td><td class="arrow">&larr;</td><td class="old"><code>/post/sleeping-well-waking-better-the-key-to-spinal-health-and-quality-sleep</code></td><td class="code">308</td></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/blog/chiropractic-care-charity-talk-for-ti-ratana-welfare">/blog/chiropractic-care-charity-talk-for-ti-ratana-welfare</a></td><td class="arrow">&larr;</td><td class="old"><code>/post/chiropractic-care-charity-talk-for-ti-ratana-welfare</code></td><td class="code">308</td></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/blog/what-to-expect-when-going-to-the-chiropractor-for-the-first-time">/blog/what-to-expect-when-going-to-the-chiropractor-for-the-first-time</a></td><td class="arrow">&larr;</td><td class="old"><code>/post/what-to-expect-when-going-to-the-chiropractor-for-the-first-time</code></td><td class="code">308</td></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/blog/are-house-chores-a-pain-in-the-back-here-s-what-chiropractors-say">/blog/are-house-chores-a-pain-in-the-back-here-s-what-chiropractors-say</a></td><td class="arrow">&larr;</td><td class="old"><code>/post/are-house-chores-a-pain-in-the-back-here-s-what-chiropractors-say</code></td><td class="code">308</td></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/blog/chiropractic-care-a-fresh-perspective-on-migraine-relief">/blog/chiropractic-care-a-fresh-perspective-on-migraine-relief</a></td><td class="arrow">&larr;</td><td class="old"><code>/post/chiropractic-care-a-fresh-perspective-on-migraine-relief</code></td><td class="code">308</td></tr>
+</table>
+
+<h2>Held posts</h2>
+<p class="note">These two need editorial work before republication, so <code>/blog/&lt;slug&gt;</code> does not exist for them. They redirect to the blog index rather than falling through the wildcard into a 404 — and their rules are ordered ahead of it.</p>
+<table>
+<tr><th>New URL</th><th></th><th>Legacy URL</th><th>Code</th></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/blog">/blog</a></td><td class="arrow">&larr;</td><td class="old"><code>/post/blog-boost-your-bone-health-webinar</code></td><td class="code">308</td></tr>
+<tr><td><a href="https://www.persistencechiropractic.com/blog">/blog</a></td><td class="arrow">&larr;</td><td class="old"><code>/post/health-benefits-of-ergonomic-chairs</code></td><td class="code">308</td></tr>
+</table>
+
+<div class="warn">
+<b>Redirects require a Node or edge host.</b> <code>redirects()</code> is unsupported under
+<code>output: 'export'</code>. If the site moves to a pure static export, every rule above must be
+regenerated as host-level config (<code>vercel.json</code>, Netlify <code>_redirects</code>, nginx).
+</div>
+
+<p class="note">Generated from <code>redirects.ts</code> by <code>scripts/redirect-map.mjs</code>. Do not edit this file by hand &mdash; re-run the script.</p>
+</body>
+</html>
