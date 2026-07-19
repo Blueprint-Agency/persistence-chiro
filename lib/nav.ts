@@ -4,6 +4,7 @@
  */
 import { publishedConditions } from './conditions'
 import { publishedModalities } from './physiotherapy'
+import { publishedPractitioners } from './clinic'
 
 export type NavItem = { href: string; label: string; children?: NavItem[] }
 
@@ -26,7 +27,18 @@ export const mainNav = (): NavItem[] => [
     })),
   },
   { href: '/what-to-expect', label: 'What to Expect' },
-  { href: '/about-us', label: 'About' },
+  {
+    href: '/about-us',
+    label: 'About',
+    // /press was reachable only from the sitemap — orphaned from the nav entirely. It
+    // groups here rather than taking a top-level slot: both answer "who are these people".
+    children: [
+      { href: '/about-us', label: 'Our team' },
+      // Only published practitioners have a page — see `published` in lib/clinic.ts.
+      ...publishedPractitioners().map((p) => ({ href: `/about-us/${p.slug}`, label: p.name })),
+      { href: '/press', label: 'Press & publications' },
+    ],
+  },
   { href: '/blog', label: 'Blog' },
   { href: '/contact-us', label: 'Contact' },
 ]

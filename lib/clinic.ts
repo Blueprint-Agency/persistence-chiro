@@ -86,6 +86,24 @@ export const hoursDisplay = [
  */
 export const registrationsVerified = false
 
+/** Founder bio. VERBATIM from the live /about-us page. */
+export const founderBio = [
+  'As a founder and principal chiropractor in Persistence Chiropractic Care, Valerie pursued Chiropractic in a globally renowned university in Melbourne, Australia. Valerie has always had a strong desire to help others. Her fascination with being a chiropractor began when she met a childhood friend who exposed her to the field of chiropractic. Valerie began her voyage into exploration after becoming fascinated by her friend’s stories and knowledge.',
+  'Valerie did plenty of research and taught herself the fundamentals of chiropractic in her early days of exploration. From attending webinars and observing numerous chiropractors, she further mastered her craft and was able to bring relief to patients that struggled with physical pain. It brings immense joy to Valerie to see her patients step out of the treatment room feeling like a brand new person.',
+  'Today, Persistence Chiropractic Care treats people of all ages, pre or post-surgery, and offers acute, chronic, and wellness chiropractic care and adjustments.',
+]
+
+/**
+ * `published` gates the individual /about-us/[slug] page — NOT the team card on
+ * /about-us, which every practitioner still gets.
+ *
+ * Only Valerie has a bio and credentials on the live site. The other two have neither,
+ * anywhere, and inventing education or experience for a registered healthcare
+ * practitioner is not an option. A page carrying nothing but a name, a role and two
+ * memberships is exactly the thin page this rebuild exists to avoid, so it stays
+ * unbuilt: no route, no nav link, no sitemap entry. Flip `published` once the clinic
+ * supplies real bios.
+ */
 export const practitioners = [
   {
     name: 'Dr. Valerie Na',
@@ -98,6 +116,8 @@ export const practitioners = [
       'Gonstead Chiropractic Society Australia',
       'Association of Chiropractic Malaysia',
     ],
+    bio: founderBio,
+    published: true,
   },
   {
     // Blog bylines give the full name as Kee Shan Lim; the team card says "Kee Shan".
@@ -111,6 +131,9 @@ export const practitioners = [
       'Gonstead Chiropractic Society Australia',
       'Association of Chiropractic Malaysia',
     ],
+    // No bio or credentials exist for her on the live site or anywhere in this repo.
+    bio: [],
+    published: false,
   },
   {
     // No ACM number appears on this card — confirm whether one exists.
@@ -124,12 +147,11 @@ export const practitioners = [
       'Gonstead Chiropractic Society Australia',
       'Association of Chiropractic Malaysia',
     ],
+    // No bio or credentials exist for her on the live site or anywhere in this repo.
+    bio: [],
+    published: false,
   },
 ] as const
 
-/** Founder bio. VERBATIM from the live /about-us page. */
-export const founderBio = [
-  'As a founder and principal chiropractor in Persistence Chiropractic Care, Valerie pursued Chiropractic in a globally renowned university in Melbourne, Australia. Valerie has always had a strong desire to help others. Her fascination with being a chiropractor began when she met a childhood friend who exposed her to the field of chiropractic. Valerie began her voyage into exploration after becoming fascinated by her friend’s stories and knowledge.',
-  'Valerie did plenty of research and taught herself the fundamentals of chiropractic in her early days of exploration. From attending webinars and observing numerous chiropractors, she further mastered her craft and was able to bring relief to patients that struggled with physical pain. It brings immense joy to Valerie to see her patients step out of the treatment room feeling like a brand new person.',
-  'Today, Persistence Chiropractic Care treats people of all ages, pre or post-surgery, and offers acute, chronic, and wellness chiropractic care and adjustments.',
-]
+export const publishedPractitioners = () => practitioners.filter((p) => p.published)
+export const practitionerBySlug = (slug: string) => practitioners.find((p) => p.slug === slug)
