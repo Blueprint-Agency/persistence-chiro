@@ -3,7 +3,7 @@ import { staticRoutes } from '@/lib/routes'
 import { publishedConditions } from '@/lib/conditions'
 import { publishedModalities } from '@/lib/physiotherapy'
 import { publishedPosts } from '@/lib/posts'
-import { publishedPractitioners } from '@/lib/clinic'
+import { indexablePractitioners } from '@/lib/clinic'
 import { SITE_URL } from '@/lib/schema'
 
 /**
@@ -32,7 +32,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly' as const,
       priority: 0.7,
     })),
-    ...publishedPractitioners().map((p) => ({
+    ...indexablePractitioners().map((p) => ({
       url: `${SITE_URL}/about-us/${p.slug}`,
       lastModified: now,
       changeFrequency: 'yearly' as const,

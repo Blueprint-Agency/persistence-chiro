@@ -4,7 +4,7 @@
  */
 import { publishedConditions } from './conditions'
 import { publishedModalities } from './physiotherapy'
-import { publishedPractitioners } from './clinic'
+import { practitioners } from './clinic'
 
 export type NavItem = { href: string; label: string; children?: NavItem[] }
 
@@ -34,8 +34,8 @@ export const mainNav = (): NavItem[] => [
     // groups here rather than taking a top-level slot: both answer "who are these people".
     children: [
       { href: '/about-us', label: 'Our team' },
-      // Only published practitioners have a page — see `published` in lib/clinic.ts.
-      ...publishedPractitioners().map((p) => ({ href: `/about-us/${p.slug}`, label: p.name })),
+      // Every practitioner has a route — see the routing/indexing note in lib/clinic.ts.
+      ...practitioners.map((p) => ({ href: `/about-us/${p.slug}`, label: p.name })),
       { href: '/press', label: 'Press & publications' },
     ],
   },

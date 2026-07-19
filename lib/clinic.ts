@@ -94,16 +94,17 @@ export const founderBio = [
 ]
 
 /**
- * `published` gates the individual /about-us/[slug] page — NOT the team card on
- * /about-us, which every practitioner still gets.
+ * Every practitioner gets a route, because every team card on /about-us links to one and
+ * a card that 404s is worse than a short page.
  *
- * Only Valerie has a bio and credentials on the live site. The other two have neither,
- * anywhere, and inventing education or experience for a registered healthcare
- * practitioner is not an option. A page carrying nothing but a name, a role and two
- * memberships is exactly the thin page this rebuild exists to avoid, so it stays
- * unbuilt: no route, no nav link, no sitemap entry. Flip `published` once the clinic
- * supplies real bios.
+ * Indexing is a separate question from routing, and it keys off `bio` rather than a
+ * hand-set flag — the two cannot drift. Only Valerie has a bio and credentials on the
+ * live site; the other two have neither, anywhere, and inventing education or experience
+ * for a registered healthcare practitioner is not an option. So their pages exist and are
+ * reachable, but carry `robots: noindex` and stay out of the sitemap until the clinic
+ * supplies real bios — at which point they start indexing on their own, no flag to flip.
  */
+export const hasBio = (p: { bio: readonly string[] }) => p.bio.length > 0
 export const practitioners = [
   {
     name: 'Dr. Valerie Na',
@@ -117,7 +118,6 @@ export const practitioners = [
       'Association of Chiropractic Malaysia',
     ],
     bio: founderBio,
-    published: true,
   },
   {
     // Blog bylines give the full name as Kee Shan Lim; the team card says "Kee Shan".
@@ -131,9 +131,8 @@ export const practitioners = [
       'Gonstead Chiropractic Society Australia',
       'Association of Chiropractic Malaysia',
     ],
-    // No bio or credentials exist for her on the live site or anywhere in this repo.
+    // No bio or credentials exist for them on the live site or anywhere in this repo.
     bio: [],
-    published: false,
   },
   {
     // No ACM number appears on this card — confirm whether one exists.
@@ -147,11 +146,11 @@ export const practitioners = [
       'Gonstead Chiropractic Society Australia',
       'Association of Chiropractic Malaysia',
     ],
-    // No bio or credentials exist for her on the live site or anywhere in this repo.
+    // No bio or credentials exist for them on the live site or anywhere in this repo.
     bio: [],
-    published: false,
   },
 ] as const
 
-export const publishedPractitioners = () => practitioners.filter((p) => p.published)
+/** Practitioners whose page is substantial enough to submit for indexing. */
+export const indexablePractitioners = () => practitioners.filter(hasBio)
 export const practitionerBySlug = (slug: string) => practitioners.find((p) => p.slug === slug)

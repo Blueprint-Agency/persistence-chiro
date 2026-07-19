@@ -2,19 +2,14 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
 
-import {
-  clinic,
-  practitionerBySlug,
-  publishedPractitioners,
-  registrationsVerified,
-} from '@/lib/clinic'
+import { clinic, hasBio, practitionerBySlug, practitioners, registrationsVerified } from '@/lib/clinic'
 import { JsonLd } from '@/components/JsonLd'
 import { personSchema } from '@/lib/schema'
 import { CtaBand, Eyebrow, GhostButton, GoldButton, PageHero, Prose, Vertebrae } from '@/components/ui'
 
-/** Only published practitioners get a route — the rest have no bio to render. */
+/** Every practitioner gets a route — the team cards on /about-us all link here. */
 export function generateStaticParams() {
-  return publishedPractitioners().map((p) => ({ slug: p.slug }))
+  return practitioners.map((p) => ({ slug: p.slug }))
 }
 
 type Props = { params: Promise<{ slug: string }> }
@@ -22,7 +17,7 @@ type Props = { params: Promise<{ slug: string }> }
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const p = practitionerBySlug(slug)
-  if (!p || !p.published) return {}
+  if (!p) return {}
 
   const title = `${p.name} — Chiropractor in Cheras, KL`
   const description = `${p.name}, ${p.role} at Persistence Chiropractic Care in Cheras, Maluri. ${
@@ -34,13 +29,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description,
     alternates: { canonical: `/about-us/${p.slug}` },
     openGraph: { title, description, url: `/about-us/${p.slug}`, images: [p.photo] },
+    // Reachable, but not submitted for indexing until there's a real bio to index.
+    // Derived from the bio itself so it can't drift — see lib/clinic.ts.
+    ...(hasBio(p) ? {} : { robots: { index: false, follow: true } }),
   }
 }
 
 export default async function PractitionerPage({ params }: Props) {
   const { slug } = await params
   const p = practitionerBySlug(slug)
-  if (!p || !p.published) notFound()
+  if (!p) notFound()
 
   return (
     <>

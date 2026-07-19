@@ -1,10 +1,11 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import type { Metadata } from 'next'
 
-import { clinic, founderBio, practitioners, registrationsVerified } from '@/lib/clinic'
+import { clinic, practitioners, registrationsVerified } from '@/lib/clinic'
 import { JsonLd } from '@/components/JsonLd'
 import { personSchema } from '@/lib/schema'
-import { CtaBand, Eyebrow, PageHero, Prose, Vertebrae } from '@/components/ui'
+import { CtaBand, Eyebrow, PageHero, Vertebrae } from '@/components/ui'
 
 export const metadata: Metadata = {
   title: 'About Our Chiropractors in Cheras, Kuala Lumpur',
@@ -26,54 +27,22 @@ export default function AboutPage() {
         intro="Three registered chiropractors practising the Gonstead method in Cheras, Maluri — trained to find the one segment causing your pain rather than adjusting everything and hoping."
       />
 
-      {/* ------------------------------------------------------------- Founder */}
-      <section className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
-        <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
-          <div>
-            <div className="overflow-hidden rounded-3xl">
-              <Image
-                src="/img/dr-valerie-na.webp"
-                alt="Dr. Valerie Na, founder and principal chiropractor at Persistence Chiropractic Care, Cheras Kuala Lumpur"
-                width={800}
-                height={1000}
-                sizes="(max-width: 1024px) 100vw, 420px"
-                className="w-full object-cover"
-              />
-            </div>
-          </div>
-
-          <div>
-            <Eyebrow>The founder</Eyebrow>
-            <h2 className="mt-5 text-3xl font-extrabold leading-tight sm:text-4xl">
-              Dr. Valerie Na
-            </h2>
-            <p className="mt-2 text-lg text-brand-gold-ink">
-              Director &amp; Principal Chiropractor
-            </p>
-            <div className="mt-7">
-              <Prose>
-                {founderBio.map((para) => (
-                  <p key={para.slice(0, 40)}>{para}</p>
-                ))}
-              </Prose>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* ---------------------------------------------------------------- Team */}
-      <section className="border-y border-line bg-white">
-        <div className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
-          <Eyebrow>Our team</Eyebrow>
-          <h2 className="mt-5 max-w-2xl text-3xl font-extrabold leading-tight sm:text-4xl">
-            The chiropractors who will actually be treating you.
-          </h2>
+      {/* The founder section that used to sit above this was removed: Valerie's bio now
+          lives on her own page, and repeating it here made her the page's subject when
+          the page's job is introducing all three. Every card links to its own page. */}
+      <section className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
+        <Eyebrow>Our team</Eyebrow>
+        <h2 className="mt-5 max-w-2xl text-3xl font-extrabold leading-tight sm:text-4xl">
+          The chiropractors who will actually be treating you.
+        </h2>
 
-          <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {practitioners.map((p) => (
-              <li
-                key={p.slug}
-                className="overflow-hidden rounded-3xl border border-line bg-background"
+        <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {practitioners.map((p) => (
+            <li key={p.slug}>
+              <Link
+                href={`/about-us/${p.slug}`}
+                className="group flex h-full flex-col overflow-hidden rounded-3xl border border-line bg-white transition-shadow hover:shadow-xl hover:shadow-black/5"
               >
                 <Image
                   src={p.photo}
@@ -83,8 +52,8 @@ export default function AboutPage() {
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 360px"
                   className="aspect-[4/5] w-full object-cover"
                 />
-                <div className="p-6">
-                  <h3 className="text-lg font-bold">{p.name}</h3>
+                <div className="flex flex-1 flex-col p-6">
+                  <h3 className="text-lg font-bold group-hover:text-brand-slate">{p.name}</h3>
                   <p className="mt-1 text-sm text-brand-slate">{p.role}</p>
 
                   {p.credentials && (
@@ -107,11 +76,16 @@ export default function AboutPage() {
                   {registrationsVerified && p.registrations.length > 0 && (
                     <p className="mt-3 text-xs text-ink-muted">{p.registrations.join(' · ')}</p>
                   )}
+
+                  <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-slate group-hover:gap-2.5">
+                    Read profile
+                    <span aria-hidden="true">&rarr;</span>
+                  </span>
                 </div>
-              </li>
-            ))}
-          </ul>
-        </div>
+              </Link>
+            </li>
+          ))}
+        </ul>
       </section>
 
       {/* ------------------------------------------------------------ Partners */}
