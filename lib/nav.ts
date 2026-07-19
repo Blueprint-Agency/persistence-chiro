@@ -4,7 +4,6 @@
  */
 import { publishedConditions } from './conditions'
 import { publishedModalities } from './physiotherapy'
-import { practitioners } from './clinic'
 
 export type NavItem = { href: string; label: string; children?: NavItem[] }
 
@@ -32,10 +31,11 @@ export const mainNav = (): NavItem[] => [
     label: 'About',
     // /press was reachable only from the sitemap — orphaned from the nav entirely. It
     // groups here rather than taking a top-level slot: both answer "who are these people".
+    // Practitioners are deliberately not listed here. Their pages are reached by clicking
+    // a card on /about-us, where the photo and role give the name context a bare dropdown
+    // row cannot. Listing them twice made the menu long without making anything findable.
     children: [
       { href: '/about-us', label: 'Our team' },
-      // Every practitioner has a route — see the routing/indexing note in lib/clinic.ts.
-      ...practitioners.map((p) => ({ href: `/about-us/${p.slug}`, label: p.name })),
       { href: '/press', label: 'Press & publications' },
     ],
   },

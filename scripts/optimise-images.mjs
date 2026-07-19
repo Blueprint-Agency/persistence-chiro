@@ -19,6 +19,12 @@ const PHOTOS = [
   ['about-04-valerie.jpg', 'dr-valerie-na', 800, 1000, { position: 'top' }],
   ['about-05-kee-shan.jpg', 'dr-kee-shan-lim', 800, 1000, { position: 'top' }],
   ['about-06-rynn.jpg', 'dr-rynn-hoh', 800, 1000, { position: 'top' }],
+  // Both of these sat on the live /what-to-expect page — reused there rather than
+  // borrowing a photo already carrying another page.
+  ['what-to-expect-02-chiropractic-cheras.jpg', 'first-visit-consultation', 1400, 1000, {}],
+  // This is the clinic's actual nervoscope — the instrument gonstead.ts names in the
+  // Instrumentation step. Worth its own slug; it illustrates the method, not a waiting room.
+  ['what-to-expect-03-zmn01452.jpg', 'gonstead-nervoscope', 1100, 1400, { position: 'top' }],
   ['home-42-spike-higher-play-longer.jpg', 'post-spike-higher', 800, 600, {}],
   ['home-44-chiropractic-care-through-stages-woman-s.webp', 'post-womans-life', 800, 600, {}],
   ['home-46-house-chores-pain-back-here-s.png', 'post-house-chores', 800, 600, {}],

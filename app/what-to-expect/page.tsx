@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 
 import { clinic } from '@/lib/clinic'
@@ -28,25 +29,39 @@ export default function WhatToExpectPage() {
 
       {/* ------------------------------------------------------- Your first visit */}
       <section className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
-        <div className="max-w-2xl">
-          <Eyebrow>Your first visit</Eyebrow>
-          <h2 className="mt-5 text-3xl font-extrabold leading-tight sm:text-4xl">
-            We assess before we adjust.
-          </h2>
-          <p className="mt-5 text-lg leading-relaxed text-ink-muted">
-            Your first appointment follows the{' '}
-            <Link
-              href="/chiropractic"
-              className="font-semibold text-brand-gold-ink underline underline-offset-4"
-            >
-              Gonstead six-step assessment
-            </Link>{' '}
-            — history, visualisation, instrumentation, palpation, X-ray analysis, and only then
-            an adjustment.
-          </p>
-          {/* TODO(content): the live site has a separate 4-step first-visit walkthrough in
-              content-migration/what-to-expect.md. It overlaps heavily with the Gonstead six
-              steps — the clinic should decide which framing to keep rather than shipping both. */}
+        <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-16">
+          <div>
+            <Eyebrow>Your first visit</Eyebrow>
+            <h2 className="mt-5 text-3xl font-extrabold leading-tight sm:text-4xl">
+              We assess before we adjust.
+            </h2>
+            <p className="mt-5 text-lg leading-relaxed text-ink-muted">
+              Your first appointment follows the{' '}
+              <Link
+                href="/chiropractic"
+                className="font-semibold text-brand-gold-ink underline underline-offset-4"
+              >
+                Gonstead six-step assessment
+              </Link>{' '}
+              — history, visualisation, instrumentation, palpation, X-ray analysis, and only then
+              an adjustment.
+            </p>
+            <p className="mt-4 text-lg leading-relaxed text-ink-muted">
+              If this is your first time here, arrive 5&ndash;10 minutes early so there is time
+              to complete any paperwork without rushing.
+            </p>
+          </div>
+
+          <div className="overflow-hidden rounded-3xl">
+            <Image
+              src="/img/first-visit-consultation.webp"
+              alt="Chiropractor assessing a patient's neck during a first consultation at Persistence Chiropractic Care, Cheras Kuala Lumpur"
+              width={1400}
+              height={1000}
+              sizes="(max-width: 1024px) 100vw, 480px"
+              className="w-full object-cover"
+            />
+          </div>
         </div>
       </section>
 
@@ -60,6 +75,20 @@ export default function WhatToExpectPage() {
                 What you do next matters as much as the adjustment.
               </h2>
               <p className="mt-5 leading-relaxed text-ink-muted">{postTreatmentIntro}</p>
+
+              {/* The clinic's own nervoscope — the instrument named in the Instrumentation
+                  step. A photo of the actual kit says "we measure this" better than a
+                  stock treatment-room shot. */}
+              <div className="mt-8 overflow-hidden rounded-3xl">
+                <Image
+                  src="/img/gonstead-nervoscope.webp"
+                  alt="The nervoscope used to measure skin temperature either side of the spine at Persistence Chiropractic Care, Cheras Kuala Lumpur"
+                  width={1100}
+                  height={1400}
+                  sizes="(max-width: 1024px) 100vw, 420px"
+                  className="w-full object-cover"
+                />
+              </div>
             </div>
 
             <dl className="divide-y divide-line border-y border-line">
