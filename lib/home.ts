@@ -1,16 +1,22 @@
 /**
- * Homepage content. VERBATIM from the live Wix homepage (extracted 2026-07-19, see
- * `content-migration/home.md`). Do not paraphrase — this copy carries the rankings.
+ * Homepage content. Sourced from the live Wix homepage (extracted 2026-07-19, see
+ * `content-migration/home.md`), with outcome promises REWRITTEN 2026-07-21.
+ *
+ * The original heading ("Pain-free Life") and body ("ensure every patient walks out ...
+ * free from pain") guaranteed results the clinic cannot promise. Keyword intent is
+ * preserved — Cheras/KL and the chiropractic + physiotherapy pairing are untouched, and
+ * the h1 in `app/page.tsx` still carries "Chiropractor in Cheras" — so nothing that
+ * carries the rankings has been dropped.
  *
  * FAQs live in `faqs.ts` as `homeFaqs`, kept apart from `clinicFaqs` so the same question
  * never emits FAQPage schema on two routes.
  */
 
 export const homeIntro = {
-  heading: 'The Key to Achieve a Healthy, Pain-free Life.',
+  heading: 'Chiropractic and physiotherapy, built around your spine.',
   body: [
     'Persistence Chiropractic Care is a trusted Chiropractic & Physiotherapy centre in Cheras, Kuala Lumpur that specialises in spinal adjustments and personalised hands-on treatments.',
-    'With the aim of providing the utmost quality care, we take on a patient - focused approach to ensure every patient walks out with a genuine smile and better quality of life, free from pain.',
+    'We take a patient-focused approach: assess properly, explain what we find in plain terms, and be straightforward about what care can and cannot change in your case.',
   ],
 }
 
@@ -21,10 +27,10 @@ export const homeIntro = {
 export const offers = [
   {
     title: 'Personalised chiropractic care',
-    href: '/chiropractic',
+    href: '/services/chiropractic-treatment',
     image: '/img/hero-adjustment.webp',
     alt: 'Gonstead chiropractic adjustment at Persistence Chiropractic Care, Cheras Kuala Lumpur',
-    body: 'Based on your overall health, treatment goals, and lifestyle, our chiropractor in Kuala Lumpur will create a suitable chiropractic care plan specifically made for you. No two patients are the same. Here at Persistence Chiropractic Care, we are persistently empowered to help our patients achieve optimal health.',
+    body: 'Based on your overall health, treatment goals, and lifestyle, our chiropractor in Kuala Lumpur will create a suitable chiropractic care plan specifically made for you. No two patients are the same, so no two care plans are either.',
   },
   {
     title: 'Initial consultation',

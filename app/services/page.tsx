@@ -2,27 +2,33 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 import { clinic } from '@/lib/clinic'
-import { publishedModalities, physiotherapyIntro } from '@/lib/physiotherapy'
+import { publishedServices, servicesIntro } from '@/lib/services'
 import { CtaBand, Eyebrow, PageHero, Vertebrae } from '@/components/ui'
 
-// Targets "physio cheras" (260/mo, SD 19) — flagged in seo-strategy.md as unclaimed by
-// any chiropractor in the area.
+/**
+ * Services hub. One of the seven main pages in `seo-proposal.html`.
+ *
+ * Deliberately NOT targeting "physio cheras" — that keyword belongs to
+ * /services/physiotherapy, which is the page that can actually answer it. A hub competing
+ * with its own child for one term is the cannibalisation the architecture exists to
+ * prevent. This page exists to route visitors and to pass link equity down.
+ */
 export const metadata: Metadata = {
-  title: 'Physiotherapy in Cheras, Maluri, Kuala Lumpur',
+  title: 'Our Services — Chiropractic & Physiotherapy in Cheras, KL',
   description:
-    'Dry needling, manual therapy, sports rehabilitation and individualised rehab programming in Cheras, Maluri. Physiotherapy alongside chiropractic care.',
-  alternates: { canonical: '/physiotherapy' },
+    'Chiropractic treatment, dry needling, physiotherapy, sports injury rehabilitation and posture correction in Cheras, Maluri, Kuala Lumpur.',
+  alternates: { canonical: '/services' },
 }
 
-export default function PhysiotherapyHub() {
-  const modalities = publishedModalities()
+export default function ServicesHub() {
+  const services = publishedServices()
 
   return (
     <>
       <PageHero
-        eyebrow="Physiotherapy"
-        title="Physiotherapy in Cheras, Kuala Lumpur"
-        intro={physiotherapyIntro}
+        eyebrow="Our services"
+        title="Chiropractic and physiotherapy in Cheras, Kuala Lumpur"
+        intro={servicesIntro}
       />
 
       <section className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
@@ -32,25 +38,25 @@ export default function PhysiotherapyHub() {
             Treatment that ends with you not needing us.
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-ink-muted">
-            Chiropractic restores how a joint moves. Physiotherapy builds the strength and
-            control that keeps it moving — which is the part that stops the same injury coming
-            back six months later.
+            Chiropractic works on how a joint moves. Physiotherapy builds the strength and
+            control around it — which is usually the part that matters six months later.
+            Which you need depends on what the assessment finds.
           </p>
         </div>
 
-        {modalities.length === 0 ? (
-          <p className="mt-10 text-ink-muted">Physiotherapy pages are being prepared.</p>
+        {services.length === 0 ? (
+          <p className="mt-10 text-ink-muted">Service pages are being prepared.</p>
         ) : (
           <ul className="mt-12 grid gap-6 md:grid-cols-2">
-            {modalities.map((m) => (
-              <li key={m.slug}>
+            {services.map((s) => (
+              <li key={s.slug}>
                 <Link
-                  href={`/physiotherapy/${m.slug}`}
+                  href={`/services/${s.slug}`}
                   className="group flex h-full flex-col rounded-3xl border border-line bg-white p-8 transition-shadow hover:shadow-xl hover:shadow-black/5 lg:p-10"
                 >
                   <Vertebrae className="text-brand-gold" />
-                  <h3 className="mt-5 text-xl font-bold">{m.title.split(' in ')[0]}</h3>
-                  <p className="mt-3 flex-1 leading-relaxed text-ink-muted">{m.metaDescription}</p>
+                  <h3 className="mt-5 text-xl font-bold">{s.title.split(' in ')[0]}</h3>
+                  <p className="mt-3 flex-1 leading-relaxed text-ink-muted">{s.metaDescription}</p>
                   <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-slate group-hover:gap-2.5">
                     Read more
                     <span aria-hidden="true">&rarr;</span>

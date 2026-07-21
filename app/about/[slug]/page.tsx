@@ -7,7 +7,7 @@ import { JsonLd } from '@/components/JsonLd'
 import { personSchema } from '@/lib/schema'
 import { CtaBand, Eyebrow, GhostButton, GoldButton, PageHero, Prose, Vertebrae } from '@/components/ui'
 
-/** Every practitioner gets a route — the team cards on /about-us all link here. */
+/** Every practitioner gets a route — the team cards on /about all link here. */
 export function generateStaticParams() {
   return practitioners.map((p) => ({ slug: p.slug }))
 }
@@ -27,8 +27,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title,
     description,
-    alternates: { canonical: `/about-us/${p.slug}` },
-    openGraph: { title, description, url: `/about-us/${p.slug}`, images: [p.photo] },
+    alternates: { canonical: `/about/${p.slug}` },
+    openGraph: { title, description, url: `/about/${p.slug}`, images: [p.photo] },
     // Reachable, but not submitted for indexing until there's a real bio to index.
     // Derived from the bio itself so it can't drift — see lib/clinic.ts.
     ...(hasBio(p) ? {} : { robots: { index: false, follow: true } }),
@@ -106,7 +106,7 @@ export default async function PractitionerPage({ params }: Props) {
               <GoldButton href={clinic.bookingUrl} external>
                 Book an appointment
               </GoldButton>
-              <GhostButton href="/about-us">Back to the team</GhostButton>
+              <GhostButton href="/about">Back to the team</GhostButton>
             </div>
           </div>
         </div>

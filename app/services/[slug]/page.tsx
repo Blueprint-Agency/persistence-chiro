@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
-import { modalityBySlug, publishedModalities } from '@/lib/physiotherapy'
+import { serviceBySlug, templatedServices } from '@/lib/services'
 import { conditionBySlug } from '@/lib/conditions'
 import { clinic } from '@/lib/clinic'
 import { JsonLd } from '@/components/JsonLd'
@@ -10,50 +10,50 @@ import { medicalProcedureSchema } from '@/lib/schema'
 import { CtaBand, Eyebrow, GoldButton, PageHero, Vertebrae } from '@/components/ui'
 
 export function generateStaticParams() {
-  return publishedModalities().map((m) => ({ slug: m.slug }))
+  return templatedServices().map((s) => ({ slug: s.slug }))
 }
 
 type Props = { params: Promise<{ slug: string }> }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
-  const modality = modalityBySlug(slug)
-  if (!modality) return {}
+  const service = serviceBySlug(slug)
+  if (!service) return {}
 
   return {
-    title: modality.metaTitle,
-    description: modality.metaDescription,
-    alternates: { canonical: `/physiotherapy/${modality.slug}` },
+    title: service.metaTitle,
+    description: service.metaDescription,
+    alternates: { canonical: `/services/${service.slug}` },
     openGraph: {
-      title: modality.metaTitle,
-      description: modality.metaDescription,
-      url: `/physiotherapy/${modality.slug}`,
+      title: service.metaTitle,
+      description: service.metaDescription,
+      url: `/services/${service.slug}`,
     },
   }
 }
 
-export default async function ModalityPage({ params }: Props) {
+export default async function ServicePage({ params }: Props) {
   const { slug } = await params
-  const modality = modalityBySlug(slug)
-  if (!modality || modality.draft) notFound()
+  const service = serviceBySlug(slug)
+  if (!service || service.draft) notFound()
 
-  const treats = modality.treats.map(conditionBySlug).filter(Boolean)
+  const treats = service.treats.map(conditionBySlug).filter(Boolean)
 
   // The first section IS the page's subject, so its heading would duplicate the h1.
-  // Folded-in services (see the header comment in physiotherapy.ts) keep theirs.
-  const [lead, ...folded] = modality.sections
+  // Folded-in services (see the header comment in services.ts) keep theirs.
+  const [lead, ...folded] = service.sections
 
   return (
     <>
       <JsonLd
         data={medicalProcedureSchema({
-          name: modality.title,
-          description: modality.metaDescription,
-          url: `/physiotherapy/${modality.slug}`,
+          name: service.title,
+          description: service.metaDescription,
+          url: `/services/${service.slug}`,
         })}
       />
 
-      <PageHero eyebrow="Physiotherapy" title={modality.title} intro={lead?.body} />
+      <PageHero eyebrow="Our services" title={service.title} intro={lead?.body} />
 
       <article className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
         <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">

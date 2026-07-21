@@ -4,7 +4,7 @@ import type { Metadata } from 'next'
 
 import { clinic, hoursDisplay } from '@/lib/clinic'
 import { publishedConditions } from '@/lib/conditions'
-import { publishedModalities } from '@/lib/physiotherapy'
+import { publishedServices } from '@/lib/services'
 import { publishedPosts } from '@/lib/posts'
 import { homeFaqs } from '@/lib/faqs'
 import { homeIntro, offers, testimonials, accreditations, postImages } from '@/lib/home'
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
   const conditions = publishedConditions()
-  const modalities = publishedModalities()
+  const modalities = publishedServices()
   const posts = publishedPosts().filter((p) => postImages[p.slug]).slice(0, 3)
 
   return (
@@ -46,8 +46,8 @@ export default function Home() {
             </h1>
 
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/75">
-              Heal your body the natural way through chiropractic &amp; physiotherapy. We deliver
-              first-class care by providing personalised hands-on treatment and spinal adjustments —
+              Drug-free, hands-on chiropractic &amp; physiotherapy in Cheras. Personalised treatment
+              and precise spinal adjustments, built around what your assessment actually shows —
               one spine at a time.
             </p>
 
@@ -122,7 +122,7 @@ export default function Home() {
               <p key={p.slice(0, 24)}>{p}</p>
             ))}
             <div className="pt-2">
-              <GhostButton href="/about-us">Meet the team</GhostButton>
+              <GhostButton href="/about">Meet the team</GhostButton>
             </div>
           </div>
         </div>
@@ -164,8 +164,8 @@ export default function Home() {
               Two ways in. Not sure which? Text us your main concern.
             </h2>
             <p className="mt-5 text-lg leading-relaxed text-ink-muted">
-              Chiropractic restores how your joints move. Physiotherapy rebuilds the strength that
-              keeps them there. Most patients need one; some need both, and we&rsquo;ll tell you
+              Chiropractic works on how your joints move. Physiotherapy works on the strength that
+              helps keep them there. Most patients need one; some need both, and we&rsquo;ll tell you
               which on your first visit.
             </p>
           </div>
@@ -193,7 +193,7 @@ export default function Home() {
                 </ul>
               )}
               <div className="mt-8">
-                <GhostButton href="/chiropractic" tone="light">
+                <GhostButton href="/services/chiropractic-treatment" tone="light">
                   How Gonstead works
                 </GhostButton>
               </div>
@@ -211,7 +211,7 @@ export default function Home() {
                   {modalities.map((m) => (
                     <li key={m.slug}>
                       <Link
-                        href={`/physiotherapy/${m.slug}`}
+                        href={`/services/${m.slug}`}
                         className="inline-block rounded-full border border-brand-slate/20 bg-white/60 px-3.5 py-1.5 text-sm text-brand-slate hover:border-brand-slate"
                       >
                         {m.title.split(' in ')[0]}
@@ -221,7 +221,7 @@ export default function Home() {
                 </ul>
               )}
               <div className="mt-8">
-                <GhostButton href="/physiotherapy">Explore physiotherapy</GhostButton>
+                <GhostButton href="/services">Explore physiotherapy</GhostButton>
               </div>
             </article>
           </div>
@@ -232,7 +232,7 @@ export default function Home() {
       <section className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
         <Eyebrow>What our patients say</Eyebrow>
         <h2 className="mt-5 max-w-2xl text-3xl font-extrabold leading-tight sm:text-4xl">
-          Real spines, real relief.
+          Real spines, real patients.
         </h2>
 
         <div className="mt-12 grid gap-6 md:grid-cols-2">
@@ -365,7 +365,7 @@ export default function Home() {
               <GhostButton href={clinic.mapsUrl} external>
                 Open in Google Maps
               </GhostButton>
-              <GhostButton href="/contact-us">Directions &amp; contact</GhostButton>
+              <GhostButton href="/book-now">Directions &amp; contact</GhostButton>
             </div>
           </div>
         </div>

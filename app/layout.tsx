@@ -6,6 +6,9 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { JsonLd } from "@/components/JsonLd";
 import { localBusinessSchema, SITE_URL } from "@/lib/schema";
+import { Analytics, AnalyticsNoScript } from "@/components/Analytics";
+import { CtaTracking } from "@/components/CtaTracking";
+import { GSC_VERIFICATION } from "@/lib/analytics";
 
 // Montserrat for headings, per the brand (AGENTS.md). Source Sans 3 for body — drawn for
 // long-form reading, which is what condition pages are, and warmer than the Inter default.
@@ -24,6 +27,9 @@ export const metadata: Metadata = {
   description:
     "Gonstead chiropractic and physiotherapy in Cheras, Maluri. Registered chiropractors treating back pain, slipped disc, sciatica and sports injury in Kuala Lumpur.",
   alternates: { canonical: "/" },
+  // Search Console ownership. Only emitted when the token env var is set — the DNS
+  // method is fine too, this just avoids a second round-trip to the client for DNS access.
+  ...(GSC_VERIFICATION ? { verification: { google: GSC_VERIFICATION } } : {}),
   openGraph: {
     type: "website",
     locale: "en_MY",
@@ -43,12 +49,16 @@ export default function RootLayout({
       className={`${montserrat.variable} ${sourceSans.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col font-[family-name:var(--font-body)]">
+        <AnalyticsNoScript />
         {/* Sitewide business schema. Every other template references it by @id rather
             than repeating NAP. */}
         <JsonLd data={localBusinessSchema()} />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        <Analytics />
+        {/* Renders no DOM — attaches one delegated listener for CTA conversion events. */}
+        <CtaTracking />
       </body>
     </html>
   );

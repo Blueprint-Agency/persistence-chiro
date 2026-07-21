@@ -23,7 +23,7 @@ export default function WhatToExpectPage() {
 
       <PageHero
         eyebrow="What to expect"
-        title="Healing is a process, not an event."
+        title="Recovery is a process, not an event."
         intro="Persistence is the key — and knowing what happens before you walk in makes the first visit a lot easier."
       />
 
@@ -38,7 +38,7 @@ export default function WhatToExpectPage() {
             <p className="mt-5 text-lg leading-relaxed text-ink-muted">
               Your first appointment follows the{' '}
               <Link
-                href="/chiropractic"
+                href="/services/chiropractic-treatment"
                 className="font-semibold text-brand-gold-ink underline underline-offset-4"
               >
                 Gonstead six-step assessment

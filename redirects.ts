@@ -40,7 +40,7 @@ export const LEGACY_POST_SLUGS = [
 ] as const
 
 const PAGE_REDIRECTS: Redirect[] = [
-  { source: '/our-services', destination: '/conditions', statusCode: 301 },
+  { source: '/our-services', destination: '/services', statusCode: 301 },
   { source: '/press-and-publications', destination: '/press', statusCode: 301 },
   { source: '/going-places-magazine-september-feature', destination: '/press', statusCode: 301 },
   // NOT in the Wix sitemap — found only by following a "Read More" link off
@@ -51,10 +51,19 @@ const PAGE_REDIRECTS: Redirect[] = [
     destination: '/press',
     statusCode: 301,
   },
-  { source: '/our-partners', destination: '/about-us#partners', statusCode: 301 },
-  { source: '/book-now', destination: '/contact-us', statusCode: 301 },
+  { source: '/our-partners', destination: '/about#partners', statusCode: 301 },
   { source: '/landingpage', destination: '/', statusCode: 301 },
 ]
+
+/**
+ * `/book-now` is NOT redirected any more — it is a real page again.
+ *
+ * The Wix site had /book-now ranking #13 for "chiro cheras", and the earlier architecture
+ * 301'd it to /contact-us. The proposal restores it as one of the seven main pages, so the
+ * legacy URL now resolves to a live page of the same intent and keeps whatever equity that
+ * ranking carries. It absorbs the NAP, map, hours and booking content that /contact-us
+ * held; /contact-us itself never launched publicly, so no redirect is owed to it.
+ */
 
 /**
  * Posts held back from republication. Their legacy URLs must NOT fall through to the

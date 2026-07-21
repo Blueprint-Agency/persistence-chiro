@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next'
 import { staticRoutes } from '@/lib/routes'
 import { publishedConditions } from '@/lib/conditions'
-import { publishedModalities } from '@/lib/physiotherapy'
+import { publishedServices } from '@/lib/services'
 import { publishedPosts } from '@/lib/posts'
 import { indexablePractitioners } from '@/lib/clinic'
 import { SITE_URL } from '@/lib/schema'
@@ -13,7 +13,10 @@ import { SITE_URL } from '@/lib/schema'
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date()
 
-  return [
+  // /services/chiropractic-treatment is in BOTH staticRoutes (it has a hand-built route
+  // file) and publishedServices (it is a service). Listing a URL twice in a sitemap is
+  // invalid, so the last-write-wins dedupe below is load-bearing, not defensive.
+  const entries: MetadataRoute.Sitemap = [
     ...staticRoutes.map((path) => ({
       url: `${SITE_URL}${path}`,
       lastModified: now,
@@ -26,14 +29,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly' as const,
       priority: 0.9,
     })),
-    ...publishedModalities().map((m) => ({
-      url: `${SITE_URL}/physiotherapy/${m.slug}`,
+    ...publishedServices().map((s) => ({
+      url: `${SITE_URL}/services/${s.slug}`,
       lastModified: now,
       changeFrequency: 'monthly' as const,
       priority: 0.7,
     })),
     ...indexablePractitioners().map((p) => ({
-      url: `${SITE_URL}/about-us/${p.slug}`,
+      url: `${SITE_URL}/about/${p.slug}`,
       lastModified: now,
       changeFrequency: 'yearly' as const,
       priority: 0.6,
@@ -47,4 +50,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.5,
     })),
   ]
+
+  // Keep the service entry (priority 0.7) over the generic static one (0.8): a service
+  // page's priority should come from its own collection.
+  const seen = new Map<string, MetadataRoute.Sitemap[number]>()
+  for (const e of entries) seen.set(e.url, e)
+  return [...seen.values()]
 }

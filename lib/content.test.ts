@@ -3,7 +3,7 @@
  *
  * These guard the two things that would quietly undo the SEO rebuild:
  *   1. two pages targeting the same keyword (cannibalisation — the whole reason the
- *      architecture splits conditions from modalities)
+ *      architecture splits conditions from services)
  *   2. an internal link pointing at a slug that doesn't exist
  *
  * Node 23 strips TS types natively, so no build step is needed to run this.
@@ -12,14 +12,17 @@ import { test } from 'node:test'
 import assert from 'node:assert/strict'
 
 import { conditions } from './conditions.ts'
-import { modalities } from './physiotherapy.ts'
+import { services } from './services.ts'
 import { posts, publishedPosts } from './posts.ts'
 import { HELD_POST_SLUGS, LEGACY_POST_SLUGS, redirects } from '../redirects.ts'
 import { staticRoutes } from './routes.ts'
-import { clinicFaqs, homeFaqs } from './faqs.ts'
+import { clinicFaqs, homeFaqs, postTreatmentCare, postTreatmentIntro } from './faqs.ts'
+import { homeIntro } from './home.ts'
+import { gonsteadIntro, gonsteadSteps } from './gonstead.ts'
+import { founderBio } from './clinic.ts'
 
 const conditionSlugs = new Set(conditions.map((c) => c.slug))
-const modalitySlugs = new Set(modalities.map((m) => m.slug))
+const serviceSlugs = new Set(services.map((m) => m.slug))
 
 /**
  * FAQPage schema is emitted on whichever route renders the answers — homeFaqs on `/`,
@@ -35,15 +38,77 @@ test('no answer is published on two routes', () => {
   assert.deepEqual(collisions, [], `answer duplicated across routes: ${collisions.join(', ')}`)
 })
 
+/**
+ * The clinic's hard rule: never promise that chiropractic cures, fixes or resolves a
+ * condition. Suggesting a visit is fine; guaranteeing an outcome is not.
+ *
+ * This is a regulatory and trust question, not a style one, so it is enforced rather than
+ * remembered — the Wix copy this site was migrated from was full of these claims and they
+ * came back in through `faqs.ts` straight into FAQPage structured data, where Google can
+ * surface them verbatim.
+ *
+ * SCOPE: the structured content in `lib/` only. `content/blog/*.mdx` is NOT yet covered —
+ * the 14 migrated posts still carry claims ("fixing the structure", "heal itself",
+ * "miracle workers") and rewriting them is outstanding work. Add `mdx` to the sources
+ * below once that lands; the assertion is written to make that a one-line change.
+ */
+test('no promissory medical claims in published copy', () => {
+  const banned: [RegExp, string][] = [
+    [/\bfully safe\b/i, 'absolute safety guarantee'],
+    [/\bproven results\b/i, 'efficacy guarantee'],
+    [/\bpain[- ]free (life|living)\b/i, 'promises absence of pain'],
+    [/\bcompletely heal\b/i, 'promises full resolution'],
+    [/\bare painless\b/i, 'absolute claim about sensation'],
+    [/\bflush toxins\b/i, 'unsupported physiological claim'],
+    [/\bguarantee[ds]?\b/i, 'explicit guarantee'],
+    [/\bwill (cure|fix|resolve|eliminate)\b/i, 'promises a cure'],
+    [/\bmiracle\b/i, 'overstates efficacy'],
+    [/\bensur(e|es|ing) (every patient|efficient|proper|all)\b/i, 'guarantees an outcome'],
+  ]
+
+  const sources: [string, string][] = [
+    ...conditions.flatMap((c) => [
+      [`conditions/${c.slug}`, [c.title, c.metaDescription, c.intro, c.approach].join(' ')] as [
+        string,
+        string,
+      ],
+      ...c.faqs.map((f) => [`conditions/${c.slug} faq`, `${f.q} ${f.a}`] as [string, string]),
+    ]),
+    ...services.map(
+      (m) =>
+        [`services/${m.slug}`, [m.metaDescription, ...m.sections.map((s) => s.body)].join(' ')] as [
+          string,
+          string,
+        ],
+    ),
+    ...clinicFaqs.map((f) => [`clinicFaqs`, `${f.q} ${f.a}`] as [string, string]),
+    ...homeFaqs.map((f) => [`homeFaqs`, `${f.q} ${f.a}`] as [string, string]),
+    ['homeIntro', [homeIntro.heading, ...homeIntro.body].join(' ')],
+    ['gonsteadIntro', gonsteadIntro],
+    ...gonsteadSteps.map((s) => [`gonstead/${s.name}`, s.body] as [string, string]),
+    ['founderBio', founderBio.join(' ')],
+    ['postTreatment', [postTreatmentIntro, ...postTreatmentCare.map((c) => c.body)].join(' ')],
+  ]
+
+  const hits: string[] = []
+  for (const [where, text] of sources) {
+    for (const [re, why] of banned) {
+      const m = text.match(re)
+      if (m) hits.push(`${where}: "${m[0]}" — ${why}`)
+    }
+  }
+  assert.deepEqual(hits, [], `promissory claim(s):\n  ${hits.join('\n  ')}`)
+})
+
 test('no two pages target the same keyword', () => {
-  const targets = [...conditions, ...modalities].map((p) => p.targetKeyword.toLowerCase())
+  const targets = [...conditions, ...services].map((p) => p.targetKeyword.toLowerCase())
   const dupes = targets.filter((t, i) => targets.indexOf(t) !== i)
   assert.deepEqual(dupes, [], `duplicate targetKeyword: ${dupes.join(', ')}`)
 })
 
 test('slugs are unique within each collection', () => {
   assert.equal(conditionSlugs.size, conditions.length, 'duplicate condition slug')
-  assert.equal(modalitySlugs.size, modalities.length, 'duplicate modality slug')
+  assert.equal(serviceSlugs.size, services.length, 'duplicate service slug')
 })
 
 test('condition cross-links resolve', () => {
@@ -53,15 +118,15 @@ test('condition cross-links resolve', () => {
       assert.notEqual(slug, c.slug, `${c.slug}.related links to itself`)
     }
     for (const slug of c.treatedBy) {
-      assert.ok(modalitySlugs.has(slug), `${c.slug}.treatedBy -> missing modality "${slug}"`)
+      assert.ok(serviceSlugs.has(slug), `${c.slug}.treatedBy -> missing service "${slug}"`)
     }
   }
 })
 
-test('modality cross-links resolve', () => {
-  for (const m of modalities) {
-    for (const slug of m.treats) {
-      assert.ok(conditionSlugs.has(slug), `${m.slug}.treats -> missing condition "${slug}"`)
+test('service cross-links resolve', () => {
+  for (const s of services) {
+    for (const slug of s.treats) {
+      assert.ok(conditionSlugs.has(slug), `${s.slug}.treats -> missing condition "${slug}"`)
     }
   }
 })
@@ -155,7 +220,7 @@ test('every published post has a body to render', async () => {
 test('published posts link to a page that exists', () => {
   const targets = new Set([
     ...conditions.map((c) => c.slug),
-    ...modalities.map((m) => m.slug),
+    ...services.map((m) => m.slug),
   ])
   for (const p of publishedPosts()) {
     assert.ok(targets.has(p.linksTo), `post "${p.slug}" links to unknown page "${p.linksTo}"`)

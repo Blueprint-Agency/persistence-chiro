@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 import { conditionBySlug, publishedConditions } from '@/lib/conditions'
-import { modalityBySlug } from '@/lib/physiotherapy'
+import { serviceBySlug } from '@/lib/services'
 import { clinic } from '@/lib/clinic'
 import { JsonLd } from '@/components/JsonLd'
 import { medicalWebPageSchema, faqSchema } from '@/lib/schema'
@@ -41,7 +41,7 @@ export default async function ConditionPage({ params }: Props) {
   if (!condition || condition.draft) notFound()
 
   const related = condition.related.map(conditionBySlug).filter(Boolean)
-  const treatedBy = condition.treatedBy.map(modalityBySlug).filter(Boolean)
+  const treatedBy = condition.treatedBy.map(serviceBySlug).filter(Boolean)
 
   return (
     <>
@@ -196,7 +196,7 @@ export default async function ConditionPage({ params }: Props) {
                   {treatedBy.map((m) => (
                     <li key={m!.slug}>
                       <Link
-                        href={`/physiotherapy/${m!.slug}`}
+                        href={`/services/${m!.slug}`}
                         className="flex items-start gap-2.5 text-ink-muted hover:text-brand-slate"
                       >
                         <Vertebrae className="mt-1.5 text-brand-gold" />

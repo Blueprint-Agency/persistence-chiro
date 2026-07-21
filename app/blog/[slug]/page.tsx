@@ -5,7 +5,7 @@ import { notFound } from 'next/navigation'
 import { postBySlug, publishedPosts } from '@/lib/posts'
 import { postBodies } from '@/lib/post-content'
 import { conditionBySlug } from '@/lib/conditions'
-import { modalityBySlug } from '@/lib/physiotherapy'
+import { serviceBySlug } from '@/lib/services'
 import { JsonLd } from '@/components/JsonLd'
 import { blogPostingSchema } from '@/lib/schema'
 import { clinic } from '@/lib/clinic'
@@ -45,10 +45,10 @@ export default async function PostPage({ params }: Props) {
   if (!Body) notFound()
 
   // Every post links to exactly one condition or modality page, per the linking rules.
-  const target = conditionBySlug(post.linksTo) ?? modalityBySlug(post.linksTo)
+  const target = conditionBySlug(post.linksTo) ?? serviceBySlug(post.linksTo)
   const targetHref = conditionBySlug(post.linksTo)
     ? `/conditions/${post.linksTo}`
-    : `/physiotherapy/${post.linksTo}`
+    : `/services/${post.linksTo}`
 
   return (
     <>

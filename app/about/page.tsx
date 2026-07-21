@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: 'About Our Chiropractors in Cheras, Kuala Lumpur',
   description:
     'Meet the chiropractors at Persistence Chiropractic Care in Cheras, Maluri — founder Dr. Valerie Na, credentials, and professional memberships.',
-  alternates: { canonical: '/about-us' },
+  alternates: { canonical: '/about' },
 }
 
 export default function AboutPage() {
@@ -41,7 +41,7 @@ export default function AboutPage() {
           {practitioners.map((p) => (
             <li key={p.slug}>
               <Link
-                href={`/about-us/${p.slug}`}
+                href={`/about/${p.slug}`}
                 className="group flex h-full flex-col overflow-hidden rounded-3xl border border-line bg-white transition-shadow hover:shadow-xl hover:shadow-black/5"
               >
                 <Image

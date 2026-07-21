@@ -1,11 +1,16 @@
 /**
- * The Gonstead 6-step approach. Copy is VERBATIM from the live Wix /our-services page
- * (extracted 2026-07-19 from the Wix page JSON — the steps are lightboxes, not in the
- * rendered HTML). Do not paraphrase: this is clinical description the clinic stands behind.
+ * The Gonstead 6-step approach. Sourced from the live Wix /our-services page (extracted
+ * 2026-07-19 from the Wix page JSON — the steps are lightboxes, not in the rendered HTML).
+ *
+ * The six step descriptions are clinical process the clinic stands behind and are kept
+ * close to the original. The intro and the outcome language in steps 5 and 6 were
+ * REWRITTEN 2026-07-21: "brings proven results", "how best to correct it" and "rectify it"
+ * promised outcomes the clinic cannot guarantee. Describing the method is fine; promising
+ * what it delivers is not.
  */
 
 export const gonsteadIntro =
-  'We practice the Gonstead method because it brings proven results. The Gonstead method includes a deep analysis of the overall spine health and any subluxations that might cause sufferings and pain. Our goal is to allow your body to function normally and begin its natural healing process, alleviate pain and discomfort.'
+  'We practice the Gonstead method because it is thorough. It involves a detailed analysis of overall spine health and of any restricted segments that may be contributing to your pain. The aim is to work out precisely where the problem sits before anything is adjusted, so that treatment is directed at the right segment rather than the area that happens to hurt.'
 
 export const gonsteadSteps = [
   {
@@ -26,10 +31,10 @@ export const gonsteadSteps = [
   },
   {
     name: 'X-Ray Analysis',
-    body: 'The X-Ray imaging is a valuable tool, not just to help to determine where the true problem is located, but also how best to correct it. X-Rays are used to rule out pathologies, assess intervertebral discs and spinal joints. If your chiropractor feels another healthcare provider would better help you, you will be referred appropriately.',
+    body: 'The X-Ray imaging is a valuable tool, both in helping to determine where the problem is located and in deciding how it is best approached. X-Rays are used to rule out pathologies, assess intervertebral discs and spinal joints. If your chiropractor feels another healthcare provider would better help you, you will be referred appropriately.',
   },
   {
     name: 'Adjustments',
-    body: 'After your comprehensive assessment, your Gonstead Chiropractor will consider all the information, and enable a thorough understanding of the cause of your problem to decide on the best adjustment to rectify it. The adjustments will be delivered precisely and skilfully by hands only.',
+    body: 'After your comprehensive assessment, your Gonstead Chiropractor will consider all the information gathered to build a clear picture of what is driving your problem, and decide which adjustment is most appropriate. The adjustments will be delivered precisely and skilfully by hands only.',
   },
 ] as const

@@ -56,7 +56,7 @@ export const posts: Post[] = [
     description: 'How chiropractic supports athletic performance and reduces injury risk.',
     datePublished: '2024-12-09',
     author: 'Kee Shan Lim',
-    linksTo: 'sports-injury',
+    linksTo: 'sports-injury-rehabilitation',
     draft: false,
   },
   {
@@ -65,7 +65,7 @@ export const posts: Post[] = [
     description: 'Spinal care for volleyball players and overhead athletes.',
     datePublished: '2025-09-30',
     author: 'Persistence Chiropractic Care',
-    linksTo: 'sports-injury',
+    linksTo: 'sports-injury-rehabilitation',
     draft: false,
   },
   {
@@ -112,7 +112,7 @@ export const posts: Post[] = [
     description: 'Sleep position, mattress choice and their effect on spinal health.',
     datePublished: '2023-05-31',
     author: 'Persistence Chiropractic Care',
-    linksTo: 'neck-pain-posture',
+    linksTo: 'neck-pain',
     draft: false,
   },
   {
@@ -148,7 +148,7 @@ export const posts: Post[] = [
     description: 'What to look for in a chair if you sit at a desk all day.',
     datePublished: '2023-01-30',
     author: 'Persistence Chiropractic Care',
-    linksTo: 'neck-pain-posture',
+    linksTo: 'neck-pain',
     draft: true,
     holdReason:
       'Body is largely a promo for a third-party brand and carries expired discount code PCC2023, plus "watch the video" references to a video that did not migrate. Strip the promo and the dead code before publishing.',
@@ -159,7 +159,7 @@ export const posts: Post[] = [
     description: 'How cervical spine care relates to migraine symptoms.',
     datePublished: '2024-12-09',
     author: 'Kee Shan Lim',
-    linksTo: 'neck-pain-posture',
+    linksTo: 'neck-pain',
     draft: false,
   },
 ]

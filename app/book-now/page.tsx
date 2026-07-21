@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: 'Contact & Directions — Chiropractor in Cheras, Maluri',
   description:
     'Persistence Chiropractic Care, Sunway Velocity, Cheras. Opening hours, directions from Maluri LRT, phone and WhatsApp. Open seven days.',
-  alternates: { canonical: '/contact-us' },
+  alternates: { canonical: '/book-now' },
 }
 
 export default function ContactPage() {

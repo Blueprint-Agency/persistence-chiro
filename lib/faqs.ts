@@ -1,38 +1,45 @@
 /**
- * General clinic FAQs. VERBATIM from the live Wix site (extracted 2026-07-19).
+ * General clinic FAQs. Sourced from the live Wix site (extracted 2026-07-19), then
+ * REWRITTEN 2026-07-21 to remove promissory medical claims.
+ *
+ * No longer verbatim, deliberately. The Wix copy guaranteed outcomes ("fully safe",
+ * "painless", "completely heal") and this text is emitted as FAQPage schema on
+ * /what-to-expect, so Google may surface it verbatim as a rich result. Claims the clinic
+ * cannot stand behind must not go out under structured data. Hedging follows the house
+ * style already established in `conditions.ts`: may / often / aims to / for most people,
+ * and an explicit referral line where scope runs out.
  *
  * These are whole-clinic questions (safety, session length, what to wear) — not
  * condition-specific, so they live on /what-to-expect rather than being split across the
- * six condition pages. Condition-specific FAQs still need writing; that's why every
- * `conditions.ts` entry has an empty `faqs` array.
+ * six condition pages.
  *
- * The live /our-services page carries 9 pairs (the earlier audit said 8) and the homepage
- * carries 5. Overlap is deliberate on Wix; here each answer lives in exactly one place so
- * FAQPage schema isn't emitted twice for the same question.
+ * Each answer lives in exactly one place so FAQPage schema isn't emitted twice for the
+ * same question. `content.test.ts` enforces that, and also guards against promissory
+ * phrasing creeping back in.
  */
 
 export type Faq = { q: string; a: string }
 
 export const clinicFaqs: Faq[] = [
   {
-    q: 'Is Chiropractic & Physiotherapy safe for all ages?',
-    a: 'Yes! Chiropractic & Physiotherapy treatments are fully safe for patients of all ages (e.g. infants, teens, adults, elderly, pregnant women). Our youngest patient is 4 months old and our eldest patient is 96 years old.',
+    q: 'Is Chiropractic & Physiotherapy suitable for all ages?',
+    a: 'We see patients across every age group — infants, teenagers, adults, older adults and pregnant women. Our youngest patient was 4 months old and our eldest 96. Suitability still depends on the individual: some presentations are not appropriate for adjustment, which is exactly why an assessment always comes before any treatment. If your chiropractor feels another healthcare provider would better help you, you will be referred appropriately.',
   },
   {
     q: 'What are the benefits of getting a Chiropractic adjustment?',
-    a: "Getting a chiropractic adjustment expands more than just pain relief, the procedure can also offer a wider spectrum of benefits such as correcting your body's alignment, improve mobility, a better posture, and better quality of life!",
+    a: 'Adjustments aim to improve how well a restricted joint moves, and patients often report less discomfort and easier movement afterwards. How much changes, and how quickly, varies from person to person and depends on what is causing the problem in the first place. Your chiropractor will tell you what is realistic for your case after assessing you, rather than promising a particular result beforehand.',
   },
   {
     q: 'How long does a follow-up visit take?',
     a: "Most subsequent visits for Chiropractic take up around 15-30 minutes, and Physiotherapy follow up sessions take up around 45-60 minutes. It highly depends on the patient's current condition, so schedule your time well to avoid disappointments.",
   },
   {
-    q: 'How many sessions do I need to completely heal my pain?',
-    a: "There is no specific number of sessions for each individual. It highly depends on the patient's current condition, recovery time and personal goals. Factors such as lifestyle, sitting posture and desk ergonomics also contribute to your healing process. Hence, patients might be expected to come back for more than 1 session. This is because after your first few adjustments, your muscle memory tends to bring your body back to its old patterns instead of creating new ones. Repeated adjustments will help your body to learn new patterns of mobility until the new ones can take over the old ones. Short term relief can come quickly, but changing your posture, spine's ability to move and muscle health will take time, months in fact.",
+    q: 'How many sessions will I need?',
+    a: "There is no specific number of sessions for each individual, and we will not give you one at the first visit. It highly depends on the patient's current condition, recovery time and personal goals. Factors such as lifestyle, sitting posture and desk ergonomics also contribute to your recovery. Hence, patients might be expected to come back for more than 1 session. This is because after your first few adjustments, your muscle memory tends to bring your body back to its old patterns instead of creating new ones. Repeated adjustments will help your body to learn new patterns of mobility until the new ones can take over the old ones. Short term relief can come quickly, but changing your posture, spine's ability to move and muscle health will take time, months in fact.",
   },
   {
     q: 'Do I need Physiotherapy if my pain is not severe?',
-    a: 'Yes. Physiotherapy is not only for severe injuries. Early assessment can prevent small problems from becoming chronic or recurring conditions, often leading to faster recovery.',
+    a: 'Physiotherapy is not only for severe injuries. Assessing a problem early often means it is easier to manage before it becomes chronic or recurring, and recovery tends to be more straightforward.',
   },
   {
     q: 'Will Physiotherapy treatment be painful?',
@@ -40,7 +47,7 @@ export const clinicFaqs: Faq[] = [
   },
   {
     q: 'Do I still need Physiotherapy after Chiropractic treatment?',
-    a: 'Chiropractic care helps restore joint mobility and reduce pain, while Physiotherapy focuses on strengthening muscles and improving movement control. Combining both approaches often helps achieve more stable and long-term recovery.',
+    a: 'Chiropractic care aims to restore joint mobility and ease discomfort, while Physiotherapy focuses on strengthening muscles and improving movement control. For many patients the two approaches work well together, and your practitioner will advise whether both are appropriate for you.',
   },
   {
     q: 'Can I continue gym or sports during my treatment?',
@@ -78,7 +85,7 @@ export const homeFaqs: Faq[] = [
   // identical FAQPage schema on two routes.
   {
     q: 'Do chiropractic adjustments hurt?',
-    a: 'Rest assured, the chiropractic adjustments are painless. You may feel cracks or slight discomfort from a recent trauma, but you should not feel intense pain.',
+    a: 'Most patients find adjustments comfortable. You may hear or feel a click, and some slight discomfort is common — particularly around a recent injury. You should not feel intense pain, and if you do, tell your chiropractor straight away so the technique can be adjusted.',
   },
 ]
 
@@ -88,7 +95,7 @@ export const homeFaqs: Faq[] = [
  * "sore after chiropractic adjustment" and this answers it.
  */
 export const postTreatmentIntro =
-  "While chiropractic treatments are meant to help you feel better and activate your body's natural abilities to heal yourself, it is important to practise self-care for your body after your adjustments in order to enable your body to heal the best. If you have recently got your adjustments and your body feels sore, it is a very common occurrence as your tissues take time to recover after each adjustment. Do inform your chiropractor if you feel any better after each visit — it is important for them to be aware of any improvement."
+  'Chiropractic treatment is intended to support your body’s own recovery, and what you do between visits matters as much as the adjustment itself. If your body feels sore after a recent adjustment, that is a very common occurrence as your tissues take time to settle. Do tell your chiropractor how you felt after each visit — whether better, unchanged or worse. All three are useful information.'
 
 export const postTreatmentCare = [
   {
@@ -97,7 +104,7 @@ export const postTreatmentCare = [
   },
   {
     heading: 'Hydration',
-    body: 'Drink a large amount of water. This will help to flush toxins from your body and assist your body to heal.',
+    body: 'Drink plenty of water. Staying well hydrated supports recovery and can help with the soreness some patients notice after an adjustment.',
   },
   {
     heading: 'Sleeping and sitting',
@@ -105,6 +112,6 @@ export const postTreatmentCare = [
   },
   {
     heading: 'Ice pack',
-    body: 'Apply an ice pack that is wrapped in a cloth or paper towel to the area suggested by your chiropractor for 3 lots of 5 minute durations, separated by 5 minute rest intervals. This helps to reduce pain and joint swelling. Do not use heat for pain relief — heat serves to increase the swelling and irritation. Heat may feel nice and soothe symptoms, but will not reduce the cause of why you feel symptoms in the first place.',
+    body: 'Apply an ice pack that is wrapped in a cloth or paper towel to the area suggested by your chiropractor for 3 lots of 5 minute durations, separated by 5 minute rest intervals. This can help settle pain and joint swelling. We generally advise against heat on a freshly irritated joint, as it tends to increase swelling. Heat may feel soothing, but it addresses the sensation rather than what is causing it. If you are unsure which applies to you, ask your chiropractor.',
   },
 ] as const

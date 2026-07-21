@@ -34,8 +34,8 @@ export default function ConditionsHub() {
               us with your symptoms and we&rsquo;ll tell you which applies to you.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <GhostButton href="/chiropractic">Our Gonstead approach</GhostButton>
-              <GhostButton href="/physiotherapy">Physiotherapy</GhostButton>
+              <GhostButton href="/services/chiropractic-treatment">Our Gonstead approach</GhostButton>
+              <GhostButton href="/services/physiotherapy">Physiotherapy</GhostButton>
             </div>
           </div>
         ) : (

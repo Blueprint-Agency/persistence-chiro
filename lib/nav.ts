@@ -3,11 +3,19 @@
  * the nav — and so the nav and the sitemap can't disagree about what exists.
  */
 import { publishedConditions } from './conditions'
-import { publishedModalities } from './physiotherapy'
+import { publishedServices } from './services'
 
 export type NavItem = { href: string; label: string; children?: NavItem[] }
 
 export const mainNav = (): NavItem[] => [
+  {
+    href: '/services',
+    label: 'Services',
+    children: publishedServices().map((s) => ({
+      href: `/services/${s.slug}`,
+      label: s.title.split(' in ')[0],
+    })),
+  },
   {
     href: '/conditions',
     label: 'Conditions',
@@ -16,29 +24,20 @@ export const mainNav = (): NavItem[] => [
       label: c.title.split(' in ')[0],
     })),
   },
-  { href: '/chiropractic', label: 'Chiropractic' },
-  {
-    href: '/physiotherapy',
-    label: 'Physiotherapy',
-    children: publishedModalities().map((m) => ({
-      href: `/physiotherapy/${m.slug}`,
-      label: m.title.split(' in ')[0],
-    })),
-  },
   { href: '/what-to-expect', label: 'What to Expect' },
   {
-    href: '/about-us',
-    label: 'About',
     // /press was reachable only from the sitemap — orphaned from the nav entirely. It
     // groups here rather than taking a top-level slot: both answer "who are these people".
     // Practitioners are deliberately not listed here. Their pages are reached by clicking
-    // a card on /about-us, where the photo and role give the name context a bare dropdown
+    // a card on /about, where the photo and role give the name context a bare dropdown
     // row cannot. Listing them twice made the menu long without making anything findable.
+    href: '/about',
+    label: 'About',
     children: [
-      { href: '/about-us', label: 'Our team' },
+      { href: '/about', label: 'Our team' },
       { href: '/press', label: 'Press & publications' },
     ],
   },
   { href: '/blog', label: 'Blog' },
-  { href: '/contact-us', label: 'Contact' },
+  { href: '/book-now', label: 'Book Now' },
 ]

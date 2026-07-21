@@ -89,7 +89,7 @@ export const registrationsVerified = false
 /** Founder bio. VERBATIM from the live /about-us page. */
 export const founderBio = [
   'As a founder and principal chiropractor in Persistence Chiropractic Care, Valerie pursued Chiropractic in a globally renowned university in Melbourne, Australia. Valerie has always had a strong desire to help others. Her fascination with being a chiropractor began when she met a childhood friend who exposed her to the field of chiropractic. Valerie began her voyage into exploration after becoming fascinated by her friend’s stories and knowledge.',
-  'Valerie did plenty of research and taught herself the fundamentals of chiropractic in her early days of exploration. From attending webinars and observing numerous chiropractors, she further mastered her craft and was able to bring relief to patients that struggled with physical pain. It brings immense joy to Valerie to see her patients step out of the treatment room feeling like a brand new person.',
+  'Valerie did plenty of research and taught herself the fundamentals of chiropractic in her early days of exploration. From attending webinars and observing numerous chiropractors, she further developed her craft and went on to work with patients struggling with physical pain. What she values most is the moment a patient recognises what has been driving their problem and understands what to do about it.',
   'Today, Persistence Chiropractic Care treats people of all ages, pre or post-surgery, and offers acute, chronic, and wellness chiropractic care and adjustments.',
 ]
 

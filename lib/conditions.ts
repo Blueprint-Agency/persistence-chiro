@@ -56,7 +56,7 @@ export const conditions: Condition[] = [
       'Gonstead chiropractic care for lower and upper back pain in Cheras, Maluri. Assessment, adjustment and rehab from registered chiropractors.',
     targetKeyword: 'back pain treatment kl',
     related: ['slipped-disc', 'sciatica'],
-    treatedBy: ['manual-therapy', 'rehab-programming'],
+    treatedBy: ['physiotherapy', 'chiropractic-treatment'],
 
     intro:
       'Most back pain is mechanical — the joints, discs and muscles of the spine are not moving the way they should, and the surrounding tissue is irritated as a result. It is extremely common, it is usually treatable without surgery, and it rarely means something is seriously wrong. What it does mean is worth finding out precisely, rather than guessing.',
@@ -135,7 +135,7 @@ export const conditions: Condition[] = [
       'Non-surgical slipped disc (herniated disc) care in Cheras, Maluri. Gonstead assessment, X-ray analysis and a staged treatment plan.',
     targetKeyword: 'slipped disc treatment malaysia',
     related: ['back-pain', 'sciatica'],
-    treatedBy: ['manual-therapy', 'rehab-programming'],
+    treatedBy: ['physiotherapy', 'chiropractic-treatment'],
 
     intro:
       '"Slipped disc" is the everyday name for a disc that has bulged or herniated — the soft centre of a spinal disc pushing outward against the tougher ring around it, sometimes far enough to press on a nearby nerve. Nothing has actually slipped out of place, which is why the term can sound more alarming than it is. Many discs settle with time and the right loading, and most people never need surgery. What matters is knowing which level is involved and how the nerve is behaving, so the plan fits your spine rather than a general description of the condition.',
@@ -216,7 +216,7 @@ export const conditions: Condition[] = [
       'Sciatic nerve pain relief through Gonstead chiropractic and targeted rehab. Registered chiropractors in Cheras, Maluri.',
     targetKeyword: 'sciatica treatment',
     related: ['slipped-disc', 'back-pain'],
-    treatedBy: ['dry-needling', 'manual-therapy'],
+    treatedBy: ['dry-needling', 'physiotherapy'],
 
     intro:
       'Sciatica is not a diagnosis in itself — it is the name for pain that travels along the path of the sciatic nerve, from the lower back through the buttock and down the back of the leg. Something is irritating or compressing that nerve, and the useful question is what, and where. It is a common problem, it is usually mechanical, and for most people it settles with conservative care rather than surgery. Finding the source is what makes the difference between chasing the leg pain and treating what is causing it.',
@@ -296,8 +296,8 @@ export const conditions: Condition[] = [
     metaDescription:
       'Scoliosis assessment and chiropractic management in Cheras, Maluri. Postural analysis, X-ray review and conditioning programmes.',
     targetKeyword: 'scoliosis treatment malaysia',
-    related: ['neck-pain-posture', 'back-pain'],
-    treatedBy: ['rehab-programming'],
+    related: ['neck-pain', 'back-pain'],
+    treatedBy: ['physiotherapy'],
 
     intro:
       'Scoliosis is a sideways curvature of the spine, often with an element of rotation. Many curves are mild, are discovered by chance, and never cause significant trouble; others bring stiffness, muscular fatigue and pain, particularly through the working day. It is important to be straightforward about what chiropractic care does here — we work on how comfortably and how well your spine moves, not on straightening the curve itself. Curve magnitude and progression are matters for orthopaedic assessment, and where that is what you need, we will say so.',
@@ -370,14 +370,14 @@ export const conditions: Condition[] = [
     draft: false,
   },
   {
-    slug: 'neck-pain-posture',
-    title: 'Neck Pain & Posture Correction in Cheras, Kuala Lumpur',
-    metaTitle: 'Neck Pain & Posture Correction in KL | Persistence Chiropractic',
+    slug: 'neck-pain',
+    title: 'Neck Pain and Stiffness in Cheras, Kuala Lumpur',
+    metaTitle: 'Neck Pain & Stiffness Treatment in KL | Persistence',
     metaDescription:
       'Neck pain, tech neck and posture correction for desk workers in Cheras, Maluri. Gonstead chiropractic plus ergonomic guidance.',
-    targetKeyword: 'neck pain treatment kuala lumpur',
+    targetKeyword: 'stiffness neck pain',
     related: ['back-pain', 'scoliosis'],
-    treatedBy: ['dry-needling', 'manual-therapy'],
+    treatedBy: ['dry-needling', 'physiotherapy'],
 
     intro:
       'Neck pain in office workers is usually a loading problem rather than an injury. Hours spent with the head tilted forward towards a screen or phone asks the small joints and muscles at the base of the neck to hold a position they were never meant to hold all day, and eventually they complain. It builds gradually, it is very common, and in most cases it responds well once the irritated segment is found and the habits feeding it are addressed.',
@@ -451,82 +451,269 @@ export const conditions: Condition[] = [
     draft: false,
   },
   {
-    slug: 'sports-injury',
-    title: 'Sports Injury Treatment in Cheras, Kuala Lumpur',
-    metaTitle: 'Sports Injury Chiropractic in KL | Persistence Chiropractic',
+    slug: 'migraine',
+    title: 'Migraine and Headache Care in Cheras, Kuala Lumpur',
+    metaTitle: 'Migraine & Headache Care in KL | Persistence Chiro',
     metaDescription:
-      'Sports injury assessment, treatment and return-to-play rehab in Cheras, Maluri. Chiropractic and physiotherapy under one roof.',
-    targetKeyword: 'sports injury chiropractic',
-    related: ['back-pain', 'neck-pain-posture'],
-    treatedBy: ['sports-rehab', 'dry-needling'],
+      'Assessment for migraine and neck-related headaches in Cheras, Maluri. We look at the cervical contribution and refer for medical management where needed.',
+    targetKeyword: 'migraine headache',
+    related: ['neck-pain', 'shoulder-imbalance'],
+    treatedBy: ['chiropractic-treatment', 'physiotherapy'],
 
     intro:
-      'Sports injuries fall into two groups: the ones that happen in a moment — a rolled ankle, a pulled hamstring, a bad landing — and the ones that creep up over weeks of training, where something aches a little more each session until you cannot ignore it. Both need the same thing: an accurate picture of what is injured and how much load it can currently tolerate, then a staged plan that gets you back to your sport rather than just out of pain. Returning too early is the most common reason an injury becomes a recurring one.',
+      'Not every bad headache is a migraine, and not every migraine has anything to do with the neck. That distinction matters more here than almost anywhere else on this site, because it decides who should be treating you. Migraine is a neurological condition — it is managed medically, and chiropractic care does not treat it. What chiropractic can look at is whether some part of what you are feeling is coming from the joints and muscles of the upper neck, which is a separate and reasonably common source of head pain. Working out which of those you are dealing with is what the assessment is for, and if the answer is that you need a doctor rather than us, we will say so.',
     symptoms: [
-      'Pain that appears at a specific point in a movement — push-off, landing, overhead reach',
-      'An ache that starts partway into training and settles with rest, then returns earlier each session',
-      'Swelling, warmth or bruising around a joint after an incident',
-      'A joint that feels unstable, or that you no longer trust to take full load',
-      'Loss of range — you cannot fully straighten, bend, or rotate the way the other side does',
-      'Stiffness the morning after training that takes longer to clear than it used to',
-      'Compensating: limping, favouring one side, or changing your technique to avoid a position',
+      'Head pain that begins at the base of the skull and wraps forward towards the temple or eye',
+      'Headache consistently on the same side, alongside neck stiffness or a restricted turn',
+      'Head pain that is provoked by sustained desk work, driving, or a particular neck position',
+      'Throbbing or pulsing pain with nausea, or sensitivity to light and sound',
+      'Visual disturbance, tingling or speech changes in the half hour before the pain arrives',
+      'Headaches that arrive with no neck involvement at all and follow their own pattern',
     ],
     causes: [
       {
-        heading: 'Training load rising faster than tissue adapts',
-        body: 'Tendons, bone and muscle all strengthen in response to load, but slowly. A sudden jump in distance, intensity or frequency — a new programme, a race build-up, returning after a break — outpaces that adaptation, and the overuse injuries follow.',
+        heading: 'Neurological migraine',
+        body: 'True migraine involves changes in the brain and its nerves rather than in the neck. Triggers, patterns and management sit with a doctor or neurologist, and medication is often part of that. We include it here because people commonly arrive assuming their headaches are muscular when the pattern suggests otherwise.',
       },
       {
-        heading: 'Acute trauma',
-        body: 'Sprains, strains and contusions from a tackle, an awkward landing or a change of direction. These are usually obvious at the time, and the important early question is whether anything more serious than soft tissue is involved.',
+        heading: 'Cervicogenic headache',
+        body: 'Head pain that originates in the joints, discs or muscles of the upper neck and is felt in the head. It usually stays on one side, tends to be provoked by neck position or movement, and often comes with reduced neck range. This is the presentation chiropractic assessment is relevant to.',
       },
       {
-        heading: 'Restriction elsewhere in the chain',
-        body: 'The body works as a chain, and a joint that is not moving well makes its neighbours work harder. A stiff mid-back changes how the shoulder loads overhead; restricted ankle movement changes how the knee absorbs landing. This is often why an injury keeps returning to the same spot despite the spot itself being treated.',
+        heading: 'Sustained forward head posture',
+        body: 'Hours with the head held forward of the shoulders asks the muscles at the base of the skull to work continuously. That tissue can refer pain into the head, and it is a frequent background finding in desk workers who describe daily late-afternoon headaches.',
       },
       {
-        heading: 'Incomplete recovery from a previous injury',
-        body: 'Pain settles well before strength and control come back. Returning to sport at that point leaves a strength deficit the rest of the body has to cover, which is a reliable way to injure the same tissue or the joint above it again.',
+        heading: 'Sleep, stress and jaw clenching',
+        body: 'An unsupportive pillow, poor sleep and low-grade clenching keep the muscles around the skull and jaw loaded overnight. These rarely explain a headache on their own, but they often sit alongside whatever else is going on and make it harder to settle.',
       },
     ],
     approach: [
       {
-        heading: 'Assessment first — the injury and the chain around it',
-        body: 'For the chiropractic side, your visit follows the Gonstead six-step assessment: history, visualisation, instrumentation, palpation, X-ray analysis where indicated, and only then an adjustment. The history matters especially in sport — what you play, how much you train, what movement provokes it. We assess the injured area and the joints above and below it, because the restriction driving a problem often is not where the pain is.',
+        heading: 'Working out what kind of headache this is',
+        body: 'Your first visit is largely history taking — where the pain starts, what brings it on, what it comes with, how long it lasts, and what has already been tried. That is followed by the rest of the Gonstead six-step assessment: visualisation, nervoscope instrumentation, palpation with a full-motion assessment of the neck and upper back, and X-ray analysis where indicated. The purpose is to establish whether there is a cervical contribution at all, not to arrive at a headache diagnosis.',
       },
       {
-        heading: 'Chiropractic and physiotherapy together',
-        body: 'Having both under one roof means the same injury can be approached from both directions without you repeating your story. Adjustments address restricted joints; the physiotherapy side covers hands-on soft-tissue work, dry needling where the muscle is a factor, and loading the injured tissue appropriately. Which of these you need depends on what the assessment finds. If your chiropractor feels another healthcare provider would better help you, you will be referred appropriately.',
+        heading: 'Where the neck is involved',
+        body: 'If the assessment points to restricted segments in the upper neck, the adjustment is specific to those segments and delivered by hand, and your chiropractor will explain what they found before anything happens. Where the surrounding muscle is a factor, our physiotherapy side may add manual therapy and a programme for the deep neck and upper back. The goal is better neck movement and less load on that tissue — any effect on the headaches themselves follows from that, and it varies from person to person.',
       },
       {
-        heading: 'Return-to-play progression, not just pain relief',
-        body: 'Being pain-free at rest is the start of rehabilitation, not the end of it. Your programme progresses in stages — restoring range, then rebuilding strength, then adding speed, change of direction and the specific demands of your sport — with each stage having criteria to meet before the next begins. The aim is that you return able to tolerate what your sport actually asks of you.',
+        heading: 'Where it is migraine, we refer',
+        body: 'If your pattern looks neurological rather than mechanical, the appropriate step is medical management, and we will say so plainly rather than book you a course of care. Chiropractic does not treat migraine and we would rather not imply otherwise. Some people have both — a genuine migraine disorder and a neck that is adding to their overall headache burden — and in that case working alongside your doctor is reasonable.',
+      },
+      {
+        heading: 'What you track between visits',
+        body: 'You will usually be asked to keep a simple record: when the headaches happen, how long they last, what preceded them, and what you were doing. Headache patterns are difficult to judge from memory, and this is often the single most useful thing a patient brings to a second appointment.',
       },
     ],
     redFlags: [
-      'Inability to bear weight on the limb, or to take more than a few steps after the injury',
-      'Obvious deformity — a joint or limb that looks out of place or misshapen',
-      'Suspected fracture: severe focal bone pain, a crack or snap heard at the time, or point tenderness directly over bone',
-      'Rapid or severe swelling immediately after an injury, particularly with heavy bruising',
-      'Numbness, pins and needles, coldness, or a limb that has changed colour below the injury',
-      'A head knock with confusion, memory loss, persistent headache, vomiting or loss of consciousness',
+      'A sudden, severe headache that reaches full intensity within seconds or minutes — a thunderclap headache',
+      'The worst headache of your life, or a headache clearly unlike any you have had before',
+      'Headache with fever, neck stiffness, or a rash',
+      'Headache with weakness, numbness, confusion, difficulty speaking, or loss of vision',
+      'Any headache following a blow to the head, a fall, or a road accident',
+      'A new headache beginning after the age of 50, or one that is steadily worsening over days and weeks',
+      'Headache that is worse on lying down, coughing or straining, or that wakes you from sleep',
+      'Headache alongside a history of cancer, a compromised immune system, or unexplained weight loss',
     ],
     faqs: [
       {
-        q: 'Should I see a chiropractor or a physiotherapist for a sports injury?',
-        a: 'You do not have to decide before you arrive. We offer both, and the assessment determines which is appropriate — often it is a combination, with chiropractic addressing restricted joints and physiotherapy handling soft tissue and the loading programme. If your case would be better served elsewhere, you will be referred.',
+        q: 'Can a chiropractor treat my migraine?',
+        a: 'No — migraine is a neurological condition and its management belongs with a doctor or neurologist. What we can assess is whether part of your head pain is coming from the joints and muscles of the upper neck, which is a different problem that happens to feel similar. If the assessment says your headaches are migrainous, we will tell you that and refer you appropriately rather than treat.',
       },
       {
-        q: 'How soon after an injury should I come in?',
-        a: 'For an acute injury, once you have ruled out anything needing urgent medical attention — see the red flags above — earlier is generally better, because it lets us guide what you should and should not be doing in the first week. For a niggle that has been building over weeks, come before it forces you to stop training rather than after.',
+        q: 'How do I know if my headache is coming from my neck?',
+        a: 'Some features point that way — pain that starts at the base of the skull, stays on one side, is provoked by neck position or sustained desk work, and comes with reduced neck movement. None of those is conclusive on its own, and there is real overlap with migraine. That is exactly why the assessment exists; we would not tell you the source without examining you first.',
       },
       {
-        q: 'When can I go back to training?',
-        a: 'That depends on the tissue involved, how it responds, and the demands of your sport, so we will not give you a date at the first visit. What we will give you is the criteria you need to meet at each stage, so the decision is based on what you can actually do rather than on how many weeks have passed.',
+        q: 'Will neck adjustments stop my headaches?',
+        a: 'We cannot tell you that, and you should be cautious of anyone who does. Where a restricted neck segment is contributing, restoring movement to it often changes how much head pain people get — but it depends on the presentation, and some people notice little difference. Your chiropractor will tell you honestly what they expect and what they do not.',
       },
       {
-        q: 'Do I have to stop training completely?',
-        a: 'Usually not. Full rest tends to cost you fitness and does little for the injured tissue, so the more common approach is modifying what you do — keeping the training that does not provoke symptoms while the injured area is loaded progressively. Your practitioner will be specific about what to keep and what to shelve.',
+        q: 'Is it safe to have my neck adjusted if I get headaches?',
+        a: 'It depends on the presentation, which is why the assessment comes first. Certain symptoms need medical review before any hands-on care — sudden severe headache, dizziness, visual or speech changes, or any recent head or neck trauma. Tell us about those when you book so we can screen for them properly.',
+      },
+      {
+        q: 'Should I stop my migraine medication?',
+        a: 'That is not our decision to make, and nothing we do should be taken as a reason to change it. Medication decisions sit with the doctor who prescribed it. Bring a list of what you are taking to your first visit so we have the full picture.',
+      },
+    ],
+    draft: false,
+  },
+  {
+    slug: 'hip-pain',
+    title: 'Hip Pain Treatment in Cheras, Kuala Lumpur',
+    metaTitle: 'Hip Pain Treatment in Cheras, KL | Persistence Chiro',
+    metaDescription:
+      'Assessment and care for hip pain, groin ache and lower back and hip complaints in Cheras, Maluri. Gonstead chiropractic plus targeted rehabilitation.',
+    targetKeyword: 'lower back ache hip pain',
+    related: ['back-pain', 'sciatica'],
+    treatedBy: ['chiropractic-treatment', 'sports-injury-rehabilitation'],
+
+    intro:
+      'Hip pain is awkward to pin down because the hip, the pelvis and the lower back all share the same neighbourhood and refer pain into each other. People often arrive certain the problem is their hip when the joint itself examines well, or convinced it is their back when the hip is what is limiting them. Where you feel it is a starting point, not an answer. The useful work is establishing which structure is actually irritated and what pattern of loading keeps it that way, because the plan for a hip joint problem, a gluteal tendon problem and a lower back problem are not the same plan.',
+    symptoms: [
+      'A deep ache in the groin or the front of the hip, particularly on standing up or getting out of a car',
+      'Pain on the outside of the hip that is worse lying on that side at night',
+      'Lower back ache that spreads across the buttock and into the hip on one side',
+      'Stiffness first thing in the morning, or after sitting through a long meeting or drive',
+      'Difficulty with stairs, squatting, or putting on socks and shoes on one side',
+      'A clicking, catching or grinding sensation as the hip moves through its range',
+    ],
+    causes: [
+      {
+        heading: 'Prolonged sitting and hip position',
+        body: 'Long hours seated hold the hip in flexion, shorten the tissue at the front of it and let the gluteal muscles behind it do very little. Over years this reduces how much range the hip has available and shifts load into the lower back — which is why back ache and hip pain so often arrive together in desk workers.',
+      },
+      {
+        heading: 'Gluteal tendon overload',
+        body: 'The tendons on the outside of the hip take a lot of load during standing, walking and single-leg work. When that load rises faster than the tendon adapts, it becomes irritable. This is the pattern behind most outside-of-hip pain that hurts to lie on, and it tends to respond to graded loading rather than rest.',
+      },
+      {
+        heading: 'Joint restriction in the lower back and pelvis',
+        body: 'When a lumbar segment or a sacroiliac joint stops moving well, the hip on that side takes up the difference. Assessing the spine and pelvis alongside the hip is standard here for that reason — treating the hip alone often leaves the driver untouched.',
+      },
+      {
+        heading: 'Age-related joint change',
+        body: 'Cartilage and joint surfaces change with time, and imaging findings become more common with age whether or not there is pain. Such findings describe the joint rather than explain the symptom, so they are read alongside how the hip actually moves and what it tolerates.',
+      },
+    ],
+    approach: [
+      {
+        heading: 'Separating hip from back from pelvis',
+        body: 'Your first visit follows the Gonstead six-step assessment — history taking, visualisation of the level of hips, shoulders and knees, nervoscope instrumentation, palpation with a full-motion assessment of the spinal and pelvic joints, X-ray analysis where indicated, and only then an adjustment. Alongside that, the hip is taken through its own range and loaded in the positions that provoke your symptoms, so we can tell which structure is the irritable one.',
+      },
+      {
+        heading: 'Adjustment and hands-on work',
+        body: 'Where restricted spinal or pelvic joints are part of the picture, the adjustment is specific to them and delivered by hand, and your chiropractor will explain what they found before anything happens. Where the surrounding muscle and tendon are loaded, our physiotherapy side adds mobilisation and soft-tissue work to reduce the tension feeding into the joint.',
+      },
+      {
+        heading: 'Loading the hip back to tolerance',
+        body: 'Hips generally do better with graded loading than with rest, and this is usually the slower half of the work. Programming progresses from range and control through to strength and, for anyone returning to sport, the specific demands of running, changing direction or lifting. What you do between visits tends to matter more here than what happens on the table.',
+      },
+      {
+        heading: 'Knowing when it is not ours to treat',
+        body: 'Some hip presentations need an orthopaedic opinion or imaging beyond X-ray — a joint that is genuinely worn out, a suspected labral or bony problem, or a hip that is not responding as the assessment predicted. If your chiropractor feels another healthcare provider would better help you, you will be referred appropriately.',
+      },
+    ],
+    redFlags: [
+      'Inability to bear weight on the leg, or hip pain following a fall or road accident',
+      'Obvious deformity, or a leg that looks shorter or rotated compared with the other',
+      'Hip or groin pain with fever, feeling generally unwell, or a hot and swollen joint',
+      'Progressive numbness or weakness in the leg, or a foot that drags when you walk',
+      'Loss of bladder or bowel control, or numbness around the groin and inner thighs',
+      'Night pain that wakes you, unexplained weight loss, or a history of cancer alongside new hip pain',
+      'Hip pain in someone with osteoporosis or on long-term steroids after even a minor fall',
+    ],
+    faqs: [
+      {
+        q: 'Is my problem my hip or my lower back?',
+        a: 'Often it is genuinely both, and telling them apart is one of the main reasons to be assessed rather than to guess. Groin pain more commonly points to the hip joint; pain across the buttock and into the back tends to involve the spine or pelvis. Neither is a rule, so the examination tests the hip and the lower back separately to see which reproduces your symptoms.',
+      },
+      {
+        q: 'Do I need an X-ray or a scan for hip pain?',
+        a: 'Not always. X-ray analysis is used where it will change what we do — ruling out pathology or clarifying joint condition — and it is avoided for pregnant women and children unless there is a clear reason. If your presentation suggests an MRI or a specialist opinion would alter the plan, your chiropractor will say so and arrange the referral.',
+      },
+      {
+        q: 'Should I rest my hip or keep moving it?',
+        a: 'For most mechanical hip pain, staying moving is better tolerated than resting completely, and complete rest tends to leave the hip stiffer and weaker. What usually helps is modifying rather than stopping — reducing the aggravating positions while keeping the movement you can do comfortably. You will be given specific guidance after your assessment rather than a general instruction.',
+      },
+      {
+        q: 'I have been told I have hip arthritis. Is there any point coming in?',
+        a: 'Joint change on imaging does not decide how much you can do. Many people with those findings improve their range, strength and day-to-day comfort with conservative care, and that is what we would be working on — not on reversing the changes themselves. Where a hip is advanced enough that a surgical opinion is the sensible next step, we will tell you that plainly.',
+      },
+      {
+        q: 'How long will it take to feel better?',
+        a: 'It depends on which structure is involved, how long it has been going on, and how the hip is loaded day to day. Tendon-related hip pain in particular tends to be measured in months rather than weeks. Your practitioner will give you a timeline based on your own assessment rather than a general figure.',
+      },
+    ],
+    draft: false,
+  },
+  {
+    slug: 'shoulder-imbalance',
+    title: 'Shoulder Imbalance and Postural Strain in Cheras, Kuala Lumpur',
+    metaTitle: 'Shoulder & Neck Pain Care in KL | Persistence Chiro',
+    metaDescription:
+      'Care for uneven shoulders, shoulder and neck pain and postural strain in Cheras, Maluri. Assessment, dry needling and a posture-focused programme.',
+    targetKeyword: 'shoulder and neck pain',
+    related: ['neck-pain', 'back-pain'],
+    treatedBy: ['dry-needling', 'posture-correction'],
+
+    intro:
+      'Almost nobody is perfectly symmetrical, and a shoulder sitting slightly higher than the other is not in itself a problem to be treated. It becomes worth looking at when it comes with symptoms — an ache across one side of the neck and shoulder that builds through the working day, tightness that never fully clears, or a shoulder that no longer moves as freely as the other one. Usually what people describe as shoulder imbalance is a loading pattern rather than a structural fault: one side is doing more work, for more hours, than it has the endurance for. That is something an assessment can describe accurately, and something the way you work and train can change.',
+    symptoms: [
+      'One shoulder or shoulder blade visibly sitting higher, or clothes and bag straps sliding off one side',
+      'An ache across the top of one shoulder and into the neck that worsens through the working day',
+      'Tightness that eases at the weekend and has returned by Tuesday afternoon',
+      'A shoulder blade that wings out or moves differently from the other when you raise your arm',
+      'Reduced overhead reach on one side, or a catch partway through raising the arm',
+      'Tingling or pins and needles into the shoulder blade, arm or hand',
+    ],
+    causes: [
+      {
+        heading: 'Asymmetric daily loading',
+        body: 'A mouse on one side, a bag always on the same shoulder, a monitor set off-centre, a child carried on one hip. None of these does harm in isolation; repeated for eight hours a day over years, they ask one side to hold a position the other never has to, and the tissue adapts to what it is asked to do most.',
+      },
+      {
+        heading: 'Restriction in the neck and upper back',
+        body: 'The shoulder blade sits on the ribcage, and the ribcage moves with the thoracic spine. When mid-back or neck segments stop moving properly, the shoulder blade cannot sit or travel the way it should, and the muscles around it work harder to compensate.',
+      },
+      {
+        heading: 'Endurance rather than strength',
+        body: 'The muscles holding the shoulder blade in position are not usually weak in a way you would notice lifting something. They fatigue. That is why the ache appears at four in the afternoon rather than first thing, and why the programme is built around endurance rather than heavy loading.',
+      },
+      {
+        heading: 'Underlying structural asymmetry',
+        body: 'Some shoulder-level differences relate to a spinal curve, a rib or a leg-length difference rather than to habit. These are described rather than blamed, and where the pattern suggests a curve worth measuring, that is assessed properly rather than assumed either way.',
+      },
+    ],
+    approach: [
+      {
+        heading: 'Looking at the whole chain, not just the high shoulder',
+        body: 'Your first visit follows the Gonstead six-step assessment — history taking, visualisation of the level of head, shoulders, hips and knees, nervoscope instrumentation, palpation with a full-motion assessment of the spinal joints, X-ray analysis where indicated, and only then an adjustment. Visualisation carries weight here, because how you stand and how the shoulder blades sit tells us a good deal before anything has been touched.',
+      },
+      {
+        heading: 'Releasing the tissue that is holding the pattern',
+        body: 'Where the muscles around the neck, shoulder blade and upper back are chronically loaded, our physiotherapy side may use dry needling and hands-on soft-tissue work to reduce that tension. This part tends to change how things feel fairly quickly, and on its own it usually does not last — it makes the position easier to hold while the endurance work catches up.',
+      },
+      {
+        heading: 'Then the part that changes the pattern',
+        body: 'Posture is a habit as much as a structure, so the lasting work is in your desk setup, how often you move, and a programme for the deep neck and scapular muscles. We will be honest about what is likely to change: symptoms and comfort often do, and how much a visible asymmetry shifts varies a great deal from person to person.',
+      },
+      {
+        heading: 'When the asymmetry needs a different assessment',
+        body: 'A shoulder-level difference that is marked, that a patient did not previously have, or that comes with a rib hump or a visible spinal curve is a reason to assess for scoliosis properly, and in a growing adolescent that is an orthopaedic matter. If your chiropractor feels another healthcare provider would better help you, you will be referred appropriately.',
+      },
+    ],
+    redFlags: [
+      'Shoulder or neck pain following a fall, car accident, or a direct blow to the head, neck or shoulder',
+      'Numbness, weakness, or loss of grip strength in an arm or hand',
+      'A shoulder asymmetry that has appeared suddenly or is visibly worsening, especially in a child or adolescent',
+      'Dizziness, visual disturbance, difficulty speaking or swallowing, or unsteadiness on your feet',
+      'Shoulder pain with chest tightness, breathlessness, sweating, or pain into the jaw or left arm — seek emergency care',
+      'Fever, unexplained weight loss, or night pain that wakes you',
+      'Clumsiness or unsteadiness affecting both hands or legs, or loss of bladder or bowel control',
+    ],
+    faqs: [
+      {
+        q: 'Is one shoulder being higher than the other a problem?',
+        a: 'Not necessarily. Mild asymmetry is extremely common and plenty of people have it with no symptoms at all. What makes it worth assessing is pain, restricted movement, or an asymmetry that has changed. If you have no symptoms and nothing has changed, that is usually reassuring rather than something to treat.',
+      },
+      {
+        q: 'Can chiropractic correct uneven shoulders?',
+        a: 'We would rather set expectations honestly here. Adjustments can restore movement to restricted neck and mid-back segments, and soft-tissue work can reduce the muscular pull holding one side up — both of which often help how the shoulder feels and moves. How much a visible difference changes depends on what is driving it, and where the cause is structural, it may not change much at all.',
+      },
+      {
+        q: 'Does uneven shoulders mean I have scoliosis?',
+        a: 'Sometimes, but far from always. Shoulder-level differences are more often about muscular loading than about a spinal curve. Where the presentation suggests a curve — a rib hump on bending forward, a visible spinal deviation, or an adolescent still growing — that is assessed properly, including X-ray analysis where indicated, rather than guessed at.',
+      },
+      {
+        q: 'What is dry needling and will it hurt?',
+        a: 'It uses a fine needle to reach a tight band of muscle directly, which is difficult to achieve through the skin by hand alone. Most people describe a brief ache or a twitch rather than sharp pain, and some feel a little sore for a day afterwards. It is one option among several, used where the assessment suggests muscle tension is a meaningful part of the picture.',
+      },
+      {
+        q: 'How do I stop it coming back?',
+        a: 'Mostly by changing what caused it, which is why the desk setup and the endurance programme are not optional extras. Treatment reduces the load on tissue that is irritated; it cannot out-run eight hours a day of the position that irritated it. Practically: centre your monitor, alternate which shoulder carries your bag, and stand and move every 30 to 45 minutes.',
       },
     ],
     draft: false,

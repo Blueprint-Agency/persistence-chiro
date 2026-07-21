@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Persistence Chiropractic — 6-Month SEO &amp; Website Revamp Proposal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#16242f;
+    --slate:#5b6b78;
+    --line:#e6ebef;
+    --teal:#0e7c74;
+    --teal-soft:#eaf6f4;
+    --amber:#b45309;
+    --amber-soft:#fdf4e7;
+    --green-soft:#eef8ef;
+    --green:#2e7d4f;
+    --red-soft:#fef2f2;
+    --red:#c53030;
+    --purple:#6b21a8;
+    --purple-soft:#f0e6ff;
+    --bg:#ffffff;
+    --tint:#f7fafa;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55;font-size:15.5px;-webkit-font-smoothing:antialiased}
+  .page{max-width:920px;margin:0 auto;padding:0 32px 80px}
+  h1,h2,h3{font-family:'Fraunces',Georgia,serif;line-height:1.15}
+
+  /* ---------- header ---------- */
+  header{padding:64px 0 0}
+  .eyebrow{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:14px}
+  header h1{font-size:clamp(30px,4.6vw,44px);font-weight:600;max-width:18ch}
+  header h1 em{font-style:normal;color:var(--teal)}
+  .meta{margin-top:18px;color:var(--slate);font-size:14px;display:flex;gap:18px;flex-wrap:wrap}
+  .meta span{display:flex;align-items:center;gap:7px}
+  .meta .dot{width:5px;height:5px;border-radius:50%;background:var(--teal);display:inline-block}
+
+  /* ---------- tabs ---------- */
+  .tab-bar{display:flex;gap:0;margin-top:32px;border-bottom:2px solid var(--line);position:sticky;top:0;background:var(--bg);z-index:10;padding-top:4px}
+  .tab-btn{padding:14px 28px;font-size:14px;font-weight:600;color:var(--slate);cursor:pointer;border:none;background:none;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .15s}
+  .tab-btn:hover{color:var(--ink)}
+  .tab-btn.active{color:var(--teal);border-bottom-color:var(--teal)}
+  .tab-content{display:none}
+  .tab-content.active{display:block}
+
+  /* ---------- shared ---------- */
+  section{padding-top:52px}
+  .sec-title{font-size:13px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--slate);margin-bottom:22px;display:flex;align-items:center;gap:12px}
+  .sec-title::after{content:"";flex:1;height:1px;background:var(--line)}
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  .callout{margin-top:14px;border-left:3px solid var(--teal);background:var(--teal-soft);border-radius:0 10px 10px 0;padding:12px 16px;font-size:13.5px;color:#0c5a54}
+
+  /* ---------- big picture ---------- */
+  .bp-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .bp-grid.three{grid-template-columns:1fr 1fr 1fr}
+  .bp{border:1px solid var(--line);border-radius:14px;padding:22px 24px;background:var(--bg)}
+  .bp .tag{font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;display:inline-block;padding:4px 10px;border-radius:999px;margin-bottom:12px}
+  .bp p{font-size:14.5px;color:var(--ink)}.bp strong{font-weight:700}
+  .bp.problem .tag{background:var(--amber-soft);color:var(--amber)}.bp.problem{background:linear-gradient(180deg,#fffdfa,#fff)}
+  .bp.opportunity .tag{background:#fef9e7;color:#92700c}
+  .bp.solution .tag{background:var(--teal-soft);color:var(--teal)}
+  .bp.goal{background:var(--ink);border-color:var(--ink);color:#fff}
+  .bp.goal .tag{background:rgba(255,255,255,.14);color:#9fe3d8}.bp.goal p{color:#e8eef2}.bp.goal strong{color:#fff}
+  .big-num{font-family:'Fraunces',serif;font-size:30px;font-weight:700;line-height:1;display:block;margin-bottom:6px}
+  .bp.problem .big-num{color:var(--amber)}.bp.opportunity .big-num{color:#92700c}.bp.goal .big-num{color:#7adfce}
+  .kpi-label{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#9fe3d8;margin-bottom:6px}
+  .kpi-val{font-family:'Fraunces',serif;font-size:26px;font-weight:700;color:#7adfce;line-height:1;margin-bottom:8px}
+  .kpi-desc{font-size:13.5px;color:#c8d5dc}
+
+  /* ---------- competitor ---------- */
+  .comp th,.kpi th,.glance th,.kw-table th,.pillar-table th{font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate);text-align:left;padding:10px 14px;border-bottom:2px solid var(--ink)}
+  .comp td{padding:11px 14px;border-bottom:1px solid var(--line);font-size:13.5px}
+  .comp tr:nth-child(even) td{background:var(--tint)}
+  .comp .you td{background:var(--amber-soft);font-weight:600}
+  .comp .trend-up{color:var(--green);font-weight:600}.comp .trend-down{color:var(--red);font-weight:600}
+  .comp td:first-child{font-weight:600}
+
+  /* ---------- glance ---------- */
+  .glance td{padding:13px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+  .glance tr:nth-child(even) td{background:var(--tint)}
+  .m-badge{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:9px;background:var(--teal-soft);color:var(--teal);font-weight:700;font-size:14px;font-family:'Fraunces',serif}
+  .glance .focus{font-weight:600;white-space:nowrap}.glance .deliv{color:var(--slate)}
+  .glance .launch td{background:var(--teal-soft)}.glance .launch .m-badge{background:var(--teal);color:#fff}
+
+  /* ---------- timeline ---------- */
+  .timeline{position:relative;margin-top:8px}
+  .timeline::before{content:"";position:absolute;left:19px;top:8px;bottom:8px;width:2px;background:var(--line)}
+  .month{position:relative;padding:0 0 44px 64px}.month:last-child{padding-bottom:0}
+  .vertebra{position:absolute;left:0;top:0;width:40px;height:40px;border-radius:13px;background:#fff;border:2px solid var(--teal);color:var(--teal);display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-weight:700;font-size:16px;z-index:1}
+  .month.launch-month .vertebra{background:var(--teal);color:#fff}
+  .month h3{font-size:21px;font-weight:600;padding-top:7px}
+  .month h3 .sub{font-family:'Inter',sans-serif;font-size:12px;font-weight:600;color:var(--teal);letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:4px}
+  .month ul{list-style:none;margin-top:14px}
+  .month li{position:relative;padding:0 0 9px 22px;font-size:14.5px;color:#33424e}
+  .month li::before{content:"";position:absolute;left:2px;top:8px;width:7px;height:7px;border-radius:2px;background:var(--teal);opacity:.55}
+  .month li strong{color:var(--ink);font-weight:600}
+  .chip{display:inline-block;font-size:12px;font-weight:600;padding:3px 10px;border-radius:999px;background:var(--teal-soft);color:var(--teal);margin-left:8px;vertical-align:1px}
+  .chip.done{background:var(--green-soft);color:var(--green)}
+  .sitemap{margin-top:14px;background:var(--tint);border:1px solid var(--line);border-radius:12px;padding:16px 20px;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;color:#3c4c58;line-height:1.8;overflow-x:auto;white-space:pre}
+  .sitemap b{color:var(--teal);font-weight:600}
+  .pages-grid{margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:6px 16px;background:var(--tint);border:1px solid var(--line);border-radius:12px;padding:16px 20px;font-size:13.5px}
+  .pages-grid .pg{display:flex;align-items:center;gap:8px;padding:4px 0;color:#33424e}
+  .pages-grid .pg::before{content:"→";color:var(--teal);font-weight:600;font-size:12px}
+  .pages-grid .pg em{font-style:normal;font-size:11.5px;color:var(--slate)}
+
+  /* ---------- KPI + keyword tables ---------- */
+  .kpi td{padding:13px 14px;border-bottom:1px solid var(--line)}
+  .kpi .now{color:var(--slate)}.kpi .arrow{color:#b9c4cc;text-align:center;width:40px}.kpi .target{font-weight:700;color:var(--teal)}.kpi td:first-child{font-weight:600}
+  .kw-table td,.pillar-table td{padding:10px 14px;border-bottom:1px solid var(--line);font-size:13.5px}
+  .kw-table tr:nth-child(even) td,.pillar-table tr:nth-child(even) td{background:var(--tint)}
+  .kw-table td:first-child,.pillar-table td:first-child{font-weight:600;color:var(--ink)}
+  .kw-table .vol,.pillar-table .vol{font-weight:600;color:var(--teal)}
+  .kw-table .pos{font-weight:600}.kw-table .pos-bad{color:var(--amber)}.kw-table .pos-none{color:var(--red)}
+  .type-money{background:var(--amber-soft);color:var(--amber);font-size:11px;font-weight:700;padding:3px 8px;border-radius:999px;letter-spacing:.05em}
+  .type-content{background:var(--purple-soft);color:var(--purple);font-size:11px;font-weight:700;padding:3px 8px;border-radius:999px;letter-spacing:.05em}
+  .type-problem{background:var(--red-soft);color:var(--red);font-size:11px;font-weight:700;padding:3px 8px;border-radius:999px;letter-spacing:.05em}
+  .type-service{background:var(--teal-soft);color:var(--teal);font-size:11px;font-weight:700;padding:3px 8px;border-radius:999px;letter-spacing:.05em}
+  .type-malay{background:#fef9e7;color:#92700c;font-size:11px;font-weight:700;padding:3px 8px;border-radius:999px;letter-spacing:.05em}
+  .kw-summary{margin-top:14px;font-size:13.5px;color:var(--slate);padding:14px 18px;background:var(--tint);border-radius:10px;border:1px solid var(--line)}
+  .kw-summary strong{color:var(--ink)}
+
+  /* ---------- pillar cards ---------- */
+  .pillar-header{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+  .pillar-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+  .pillar-icon.service{background:var(--teal-soft);color:var(--teal)}
+  .pillar-icon.problem{background:var(--red-soft);color:var(--red)}
+  .pillar-header h3{font-size:18px;font-weight:600}
+  .pillar-header .sub{font-family:'Inter',sans-serif;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:2px}
+  .pillar-header .sub.service{color:var(--teal)}
+  .pillar-header .sub.problem{color:var(--red)}
+  .pillar-card{border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-bottom:16px;background:var(--bg)}
+  .pillar-card .page-url{font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12px;color:var(--teal);background:var(--teal-soft);padding:4px 10px;border-radius:6px;display:inline-block;margin-bottom:14px}
+  .pillar-card .insight{font-size:13px;color:var(--slate);margin-top:10px;font-style:italic}
+
+  /* ---------- needs + pricing ---------- */
+  .needs{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .need{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);border-radius:12px;padding:15px 17px;font-size:14px}
+  .need .ic{width:26px;height:26px;border-radius:8px;background:var(--teal-soft);color:var(--teal);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0}
+  .pricing-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .price-card{border:1px solid var(--line);border-radius:16px;padding:28px 26px;background:var(--bg);position:relative}
+  .price-card.featured{border-color:var(--teal);border-width:2px;background:linear-gradient(180deg,var(--teal-soft),#fff 60%)}
+  .price-card .badge{position:absolute;top:-11px;left:24px;background:var(--teal);color:#fff;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 12px;border-radius:999px}
+  .price-card h3{font-size:18px;font-weight:600;margin-bottom:4px}
+  .price-amt{font-family:'Fraunces',serif;font-size:36px;font-weight:700;color:var(--teal);line-height:1;margin:14px 0 4px}
+  .price-amt span{font-size:15px;font-weight:500;color:var(--slate)}
+  .price-card ul{list-style:none;margin-top:18px;border-top:1px solid var(--line);padding-top:16px}
+  .price-card li{position:relative;padding:0 0 10px 22px;font-size:14px;color:#33424e}
+  .price-card li::before{content:"✓";position:absolute;left:0;top:0;color:var(--teal);font-weight:700;font-size:13px}
+  .price-note{font-size:12.5px;color:var(--slate);margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
+  footer{margin-top:64px;padding-top:24px;border-top:1px solid var(--line);font-size:12.5px;color:var(--slate);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  @media(max-width:680px){.bp-grid,.bp-grid.three,.needs,.pricing-grid{grid-template-columns:1fr}.page{padding:0 18px 60px}.pages-grid{grid-template-columns:1fr}.tab-btn{padding:12px 16px;font-size:13px}}
+  @media print{body{font-size:12.5px}.page{max-width:100%;padding:0 8mm}header{padding-top:24px}section{padding-top:28px}.month,.pillar-card{page-break-inside:avoid}.tab-bar{display:none}.tab-content{display:block!important}}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div class="eyebrow">SEO &amp; Website Revamp Proposal · 6 Months</div>
+    <h1>Rebuilding <em>Persistence Chiropractic</em> into Cheras' top-ranking clinic</h1>
+    <div class="meta">
+      <span><span class="dot"></span>persistencechiropractic.com</span>
+      <span><span class="dot"></span>Cheras / Maluri, Kuala Lumpur</span>
+      <span><span class="dot"></span>June 2026</span>
+    </div>
+  </header>
+
+  <!-- TAB BAR -->
+  <nav class="tab-bar">
+    <button class="tab-btn active" onclick="switchTab('proposal')">Proposal &amp; Timeline</button>
+    <button class="tab-btn" onclick="switchTab('keywords')">Keyword &amp; Pillar Strategy</button>
+    <button class="tab-btn" onclick="switchTab('benchmark')">Competitor Benchmark</button>
+    <button class="tab-btn" onclick="switchTab('pages')">Cycle 1 Pages</button>
+  </nav>
+
+  <!-- ============================================================ -->
+  <!-- TAB 1: PROPOSAL -->
+  <!-- ============================================================ -->
+  <div id="tab-proposal" class="tab-content active">
+
+    <section>
+      <div class="sec-title">The Big Picture</div>
+      <div class="bp-grid">
+        <div class="bp problem"><span class="tag">Problem</span><span class="big-num">−90%</span><p>Organic traffic collapsed from 361 to <strong>24 visits/month</strong>. Zero page-1 rankings. The Wix site limits speed, schema and SEO control.</p></div>
+        <div class="bp opportunity"><span class="tag">Opportunity</span><span class="big-num">8,100/mo</span><p><strong>"chiropractor near me"</strong> — huge volume, low difficulty (SD 16). We rank #23. The whole Cheras SERP is low-authority (DA 3–14) — <strong>very winnable</strong>.</p></div>
+      </div>
+      <div class="bp-grid three" style="margin-top:14px">
+        <div class="bp goal"><div class="kpi-label">KPI 1</div><div class="kpi-val">+10%/mo</div><div class="kpi-desc">Monthly growth in <strong>organic traffic</strong></div></div>
+        <div class="bp goal"><div class="kpi-label">KPI 2</div><div class="kpi-val">+10%/mo</div><div class="kpi-desc">Monthly increment in <strong>CTA clicks</strong> (calls, WhatsApp, bookings)</div></div>
+        <div class="bp goal"><div class="kpi-label">KPI 3</div><div class="kpi-val">50%</div><div class="kpi-desc">of primary keywords ranked on <strong>Google Page 1</strong></div></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-title">Competitor Landscape</div>
+      <table class="comp">
+        <thead><tr><th>Clinic</th><th>Traffic/mo</th><th>Trend</th><th>Keywords</th><th>DA</th><th>Backlinks</th></tr></thead>
+        <tbody>
+          <tr><td>Ian The Chiro</td><td>975</td><td class="trend-up">↑ growing</td><td>741</td><td>7</td><td>90</td></tr>
+          <tr><td>Golden Spine Group</td><td>931</td><td>stable</td><td>138</td><td>14</td><td>838</td></tr>
+          <tr><td>Excellence Chiropractic</td><td>844</td><td class="trend-down">↓ declining</td><td>29</td><td>9</td><td>136</td></tr>
+          <tr><td>Bliss Chiropractic</td><td>94</td><td>stable</td><td>65</td><td>3</td><td>5</td></tr>
+          <tr><td>Connect Chiropractic</td><td>91</td><td>stable</td><td>22</td><td>7</td><td>47</td></tr>
+          <tr class="you"><td>Persistence Chiropractic</td><td>24</td><td class="trend-down">↓ declining</td><td>23</td><td>6</td><td>63</td></tr>
+        </tbody>
+      </table>
+      <div class="callout" style="margin-top:14px"><strong>Key insight:</strong> Ian The Chiro overtook Excellence as the #1 competitor using a blog-first strategy — their /blog/muscle-knots page alone drives 112 visits/mo. We target 6 high-impact blog posts this cycle, 12 more in cycle 2.</div>
+    </section>
+
+    <section>
+      <div class="sec-title">Timeline at a Glance</div>
+      <table class="glance">
+        <thead><tr><th style="width:54px">Month</th><th>Focus</th><th>Key deliverables</th></tr></thead>
+        <tbody>
+          <tr class="launch"><td><span class="m-badge">1</span></td><td class="focus">Site Rebuild 🚀</td><td class="deliv">Wix → Hostinger · 7 main pages + 5 service pages built · GSC/GA4/GTM · keyword research</td></tr>
+          <tr><td><span class="m-badge">2</span></td><td class="focus">Launch + Content Phase 1</td><td class="deliv">Schema · on-page SEO · 2 conditions · 1 location · 1 blog</td></tr>
+          <tr><td><span class="m-badge">3</span></td><td class="focus">Local SEO + Content Phase 2</td><td class="deliv">GBP · citations · 2 conditions · 1 location · 1 blog</td></tr>
+          <tr><td><span class="m-badge">4</span></td><td class="focus">CRO + Content Phase 3</td><td class="deliv">Internal linking · CRO round 1 · 2 conditions · 1 location · 1 blog</td></tr>
+          <tr><td><span class="m-badge">5</span></td><td class="focus">Scale + Content Phase 4</td><td class="deliv">CRO round 2 · 1 condition · 2 blogs</td></tr>
+          <tr><td><span class="m-badge">6</span></td><td class="focus">Report &amp; Roadmap</td><td class="deliv">1 condition · 1 blog · 29 pages complete ✅ · 6-month report · next roadmap</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <div class="sec-title">Month-by-Month Plan</div>
+      <div class="timeline">
+        <div class="month launch-month">
+          <div class="vertebra">1</div>
+          <h3><span class="sub">Month 1</span>Site Rebuild 🚀</h3>
+          <ul>
+            <li><strong>Migrate website from Wix → Hostinger</strong> — full redesign and restructure</li>
+            <li><strong>Connect GSC, GA4, GTM</strong> — baseline data from day one</li>
+            <li><strong>Keyword &amp; competitor research</strong> for all pages</li>
+            <li>Competitor teardown: Ian The Chiro, Excellence, Connect, Bliss, Golden Spine</li>
+            <li>Sitemap, URL structure, 301 redirect map</li>
+          </ul>
+          <p style="font-size:13px;font-weight:600;color:var(--slate);text-transform:uppercase;letter-spacing:.08em;margin:18px 0 10px">12 pages designed &amp; built</p>
+          <div class="pages-grid">
+            <div class="pg"><strong>Home</strong></div>
+            <div class="pg"><strong>About Us</strong></div>
+            <div class="pg"><strong>Our Services</strong> <em>(hub)</em></div>
+            <div class="pg"><strong>What to Expect</strong></div>
+            <div class="pg"><strong>Blog</strong> <em>(hub)</em></div>
+            <div class="pg"><strong>Press</strong></div>
+            <div class="pg"><strong>Book Now</strong></div>
+            <div class="pg"><strong>Chiropractic Treatment</strong> <em>(service)</em></div>
+            <div class="pg"><strong>Dry Needling</strong> <em>(service)</em></div>
+            <div class="pg"><strong>Physiotherapy</strong> <em>(service)</em></div>
+            <div class="pg"><strong>Sports Injury &amp; Rehab</strong> <em>(service)</em></div>
+            <div class="pg"><strong>Posture Correction</strong> <em>(service)</em></div>
+          </div>
+        </div>
+
+        <div class="month">
+          <div class="vertebra">2</div>
+          <h3><span class="sub">Month 2</span>Launch + Content Phase 1</h3>
+          <ul>
+            <li>All content <strong>rewritten for target keywords</strong> — not copy-pasted from Wix</li>
+            <li>LocalBusiness + FAQ schema · Core Web Vitals green · mobile-first</li>
+            <li><strong>GSC/GA4/GTM verified on new site</strong> · conversion events (calls, WhatsApp, bookings)</li>
+            <li><strong>Fix the "chiro cheras" problem:</strong> /book-now at #13 → replaced with proper Cheras/Maluri landing page</li>
+          </ul>
+          <p style="font-size:13px;font-weight:600;color:var(--slate);text-transform:uppercase;letter-spacing:.08em;margin:18px 0 10px">4 new pages published</p>
+          <div class="pages-grid">
+            <div class="pg"><strong>Neck Pain</strong> <em>(condition · 1,600/mo)</em></div>
+            <div class="pg"><strong>Migraine</strong> <em>(condition · 3,600/mo)</em></div>
+            <div class="pg"><strong>Cheras / Maluri</strong> <em>(location · 480/mo)</em></div>
+            <div class="pg"><strong>Tit Tar vs Chiropractic</strong> <em>(blog · 2,600/mo)</em></div>
+          </div>
+          <div style="text-align:right;margin-top:8px"><span class="chip">16 / 29</span></div>
+          <div class="callout">The site goes live with 12 core pages + 4 new content pages, full schema and clean tracking.</div>
+        </div>
+
+        <div class="month">
+          <div class="vertebra">3</div>
+          <h3><span class="sub">Month 3</span>Local SEO + Content Phase 2</h3>
+          <ul>
+            <li><strong>Google Business Profile:</strong> full optimization, weekly posts, Q&amp;A, photos</li>
+            <li>Citations: Yelp MY, ClassPass, Foursquare, Waze, MY directories — exact NAP match</li>
+          </ul>
+          <p style="font-size:13px;font-weight:600;color:var(--slate);text-transform:uppercase;letter-spacing:.08em;margin:18px 0 10px">4 new pages published</p>
+          <div class="pages-grid">
+            <div class="pg"><strong>Sciatica</strong> <em>(condition · 1,300/mo)</em></div>
+            <div class="pg"><strong>Slipped Disc</strong> <em>(condition · 590/mo)</em></div>
+            <div class="pg"><strong>Kuala Lumpur</strong> <em>(location · 480/mo)</em></div>
+            <div class="pg"><strong>Muscle Knots</strong> <em>(blog · 1,000/mo)</em></div>
+          </div>
+          <div style="text-align:right;margin-top:8px"><span class="chip">20 / 29</span></div>
+        </div>
+
+        <div class="month">
+          <div class="vertebra">4</div>
+          <h3><span class="sub">Month 4</span>CRO + Content Phase 3</h3>
+          <ul>
+            <li><strong>Internal link structure:</strong> blog → service pages, service → condition pages, cross-linking for topical authority</li>
+            <li><strong>CRO round 1:</strong> booking flow audit, heatmaps, CTA fixes</li>
+            <li>Boost "striking distance" keywords (#11–20) using live GSC data</li>
+          </ul>
+          <p style="font-size:13px;font-weight:600;color:var(--slate);text-transform:uppercase;letter-spacing:.08em;margin:18px 0 10px">4 new pages published</p>
+          <div class="pages-grid">
+            <div class="pg"><strong>Scoliosis</strong> <em>(condition · 720/mo)</em></div>
+            <div class="pg"><strong>Back Pain</strong> <em>(condition · essential)</em></div>
+            <div class="pg"><strong>Kajang</strong> <em>(location)</em></div>
+            <div class="pg"><strong>Best Chiropractors in KL</strong> <em>(blog · 480/mo)</em></div>
+          </div>
+          <div style="text-align:right;margin-top:8px"><span class="chip">24 / 29</span></div>
+        </div>
+
+        <div class="month">
+          <div class="vertebra">5</div>
+          <h3><span class="sub">Month 5</span>Scale + Content Phase 4</h3>
+          <ul>
+            <li><strong>CRO round 2:</strong> A/B tests, FAQ expansion on service pages</li>
+            <li>Internal linking audit + expansion based on new content</li>
+          </ul>
+          <p style="font-size:13px;font-weight:600;color:var(--slate);text-transform:uppercase;letter-spacing:.08em;margin:18px 0 10px">3 new pages published</p>
+          <div class="pages-grid">
+            <div class="pg"><strong>Shoulder Imbalance</strong> <em>(condition · 210/mo)</em></div>
+            <div class="pg"><strong>Trigger Points 101</strong> <em>(blog · 590/mo)</em></div>
+            <div class="pg"><strong>Slipped Disc Treatment MY</strong> <em>(blog · 1,000/mo)</em></div>
+          </div>
+          <div style="text-align:right;margin-top:8px"><span class="chip">27 / 29</span></div>
+        </div>
+
+        <div class="month">
+          <div class="vertebra">6</div>
+          <h3><span class="sub">Month 6</span>Report &amp; Roadmap</h3>
+          <ul>
+            <li>Refresh underperforming pages</li>
+            <li><strong>6-month performance report vs KPIs</strong> + roadmap for Cycle 2</li>
+          </ul>
+          <p style="font-size:13px;font-weight:600;color:var(--slate);text-transform:uppercase;letter-spacing:.08em;margin:18px 0 10px">2 final pages published</p>
+          <div class="pages-grid">
+            <div class="pg"><strong>Hip Pain</strong> <em>(condition · 170/mo)</em></div>
+            <div class="pg"><strong>Office Workers' Back Pain</strong> <em>(blog)</em></div>
+          </div>
+          <div style="text-align:right;margin-top:8px"><span class="chip done">29 / 29 ✓</span></div>
+        </div>
+
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-title">KPIs — Day 180 Targets</div>
+      <table class="kpi">
+        <thead><tr><th>Metric</th><th>Now</th><th></th><th>Target</th></tr></thead>
+        <tbody>
+          <tr><td>Organic traffic growth</td><td class="now">~24/mo (declining)</td><td class="arrow">→</td><td class="target">10% monthly growth</td></tr>
+          <tr><td>CTA clicks</td><td class="now">no tracking</td><td class="arrow">→</td><td class="target">10% monthly increment</td></tr>
+          <tr><td>Primary keywords on Page 1</td><td class="now">0 of 14 (0%)</td><td class="arrow">→</td><td class="target">7 of 14 (50%) on Google Page 1</td></tr>
+          <tr><td>Conversion tracking</td><td class="now">none</td><td class="arrow">→</td><td class="target">Full funnel (calls, WhatsApp, bookings)</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <div class="sec-title">What We Need From You</div>
+      <div class="needs">
+        <div class="need"><div class="ic">1</div><div>Access: Wix, domain/DNS, Google Business Profile</div></div>
+        <div class="need"><div class="ic">2</div><div>Clinic photos + practitioner bios &amp; credentials</div></div>
+        <div class="need"><div class="ic">3</div><div>Content approvals within ~3 business days</div></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-title">Pricing</div>
+      <div class="pricing-grid">
+        <div class="price-card"><h3>Option 1 — SEO &amp; Web</h3><div class="price-amt">RM2,500 <span>/ month</span></div><ul><li>Full website migration (Wix → Hostinger) &amp; redesign</li><li>GSC, GA4, GTM setup &amp; conversion tracking</li><li>Keyword &amp; competitor research</li><li>On-page SEO for all pages (homepage, services, locations, E-E-A-T)</li><li>6 SEO blog posts (1/month) — 12 more in cycle 2</li><li>Local SEO: GBP, citations</li><li>Internal linking strategy</li><li>CRO audits &amp; optimization</li><li>Monthly reporting</li></ul></div>
+        <div class="price-card featured"><div class="badge">Recommended</div><h3>Option 2 — SEO, Web &amp; Ads</h3><div class="price-amt">RM3,000 <span>/ month</span></div><ul><li>Everything in Option 1, plus:</li><li><strong>5 Google Ad landing pages</strong> (also usable for Meta Ads)</li><li><strong>Google Ad campaign management</strong></li><li>Bridges organic traffic while SEO compounds</li></ul><div class="price-note">* Ad budget is excluded — billed separately by Google/Meta.</div></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- TAB 2: KEYWORD & PILLAR STRATEGY -->
+  <!-- ============================================================ -->
+  <div id="tab-keywords" class="tab-content">
+
+    <section>
+      <div class="sec-title">Page Architecture — Two Pillars</div>
+      <div class="bp-grid">
+        <div class="bp" style="border-color:var(--teal)">
+          <span class="tag" style="background:var(--teal-soft);color:var(--teal)">Service Pillar</span>
+          <p style="font-size:20px;font-family:'Fraunces',serif;font-weight:600;margin-bottom:6px">"What we do"</p>
+          <p>Treatment &amp; technique pages. Each targets commercial-intent keywords and converts visitors into bookings.</p>
+        </div>
+        <div class="bp" style="border-color:var(--red)">
+          <span class="tag" style="background:var(--red-soft);color:var(--red)">Problem Pillar</span>
+          <p style="font-size:20px;font-family:'Fraunces',serif;font-weight:600;margin-bottom:6px">"What you feel"</p>
+          <p>Condition &amp; symptom pages. Captures patients searching for their pain, then links them to the right service page.</p>
+        </div>
+      </div>
+      <div class="callout" style="margin-top:14px">Every blog post links up to its parent pillar page → builds topical authority Google rewards. Service ↔ Problem pages cross-link where relevant. Blog comparison posts (e.g. tit tar vs chiropractic) capture adjacent audiences and funnel them to service pages.</div>
+    </section>
+
+    <!-- SERVICE PILLAR -->
+    <section>
+      <div class="sec-title">Service Pillar — Pages &amp; Keywords</div>
+
+      <div class="pillar-card">
+        <div class="pillar-header"><div class="pillar-icon service">🦴</div><div><span class="sub service">Service Page 1</span><h3>Chiropractic Treatment</h3></div></div>
+        <span class="page-url">/services/chiropractic-treatment</span>
+        <table class="pillar-table"><thead><tr><th>Keyword</th><th>Vol/mo</th><th>SD</th><th>Notes</th></tr></thead><tbody>
+          <tr><td>chiropractor near me</td><td class="vol">8,100</td><td>16</td><td>Homepage shares this target</td></tr>
+          <tr><td>bone alignment near me</td><td class="vol">260</td><td>11</td><td>Low difficulty — easy win</td></tr>
+          <tr><td>bone alignment</td><td class="vol">260</td><td>22</td><td></td></tr>
+          <tr><td>body alignment near me</td><td class="vol">210</td><td>25</td><td></td></tr>
+          <tr><td>body alignment</td><td class="vol">320</td><td>28</td><td></td></tr>
+        </tbody></table>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-header"><div class="pillar-icon service">📍</div><div><span class="sub service">Service Page 2</span><h3>Dry Needling</h3></div></div>
+        <span class="page-url">/services/dry-needling</span>
+        <table class="pillar-table"><thead><tr><th>Keyword</th><th>Vol/mo</th><th>SD</th><th>Notes</th></tr></thead><tbody>
+          <tr><td>dry needling near me</td><td class="vol">210</td><td>7</td><td>Lowest difficulty keyword in entire dataset</td></tr>
+          <tr><td>dry needling techniques</td><td class="vol">210</td><td>33</td><td>Content angle</td></tr>
+        </tbody></table>
+        <div class="insight">Ian The Chiro offers dry needling but has no dedicated page — first-mover advantage.</div>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-header"><div class="pillar-icon service">🏃</div><div><span class="sub service">Service Page 3</span><h3>Sports Injury &amp; Rehabilitation</h3></div></div>
+        <span class="page-url">/services/sports-injury-rehabilitation</span>
+        <table class="pillar-table"><thead><tr><th>Keyword</th><th>Vol/mo</th><th>SD</th><th>Notes</th></tr></thead><tbody>
+          <tr><td>sports injury treatment malaysia</td><td class="vol">10</td><td>5</td><td>Very easy to rank</td></tr>
+          <tr><td>sports injury near me</td><td class="vol">20</td><td>16</td><td></td></tr>
+        </tbody></table>
+        <div class="insight">Low DB volume but a real service differentiator. Includes sprained ankle section. Worth the page for E-E-A-T + internal linking.</div>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-header"><div class="pillar-icon service">💆</div><div><span class="sub service">Service Page 4</span><h3>Physiotherapy</h3></div></div>
+        <span class="page-url">/services/physiotherapy</span>
+        <table class="pillar-table"><thead><tr><th>Keyword</th><th>Vol/mo</th><th>SD</th><th>Notes</th></tr></thead><tbody>
+          <tr><td>physio cheras</td><td class="vol">260</td><td>19</td><td>Unclaimed by other chiros</td></tr>
+          <tr><td>physiotherapy sciatica pain</td><td class="vol">170</td><td>23</td><td>Cross-links to /conditions/sciatica</td></tr>
+        </tbody></table>
+        <div class="insight">Persistence already offers physiotherapy — currently buried in the services page. Deserves its own page.</div>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-header"><div class="pillar-icon service">🧍</div><div><span class="sub service">Service Page 5</span><h3>Posture Correction</h3></div></div>
+        <span class="page-url">/services/posture-correction</span>
+        <table class="pillar-table"><thead><tr><th>Keyword</th><th>Vol/mo</th><th>SD</th><th>Notes</th></tr></thead><tbody>
+          <tr><td>sit posture correction</td><td class="vol">390</td><td>16</td><td>Office workers angle</td></tr>
+          <tr><td>posture correction exercises</td><td class="vol">140</td><td>19</td><td>Content angle</td></tr>
+        </tbody></table>
+      </div>
+    </section>
+
+    <!-- PROBLEM PILLAR -->
+    <section>
+      <div class="sec-title">Problem Pillar — Pages &amp; Keywords</div>
+
+      <div class="pillar-card">
+        <div class="pillar-header"><div class="pillar-icon problem">😣</div><div><span class="sub problem">Problem Page 1</span><h3>Neck Pain</h3></div></div>
+        <span class="page-url">/conditions/neck-pain</span>
+        <table class="pillar-table"><thead><tr><th>Keyword</th><th>Vol/mo</th><th>SD</th><th>Notes</th></tr></thead><tbody>
+          <tr><td>stiffness neck pain</td><td class="vol">1,600</td><td>22</td><td>Primary target</td></tr>
+          <tr><td>neck pain stiff</td><td class="vol">1,300</td><td>22</td><td>Variant</td></tr>
+          <tr><td>neck pain with back pain</td><td class="vol">480</td><td>14</td><td>Cross-links to back pain</td></tr>
+          <tr><td>neck pain after sleep</td><td class="vol">320</td><td>46</td><td>Blog content angle</td></tr>
+          <tr><td>shoulder and neck pain</td><td class="vol">210</td><td>39</td><td></td></tr>
+        </tbody></table>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-header"><div class="pillar-icon problem">🔙</div><div><span class="sub problem">Problem Page 2</span><h3>Back Pain</h3></div></div>
+        <span class="page-url">/conditions/back-pain</span>
+        <table class="pillar-table"><thead><tr><th>Keyword</th><th>Vol/mo</th><th>SD</th><th>Notes</th></tr></thead><tbody>
+          <tr><td>back pain treatment</td><td class="vol">—</td><td>12</td><td>0 in DB, obvious real demand</td></tr>
+          <tr><td>backache relief</td><td class="vol">390</td><td>67</td><td>Ian The Chiro #28</td></tr>
+          <tr><td>lower back ache hip pain</td><td class="vol">170</td><td>32</td><td>Cross-links to hip pain</td></tr>
+        </tbody></table>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-header"><div class="pillar-icon problem">💿</div><div><span class="sub problem">Problem Page 3</span><h3>Slipped Disc</h3></div></div>
+        <span class="page-url">/conditions/slipped-disc</span>
+        <table class="pillar-table"><thead><tr><th>Keyword</th><th>Vol/mo</th><th>SD</th><th>Notes</th></tr></thead><tbody>
+          <tr><td>maksud slipped disc</td><td class="vol">1,300</td><td>11</td><td><span class="type-malay">MALAY</span> Very easy</td></tr>
+          <tr><td>slipped disc remedy</td><td class="vol">1,000</td><td>52</td><td></td></tr>
+          <tr><td>slipped disc lumbar region</td><td class="vol">590</td><td>10</td><td>Easy</td></tr>
+          <tr><td>slipped disc chinese</td><td class="vol">390</td><td>17</td><td>Chinese-speaking audience</td></tr>
+        </tbody></table>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-header"><div class="pillar-icon problem">🔄</div><div><span class="sub problem">Problem Page 4</span><h3>Scoliosis</h3></div></div>
+        <span class="page-url">/conditions/scoliosis</span>
+        <table class="pillar-table"><thead><tr><th>Keyword</th><th>Vol/mo</th><th>SD</th><th>Notes</th></tr></thead><tbody>
+          <tr><td>scoliosis maksud</td><td class="vol">1,000</td><td>12</td><td><span class="type-malay">MALAY</span> Very easy</td></tr>
+          <tr><td>scoliosis and brace</td><td class="vol">1,000</td><td>17</td><td></td></tr>
+          <tr><td>symptom scoliosis</td><td class="vol">720</td><td>23</td><td></td></tr>
+          <tr><td>workout scoliosis</td><td class="vol">590</td><td>25</td><td>Content angle</td></tr>
+        </tbody></table>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-header"><div class="pillar-icon problem">⚡</div><div><span class="sub problem">Problem Page 5</span><h3>Sciatica</h3></div></div>
+        <span class="page-url">/conditions/sciatica</span>
+        <table class="pillar-table"><thead><tr><th>Keyword</th><th>Vol/mo</th><th>SD</th><th>Notes</th></tr></thead><tbody>
+          <tr><td>sciatica and exercises</td><td class="vol">1,300</td><td>58</td><td>High intent</td></tr>
+          <tr><td>pantang larang sciatica</td><td class="vol">320</td><td>24</td><td><span class="type-malay">MALAY</span> Unique angle</td></tr>
+          <tr><td>physiotherapy sciatica pain</td><td class="vol">170</td><td>23</td><td>Cross-links to physio service</td></tr>
+        </tbody></table>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-header"><div class="pillar-icon problem">🤕</div><div><span class="sub problem">Problem Page 6</span><h3>Migraine</h3></div></div>
+        <span class="page-url">/conditions/migraine</span>
+        <table class="pillar-table"><thead><tr><th>Keyword</th><th>Vol/mo</th><th>SD</th><th>Notes</th></tr></thead><tbody>
+          <tr><td>migraine headache</td><td class="vol">3,600</td><td>62</td><td>High vol, high difficulty — long-term target</td></tr>
+          <tr><td>migraine headache symptoms</td><td class="vol">9,900</td><td>59</td><td>Massive volume</td></tr>
+        </tbody></table>
+        <div class="insight">High difficulty but enormous volume. Worth a page for authority even if Page 1 takes longer.</div>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-header"><div class="pillar-icon problem">🦵</div><div><span class="sub problem">Problem Page 7</span><h3>Hip Pain</h3></div></div>
+        <span class="page-url">/conditions/hip-pain</span>
+        <table class="pillar-table"><thead><tr><th>Keyword</th><th>Vol/mo</th><th>SD</th><th>Notes</th></tr></thead><tbody>
+          <tr><td>lower back ache hip pain</td><td class="vol">170</td><td>32</td><td>Cross-links to back pain</td></tr>
+        </tbody></table>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-header"><div class="pillar-icon problem">🙆</div><div><span class="sub problem">Problem Page 8</span><h3>Shoulder Imbalance &amp; Posture</h3></div></div>
+        <span class="page-url">/conditions/shoulder-imbalance</span>
+        <table class="pillar-table"><thead><tr><th>Keyword</th><th>Vol/mo</th><th>SD</th><th>Notes</th></tr></thead><tbody>
+          <tr><td>shoulder and neck pain</td><td class="vol">210</td><td>39</td><td>Cross-links to neck pain</td></tr>
+          <tr><td>sit posture correction</td><td class="vol">390</td><td>16</td><td>Cross-links to posture service</td></tr>
+        </tbody></table>
+      </div>
+    </section>
+
+    <!-- BLOG CONTENT -->
+    <section>
+      <div class="sec-title">Blog Content Roadmap — 18 Topics</div>
+      <div class="callout" style="margin-top:-8px;margin-bottom:20px"><strong>6 high-impact posts in Cycle 1</strong> (this engagement) to build topical authority and capture quick wins. <strong>12 more in Cycle 2</strong> to scale content and compound traffic.</div>
+
+      <p style="font-size:13px;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px">Cycle 1 — This Engagement (6 posts)</p>
+
+      <table class="kw-table">
+        <thead><tr><th>#</th><th>Blog Topic</th><th>Target Keyword</th><th>Vol/mo</th><th>SD</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><strong>Tit Tar vs Chiropractic — What's the Difference?</strong></td><td>tit tar near me / tit tar</td><td class="vol">2,600</td><td>12–15</td></tr>
+          <tr><td>2</td><td><strong>Muscle Knots: Causes, Symptoms &amp; Effective Treatments</strong></td><td>muscle knots</td><td class="vol">1,000</td><td>37</td></tr>
+          <tr><td>3</td><td><strong>Best Chiropractors in KL — Where to Get Adjusted</strong></td><td>chiropractor malaysia kuala lumpur</td><td class="vol">480</td><td>19</td></tr>
+          <tr><td>4</td><td><strong>Trigger Points 101: Guide to Muscle Pain Relief</strong></td><td>trigger points</td><td class="vol">590</td><td>34</td></tr>
+          <tr><td>5</td><td><strong>Slipped Disc Treatment Options in Malaysia</strong></td><td>slipped disc remedy</td><td class="vol">1,000</td><td>52</td></tr>
+          <tr><td>6</td><td><strong>Office Workers' Back Pain — A KL Desk Worker's Guide</strong></td><td>back pain treatment</td><td class="vol">—</td><td>12</td></tr>
+        </tbody>
+      </table>
+
+      <p style="font-size:13px;font-weight:700;color:var(--slate);text-transform:uppercase;letter-spacing:.1em;margin:28px 0 12px">Cycle 2 — Next Engagement (12 posts)</p>
+
+      <table class="kw-table" style="opacity:.75">
+        <thead><tr><th>#</th><th>Blog Topic</th><th>Target Keyword</th><th>Vol/mo</th><th>SD</th></tr></thead>
+        <tbody>
+          <tr><td>7</td><td>Scoliosis Warning Signs — When to See a Chiropractor</td><td>symptom scoliosis</td><td class="vol">720</td><td>23</td></tr>
+          <tr><td>8</td><td>Neck Pain from Sleeping Wrong — Causes &amp; Fixes</td><td>neck pain after sleep</td><td class="vol">320</td><td>46</td></tr>
+          <tr><td>9</td><td>Sciatica Exercises &amp; Stretches That Actually Help</td><td>sciatica and exercises</td><td class="vol">1,300</td><td>58</td></tr>
+          <tr><td>10</td><td>Dry Needling vs Acupuncture — What's the Difference?</td><td>dry needling techniques</td><td class="vol">210</td><td>33</td></tr>
+          <tr><td>11</td><td>Posture Correction for Office Workers in KL</td><td>sit posture correction</td><td class="vol">390</td><td>16</td></tr>
+          <tr><td>12</td><td>Sports Injury Recovery — Chiropractor vs Physiotherapist?</td><td>sports injury treatment malaysia</td><td class="vol">10</td><td>5</td></tr>
+          <tr><td>13</td><td>What to Expect at Your First Chiropractic Visit</td><td>chiropractic treatment</td><td class="vol">—</td><td>17</td></tr>
+          <tr><td>14</td><td>How Chiropractic Helps Migraine &amp; Headaches</td><td>migraine headache</td><td class="vol">3,600</td><td>62</td></tr>
+          <tr><td>15</td><td>Body Alignment — Why It Matters &amp; How to Fix It</td><td>body alignment</td><td class="vol">320</td><td>28</td></tr>
+          <tr><td>16</td><td>Physiotherapy vs Chiropractic — Which Is Right for You?</td><td>physio cheras</td><td class="vol">260</td><td>19</td></tr>
+          <tr><td>17</td><td>Hip Pain Causes &amp; Treatment Options</td><td>lower back ache hip pain</td><td class="vol">170</td><td>32</td></tr>
+          <tr><td>18</td><td>Apa Itu Slipped Disc? Panduan Lengkap (BM)</td><td>maksud slipped disc</td><td class="vol">1,300</td><td>11</td></tr>
+        </tbody>
+      </table>
+
+      <div class="kw-summary" style="margin-top:16px">
+        <strong>Cycle 1:</strong> 6 posts targeting ~5,670/mo combined search volume — focused on the easiest wins and highest-impact topics.<br>
+        <strong>Cycle 2:</strong> 12 posts targeting ~8,600/mo — scales content into harder keywords, bilingual content, and deeper topical coverage.
+      </div>
+    </section>
+
+    <!-- BILINGUAL -->
+    <section>
+      <div class="sec-title">Bilingual Opportunity 🇲🇾</div>
+      <div class="callout" style="margin-top:-8px;margin-bottom:16px"><strong>Almost no competitor targets Malay-language keywords.</strong> These are high volume, very low difficulty — treated as <strong>separate Cycle 2 blog topics</strong>, not mixed into English service/condition pages.</div>
+      <table class="kw-table">
+        <thead><tr><th>Keyword</th><th>Vol/mo</th><th>SD</th><th>Topic</th></tr></thead>
+        <tbody>
+          <tr><td>maksud slipped disc</td><td class="vol">1,300</td><td>11</td><td>Slipped disc</td></tr>
+          <tr><td>scoliosis maksud</td><td class="vol">1,000</td><td>12</td><td>Scoliosis</td></tr>
+          <tr><td>pantang larang sciatica</td><td class="vol">320</td><td>24</td><td>Sciatica</td></tr>
+          <tr><td>scoliosis adalah</td><td class="vol">210</td><td>20</td><td>Scoliosis</td></tr>
+          <tr><td>slipped disc tu apa</td><td class="vol">140</td><td>7</td><td>Slipped disc</td></tr>
+        </tbody>
+      </table>
+      <div class="kw-summary"><strong>Strategy:</strong> Dedicated Malay-language blog posts in Cycle 2 (not mixed into English condition pages). Combined volume: <strong>2,970/mo</strong> at average SD of just <strong>15</strong>.</div>
+    </section>
+
+    <!-- REVISED PRIMARY KEYWORDS -->
+    <section>
+      <div class="sec-title">KPI 3 — 14 Primary Keywords We Track</div>
+      <table class="kw-table">
+        <thead><tr><th>Keyword</th><th>Vol/mo</th><th>SD</th><th>Page</th><th>Type</th></tr></thead>
+        <tbody>
+          <tr><td>chiropractor near me</td><td class="vol">8,100</td><td>16</td><td>Homepage</td><td><span class="type-money">MONEY</span></td></tr>
+          <tr><td>chiro cheras</td><td class="vol">480</td><td>13</td><td>/locations/cheras-maluri</td><td><span class="type-money">MONEY</span></td></tr>
+          <tr><td>chiropractor cheras</td><td class="vol">—</td><td>17</td><td>/locations/cheras-maluri</td><td><span class="type-money">MONEY</span></td></tr>
+          <tr><td>chiro kuala lumpur</td><td class="vol">480</td><td>9</td><td>/locations/kuala-lumpur</td><td><span class="type-money">MONEY</span></td></tr>
+          <tr><td>physio cheras</td><td class="vol">260</td><td>19</td><td>/services/physiotherapy</td><td><span class="type-service">SERVICE</span></td></tr>
+          <tr><td>dry needling near me</td><td class="vol">210</td><td>7</td><td>/services/dry-needling</td><td><span class="type-service">SERVICE</span></td></tr>
+          <tr><td>bone alignment near me</td><td class="vol">260</td><td>11</td><td>/services/chiropractic</td><td><span class="type-service">SERVICE</span></td></tr>
+          <tr><td>stiffness neck pain</td><td class="vol">1,600</td><td>22</td><td>/conditions/neck-pain</td><td><span class="type-problem">PROBLEM</span></td></tr>
+          <tr><td>slipped disc lumbar region</td><td class="vol">590</td><td>10</td><td>/conditions/slipped-disc</td><td><span class="type-problem">PROBLEM</span></td></tr>
+          <tr><td>migraine headache</td><td class="vol">3,600</td><td>62</td><td>/conditions/migraine</td><td><span class="type-problem">PROBLEM</span></td></tr>
+          <tr><td>sciatica and exercises</td><td class="vol">1,300</td><td>58</td><td>/conditions/sciatica</td><td><span class="type-problem">PROBLEM</span></td></tr>
+          <tr><td>tit tar near me</td><td class="vol">1,600</td><td>15</td><td>/blog/tit-tar-vs-chiropractic</td><td><span class="type-content">CONTENT</span></td></tr>
+          <tr><td>tit tar</td><td class="vol">1,000</td><td>12</td><td>/blog/tit-tar-vs-chiropractic</td><td><span class="type-content">CONTENT</span></td></tr>
+          <tr><td>muscle knots</td><td class="vol">1,000</td><td>37</td><td>/blog/muscle-knots</td><td><span class="type-content">CONTENT</span></td></tr>
+        </tbody>
+      </table>
+      <div class="kw-summary">
+        <strong>14 primary keywords tracked.</strong> Currently <strong>0 on Page 1</strong>. Target: <strong>7 of 14 (50%)</strong> on Google Page 1 by Day 180. Combined monthly search volume: <strong>20,480</strong>. Malay-language keywords (maksud slipped disc, scoliosis maksud) tracked separately as Cycle 2 blog topics.
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- TAB 3: COMPETITOR BENCHMARK -->
+  <!-- ============================================================ -->
+  <div id="tab-benchmark" class="tab-content">
+
+    <section>
+      <div class="sec-title">Benchmark Competitor — Ian The Chiro</div>
+      <div class="bp-grid">
+        <div class="bp" style="border-color:var(--red)">
+          <span class="tag" style="background:var(--red-soft);color:var(--red)">Competitor #1</span>
+          <p style="font-size:22px;font-family:'Fraunces',serif;font-weight:700;margin-bottom:8px">Ian The Chiro</p>
+          <p>ianthechiro.com · DA 7 · 90 backlinks · 35 referring domains</p>
+          <div style="display:flex;gap:24px;margin-top:16px">
+            <div><span style="font-family:'Fraunces',serif;font-size:28px;font-weight:700;color:var(--red);display:block">975</span><span style="font-size:12px;color:var(--slate)">visits/mo ↑ growing</span></div>
+            <div><span style="font-family:'Fraunces',serif;font-size:28px;font-weight:700;color:var(--red);display:block">741</span><span style="font-size:12px;color:var(--slate)">organic keywords</span></div>
+          </div>
+        </div>
+        <div class="bp" style="border-color:var(--amber)">
+          <span class="tag" style="background:var(--amber-soft);color:var(--amber)">Us (Current)</span>
+          <p style="font-size:22px;font-family:'Fraunces',serif;font-weight:700;margin-bottom:8px">Persistence Chiropractic</p>
+          <p>persistencechiropractic.com · DA 6 · 63 backlinks · 32 referring domains</p>
+          <div style="display:flex;gap:24px;margin-top:16px">
+            <div><span style="font-family:'Fraunces',serif;font-size:28px;font-weight:700;color:var(--amber);display:block">24</span><span style="font-size:12px;color:var(--slate)">visits/mo ↓ declining</span></div>
+            <div><span style="font-family:'Fraunces',serif;font-size:28px;font-weight:700;color:var(--amber);display:block">23</span><span style="font-size:12px;color:var(--slate)">organic keywords</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="callout" style="margin-top:14px"><strong>Why Ian The Chiro?</strong> Same DA (7 vs 6), same location (Cheras), similar backlink profile — but 40x our traffic. The gap is entirely content and on-page SEO. This is a fair benchmark because their advantage is replicable, not structural.</div>
+    </section>
+
+    <!-- HEAD TO HEAD -->
+    <section>
+      <div class="sec-title">Head-to-Head — Primary Keyword Rankings</div>
+      <table class="kw-table">
+        <thead><tr><th>Keyword</th><th>Vol/mo</th><th style="text-align:center">Ian The Chiro</th><th style="text-align:center">Persistence</th><th>Gap</th></tr></thead>
+        <tbody>
+          <tr><td>chiropractor near me</td><td class="vol">8,100</td><td style="text-align:center;color:var(--slate)">—</td><td style="text-align:center" class="pos-bad">#23</td><td style="font-size:12px;color:var(--slate)">Neither on Page 1</td></tr>
+          <tr><td>chiro cheras</td><td class="vol">480</td><td style="text-align:center;font-weight:700;color:var(--green)">#4 ✓</td><td style="text-align:center" class="pos-bad">#13</td><td style="font-size:12px;color:var(--red);font-weight:600">They own this</td></tr>
+          <tr><td>chiropractor cheras</td><td class="vol">—</td><td style="text-align:center;font-weight:700;color:var(--green)">#5 ✓</td><td style="text-align:center;color:var(--red)">—</td><td style="font-size:12px;color:var(--red);font-weight:600">They own this</td></tr>
+          <tr><td>chiro kuala lumpur</td><td class="vol">480</td><td style="text-align:center" class="pos-bad">#31</td><td style="text-align:center" class="pos-bad">#28</td><td style="font-size:12px;color:var(--teal)">We're closer</td></tr>
+          <tr><td>chiropractor malaysia KL</td><td class="vol">480</td><td style="text-align:center" class="pos-bad">#18</td><td style="text-align:center" class="pos-bad">#20</td><td style="font-size:12px;color:var(--slate)">Both Page 2</td></tr>
+          <tr><td>physio cheras</td><td class="vol">260</td><td style="text-align:center;color:var(--slate)">—</td><td style="text-align:center;color:var(--red)">—</td><td style="font-size:12px;color:var(--teal);font-weight:600">Open — first mover wins</td></tr>
+          <tr><td>dry needling near me</td><td class="vol">210</td><td style="text-align:center;color:var(--slate)">—</td><td style="text-align:center;color:var(--red)">—</td><td style="font-size:12px;color:var(--teal);font-weight:600">Open — first mover wins</td></tr>
+          <tr><td>bone alignment near me</td><td class="vol">260</td><td style="text-align:center;color:var(--slate)">—</td><td style="text-align:center;color:var(--red)">—</td><td style="font-size:12px;color:var(--teal);font-weight:600">Open — first mover wins</td></tr>
+          <tr><td>stiffness neck pain</td><td class="vol">1,600</td><td style="text-align:center;color:var(--slate)">—</td><td style="text-align:center;color:var(--red)">—</td><td style="font-size:12px;color:var(--teal);font-weight:600">Open — no chiro ranks</td></tr>
+          <tr><td>slipped disc lumbar region</td><td class="vol">590</td><td style="text-align:center;color:var(--slate)">—</td><td style="text-align:center;color:var(--red)">—</td><td style="font-size:12px;color:var(--teal);font-weight:600">Open — no chiro ranks</td></tr>
+          <tr><td>migraine headache</td><td class="vol">3,600</td><td style="text-align:center;color:var(--slate)">—</td><td style="text-align:center;color:var(--red)">—</td><td style="font-size:12px;color:var(--slate)">Both absent — long-term</td></tr>
+          <tr><td>sciatica and exercises</td><td class="vol">1,300</td><td style="text-align:center;color:var(--slate)">—</td><td style="text-align:center;color:var(--red)">—</td><td style="font-size:12px;color:var(--slate)">Both absent</td></tr>
+          <tr><td>tit tar near me</td><td class="vol">1,600</td><td style="text-align:center;color:var(--slate)">—</td><td style="text-align:center;color:var(--red)">—</td><td style="font-size:12px;color:var(--teal);font-weight:600">Open — blog opportunity</td></tr>
+          <tr><td>muscle knots</td><td class="vol">1,000</td><td style="text-align:center;font-weight:700;color:var(--green)">#9 ✓</td><td style="text-align:center;color:var(--red)">—</td><td style="font-size:12px;color:var(--red);font-weight:600">They own this</td></tr>
+          <tr><td>trigger points</td><td class="vol">590</td><td style="text-align:center" class="pos-bad">#14</td><td style="text-align:center;color:var(--red)">—</td><td style="font-size:12px;color:var(--amber)">They're close — beatable</td></tr>
+        </tbody>
+      </table>
+      <div class="kw-summary">
+        <strong>Ian The Chiro owns 3 of our 14 target keywords</strong> on Page 1 (chiro cheras #4, chiropractor cheras #5, muscle knots #9). But they have <strong>zero presence on 8 keywords</strong> we're targeting — especially the problem pillar and service-specific terms. These are our first-mover opportunities.
+      </div>
+    </section>
+
+    <!-- WHAT DRIVES THEIR TRAFFIC -->
+    <section>
+      <div class="sec-title">What Drives Ian The Chiro's Traffic</div>
+      <table class="kw-table">
+        <thead><tr><th>Page</th><th>Est. Traffic</th><th>Top Keyword</th><th>Rank</th></tr></thead>
+        <tbody>
+          <tr><td>/ <span style="font-size:11px;color:var(--slate)">(homepage)</span></td><td class="vol">359/mo</td><td>chiro cheras (480/mo)</td><td style="font-weight:700;color:var(--green)">#4</td></tr>
+          <tr><td>/blog/muscle-knots</td><td class="vol">112/mo</td><td>muscle knots (1,000/mo)</td><td style="font-weight:700;color:var(--green)">#9</td></tr>
+          <tr><td>/blog/vitamin-d-supplements-vs-sunlight-malaysia</td><td class="vol">38/mo</td><td>vitamin sunlight (720/mo)</td><td style="font-weight:700;color:var(--green)">#6</td></tr>
+          <tr><td>/blog/trigger-points-101</td><td class="vol">4/mo</td><td>trigger points (590/mo)</td><td class="pos-bad">#14</td></tr>
+          <tr><td>/blog/strain-vs-sprain</td><td class="vol">2/mo</td><td>straining in malay (720/mo)</td><td class="pos-bad">#21</td></tr>
+          <tr><td>/blog/practical-tips-for-back-pain-relief</td><td class="vol">0/mo</td><td>backache relief (390/mo)</td><td class="pos-bad">#28</td></tr>
+          <tr><td>/blog/where-to-get-chiro-adjustment-in-kl</td><td class="vol">6/mo</td><td>thechiro chiropractic centre</td><td style="font-weight:700;color:var(--green)">#8</td></tr>
+        </tbody>
+      </table>
+      <div class="callout" style="margin-top:14px"><strong>Takeaway:</strong> 69% of Ian The Chiro's traffic comes from just 2 pages — the homepage (#4 for "chiro cheras") and the muscle knots blog post (#9). Their content strategy works but is narrow. Our condition pillar (8 pages) gives us a much wider surface area they can't easily replicate.</div>
+    </section>
+
+    <!-- GAPS WE EXPLOIT -->
+    <section>
+      <div class="sec-title">Gaps We Exploit</div>
+      <div class="bp-grid three">
+        <div class="bp" style="border-color:var(--teal)">
+          <span class="tag" style="background:var(--teal-soft);color:var(--teal)">Problem Pillar</span>
+          <p style="font-weight:700;margin-bottom:6px">8 condition pages</p>
+          <p style="font-size:13px">Ian has zero condition-specific pages. No neck pain, back pain, scoliosis, slipped disc, or sciatica pages. We build all 8.</p>
+        </div>
+        <div class="bp" style="border-color:#92700c">
+          <span class="tag" style="background:#fef9e7;color:#92700c">Malay Keywords</span>
+          <p style="font-weight:700;margin-bottom:6px">2,970/mo untapped</p>
+          <p style="font-size:13px">"Maksud slipped disc" (1,300), "scoliosis maksud" (1,000) — high volume, SD 11–12. No chiro targets these.</p>
+        </div>
+        <div class="bp" style="border-color:var(--teal)">
+          <span class="tag" style="background:var(--teal-soft);color:var(--teal)">Service Pages</span>
+          <p style="font-weight:700;margin-bottom:6px">Dry needling · Physio</p>
+          <p style="font-size:13px">Ian offers dry needling but has no dedicated page. "Dry needling near me" (SD 7) and "physio cheras" (260/mo) are unclaimed.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRACKING -->
+    <section>
+      <div class="sec-title">Ongoing Rank Tracking</div>
+      <div class="bp" style="border-color:var(--teal);background:var(--teal-soft)">
+        <p style="font-size:14.5px"><strong>We track all 14 primary keywords weekly via Ubersuggest Projects</strong> — both Persistence and Ian The Chiro's positions, side by side. You'll receive a ranking movement report in each monthly update showing position changes, new Page 1 entries, and keywords gained/lost vs the competitor.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:16px">
+          <div style="background:#fff;border-radius:10px;padding:14px;text-align:center">
+            <div style="font-family:'Fraunces',serif;font-size:22px;font-weight:700;color:var(--teal)">14</div>
+            <div style="font-size:12px;color:var(--slate)">Keywords tracked</div>
+          </div>
+          <div style="background:#fff;border-radius:10px;padding:14px;text-align:center">
+            <div style="font-family:'Fraunces',serif;font-size:22px;font-weight:700;color:var(--teal)">Weekly</div>
+            <div style="font-size:12px;color:var(--slate)">Rank updates</div>
+          </div>
+          <div style="background:#fff;border-radius:10px;padding:14px;text-align:center">
+            <div style="font-family:'Fraunces',serif;font-size:22px;font-weight:700;color:var(--teal)">vs Ian</div>
+            <div style="font-size:12px;color:var(--slate)">Side-by-side comparison</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- TAB 4: CYCLE 1 PAGES -->
+  <!-- ============================================================ -->
+  <div id="tab-pages" class="tab-content">
+
+    <section>
+      <div class="sec-title">Cycle 1 — All Visible Pages (29 total)</div>
+      <div class="bp-grid" style="grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;margin-bottom:24px">
+        <div style="background:var(--tint);border-radius:10px;padding:14px;text-align:center;border:1px solid var(--line)"><div style="font-family:'Fraunces',serif;font-size:26px;font-weight:700;color:var(--ink)">7</div><div style="font-size:12px;color:var(--slate)">Main Pages</div></div>
+        <div style="background:var(--teal-soft);border-radius:10px;padding:14px;text-align:center;border:1px solid var(--teal)"><div style="font-family:'Fraunces',serif;font-size:26px;font-weight:700;color:var(--teal)">5</div><div style="font-size:12px;color:var(--teal)">Service Pages</div></div>
+        <div style="background:var(--red-soft);border-radius:10px;padding:14px;text-align:center;border:1px solid #e8b4b4"><div style="font-family:'Fraunces',serif;font-size:26px;font-weight:700;color:var(--red)">8</div><div style="font-size:12px;color:var(--red)">Condition Pages</div></div>
+        <div style="background:var(--amber-soft);border-radius:10px;padding:14px;text-align:center;border:1px solid #e8cfa0"><div style="font-family:'Fraunces',serif;font-size:26px;font-weight:700;color:var(--amber)">3</div><div style="font-size:12px;color:var(--amber)">Location Pages</div></div>
+      </div>
+      <div style="background:var(--ink);border-radius:10px;padding:14px;text-align:center;margin-bottom:32px"><div style="font-size:12px;color:#9fe3d8;margin-bottom:4px">+ Blog Posts</div><div style="font-family:'Fraunces',serif;font-size:26px;font-weight:700;color:#7adfce">6</div><div style="font-size:12px;color:#9fe3d8">Cycle 1 · 12 more in Cycle 2</div></div>
+    </section>
+
+    <section>
+      <div class="sec-title">Main Pages (7)</div>
+      <table class="kw-table">
+        <thead><tr><th>Page</th><th>URL</th><th>Primary Keyword</th><th>Vol/mo</th></tr></thead>
+        <tbody>
+          <tr><td>Home</td><td style="font-family:monospace;font-size:12px;color:var(--teal)">/</td><td>chiropractor near me</td><td class="vol">8,100</td></tr>
+          <tr><td>About Us</td><td style="font-family:monospace;font-size:12px;color:var(--teal)">/about</td><td colspan="2" style="color:var(--slate);font-style:italic">E-E-A-T / trust signal</td></tr>
+          <tr><td>Our Services</td><td style="font-family:monospace;font-size:12px;color:var(--teal)">/services</td><td colspan="2" style="color:var(--slate);font-style:italic">Hub page → links to service pages</td></tr>
+          <tr><td>What to Expect</td><td style="font-family:monospace;font-size:12px;color:var(--teal)">/what-to-expect</td><td colspan="2" style="color:var(--slate);font-style:italic">E-E-A-T / conversion page</td></tr>
+          <tr><td>Blog</td><td style="font-family:monospace;font-size:12px;color:var(--teal)">/blog</td><td colspan="2" style="color:var(--slate);font-style:italic">Hub page → lists all posts</td></tr>
+          <tr><td>Press</td><td style="font-family:monospace;font-size:12px;color:var(--teal)">/press</td><td colspan="2" style="color:var(--slate);font-style:italic">E-E-A-T / authority signal</td></tr>
+          <tr><td>Book Now</td><td style="font-family:monospace;font-size:12px;color:var(--teal)">/book-now</td><td colspan="2" style="color:var(--slate);font-style:italic">Conversion page</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <div class="sec-title">Service Pages (5)</div>
+      <table class="kw-table">
+        <thead><tr><th>Page</th><th>URL</th><th>Primary Keyword</th><th>Vol/mo</th></tr></thead>
+        <tbody>
+          <tr><td>Chiropractic Treatment</td><td style="font-family:monospace;font-size:12px;color:var(--teal)">/services/chiropractic-treatment</td><td>bone alignment near me</td><td class="vol">260</td></tr>
+          <tr><td>Dry Needling</td><td style="font-family:monospace;font-size:12px;color:var(--teal)">/services/dry-needling</td><td>dry needling near me</td><td class="vol">210</td></tr>
+          <tr><td>Physiotherapy</td><td style="font-family:monospace;font-size:12px;color:var(--teal)">/services/physiotherapy</td><td>physio cheras</td><td class="vol">260</td></tr>
+          <tr><td>Sports Injury &amp; Rehab</td><td style="font-family:monospace;font-size:12px;color:var(--teal)">/services/sports-injury-rehabilitation</td><td>sports injury treatment malaysia</td><td class="vol">10</td></tr>
+          <tr><td>Posture Correction</td><td style="font-family:monospace;font-size:12px;color:var(--teal)">/services/posture-correction</td><td>sit posture correction</td><td class="vol">390</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <div class="sec-title">Condition Pages (8)</div>
+      <table class="kw-table">
+        <thead><tr><th>Page</th><th>URL</th><th>Primary Keyword</th><th>Vol/mo</th></tr></thead>
+        <tbody>
+          <tr><td>Neck Pain</td><td style="font-family:monospace;font-size:12px;color:var(--teal)">/conditions/neck-pain</td><td>stiffness neck pain</td><td class="vol">1,600</td></tr>
+          <tr><td>Back Pain</td><td style="font-family:monospace;font-size:12px;color:var(--teal)">/conditions/back-pain</td><td>back pain treatment</td><td class="vol">—</td></tr>
+          <tr><td>Slipped Disc</td><td style="font-family:monospace;font-size:12px;color:var(--teal)">/conditions/slipped-disc</td><td>slipped disc lumbar region</td><td class="vol">590</td></tr>
+          <tr><td>Scoliosis</td><td style="font-family:monospace;font-size:12px;color:var(--teal)">/conditions/scoliosis</td><td>symptom scoliosis</td><td class="vol">720</td></tr>
+          <tr><td>Sciatica</td><td style="font-family:monospace;font-size:12px;color:var(--teal)">/conditions/sciatica</td><td>sciatica and exercises</td><td class="vol">1,300</td></tr>
+          <tr><td>Migraine</td><td style="font-family:monospace;font-size:12px;color:var(--teal)">/conditions/migraine</td><td>migraine headache</td><td class="vol">3,600</td></tr>
+          <tr><td>Hip Pain</td><td style="font-family:monospace;font-size:12px;color:var(--teal)">/conditions/hip-pain</td><td>lower back ache hip pain</td><td class="vol">170</td></tr>
+          <tr><td>Shoulder Imbalance</td><td style="font-family:monospace;font-size:12px;color:var(--teal)">/conditions/shoulder-imbalance</td><td>shoulder and neck pain</td><td class="vol">210</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <div class="sec-title">Location Pages (3)</div>
+      <table class="kw-table">
+        <thead><tr><th>Page</th><th>URL</th><th>Primary Keyword</th><th>Vol/mo</th></tr></thead>
+        <tbody>
+          <tr><td>Cheras / Maluri</td><td style="font-family:monospace;font-size:12px;color:var(--teal)">/locations/cheras-maluri</td><td>chiro cheras</td><td class="vol">480</td></tr>
+          <tr><td>Kuala Lumpur</td><td style="font-family:monospace;font-size:12px;color:var(--teal)">/locations/kuala-lumpur</td><td>chiro kuala lumpur</td><td class="vol">480</td></tr>
+          <tr><td>Kajang</td><td style="font-family:monospace;font-size:12px;color:var(--teal)">/locations/kajang</td><td>chiropractor kajang</td><td class="vol">—</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <div class="sec-title">Blog Posts — Cycle 1 (6)</div>
+      <table class="kw-table">
+        <thead><tr><th>#</th><th>Blog Topic</th><th>Primary Keyword</th><th>Vol/mo</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Tit Tar vs Chiropractic</td><td>tit tar near me</td><td class="vol">1,600</td></tr>
+          <tr><td>2</td><td>Muscle Knots: Causes &amp; Treatment</td><td>muscle knots</td><td class="vol">1,000</td></tr>
+          <tr><td>3</td><td>Best Chiropractors in KL</td><td>chiropractor malaysia kuala lumpur</td><td class="vol">480</td></tr>
+          <tr><td>4</td><td>Trigger Points 101</td><td>trigger points</td><td class="vol">590</td></tr>
+          <tr><td>5</td><td>Slipped Disc Treatment in Malaysia</td><td>slipped disc remedy</td><td class="vol">1,000</td></tr>
+          <tr><td>6</td><td>Office Workers' Back Pain</td><td>back pain treatment</td><td class="vol">—</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+  </div>
+
+  <footer>
+    <span>Persistence Chiropractic · 6-Month SEO &amp; Website Revamp Proposal</span>
+    <span>Keyword data: Ubersuggest (Malaysia, locId 2458), June 2026</span>
+  </footer>
+
+</div>
+
+<script>
+function switchTab(id){
+  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  event.currentTarget.classList.add('active');
+  window.scrollTo({top:document.querySelector('.tab-bar').offsetTop-8,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
