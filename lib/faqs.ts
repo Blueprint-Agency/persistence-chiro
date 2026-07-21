@@ -23,7 +23,7 @@ export type Faq = { q: string; a: string }
 export const clinicFaqs: Faq[] = [
   {
     q: 'Is Chiropractic & Physiotherapy suitable for all ages?',
-    a: 'We see patients across every age group — infants, teenagers, adults, older adults and pregnant women. Our youngest patient was 4 months old and our eldest 96. Suitability still depends on the individual: some presentations are not appropriate for adjustment, which is exactly why an assessment always comes before any treatment. If your chiropractor feels another healthcare provider would better help you, you will be referred appropriately.',
+    a: 'We see patients of every age, from infants through to older adults, as well as teenagers and pregnant women. Our youngest patient was 4 months old and our eldest 96. Suitability still depends on the individual, and some presentations are not appropriate for adjustment, so an assessment always comes before any treatment. If your chiropractor feels another healthcare provider would better help you, you will be referred appropriately.',
   },
   {
     q: 'What are the benefits of getting a Chiropractic adjustment?',
@@ -85,7 +85,7 @@ export const homeFaqs: Faq[] = [
   // identical FAQPage schema on two routes.
   {
     q: 'Do chiropractic adjustments hurt?',
-    a: 'Most patients find adjustments comfortable. You may hear or feel a click, and some slight discomfort is common — particularly around a recent injury. You should not feel intense pain, and if you do, tell your chiropractor straight away so the technique can be adjusted.',
+    a: 'Most patients find adjustments comfortable. You may hear or feel a click, and some slight discomfort is common, especially around a recent injury. You should not feel intense pain, and if you do, tell your chiropractor straight away so the technique can be adjusted.',
   },
 ]
 
@@ -95,7 +95,7 @@ export const homeFaqs: Faq[] = [
  * "sore after chiropractic adjustment" and this answers it.
  */
 export const postTreatmentIntro =
-  'Chiropractic treatment is intended to support your body’s own recovery, and what you do between visits matters as much as the adjustment itself. If your body feels sore after a recent adjustment, that is a very common occurrence as your tissues take time to settle. Do tell your chiropractor how you felt after each visit — whether better, unchanged or worse. All three are useful information.'
+  'Chiropractic treatment is intended to support your body’s own recovery, and what you do between visits matters as much as the adjustment itself. If your body feels sore after a recent adjustment, that is a very common occurrence as your tissues take time to settle. Do tell your chiropractor how you felt after each visit, whether that was better, unchanged or worse. It is all useful information to us.'
 
 export const postTreatmentCare = [
   {
@@ -108,10 +108,10 @@ export const postTreatmentCare = [
   },
   {
     heading: 'Sleeping and sitting',
-    body: "You spend 1/3 of your life in bed on average. Hence, having a good and supportive mattress and pillow is paramount. Choose a mattress and pillow that cushions the head and cradles your back and neck, but allows for a neutral spine position, instead of tilted too forward. Sleep on your back or side, and try to avoid sleeping on your stomach if possible. It is recommended for your legs to be flexed at a 30-45 degree angle when you're sleeping on your side. Sit on a firm chair with your hips all the way back to the rear of the chair. Try to have your hips higher than your knees, supporting your curve at your low back. You are also recommended to support your lumbar spine with a lumbar support, rolled towel or cushion. This is especially important sitting in the car. Do not sit for more than 30 minutes at a time — have hourly stretch and movement breaks, even if only for a few minutes.",
+    body: "You spend 1/3 of your life in bed on average. Hence, having a good and supportive mattress and pillow is paramount. Choose a mattress and pillow that cushions the head and cradles your back and neck, but allows for a neutral spine position, instead of tilted too forward. Sleep on your back or side, and try to avoid sleeping on your stomach if possible. It is recommended for your legs to be flexed at a 30-45 degree angle when you're sleeping on your side. Sit on a firm chair with your hips all the way back to the rear of the chair. Try to have your hips higher than your knees, supporting your curve at your low back. You are also recommended to support your lumbar spine with a lumbar support, rolled towel or cushion. This is especially important sitting in the car. Do not sit for more than 30 minutes at a time. Get up every hour for a stretch and a short walk, even if only for a few minutes.",
   },
   {
     heading: 'Ice pack',
-    body: 'Apply an ice pack that is wrapped in a cloth or paper towel to the area suggested by your chiropractor for 3 lots of 5 minute durations, separated by 5 minute rest intervals. This can help settle pain and joint swelling. We generally advise against heat on a freshly irritated joint, as it tends to increase swelling. Heat may feel soothing, but it addresses the sensation rather than what is causing it. If you are unsure which applies to you, ask your chiropractor.',
+    body: 'Apply an ice pack that is wrapped in a cloth or paper towel to the area suggested by your chiropractor for 3 lots of 5 minute durations, separated by 5 minute rest intervals. This can help settle pain and joint swelling. We generally advise against heat on a freshly irritated joint, as it tends to increase swelling, even though it often feels soothing at the time. If you are unsure which applies to you, ask your chiropractor.',
   },
 ] as const

@@ -29,7 +29,7 @@ const features = [
   {
     title: 'Big Pharmacy: Less Pain, More Gain with Regular Chiropractic Care',
     publication: 'Big Pharmacy E-Newsletter',
-    date: 'July–September 2022',
+    date: 'July to September 2022',
     blurb: 'Big Pharmacy E-Newsletter features Persistence Chiropractic.',
     url: '',
   },

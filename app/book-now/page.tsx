@@ -7,7 +7,7 @@ import { CtaBand, Eyebrow, GhostButton, GoldButton, PageHero, WhatsAppIcon } fro
 // Competitors rank with their contact pages in this SERP (Excellence sits #12 for
 // "chiropractor cheras" with theirs), so this page gets real metadata, not a stub.
 export const metadata: Metadata = {
-  title: 'Contact & Directions — Chiropractor in Cheras, Maluri',
+  title: 'Contact & Directions: Chiropractor in Cheras, Maluri',
   description:
     'Persistence Chiropractic Care, Sunway Velocity, Cheras. Opening hours, directions from Maluri LRT, phone and WhatsApp. Open seven days.',
   alternates: { canonical: '/book-now' },

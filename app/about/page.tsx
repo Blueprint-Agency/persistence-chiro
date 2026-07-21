@@ -10,7 +10,7 @@ import { CtaBand, Eyebrow, PageHero, Vertebrae } from '@/components/ui'
 export const metadata: Metadata = {
   title: 'About Our Chiropractors in Cheras, Kuala Lumpur',
   description:
-    'Meet the chiropractors at Persistence Chiropractic Care in Cheras, Maluri — founder Dr. Valerie Na, credentials, and professional memberships.',
+    'Meet the chiropractors at Persistence Chiropractic Care in Cheras, Maluri. Founder Dr. Valerie Na, credentials and professional memberships.',
   alternates: { canonical: '/about' },
 }
 
@@ -23,8 +23,8 @@ export default function AboutPage() {
 
       <PageHero
         eyebrow="About us"
-        title="Behind every adjustment is a team that treats spines, not symptoms."
-        intro="Three registered chiropractors practising the Gonstead method in Cheras, Maluri — trained to find the one segment causing your pain rather than adjusting everything and hoping."
+        title="Our chiropractors in Cheras, Maluri"
+        intro="Three registered chiropractors practising the Gonstead method. All of us are trained to find the one segment causing your pain, rather than adjusting everything and hoping."
       />
 
       {/* ---------------------------------------------------------------- Team */}
@@ -96,7 +96,7 @@ export default function AboutPage() {
           Clinics and organisations we work alongside.
         </h2>
         <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink-muted">
-          Partner logos from the previous site are in <code>assets/images</code> — 43 of them,
+          Partner logos from the previous site are in <code>assets/images</code>. All 43 are
           pending selection and optimisation into <code>public/</code>.
         </p>
       </section>

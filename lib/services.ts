@@ -55,7 +55,7 @@ export type Service = {
 }
 
 export const servicesIntro =
-  'Chiropractic care, physiotherapy and targeted rehabilitation under one roof in Cheras. Which of these suits you depends on what the assessment finds — most patients need one, some need both, and we will tell you which on your first visit.'
+  'Chiropractic care, physiotherapy and targeted rehabilitation under one roof in Cheras. Which one suits you depends on what the assessment finds. A fair number of patients end up having both, and we will tell you where to start on your first visit.'
 
 export const services: Service[] = [
   {
@@ -66,15 +66,15 @@ export const services: Service[] = [
       'Gonstead chiropractic in Cheras, Maluri. Detailed spinal assessment and precise hands-on adjustment for bone and body alignment.',
     targetKeyword: 'bone alignment near me',
     intro:
-      'Gonstead chiropractic care in Cheras — a detailed, segment-by-segment assessment of the spine before anything is adjusted, so that treatment is directed at the segment actually driving your problem rather than the area that happens to hurt.',
+      'Gonstead chiropractic care in Cheras. We assess the spine segment by segment before anything is adjusted, so treatment goes to whichever segment is actually driving your problem. That is not always where you feel it.',
     sections: [
       {
         heading: 'Gonstead spinal assessment',
-        body: 'A full six-step analysis — history, visualisation, instrumentation, palpation, X-ray analysis where indicated, and only then adjustment. The point of the sequence is to narrow the search before any force is applied.',
+        body: 'A full six-step analysis: history, visualisation, instrumentation, palpation, X-ray analysis where indicated, and only then adjustment. Working through it in that order narrows the search down before any force is applied.',
       },
       {
         heading: 'Hands-on spinal adjustment',
-        body: 'Adjustments are delivered precisely and skilfully by hand only, targeted at the specific segment identified during assessment. No two patients get the same adjustment, because no two assessments read the same.',
+        body: 'Adjustments are delivered precisely and skilfully by hand only, targeted at the specific segment identified during assessment. What one patient gets is rarely what the next one gets, because the assessments come out differently.',
       },
       {
         heading: 'Bone and body alignment',
@@ -85,11 +85,11 @@ export const services: Service[] = [
     faqs: [
       {
         q: 'What is the Gonstead method?',
-        a: 'Gonstead is a chiropractic technique built around a detailed six-step assessment before any adjustment is made — including instrumentation and, where indicated, X-ray analysis. The aim is to identify precisely which segment is involved rather than treating the region generally.',
+        a: 'Gonstead is a chiropractic technique built around a detailed six-step assessment before any adjustment is made. That includes instrumentation and, where indicated, X-ray analysis. The aim is to identify precisely which segment is involved rather than treating the region generally.',
       },
       {
         q: 'Do I need an X-ray before chiropractic treatment?',
-        a: 'Not always. X-rays help identify how each spinal segment sits and can rule out pathologies, but they are not mandatory — particularly for pregnant women and children. Your chiropractor will explain whether imaging is appropriate in your case and why.',
+        a: 'Not always. X-rays help identify how each spinal segment sits and can rule out pathologies, but they are not mandatory, and we often go without one for pregnant women and children. Your chiropractor will explain whether imaging is appropriate in your case and why.',
       },
       {
         q: 'Is chiropractic the same as bone setting or tit tar?',
@@ -107,7 +107,7 @@ export const services: Service[] = [
       'Integrative dry needling to release deep muscular tension, improve activation patterns and support recovery. Cheras, Maluri.',
     targetKeyword: 'dry needling near me',
     intro:
-      'Dry needling in Cheras — a neuromuscular technique using fine needles to reach trigger points and bands of muscular tension that are difficult to release by hand alone.',
+      'Dry needling in Cheras. A neuromuscular technique that uses fine needles to reach trigger points and bands of muscular tension which are difficult to release by hand alone.',
     sections: [
       {
         heading: 'Integrative Dry Needling',
@@ -122,11 +122,11 @@ export const services: Service[] = [
     faqs: [
       {
         q: 'Is dry needling the same as acupuncture?',
-        a: 'They use similar needles but come from different traditions and target different things. Dry needling is based on Western anatomy and aims at specific trigger points in muscle; acupuncture follows traditional Chinese meridian theory. The needles are the only thing they really share.',
+        a: 'They use similar needles but come from different traditions. Dry needling is based on Western anatomy and aims at specific trigger points in muscle. Acupuncture follows traditional Chinese meridian theory, and treats points that have nothing to do with where the muscle tension sits.',
       },
       {
         q: 'Does dry needling hurt?',
-        a: 'Most patients report a brief twitch response or a dull ache rather than sharp pain. Mild soreness afterwards is common. Tell your practitioner if anything feels beyond uncomfortable — the technique can be adjusted.',
+        a: 'Most patients report a brief twitch response or a dull ache rather than sharp pain. Mild soreness afterwards is common. Tell your practitioner if anything feels worse than uncomfortable, because the technique can be adjusted.',
       },
     ],
     draft: false,
@@ -139,7 +139,7 @@ export const services: Service[] = [
       'Physiotherapy in Cheras, Maluri. Manual therapy, joint mobilisation, gait and movement assessment, and corrective exercise programmes.',
     targetKeyword: 'physio cheras',
     intro:
-      'Physiotherapy in Cheras — hands-on treatment paired with corrective exercise, aimed at rebuilding the strength and control that help keep a joint working once it is moving more freely.',
+      'Physiotherapy in Cheras, pairing hands-on treatment with corrective exercise. Once a joint is moving more freely, the exercise work aims to rebuild the strength and control that help keep it that way.',
     sections: [
       {
         heading: 'Precision Manual Therapy',
@@ -151,7 +151,7 @@ export const services: Service[] = [
       },
       {
         heading: 'Corrective exercise programming',
-        body: 'Progressive plans tailored to your condition, goals and lifestyle. Exercise is where most of the durable change happens, which is why it is prescribed rather than optional.',
+        body: 'Progressive plans tailored to your condition, goals and lifestyle. Most of the lasting change tends to come from the exercise, so we prescribe it rather than suggest it.',
       },
     ],
     treats: ['back-pain', 'slipped-disc', 'neck-pain', 'sciatica'],
@@ -175,7 +175,7 @@ export const services: Service[] = [
       'Sports injury assessment, rehabilitation and return-to-sport programming in Cheras, Maluri. Sprains, strains and overuse injuries.',
     targetKeyword: 'sports injury treatment malaysia',
     intro:
-      'Sports injury care in Cheras — assessment of what failed and why, followed by staged rehabilitation aimed at getting you back to your sport without carrying the same weakness back into it.',
+      'Sports injury care in Cheras. We assess what failed and why, then work through staged rehabilitation aimed at getting you back to your sport without carrying the same weakness into it.',
     sections: [
       {
         heading: 'Performance & Sports Rehabilitation',
@@ -198,7 +198,7 @@ export const services: Service[] = [
     faqs: [
       {
         q: 'How soon after an injury should I be assessed?',
-        a: 'Once the acute swelling has settled enough to move the area, an assessment is usually more informative. For anything involving an inability to bear weight, obvious deformity or severe swelling, seek medical assessment first — that is an A&E question, not a clinic one.',
+        a: 'Once the acute swelling has settled enough to move the area, an assessment is usually more informative. If you cannot put weight through the limb, or there is obvious deformity or severe swelling, go to A&E first rather than booking with us.',
       },
       {
         q: 'When can I return to my sport?',
@@ -215,30 +215,30 @@ export const services: Service[] = [
       'Posture assessment and correction for desk workers in Cheras, Maluri. Sitting posture, workstation setup and corrective exercise.',
     targetKeyword: 'sit posture correction',
     intro:
-      'Posture work for desk-bound bodies in Cheras — assessment of how you actually sit and move, paired with the strength work and workstation changes that make a better position sustainable rather than something you have to remember.',
+      'Posture work for desk workers in Cheras. We assess how you actually sit and move, then combine strength work with practical workstation changes so that a better position becomes sustainable instead of something you have to keep remembering.',
     sections: [
       {
         heading: 'Postural assessment',
-        body: 'We look at how you sit, stand and move rather than at a single photograph. Posture is a habit as much as a structure, so what matters is the position you spend eight hours in, not the one you can hold for thirty seconds.',
+        body: 'We look at how you sit, stand and move rather than at a single photograph. Posture is as much habit as structure, so the position you hold through a working day tells us more than the one you can manage for thirty seconds in a clinic.',
       },
       {
         heading: 'Sitting posture and workstation setup',
-        body: 'Practical changes to chair height, screen position and desk setup, based on where you actually work. Most desk-related complaints we see are less about a single bad position than about holding any position too long.',
+        body: 'Practical changes to chair height, screen position and desk setup, based on where you actually work. With most of the desk-related complaints we see, the trouble comes from holding any one position for too long.',
       },
       {
         heading: 'Corrective exercise',
-        body: 'Targeted strength and mobility work for the muscles that hold a position over a working day. No single treatment changes posture on its own — the exercise is the part that carries it between visits.',
+        body: 'Targeted strength and mobility work for the muscles that hold a position over a working day. No single treatment changes posture on its own. The exercise is what carries the work between visits.',
       },
     ],
     treats: ['neck-pain', 'shoulder-imbalance', 'back-pain'],
     faqs: [
       {
         q: 'Can posture actually be corrected?',
-        a: 'Posture is a habit as much as a structure, so no single treatment changes it on its own. What tends to change is comfort, and how long you can hold a better position before it becomes work. Your practitioner will tell you honestly what is likely to change in your case and what is not.',
+        a: 'Not in the way most people mean it. Comfort often improves, and patients tend to find they can hold a better position for longer before it starts to feel like work. Your practitioner will tell you honestly what is likely to shift in your case and what is not.',
       },
       {
         q: 'I sit at a desk all day. Is that the cause?',
-        a: 'Prolonged sitting is a common contributor, though rarely the only one. Movement breaks generally matter more than any single "correct" position — the body tolerates most positions better than it tolerates staying in one of them for hours.',
+        a: 'Prolonged sitting is a common contributor, though rarely the only one. Movement breaks generally matter more than any single "correct" position. The body copes with most positions reasonably well until you stay in one of them for hours.',
       },
       {
         q: 'Will a posture brace help?',

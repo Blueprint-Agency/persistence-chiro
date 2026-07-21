@@ -58,12 +58,12 @@ export default function ChiropracticPage() {
           <div className="lg:sticky lg:top-32 lg:self-start">
             <Eyebrow>The method</Eyebrow>
             <h2 className="mt-5 text-3xl font-extrabold leading-tight sm:text-4xl">
-              Six steps, in order, every time.
+              The six steps of a Gonstead assessment
             </h2>
             <p className="mt-5 leading-relaxed text-ink-muted">
               Gonstead is a process of elimination. Each step narrows the search until only the
-              segment actually causing your pain is left — which is why we adjust one joint
-              rather than the whole spine.
+              segment actually causing your pain is left. We then adjust that one joint rather
+              than the whole spine.
             </p>
             <div className="mt-8 overflow-hidden rounded-3xl">
               <Image

@@ -59,10 +59,10 @@ export const conditions: Condition[] = [
     treatedBy: ['physiotherapy', 'chiropractic-treatment'],
 
     intro:
-      'Most back pain is mechanical — the joints, discs and muscles of the spine are not moving the way they should, and the surrounding tissue is irritated as a result. It is extremely common, it is usually treatable without surgery, and it rarely means something is seriously wrong. What it does mean is worth finding out precisely, rather than guessing.',
+      'Most back pain is mechanical. The joints, discs and muscles of the spine stop moving the way they should, and the tissue around them gets irritated. It is very common, and it rarely means something is seriously wrong. Most of it settles without surgery. It is still worth finding out precisely what is going on rather than guessing at it.',
     symptoms: [
       'A dull ache low in the back that worsens through the day or after sitting',
-      'Sharp pain on a specific movement — bending, twisting, standing up from a chair',
+      'Sharp pain on one particular movement, such as bending, twisting or standing up from a chair',
       'Stiffness in the morning that eases once you start moving',
       'Pain that spreads into the buttock or thigh',
       'Difficulty standing straight, or a sense that your back is "locked"',
@@ -83,13 +83,13 @@ export const conditions: Condition[] = [
       },
       {
         heading: 'Deconditioning',
-        body: 'Back pain that keeps returning is often less about a single injury and more about the supporting muscles lacking the endurance to hold the spine in a good position through a full day.',
+        body: 'Back pain that keeps returning usually has little to do with one injury. More often the supporting muscles lack the endurance to hold the spine in a decent position through a full working day, so the same tissue gets irritated again every few weeks.',
       },
     ],
     approach: [
       {
         heading: 'We find the segment before we treat it',
-        body: 'Your first visit follows the Gonstead six-step assessment — history, visualisation, instrumentation, palpation, X-ray analysis where indicated, and only then an adjustment. The point is to identify which specific joint is causing your pain rather than adjusting the whole spine and hoping.',
+        body: 'Your first visit follows the Gonstead six-step assessment: history, visualisation, instrumentation, palpation, X-ray analysis where indicated, and only then an adjustment. We want to know which specific joint is producing your pain before anything is treated. Adjusting the whole spine and hoping is not how this works.',
       },
       {
         heading: 'Adjustment, delivered by hand',
@@ -97,7 +97,7 @@ export const conditions: Condition[] = [
       },
       {
         heading: 'Then the part that stops it returning',
-        body: 'Treatment restores movement; strength keeps it. Where the pattern is a recurring one, we pair chiropractic with physiotherapy-led rehabilitation and practical changes to your desk setup and daily loading.',
+        body: 'An adjustment restores movement to a joint, but the muscle around it still has to be able to hold that position through a long day. Where the pattern is a recurring one, we pair chiropractic with physiotherapy-led rehabilitation and practical changes to your desk setup and daily loading.',
       },
     ],
     redFlags: [
@@ -110,11 +110,11 @@ export const conditions: Condition[] = [
     faqs: [
       {
         q: 'How long does back pain take to settle?',
-        a: 'It depends on how long you have had it, what is causing it, and what you do between visits. Short-term relief often comes quickly, but changing how your spine moves and rebuilding the muscle that supports it takes longer — often months rather than weeks. Your chiropractor will give you a timeline specific to your case after the first assessment rather than a generic number.',
+        a: 'It depends on how long you have had it, what is causing it, and what you do between visits. Short-term relief often comes quickly. Changing how your spine moves and rebuilding the muscle that supports it takes longer, usually months rather than weeks. Your chiropractor will give you a timeline specific to your case after the first assessment rather than a generic number.',
       },
       {
         q: 'Do I need an X-ray for back pain?',
-        a: 'Not always. X-rays help us see how each spinal segment is positioned, rule out pathology, and assess the discs and joints — but they are not mandatory for every patient, and are avoided for pregnant women and children unless there is a clear reason. Your chiropractor will explain why an X-ray is or is not indicated in your case.',
+        a: 'Not always. X-rays help us see how each spinal segment is positioned, rule out pathology, and assess the discs and joints. They are not mandatory for every patient, though, and they are avoided for pregnant women and children unless there is a clear reason. Your chiropractor will explain why an X-ray is or is not indicated in your case.',
       },
       {
         q: 'Should I rest or keep moving?',
@@ -138,7 +138,7 @@ export const conditions: Condition[] = [
     treatedBy: ['physiotherapy', 'chiropractic-treatment'],
 
     intro:
-      '"Slipped disc" is the everyday name for a disc that has bulged or herniated — the soft centre of a spinal disc pushing outward against the tougher ring around it, sometimes far enough to press on a nearby nerve. Nothing has actually slipped out of place, which is why the term can sound more alarming than it is. Many discs settle with time and the right loading, and most people never need surgery. What matters is knowing which level is involved and how the nerve is behaving, so the plan fits your spine rather than a general description of the condition.',
+      '"Slipped disc" is the everyday name for a disc that has bulged or herniated. The soft centre of a spinal disc pushes outward against the tougher ring around it, sometimes far enough to press on a nearby nerve. Nothing has actually slipped out of place, which is why the term sounds more alarming than it needs to. Many discs settle with time and the right loading, and most people never need surgery. The plan depends on which level is involved and how the nerve is behaving, so that is what the first appointment sets out to establish.',
     symptoms: [
       'Back pain with pain, tingling or numbness travelling into the buttock, leg or foot',
       'Pain that spikes when you cough, sneeze or strain',
@@ -151,7 +151,7 @@ export const conditions: Condition[] = [
     causes: [
       {
         heading: 'Sustained flexion',
-        body: 'Sitting bent forward for hours — at a desk, in traffic, over a phone — loads the front of the disc and pushes its contents backward. Repeated over years, this is the most common background to a disc problem we see in Kuala Lumpur.',
+        body: 'Sitting bent forward for hours at a desk, in traffic or over a phone loads the front of the disc and pushes its contents backward. Repeated over years, this is the most common background to a disc problem we see in Kuala Lumpur.',
       },
       {
         heading: 'Lifting with a rounded back',
@@ -159,7 +159,7 @@ export const conditions: Condition[] = [
       },
       {
         heading: 'Age-related disc change',
-        body: 'Discs lose water content and height over time, which reduces their tolerance to load. This is a normal part of ageing and does not on its own mean pain — but it does change how much a given movement asks of the disc.',
+        body: 'Discs lose water content and height over time, which reduces their tolerance to load. This is a normal part of ageing and does not by itself mean pain. It does mean a given movement asks more of the disc than it once did.',
       },
       {
         heading: 'Restricted joints above and below',
@@ -169,15 +169,15 @@ export const conditions: Condition[] = [
     approach: [
       {
         heading: 'Establishing which level is involved',
-        body: 'Your first visit follows the Gonstead six-step assessment — history taking, visualisation, instrumentation with the nervoscope, palpation including a full-motion assessment of the spinal and pelvic joints, X-ray analysis where indicated, and only then an adjustment. X-rays are used to rule out pathology and assess the intervertebral discs and joints, which matters more with a suspected disc problem than with ordinary mechanical back pain.',
+        body: 'Your first visit follows the Gonstead six-step assessment: history taking, visualisation, instrumentation with the nervoscope, palpation including a full-motion assessment of the spinal and pelvic joints, X-ray analysis where indicated, and only then an adjustment. X-rays are used to rule out pathology and assess the intervertebral discs and joints, which matters more with a suspected disc problem than with ordinary mechanical back pain.',
       },
       {
         heading: 'Non-surgical care, delivered specifically',
-        body: 'Our positioning is conservative care first. Once the involved segment is identified, the adjustment is specific to it and delivered by hand, and your chiropractor will explain what they found and what they intend to do before anything happens. Where the presentation calls for imaging beyond X-ray or a specialist opinion, you will be referred appropriately — that decision is part of the assessment, not a last resort.',
+        body: 'We start with conservative care. Once the involved segment is identified, the adjustment is specific to it and delivered by hand, and your chiropractor will explain what they found and what they intend to do before anything happens. Where the presentation calls for imaging beyond X-ray or a specialist opinion, you will be referred appropriately. That judgement is made at the assessment stage.',
       },
       {
         heading: 'Loading the spine back to tolerance',
-        body: 'Alongside chiropractic care, our physiotherapy side works on how you sit, hinge and lift, and builds tolerance in the muscles that share load with the disc. This tends to be the slower half of the work and the half that decides whether the problem keeps recurring.',
+        body: 'Alongside chiropractic care, our physiotherapy side works on how you sit, hinge and lift, and builds tolerance in the muscles that share load with the disc. This is slower going than the work on the table, and it is usually what decides whether the problem keeps coming back.',
       },
     ],
     redFlags: [
@@ -191,11 +191,11 @@ export const conditions: Condition[] = [
     faqs: [
       {
         q: 'Can a chiropractor treat a slipped disc, or do I need surgery?',
-        a: 'Many disc presentations are managed conservatively, and surgery is generally considered when conservative care has not helped, or when there is progressive nerve weakness or a red-flag presentation. A surgical opinion is a legitimate and sometimes necessary path — it is not a failure. Your chiropractor will assess your case and refer you appropriately if a specialist would serve you better.',
+        a: 'Many disc presentations are managed conservatively. Surgery is generally considered when conservative care has not helped, or when there is progressive nerve weakness or a red-flag presentation. A surgical opinion is a legitimate and sometimes necessary step, and being sent for one does not mean anything has gone wrong. Your chiropractor will assess your case and refer you appropriately if a specialist would serve you better.',
       },
       {
         q: 'Is chiropractic adjustment safe with a herniated disc?',
-        a: 'It depends on the presentation, which is precisely why the assessment comes before any treatment. Some disc cases are suitable for adjustment, others need imaging or a medical opinion first, and the approach is adapted accordingly. Tell us about any numbness, weakness or bladder and bowel changes when you book.',
+        a: 'It depends on the presentation. The assessment comes before any treatment for that reason. Some disc cases are suitable for adjustment, others need imaging or a medical opinion first, and the approach is adapted accordingly. Tell us about any numbness, weakness or bladder and bowel changes when you book.',
       },
       {
         q: 'Do I need an MRI before coming in?',
@@ -219,7 +219,7 @@ export const conditions: Condition[] = [
     treatedBy: ['dry-needling', 'physiotherapy'],
 
     intro:
-      'Sciatica is not a diagnosis in itself — it is the name for pain that travels along the path of the sciatic nerve, from the lower back through the buttock and down the back of the leg. Something is irritating or compressing that nerve, and the useful question is what, and where. It is a common problem, it is usually mechanical, and for most people it settles with conservative care rather than surgery. Finding the source is what makes the difference between chasing the leg pain and treating what is causing it.',
+      'Sciatica is a description rather than a diagnosis. It names pain that travels along the path of the sciatic nerve, from the lower back through the buttock and down the back of the leg. Something is irritating or compressing that nerve, and the assessment has to work out what and where. The cause is usually mechanical. Most people settle with conservative care and never need surgery.',
     symptoms: [
       'Pain running from the lower back or buttock down the back of one leg',
       'Burning, shooting or electric pain rather than a dull ache',
@@ -240,7 +240,7 @@ export const conditions: Condition[] = [
       },
       {
         heading: 'Tight or overworked gluteal muscles',
-        body: 'The sciatic nerve passes close to the deep muscles of the buttock. Where those muscles are chronically tight or overloaded, they can contribute to symptoms that follow a similar path — which is why the hip and pelvis are examined alongside the spine.',
+        body: 'The sciatic nerve passes close to the deep muscles of the buttock. Where those muscles are chronically tight or overloaded, they can contribute to symptoms that follow a similar path, so the hip and pelvis are examined alongside the spine.',
       },
       {
         heading: 'Prolonged sitting and pelvic position',
@@ -250,7 +250,7 @@ export const conditions: Condition[] = [
     approach: [
       {
         heading: 'Tracing the pain back to its source',
-        body: 'The leg is where you feel it; the spine and pelvis are usually where it comes from. Your first visit follows the Gonstead six-step assessment — history taking, visualisation, nervoscope instrumentation, palpation with a full-motion assessment of the spinal and pelvic joints, X-ray analysis where indicated, and only then an adjustment. The aim is to identify the specific level or joint involved rather than treating the whole spine.',
+        body: 'You feel it in the leg, but it usually comes from the spine or the pelvis. Your first visit follows the Gonstead six-step assessment: history taking, visualisation, nervoscope instrumentation, palpation with a full-motion assessment of the spinal and pelvic joints, X-ray analysis where indicated, and only then an adjustment. We are looking for the specific level or joint involved.',
       },
       {
         heading: 'Adjustment and soft tissue work together',
@@ -280,7 +280,7 @@ export const conditions: Condition[] = [
       },
       {
         q: 'Is my sciatica caused by a slipped disc?',
-        a: 'Sometimes, but not always — a disc is one of several possible sources, and hip, pelvic and joint contributors are common too. That is exactly what the assessment is designed to work out. We would not tell you the cause without examining you first.',
+        a: 'Sometimes, though not always. A disc is one of several possible sources, and hip, pelvic and joint contributors are common too. Working out which one applies to you is the job of the assessment. We would not tell you the cause without examining you first.',
       },
       {
         q: 'Do I need an injection or surgery for sciatica?',
@@ -300,7 +300,7 @@ export const conditions: Condition[] = [
     treatedBy: ['physiotherapy'],
 
     intro:
-      'Scoliosis is a sideways curvature of the spine, often with an element of rotation. Many curves are mild, are discovered by chance, and never cause significant trouble; others bring stiffness, muscular fatigue and pain, particularly through the working day. It is important to be straightforward about what chiropractic care does here — we work on how comfortably and how well your spine moves, not on straightening the curve itself. Curve magnitude and progression are matters for orthopaedic assessment, and where that is what you need, we will say so.',
+      'Scoliosis is a sideways curvature of the spine, often with an element of rotation. Many curves are mild, get discovered by chance and never cause much trouble. Others bring stiffness, muscular fatigue and pain, particularly through the working day. We should be straightforward about what chiropractic care does here. We work on how well and how comfortably your spine moves. Straightening the curve is not something an adjustment does. Curve magnitude and progression are matters for orthopaedic assessment, and where that is what you need, we will say so.',
     symptoms: [
       'One shoulder, shoulder blade or hip sitting visibly higher than the other',
       'A rib hump or asymmetry that becomes obvious when bending forward',
@@ -316,7 +316,7 @@ export const conditions: Condition[] = [
       },
       {
         heading: 'Structural differences',
-        body: 'Some curves relate to how the vertebrae themselves formed, or to differences in leg length or pelvic position. These are described rather than blamed — the assessment is about understanding what your spine is working with.',
+        body: 'Some curves relate to how the vertebrae themselves formed, or to differences in leg length or pelvic position. We describe these rather than blame them. The point of the assessment is to understand what your spine is working with.',
       },
       {
         heading: 'Muscular imbalance around the curve',
@@ -330,19 +330,19 @@ export const conditions: Condition[] = [
     approach: [
       {
         heading: 'Assessment before anything else',
-        body: 'Your first visit follows the Gonstead six-step assessment — history taking, visualisation of the spinal curves and the level of head, shoulders, hips and knees, nervoscope instrumentation, palpation with a full-motion assessment of the spinal and pelvic joints, X-ray analysis where indicated, and only then an adjustment. With scoliosis, the visualisation and X-ray steps carry particular weight, because they establish what kind of curve we are dealing with before any care begins.',
+        body: 'Your first visit follows the Gonstead six-step assessment: history taking, visualisation of the spinal curves and the level of head, shoulders, hips and knees, nervoscope instrumentation, palpation with a full-motion assessment of the spinal and pelvic joints, X-ray analysis where indicated, and only then an adjustment. With scoliosis, the visualisation and X-ray steps carry particular weight, because they establish what kind of curve we are dealing with before any care begins.',
       },
       {
         heading: 'Care aimed at comfort and movement',
-        body: 'Chiropractic care here works on the joints that have become restricted and the tissue that is being overloaded — the goal is easier movement and less discomfort, not a change in the curve. Adjustments are specific and delivered by hand. We would rather be clear about this than imply an outcome chiropractic does not deliver.',
+        body: 'Chiropractic care here works on the joints that have become restricted and on the tissue that is being overloaded. What we are after is easier movement and less discomfort. The curve itself stays as it is. Adjustments are specific and delivered by hand. We would rather be clear about this than imply an outcome chiropractic does not deliver.',
       },
       {
         heading: 'Conditioning, and knowing when to refer',
-        body: 'Our physiotherapy side builds a conditioning programme for the muscles supporting your spine, along with practical guidance on sitting, carrying and daily loading. Where a curve is significant, progressing, or in a growing adolescent, orthopaedic assessment is the appropriate step — bracing and surgical decisions sit with a specialist. If your chiropractor feels another healthcare provider would better help you, you will be referred appropriately.',
+        body: 'Our physiotherapy side builds a conditioning programme for the muscles supporting your spine, along with practical guidance on sitting, carrying and daily loading. Where a curve is significant, progressing, or in a growing adolescent, orthopaedic assessment is the appropriate step. Bracing and surgical decisions sit with a specialist. If your chiropractor feels another healthcare provider would better help you, you will be referred appropriately.',
       },
     ],
     redFlags: [
-      'A curve in a child or adolescent that is visibly worsening, especially during a growth spurt — this needs orthopaedic assessment, not chiropractic care alone',
+      'A curve in a child or adolescent that is visibly worsening, especially during a growth spurt. This needs orthopaedic assessment, not chiropractic care alone',
       'Breathlessness, reduced exercise tolerance, or chest discomfort associated with a large curve',
       'New or progressive numbness, tingling or weakness in the arms or legs',
       'Loss of bladder or bowel control, or numbness around the groin and inner thighs',
@@ -352,7 +352,7 @@ export const conditions: Condition[] = [
     faqs: [
       {
         q: 'Can chiropractic straighten my scoliosis?',
-        a: 'No — and we would rather be plain about that. Chiropractic care here is aimed at joint movement, muscular balance and comfort, not at correcting the curve itself. Changing curve magnitude is the domain of orthopaedic management, including bracing and, in some cases, surgery.',
+        a: 'No. We would rather be plain about that. Chiropractic care here is aimed at joint movement, muscular balance and comfort. Correcting the curve itself is not within what it does. Changing curve magnitude is the domain of orthopaedic management, including bracing and, in some cases, surgery.',
       },
       {
         q: 'My teenager has been told they have scoliosis. What should we do?',
@@ -380,7 +380,7 @@ export const conditions: Condition[] = [
     treatedBy: ['dry-needling', 'physiotherapy'],
 
     intro:
-      'Neck pain in office workers is usually a loading problem rather than an injury. Hours spent with the head tilted forward towards a screen or phone asks the small joints and muscles at the base of the neck to hold a position they were never meant to hold all day, and eventually they complain. It builds gradually, it is very common, and in most cases it responds well once the irritated segment is found and the habits feeding it are addressed.',
+      'Neck pain in office workers is usually a loading problem rather than an injury. Hours spent with the head tilted forward towards a screen or a phone ask the small joints and muscles at the base of the neck to hold a position they were never meant to hold all day, and eventually they complain about it. It builds gradually and it is very common. Most cases respond well once the irritated segment is found and the habits feeding it are dealt with.',
     symptoms: [
       'An ache at the base of the neck and across the top of the shoulders that worsens through the working day',
       'Tightness that eases on holiday or at the weekend and returns by Tuesday',
@@ -397,7 +397,7 @@ export const conditions: Condition[] = [
       },
       {
         heading: 'Static loading rather than movement',
-        body: 'Joints are nourished by movement. A neck held still for hours stiffens regardless of how good the posture is — which is why a well-set-up desk still causes trouble if you never leave it.',
+        body: 'Joints are nourished by movement. A neck held still for hours stiffens regardless of how good the posture is. A well-set-up desk still causes trouble if you never get up from it.',
       },
       {
         heading: 'Joint restriction in the upper neck',
@@ -411,7 +411,7 @@ export const conditions: Condition[] = [
     approach: [
       {
         heading: 'We find the segment before we treat it',
-        body: 'Your first visit follows the Gonstead six-step assessment — history, visualisation, instrumentation with the nervoscope, palpation, X-ray analysis where indicated, and only then an adjustment. Visualisation matters particularly here: the level of your head, ears and shoulders tells us a great deal about how you are loading your neck before we have touched you.',
+        body: 'Your first visit follows the Gonstead six-step assessment: history, visualisation, instrumentation with the nervoscope, palpation, X-ray analysis where indicated, and only then an adjustment. Visualisation matters particularly here, because the level of your head, ears and shoulders tells us a great deal about how you are loading your neck before we have touched you.',
       },
       {
         heading: 'Adjustment, delivered by hand',
@@ -419,7 +419,7 @@ export const conditions: Condition[] = [
       },
       {
         heading: 'Changing what caused it',
-        body: 'Treatment restores movement in a stiff neck; it cannot out-run eight hours a day of the position that stiffened it. Alongside chiropractic we cover practical desk and screen height changes, movement breaks, and where the surrounding muscle is a factor, physiotherapy-led work such as manual therapy or dry needling and a programme to build endurance in the deep neck and upper back muscles.',
+        body: 'Adjustments restore movement to a stiff neck. That gets undone fairly quickly if you spend another eight hours a day in the position that stiffened it. Alongside chiropractic we cover practical desk and screen height changes and movement breaks. Where the surrounding muscle is a factor, our physiotherapy side adds manual therapy or dry needling and a programme to build endurance in the deep neck and upper back muscles.',
       },
     ],
     redFlags: [
@@ -437,15 +437,15 @@ export const conditions: Condition[] = [
       },
       {
         q: 'Can chiropractic fix my posture?',
-        a: 'Posture is a habit as much as a structure, so no single treatment changes it on its own. Adjustments can restore movement to segments that have become restricted, which often makes a better position more comfortable to hold, but the lasting change comes from your desk setup and from building endurance in the muscles that hold you upright. Your chiropractor will tell you honestly what is likely to change and what is not.',
+        a: 'No single treatment changes posture on its own, because posture is largely a set of habits. Adjustments can restore movement to segments that have become restricted, which often makes a better position more comfortable to hold. The lasting change comes from your desk setup and from building endurance in the muscles that hold you upright. Your chiropractor will tell you honestly what is likely to change and what is not.',
       },
       {
         q: 'Is it safe to have my neck adjusted?',
-        a: 'Neck adjustments are done by hand and only after the full assessment has established what is appropriate for you. Some presentations are not suitable for adjustment, which is exactly what the assessment is for, and certain symptoms need medical review first — tell us about any recent trauma, dizziness, arm numbness or severe headache when you book so we can screen for it.',
+        a: 'Neck adjustments are done by hand and only after the full assessment has established what is appropriate for you. Some presentations are not suitable for adjustment, and the assessment is there to catch that. Certain symptoms need medical review before any hands-on care. Tell us about any recent trauma, dizziness, arm numbness or severe headache when you book so we can screen for it.',
       },
       {
         q: 'How should I set up my desk?',
-        a: 'The short version: top of the screen roughly at eye level, forearms supported, feet flat, and a laptop raised onto a stand with a separate keyboard. The more important part is that no setup is good enough to sit in for eight unbroken hours — stand and move every 30 to 45 minutes. We will go through your specific setup with you during your visit.',
+        a: 'The short version: top of the screen roughly at eye level, forearms supported, feet flat, and a laptop raised onto a stand with a separate keyboard. No setup is good enough to sit in for eight unbroken hours, though. Stand and move every 30 to 45 minutes. We will go through your own setup with you during your visit.',
       },
     ],
     draft: false,
@@ -461,7 +461,7 @@ export const conditions: Condition[] = [
     treatedBy: ['chiropractic-treatment', 'physiotherapy'],
 
     intro:
-      'Not every bad headache is a migraine, and not every migraine has anything to do with the neck. That distinction matters more here than almost anywhere else on this site, because it decides who should be treating you. Migraine is a neurological condition — it is managed medically, and chiropractic care does not treat it. What chiropractic can look at is whether some part of what you are feeling is coming from the joints and muscles of the upper neck, which is a separate and reasonably common source of head pain. Working out which of those you are dealing with is what the assessment is for, and if the answer is that you need a doctor rather than us, we will say so.',
+      'Not every bad headache is a migraine, and not every migraine has anything to do with the neck. The distinction decides who should be treating you. Migraine is a neurological condition, managed medically, and chiropractic care does not treat it. Chiropractic can look at whether some part of what you are feeling is coming from the joints and muscles of the upper neck. That is a separate and reasonably common source of head pain. The assessment sorts out which one you are dealing with, and if the answer is that you need a doctor rather than us, we will say so.',
     symptoms: [
       'Head pain that begins at the base of the skull and wraps forward towards the temple or eye',
       'Headache consistently on the same side, alongside neck stiffness or a restricted turn',
@@ -491,15 +491,15 @@ export const conditions: Condition[] = [
     approach: [
       {
         heading: 'Working out what kind of headache this is',
-        body: 'Your first visit is largely history taking — where the pain starts, what brings it on, what it comes with, how long it lasts, and what has already been tried. That is followed by the rest of the Gonstead six-step assessment: visualisation, nervoscope instrumentation, palpation with a full-motion assessment of the neck and upper back, and X-ray analysis where indicated. The purpose is to establish whether there is a cervical contribution at all, not to arrive at a headache diagnosis.',
+        body: 'Your first visit is largely history taking. Where the pain starts, what brings it on, what it comes with, how long it lasts, and what you have already tried. That is followed by the rest of the Gonstead six-step assessment: visualisation, nervoscope instrumentation, palpation with a full-motion assessment of the neck and upper back, and X-ray analysis where indicated. We are establishing whether there is a cervical contribution at all. Arriving at a headache diagnosis is a job for your doctor.',
       },
       {
         heading: 'Where the neck is involved',
-        body: 'If the assessment points to restricted segments in the upper neck, the adjustment is specific to those segments and delivered by hand, and your chiropractor will explain what they found before anything happens. Where the surrounding muscle is a factor, our physiotherapy side may add manual therapy and a programme for the deep neck and upper back. The goal is better neck movement and less load on that tissue — any effect on the headaches themselves follows from that, and it varies from person to person.',
+        body: 'If the assessment points to restricted segments in the upper neck, the adjustment is specific to those segments and delivered by hand, and your chiropractor will explain what they found before anything happens. Where the surrounding muscle is a factor, our physiotherapy side may add manual therapy and a programme for the deep neck and upper back. We are aiming at better neck movement and less load on that tissue. Any effect on the headaches themselves follows from that, and it varies from person to person.',
       },
       {
         heading: 'Where it is migraine, we refer',
-        body: 'If your pattern looks neurological rather than mechanical, the appropriate step is medical management, and we will say so plainly rather than book you a course of care. Chiropractic does not treat migraine and we would rather not imply otherwise. Some people have both — a genuine migraine disorder and a neck that is adding to their overall headache burden — and in that case working alongside your doctor is reasonable.',
+        body: 'If your pattern looks neurological rather than mechanical, the appropriate step is medical management, and we will say so plainly rather than book you a course of care. Chiropractic does not treat migraine and we would rather not imply otherwise. Some people have both: a genuine migraine disorder and a neck adding to the overall headache burden. In that case working alongside your doctor is reasonable.',
       },
       {
         heading: 'What you track between visits',
@@ -507,7 +507,7 @@ export const conditions: Condition[] = [
       },
     ],
     redFlags: [
-      'A sudden, severe headache that reaches full intensity within seconds or minutes — a thunderclap headache',
+      'A sudden, severe headache that reaches full intensity within seconds or minutes (a thunderclap headache)',
       'The worst headache of your life, or a headache clearly unlike any you have had before',
       'Headache with fever, neck stiffness, or a rash',
       'Headache with weakness, numbness, confusion, difficulty speaking, or loss of vision',
@@ -519,19 +519,19 @@ export const conditions: Condition[] = [
     faqs: [
       {
         q: 'Can a chiropractor treat my migraine?',
-        a: 'No — migraine is a neurological condition and its management belongs with a doctor or neurologist. What we can assess is whether part of your head pain is coming from the joints and muscles of the upper neck, which is a different problem that happens to feel similar. If the assessment says your headaches are migrainous, we will tell you that and refer you appropriately rather than treat.',
+        a: 'No. Migraine is a neurological condition and its management belongs with a doctor or neurologist. We can assess whether part of your head pain is coming from the joints and muscles of the upper neck, which is a different problem that happens to feel similar. If the assessment says your headaches are migrainous, we will tell you so and refer you appropriately rather than treat you here.',
       },
       {
         q: 'How do I know if my headache is coming from my neck?',
-        a: 'Some features point that way — pain that starts at the base of the skull, stays on one side, is provoked by neck position or sustained desk work, and comes with reduced neck movement. None of those is conclusive on its own, and there is real overlap with migraine. That is exactly why the assessment exists; we would not tell you the source without examining you first.',
+        a: 'Some features point that way: pain that starts at the base of the skull, stays on one side, is provoked by neck position or sustained desk work, and comes with reduced neck movement. None of those is conclusive on its own, and there is real overlap with migraine. So the sorting happens at the assessment. We would not tell you the source without examining you first.',
       },
       {
         q: 'Will neck adjustments stop my headaches?',
-        a: 'We cannot tell you that, and you should be cautious of anyone who does. Where a restricted neck segment is contributing, restoring movement to it often changes how much head pain people get — but it depends on the presentation, and some people notice little difference. Your chiropractor will tell you honestly what they expect and what they do not.',
+        a: 'We cannot tell you that, and you should be cautious of anyone who does. Where a restricted neck segment is contributing, restoring movement to it often changes how much head pain people get. It depends on the presentation though, and some people notice little difference. Your chiropractor will tell you honestly what they expect and what they do not.',
       },
       {
         q: 'Is it safe to have my neck adjusted if I get headaches?',
-        a: 'It depends on the presentation, which is why the assessment comes first. Certain symptoms need medical review before any hands-on care — sudden severe headache, dizziness, visual or speech changes, or any recent head or neck trauma. Tell us about those when you book so we can screen for them properly.',
+        a: 'It depends on the presentation, so the assessment comes first. Certain symptoms need medical review before any hands-on care: sudden severe headache, dizziness, visual or speech changes, or any recent head or neck trauma. Tell us about those when you book so we can screen for them properly.',
       },
       {
         q: 'Should I stop my migraine medication?',
@@ -551,7 +551,7 @@ export const conditions: Condition[] = [
     treatedBy: ['chiropractic-treatment', 'sports-injury-rehabilitation'],
 
     intro:
-      'Hip pain is awkward to pin down because the hip, the pelvis and the lower back all share the same neighbourhood and refer pain into each other. People often arrive certain the problem is their hip when the joint itself examines well, or convinced it is their back when the hip is what is limiting them. Where you feel it is a starting point, not an answer. The useful work is establishing which structure is actually irritated and what pattern of loading keeps it that way, because the plan for a hip joint problem, a gluteal tendon problem and a lower back problem are not the same plan.',
+      'Hip pain is awkward to pin down, because the hip, the pelvis and the lower back share the same neighbourhood and refer pain into each other. People often arrive certain the problem is their hip when the joint itself examines well, or convinced it is their back when the hip is what limits them. Where you feel it is only a starting point. The assessment has to establish which structure is actually irritated and what pattern of loading keeps it that way, because a hip joint problem, a gluteal tendon problem and a lower back problem do not get the same plan.',
     symptoms: [
       'A deep ache in the groin or the front of the hip, particularly on standing up or getting out of a car',
       'Pain on the outside of the hip that is worse lying on that side at night',
@@ -563,7 +563,7 @@ export const conditions: Condition[] = [
     causes: [
       {
         heading: 'Prolonged sitting and hip position',
-        body: 'Long hours seated hold the hip in flexion, shorten the tissue at the front of it and let the gluteal muscles behind it do very little. Over years this reduces how much range the hip has available and shifts load into the lower back — which is why back ache and hip pain so often arrive together in desk workers.',
+        body: 'Long hours seated hold the hip in flexion, shorten the tissue at the front of it and let the gluteal muscles behind it do very little. Over years this reduces how much range the hip has available and shifts load into the lower back. Back ache and hip pain arrive together in desk workers for that reason.',
       },
       {
         heading: 'Gluteal tendon overload',
@@ -571,17 +571,17 @@ export const conditions: Condition[] = [
       },
       {
         heading: 'Joint restriction in the lower back and pelvis',
-        body: 'When a lumbar segment or a sacroiliac joint stops moving well, the hip on that side takes up the difference. Assessing the spine and pelvis alongside the hip is standard here for that reason — treating the hip alone often leaves the driver untouched.',
+        body: 'When a lumbar segment or a sacroiliac joint stops moving well, the hip on that side takes up the difference. We assess the spine and pelvis alongside the hip as standard for that reason. Treating the hip alone often leaves the driver untouched.',
       },
       {
         heading: 'Age-related joint change',
-        body: 'Cartilage and joint surfaces change with time, and imaging findings become more common with age whether or not there is pain. Such findings describe the joint rather than explain the symptom, so they are read alongside how the hip actually moves and what it tolerates.',
+        body: 'Cartilage and joint surfaces change with time, and imaging findings become more common with age whether or not there is pain. A finding on a scan describes the joint. It does not on its own explain the symptom, so we read it alongside how the hip actually moves and what it tolerates.',
       },
     ],
     approach: [
       {
         heading: 'Separating hip from back from pelvis',
-        body: 'Your first visit follows the Gonstead six-step assessment — history taking, visualisation of the level of hips, shoulders and knees, nervoscope instrumentation, palpation with a full-motion assessment of the spinal and pelvic joints, X-ray analysis where indicated, and only then an adjustment. Alongside that, the hip is taken through its own range and loaded in the positions that provoke your symptoms, so we can tell which structure is the irritable one.',
+        body: 'Your first visit follows the Gonstead six-step assessment: history taking, visualisation of the level of hips, shoulders and knees, nervoscope instrumentation, palpation with a full-motion assessment of the spinal and pelvic joints, X-ray analysis where indicated, and only then an adjustment. Alongside that, the hip is taken through its own range and loaded in the positions that provoke your symptoms, so we can tell which structure is the irritable one.',
       },
       {
         heading: 'Adjustment and hands-on work',
@@ -593,7 +593,7 @@ export const conditions: Condition[] = [
       },
       {
         heading: 'Knowing when it is not ours to treat',
-        body: 'Some hip presentations need an orthopaedic opinion or imaging beyond X-ray — a joint that is genuinely worn out, a suspected labral or bony problem, or a hip that is not responding as the assessment predicted. If your chiropractor feels another healthcare provider would better help you, you will be referred appropriately.',
+        body: 'Some hip presentations need an orthopaedic opinion or imaging beyond X-ray: a joint that is genuinely worn out, a suspected labral or bony problem, or a hip that is not responding the way the assessment predicted. If your chiropractor feels another healthcare provider would better help you, you will be referred appropriately.',
       },
     ],
     redFlags: [
@@ -612,15 +612,15 @@ export const conditions: Condition[] = [
       },
       {
         q: 'Do I need an X-ray or a scan for hip pain?',
-        a: 'Not always. X-ray analysis is used where it will change what we do — ruling out pathology or clarifying joint condition — and it is avoided for pregnant women and children unless there is a clear reason. If your presentation suggests an MRI or a specialist opinion would alter the plan, your chiropractor will say so and arrange the referral.',
+        a: 'Not always. X-ray analysis is used where it will change what we do, such as ruling out pathology or clarifying the state of the joint. It is avoided for pregnant women and children unless there is a clear reason. If your presentation suggests an MRI or a specialist opinion would alter the plan, your chiropractor will say so and arrange the referral.',
       },
       {
         q: 'Should I rest my hip or keep moving it?',
-        a: 'For most mechanical hip pain, staying moving is better tolerated than resting completely, and complete rest tends to leave the hip stiffer and weaker. What usually helps is modifying rather than stopping — reducing the aggravating positions while keeping the movement you can do comfortably. You will be given specific guidance after your assessment rather than a general instruction.',
+        a: 'For most mechanical hip pain, staying moving is better tolerated than resting completely. Complete rest tends to leave the hip stiffer and weaker. Modifying usually works better than stopping altogether: reduce the positions that aggravate it and keep the movement you can do comfortably. You will be given specific guidance after your assessment rather than a general instruction.',
       },
       {
         q: 'I have been told I have hip arthritis. Is there any point coming in?',
-        a: 'Joint change on imaging does not decide how much you can do. Many people with those findings improve their range, strength and day-to-day comfort with conservative care, and that is what we would be working on — not on reversing the changes themselves. Where a hip is advanced enough that a surgical opinion is the sensible next step, we will tell you that plainly.',
+        a: 'Joint change on imaging does not decide how much you can do. Many people with those findings improve their range, strength and day-to-day comfort with conservative care, and that is what we would be working on. Reversing the changes themselves is not on the table. Where a hip is advanced enough that a surgical opinion is the sensible next step, we will tell you that plainly.',
       },
       {
         q: 'How long will it take to feel better?',
@@ -640,7 +640,7 @@ export const conditions: Condition[] = [
     treatedBy: ['dry-needling', 'posture-correction'],
 
     intro:
-      'Almost nobody is perfectly symmetrical, and a shoulder sitting slightly higher than the other is not in itself a problem to be treated. It becomes worth looking at when it comes with symptoms — an ache across one side of the neck and shoulder that builds through the working day, tightness that never fully clears, or a shoulder that no longer moves as freely as the other one. Usually what people describe as shoulder imbalance is a loading pattern rather than a structural fault: one side is doing more work, for more hours, than it has the endurance for. That is something an assessment can describe accurately, and something the way you work and train can change.',
+      'Almost nobody is perfectly symmetrical, and a shoulder sitting slightly higher than the other rarely needs treating on its own. It becomes worth looking at once symptoms come with it: an ache across one side of the neck and shoulder that builds through the working day, tightness that never fully clears, or a shoulder that no longer moves as freely as the other one. Most of what people call shoulder imbalance is a loading pattern. One side is doing more work, for more hours, than it has the endurance for. An assessment can describe that accurately, and how you work and train can change it.',
     symptoms: [
       'One shoulder or shoulder blade visibly sitting higher, or clothes and bag straps sliding off one side',
       'An ache across the top of one shoulder and into the neck that worsens through the working day',
@@ -652,7 +652,7 @@ export const conditions: Condition[] = [
     causes: [
       {
         heading: 'Asymmetric daily loading',
-        body: 'A mouse on one side, a bag always on the same shoulder, a monitor set off-centre, a child carried on one hip. None of these does harm in isolation; repeated for eight hours a day over years, they ask one side to hold a position the other never has to, and the tissue adapts to what it is asked to do most.',
+        body: 'A mouse on one side, a bag always on the same shoulder, a monitor set off-centre, a child carried on one hip. None of these does harm in isolation. Repeated for eight hours a day over years, they ask one side to hold a position the other never has to, and the tissue adapts to what it is asked to do most.',
       },
       {
         heading: 'Restriction in the neck and upper back',
@@ -660,7 +660,7 @@ export const conditions: Condition[] = [
       },
       {
         heading: 'Endurance rather than strength',
-        body: 'The muscles holding the shoulder blade in position are not usually weak in a way you would notice lifting something. They fatigue. That is why the ache appears at four in the afternoon rather than first thing, and why the programme is built around endurance rather than heavy loading.',
+        body: 'The muscles holding the shoulder blade in position are not usually weak in a way you would notice lifting something. They fatigue instead. That is why the ache turns up at four in the afternoon rather than first thing, and the programme is built around endurance more than heavy loading.',
       },
       {
         heading: 'Underlying structural asymmetry',
@@ -669,16 +669,16 @@ export const conditions: Condition[] = [
     ],
     approach: [
       {
-        heading: 'Looking at the whole chain, not just the high shoulder',
-        body: 'Your first visit follows the Gonstead six-step assessment — history taking, visualisation of the level of head, shoulders, hips and knees, nervoscope instrumentation, palpation with a full-motion assessment of the spinal joints, X-ray analysis where indicated, and only then an adjustment. Visualisation carries weight here, because how you stand and how the shoulder blades sit tells us a good deal before anything has been touched.',
+        heading: 'Looking at the whole chain above and below the shoulder',
+        body: 'Your first visit follows the Gonstead six-step assessment: history taking, visualisation of the level of head, shoulders, hips and knees, nervoscope instrumentation, palpation with a full-motion assessment of the spinal joints, X-ray analysis where indicated, and only then an adjustment. Visualisation carries weight here, because how you stand and how the shoulder blades sit tells us a good deal before anything has been touched.',
       },
       {
         heading: 'Releasing the tissue that is holding the pattern',
-        body: 'Where the muscles around the neck, shoulder blade and upper back are chronically loaded, our physiotherapy side may use dry needling and hands-on soft-tissue work to reduce that tension. This part tends to change how things feel fairly quickly, and on its own it usually does not last — it makes the position easier to hold while the endurance work catches up.',
+        body: 'Where the muscles around the neck, shoulder blade and upper back are chronically loaded, our physiotherapy side may use dry needling and hands-on soft-tissue work to reduce that tension. This part tends to change how things feel fairly quickly, though on its own it does not usually last. It makes the position easier to hold while the endurance work catches up.',
       },
       {
-        heading: 'Then the part that changes the pattern',
-        body: 'Posture is a habit as much as a structure, so the lasting work is in your desk setup, how often you move, and a programme for the deep neck and scapular muscles. We will be honest about what is likely to change: symptoms and comfort often do, and how much a visible asymmetry shifts varies a great deal from person to person.',
+        heading: 'Changing the pattern itself',
+        body: 'Most of the change comes from your desk setup, how often you get up, and a programme for the deep neck and scapular muscles. Habits hold this pattern in place more than structure does. We will be honest about what is likely to shift: symptoms and comfort often do, and how much a visible asymmetry moves varies a great deal from person to person.',
       },
       {
         heading: 'When the asymmetry needs a different assessment',
@@ -690,7 +690,7 @@ export const conditions: Condition[] = [
       'Numbness, weakness, or loss of grip strength in an arm or hand',
       'A shoulder asymmetry that has appeared suddenly or is visibly worsening, especially in a child or adolescent',
       'Dizziness, visual disturbance, difficulty speaking or swallowing, or unsteadiness on your feet',
-      'Shoulder pain with chest tightness, breathlessness, sweating, or pain into the jaw or left arm — seek emergency care',
+      'Shoulder pain with chest tightness, breathlessness, sweating, or pain into the jaw or left arm. Seek emergency care',
       'Fever, unexplained weight loss, or night pain that wakes you',
       'Clumsiness or unsteadiness affecting both hands or legs, or loss of bladder or bowel control',
     ],
@@ -701,11 +701,11 @@ export const conditions: Condition[] = [
       },
       {
         q: 'Can chiropractic correct uneven shoulders?',
-        a: 'We would rather set expectations honestly here. Adjustments can restore movement to restricted neck and mid-back segments, and soft-tissue work can reduce the muscular pull holding one side up — both of which often help how the shoulder feels and moves. How much a visible difference changes depends on what is driving it, and where the cause is structural, it may not change much at all.',
+        a: 'We would rather set expectations honestly here. Adjustments can restore movement to restricted neck and mid-back segments, and soft-tissue work can reduce the muscular pull holding one side up. Both often help how the shoulder feels and moves. How much a visible difference changes depends on what is driving it, and where the cause is structural it may not change much at all.',
       },
       {
         q: 'Does uneven shoulders mean I have scoliosis?',
-        a: 'Sometimes, but far from always. Shoulder-level differences are more often about muscular loading than about a spinal curve. Where the presentation suggests a curve — a rib hump on bending forward, a visible spinal deviation, or an adolescent still growing — that is assessed properly, including X-ray analysis where indicated, rather than guessed at.',
+        a: 'Sometimes, but far from always. Shoulder-level differences usually come down to muscular loading rather than a spinal curve. Where the presentation suggests a curve, such as a rib hump on bending forward, a visible spinal deviation, or an adolescent who is still growing, we assess for it properly, including X-ray analysis where indicated.',
       },
       {
         q: 'What is dry needling and will it hurt?',
@@ -713,7 +713,7 @@ export const conditions: Condition[] = [
       },
       {
         q: 'How do I stop it coming back?',
-        a: 'Mostly by changing what caused it, which is why the desk setup and the endurance programme are not optional extras. Treatment reduces the load on tissue that is irritated; it cannot out-run eight hours a day of the position that irritated it. Practically: centre your monitor, alternate which shoulder carries your bag, and stand and move every 30 to 45 minutes.',
+        a: 'Mostly by changing what caused it, which is why the desk setup and the endurance programme are not optional extras. Treatment takes load off irritated tissue, and the tissue goes straight back under load as soon as you sit down in the same position again. In practice: centre your monitor, alternate which shoulder carries your bag, and stand and move every 30 to 45 minutes.',
       },
     ],
     draft: false,

@@ -22,7 +22,7 @@ export default function BlogIndex() {
       <PageHero
         eyebrow="From the clinic"
         title="Spine notes"
-        intro="Spinal health, posture and recovery — written by our chiropractors, not a content agency."
+        intro="Articles on spinal health, posture and recovery, written by our own chiropractors in Cheras."
       />
 
       <section className="mx-auto max-w-6xl px-4 py-16 lg:py-24">

@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const p = practitionerBySlug(slug)
   if (!p) return {}
 
-  const title = `${p.name} — Chiropractor in Cheras, KL`
+  const title = `${p.name}, Chiropractor in Cheras, KL`
   const description = `${p.name}, ${p.role} at Persistence Chiropractic Care in Cheras, Maluri. ${
     p.credentials || 'Gonstead-technique chiropractic in Kuala Lumpur.'
   }`

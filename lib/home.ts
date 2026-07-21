@@ -16,7 +16,7 @@ export const homeIntro = {
   heading: 'Chiropractic and physiotherapy, built around your spine.',
   body: [
     'Persistence Chiropractic Care is a trusted Chiropractic & Physiotherapy centre in Cheras, Kuala Lumpur that specialises in spinal adjustments and personalised hands-on treatments.',
-    'We take a patient-focused approach: assess properly, explain what we find in plain terms, and be straightforward about what care can and cannot change in your case.',
+    'We assess properly and explain what we find in plain terms, including the parts of your case that care is unlikely to change.',
   ],
 }
 
@@ -30,7 +30,7 @@ export const offers = [
     href: '/services/chiropractic-treatment',
     image: '/img/hero-adjustment.webp',
     alt: 'Gonstead chiropractic adjustment at Persistence Chiropractic Care, Cheras Kuala Lumpur',
-    body: 'Based on your overall health, treatment goals, and lifestyle, our chiropractor in Kuala Lumpur will create a suitable chiropractic care plan specifically made for you. No two patients are the same, so no two care plans are either.',
+    body: 'Based on your overall health, treatment goals and lifestyle, our chiropractor in Kuala Lumpur will put together a chiropractic care plan for you. What that plan involves varies quite a bit from one patient to the next.',
   },
   {
     title: 'Initial consultation',

@@ -14,7 +14,7 @@ import { CtaBand, Eyebrow, PageHero, Vertebrae } from '@/components/ui'
  * prevent. This page exists to route visitors and to pass link equity down.
  */
 export const metadata: Metadata = {
-  title: 'Our Services — Chiropractic & Physiotherapy in Cheras, KL',
+  title: 'Our Services: Chiropractic & Physiotherapy in Cheras, KL',
   description:
     'Chiropractic treatment, dry needling, physiotherapy, sports injury rehabilitation and posture correction in Cheras, Maluri, Kuala Lumpur.',
   alternates: { canonical: '/services' },
@@ -35,12 +35,12 @@ export default function ServicesHub() {
         <div className="max-w-2xl">
           <Eyebrow>What we do</Eyebrow>
           <h2 className="mt-5 text-3xl font-extrabold leading-tight sm:text-4xl">
-            Treatment that ends with you not needing us.
+            Chiropractic, physiotherapy and rehabilitation
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-ink-muted">
             Chiropractic works on how a joint moves. Physiotherapy builds the strength and
-            control around it — which is usually the part that matters six months later.
-            Which you need depends on what the assessment finds.
+            control around it. That second part is usually what keeps the problem from coming
+            back six months later. Which you need depends on what the assessment finds.
           </p>
         </div>
 
@@ -70,7 +70,7 @@ export default function ServicesHub() {
 
       <CtaBand
         heading="Not sure whether you need chiro or physio?"
-        body="Tell us your main concern — pain area, how long, what triggers it — and we'll point you to the right one before you book."
+        body="Tell us where the pain is, how long it's been there and what sets it off. We'll point you to the right one before you book."
         bookingUrl={clinic.bookingUrl}
         phone={clinic.phone}
         phoneE164={clinic.phoneE164}

@@ -10,7 +10,7 @@
  */
 
 export const gonsteadIntro =
-  'We practice the Gonstead method because it is thorough. It involves a detailed analysis of overall spine health and of any restricted segments that may be contributing to your pain. The aim is to work out precisely where the problem sits before anything is adjusted, so that treatment is directed at the right segment rather than the area that happens to hurt.'
+  'We practice the Gonstead method because it is thorough. It involves a detailed analysis of overall spine health and of any restricted segments that may be contributing to your pain. The aim is to work out precisely where the problem sits before anything is adjusted, so that treatment is directed at the segment that needs it.'
 
 export const gonsteadSteps = [
   {

@@ -46,9 +46,9 @@ export default function Home() {
             </h1>
 
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/75">
-              Drug-free, hands-on chiropractic &amp; physiotherapy in Cheras. Personalised treatment
-              and precise spinal adjustments, built around what your assessment actually shows —
-              one spine at a time.
+              Drug-free, hands-on chiropractic &amp; physiotherapy in Cheras. Personalised
+              treatment and precise spinal adjustments, built around what your assessment
+              actually shows.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
@@ -161,12 +161,12 @@ export default function Home() {
           <div className="max-w-2xl">
             <Eyebrow>Where to start</Eyebrow>
             <h2 className="mt-5 text-3xl font-extrabold leading-tight sm:text-4xl">
-              Two ways in. Not sure which? Text us your main concern.
+              Chiropractic or physiotherapy?
             </h2>
             <p className="mt-5 text-lg leading-relaxed text-ink-muted">
-              Chiropractic works on how your joints move. Physiotherapy works on the strength that
-              helps keep them there. Most patients need one; some need both, and we&rsquo;ll tell you
-              which on your first visit.
+              Chiropractic works on how your joints move. Physiotherapy builds the strength around
+              them. Most patients only need one of the two, and we&rsquo;ll tell you which on your
+              first visit.
             </p>
           </div>
 
@@ -175,7 +175,7 @@ export default function Home() {
               <Vertebrae className="text-brand-gold" />
               <h3 className="mt-5 text-2xl font-bold text-white">Chiropractic</h3>
               <p className="mt-3 leading-relaxed text-white/70">
-                The Gonstead method — a segment-by-segment examination that finds the specific
+                The Gonstead method is a segment-by-segment examination. It finds the specific
                 joint causing your pain, rather than adjusting the whole spine and hoping.
               </p>
               {conditions.length > 0 && (
@@ -204,7 +204,7 @@ export default function Home() {
               <h3 className="mt-5 text-2xl font-bold">Physiotherapy</h3>
               <p className="mt-3 leading-relaxed text-ink-muted">
                 Hands-on treatment plus the loading and rehab work that stops the same injury
-                coming back. Assessment-led, and measured against what you actually need to do.
+                coming back. What we work on depends on what you need to get back to.
               </p>
               {modalities.length > 0 && (
                 <ul className="mt-6 flex flex-wrap gap-2">
@@ -232,7 +232,7 @@ export default function Home() {
       <section className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
         <Eyebrow>What our patients say</Eyebrow>
         <h2 className="mt-5 max-w-2xl text-3xl font-extrabold leading-tight sm:text-4xl">
-          Real spines, real patients.
+          Reviews from our patients in Cheras
         </h2>
 
         <div className="mt-12 grid gap-6 md:grid-cols-2">
@@ -303,7 +303,7 @@ export default function Home() {
               >
                 Message us on WhatsApp
               </a>{' '}
-              and tell us your main concern — we&rsquo;ll advise whether to start with chiropractic
+              and tell us your main concern. We&rsquo;ll advise whether to start with chiropractic
               or physiotherapy.
             </p>
           </div>

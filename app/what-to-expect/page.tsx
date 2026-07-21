@@ -11,7 +11,7 @@ import { CtaBand, Eyebrow, PageHero, Vertebrae } from '@/components/ui'
 export const metadata: Metadata = {
   title: 'What to Expect on Your First Chiropractic Visit',
   description:
-    'What happens on a first visit to Persistence Chiropractic Care in Cheras, Maluri — assessment, X-rays, aftercare, and answers to the questions patients ask most.',
+    'What happens on a first visit to Persistence Chiropractic Care in Cheras, Maluri. Assessment, X-rays, aftercare, and answers to the questions patients ask most.',
   alternates: { canonical: '/what-to-expect' },
 }
 
@@ -23,8 +23,8 @@ export default function WhatToExpectPage() {
 
       <PageHero
         eyebrow="What to expect"
-        title="Recovery is a process, not an event."
-        intro="Persistence is the key — and knowing what happens before you walk in makes the first visit a lot easier."
+        title="What happens on your first visit"
+        intro="Recovery takes time. Knowing what happens before you walk in makes the first visit a lot easier."
       />
 
       {/* ------------------------------------------------------- Your first visit */}
@@ -33,7 +33,7 @@ export default function WhatToExpectPage() {
           <div>
             <Eyebrow>Your first visit</Eyebrow>
             <h2 className="mt-5 text-3xl font-extrabold leading-tight sm:text-4xl">
-              We assess before we adjust.
+              The assessment comes first
             </h2>
             <p className="mt-5 text-lg leading-relaxed text-ink-muted">
               Your first appointment follows the{' '}
@@ -42,12 +42,12 @@ export default function WhatToExpectPage() {
                 className="font-semibold text-brand-gold-ink underline underline-offset-4"
               >
                 Gonstead six-step assessment
-              </Link>{' '}
-              — history, visualisation, instrumentation, palpation, X-ray analysis, and only then
+              </Link>
+              : history, visualisation, instrumentation, palpation, X-ray analysis, and only then
               an adjustment.
             </p>
             <p className="mt-4 text-lg leading-relaxed text-ink-muted">
-              If this is your first time here, arrive 5&ndash;10 minutes early so there is time
+              If this is your first time here, arrive 5 to 10 minutes early so there is time
               to complete any paperwork without rushing.
             </p>
           </div>
@@ -72,7 +72,7 @@ export default function WhatToExpectPage() {
             <div className="lg:sticky lg:top-32 lg:self-start">
               <Eyebrow>After your adjustment</Eyebrow>
               <h2 className="mt-5 text-3xl font-extrabold leading-tight sm:text-4xl">
-                What you do next matters as much as the adjustment.
+                Looking after your back afterwards
               </h2>
               <p className="mt-5 leading-relaxed text-ink-muted">{postTreatmentIntro}</p>
 

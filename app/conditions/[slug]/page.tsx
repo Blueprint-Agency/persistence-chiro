@@ -83,7 +83,7 @@ export default async function ConditionPage({ params }: Props) {
                   ))}
                 </ul>
                 <p className="mt-5 text-sm text-ink-muted">
-                  This list describes the condition in general. It is not a diagnosis — only an
+                  This list describes the condition in general. It is not a diagnosis. Only an
                   in-person assessment can tell you what is causing your symptoms.
                 </p>
               </section>
@@ -147,9 +147,8 @@ export default async function ConditionPage({ params }: Props) {
                   See a doctor first if you have any of these
                 </h2>
                 <p className="mt-4 leading-relaxed text-white/70">
-                  These need medical assessment before chiropractic care, not instead of it.
-                  If any apply to you, contact a doctor or go to the nearest emergency
-                  department.
+                  These need a medical assessment before you begin chiropractic care. If any
+                  apply to you, contact a doctor or go to the nearest emergency department.
                 </p>
                 <ul className="mt-6 space-y-3">
                   {condition.redFlags.map((f) => (

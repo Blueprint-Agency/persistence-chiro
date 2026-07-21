@@ -30,7 +30,7 @@ export function Header() {
             |
           </span>
           <span className="text-brand-slate-soft">
-            Open 7 days &middot; Mon&ndash;Thu 10am&ndash;8pm
+            Open 7 days &middot; Mon to Thu, 10am to 8pm
           </span>
           <div className="ml-auto flex items-center gap-5">
             <a href={`tel:${clinic.phoneE164}`} className="font-semibold hover:underline">
