@@ -1,12 +1,14 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
+import Link from 'next/link'
 
 import { clinic } from '@/lib/clinic'
+import { conditionBySlug } from '@/lib/conditions'
 import { gonsteadIntro, gonsteadSteps } from '@/lib/gonstead'
 import { serviceBySlug } from '@/lib/services'
 import { JsonLd } from '@/components/JsonLd'
 import { breadcrumbSchema, faqSchema, medicalProcedureSchema } from '@/lib/schema'
-import { CtaBand, Eyebrow, GhostButton, PageHero } from '@/components/ui'
+import { CtaBand, Eyebrow, GhostButton, PageHero, Vertebrae } from '@/components/ui'
 
 /**
  * Hand-built route rather than a /services/[slug] render — this page carries the Gonstead
@@ -106,6 +108,26 @@ export default function ChiropracticPage() {
         <div className="mt-12 flex flex-wrap gap-3">
           <GhostButton href="/what-to-expect">What to expect on your first visit</GhostButton>
           <GhostButton href="/services/physiotherapy">Compare with physiotherapy</GhostButton>
+        </div>
+
+        <div className="mt-14 rounded-3xl border border-line bg-white p-8 lg:p-10">
+          <Eyebrow>Conditions we commonly see</Eyebrow>
+          <ul className="mt-5 grid gap-2.5 sm:grid-cols-2">
+            {service.treats.map(conditionBySlug).map(
+              (c) =>
+                c && (
+                  <li key={c.slug}>
+                    <Link
+                      href={`/conditions/${c.slug}`}
+                      className="flex items-start gap-2.5 text-ink-muted hover:text-brand-slate"
+                    >
+                      <Vertebrae className="mt-1.5 text-brand-gold" />
+                      {c.title.split(' in ')[0]}
+                    </Link>
+                  </li>
+                ),
+            )}
+          </ul>
         </div>
       </section>
 

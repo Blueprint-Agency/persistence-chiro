@@ -154,7 +154,7 @@ export const services: Service[] = [
         body: 'Progressive plans tailored to your condition, goals and lifestyle. Most of the lasting change tends to come from the exercise, so we prescribe it rather than suggest it.',
       },
     ],
-    treats: ['back-pain', 'slipped-disc', 'neck-pain', 'sciatica'],
+    treats: ['back-pain', 'slipped-disc', 'neck-pain', 'sciatica', 'scoliosis', 'migraine'],
     faqs: [
       {
         q: 'Do I need physiotherapy if my pain is not severe?',

@@ -94,6 +94,12 @@ export default async function ServicePage({ params }: Props) {
                     </li>
                   ))}
                 </ul>
+                <Link
+                  href="/services"
+                  className="mt-5 inline-block text-sm font-semibold text-brand-slate underline underline-offset-4"
+                >
+                  All our services in Cheras
+                </Link>
               </div>
             )}
 

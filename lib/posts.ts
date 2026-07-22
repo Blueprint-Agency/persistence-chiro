@@ -159,7 +159,7 @@ export const posts: Post[] = [
     description: 'How cervical spine care relates to migraine symptoms.',
     datePublished: '2024-12-09',
     author: 'Kee Shan Lim',
-    linksTo: 'neck-pain',
+    linksTo: 'migraine',
     draft: false,
   },
 ]

@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 
+import Link from 'next/link'
+
 import { clinic } from '@/lib/clinic'
 import { JsonLd } from '@/components/JsonLd'
 import { breadcrumbSchema } from '@/lib/schema'
@@ -77,6 +79,24 @@ export default function PressPage() {
             </li>
           ))}
         </ul>
+
+        <p className="mt-12 max-w-2xl leading-relaxed text-ink-muted">
+          Behind the coverage is a small team of registered chiropractors. Meet{' '}
+          <Link
+            href="/about"
+            className="font-semibold text-brand-slate underline underline-offset-4"
+          >
+            the practitioners
+          </Link>{' '}
+          or read about{' '}
+          <Link
+            href="/services"
+            className="font-semibold text-brand-slate underline underline-offset-4"
+          >
+            the care we offer in Cheras
+          </Link>
+          .
+        </p>
       </section>
 
       <CtaBand

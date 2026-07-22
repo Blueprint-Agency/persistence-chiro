@@ -240,6 +240,12 @@ export default async function ConditionPage({ params }: Props) {
                     </li>
                   ))}
                 </ul>
+                <Link
+                  href="/conditions"
+                  className="mt-5 inline-block text-sm font-semibold text-brand-slate underline underline-offset-4"
+                >
+                  All conditions we treat in Cheras
+                </Link>
               </nav>
             )}
           </aside>

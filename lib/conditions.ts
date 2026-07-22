@@ -297,7 +297,7 @@ export const conditions: Condition[] = [
       'Scoliosis assessment and chiropractic management in Cheras, Maluri. Postural analysis, X-ray review and conditioning programmes.',
     targetKeyword: 'scoliosis treatment malaysia',
     related: ['neck-pain', 'back-pain'],
-    treatedBy: ['physiotherapy'],
+    treatedBy: ['physiotherapy', 'chiropractic-treatment'],
 
     intro:
       'Scoliosis is a sideways curvature of the spine, often with an element of rotation. Many curves are mild, get discovered by chance and never cause much trouble. Others bring stiffness, muscular fatigue and pain, particularly through the working day. We should be straightforward about what chiropractic care does here. We work on how well and how comfortably your spine moves. Straightening the curve is not something an adjustment does. Curve magnitude and progression are matters for orthopaedic assessment, and where that is what you need, we will say so.',
@@ -376,7 +376,7 @@ export const conditions: Condition[] = [
     metaDescription:
       'Neck pain, tech neck and posture correction for desk workers in Cheras, Maluri. Gonstead chiropractic plus ergonomic guidance.',
     targetKeyword: 'stiffness neck pain',
-    related: ['back-pain', 'scoliosis'],
+    related: ['migraine', 'scoliosis'],
     treatedBy: ['dry-needling', 'physiotherapy'],
 
     intro:

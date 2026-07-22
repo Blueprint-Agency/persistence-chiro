@@ -104,7 +104,7 @@ export default async function PostPage({ params }: Props) {
               href={targetHref}
               className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-slate"
             >
-              Read more
+              Read about {target.title.split(' in ')[0]}
               <span aria-hidden="true">&rarr;</span>
             </Link>
           </section>

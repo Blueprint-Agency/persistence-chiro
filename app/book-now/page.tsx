@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
+import Link from 'next/link'
 
 import { clinic, addressOneLine, hoursDisplay } from '@/lib/clinic'
 import { JsonLd } from '@/components/JsonLd'
@@ -103,6 +104,24 @@ export default function ContactPage() {
                 if booking conversion measurably drops. */}
             <p className="mt-8 text-sm text-ink-muted">
               Booking is handled by SweetPew and opens in a new tab.
+            </p>
+
+            <p className="mt-6 leading-relaxed text-ink-muted">
+              Not sure where to start? Browse{' '}
+              <Link
+                href="/services"
+                className="font-semibold text-brand-slate underline underline-offset-4"
+              >
+                our services
+              </Link>{' '}
+              or the{' '}
+              <Link
+                href="/conditions"
+                className="font-semibold text-brand-slate underline underline-offset-4"
+              >
+                conditions we treat
+              </Link>
+              , or message us your main concern and we will point you to the right one.
             </p>
           </div>
         </div>
