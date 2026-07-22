@@ -5,6 +5,8 @@ import Link from 'next/link'
 import { clinic } from '@/lib/clinic'
 import { publishedPosts } from '@/lib/posts'
 import { postImages } from '@/lib/home'
+import { JsonLd } from '@/components/JsonLd'
+import { breadcrumbSchema, collectionPageSchema } from '@/lib/schema'
 import { CtaBand, PageHero, Vertebrae } from '@/components/ui'
 
 export const metadata: Metadata = {
@@ -19,6 +21,19 @@ export default function BlogIndex() {
 
   return (
     <>
+      <JsonLd data={breadcrumbSchema([{ name: 'Blog', url: '/blog' }])} />
+      {posts.length > 0 && (
+        <JsonLd
+          data={collectionPageSchema({
+            name: 'Chiropractic & Spinal Health Blog',
+            description:
+              'Articles on back pain, posture, sports injury and spinal health from registered chiropractors in Cheras, Kuala Lumpur.',
+            url: '/blog',
+            items: posts.map((p) => ({ name: p.title, url: `/blog/${p.slug}` })),
+          })}
+        />
+      )}
+
       <PageHero
         eyebrow="From the clinic"
         title="Spine notes"

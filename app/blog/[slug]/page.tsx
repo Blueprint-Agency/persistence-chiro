@@ -7,7 +7,7 @@ import { postBodies } from '@/lib/post-content'
 import { conditionBySlug } from '@/lib/conditions'
 import { serviceBySlug } from '@/lib/services'
 import { JsonLd } from '@/components/JsonLd'
-import { blogPostingSchema } from '@/lib/schema'
+import { blogPostingSchema, breadcrumbSchema } from '@/lib/schema'
 import { clinic } from '@/lib/clinic'
 import { CtaBand, Eyebrow } from '@/components/ui'
 
@@ -60,6 +60,12 @@ export default async function PostPage({ params }: Props) {
           datePublished: post.datePublished,
           author: post.author,
         })}
+      />
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: 'Blog', url: '/blog' },
+          { name: post.title, url: `/blog/${post.slug}` },
+        ])}
       />
 
       {/* h1 renders from the index, not the MDX — the body files carry prose only, so the

@@ -5,7 +5,7 @@ import { clinic } from '@/lib/clinic'
 import { gonsteadIntro, gonsteadSteps } from '@/lib/gonstead'
 import { serviceBySlug } from '@/lib/services'
 import { JsonLd } from '@/components/JsonLd'
-import { faqSchema, medicalProcedureSchema } from '@/lib/schema'
+import { breadcrumbSchema, faqSchema, medicalProcedureSchema } from '@/lib/schema'
 import { CtaBand, Eyebrow, GhostButton, PageHero } from '@/components/ui'
 
 /**
@@ -45,6 +45,12 @@ export default function ChiropracticPage() {
       />
       {/* Every answer below renders on the page, so the schema is legitimate. */}
       <JsonLd data={faqSchema(service.faqs)} />
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: 'Services', url: '/services' },
+          { name: 'Chiropractic Treatment', url: '/services/chiropractic-treatment' },
+        ])}
+      />
 
       <PageHero
         eyebrow="Our services"

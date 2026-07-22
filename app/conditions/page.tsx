@@ -3,6 +3,8 @@ import Link from 'next/link'
 
 import { clinic } from '@/lib/clinic'
 import { publishedConditions } from '@/lib/conditions'
+import { JsonLd } from '@/components/JsonLd'
+import { breadcrumbSchema, collectionPageSchema } from '@/lib/schema'
 import { CtaBand, GhostButton, PageHero, Vertebrae } from '@/components/ui'
 
 export const metadata: Metadata = {
@@ -17,6 +19,22 @@ export default function ConditionsHub() {
 
   return (
     <>
+      <JsonLd data={breadcrumbSchema([{ name: 'Conditions', url: '/conditions' }])} />
+      {conditions.length > 0 && (
+        <JsonLd
+          data={collectionPageSchema({
+            name: 'Conditions We Treat in Cheras, Kuala Lumpur',
+            description:
+              'Back pain, slipped disc, sciatica, scoliosis, neck pain, migraine, hip pain and shoulder imbalance.',
+            url: '/conditions',
+            items: conditions.map((c) => ({
+              name: c.title.split(' in ')[0],
+              url: `/conditions/${c.slug}`,
+            })),
+          })}
+        />
+      )}
+
       <PageHero
         eyebrow="Conditions"
         title="Conditions we treat"

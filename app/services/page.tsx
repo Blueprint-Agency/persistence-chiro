@@ -3,6 +3,8 @@ import Link from 'next/link'
 
 import { clinic } from '@/lib/clinic'
 import { publishedServices, servicesIntro } from '@/lib/services'
+import { JsonLd } from '@/components/JsonLd'
+import { breadcrumbSchema, collectionPageSchema } from '@/lib/schema'
 import { CtaBand, Eyebrow, PageHero, Vertebrae } from '@/components/ui'
 
 /**
@@ -25,6 +27,22 @@ export default function ServicesHub() {
 
   return (
     <>
+      <JsonLd data={breadcrumbSchema([{ name: 'Services', url: '/services' }])} />
+      {services.length > 0 && (
+        <JsonLd
+          data={collectionPageSchema({
+            name: 'Our Services — Chiropractic & Physiotherapy in Cheras, KL',
+            description:
+              'Chiropractic treatment, dry needling, physiotherapy, sports injury rehabilitation and posture correction in Cheras, Maluri.',
+            url: '/services',
+            items: services.map((s) => ({
+              name: s.title.split(' in ')[0],
+              url: `/services/${s.slug}`,
+            })),
+          })}
+        />
+      )}
+
       <PageHero
         eyebrow="Our services"
         title="Chiropractic and physiotherapy in Cheras, Kuala Lumpur"

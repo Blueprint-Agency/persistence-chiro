@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 
 import { clinic, addressOneLine, hoursDisplay } from '@/lib/clinic'
+import { JsonLd } from '@/components/JsonLd'
+import { breadcrumbSchema, contactPageSchema } from '@/lib/schema'
 import { CtaBand, Eyebrow, GhostButton, GoldButton, PageHero, WhatsAppIcon } from '@/components/ui'
 
 // Competitors rank with their contact pages in this SERP (Excellence sits #12 for
@@ -16,6 +18,9 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
+      <JsonLd data={contactPageSchema({ url: '/book-now' })} />
+      <JsonLd data={breadcrumbSchema([{ name: 'Book Now', url: '/book-now' }])} />
+
       <PageHero
         eyebrow="Contact"
         title="Contact & directions"

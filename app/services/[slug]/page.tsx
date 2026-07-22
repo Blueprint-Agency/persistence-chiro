@@ -6,7 +6,7 @@ import { serviceBySlug, templatedServices } from '@/lib/services'
 import { conditionBySlug } from '@/lib/conditions'
 import { clinic } from '@/lib/clinic'
 import { JsonLd } from '@/components/JsonLd'
-import { medicalProcedureSchema } from '@/lib/schema'
+import { breadcrumbSchema, medicalProcedureSchema } from '@/lib/schema'
 import { CtaBand, Eyebrow, GoldButton, PageHero, Vertebrae } from '@/components/ui'
 
 export function generateStaticParams() {
@@ -51,6 +51,13 @@ export default async function ServicePage({ params }: Props) {
           description: service.metaDescription,
           url: `/services/${service.slug}`,
         })}
+      />
+
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: 'Services', url: '/services' },
+          { name: service.title.split(' in ')[0], url: `/services/${service.slug}` },
+        ])}
       />
 
       <PageHero eyebrow="Our services" title={service.title} intro={lead?.body} />

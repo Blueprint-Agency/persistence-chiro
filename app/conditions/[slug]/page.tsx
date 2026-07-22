@@ -6,7 +6,7 @@ import { conditionBySlug, publishedConditions } from '@/lib/conditions'
 import { serviceBySlug } from '@/lib/services'
 import { clinic } from '@/lib/clinic'
 import { JsonLd } from '@/components/JsonLd'
-import { medicalWebPageSchema, faqSchema } from '@/lib/schema'
+import { breadcrumbSchema, medicalWebPageSchema, faqSchema } from '@/lib/schema'
 import { CheckIcon, CtaBand, Eyebrow, GoldButton, PageHero, Vertebrae } from '@/components/ui'
 
 // Only published conditions get built. A draft page has no route, so it can't be
@@ -55,6 +55,12 @@ export default async function ConditionPage({ params }: Props) {
       {/* FAQ schema is only emitted when the answers actually render below — Google
           treats invisible FAQ markup as a violation. */}
       {condition.faqs.length > 0 && <JsonLd data={faqSchema(condition.faqs)} />}
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: 'Conditions', url: '/conditions' },
+          { name: condition.title.split(' in ')[0], url: `/conditions/${condition.slug}` },
+        ])}
+      />
 
       {/* The hero carries `intro`, not metaDescription — the meta line is written for the
           SERP, this one is written for someone who has already arrived and is in pain. */}

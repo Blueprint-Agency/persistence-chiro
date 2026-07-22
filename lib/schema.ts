@@ -115,6 +115,70 @@ export function blogPostingSchema(o: {
   }
 }
 
+/**
+ * Breadcrumb trail. Nested pages only — a breadcrumb of one item (the homepage) is noise.
+ * `items` is ordered root-first; the current page is the last item. Every `url` is a path,
+ * so NAP/domain stays in one place (`SITE_URL`).
+ */
+export function breadcrumbSchema(items: readonly { name: string; url: string }[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((it, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: it.name,
+      item: `${SITE_URL}${it.url}`,
+    })),
+  }
+}
+
+/**
+ * Hub pages (/conditions, /services). A CollectionPage whose mainEntity is the ItemList of
+ * child pages — this is what tells Google the page is a browseable index rather than a
+ * thin doorway. `about` references the clinic by @id so NAP is never repeated.
+ */
+export function collectionPageSchema(o: {
+  name: string
+  description: string
+  url: string
+  items: readonly { name: string; url: string }[]
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: o.name,
+    description: o.description,
+    url: `${SITE_URL}${o.url}`,
+    about: { '@id': `${SITE_URL}/#clinic` },
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: o.items.map((it, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        name: it.name,
+        url: `${SITE_URL}${it.url}`,
+      })),
+    },
+  }
+}
+
+/**
+ * Booking/contact page. The architecture's schema table pairs /contact-us with
+ * `LocalBusiness + ReserveAction`. Both already live on the sitewide `Chiropractic` node
+ * (`#clinic`, with its `potentialAction`), so this page emits a `ContactPage` that points
+ * at that node by @id rather than repeating NAP — the mainEntity IS the clinic, and its
+ * ReserveAction comes with it.
+ */
+export function contactPageSchema(o: { url: string }) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    url: `${SITE_URL}${o.url}`,
+    mainEntity: { '@id': `${SITE_URL}/#clinic` },
+  }
+}
+
 export function personSchema(p: {
   name: string
   role: string

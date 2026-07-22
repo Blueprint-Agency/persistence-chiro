@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation'
 
 import { clinic, hasBio, practitionerBySlug, practitioners, registrationsVerified } from '@/lib/clinic'
 import { JsonLd } from '@/components/JsonLd'
-import { personSchema } from '@/lib/schema'
+import { breadcrumbSchema, personSchema } from '@/lib/schema'
 import { CtaBand, Eyebrow, GhostButton, GoldButton, PageHero, Prose, Vertebrae } from '@/components/ui'
 
 /** Every practitioner gets a route — the team cards on /about all link here. */
@@ -43,6 +43,12 @@ export default async function PractitionerPage({ params }: Props) {
   return (
     <>
       <JsonLd data={personSchema(p)} />
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: 'About', url: '/about' },
+          { name: p.name, url: `/about/${p.slug}` },
+        ])}
+      />
 
       <PageHero eyebrow="About us" title={p.name} intro={p.role} />
 

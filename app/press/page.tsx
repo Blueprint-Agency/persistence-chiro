@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 
 import { clinic } from '@/lib/clinic'
+import { JsonLd } from '@/components/JsonLd'
+import { breadcrumbSchema } from '@/lib/schema'
 import { CtaBand, PageHero, Vertebrae } from '@/components/ui'
 
 export const metadata: Metadata = {
@@ -38,6 +40,8 @@ const features = [
 export default function PressPage() {
   return (
     <>
+      <JsonLd data={breadcrumbSchema([{ name: 'Press', url: '/press' }])} />
+
       <PageHero
         eyebrow="Press"
         title="Press & publications"
