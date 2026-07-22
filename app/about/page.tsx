@@ -3,6 +3,7 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 
 import { clinic, practitioners, registrationsVerified } from '@/lib/clinic'
+import { keyPartners, partners } from '@/lib/partners'
 import { JsonLd } from '@/components/JsonLd'
 import { personSchema } from '@/lib/schema'
 import { CtaBand, Eyebrow, PageHero, Vertebrae } from '@/components/ui'
@@ -89,16 +90,59 @@ export default function AboutPage() {
       </section>
 
       {/* ------------------------------------------------------------ Partners */}
-      {/* /our-partners 301s to this anchor — it must exist or the redirect lands nowhere useful. */}
-      <section id="partners" className="mx-auto max-w-6xl scroll-mt-24 px-4 py-16 lg:py-24">
-        <Eyebrow>Partners</Eyebrow>
-        <h2 className="mt-5 max-w-2xl text-3xl font-extrabold leading-tight sm:text-4xl">
-          Clinics and organisations we work alongside.
-        </h2>
-        <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink-muted">
-          Partner logos from the previous site are in <code>assets/images</code>. All 43 are
-          pending selection and optimisation into <code>public/</code>.
-        </p>
+      {/* /our-partners 301s to this anchor — it must exist or the redirect lands nowhere useful.
+          Logos migrated from the live Wix /our-partners page; see lib/partners.ts. */}
+      <section id="partners" className="scroll-mt-24 border-t border-line bg-white">
+        <div className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
+          <Eyebrow>Partners</Eyebrow>
+          <h2 className="mt-5 max-w-2xl text-3xl font-extrabold leading-tight sm:text-4xl">
+            Organisations we work alongside.
+          </h2>
+          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink-muted">
+            From Sunway Medical Centre Velocity next door to the brands and events we have
+            supported across Kuala Lumpur.
+          </p>
+
+          {/* Key partners — larger, first. */}
+          <ul className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3">
+            {keyPartners.map((p) => (
+              <li
+                key={p.file}
+                className="flex items-center justify-center rounded-2xl border border-line bg-white p-8"
+              >
+                <Image
+                  src={p.file}
+                  alt={`${p.name} logo`}
+                  width={200}
+                  height={200}
+                  sizes="(max-width: 640px) 45vw, 200px"
+                  className="h-20 w-auto max-w-full object-contain"
+                />
+              </li>
+            ))}
+          </ul>
+
+          {/* The wider logo wall. */}
+          <p className="mt-14 label text-brand-slate">We have also worked with</p>
+          <ul className="mt-6 grid grid-cols-3 gap-3 sm:grid-cols-4 lg:grid-cols-5">
+            {partners.map((p) => (
+              <li
+                key={p.file}
+                className="flex items-center justify-center rounded-xl border border-line bg-white p-5"
+              >
+                <Image
+                  src={p.file}
+                  alt={`${p.name} logo`}
+                  width={160}
+                  height={160}
+                  sizes="(max-width: 640px) 30vw, 160px"
+                  className="h-12 w-auto max-w-full object-contain"
+                />
+              </li>
+            ))}
+          </ul>
+          <p className="mt-6 text-sm text-ink-muted">…and many more.</p>
+        </div>
       </section>
 
       <CtaBand
