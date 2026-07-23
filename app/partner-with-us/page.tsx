@@ -127,19 +127,19 @@ export default function PartnerWithUsPage() {
           </ul>
 
           <p className="mt-14 label text-brand-slate">We have also worked with</p>
-          <ul className="mt-6 grid grid-cols-3 gap-3 sm:grid-cols-4 lg:grid-cols-5">
+          <ul className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
             {partners.map((p) => (
               <li
                 key={p.file}
-                className="flex items-center justify-center rounded-xl border border-line bg-white p-5"
+                className="flex items-center justify-center rounded-2xl border border-line bg-white p-6 sm:p-8"
               >
                 <Image
                   src={p.file}
                   alt={`${p.name} logo`}
-                  width={160}
-                  height={160}
-                  sizes="(max-width: 640px) 30vw, 160px"
-                  className="h-12 w-auto max-w-full object-contain"
+                  width={200}
+                  height={200}
+                  sizes="(max-width: 640px) 45vw, 240px"
+                  className="h-16 w-auto max-w-full object-contain sm:h-20"
                 />
               </li>
             ))}
