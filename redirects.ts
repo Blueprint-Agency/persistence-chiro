@@ -51,7 +51,7 @@ const PAGE_REDIRECTS: Redirect[] = [
     destination: '/press',
     statusCode: 301,
   },
-  { source: '/our-partners', destination: '/about#partners', statusCode: 301 },
+  { source: '/our-partners', destination: '/partner-with-us', statusCode: 301 },
   { source: '/landingpage', destination: '/', statusCode: 301 },
 ]
 

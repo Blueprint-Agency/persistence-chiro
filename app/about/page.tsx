@@ -3,10 +3,9 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 
 import { clinic, practitioners, registrationsVerified } from '@/lib/clinic'
-import { keyPartners, partners } from '@/lib/partners'
 import { JsonLd } from '@/components/JsonLd'
 import { personSchema } from '@/lib/schema'
-import { CtaBand, Eyebrow, PageHero, Vertebrae } from '@/components/ui'
+import { CtaBand, Eyebrow, GhostButton, PageHero, Vertebrae } from '@/components/ui'
 
 export const metadata: Metadata = {
   title: 'About Our Chiropractors in Cheras, Kuala Lumpur',
@@ -90,8 +89,8 @@ export default function AboutPage() {
       </section>
 
       {/* ------------------------------------------------------------ Partners */}
-      {/* /our-partners 301s to this anchor — it must exist or the redirect lands nowhere useful.
-          Logos migrated from the live Wix /our-partners page; see lib/partners.ts. */}
+      {/* The logo wall lives on /partner-with-us now; this is a teaser + link. /our-partners
+          301s to /partner-with-us, so this anchor is for internal navigation only. */}
       <section id="partners" className="scroll-mt-24 border-t border-line bg-white">
         <div className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
           <Eyebrow>Partners</Eyebrow>
@@ -99,49 +98,12 @@ export default function AboutPage() {
             Organisations we work alongside.
           </h2>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink-muted">
-            From Sunway Medical Centre Velocity next door to the brands and events we have
-            supported across Kuala Lumpur.
+            From Sunway Medical Centre Velocity next door to brands like Shopee, Maxis and
+            Panasonic, we run wellness talks, screenings and collaborations across Kuala Lumpur.
           </p>
-
-          {/* Key partners — larger, first. */}
-          <ul className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3">
-            {keyPartners.map((p) => (
-              <li
-                key={p.file}
-                className="flex items-center justify-center rounded-2xl border border-line bg-white p-8"
-              >
-                <Image
-                  src={p.file}
-                  alt={`${p.name} logo`}
-                  width={200}
-                  height={200}
-                  sizes="(max-width: 640px) 45vw, 200px"
-                  className="h-20 w-auto max-w-full object-contain"
-                />
-              </li>
-            ))}
-          </ul>
-
-          {/* The wider logo wall. */}
-          <p className="mt-14 label text-brand-slate">We have also worked with</p>
-          <ul className="mt-6 grid grid-cols-3 gap-3 sm:grid-cols-4 lg:grid-cols-5">
-            {partners.map((p) => (
-              <li
-                key={p.file}
-                className="flex items-center justify-center rounded-xl border border-line bg-white p-5"
-              >
-                <Image
-                  src={p.file}
-                  alt={`${p.name} logo`}
-                  width={160}
-                  height={160}
-                  sizes="(max-width: 640px) 30vw, 160px"
-                  className="h-12 w-auto max-w-full object-contain"
-                />
-              </li>
-            ))}
-          </ul>
-          <p className="mt-6 text-sm text-ink-muted">…and many more.</p>
+          <div className="mt-8">
+            <GhostButton href="/partner-with-us">See our partners &amp; partner with us</GhostButton>
+          </div>
         </div>
       </section>
 

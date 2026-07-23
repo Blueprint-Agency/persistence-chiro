@@ -36,6 +36,7 @@ export const mainNav = (): NavItem[] => [
     children: [
       { href: '/about', label: 'Our team' },
       { href: '/press', label: 'Press & publications' },
+      { href: '/partner-with-us', label: 'Partner with us' },
     ],
   },
   { href: '/blog', label: 'Blog' },
