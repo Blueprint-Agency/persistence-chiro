@@ -37,6 +37,11 @@ const proof = [
     caption: 'Corporate wellness talk with Tricor',
   },
   {
+    src: '/img/events/event-office-wellness-talk.webp',
+    alt: 'Persistence Chiropractic presenting an ergonomic health talk for office workers in Kuala Lumpur',
+    caption: 'Speaking on ergonomic health for office workers',
+  },
+  {
     src: '/img/events/event-ergonomics-workshop.webp',
     alt: 'An ergonomics workshop for a company team in Cheras, Kuala Lumpur',
     caption: 'Ergonomics workshop, in session',
@@ -47,9 +52,19 @@ const proof = [
     caption: 'Community health talk with Ti-Ratana',
   },
   {
+    src: '/img/events/event-community-adjustment.webp',
+    alt: 'A Persistence chiropractor assessing a community member at a Ti-Ratana health day in Kuala Lumpur',
+    caption: 'Postural screening at a Ti-Ratana community day',
+  },
+  {
     src: '/img/events/event-award.webp',
     alt: 'The Persistence Chiropractic team at a WeekendPlan Editor’s Choice event in Kuala Lumpur',
     caption: 'WeekendPlan Editor’s Choice, Best Service 2023',
+  },
+  {
+    src: '/img/events/event-magazine-feature.webp',
+    alt: 'Persistence Chiropractic featured in Going Places magazine, at the clinic in Cheras, Kuala Lumpur',
+    caption: 'Featured in Going Places magazine',
   },
 ]
 
@@ -82,7 +97,7 @@ export default function PartnerWithUsPage() {
       <section className="border-y border-line bg-white">
         <div className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
           <Eyebrow>A few we have run</Eyebrow>
-          <ul className="mt-8 grid gap-6 sm:grid-cols-2">
+          <ul className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {proof.map((p) => (
               <li key={p.src}>
                 <div className="overflow-hidden rounded-3xl">
