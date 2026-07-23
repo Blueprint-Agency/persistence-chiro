@@ -3,6 +3,7 @@ import Image from 'next/image'
 
 import { clinic } from '@/lib/clinic'
 import { keyPartners, partners } from '@/lib/partners'
+import { events } from '@/lib/events'
 import { JsonLd } from '@/components/JsonLd'
 import { breadcrumbSchema } from '@/lib/schema'
 import { CtaBand, CheckIcon, Eyebrow, PageHero } from '@/components/ui'
@@ -27,44 +28,6 @@ const reasons = [
   {
     title: 'Brand and product collaborations',
     body: 'We have worked with brands from Sunway Medical Centre Velocity to Shopee, Maxis and Panasonic on wellness activations and content.',
-  },
-]
-
-const proof = [
-  {
-    src: '/img/events/event-corporate-talk.webp',
-    alt: 'Persistence Chiropractic leading a corporate wellness talk with Tricor in Kuala Lumpur',
-    caption: 'Corporate wellness talk with Tricor',
-  },
-  {
-    src: '/img/events/event-office-wellness-talk.webp',
-    alt: 'Persistence Chiropractic presenting an ergonomic health talk for office workers in Kuala Lumpur',
-    caption: 'Speaking on ergonomic health for office workers',
-  },
-  {
-    src: '/img/events/event-ergonomics-workshop.webp',
-    alt: 'An ergonomics workshop for a company team in Cheras, Kuala Lumpur',
-    caption: 'Ergonomics workshop, in session',
-  },
-  {
-    src: '/img/events/event-community-screening.webp',
-    alt: 'A community spinal health talk hosted with Ti-Ratana Welfare Society in Kuala Lumpur',
-    caption: 'Community health talk with Ti-Ratana',
-  },
-  {
-    src: '/img/events/event-community-adjustment.webp',
-    alt: 'A Persistence chiropractor assessing a community member at a Ti-Ratana health day in Kuala Lumpur',
-    caption: 'Postural screening at a Ti-Ratana community day',
-  },
-  {
-    src: '/img/events/event-award.webp',
-    alt: 'The Persistence Chiropractic team at a WeekendPlan Editor’s Choice event in Kuala Lumpur',
-    caption: 'WeekendPlan Editor’s Choice, Best Service 2023',
-  },
-  {
-    src: '/img/events/event-magazine-feature.webp',
-    alt: 'Persistence Chiropractic featured in Going Places magazine, at the clinic in Cheras, Kuala Lumpur',
-    caption: 'Featured in Going Places magazine',
   },
 ]
 
@@ -96,21 +59,22 @@ export default function PartnerWithUsPage() {
       {/* ----------------------------------------------------------------- Proof */}
       <section className="border-y border-line bg-white">
         <div className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
-          <Eyebrow>A few we have run</Eyebrow>
+          <Eyebrow>Talks, screenings and events we have run</Eyebrow>
           <ul className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {proof.map((p) => (
-              <li key={p.src}>
+            {events.map((e) => (
+              <li key={e.file} className="flex flex-col">
                 <div className="overflow-hidden rounded-3xl">
                   <Image
-                    src={p.src}
-                    alt={p.alt}
-                    width={1200}
-                    height={900}
-                    sizes="(max-width: 640px) 100vw, 540px"
+                    src={e.file}
+                    alt={e.alt}
+                    width={1100}
+                    height={825}
+                    sizes="(max-width: 640px) 100vw, 360px"
                     className="aspect-[4/3] w-full object-cover"
                   />
                 </div>
-                <p className="mt-3 text-sm text-ink-muted">{p.caption}</p>
+                <h3 className="mt-4 font-bold leading-snug">{e.title}</h3>
+                <p className="mt-1.5 text-sm leading-relaxed text-ink-muted">{e.blurb}</p>
               </li>
             ))}
           </ul>
