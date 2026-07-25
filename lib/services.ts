@@ -58,6 +58,24 @@ export type Service = {
    * or situation, not a diagnosis.
    */
   qualifierConcerns?: string[]
+  /**
+   * ISO date the clinical content was last reviewed by the practitioner. Drives the
+   * "Medically reviewed by" byline AND the reviewedBy/lastReviewed schema — the two E-E-A-T
+   * signals a YMYL medical page needs. Only set once the copy has actually been checked;
+   * unset means no byline and no review date is claimed.
+   */
+  lastReviewed?: string
+  /**
+   * Long-form, keyword-targeted H2 sections rendered below the conversion layout. This is
+   * where the depth lives — each heading should read like a real search query (e.g. "Is dry
+   * needling safe?") and the body stays hedged, no promissory claims.
+   */
+  longForm?: { heading: string; body: string }[]
+  /**
+   * Citations: verifiable, cautiously worded facts attributed to a journal, clinical
+   * guideline or regulator. Never a competitor, never an efficacy promise. 2–4 is plenty.
+   */
+  citations?: { claim: string; source: string; url?: string }[]
   /** Service blocks. First one is the page's primary service. */
   sections: { heading: string; body: string }[]
   /** Condition slugs this service is used for — the cross-link back into /conditions. */
@@ -105,6 +123,25 @@ export const services: Service[] = [
       'I want to understand what is actually driving it',
       'I am curious whether chiropractic suits my case',
       'I am pregnant or bringing a child and want a gentle assessment',
+    ],
+    lastReviewed: '2026-07-26',
+    longForm: [
+      {
+        heading: 'Is chiropractic treatment safe?',
+        body: 'Chiropractic adjustment is widely used for mechanical spine and joint problems, and serious complications are considered rare when care follows a proper assessment. As with any treatment there can be short lived after effects, most often mild soreness or stiffness for a day or so. The assessment exists partly to screen for the small number of situations where adjustment would not be appropriate, which is why we work through it before deciding what, if anything, to adjust. We will always tell you honestly if we think chiropractic is not the right approach for your case.',
+      },
+    ],
+    citations: [
+      {
+        claim:
+          'Routine imaging is not recommended for non specific spinal pain and is advised only when there are specific clinical indications.',
+        source: 'NICE guideline NG59, Low back pain and sciatica',
+      },
+      {
+        claim:
+          'Chiropractic is a regulated healthcare practice; in Malaysia practitioners register under the Ministry of Health framework.',
+        source: 'Association of Chiropractic Malaysia; Ministry of Health Malaysia',
+      },
     ],
     sections: [
       {
@@ -164,6 +201,38 @@ export const services: Service[] = [
       'An old injury left a muscle feeling tight and overactive',
       'I have had dry needling before and it helped',
       'I am nervous about needles and want to ask first',
+    ],
+    lastReviewed: '2026-07-26',
+    longForm: [
+      {
+        heading: 'What is dry needling, and how is it different from acupuncture?',
+        body: 'Dry needling is a Western, anatomy based technique. A fine filament needle is placed directly into a myofascial trigger point, which is a small, hyperirritable knot within a taut band of muscle, with the aim of releasing that tension. Nothing is injected, which is where the word "dry" comes from. Acupuncture can use similar needles, but it comes from traditional Chinese medicine and selects points along meridians rather than by muscle anatomy. Even when the needles look alike, the two are aiming at different things. At our clinic in Cheras we treat dry needling as one tool within an assessment led plan, not a standalone therapy.',
+      },
+      {
+        heading: 'Is dry needling safe, and what should I expect afterwards?',
+        body: 'Dry needling is generally considered safe when it is carried out by a trained practitioner using sterile, single use needles. The most common after effects are mild and short lived: temporary soreness at the site, and occasionally a small bruise, usually settling within a day or two. More significant reactions are uncommon. We check your history first, because there are situations, such as pregnancy, medications that affect bleeding, or a strong fear of needles, where we would choose a different approach. You can eat, drink and move normally afterwards, and we usually pair the session with specific exercises so the muscle has a reason to stay released.',
+      },
+      {
+        heading: 'What does dry needling help with?',
+        body: 'People most often come to us for dry needling when a muscle stays tight despite stretching and massage, when trigger points keep referring pain to the same spot, or when an old injury has left a muscle guarded and overactive. It is commonly used around the neck, shoulders and lower back, and alongside care for problems such as sciatica and shoulder imbalance. It is worth being realistic. Needling can help calm an irritable muscle, but on its own it does not change the habit, weakness or joint restriction that let the muscle tighten in the first place. That is why the assessment matters, and why we combine it with chiropractic care and physiotherapy where the findings point that way.',
+      },
+    ],
+    citations: [
+      {
+        claim:
+          'Myofascial trigger points are described as hyperirritable spots within a taut band of skeletal muscle.',
+        source: 'Travell & Simons, Myofascial Pain and Dysfunction: The Trigger Point Manual',
+      },
+      {
+        claim:
+          'Surveys of trigger point dry needling report that adverse events are usually minor and transient, such as soreness or minor bruising.',
+        source: 'Brady et al. (2014), Journal of Manual & Manipulative Therapy',
+      },
+      {
+        claim:
+          'In Malaysia, chiropractic and physiotherapy are regulated healthcare practices, and practitioners are expected to hold recognised qualifications.',
+        source: 'Ministry of Health Malaysia',
+      },
     ],
     sections: [
       {
@@ -247,6 +316,29 @@ export const services: Service[] = [
       'I want exercises tailored to my specific issue',
       'I am recovering from an injury and feel weak or unsteady',
       'I am not sure whether I need physio or chiropractic',
+    ],
+    lastReviewed: '2026-07-26',
+    longForm: [
+      {
+        heading: 'What happens in a physiotherapy assessment?',
+        body: 'A first physiotherapy visit is mostly assessment. We take a history, ask what makes the problem better or worse and what you need to get back to, then look at how you actually move, test the affected area and check the joints and muscles around it. The aim is to work out what is driving the problem rather than only where you feel it, because pain in one place often traces back to how something else is moving. From there we explain what we have found in plain terms and agree a plan, which usually pairs some hands on treatment with a small, specific exercise programme.',
+      },
+      {
+        heading: 'Physiotherapy or chiropractic: which do you need?',
+        body: 'Broadly, chiropractic care works on how a restricted joint moves, while physiotherapy builds the strength and control around it, and a good number of people benefit from both. Neither is better in the abstract; it depends on what the assessment finds. Because we offer chiropractic care, physiotherapy and dry needling under one roof in Cheras, we can start wherever the findings point and adjust as things change, rather than fitting you to whatever a single discipline happens to offer.',
+      },
+    ],
+    citations: [
+      {
+        claim:
+          'Clinical guidelines recommend staying active and using exercise based treatment for most non specific low back pain, rather than prolonged rest.',
+        source: 'NICE guideline NG59, Low back pain and sciatica',
+      },
+      {
+        claim:
+          'Physiotherapists in Malaysia practise under the Ministry of Health and its allied health professions framework.',
+        source: 'Allied Health Professions Act 2016, Malaysia',
+      },
     ],
     sections: [
       {
@@ -332,6 +424,29 @@ export const services: Service[] = [
       'I am rehabbing after surgery',
       'I injured myself at the weekend and I am not an athlete',
     ],
+    lastReviewed: '2026-07-26',
+    longForm: [
+      {
+        heading: 'How does sports injury rehabilitation progress?',
+        body: 'Rehabilitation moves through stages rather than all at once. Early on the aim is to protect the injured area and keep it moving without aggravating it. As it settles we rebuild range of movement, then strength, then the speed, control and agility your sport demands. Each stage needs to hold before the next one begins, and how quickly you progress depends on the injury and how you respond rather than on a fixed timetable.',
+      },
+      {
+        heading: 'When is it safe to return to sport?',
+        body: 'We prefer to base a return on what the area can do under testing, not simply on the pain having eased. That usually means checking strength, balance and sport specific movement, and building the training load back up gradually. Returning before the tissue tolerates the load is one of the most common reasons an injury comes back, so we would rather be honest about readiness than rush a date.',
+      },
+    ],
+    citations: [
+      {
+        claim:
+          'Return to sport decisions are best guided by criteria such as strength and functional testing rather than time alone, which helps reduce reinjury risk.',
+        source: 'Ardern et al. (2016), Consensus statement on return to sport, British Journal of Sports Medicine',
+      },
+      {
+        claim:
+          'For most soft tissue injuries, guided early movement within pain limits is generally preferred over prolonged immobilisation.',
+        source: 'British Journal of Sports Medicine',
+      },
+    ],
     sections: [
       {
         heading: 'Sports injury rehabilitation in Cheras',
@@ -414,6 +529,29 @@ export const services: Service[] = [
       'I stiffen up when I sit for long periods',
       'I want help setting up my workstation',
       'I have tried a posture brace and it did not hold',
+    ],
+    lastReviewed: '2026-07-26',
+    longForm: [
+      {
+        heading: 'Can posture really be changed?',
+        body: 'It depends what you mean by changed. Comfort and endurance often improve, and people tend to find they can hold a better position for longer before it starts to feel like effort. What no course of treatment can promise is to permanently reshape a fixed structure or hand you a perfect posture that holds itself. We would rather be plain about that, and focus on the parts that genuinely respond, which are usually strength, mobility and habit.',
+      },
+      {
+        heading: 'Is sitting at a desk the cause of my posture problems?',
+        body: 'Prolonged sitting is a common contributor, though rarely the only one. For most desk related complaints, the trouble comes from holding any one position for too long rather than from a single wrong posture, so moving regularly tends to matter more than finding a perfect setup. We combine practical workstation changes with strength work, because the position you can hold through a working day is the one that counts.',
+      },
+    ],
+    citations: [
+      {
+        claim:
+          'Contemporary physiotherapy research questions the idea of a single correct posture and emphasises movement and variation instead.',
+        source: 'O’Sullivan et al., research on posture and back pain',
+      },
+      {
+        claim:
+          'Prolonged static sitting is associated with musculoskeletal discomfort, and regular movement breaks are commonly advised.',
+        source: 'Chartered Society of Physiotherapy guidance',
+      },
     ],
     sections: [
       {

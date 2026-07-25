@@ -82,10 +82,17 @@ test('no promissory medical claims in published copy', () => {
     ]),
     ...services.map(
       (m) =>
-        [`services/${m.slug}`, [m.metaDescription, ...m.sections.map((s) => s.body)].join(' ')] as [
-          string,
-          string,
-        ],
+        [
+          `services/${m.slug}`,
+          [
+            m.metaDescription,
+            ...m.sections.map((s) => s.body),
+            // These user-facing fields carry prose too, so they must clear the same guard.
+            ...(m.outcomes ?? []),
+            ...(m.longForm ?? []).flatMap((l) => [l.heading, l.body]),
+            ...(m.citations ?? []).map((c) => c.claim),
+          ].join(' '),
+        ] as [string, string],
     ),
     ...clinicFaqs.map((f) => [`clinicFaqs`, `${f.q} ${f.a}`] as [string, string]),
     ...homeFaqs.map((f) => [`homeFaqs`, `${f.q} ${f.a}`] as [string, string]),

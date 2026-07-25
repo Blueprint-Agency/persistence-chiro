@@ -68,15 +68,58 @@ export function medicalWebPageSchema(o: { name: string; description: string; url
   }
 }
 
-/** Physiotherapy modality pages. */
-export function medicalProcedureSchema(o: { name: string; description: string; url: string }) {
+/** Physiotherapy / service modality pages. */
+export function medicalProcedureSchema(o: {
+  name: string
+  description: string
+  url: string
+  /** How the procedure is carried out — enriches the entity beyond a bare stub. */
+  howPerformed?: string
+  /** e.g. 'Chiropractic', 'Physiotherapy' — the relevant medical specialty. */
+  relevantSpecialty?: string
+}) {
   return {
     '@context': 'https://schema.org',
     '@type': 'MedicalProcedure',
     name: o.name,
     description: o.description,
     url: `${SITE_URL}${o.url}`,
+    procedureType: 'https://schema.org/NoninvasiveProcedure',
+    ...(o.howPerformed ? { howPerformed: o.howPerformed } : {}),
+    ...(o.relevantSpecialty ? { relevantSpecialty: o.relevantSpecialty } : {}),
     provider: { '@id': `${SITE_URL}/#clinic` },
+  }
+}
+
+/**
+ * E-E-A-T layer for a medical money page: a MedicalWebPage that records WHO reviewed the
+ * content and WHEN. `lastReviewed` and `reviewedBy` are the two signals Google's medical
+ * quality guidance looks for, and neither was present on the service/condition pages.
+ * The reviewer is a real registered practitioner, referenced back to the clinic node.
+ */
+export function reviewedMedicalWebPage(o: {
+  name: string
+  description: string
+  url: string
+  lastReviewed: string
+  reviewer: { name: string; role: string; credentials: string; slug: string }
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'MedicalWebPage',
+    name: o.name,
+    description: o.description,
+    url: `${SITE_URL}${o.url}`,
+    lastReviewed: o.lastReviewed,
+    reviewedBy: {
+      '@type': 'Person',
+      name: o.reviewer.name,
+      jobTitle: o.reviewer.role,
+      url: `${SITE_URL}/about/${o.reviewer.slug}`,
+      ...(o.reviewer.credentials ? { description: o.reviewer.credentials } : {}),
+      worksFor: { '@id': `${SITE_URL}/#clinic` },
+    },
+    about: { '@id': `${SITE_URL}/#clinic` },
   }
 }
 

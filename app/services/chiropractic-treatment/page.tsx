@@ -2,12 +2,17 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { clinic } from '@/lib/clinic'
+import { clinic, practitionerBySlug } from '@/lib/clinic'
 import { conditionBySlug } from '@/lib/conditions'
 import { gonsteadIntro, gonsteadSteps } from '@/lib/gonstead'
 import { serviceBySlug } from '@/lib/services'
 import { JsonLd } from '@/components/JsonLd'
-import { breadcrumbSchema, faqSchema, medicalProcedureSchema } from '@/lib/schema'
+import {
+  breadcrumbSchema,
+  faqSchema,
+  medicalProcedureSchema,
+  reviewedMedicalWebPage,
+} from '@/lib/schema'
 import {
   CtaBand,
   Eyebrow,
@@ -17,9 +22,11 @@ import {
   Vertebrae,
   WhatsAppIcon,
 } from '@/components/ui'
-import { RatingBadge, StickyCta, TrustBar } from '@/components/service'
+import { RatingBadge, References, ReviewedBy, StickyCta, TrustBar } from '@/components/service'
 import { GoogleReviews } from '@/components/GoogleReviews'
 import { ServiceQualifier } from '@/components/ServiceQualifier'
+
+const reviewer = practitionerBySlug('valerie-na')!
 
 /**
  * Hand-built route rather than a /services/[slug] render — this page carries the Gonstead
@@ -58,6 +65,22 @@ export default function ChiropracticPage() {
       />
       {/* Every answer below renders on the page, so the schema is legitimate. */}
       <JsonLd data={faqSchema(service.faqs)} />
+      {service.lastReviewed && (
+        <JsonLd
+          data={reviewedMedicalWebPage({
+            name: service.title,
+            description: service.metaDescription,
+            url: '/services/chiropractic-treatment',
+            lastReviewed: service.lastReviewed,
+            reviewer: {
+              name: reviewer.name,
+              role: reviewer.role,
+              credentials: reviewer.credentials,
+              slug: reviewer.slug,
+            },
+          })}
+        />
+      )}
       <JsonLd
         data={breadcrumbSchema([
           { name: 'Services', url: '/services' },
@@ -86,6 +109,7 @@ export default function ChiropracticPage() {
       </PageHero>
 
       <TrustBar />
+      <ReviewedBy date={service.lastReviewed} />
 
       {/* ------------------------------------------------------ The six steps */}
       <section className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
@@ -157,6 +181,8 @@ export default function ChiropracticPage() {
           </ul>
         </div>
       </section>
+
+      <References items={service.citations} />
 
       {/* ----------------------------------------------------------- Qualifier */}
       {service.qualifierConcerns && service.qualifierConcerns.length > 0 && (

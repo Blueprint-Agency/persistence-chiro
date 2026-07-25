@@ -5,9 +5,14 @@ import { notFound } from 'next/navigation'
 
 import { serviceBySlug, templatedServices } from '@/lib/services'
 import { conditionBySlug } from '@/lib/conditions'
-import { clinic } from '@/lib/clinic'
+import { clinic, practitionerBySlug } from '@/lib/clinic'
 import { JsonLd } from '@/components/JsonLd'
-import { breadcrumbSchema, faqSchema, medicalProcedureSchema } from '@/lib/schema'
+import {
+  breadcrumbSchema,
+  faqSchema,
+  medicalProcedureSchema,
+  reviewedMedicalWebPage,
+} from '@/lib/schema'
 import {
   CheckIcon,
   CtaBand,
@@ -17,9 +22,11 @@ import {
   Vertebrae,
   WhatsAppIcon,
 } from '@/components/ui'
-import { RatingBadge, StickyCta, TrustBar } from '@/components/service'
+import { RatingBadge, References, ReviewedBy, StickyCta, TrustBar } from '@/components/service'
 import { GoogleReviews } from '@/components/GoogleReviews'
 import { ServiceQualifier } from '@/components/ServiceQualifier'
+
+const reviewer = practitionerBySlug('valerie-na')!
 
 export function generateStaticParams() {
   return templatedServices().map((s) => ({ slug: s.slug }))
@@ -63,8 +70,26 @@ export default async function ServicePage({ params }: Props) {
           name: service.title,
           description: service.metaDescription,
           url: `/services/${service.slug}`,
+          howPerformed: lead?.body,
         })}
       />
+      {/* reviewedBy + lastReviewed — the E-E-A-T signals for a YMYL page. */}
+      {service.lastReviewed && (
+        <JsonLd
+          data={reviewedMedicalWebPage({
+            name: service.title,
+            description: service.metaDescription,
+            url: `/services/${service.slug}`,
+            lastReviewed: service.lastReviewed,
+            reviewer: {
+              name: reviewer.name,
+              role: reviewer.role,
+              credentials: reviewer.credentials,
+              slug: reviewer.slug,
+            },
+          })}
+        />
+      )}
       {/* Every answer below renders on the page, so the FAQPage schema is legitimate. */}
       {service.faqs.length > 0 && <JsonLd data={faqSchema(service.faqs)} />}
       <JsonLd
@@ -120,6 +145,7 @@ export default async function ServicePage({ params }: Props) {
       </section>
 
       <TrustBar />
+      <ReviewedBy date={service.lastReviewed} />
 
       {/* --------------------------------------------------- What we help with */}
       {(service.outcomes?.length || treats.length > 0) && (
@@ -211,6 +237,24 @@ export default async function ServicePage({ params }: Props) {
           </div>
         </section>
       )}
+
+      {/* ----------------------------------------------------- Long-form depth */}
+      {service.longForm && service.longForm.length > 0 && (
+        <section className="mx-auto max-w-3xl px-4 py-16 lg:py-24">
+          <div className="space-y-12">
+            {service.longForm.map((block) => (
+              <div key={block.heading}>
+                <h2 className="text-2xl font-extrabold leading-tight sm:text-3xl">
+                  {block.heading}
+                </h2>
+                <p className="mt-4 text-lg leading-relaxed text-ink-muted">{block.body}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      <References items={service.citations} />
 
       {/* ----------------------------------------------------------- Qualifier */}
       {service.qualifierConcerns && service.qualifierConcerns.length > 0 && (

@@ -1,8 +1,12 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
-import { clinic, googleReviews } from '@/lib/clinic'
+import { clinic, googleReviews, practitionerBySlug } from '@/lib/clinic'
 import { accreditations, testimonials } from '@/lib/home'
 import { Eyebrow, Vertebrae, WhatsAppIcon } from '@/components/ui'
+
+/** Founder + principal chiropractor reviews the clinical content on the money pages. */
+const reviewer = practitionerBySlug('valerie-na')!
 
 /**
  * Conversion primitives for the service pages. Kept out of ui.tsx because they are specific
@@ -109,6 +113,87 @@ export function ServiceTestimonials() {
         >
           Read more reviews on Google
         </a>
+      </div>
+    </section>
+  )
+}
+
+/**
+ * "Medically reviewed by" byline — the core E-E-A-T signal for a YMYL page. Names a real
+ * registered practitioner, links to their bio, and shows when the content was last checked.
+ * Renders nothing without a date, so a page can't display a fabricated review date.
+ */
+export function ReviewedBy({ date }: { date?: string }) {
+  if (!date) return null
+  const formatted = new Date(date).toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  })
+  return (
+    <div className="border-b border-line bg-white">
+      <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-4">
+        <Image
+          src={reviewer.photo}
+          alt={reviewer.name}
+          width={44}
+          height={44}
+          className="h-11 w-11 flex-none rounded-full object-cover"
+        />
+        <p className="text-sm leading-snug text-ink-muted">
+          Medically reviewed by{' '}
+          <Link
+            href={`/about/${reviewer.slug}`}
+            className="font-semibold text-ink underline underline-offset-2 hover:text-brand-slate"
+          >
+            {reviewer.name}
+          </Link>
+          , {reviewer.role}
+          <span className="block text-ink-muted/80">
+            {reviewer.credentials} · Last reviewed {formatted}
+          </span>
+        </p>
+      </div>
+    </div>
+  )
+}
+
+/**
+ * Citations block. Verifiable, cautiously worded facts attributed to journals, guidelines
+ * or regulators — the sourcing signal medical raters look for. Never a competitor, never an
+ * efficacy promise. Renders nothing when a page has no citations.
+ */
+export function References({
+  items,
+}: {
+  items?: { claim: string; source: string; url?: string }[]
+}) {
+  if (!items || items.length === 0) return null
+  return (
+    <section aria-label="References" className="border-t border-line bg-white">
+      <div className="mx-auto max-w-6xl px-4 py-12">
+        <Eyebrow>References</Eyebrow>
+        <ol className="mt-5 list-decimal space-y-3 pl-5 text-sm leading-relaxed text-ink-muted">
+          {items.map((c) => (
+            <li key={c.source}>
+              {c.claim}{' '}
+              <cite className="font-medium not-italic text-ink">
+                {c.url ? (
+                  <a
+                    href={c.url}
+                    target="_blank"
+                    rel="noopener nofollow"
+                    className="underline underline-offset-2 hover:text-brand-slate"
+                  >
+                    {c.source}
+                  </a>
+                ) : (
+                  c.source
+                )}
+              </cite>
+            </li>
+          ))}
+        </ol>
       </div>
     </section>
   )

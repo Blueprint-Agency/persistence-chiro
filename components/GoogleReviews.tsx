@@ -1,5 +1,6 @@
 import { googleReviews } from '@/lib/clinic'
 import { sampleReviews, sampleReviewSummary, USE_SAMPLE_REVIEWS } from '@/lib/sample-reviews'
+import { Eyebrow } from '@/components/ui'
 
 /**
  * Google-review styled social proof section.
@@ -84,6 +85,11 @@ export function GoogleReviews() {
   return (
     <section aria-label="Reviews" className="border-t border-line bg-brand-aqua/40">
       <div className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
+        <Eyebrow>From our patients in Cheras</Eyebrow>
+        <h2 className="mt-5 mb-8 max-w-2xl text-3xl font-extrabold leading-tight sm:text-4xl">
+          What people say after being seen here
+        </h2>
+
         {/* Summary header — mirrors a Google Business Profile ratings block. */}
         <div className="flex flex-col gap-6 rounded-3xl border border-line bg-white p-8 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-5">
