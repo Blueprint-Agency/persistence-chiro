@@ -8,7 +8,18 @@ import { gonsteadIntro, gonsteadSteps } from '@/lib/gonstead'
 import { serviceBySlug } from '@/lib/services'
 import { JsonLd } from '@/components/JsonLd'
 import { breadcrumbSchema, faqSchema, medicalProcedureSchema } from '@/lib/schema'
-import { CtaBand, Eyebrow, GhostButton, PageHero, Vertebrae } from '@/components/ui'
+import {
+  CtaBand,
+  Eyebrow,
+  GhostButton,
+  GoldButton,
+  PageHero,
+  Vertebrae,
+  WhatsAppIcon,
+} from '@/components/ui'
+import { RatingBadge, StickyCta, TrustBar } from '@/components/service'
+import { GoogleReviews } from '@/components/GoogleReviews'
+import { ServiceQualifier } from '@/components/ServiceQualifier'
 
 /**
  * Hand-built route rather than a /services/[slug] render — this page carries the Gonstead
@@ -58,7 +69,23 @@ export default function ChiropracticPage() {
         eyebrow="Our services"
         title="Chiropractic treatment in Cheras, Kuala Lumpur"
         intro={gonsteadIntro}
-      />
+      >
+        <div className="flex flex-wrap gap-3">
+          <GoldButton href={clinic.bookingUrl} external>
+            Book a consultation
+          </GoldButton>
+          <GhostButton href={clinic.whatsappUrl} external tone="light">
+            <WhatsAppIcon />
+            WhatsApp us
+          </GhostButton>
+        </div>
+        <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-white/70">
+          <RatingBadge tone="light" />
+          <span>Open seven days · Cheras, Maluri</span>
+        </div>
+      </PageHero>
+
+      <TrustBar />
 
       {/* ------------------------------------------------------ The six steps */}
       <section className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
@@ -131,6 +158,15 @@ export default function ChiropracticPage() {
         </div>
       </section>
 
+      {/* ----------------------------------------------------------- Qualifier */}
+      {service.qualifierConcerns && service.qualifierConcerns.length > 0 && (
+        <section className="mx-auto max-w-3xl px-4 py-16 lg:py-24">
+          <ServiceQualifier serviceName="chiropractic care" concerns={service.qualifierConcerns} />
+        </section>
+      )}
+
+      <GoogleReviews />
+
       {/* ------------------------------------------------------------------ FAQs */}
       <section className="border-t border-line bg-white">
         <div className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
@@ -169,6 +205,10 @@ export default function ChiropracticPage() {
         phone={clinic.phone}
         phoneE164={clinic.phoneE164}
       />
+
+      <StickyCta />
+      {/* Clears the fixed mobile bar so it never covers the footer. */}
+      <div aria-hidden="true" className="h-20 lg:hidden" />
     </>
   )
 }

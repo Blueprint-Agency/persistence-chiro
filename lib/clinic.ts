@@ -56,6 +56,24 @@ export const clinic = {
   ],
 } as const
 
+/**
+ * Google Business Profile star rating, for social proof on money pages.
+ *
+ * ⚠️ GATED LIKE `registrationsVerified`. The rating badge renders ONLY when `verified`
+ * is true, so we never ship a fabricated or stale number. Google Maps serves bots an
+ * empty shell and there is no GBP connector wired up, so these values cannot be scraped
+ * automatically — a human must read the live listing (clinic.mapsUrl) and fill them in.
+ *
+ * TO ACTIVATE: set the real `rating` and `count` from the Google listing, then flip
+ * `verified` to true. `url` points a "read the reviews" link at the real GBP entity.
+ */
+export const googleReviews = {
+  verified: false,
+  rating: 0,
+  count: 0,
+  url: clinic.mapsUrl,
+} as const
+
 /** Human-readable one-line address. Used in footer + citations. */
 export const addressOneLine = [
   clinic.address.street,

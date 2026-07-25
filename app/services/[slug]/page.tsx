@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
@@ -7,7 +8,18 @@ import { conditionBySlug } from '@/lib/conditions'
 import { clinic } from '@/lib/clinic'
 import { JsonLd } from '@/components/JsonLd'
 import { breadcrumbSchema, faqSchema, medicalProcedureSchema } from '@/lib/schema'
-import { CtaBand, Eyebrow, GhostButton, GoldButton, PageHero, Vertebrae } from '@/components/ui'
+import {
+  CheckIcon,
+  CtaBand,
+  Eyebrow,
+  GhostButton,
+  GoldButton,
+  Vertebrae,
+  WhatsAppIcon,
+} from '@/components/ui'
+import { RatingBadge, StickyCta, TrustBar } from '@/components/service'
+import { GoogleReviews } from '@/components/GoogleReviews'
+import { ServiceQualifier } from '@/components/ServiceQualifier'
 
 export function generateStaticParams() {
   return templatedServices().map((s) => ({ slug: s.slug }))
@@ -39,9 +51,10 @@ export default async function ServicePage({ params }: Props) {
 
   const treats = service.treats.map(conditionBySlug).filter(Boolean)
 
-  // The first section IS the page's subject, so its heading would duplicate the h1.
-  // Folded-in services (see the header comment in services.ts) keep theirs.
-  const [lead, ...folded] = service.sections
+  // The first section IS the page's subject, so it carries the hero intro; the rest become
+  // the numbered "how it works" steps.
+  const [lead, ...steps] = service.sections
+  const shortName = service.title.split(' in ')[0]
 
   return (
     <>
@@ -52,49 +65,87 @@ export default async function ServicePage({ params }: Props) {
           url: `/services/${service.slug}`,
         })}
       />
-
       {/* Every answer below renders on the page, so the FAQPage schema is legitimate. */}
       {service.faqs.length > 0 && <JsonLd data={faqSchema(service.faqs)} />}
-
       <JsonLd
         data={breadcrumbSchema([
           { name: 'Services', url: '/services' },
-          { name: service.title.split(' in ')[0], url: `/services/${service.slug}` },
+          { name: shortName, url: `/services/${service.slug}` },
         ])}
       />
 
-      <PageHero eyebrow="Our services" title={service.title} intro={lead?.body} />
-
-      <article className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
-        <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
-          <div>
-            {folded.length > 0 && (
-              <div className="divide-y divide-line border-y border-line">
-                {folded.map((s) => (
-                  <section key={s.heading} className="py-7">
-                    <h2 className="text-xl font-bold">{s.heading}</h2>
-                    <p className="mt-3 leading-relaxed text-ink-muted">{s.body}</p>
-                  </section>
-                ))}
+      {/* ------------------------------------------------------------------ Hero */}
+      <section className="bg-brand-slate-deep text-white">
+        <div className="mx-auto max-w-6xl px-4 py-14 lg:py-20">
+          <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-16">
+            <div>
+              <Eyebrow tone="light">Our services</Eyebrow>
+              <h1 className="mt-6 max-w-2xl text-4xl font-extrabold leading-[1.1] text-white sm:text-5xl">
+                {service.title}
+              </h1>
+              {lead?.body && (
+                <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/75">
+                  {lead.body}
+                </p>
+              )}
+              <div className="mt-8 flex flex-wrap gap-3">
+                <GoldButton href={clinic.bookingUrl} external>
+                  Book a consultation
+                </GoldButton>
+                <GhostButton href={clinic.whatsappUrl} external tone="light">
+                  <WhatsAppIcon />
+                  WhatsApp us
+                </GhostButton>
               </div>
-            )}
+              <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-white/70">
+                <RatingBadge tone="light" />
+                <span>Open seven days · Cheras, Maluri</span>
+              </div>
+            </div>
 
-            {service.relatedLinks && service.relatedLinks.length > 0 && (
-              <div className="mt-10 flex flex-wrap gap-3">
-                {service.relatedLinks.map((link) => (
-                  <GhostButton key={link.href} href={link.href}>
-                    {link.label}
-                  </GhostButton>
-                ))}
+            {service.heroImage && (
+              <div className="relative aspect-[4/3] overflow-hidden rounded-3xl lg:aspect-[4/5]">
+                <Image
+                  src={service.heroImage.src}
+                  alt={service.heroImage.alt}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 480px"
+                  className="object-cover"
+                  priority
+                />
               </div>
             )}
           </div>
+        </div>
+      </section>
 
-          <aside className="lg:sticky lg:top-32 lg:self-start">
+      <TrustBar />
+
+      {/* --------------------------------------------------- What we help with */}
+      {(service.outcomes?.length || treats.length > 0) && (
+        <section className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
+          <div className="grid gap-10 lg:grid-cols-[1fr_0.9fr] lg:gap-16">
+            <div>
+              <Eyebrow>What we help with</Eyebrow>
+              <h2 className="mt-5 text-3xl font-extrabold leading-tight sm:text-4xl">
+                Reasons people come in for {shortName.toLowerCase()}
+              </h2>
+              {service.outcomes && service.outcomes.length > 0 && (
+                <ul className="mt-8 space-y-3.5">
+                  {service.outcomes.map((o) => (
+                    <li key={o} className="flex items-start gap-3 leading-relaxed text-ink-muted">
+                      <CheckIcon className="mt-1 h-5 w-5 flex-none text-brand-slate" />
+                      {o}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+
             {treats.length > 0 && (
-              <div className="rounded-3xl border border-line bg-white p-8">
-                <Eyebrow>What we treat with it</Eyebrow>
-                <ul className="mt-5 space-y-2.5">
+              <div className="rounded-3xl border border-line bg-white p-8 lg:self-start">
+                <Eyebrow>Conditions we commonly see</Eyebrow>
+                <ul className="mt-5 grid gap-2.5 sm:grid-cols-2 lg:grid-cols-1">
                   {treats.map((c) => (
                     <li key={c!.slug}>
                       <Link
@@ -115,22 +166,74 @@ export default async function ServicePage({ params }: Props) {
                 </Link>
               </div>
             )}
+          </div>
+        </section>
+      )}
 
-            <div className="mt-6 rounded-3xl bg-brand-aqua/50 p-8">
-              <h2 className="text-xl font-bold">Book an assessment</h2>
-              <p className="mt-2 leading-relaxed text-ink-muted">
-                Chiropractic and physiotherapy in Cheras, Maluri. Open seven days.
-              </p>
-              <div className="mt-5">
-                <GoldButton href={clinic.bookingUrl} external>
-                  Book an appointment
-                </GoldButton>
+      {/* -------------------------------------------------------- How it works */}
+      {steps.length > 0 && (
+        <section className="border-t border-line bg-white">
+          <div className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
+            <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
+              <div className="lg:sticky lg:top-32 lg:self-start">
+                <Eyebrow>How it works</Eyebrow>
+                <h2 className="mt-5 text-3xl font-extrabold leading-tight sm:text-4xl">
+                  What {shortName.toLowerCase()} involves here
+                </h2>
+                <p className="mt-5 leading-relaxed text-ink-muted">
+                  We assess before we treat, then explain what we find in plain terms,
+                  including the parts your care is unlikely to change.
+                </p>
+                <div className="mt-8">
+                  <GoldButton href={clinic.bookingUrl} external>
+                    Book a consultation
+                  </GoldButton>
+                </div>
               </div>
-            </div>
-          </aside>
-        </div>
-      </article>
 
+              <ol className="divide-y divide-line border-y border-line">
+                {steps.map((step, i) => (
+                  <li key={step.heading} className="flex gap-6 py-7">
+                    <span
+                      aria-hidden="true"
+                      className="label flex-none pt-1.5 text-brand-gold-ink"
+                    >
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                    <div>
+                      <h3 className="text-xl font-bold">{step.heading}</h3>
+                      <p className="mt-3 leading-relaxed text-ink-muted">{step.body}</p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ----------------------------------------------------------- Qualifier */}
+      {service.qualifierConcerns && service.qualifierConcerns.length > 0 && (
+        <section className="mx-auto max-w-3xl px-4 py-16 lg:py-24">
+          <ServiceQualifier serviceName={shortName.toLowerCase()} concerns={service.qualifierConcerns} />
+        </section>
+      )}
+
+      {service.relatedLinks && service.relatedLinks.length > 0 && (
+        <div className="mx-auto max-w-6xl px-4 pb-4">
+          <div className="flex flex-wrap gap-3">
+            {service.relatedLinks.map((link) => (
+              <GhostButton key={link.href} href={link.href}>
+                {link.label}
+              </GhostButton>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <GoogleReviews />
+
+      {/* ----------------------------------------------------------------- FAQs */}
       {service.faqs.length > 0 && (
         <section className="border-t border-line bg-white">
           <div className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
@@ -164,10 +267,16 @@ export default async function ServicePage({ params }: Props) {
       )}
 
       <CtaBand
+        heading={`Book your ${shortName.toLowerCase()} consultation`}
+        body="Registered chiropractors and physiotherapists in Cheras, Maluri. Open seven days, right next to Sunway Velocity."
         bookingUrl={clinic.bookingUrl}
         phone={clinic.phone}
         phoneE164={clinic.phoneE164}
       />
+
+      <StickyCta />
+      {/* Clears the fixed mobile bar so it never covers the footer. */}
+      <div aria-hidden="true" className="h-20 lg:hidden" />
     </>
   )
 }

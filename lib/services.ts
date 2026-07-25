@@ -39,6 +39,25 @@ export type Service = {
   targetKeyword: string
   /** Lead paragraph under the h1. */
   intro: string
+  /**
+   * Hero and mid-page imagery. The four templated pages shipped with no images at all,
+   * which read as a brochure; a photo carries the conversion layout. No service-specific
+   * photos exist yet, so these reuse honest generic clinic/assessment shots — the alt text
+   * must describe what is actually in the frame, never the service being sold.
+   */
+  heroImage?: { src: string; alt: string }
+  /**
+   * Benefit-framed reasons people come in for this service. Describes the concern, never
+   * promises an outcome (no-medical-promises rule) — "tension that builds up at a desk",
+   * not "we fix your tension". Rendered as a scannable "what we help with" block.
+   */
+  outcomes?: string[]
+  /**
+   * Concern checkboxes for the "Is this right for you?" qualifier — the reader ticks what
+   * applies and the component builds a prefilled WhatsApp message. Phrase each as a symptom
+   * or situation, not a diagnosis.
+   */
+  qualifierConcerns?: string[]
   /** Service blocks. First one is the page's primary service. */
   sections: { heading: string; body: string }[]
   /** Condition slugs this service is used for — the cross-link back into /conditions. */
@@ -74,6 +93,19 @@ export const services: Service[] = [
     targetKeyword: 'bone alignment near me',
     intro:
       'Gonstead chiropractic care in Cheras. We assess the spine segment by segment before anything is adjusted, so treatment goes to whichever segment is actually driving your problem. That is not always where you feel it.',
+    outcomes: [
+      'Back, neck or joint pain you want assessed segment by segment',
+      'A recurring problem you would like to understand, not just mask',
+      'A precise adjustment rather than a general crack',
+      'Wanting to know whether the Gonstead approach suits your case',
+    ],
+    qualifierConcerns: [
+      'I have back, neck or joint pain',
+      'My problem keeps returning',
+      'I want to understand what is actually driving it',
+      'I am curious whether chiropractic suits my case',
+      'I am pregnant or bringing a child and want a gentle assessment',
+    ],
     sections: [
       {
         heading: 'Gonstead spinal assessment',
@@ -115,6 +147,24 @@ export const services: Service[] = [
     targetKeyword: 'dry needling near me',
     intro:
       'Dry needling in Cheras. A neuromuscular technique that uses fine needles to reach trigger points and bands of muscular tension which are difficult to release by hand alone.',
+    heroImage: {
+      src: '/img/first-visit-consultation.webp',
+      alt: 'A practitioner talking through an assessment before treatment at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
+    },
+    outcomes: [
+      'Tight, knotted muscles that do not release with stretching or massage',
+      'Deep muscular tension linked to neck, shoulder or lower back trouble',
+      'Trigger points that keep referring pain to the same spot',
+      'Muscles that stay guarded and overactive after an old injury',
+    ],
+    qualifierConcerns: [
+      'I have a muscle knot that will not release',
+      'Massage helps for a day, then the tightness comes back',
+      'My neck or shoulders feel constantly tense',
+      'An old injury left a muscle feeling tight and overactive',
+      'I have had dry needling before and it helped',
+      'I am nervous about needles and want to ask first',
+    ],
     sections: [
       {
         heading: 'Integrative dry needling',
@@ -180,6 +230,24 @@ export const services: Service[] = [
     targetKeyword: 'physio cheras',
     intro:
       'Physiotherapy in Cheras, pairing hands-on treatment with corrective exercise. Once a joint is moving more freely, the exercise work aims to rebuild the strength and control that help keep it that way.',
+    heroImage: {
+      src: '/img/consultation-assessment.webp',
+      alt: 'A practitioner assessing a patient posture and movement at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
+    },
+    outcomes: [
+      'Pain or stiffness that limits how you move through the day',
+      'A recent strain or flare-up you want assessed properly',
+      'A long-standing problem that keeps returning',
+      'Weakness or poor control after an injury or time off',
+      'Exercises that actually fit your problem, not a generic sheet',
+    ],
+    qualifierConcerns: [
+      'I have pain or stiffness that limits daily activities',
+      'My problem keeps coming back',
+      'I want exercises tailored to my specific issue',
+      'I am recovering from an injury and feel weak or unsteady',
+      'I am not sure whether I need physio or chiropractic',
+    ],
     sections: [
       {
         heading: 'Physiotherapy in Cheras',
@@ -245,6 +313,25 @@ export const services: Service[] = [
     targetKeyword: 'sports injury treatment malaysia',
     intro:
       'Sports injury care in Cheras. We assess what failed and why, then work through staged rehabilitation aimed at getting you back to your sport without carrying the same weakness into it.',
+    heroImage: {
+      src: '/img/hero-adjustment.webp',
+      alt: 'Hands-on treatment at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
+    },
+    outcomes: [
+      'A sprain, strain or overuse injury you want assessed',
+      'Pain that flares up during or after your sport',
+      'An injury that keeps coming back when you return to training',
+      'A staged plan back to your sport, not just rest',
+      'Rehabilitation to continue after surgery, within the limits your surgeon sets',
+    ],
+    qualifierConcerns: [
+      'I have a sprain, strain or overuse injury',
+      'Pain flares up during or after my sport',
+      'My injury keeps returning when I go back to training',
+      'I want a clear plan for returning to my sport',
+      'I am rehabbing after surgery',
+      'I injured myself at the weekend and I am not an athlete',
+    ],
     sections: [
       {
         heading: 'Sports injury rehabilitation in Cheras',
@@ -310,6 +397,24 @@ export const services: Service[] = [
     targetKeyword: 'sit posture correction',
     intro:
       'Posture work for desk workers in Cheras. We assess how you actually sit and move, then combine strength work with practical workstation changes so that a better position becomes sustainable instead of something you have to keep remembering.',
+    heroImage: {
+      src: '/img/gonstead-nervoscope.webp',
+      alt: 'A spinal assessment using instrumentation at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
+    },
+    outcomes: [
+      'Neck and shoulder tension that builds up over a day at a desk',
+      'A forward head or rounded shoulders you have noticed',
+      'Stiffness that eases when you move and returns when you sit',
+      'Practical workstation changes you will actually keep',
+      'Strength work to hold a better position without thinking about it',
+    ],
+    qualifierConcerns: [
+      'My neck and shoulders ache after a day at a desk',
+      'I have noticed my head sitting forward or shoulders rounding',
+      'I stiffen up when I sit for long periods',
+      'I want help setting up my workstation',
+      'I have tried a posture brace and it did not hold',
+    ],
     sections: [
       {
         heading: 'Posture correction in Cheras',
