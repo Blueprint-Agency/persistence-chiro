@@ -31,6 +31,18 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    // First net-new SEO post (not a migrated Wix post, so not in LEGACY_POST_SLUGS and it
+    // needs no /post/ redirect). Written 2026-07-25 via the persistence-content-builder skill.
+    slug: 'muscle-knots',
+    title: 'Muscle Knots: Causes, Symptoms and What Actually Helps',
+    description:
+      'What causes muscle knots, what genuinely helps, how to ease one at home, and the signs that mean you should get checked. Cheras, Kuala Lumpur.',
+    datePublished: '2026-07-25',
+    author: 'Persistence Chiropractic Care',
+    linksTo: 'dry-needling',
+    draft: false,
+  },
+  {
     slug: 'a-deeper-understanding-of-scoliosis',
     title: 'Scoliosis: A Deeper Understanding',
     description:

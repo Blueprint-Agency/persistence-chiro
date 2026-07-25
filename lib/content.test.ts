@@ -25,6 +25,23 @@ const conditionSlugs = new Set(conditions.map((c) => c.slug))
 const serviceSlugs = new Set(services.map((m) => m.slug))
 
 /**
+ * Promissory phrasing that must never reach published copy. Hoisted to module scope so the
+ * structured-content guard and the new-blog-post guard share one list.
+ */
+const BANNED_CLAIMS: [RegExp, string][] = [
+  [/\bfully safe\b/i, 'absolute safety guarantee'],
+  [/\bproven results\b/i, 'efficacy guarantee'],
+  [/\bpain[- ]free (life|living)\b/i, 'promises absence of pain'],
+  [/\bcompletely heal\b/i, 'promises full resolution'],
+  [/\bare painless\b/i, 'absolute claim about sensation'],
+  [/\bflush toxins\b/i, 'unsupported physiological claim'],
+  [/\bguarantee[ds]?\b/i, 'explicit guarantee'],
+  [/\bwill (cure|fix|resolve|eliminate)\b/i, 'promises a cure'],
+  [/\bmiracle\b/i, 'overstates efficacy'],
+  [/\bensur(e|es|ing) (every patient|efficient|proper|all)\b/i, 'guarantees an outcome'],
+]
+
+/**
  * FAQPage schema is emitted on whichever route renders the answers — homeFaqs on `/`,
  * clinicFaqs on /what-to-expect. If the same Q&A appears in both, two routes publish
  * identical FAQPage markup, which is the duplicate-content case Google penalises.
@@ -47,24 +64,13 @@ test('no answer is published on two routes', () => {
  * came back in through `faqs.ts` straight into FAQPage structured data, where Google can
  * surface them verbatim.
  *
- * SCOPE: the structured content in `lib/` only. `content/blog/*.mdx` is NOT yet covered —
- * the 14 migrated posts still carry claims ("fixing the structure", "heal itself",
- * "miracle workers") and rewriting them is outstanding work. Add `mdx` to the sources
- * below once that lands; the assertion is written to make that a one-line change.
+ * SCOPE: the structured content in `lib/` here; new blog posts are covered by the separate
+ * MDX guard below. The 14 migrated legacy posts are the one gap — they still carry claims
+ * ("fixing the structure", "heal itself", "miracle workers") and are grandfathered until the
+ * blog-rewrite work lands, so the MDX guard skips legacy slugs.
  */
 test('no promissory medical claims in published copy', () => {
-  const banned: [RegExp, string][] = [
-    [/\bfully safe\b/i, 'absolute safety guarantee'],
-    [/\bproven results\b/i, 'efficacy guarantee'],
-    [/\bpain[- ]free (life|living)\b/i, 'promises absence of pain'],
-    [/\bcompletely heal\b/i, 'promises full resolution'],
-    [/\bare painless\b/i, 'absolute claim about sensation'],
-    [/\bflush toxins\b/i, 'unsupported physiological claim'],
-    [/\bguarantee[ds]?\b/i, 'explicit guarantee'],
-    [/\bwill (cure|fix|resolve|eliminate)\b/i, 'promises a cure'],
-    [/\bmiracle\b/i, 'overstates efficacy'],
-    [/\bensur(e|es|ing) (every patient|efficient|proper|all)\b/i, 'guarantees an outcome'],
-  ]
+  const banned = BANNED_CLAIMS
 
   const sources: [string, string][] = [
     ...conditions.flatMap((c) => [
@@ -98,6 +104,28 @@ test('no promissory medical claims in published copy', () => {
     }
   }
   assert.deepEqual(hits, [], `promissory claim(s):\n  ${hits.join('\n  ')}`)
+})
+
+/**
+ * Same rule, applied to NEW blog posts (any published post whose slug is not a legacy Wix
+ * slug). New posts come from the persistence-content-builder skill and must be clean from the
+ * start. Legacy MDX is skipped: it predates the rule and is fixed by the separate rewrite.
+ * Also flags em/en dashes, which the house style forbids in rendered copy.
+ */
+test('new blog posts carry no promissory claims or stray dashes', async () => {
+  const { readFileSync } = await import('node:fs')
+  const legacy = new Set<string>(LEGACY_POST_SLUGS)
+  const hits: string[] = []
+  for (const p of publishedPosts()) {
+    if (legacy.has(p.slug)) continue
+    const text = readFileSync(new URL(`../content/blog/${p.slug}.mdx`, import.meta.url), 'utf8')
+    for (const [re, why] of BANNED_CLAIMS) {
+      const m = text.match(re)
+      if (m) hits.push(`blog/${p.slug}: "${m[0]}" — ${why}`)
+    }
+    if (/[—–]/.test(text)) hits.push(`blog/${p.slug}: contains an em/en dash`)
+  }
+  assert.deepEqual(hits, [], `new-post issue(s):\n  ${hits.join('\n  ')}`)
 })
 
 test('no two pages target the same keyword', () => {
@@ -163,13 +191,20 @@ test('every legacy post slug has an index entry', () => {
   }
 })
 
-test('post slugs match the legacy slugs byte-for-byte', () => {
+test('legacy post slugs stay byte-identical; new posts claim no /post/ redirect', () => {
   const legacy = new Set<string>(LEGACY_POST_SLUGS)
+  const postRedirects = new Set(
+    redirects.filter((r) => r.source.startsWith('/post/')).map((r) => r.source),
+  )
   for (const p of posts) {
+    // Legacy Wix posts keep their exact slug (the /post/:slug wildcard passes it through);
+    // 'every legacy post slug has an index entry' asserts none were dropped or renamed.
+    // New SEO posts are allowed — they had no Wix URL, so there must be NO /post/<slug>
+    // redirect pretending they did, which would 301 a crawler into a page that never existed.
+    if (legacy.has(p.slug)) continue
     assert.ok(
-      legacy.has(p.slug),
-      `post "${p.slug}" is not a legacy slug — if renamed it needs its own redirect rule, ` +
-        `because /post/:slug -> /blog/:slug passes the slug through unchanged`,
+      !postRedirects.has(`/post/${p.slug}`),
+      `new post "${p.slug}" has a /post/ redirect but was never a legacy Wix URL`,
     )
   }
 })
