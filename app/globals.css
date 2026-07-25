@@ -190,6 +190,129 @@ body {
   transform: rotate(45deg);
 }
 
+/**
+ * Preloader: the backbone.
+ *
+ * Four vertebral segments — the same taper as the .vertebrae mark — stacked and pulsed
+ * top to bottom. For the reveal, the page is uncovered *through* the bones: a full white
+ * sheet with bone-shaped holes (a CSS mask, holes supplied inline on .preloader__sheet)
+ * sits over the page, and the holes zoom up until the page fills the frame. The white
+ * sheet stays white everywhere the bones aren't, right up to the closing fade.
+ *
+ * The whole reveal is CSS-driven (animation-fill-mode: forwards ends hidden), so even with
+ * JS disabled the overlay animates away rather than stranding the page behind it. The
+ * client component only locks scroll, skips replay within a session, and unmounts.
+ *
+ * Geometry note: the mask SVG is 4000×4000, centred, with bones sized in px at its middle;
+ * .preloader__bone matches those px so the pulsing slate bones sit exactly over the holes.
+ */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+}
+
+/* The white cover with bone-shaped windows. mask-image (the holes) is set inline so the
+   geometry lives in one place; everything else — the zoom and the final fade — is here. */
+.preloader__sheet {
+  position: absolute;
+  inset: 0;
+  background: var(--background);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  /* 1:1 with the 4000px SVG → bones render at their authored px. */
+  -webkit-mask-size: 4000px;
+  mask-size: 4000px;
+  will-change: mask-size, opacity;
+  /* Windows zoom open, then the residual white stripes fade out to finish the reveal. */
+  animation:
+    pc-mask-zoom 0.9s cubic-bezier(0.55, 0, 0.85, 0.25) 1.9s forwards,
+    pc-sheet-fade 0.4s ease-in 2.45s forwards;
+}
+
+.preloader__spine {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  transform-origin: center;
+  will-change: transform, opacity;
+  /* Zoom must track the mask exactly — same curve, delay and duration, and a matching
+     scale factor (4000px → 130000px is 32.5×) — so the opaque bones stay glued over their
+     windows the whole way up and the page never leaks around them. Then a fade turns the
+     bones transparent, and that fade is the only thing that reveals the page. */
+  animation:
+    pc-spine-zoom 0.9s cubic-bezier(0.55, 0, 0.85, 0.25) 1.9s forwards,
+    pc-spine-fade 0.6s ease-in 2s forwards;
+}
+
+/* Taper is colour, not opacity: full slate down to a pale tint, all fully opaque, so the
+   page stays hidden behind every bone through the pulse. Matches the screenshot's
+   dark-to-light stack and the .vertebrae fade. */
+.preloader__bone {
+  width: 72px;
+  height: 26px;
+  border-radius: 9px;
+  background: var(--brand-slate);
+  transform-origin: center;
+  will-change: transform;
+  /* Two waves of the pulse; per-bone delay set inline staggers it top to bottom. */
+  animation: pc-preload-pulse 0.85s ease-in-out 2 both;
+}
+.preloader__bone:nth-child(2) {
+  background: color-mix(in srgb, var(--brand-slate) 68%, #fff);
+}
+.preloader__bone:nth-child(3) {
+  background: color-mix(in srgb, var(--brand-slate) 46%, #fff);
+}
+.preloader__bone:nth-child(4) {
+  background: color-mix(in srgb, var(--brand-slate) 30%, #fff);
+}
+
+@keyframes pc-preload-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  45% {
+    transform: scale(1.16);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand-slate) 22%, transparent);
+  }
+}
+
+/* Scale the mask so the bone windows grow from ~72px toward filling the frame. */
+@keyframes pc-mask-zoom {
+  to {
+    -webkit-mask-size: 130000px;
+    mask-size: 130000px;
+  }
+}
+
+@keyframes pc-spine-zoom {
+  to {
+    transform: scale(32.5);
+  }
+}
+
+@keyframes pc-spine-fade {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes pc-sheet-fade {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

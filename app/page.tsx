@@ -11,6 +11,7 @@ import { homeIntro, offers, testimonials, accreditations, postImages } from '@/l
 import { faqSchema } from '@/lib/schema'
 import { JsonLd } from '@/components/JsonLd'
 import { Eyebrow, GoldButton, GhostButton, Vertebrae, WhatsAppIcon, CheckIcon } from '@/components/ui'
+import { Preloader } from '@/components/Preloader'
 
 /**
  * The homepage IS the Cheras page — there is deliberately no /areas/cheras. It already
@@ -33,6 +34,10 @@ export default function Home() {
 
   return (
     <>
+      {/* Backbone reveal — homepage only. Fixed overlay, so it covers the header too
+          despite living inside <main>. Plays once per session, then unmounts. */}
+      <Preloader />
+
       <JsonLd data={faqSchema(homeFaqs)} />
 
       {/* ---------------------------------------------------------------- Hero */}
