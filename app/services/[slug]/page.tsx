@@ -6,8 +6,8 @@ import { serviceBySlug, templatedServices } from '@/lib/services'
 import { conditionBySlug } from '@/lib/conditions'
 import { clinic } from '@/lib/clinic'
 import { JsonLd } from '@/components/JsonLd'
-import { breadcrumbSchema, medicalProcedureSchema } from '@/lib/schema'
-import { CtaBand, Eyebrow, GoldButton, PageHero, Vertebrae } from '@/components/ui'
+import { breadcrumbSchema, faqSchema, medicalProcedureSchema } from '@/lib/schema'
+import { CtaBand, Eyebrow, GhostButton, GoldButton, PageHero, Vertebrae } from '@/components/ui'
 
 export function generateStaticParams() {
   return templatedServices().map((s) => ({ slug: s.slug }))
@@ -53,6 +53,9 @@ export default async function ServicePage({ params }: Props) {
         })}
       />
 
+      {/* Every answer below renders on the page, so the FAQPage schema is legitimate. */}
+      {service.faqs.length > 0 && <JsonLd data={faqSchema(service.faqs)} />}
+
       <JsonLd
         data={breadcrumbSchema([
           { name: 'Services', url: '/services' },
@@ -72,6 +75,16 @@ export default async function ServicePage({ params }: Props) {
                     <h2 className="text-xl font-bold">{s.heading}</h2>
                     <p className="mt-3 leading-relaxed text-ink-muted">{s.body}</p>
                   </section>
+                ))}
+              </div>
+            )}
+
+            {service.relatedLinks && service.relatedLinks.length > 0 && (
+              <div className="mt-10 flex flex-wrap gap-3">
+                {service.relatedLinks.map((link) => (
+                  <GhostButton key={link.href} href={link.href}>
+                    {link.label}
+                  </GhostButton>
                 ))}
               </div>
             )}
@@ -117,6 +130,38 @@ export default async function ServicePage({ params }: Props) {
           </aside>
         </div>
       </article>
+
+      {service.faqs.length > 0 && (
+        <section className="border-t border-line bg-white">
+          <div className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
+            <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+              <div>
+                <Eyebrow>Questions</Eyebrow>
+                <h2 className="mt-5 text-3xl font-extrabold leading-tight sm:text-4xl">
+                  Frequently asked questions
+                </h2>
+              </div>
+
+              <div className="divide-y divide-line border-y border-line">
+                {service.faqs.map((faq) => (
+                  <details key={faq.q} className="faq py-5">
+                    <summary className="flex items-start justify-between gap-6 text-lg font-semibold text-ink">
+                      {faq.q}
+                      <span
+                        aria-hidden="true"
+                        className="faq-sign mt-1 flex-none text-2xl font-light leading-none text-brand-slate transition-transform"
+                      >
+                        +
+                      </span>
+                    </summary>
+                    <p className="mt-4 leading-relaxed text-ink-muted">{faq.a}</p>
+                  </details>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       <CtaBand
         bookingUrl={clinic.bookingUrl}

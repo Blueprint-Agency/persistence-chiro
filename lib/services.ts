@@ -43,6 +43,13 @@ export type Service = {
   sections: { heading: string; body: string }[]
   /** Condition slugs this service is used for — the cross-link back into /conditions. */
   treats: string[]
+  /**
+   * In-context internal links rendered as a button row under the sections — descriptive
+   * anchor text into other services/pages. Optional; the chiropractic dedicated route
+   * hard-codes its own equivalent. Keeps service pages internally linked without putting
+   * markup inside the plain-text section bodies.
+   */
+  relatedLinks?: { href: string; label: string }[]
   faqs: { q: string; a: string }[]
   /**
    * True when the service has a hand-built route file instead of rendering through
@@ -104,29 +111,62 @@ export const services: Service[] = [
     title: 'Integrative Dry Needling in Cheras, Kuala Lumpur',
     metaTitle: 'Dry Needling in Cheras, KL | Persistence Chiropractic',
     metaDescription:
-      'Integrative dry needling to release deep muscular tension, improve activation patterns and support recovery. Cheras, Maluri.',
+      'Integrative dry needling in Cheras, Maluri to release deep muscle tension and trigger points. Assessment first, single use needles, honest expectations.',
     targetKeyword: 'dry needling near me',
     intro:
       'Dry needling in Cheras. A neuromuscular technique that uses fine needles to reach trigger points and bands of muscular tension which are difficult to release by hand alone.',
     sections: [
       {
-        heading: 'Integrative Dry Needling',
-        body: 'Advanced neuromuscular technique used to release deep muscular tension, improve activation patterns, and support recovery.',
+        heading: 'Integrative dry needling',
+        body: 'Dry needling is a neuromuscular technique that uses fine, single use needles to reach trigger points and tight bands of muscle that are difficult to release by hand alone. We use it as part of a treatment plan rather than on its own, and only where the assessment points to muscle as the thing driving your problem.',
+      },
+      {
+        heading: 'What dry needling actually does',
+        body: 'A trigger point is a small, irritable knot within a tight band of muscle that can refer pain to other areas. A fine needle placed into that point often produces a brief involuntary twitch, which is the muscle letting go. The aim is to ease the tension, settle the local irritation and give the muscle room to move more normally again. How much it helps, and for how long, varies from person to person and depends on what is keeping the muscle tight in the first place.',
       },
       {
         heading: 'What a session involves',
-        body: 'Fine needles are placed into the muscle at the points identified during assessment. Most patients describe a brief twitch or dull ache rather than sharp pain. Some soreness for a day afterwards is common and settles on its own.',
+        body: 'We assess the area first to work out which muscles are involved, then place fine needles into the points identified. Most patients describe a brief twitch or a dull ache rather than sharp pain. A session usually takes fifteen to thirty minutes depending on how much we are treating, and the needling is only part of it. What we find often shapes the exercise or hands on work we pair it with.',
+      },
+      {
+        heading: 'Is it safe, and what to expect afterwards',
+        body: 'Dry needling is generally very safe when it is carried out by a trained practitioner. We use sterile, single use needles that are disposed of after one session and never reused. Mild soreness, and occasionally a small bruise, for a day or so afterwards is common and settles on its own. Tell your practitioner if you are pregnant, take blood thinners or have a strong fear of needles, because there are situations where we would choose not to needle and use another approach instead.',
+      },
+      {
+        heading: 'How it works with the rest of your treatment',
+        body: 'Needling releases tension, but on its own it does not change the habit or weakness that let the muscle tighten, which is why we rarely use it alone. Under one roof in Cheras we combine it with chiropractic care and physiotherapy, and the assessment decides where to start. For some people needling comes first to calm things down, and for others the strength work matters more.',
+      },
+      {
+        heading: 'How many sessions you might need',
+        body: 'This depends on how long the problem has been there and what is driving it, so we will not give you a fixed number at the first visit. Some people notice a change quickly, while others need the muscle work supported over several weeks alongside exercise. We would rather review honestly as we go than sell you a package up front.',
       },
     ],
-    treats: ['sciatica', 'neck-pain', 'shoulder-imbalance'],
+    treats: ['back-pain', 'neck-pain', 'shoulder-imbalance', 'sciatica'],
+    relatedLinks: [
+      { href: '/services/physiotherapy', label: 'How dry needling fits with physiotherapy' },
+      { href: '/services/chiropractic-treatment', label: 'Compare with chiropractic care' },
+      { href: '/what-to-expect', label: 'What to expect on your first visit' },
+    ],
     faqs: [
       {
         q: 'Is dry needling the same as acupuncture?',
-        a: 'They use similar needles but come from different traditions. Dry needling is based on Western anatomy and aims at specific trigger points in muscle. Acupuncture follows traditional Chinese meridian theory, and treats points that have nothing to do with where the muscle tension sits.',
+        a: 'They use similar needles but come from different traditions. Dry needling is based on Western anatomy and targets specific trigger points in muscle, whereas acupuncture follows traditional Chinese meridian theory and treats points chosen on a different basis. The needles look alike, but what we are aiming at is not the same.',
       },
       {
         q: 'Does dry needling hurt?',
-        a: 'Most patients report a brief twitch response or a dull ache rather than sharp pain. Mild soreness afterwards is common. Tell your practitioner if anything feels worse than uncomfortable, because the technique can be adjusted.',
+        a: 'Most patients report a brief twitch response or a dull ache rather than sharp pain. Mild soreness afterwards is common and usually settles within a day. Tell your practitioner if anything feels worse than uncomfortable, because the technique can be adjusted or stopped.',
+      },
+      {
+        q: 'How many sessions of dry needling will I need?',
+        a: 'It depends on how long the muscle has been tight and what is keeping it that way, so we will not commit to a number on your first visit. Some people notice a change quickly, while others need the work supported over several weeks alongside exercise. We review as we go rather than sell a fixed package.',
+      },
+      {
+        q: 'Are the needles safe, and are they reused?',
+        a: 'Needles are never reused. We use sterile, single use needles that are disposed of after one session. Dry needling is generally very safe in trained hands, though mild soreness or a small bruise afterwards is possible and normal.',
+      },
+      {
+        q: 'Should I have dry needling or a chiropractic adjustment?',
+        a: 'It depends on what the assessment finds, and the two are often used together rather than as alternatives. Broadly, needling addresses tight, irritable muscle while an adjustment addresses how a spinal joint moves. If you are unsure, message us your main concern and we will point you to the right starting point.',
       },
     ],
     draft: false,
@@ -136,33 +176,62 @@ export const services: Service[] = [
     title: 'Physiotherapy in Cheras, Kuala Lumpur',
     metaTitle: 'Physio in Cheras, KL | Persistence Chiropractic',
     metaDescription:
-      'Physiotherapy in Cheras, Maluri. Manual therapy, joint mobilisation, gait and movement assessment, and corrective exercise programmes.',
+      'Physiotherapy in Cheras, Maluri. Hands on manual therapy, movement assessment and corrective exercise, alongside chiropractic care under one roof.',
     targetKeyword: 'physio cheras',
     intro:
       'Physiotherapy in Cheras, pairing hands-on treatment with corrective exercise. Once a joint is moving more freely, the exercise work aims to rebuild the strength and control that help keep it that way.',
     sections: [
       {
-        heading: 'Precision Manual Therapy',
-        body: 'Refined hands-on techniques including joint mobilization and myofascial release aimed at improving joint mechanics and easing pain with precision.',
+        heading: 'Physiotherapy in Cheras',
+        body: 'Physiotherapy in Cheras, pairing hands on treatment with corrective exercise. We assess how you move before we treat, so the work goes to whatever is actually driving the problem rather than only the spot that hurts. Once a joint is moving more freely, the exercise aims to rebuild the strength and control that help keep it that way.',
       },
       {
-        heading: 'Biomechanical, Orthotics & Movement Analysis',
-        body: 'Detailed assessment of posture, gait, and functional movement patterns to help identify contributing factors and improve mechanical efficiency.',
+        heading: 'Precision manual therapy',
+        body: 'Refined hands on techniques, including joint mobilisation and myofascial release, aimed at improving how a joint moves and easing pain with precision. Manual therapy tends to work best as a way in rather than the whole plan. It can settle things enough that the active work becomes possible, and what we use depends on what the assessment finds.',
+      },
+      {
+        heading: 'Movement, gait and biomechanical assessment',
+        body: 'A detailed look at posture, gait and how you move under load, so we can identify what is contributing to the problem rather than only where you feel it. Pain in one place often traces back to how something else is moving, and treating the sore spot alone tends to let it return. Where footwear or orthotics are relevant, we look at those too.',
       },
       {
         heading: 'Corrective exercise programming',
-        body: 'Progressive plans tailored to your condition, goals and lifestyle. Most of the lasting change tends to come from the exercise, so we prescribe it rather than suggest it.',
+        body: 'Progressive plans built around your condition, goals and daily life. Most of the lasting change tends to come from the exercise, which is why we prescribe it properly rather than hand you a generic sheet. The programme starts small, and we adjust it as you get stronger so it stays matched to what you can actually manage between visits.',
+      },
+      {
+        heading: 'What your first physiotherapy session involves',
+        body: 'The first visit is mostly assessment. We ask about your history, what aggravates and eases the problem and what you need to get back to, then examine how you move and test the area. Hands on treatment usually follows, along with the first few exercises to take home. A session generally runs around forty five minutes to an hour, and you should leave understanding what we think is going on and what the plan is.',
+      },
+      {
+        heading: 'Physiotherapy or chiropractic, and how we combine them',
+        body: 'Broadly, chiropractic care works on how a restricted joint moves, while physiotherapy works on the strength and control around it. Neither is better in the abstract, and many people benefit from both. Under one roof in Cheras we also offer dry needling, and the assessment decides where to start. If you are not sure which you need, message us your main concern and we will point you to the right starting point.',
       },
     ],
-    treats: ['back-pain', 'slipped-disc', 'neck-pain', 'sciatica', 'scoliosis', 'migraine'],
+    treats: ['back-pain', 'slipped-disc', 'neck-pain', 'sciatica', 'scoliosis'],
+    relatedLinks: [
+      { href: '/services/chiropractic-treatment', label: 'Compare with chiropractic care' },
+      { href: '/services/sports-injury-rehabilitation', label: 'Sports injury and rehabilitation' },
+      { href: '/what-to-expect', label: 'What to expect on your first visit' },
+    ],
     faqs: [
       {
-        q: 'Do I need physiotherapy if my pain is not severe?',
-        a: 'Physiotherapy is not only for severe injuries. Assessing a problem early often means it is easier to manage before it becomes chronic or recurring.',
+        q: 'Is the first physiotherapy session painful?',
+        a: 'It should not be excessively painful. Some tests may briefly reproduce your familiar symptoms so we can pin down the problem, but your physiotherapist works within your comfort level and will stop if you ask. Mild soreness for a day afterwards can happen, particularly after hands on work.',
+      },
+      {
+        q: 'How many physiotherapy sessions will I need?',
+        a: 'It depends on the problem, how long it has been there and how the exercise progresses, so we will not give you a fixed number at the first visit. Assessing early often means fewer sessions than leaving a problem to become chronic. We review honestly as we go rather than sell a package up front.',
+      },
+      {
+        q: 'Do I need a doctor referral to see a physiotherapist?',
+        a: 'No referral is needed to book with us. If your case needs imaging or a medical opinion first, we will tell you and help you arrange it rather than press on regardless.',
+      },
+      {
+        q: 'Will I get exercises to do at home?',
+        a: 'Yes, in most cases. The exercise is where a lot of the lasting change tends to come from, so we prescribe a small, specific programme and progress it as you improve. It is designed to fit into a normal day rather than take over your evening.',
       },
       {
         q: 'Should I see a chiropractor or a physiotherapist?',
-        a: 'It depends what the assessment finds. Broadly, chiropractic works on how a restricted joint moves and physiotherapy works on the strength and control around it. Many patients benefit from both. If you are unsure, message us your main concern and we will point you to the right starting point.',
+        a: 'It depends what the assessment finds. Broadly, chiropractic care works on how a restricted joint moves and physiotherapy works on the strength and control around it, and many patients benefit from both. If you are unsure, message us your main concern and we will point you to the right starting point.',
       },
     ],
     draft: false,
@@ -172,29 +241,42 @@ export const services: Service[] = [
     title: 'Sports Injury & Rehabilitation in Cheras, Kuala Lumpur',
     metaTitle: 'Sports Injury Treatment in Cheras, KL | Persistence',
     metaDescription:
-      'Sports injury assessment, rehabilitation and return-to-sport programming in Cheras, Maluri. Sprains, strains and overuse injuries.',
+      'Sports injury assessment, staged rehabilitation and criteria based return to sport in Cheras, Maluri. Sprains, strains and overuse injuries.',
     targetKeyword: 'sports injury treatment malaysia',
     intro:
       'Sports injury care in Cheras. We assess what failed and why, then work through staged rehabilitation aimed at getting you back to your sport without carrying the same weakness into it.',
     sections: [
       {
-        heading: 'Performance & Sports Rehabilitation',
-        body: 'Comprehensive injury management and return-to-sport protocols focused on rebuilding strength, agility, and movement control, with attention to reducing reinjury risk.',
+        heading: 'Sports injury rehabilitation in Cheras',
+        body: 'Sports injury care in Cheras. We assess what failed and why, then work through staged rehabilitation aimed at getting you back to your sport without carrying the same weakness into it. That covers sprains, strains and overuse injuries, in athletes and in people who simply train at the weekend.',
       },
       {
-        heading: 'Therapeutic Modalities & Recovery Technologies',
-        body: 'Evidence-based adjunct therapies used to support pain modulation, tissue repair, and rehabilitation.',
+        heading: 'Finding what failed, and why',
+        body: 'An injury is usually the visible end of something that was already off, whether that is a weakness, a movement pattern or a training load that climbed too fast. We assess the injured area and the way you move around it, because treating the sore tissue alone tends to let the same thing happen again. Understanding why it went is what shapes the rest of the plan.',
       },
       {
-        heading: 'Individualised Rehabilitation Programming',
-        body: 'Strategically designed, progressive rehabilitation plans tailored to your condition, goals, and lifestyle aimed at supporting an efficient and sustainable recovery.',
+        heading: 'Staged rehabilitation, from settling down to loading up',
+        body: 'Rehabilitation moves through stages rather than all at once. Early on the aim is to protect the area and keep it moving without aggravating it. As it settles we rebuild range, then strength, then the speed, control and agility your sport actually demands. Each stage has to hold before the next one starts, and how quickly you move through them depends on the injury and how you respond.',
       },
       {
-        heading: 'Spinal & Core Stability Conditioning',
-        body: 'Targeted training to enhance deep stabilising muscle function, with the aim of improving spinal support, resilience, and long-term durability.',
+        heading: 'Returning to sport on criteria, not a date',
+        body: 'We would rather clear you to return on what the area can do than on how many weeks have passed. That means testing strength, balance and sport specific movement, and building the load back up gradually, rather than pronouncing you ready because the pain has gone. Returning before the tissue tolerates the load is the single most common reason an injury comes back.',
+      },
+      {
+        heading: 'Recovery support and therapeutic modalities',
+        body: 'Alongside the active work we use adjunct therapies to help manage pain and support tissue recovery through the early stages. These are there to make the rehabilitation possible, not to replace it. Where dry needling or hands on treatment is useful for the muscular side of things, we combine them under the same roof.',
+      },
+      {
+        heading: 'Core and spinal stability for durability',
+        body: 'Targeted work for the deep stabilising muscles that support the spine and control the trunk under load. Good stability through the middle tends to make the limbs more efficient and the whole system more durable, which is part of how we aim to lower the chance of the injury recurring once you are back.',
       },
     ],
     treats: ['back-pain', 'shoulder-imbalance', 'hip-pain'],
+    relatedLinks: [
+      { href: '/services/physiotherapy', label: 'Our physiotherapy approach' },
+      { href: '/services/dry-needling', label: 'Dry needling for muscle tension' },
+      { href: '/what-to-expect', label: 'What to expect on your first visit' },
+    ],
     faqs: [
       {
         q: 'How soon after an injury should I be assessed?',
@@ -202,7 +284,19 @@ export const services: Service[] = [
       },
       {
         q: 'When can I return to my sport?',
-        a: 'That depends on the injury, the sport and how rehabilitation progresses, and we will not give you a date at the first visit. Returning before the area tolerates the load is the most common reason an injury recurs.',
+        a: 'That depends on the injury, the sport and how rehabilitation progresses, so we will not give you a date at the first visit. We base the decision on what the area can do under testing rather than on symptoms alone, because returning before the tissue tolerates the load is the most common reason an injury recurs.',
+      },
+      {
+        q: 'Do you treat non-athletes, and weekend or desk injuries?',
+        a: 'Yes. A tweaked back from lifting, a knee that flares up on a weekend run or an overuse strain from repetitive work are all treated the same way, by assessing what happened and rebuilding the area properly. You do not have to compete at anything to be seen.',
+      },
+      {
+        q: 'Do I need a scan or X-ray before starting?',
+        a: 'Not usually. Most sprains and strains are diagnosed from the assessment itself. If something suggests a more serious injury that needs imaging or a medical opinion, we will tell you and help you arrange it rather than press on regardless.',
+      },
+      {
+        q: 'Can you help with rehabilitation after surgery?',
+        a: 'Often, yes, once your surgeon is happy for rehabilitation to begin and within any restrictions they have set. We work to the protocol for your procedure and progress the loading as the tissue allows. Bring any notes or guidance from your surgical team to the first visit.',
       },
     ],
     draft: false,
@@ -212,25 +306,42 @@ export const services: Service[] = [
     title: 'Posture Correction in Cheras, Kuala Lumpur',
     metaTitle: 'Posture Correction in Cheras, KL | Persistence',
     metaDescription:
-      'Posture assessment and correction for desk workers in Cheras, Maluri. Sitting posture, workstation setup and corrective exercise.',
+      'Posture assessment and correction for desk workers in Cheras, Maluri. Sitting posture, workstation setup and corrective exercise, with honest expectations.',
     targetKeyword: 'sit posture correction',
     intro:
       'Posture work for desk workers in Cheras. We assess how you actually sit and move, then combine strength work with practical workstation changes so that a better position becomes sustainable instead of something you have to keep remembering.',
     sections: [
       {
+        heading: 'Posture correction in Cheras',
+        body: 'Posture work for desk workers in Cheras. We assess how you actually sit and move, then combine strength work with practical workstation changes so that a better position becomes sustainable instead of something you have to keep remembering. Most of the people we see for this spend their day at a screen.',
+      },
+      {
         heading: 'Postural assessment',
-        body: 'We look at how you sit, stand and move rather than at a single photograph. Posture is as much habit as structure, so the position you hold through a working day tells us more than the one you can manage for thirty seconds in a clinic.',
+        body: 'We look at how you sit, stand and move rather than at a single photograph. Posture is as much habit as structure, so the position you hold through a working day tells us more than the one you can manage for thirty seconds in a clinic. We also look at where your strength and mobility fall short, because those are usually what pulls you back into the old position.',
+      },
+      {
+        heading: 'Forward head and rounded shoulders',
+        body: 'The pattern we see most in desk workers is the head drifting forward and the shoulders rounding in, often with a stiff upper back behind it. It tends to build up over years at a screen rather than appear overnight. Naming it is the easy part. What matters is working out which bits are tight, which are weak and which are simply habit, because the mix is different for each person.',
       },
       {
         heading: 'Sitting posture and workstation setup',
-        body: 'Practical changes to chair height, screen position and desk setup, based on where you actually work. With most of the desk-related complaints we see, the trouble comes from holding any one position for too long.',
+        body: 'Practical changes to chair height, screen position and desk setup, based on where you actually work. With most of the desk related complaints we see, the trouble comes from holding any one position for too long, so moving regularly tends to matter more than finding a single perfect posture. Small changes you will actually keep beat an ideal setup you abandon by lunchtime.',
       },
       {
         heading: 'Corrective exercise',
-        body: 'Targeted strength and mobility work for the muscles that hold a position over a working day. No single treatment changes posture on its own. The exercise is what carries the work between visits.',
+        body: 'Targeted strength and mobility work for the muscles that hold a position over a working day. No single treatment changes posture on its own, so the exercise is what carries the work between visits. It does not need to be long, but it does need to be regular, and we adjust it as you get stronger.',
+      },
+      {
+        heading: 'What posture work can and cannot change',
+        body: 'We would rather be plain about this. Comfort and endurance often improve, and people tend to find they can hold a better position for longer before it starts to feel like effort. What we cannot do is promise to straighten out a fixed structure or hand you a permanent posture from a course of visits. Your practitioner will tell you what is realistic in your case and what is not.',
       },
     ],
     treats: ['neck-pain', 'shoulder-imbalance', 'back-pain'],
+    relatedLinks: [
+      { href: '/services/physiotherapy', label: 'Our physiotherapy approach' },
+      { href: '/services/chiropractic-treatment', label: 'How chiropractic care can help' },
+      { href: '/what-to-expect', label: 'What to expect on your first visit' },
+    ],
     faqs: [
       {
         q: 'Can posture actually be corrected?',
@@ -243,6 +354,14 @@ export const services: Service[] = [
       {
         q: 'Will a posture brace help?',
         a: 'Braces can act as a reminder, but they do not build the strength needed to hold a position without one, and relying on a brace long-term is not something we would recommend without assessment. Ask your practitioner before buying one.',
+      },
+      {
+        q: 'How long before I notice a change?',
+        a: 'It varies with how long the pattern has been there and how consistent you are with the exercise. Many people feel more comfortable within a few weeks, though holding a better position without thinking about it takes longer. We review as we go and adjust the plan rather than promise a timeline up front.',
+      },
+      {
+        q: 'Do I need chiropractic or physiotherapy for posture?',
+        a: 'It depends what the assessment finds, and posture work often draws on both. Broadly, chiropractic care addresses how stiff joints move while physiotherapy builds the strength and control to hold a better position. If you are unsure, message us your main concern and we will point you to the right starting point.',
       },
     ],
     draft: false,
