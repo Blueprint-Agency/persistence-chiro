@@ -256,26 +256,44 @@ export const services: Service[] = [
       'Open seven days · Cheras, Maluri',
     ],
     /**
-     * Diagrams, not photographs. Every one of these four is a symptom, and the photographs
-     * that were here showed treatment being delivered — approximately related, never the
-     * thing itself. A drawn knot can be a knot.
+     * Supplied pain-visualisation images: a person with the affected muscle group overlaid
+     * and the painful area lit. They do the same job the SVG diagrams did — showing a
+     * symptom rather than a treatment — with more immediacy.
+     *
+     * ⚠️ ALT TEXT CARRIES NO LOCAL MODIFIER, unlike every other image on the site. These are
+     * illustrative composites, not photographs of this clinic, these practitioners or these
+     * patients. Writing "at Persistence Chiropractic Care in Cheras" under one would be a
+     * false claim about a real place — the same rule that keeps the fabricated reviews out
+     * of production. Describe the illustration, and nothing more.
      */
     outcomes: [
       {
         text: 'Tight, knotted muscles that do not release with stretching or massage',
-        illustration: 'muscle-knot',
+        image: {
+          src: '/img/dn-tight-knot.webp',
+          alt: 'Illustration of knotted muscle highlighted across a person neck and upper back',
+        },
       },
       {
         text: 'Deep muscular tension linked to neck, shoulder or lower back trouble',
-        illustration: 'spine-tension',
+        image: {
+          src: '/img/dn-deep-tension.webp',
+          alt: 'Illustration of deep muscular tension highlighted in a person lower back',
+        },
       },
       {
         text: 'Trigger points that keep referring pain to the same spot',
-        illustration: 'trigger-point',
+        image: {
+          src: '/img/dn-trigger-points.webp',
+          alt: 'Illustration of trigger points in a person shoulder referring pain down the arm',
+        },
       },
       {
         text: 'Muscles that stay guarded and overactive after an old injury',
-        illustration: 'guarded-muscle',
+        image: {
+          src: '/img/dn-old-injury.webp',
+          alt: 'Illustration of the muscles around a knee highlighted after an old injury',
+        },
       },
     ],
     qualifierConcerns: [
