@@ -16,6 +16,12 @@ colors:
   white: "#ffffff"
   signal-tension: "#c2412d"
   signal-tension-ink: "#8f2a1c"
+  platform-whatsapp: "#25D366"
+  platform-google-blue: "#4285F4"
+  platform-google-red: "#EA4335"
+  platform-google-yellow: "#FBBC05"
+  platform-google-green: "#34A853"
+  platform-google-star: "#FBBC04"
 typography:
   display:
     fontFamily: "Montserrat, system-ui, sans-serif"
@@ -255,6 +261,11 @@ WhatsApp green (`#25D366`), Google's four-colour set (`#4285F4`, `#EA4335`, `#FB
 (`#FBBC04`). They are quotations, not palette — they may not spread to any element that
 isn't the platform's own mark, and nothing new joins this list without the same
 justification.
+
+They carry a `platform-` prefix in the frontmatter so a reader can tell at a glance that
+they are borrowed rather than owned. Recording them there rather than suppressing the
+warning is deliberate: a suppression hides the fact that a foreign colour is in the
+codebase, and the next foreign colour then arrives unnoticed.
 
 ## Typography
 

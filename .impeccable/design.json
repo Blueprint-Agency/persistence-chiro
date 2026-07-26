@@ -75,6 +75,36 @@
         "displayName": "Tension Ink",
         "canonical": "#8f2a1c"
       },
+      "platform-whatsapp": {
+        "role": "tertiary",
+        "displayName": "WhatsApp Green (borrowed)",
+        "canonical": "#25D366"
+      },
+      "platform-google-blue": {
+        "role": "tertiary",
+        "displayName": "Google Blue (borrowed)",
+        "canonical": "#4285F4"
+      },
+      "platform-google-red": {
+        "role": "tertiary",
+        "displayName": "Google Red (borrowed)",
+        "canonical": "#EA4335"
+      },
+      "platform-google-yellow": {
+        "role": "tertiary",
+        "displayName": "Google Yellow (borrowed)",
+        "canonical": "#FBBC05"
+      },
+      "platform-google-green": {
+        "role": "tertiary",
+        "displayName": "Google Green (borrowed)",
+        "canonical": "#34A853"
+      },
+      "platform-google-star": {
+        "role": "tertiary",
+        "displayName": "Google Review Star (borrowed)",
+        "canonical": "#FBBC04"
+      },
       "line": {
         "role": "neutral",
         "displayName": "Warm Hairline",
