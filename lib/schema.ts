@@ -3,6 +3,7 @@
  * `proposed-site-architecture.md`. All NAP flows from `clinic` — never inline it here.
  */
 import { clinic } from './clinic'
+import { whatsappLink, waMessage } from './whatsapp'
 
 export const SITE_URL = 'https://www.persistencechiropractic.com'
 
@@ -44,11 +45,17 @@ export function localBusinessSchema() {
       { '@type': 'Place', name: 'Kuala Lumpur' },
     ],
     sameAs: [clinic.socials.instagram, clinic.socials.facebook],
+    /**
+     * Points at WhatsApp, not a scheduler. SweetPew was retired 2026-07-26 and structured
+     * data that still advertised it would be telling Google about a booking path the site no
+     * longer offers. `ReserveAction` remains the honest type — the visitor is still asking
+     * for an appointment; they are just doing it in a chat.
+     */
     potentialAction: {
       '@type': 'ReserveAction',
       target: {
         '@type': 'EntryPoint',
-        urlTemplate: clinic.bookingUrl,
+        urlTemplate: whatsappLink(waMessage.general),
         actionPlatform: ['http://schema.org/DesktopWebPlatform', 'http://schema.org/MobileWebPlatform'],
       },
       result: { '@type': 'Reservation', name: 'Chiropractic appointment' },

@@ -1,9 +1,10 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { clinic, googleReviews, practitionerBySlug } from '@/lib/clinic'
+import { googleReviews, practitionerBySlug } from '@/lib/clinic'
 import { accreditations, testimonials } from '@/lib/home'
 import { Eyebrow, Vertebrae, WhatsAppIcon } from '@/components/ui'
+import { whatsappLink, waMessage } from '@/lib/whatsapp'
 
 /** Founder + principal chiropractor reviews the clinical content on the money pages. */
 const reviewer = practitionerBySlug('valerie-na')!
@@ -90,21 +91,37 @@ export function ServiceTestimonials() {
         <h2 className="mt-5 max-w-2xl text-3xl font-extrabold leading-tight sm:text-4xl">
           What people say after being seen here
         </h2>
-        <div className="mt-10 grid gap-6 md:grid-cols-2">
+        {/* Horizontal rail rather than a stacked grid. Reviews are the longest block on a
+            service page and pushed the FAQ and the ask a long way down; side-by-side they
+            cost one screen instead of three, and a partially visible next card is a clearer
+            "there are more" signal than a scrollbar.
+            `tabIndex` makes the rail keyboard-scrollable, which a plain overflow container
+            is not. Negative margin lets cards bleed to the viewport edge while the first one
+            still lines up with the heading. */}
+        <ul
+          tabIndex={0}
+          aria-label="Patient reviews"
+          className="rail -mx-4 mt-10 flex snap-x snap-mandatory gap-6 overflow-x-auto px-4 pb-5 lg:mx-0 lg:px-0"
+        >
           {testimonials.map((t) => (
-            <figure key={t.name} className="flex flex-col rounded-3xl border border-line bg-white p-8">
-              <Vertebrae className="text-brand-gold" />
-              <blockquote className="mt-5 flex-1 space-y-3 leading-relaxed text-ink-muted">
-                <p>&ldquo;{t.quote}&rdquo;</p>
-                {t.detail && <p>{t.detail}</p>}
-              </blockquote>
-              <figcaption className="mt-6 border-t border-line pt-4 text-sm font-semibold text-ink">
-                {t.name}
-                <span className="font-normal text-ink-muted"> · patient review, Cheras</span>
-              </figcaption>
-            </figure>
+            <li
+              key={t.name}
+              className="w-[82%] flex-none snap-start sm:w-[26rem] lg:w-[24rem]"
+            >
+              <figure className="flex h-full flex-col rounded-3xl border border-line bg-white p-8 shadow-ambient">
+                <Vertebrae className="text-brand-gold" />
+                <blockquote className="mt-5 flex-1 space-y-3 leading-relaxed text-ink-muted">
+                  <p>&ldquo;{t.quote}&rdquo;</p>
+                  {t.detail && <p>{t.detail}</p>}
+                </blockquote>
+                <figcaption className="mt-6 border-t border-line pt-4 text-sm font-semibold text-ink">
+                  {t.name}
+                  <span className="font-normal text-ink-muted"> · patient review, Cheras</span>
+                </figcaption>
+              </figure>
+            </li>
           ))}
-        </div>
+        </ul>
         <a
           href={googleReviews.url}
           target="_blank"
@@ -170,7 +187,9 @@ export function References({
 }) {
   if (!items || items.length === 0) return null
   return (
-    <section aria-label="References" className="border-t border-line bg-white">
+    /* Cream ground: this now sits directly under the ReviewedBy byline, which is white, and
+       two white bands in a row would read as one undifferentiated block. */
+    <section aria-label="References" className="border-t border-line">
       <div className="mx-auto max-w-6xl px-4 py-12">
         <Eyebrow>References</Eyebrow>
         <ol className="mt-5 list-decimal space-y-3 pl-5 text-sm leading-relaxed text-ink-muted">
@@ -204,27 +223,20 @@ export function References({
  * CTA otherwise scrolls out of reach for the length of a service page. Hidden on lg where
  * the header CTA and the sidebar cover it. Sits above the iOS home indicator.
  */
-export function StickyCta() {
+export function StickyCta({ message = waMessage.general }: { message?: string }) {
   return (
-    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-white/95 backdrop-blur lg:hidden">
+    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-white/95 shadow-overlay-up backdrop-blur lg:hidden">
       <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
+        {/* One full-width target. This bar exists for a thumb, and the widest possible tap
+            area is the whole point of it. */}
         <a
-          href={clinic.bookingUrl}
+          href={whatsappLink(message)}
           target="_blank"
           rel="noopener"
-          className="flex-1 rounded-full bg-brand-gold px-5 py-3 text-center text-sm font-semibold text-ink"
-        >
-          Book a consultation
-        </a>
-        <a
-          href={clinic.whatsappUrl}
-          target="_blank"
-          rel="noopener"
-          aria-label="Message us on WhatsApp"
-          className="inline-flex flex-none items-center justify-center gap-2 rounded-full bg-[#25D366] px-5 py-3 text-sm font-semibold text-white"
+          className="inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-brand-gold px-5 py-3 text-center text-sm font-semibold text-ink"
         >
           <WhatsAppIcon />
-          WhatsApp
+          Book on WhatsApp
         </a>
       </div>
     </div>

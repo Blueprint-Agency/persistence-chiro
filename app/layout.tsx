@@ -8,6 +8,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { localBusinessSchema, SITE_URL } from "@/lib/schema";
 import { Analytics, AnalyticsNoScript } from "@/components/Analytics";
 import { CtaTracking } from "@/components/CtaTracking";
+import { MobileNavClose } from "@/components/MobileNavClose";
 import { GSC_VERIFICATION } from "@/lib/analytics";
 
 // Montserrat for headings, per the brand (AGENTS.md). Source Sans 3 for body — drawn for
@@ -53,12 +54,24 @@ export default function RootLayout({
         {/* Sitewide business schema. Every other template references it by @id rather
             than repeating NAP. */}
         <JsonLd data={localBusinessSchema()} />
+        {/* Keyboard and screen-reader users otherwise tab the logo, six nav items and every
+            focus-within submenu child before reaching the h1 — on every route. */}
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-brand-gold focus:px-5 focus:py-3 focus:text-sm focus:font-semibold focus:text-ink"
+        >
+          Skip to content
+        </a>
         <Header />
-        <main className="flex-1">{children}</main>
+        <main id="main" className="flex-1">
+          {children}
+        </main>
         <Footer />
         <Analytics />
         {/* Renders no DOM — attaches one delegated listener for CTA conversion events. */}
         <CtaTracking />
+        {/* Also renders no DOM — dismisses the mobile drawer once a link in it is tapped. */}
+        <MobileNavClose />
       </body>
     </html>
   );

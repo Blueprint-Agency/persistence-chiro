@@ -1,13 +1,13 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 
-import { clinic } from '@/lib/clinic'
 import { keyPartners, partners } from '@/lib/partners'
 import { events } from '@/lib/events'
 import { JsonLd } from '@/components/JsonLd'
 import { breadcrumbSchema } from '@/lib/schema'
 import { CtaBand, CheckIcon, Eyebrow, PageHero } from '@/components/ui'
 import { PartnerEnquiry } from '@/components/PartnerEnquiry'
+import { waMessage } from '@/lib/whatsapp'
 
 export const metadata: Metadata = {
   title: 'Partner With Us — Corporate Wellness in Cheras, KL',
@@ -47,7 +47,7 @@ export default function PartnerWithUsPage() {
         <Eyebrow>What we do together</Eyebrow>
         <ul className="mt-8 grid gap-6 md:grid-cols-3">
           {reasons.map((r) => (
-            <li key={r.title} className="rounded-3xl border border-line bg-white p-7">
+            <li key={r.title} className="rounded-3xl border border-line bg-white p-7 shadow-ambient">
               <CheckIcon className="h-6 w-6 text-brand-gold" />
               <h2 className="mt-4 text-lg font-bold">{r.title}</h2>
               <p className="mt-2 leading-relaxed text-ink-muted">{r.body}</p>
@@ -151,9 +151,7 @@ export default function PartnerWithUsPage() {
       <CtaBand
         heading="Prefer to just message us?"
         body="Reach the clinic directly on WhatsApp or by phone — we are happy to talk through what a partnership could look like."
-        bookingUrl={clinic.bookingUrl}
-        phone={clinic.phone}
-        phoneE164={clinic.phoneE164}
+        message={waMessage.partner}
       />
     </>
   )

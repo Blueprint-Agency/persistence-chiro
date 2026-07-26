@@ -8,8 +8,8 @@ import { conditionBySlug } from '@/lib/conditions'
 import { serviceBySlug } from '@/lib/services'
 import { JsonLd } from '@/components/JsonLd'
 import { blogPostingSchema, breadcrumbSchema } from '@/lib/schema'
-import { clinic } from '@/lib/clinic'
 import { CtaBand, Eyebrow } from '@/components/ui'
+import { waMessage } from '@/lib/whatsapp'
 
 export function generateStaticParams() {
   return publishedPosts().map((p) => ({ slug: p.slug }))
@@ -96,7 +96,7 @@ export default async function PostPage({ params }: Props) {
         </div>
 
         {target && (
-          <section className="mt-14 rounded-3xl border border-line bg-white p-8">
+          <section className="mt-14 rounded-3xl border border-line bg-white p-8 shadow-ambient">
             <Eyebrow>Related</Eyebrow>
             <h2 className="mt-4 text-xl font-bold">{target.title.split(' in ')[0]}</h2>
             <p className="mt-2 leading-relaxed text-ink-muted">{target.metaDescription}</p>
@@ -120,11 +120,7 @@ export default async function PostPage({ params }: Props) {
         </p>
       </article>
 
-      <CtaBand
-        bookingUrl={clinic.bookingUrl}
-        phone={clinic.phone}
-        phoneE164={clinic.phoneE164}
-      />
+      <CtaBand message={waMessage.article(post.title)} />
     </>
   )
 }

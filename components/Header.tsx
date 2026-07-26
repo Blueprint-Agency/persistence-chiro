@@ -3,7 +3,8 @@ import Link from 'next/link'
 
 import { clinic } from '@/lib/clinic'
 import { mainNav } from '@/lib/nav'
-import { GoldButton, WhatsAppIcon } from '@/components/ui'
+import { WhatsAppButton, WhatsAppIcon } from '@/components/ui'
+import { waMessage } from '@/lib/whatsapp'
 
 /**
  * Sitewide header. Deliberately a server component: the only interactive parts are the
@@ -84,7 +85,7 @@ export function Header() {
 
                 {/* CSS-only submenu. focus-within keeps it keyboard-reachable without JS. */}
                 {item.children && item.children.length > 0 && (
-                  <ul className="invisible absolute left-0 top-full w-64 rounded-xl border border-line bg-background p-2 opacity-0 shadow-lg shadow-black/5 transition-opacity group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+                  <ul className="invisible absolute left-0 top-full w-64 rounded-xl border border-line bg-background p-2 opacity-0 shadow-overlay transition-opacity group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
                     {item.children.map((child) => (
                       <li key={child.href}>
                         <Link
@@ -103,16 +104,18 @@ export function Header() {
 
           <div className="ml-auto flex items-center gap-3 lg:ml-0">
             <div className="hidden sm:block">
-              <GoldButton href={clinic.bookingUrl} external>
-                Book an appointment
-              </GoldButton>
+              <WhatsAppButton message={waMessage.general}>Book on WhatsApp</WhatsAppButton>
             </div>
 
-            {/* Mobile menu. <details> is the whole implementation — no state, no bundle. */}
-            <details className="lg:hidden">
+            {/* Mobile menu. <details> is the whole implementation — no state, no bundle.
+                `data-mobile-nav` is the hook MobileNavClose uses to dismiss it after a link
+                is tapped; without that, client-side navigation leaves the drawer open over
+                the page it just loaded. Label stays "Menu" in both states — <summary>
+                announces expanded/collapsed itself, so "Open menu" lies once it is open. */}
+            <details data-mobile-nav className="lg:hidden">
               <summary
                 className="flex h-11 w-11 cursor-pointer list-none items-center justify-center rounded-full border border-line text-ink"
-                aria-label="Open menu"
+                aria-label="Menu"
               >
                 <svg
                   viewBox="0 0 24 24"
@@ -126,7 +129,7 @@ export function Header() {
                 </svg>
               </summary>
 
-              <div className="absolute left-0 right-0 top-full max-h-[75vh] overflow-y-auto border-b border-line bg-background px-4 pb-6 pt-2 shadow-lg">
+              <div className="absolute left-0 right-0 top-full max-h-[75vh] overflow-y-auto border-b border-line bg-background px-4 pb-6 pt-2 shadow-overlay">
                 <ul className="divide-y divide-line">
                   {nav.map((item) => (
                     <li key={item.href} className="py-1">
@@ -151,16 +154,10 @@ export function Header() {
                   ))}
                 </ul>
 
+                {/* One CTA here too. The number stays reachable from the utility bar above
+                    and the footer, both of which are NAP citations rather than buttons. */}
                 <div className="mt-5 flex flex-col gap-2">
-                  <GoldButton href={clinic.bookingUrl} external>
-                    Book an appointment
-                  </GoldButton>
-                  <a
-                    href={`tel:${clinic.phoneE164}`}
-                    className="rounded-full border border-line py-3 text-center text-sm font-semibold text-brand-slate"
-                  >
-                    Call {clinic.phone}
-                  </a>
+                  <WhatsAppButton message={waMessage.general}>Book on WhatsApp</WhatsAppButton>
                 </div>
               </div>
             </details>

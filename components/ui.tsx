@@ -1,6 +1,9 @@
 import Link from 'next/link'
 import type { ReactNode } from 'react'
 
+
+import { whatsappLink, waMessage } from '@/lib/whatsapp'
+
 /**
  * Shared primitives. Only things used in three or more places live here — everything
  * else stays inline in the page that needs it.
@@ -39,8 +42,9 @@ const BUTTON_BASE =
   'inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-colors'
 
 /**
- * The gold CTA. Booking is external (SweetPew) so this is always an <a>, never a form —
- * there is no booking logic in this codebase and there shouldn't be.
+ * The gold CTA. Every conversion on this site is a WhatsApp conversation, so this is always
+ * an <a> to wa.me and never a form — there is no booking logic in this codebase and there
+ * shouldn't be.
  */
 export function GoldButton({
   href,
@@ -96,6 +100,37 @@ export function GhostButton({
   )
 }
 
+/**
+ * The site's one conversion button: gold pill, WhatsApp glyph, prefilled message.
+ *
+ * Gold rather than WhatsApp green on purpose. Gold is the brand's conversion colour and the
+ * One Gold Decision Rule depends on it meaning "the action being asked for" — painting every
+ * CTA on the site #25D366 would hand the palette to a third party. The glyph carries the
+ * "this opens WhatsApp" signal instead, which is the part that actually needs communicating.
+ *
+ * `message` is the text pre-typed into the visitor's chat box. Pass one from `waMessage` so
+ * the clinic can tell a hero tap from a slipped-disc page tap before anyone replies.
+ */
+export function WhatsAppButton({
+  message,
+  children = 'WhatsApp us to book',
+}: {
+  message: string
+  children?: ReactNode
+}) {
+  return (
+    <a
+      href={whatsappLink(message)}
+      target="_blank"
+      rel="noopener"
+      className={`${BUTTON_BASE} bg-brand-gold text-ink hover:bg-[#d4b00d]`}
+    >
+      <WhatsAppIcon />
+      {children}
+    </a>
+  )
+}
+
 /** WhatsApp glyph. Inline SVG rather than an icon dependency for one mark. */
 export function WhatsAppIcon({ className = 'h-4 w-4' }: { className?: string }) {
   return (
@@ -144,38 +179,34 @@ export function PageHero({
  */
 export function CtaBand({
   heading = 'Ready to stop working around the pain?',
-  body = 'Consult our Gonstead chiropractors today. Open seven days, right next to Sunway Velocity.',
-  bookingUrl,
-  phone,
-  phoneE164,
+  body = 'Message our Gonstead chiropractors today. Open seven days, right next to Sunway Velocity.',
+  message = waMessage.general,
 }: {
   heading?: string
   body?: string
-  bookingUrl: string
-  phone: string
-  phoneE164: string
+  /** Prefilled WhatsApp text. Pass a `waMessage.*` builder so the band knows its page. */
+  message?: string
 }) {
   return (
     <section className="bg-brand-gold">
       <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-12 md:flex-row md:items-center md:justify-between lg:py-14">
         <div>
           <h2 className="text-2xl font-extrabold leading-tight sm:text-3xl">{heading}</h2>
-          <p className="mt-2 max-w-xl text-ink/70">{body}</p>
+          {/* /70 on gold computes to ~4.5:1 — right on the AA line. /80 clears it at ~5.9:1. */}
+          <p className="mt-2 max-w-xl text-ink/80">{body}</p>
         </div>
-        <div className="flex flex-none flex-wrap gap-3">
+        <div className="flex-none">
+          {/* Ink rather than gold: this button sits ON the gold band, so a gold fill would
+              disappear. One action only — the call button that used to sit beside it asked
+              the same question a second way. */}
           <a
-            href={bookingUrl}
+            href={whatsappLink(message)}
             target="_blank"
             rel="noopener"
-            className="inline-flex items-center justify-center rounded-full bg-ink px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-slate-deep"
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-ink px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-slate-deep"
           >
-            Book now
-          </a>
-          <a
-            href={`tel:${phoneE164}`}
-            className="inline-flex items-center justify-center rounded-full border border-ink/25 px-6 py-3 text-sm font-semibold text-ink hover:bg-ink/5"
-          >
-            Call {phone}
+            <WhatsAppIcon />
+            WhatsApp us
           </a>
         </div>
       </div>

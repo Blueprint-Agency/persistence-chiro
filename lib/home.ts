@@ -35,9 +35,15 @@ export const offers = [
   {
     title: 'Initial consultation',
     href: '/what-to-expect',
-    image: '/img/consultation-assessment.webp',
-    alt: 'Chiropractor assessing a patient posture before treatment in Cheras, Kuala Lumpur',
-    body: "Understanding of the patient's medical conditions and health situation. A thorough chiropractic exam will be conducted, which includes posture analysis, instrumentation analysis, necessary imaging analysis, and palpation to examine the patient's current spinal health.",
+    // The first-visit photo, matching where this card links (/what-to-expect). The
+    // assessment shot moved to the hero, and one image twice on one page reads as an
+    // asset shortage.
+    image: '/img/first-visit-consultation.webp',
+    alt: "Chiropractor assessing a patient's neck during a first consultation in Cheras, Kuala Lumpur",
+    // REWRITTEN 2026-07-26: the original was a verb-less fragment followed by four
+    // unexplained clinical nouns ("instrumentation analysis, necessary imaging analysis,
+    // palpation") aimed at a first-timer two screens into the page. Same facts, plain.
+    body: 'We start by understanding your health history and what you are dealing with. Then we examine your spine — posture, movement, temperature readings along the spine, and hands-on checks — and take imaging if it is needed.',
   },
 ]
 

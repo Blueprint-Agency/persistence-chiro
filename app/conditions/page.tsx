@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 
-import { clinic } from '@/lib/clinic'
 import { publishedConditions } from '@/lib/conditions'
 import { JsonLd } from '@/components/JsonLd'
 import { breadcrumbSchema, collectionPageSchema } from '@/lib/schema'
@@ -62,7 +61,7 @@ export default function ConditionsHub() {
               <li key={c.slug}>
                 <Link
                   href={`/conditions/${c.slug}`}
-                  className="group flex h-full flex-col rounded-3xl border border-line bg-white p-8 transition-shadow hover:shadow-xl hover:shadow-black/5 lg:p-10"
+                  className="group flex h-full flex-col rounded-3xl border border-line bg-white p-8 shadow-ambient transition-shadow hover:shadow-ambient-raise lg:p-10"
                 >
                   <Vertebrae className="text-brand-gold" />
                   <h2 className="mt-5 text-xl font-bold">{c.title.split(' in ')[0]}</h2>
@@ -78,11 +77,7 @@ export default function ConditionsHub() {
         )}
       </section>
 
-      <CtaBand
-        bookingUrl={clinic.bookingUrl}
-        phone={clinic.phone}
-        phoneE164={clinic.phoneE164}
-      />
+      <CtaBand />
     </>
   )
 }

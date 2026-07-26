@@ -14,12 +14,19 @@ import { useEffect, useState } from 'react'
  *   - supplies the bone-hole mask geometry (below) to the sheet,
  *   - plays only when the homepage is the session's entry page — not on in-app
  *     navigations to home from another page (see shouldPlay),
- *   - locks scroll while the overlay is up,
+ *   - ends the moment the visitor does anything at all (tap, key, scroll),
  *   - skips the replay after the first view in a browser session,
  *   - unmounts once the CSS reveal has finished.
  *
- * Rendered as the first child of <body>, so it SSRs into the initial HTML and covers the
- * page from first paint — no flash of content before the animation.
+ * Rendered from app/page.tsx inside <main>. It is position:fixed with a high z-index, so
+ * it still covers the header and the whole viewport from first paint despite the mount
+ * point — no flash of content before the animation.
+ *
+ * NOT a scroll lock, and deliberately short. This plays for exactly one visitor: someone
+ * who landed on "/" from search. That is a person in pain comparing clinics, and holding
+ * them still to admire a brand gesture is the most expensive three seconds on the site.
+ * It runs ~1.4s, and any interaction cancels it immediately — which also means a keyboard
+ * visitor who presses Tab is never focused on content hidden behind an opaque sheet.
  */
 
 // Four bones; the dark-to-light taper is set by :nth-child colour in globals.css.
@@ -46,8 +53,9 @@ const MASK_SVG =
   `<rect width='4000' height='4000' fill='white' mask='url(#b)'/></svg>`
 const MASK_URL = `url("data:image/svg+xml,${encodeURIComponent(MASK_SVG)}")`
 
-// Pulse (0.85s × 2, staggered) then reveal (zoom 1.9→2.8s, fade to 2.85s).
-const REVEAL_MS = 2950
+// Pulse (0.42s × 1, staggered to 0.60s) then reveal (zoom 0.55→1.25s, sheet fade to 1.32s).
+// Must stay just past the last keyframe in globals.css so the unmount never clips the fade.
+const REVEAL_MS = 1400
 const SESSION_KEY = 'pc-preloaded'
 
 /**
@@ -82,13 +90,18 @@ export function Preloader() {
     if (done) return
 
     sessionStorage.setItem(SESSION_KEY, '1')
-    const prevOverflow = document.body.style.overflow
-    document.body.style.overflow = 'hidden'
 
-    const timer = setTimeout(() => setDone(true), REVEAL_MS)
+    const finish = () => setDone(true)
+    const timer = setTimeout(finish, REVEAL_MS)
+
+    // Any sign of intent ends the intro. Covers the impatient thumb, the mouse wheel, and
+    // the keyboard visitor whose first Tab would otherwise land behind the sheet.
+    const events = ['pointerdown', 'keydown', 'wheel', 'touchstart'] as const
+    events.forEach((e) => window.addEventListener(e, finish, { passive: true }))
+
     return () => {
       clearTimeout(timer)
-      document.body.style.overflow = prevOverflow
+      events.forEach((e) => window.removeEventListener(e, finish))
     }
   }, [done])
 
@@ -105,7 +118,9 @@ export function Preloader() {
           <span
             key={i}
             className="preloader__bone"
-            style={{ animationDelay: `${i * 0.14}s` }}
+            /* 0.05s pitch, not 0.14s — with a single 0.42s wave the old stagger would have
+               left the last bone still pulsing after the zoom had started. */
+            style={{ animationDelay: `${i * 0.05}s` }}
           />
         ))}
       </div>

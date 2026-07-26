@@ -53,7 +53,7 @@ export function PartnerEnquiry() {
   const label = 'block text-sm font-semibold text-ink'
 
   return (
-    <div className="rounded-3xl border border-line bg-white p-8 lg:p-10">
+    <div className="rounded-3xl border border-line bg-white p-8 shadow-ambient lg:p-10">
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <label htmlFor="pe-name" className={label}>

@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "app/globals.css"
+        ],
+        "createdAt": "2026-07-26T05:23:55.016Z",
+        "reason": "User confirmed: .post-body blockquote is a pull-quote rule, not a card side-tab"
+      }
+    ]
+  }
+}

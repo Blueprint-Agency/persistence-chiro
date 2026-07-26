@@ -42,3 +42,6 @@ next-env.d.ts
 
 # raw Wix image originals (120MB) - optimise into public/ instead
 /assets
+
+# impeccable live-mode session journal (local recovery state, not source)
+/.impeccable/live/sessions

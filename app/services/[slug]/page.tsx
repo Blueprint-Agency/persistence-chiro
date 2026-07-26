@@ -5,7 +5,7 @@ import { notFound } from 'next/navigation'
 
 import { serviceBySlug, templatedServices } from '@/lib/services'
 import { conditionBySlug } from '@/lib/conditions'
-import { clinic, practitionerBySlug } from '@/lib/clinic'
+import { practitionerBySlug } from '@/lib/clinic'
 import { JsonLd } from '@/components/JsonLd'
 import {
   breadcrumbSchema,
@@ -18,13 +18,15 @@ import {
   CtaBand,
   Eyebrow,
   GhostButton,
-  GoldButton,
+  WhatsAppButton,
   Vertebrae,
-  WhatsAppIcon,
 } from '@/components/ui'
 import { RatingBadge, References, ReviewedBy, StickyCta, TrustBar } from '@/components/service'
 import { GoogleReviews } from '@/components/GoogleReviews'
+import { MeetDoctors } from '@/components/MeetDoctors'
+import { ConcernIllustration } from '@/components/ConcernIllustration'
 import { ServiceQualifier } from '@/components/ServiceQualifier'
+import { waMessage } from '@/lib/whatsapp'
 
 const reviewer = practitionerBySlug('valerie-na')!
 
@@ -113,18 +115,34 @@ export default async function ServicePage({ params }: Props) {
                   {lead.body}
                 </p>
               )}
-              <div className="mt-8 flex flex-wrap gap-3">
-                <GoldButton href={clinic.bookingUrl} external>
-                  Book a consultation
-                </GoldButton>
-                <GhostButton href={clinic.whatsappUrl} external tone="light">
-                  <WhatsAppIcon />
-                  WhatsApp us
-                </GhostButton>
+              {/* One CTA. A second button beside it splits the decision without adding a
+                  path — the phone number is still in the header bar and the footer for
+                  anyone who wants it. */}
+              <div className="mt-8">
+                <WhatsAppButton message={waMessage.service(service.title.split(' in ')[0])}>
+                  Book on WhatsApp
+                </WhatsAppButton>
               </div>
-              <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-white/70">
+              {/* Reassurance sits with the button, not nine paragraphs below it. These are
+                  restatements of facts the page substantiates further down — the visitor
+                  should not have to scroll to find out whether the needles are reused. */}
+              {service.assurances && service.assurances.length > 0 ? (
+                <ul className="mt-6 grid gap-2.5 text-sm text-white/75 sm:grid-cols-2 lg:grid-cols-1">
+                  {service.assurances.map((a) => (
+                    <li key={a} className="flex items-start gap-2.5">
+                      <CheckIcon className="mt-0.5 h-4 w-4 flex-none text-brand-gold" />
+                      {a}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-white/70">
+                  <span>Open seven days · Cheras, Maluri</span>
+                </div>
+              )}
+
+              <div className="mt-6">
                 <RatingBadge tone="light" />
-                <span>Open seven days · Cheras, Maluri</span>
               </div>
             </div>
 
@@ -145,53 +163,76 @@ export default async function ServicePage({ params }: Props) {
       </section>
 
       <TrustBar />
-      <ReviewedBy date={service.lastReviewed} />
 
       {/* --------------------------------------------------- What we help with */}
-      {(service.outcomes?.length || treats.length > 0) && (
+      {/* Full width, four cards, one photograph each. This is the "is this me?" moment and it
+          is scanned rather than read — a picture of the region gets recognised before the
+          sentence under it does. The conditions list that used to sit alongside has moved to
+          "Where to go next"; it is navigation, and it was competing with the one section on
+          the page whose job is recognition. */}
+      {service.outcomes && service.outcomes.length > 0 && (
         <section className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
-          <div className="grid gap-10 lg:grid-cols-[1fr_0.9fr] lg:gap-16">
-            <div>
-              <Eyebrow>What we help with</Eyebrow>
-              <h2 className="mt-5 text-3xl font-extrabold leading-tight sm:text-4xl">
-                Reasons people come in for {shortName.toLowerCase()}
-              </h2>
-              {service.outcomes && service.outcomes.length > 0 && (
-                <ul className="mt-8 space-y-3.5">
-                  {service.outcomes.map((o) => (
-                    <li key={o} className="flex items-start gap-3 leading-relaxed text-ink-muted">
-                      <CheckIcon className="mt-1 h-5 w-5 flex-none text-brand-slate" />
-                      {o}
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </div>
+          <Eyebrow>What we help with</Eyebrow>
+          <h2 className="mt-5 max-w-2xl text-3xl font-extrabold leading-tight sm:text-4xl">
+            Reasons people come in for {shortName.toLowerCase()}
+          </h2>
 
-            {treats.length > 0 && (
-              <div className="rounded-3xl border border-line bg-white p-8 lg:self-start">
-                <Eyebrow>Conditions we commonly see</Eyebrow>
-                <ul className="mt-5 grid gap-2.5 sm:grid-cols-2 lg:grid-cols-1">
-                  {treats.map((c) => (
-                    <li key={c!.slug}>
-                      <Link
-                        href={`/conditions/${c!.slug}`}
-                        className="flex items-start gap-2.5 text-ink-muted hover:text-brand-slate"
-                      >
-                        <Vertebrae className="mt-1.5 text-brand-gold" />
-                        {c!.title.split(' in ')[0]}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  href="/services"
-                  className="mt-5 inline-block text-sm font-semibold text-brand-slate underline underline-offset-4"
+          {/* Column count follows the content: four outcomes fill one row of four, five fill
+              3+2. Forcing five into a four-column grid leaves a single orphan card, which
+              reads as a mistake rather than as a list. */}
+          <ul
+            className={`mt-12 grid gap-6 sm:grid-cols-2 ${
+              service.outcomes.length % 4 === 0 ? 'lg:grid-cols-4' : 'lg:grid-cols-3'
+            }`}
+          >
+            {service.outcomes.map((outcome) => {
+              const text = typeof outcome === 'string' ? outcome : outcome.text
+              const image = typeof outcome === 'string' ? null : outcome.image
+              const illustration = typeof outcome === 'string' ? null : outcome.illustration
+              return (
+                <li
+                  key={text}
+                  className="flex h-full flex-col overflow-hidden rounded-3xl border border-line bg-white shadow-ambient"
                 >
-                  All our services in Cheras
-                </Link>
-              </div>
-            )}
+                  {illustration ? (
+                    <ConcernIllustration name={illustration} />
+                  ) : (
+                    image && (
+                      <Image
+                        src={image.src}
+                        alt={image.alt}
+                        width={1400}
+                        height={1000}
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 280px"
+                        className="aspect-[4/3] w-full object-cover"
+                      />
+                    )
+                  )}
+                  <div className="flex flex-1 items-start gap-3 p-6">
+                    <CheckIcon className="mt-0.5 h-5 w-5 flex-none text-brand-slate" />
+                    <p className="leading-relaxed text-ink-muted">{text}</p>
+                  </div>
+                </li>
+              )
+            })}
+          </ul>
+        </section>
+      )}
+
+      {/* ----------------------------------------------------------- Qualifier */}
+      {/* Sits directly after "what we help with", not near the foot of the page.
+          A visitor who has just recognised their own problem in the list above is at the
+          highest-intent moment on the page; this used to sit eight sections down, behind
+          three long-form essays and a citation list, which is a long way to ask someone to
+          walk before being offered the easiest possible way to start a conversation.
+          Aqua ground so it reads as its own band between two it would otherwise blend into. */}
+      {service.qualifierConcerns && service.qualifierConcerns.length > 0 && (
+        <section className="border-y border-line bg-brand-aqua/40">
+          <div className="mx-auto max-w-3xl px-4 py-16 lg:py-24">
+            <ServiceQualifier
+              serviceName={shortName.toLowerCase()}
+              concerns={service.qualifierConcerns}
+            />
           </div>
         </section>
       )}
@@ -211,10 +252,23 @@ export default async function ServicePage({ params }: Props) {
                   including the parts your care is unlikely to change.
                 </p>
                 <div className="mt-8">
-                  <GoldButton href={clinic.bookingUrl} external>
-                    Book a consultation
-                  </GoldButton>
+                  <WhatsAppButton message={waMessage.service(shortName)}>
+                    Book on WhatsApp
+                  </WhatsAppButton>
                 </div>
+
+                {service.midImage && (
+                  <div className="mt-8 overflow-hidden rounded-3xl">
+                    <Image
+                      src={service.midImage.src}
+                      alt={service.midImage.alt}
+                      width={1400}
+                      height={1000}
+                      sizes="(max-width: 1024px) 100vw, 420px"
+                      className="w-full object-cover"
+                    />
+                  </div>
+                )}
               </div>
 
               <ol className="divide-y divide-line border-y border-line">
@@ -254,26 +308,7 @@ export default async function ServicePage({ params }: Props) {
         </section>
       )}
 
-      <References items={service.citations} />
-
-      {/* ----------------------------------------------------------- Qualifier */}
-      {service.qualifierConcerns && service.qualifierConcerns.length > 0 && (
-        <section className="mx-auto max-w-3xl px-4 py-16 lg:py-24">
-          <ServiceQualifier serviceName={shortName.toLowerCase()} concerns={service.qualifierConcerns} />
-        </section>
-      )}
-
-      {service.relatedLinks && service.relatedLinks.length > 0 && (
-        <div className="mx-auto max-w-6xl px-4 pb-4">
-          <div className="flex flex-wrap gap-3">
-            {service.relatedLinks.map((link) => (
-              <GhostButton key={link.href} href={link.href}>
-                {link.label}
-              </GhostButton>
-            ))}
-          </div>
-        </div>
-      )}
+      <MeetDoctors />
 
       <GoogleReviews />
 
@@ -310,17 +345,64 @@ export default async function ServicePage({ params }: Props) {
         </section>
       )}
 
+      {/* --------------------------------------------------------- Where to go next */}
+      {/* The internal-link block: conditions this service treats, plus the sibling pages.
+          Real SEO value, low decision value — so it sits after the FAQ, where someone who
+          has finished reading is choosing a next page rather than choosing whether to come in. */}
+      {(treats.length > 0 || (service.relatedLinks && service.relatedLinks.length > 0)) && (
+        <section className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
+          <Eyebrow>Where to go next</Eyebrow>
+          <h2 className="mt-5 max-w-2xl text-3xl font-extrabold leading-tight sm:text-4xl">
+            Related conditions and services
+          </h2>
+
+          {treats.length > 0 && (
+            <ul className="mt-8 grid gap-2.5 sm:grid-cols-2 lg:grid-cols-4">
+              {treats.map((c) => (
+                <li key={c!.slug}>
+                  <Link
+                    href={`/conditions/${c!.slug}`}
+                    className="flex items-start gap-2.5 text-ink-muted hover:text-brand-slate"
+                  >
+                    <Vertebrae className="mt-1.5 text-brand-gold" />
+                    {c!.title.split(' in ')[0]}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
+
+          {service.relatedLinks && service.relatedLinks.length > 0 && (
+            <div className="mt-10 flex flex-wrap gap-3">
+              {service.relatedLinks.map((link) => (
+                <GhostButton key={link.href} href={link.href}>
+                  {link.label}
+                </GhostButton>
+              ))}
+              <GhostButton href="/services">All our services in Cheras</GhostButton>
+            </div>
+          )}
+        </section>
+      )}
+
+      {/* Provenance, at the foot. Who reviewed the clinical copy and what it is sourced from
+          are the two E-E-A-T signals a YMYL page needs, but they are credentials rather than
+          reading — they belong where a reader checks the small print, not above the content
+          they vouch for. */}
+      <ReviewedBy date={service.lastReviewed} />
+      <References items={service.citations} />
+
       <CtaBand
         heading={`Book your ${shortName.toLowerCase()} consultation`}
         body="Registered chiropractors and physiotherapists in Cheras, Maluri. Open seven days, right next to Sunway Velocity."
-        bookingUrl={clinic.bookingUrl}
-        phone={clinic.phone}
-        phoneE164={clinic.phoneE164}
+        message={waMessage.service(shortName)}
       />
 
       <StickyCta />
-      {/* Clears the fixed mobile bar so it never covers the footer. */}
-      <div aria-hidden="true" className="h-20 lg:hidden" />
+      {/* Clears the fixed mobile bar so it never covers the footer. Slate, not the page
+          ground — as cream it read as an empty white band between the gold CTA and the
+          footer; in the footer's own colour it is simply where the footer starts. */}
+      <div aria-hidden="true" className="h-20 bg-brand-slate-deep lg:hidden" />
     </>
   )
 }

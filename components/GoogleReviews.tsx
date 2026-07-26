@@ -1,14 +1,23 @@
 import { googleReviews } from '@/lib/clinic'
 import { sampleReviews, sampleReviewSummary, USE_SAMPLE_REVIEWS } from '@/lib/sample-reviews'
 import { Eyebrow } from '@/components/ui'
+import { ServiceTestimonials } from '@/components/service'
 
 /**
  * Google-review styled social proof section.
  *
- * ⚠️ Currently renders PLACEHOLDER reviews from lib/sample-reviews.ts (USE_SAMPLE_REVIEWS).
- * Those are fabricated for the design preview and must be swapped for real reviews before
- * launch — see the warning in that file. When real data is wired in and USE_SAMPLE_REVIEWS
- * is set false, this renders nothing until a real source is passed.
+ * ⚠️ THE SAMPLE REVIEWS IN lib/sample-reviews.ts ARE FABRICATED AND CANNOT REACH
+ * PRODUCTION. The guard is structural, not a flag someone has to remember to flip: the
+ * placeholder branch is gated on NODE_ENV, so `next build` never takes it. In production
+ * this falls back to `ServiceTestimonials` — the clinic's real, migrated patient quotes —
+ * so the page keeps its social proof and none of it is invented.
+ *
+ * Publishing invented patient reviews on a registered healthcare practice's site is an
+ * advertising and professional-conduct risk, which is why this is enforced in code rather
+ * than documented in a comment. See PRODUCT.md, "Unverified is unpublished".
+ *
+ * TO SHIP REAL GOOGLE REVIEWS: replace `sampleReviews` / `sampleReviewSummary` with real
+ * data pulled from the Business Profile, then delete this gate and render unconditionally.
  *
  * Static server component: the whole thing is markup, no client JS.
  */
@@ -77,7 +86,10 @@ function Avatar({ name, color }: { name: string; color: string }) {
 }
 
 export function GoogleReviews() {
-  if (!USE_SAMPLE_REVIEWS) return null
+  // Fabricated data is a design-preview affordance for `next dev` only. Any production
+  // build — which is the only thing that reaches a patient — gets the real quotes.
+  const previewSampleData = USE_SAMPLE_REVIEWS && process.env.NODE_ENV !== 'production'
+  if (!previewSampleData) return <ServiceTestimonials />
 
   const summary = sampleReviewSummary
   const reviews = sampleReviews
@@ -91,7 +103,7 @@ export function GoogleReviews() {
         </h2>
 
         {/* Summary header — mirrors a Google Business Profile ratings block. */}
-        <div className="flex flex-col gap-6 rounded-3xl border border-line bg-white p-8 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-6 rounded-3xl border border-line bg-white p-8 shadow-ambient sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-5">
             <GoogleGlyph className="h-10 w-10" />
             <div>
@@ -116,28 +128,32 @@ export function GoogleReviews() {
           </a>
         </div>
 
-        {/* Individual review cards. */}
-        <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {/* Individual review cards, on a horizontal rail — eight of these stacked in a grid
+            was three screens of scrolling before a visitor reached anything else. */}
+        <ul
+          tabIndex={0}
+          aria-label="Google reviews"
+          className="rail -mx-4 mt-8 flex snap-x snap-mandatory gap-6 overflow-x-auto px-4 pb-5 lg:mx-0 lg:px-0"
+        >
           {reviews.map((r) => (
-            <figure
-              key={r.name}
-              className="flex flex-col rounded-3xl border border-line bg-white p-6"
-            >
-              <div className="flex items-center gap-3">
-                <Avatar name={r.name} color={r.color} />
-                <figcaption className="min-w-0 flex-1">
-                  <span className="block truncate text-sm font-semibold text-ink">{r.name}</span>
-                  <span className="block text-xs text-ink-muted">{r.when}</span>
-                </figcaption>
-                <GoogleGlyph />
-              </div>
-              <Stars className="mt-4 h-4 w-4" />
-              <blockquote className="mt-3 text-sm leading-relaxed text-ink-muted">
-                {r.body}
-              </blockquote>
-            </figure>
+            <li key={r.name} className="w-[82%] flex-none snap-start sm:w-[24rem] lg:w-[22rem]">
+              <figure className="flex h-full flex-col rounded-3xl border border-line bg-white p-6 shadow-ambient">
+                <div className="flex items-center gap-3">
+                  <Avatar name={r.name} color={r.color} />
+                  <figcaption className="min-w-0 flex-1">
+                    <span className="block truncate text-sm font-semibold text-ink">{r.name}</span>
+                    <span className="block text-xs text-ink-muted">{r.when}</span>
+                  </figcaption>
+                  <GoogleGlyph />
+                </div>
+                <Stars className="mt-4 h-4 w-4" />
+                <blockquote className="mt-3 text-sm leading-relaxed text-ink-muted">
+                  {r.body}
+                </blockquote>
+              </figure>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </section>
   )

@@ -49,9 +49,10 @@ export type CtaEvent = (typeof CTA_EVENTS)[keyof typeof CTA_EVENTS]
 export function ctaEventFor(href: string | null | undefined): CtaEvent | null {
   if (!href) return null
   if (href.startsWith('tel:')) return CTA_EVENTS.phone
+  // WhatsApp IS the booking event now — SweetPew was retired 2026-07-26, so a wa.me tap is
+  // the conversion this site exists to produce, not a softer secondary contact.
   if (href.includes('wa.link') || href.includes('wa.me') || href.includes('whatsapp'))
     return CTA_EVENTS.whatsapp
-  if (href.includes('sweetpew.com')) return CTA_EVENTS.booking
   if (href.includes('google.com/maps') || href.includes('maps.app.goo.gl'))
     return CTA_EVENTS.maps
   return null

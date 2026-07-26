@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 
-import { clinic } from '@/lib/clinic'
 import { publishedServices, servicesIntro } from '@/lib/services'
 import { JsonLd } from '@/components/JsonLd'
 import { breadcrumbSchema, collectionPageSchema } from '@/lib/schema'
@@ -70,7 +69,7 @@ export default function ServicesHub() {
               <li key={s.slug}>
                 <Link
                   href={`/services/${s.slug}`}
-                  className="group flex h-full flex-col rounded-3xl border border-line bg-white p-8 transition-shadow hover:shadow-xl hover:shadow-black/5 lg:p-10"
+                  className="group flex h-full flex-col rounded-3xl border border-line bg-white p-8 shadow-ambient transition-shadow hover:shadow-ambient-raise lg:p-10"
                 >
                   <Vertebrae className="text-brand-gold" />
                   <h3 className="mt-5 text-xl font-bold">{s.title.split(' in ')[0]}</h3>
@@ -89,9 +88,6 @@ export default function ServicesHub() {
       <CtaBand
         heading="Not sure whether you need chiro or physio?"
         body="Tell us where the pain is, how long it's been there and what sets it off. We'll point you to the right one before you book."
-        bookingUrl={clinic.bookingUrl}
-        phone={clinic.phone}
-        phoneE164={clinic.phoneE164}
       />
     </>
   )

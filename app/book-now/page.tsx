@@ -5,7 +5,8 @@ import Link from 'next/link'
 import { clinic, addressOneLine, hoursDisplay } from '@/lib/clinic'
 import { JsonLd } from '@/components/JsonLd'
 import { breadcrumbSchema, contactPageSchema } from '@/lib/schema'
-import { CtaBand, Eyebrow, GhostButton, GoldButton, PageHero, WhatsAppIcon } from '@/components/ui'
+import { CtaBand, Eyebrow, GhostButton, WhatsAppButton, PageHero } from '@/components/ui'
+import { waMessage } from '@/lib/whatsapp'
 
 // Competitors rank with their contact pages in this SERP (Excellence sits #12 for
 // "chiropractor cheras" with theirs), so this page gets real metadata, not a stub.
@@ -27,14 +28,8 @@ export default function ContactPage() {
         title="Contact & directions"
         intro="Right next to Sunway Velocity and Sunway Medical Centre, Cheras. Open seven days a week."
       >
-        <div className="flex flex-wrap gap-3">
-          <GoldButton href={clinic.bookingUrl} external>
-            Book an appointment
-          </GoldButton>
-          <GhostButton href={clinic.whatsappUrl} external tone="light">
-            <WhatsAppIcon />
-            WhatsApp us
-          </GhostButton>
+        <div>
+          <WhatsAppButton message={waMessage.general}>Book on WhatsApp</WhatsAppButton>
         </div>
       </PageHero>
 
@@ -98,12 +93,13 @@ export default function ContactPage() {
               </GhostButton>
             </div>
 
-            {/* ponytail: link out rather than iframe the widget. An embedded third-party
-                booking script is the single biggest LCP risk on the site, and this page's
-                job is ranking for "chiropractor cheras" + directions. Swap to an embed only
-                if booking conversion measurably drops. */}
+            {/* Online booking (SweetPew) was retired 2026-07-26 — every appointment now starts
+                as a WhatsApp message. That also removed the site's single biggest LCP risk: a
+                third-party booking script on the page that has to rank for
+                "chiropractor cheras" + directions. */}
             <p className="mt-8 text-sm text-ink-muted">
-              Booking is handled by SweetPew and opens in a new tab.
+              We take appointments over WhatsApp and by phone, seven days a week. Message us
+              your main concern and we will confirm a time.
             </p>
 
             <p className="mt-6 leading-relaxed text-ink-muted">
@@ -127,11 +123,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <CtaBand
-        bookingUrl={clinic.bookingUrl}
-        phone={clinic.phone}
-        phoneE164={clinic.phoneE164}
-      />
+      <CtaBand />
     </>
   )
 }

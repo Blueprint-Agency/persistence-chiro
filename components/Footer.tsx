@@ -3,7 +3,8 @@ import Link from 'next/link'
 
 import { clinic, addressOneLine, hoursDisplay } from '@/lib/clinic'
 import { mainNav } from '@/lib/nav'
-import { GoldButton, Vertebrae, WhatsAppIcon } from '@/components/ui'
+import { WhatsAppButton, Vertebrae } from '@/components/ui'
+import { waMessage } from '@/lib/whatsapp'
 
 /**
  * NAP appears here on every page — this is the sitewide citation Google reads.
@@ -34,19 +35,14 @@ export function Footer() {
               improving lives, one spine at a time.
             </p>
 
-            <div className="mt-7 flex flex-wrap gap-3">
-              <GoldButton href={clinic.bookingUrl} external>
-                Book an appointment
-              </GoldButton>
-              <a
-                href={clinic.whatsappUrl}
-                target="_blank"
-                rel="noopener"
-                className="inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10"
-              >
-                <WhatsAppIcon />
-                WhatsApp
-              </a>
+            {/* One conversion action, not two. This used to be a gold "Book" (SweetPew) beside
+                an outlined "WhatsApp"; now that both lead to the same chat, showing them twice
+                was just asking the same question twice. Call is the genuine alternative. */}
+            {/* One CTA. The phone number is still a tappable NAP citation in the "Visit"
+                column below — removing the button does not remove the number, which local
+                SEO depends on appearing on every page. */}
+            <div className="mt-7">
+              <WhatsAppButton message={waMessage.general}>Book on WhatsApp</WhatsAppButton>
             </div>
 
             <ul className="mt-8 flex gap-5 text-sm text-white/70">
@@ -133,7 +129,9 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col gap-2 border-t border-white/15 pt-7 text-xs text-white/50 sm:flex-row sm:justify-between">
+        {/* /50 on the slate field computes to 4.35:1 — below AA for text this size. /70
+            clears it at ~7:1 and still reads as the quietest line on the page. */}
+        <div className="mt-14 flex flex-col gap-2 border-t border-white/15 pt-7 text-xs text-white/70 sm:flex-row sm:justify-between">
           <p>
             &copy; {new Date().getFullYear()} {clinic.name}. Chiropractic and physiotherapy in
             Cheras, Maluri, Kuala Lumpur.

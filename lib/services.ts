@@ -28,6 +28,34 @@
  * `content.test.ts`. See the hedging house style in `conditions.ts`.
  */
 
+/**
+ * A "reason people come in" card. Three shapes, in order of preference:
+ *
+ *   'plain string'                          text only
+ *   { text, illustration: 'muscle-knot' }   a drawn diagram (see ConcernIllustration)
+ *   { text, image: { src, alt } }           a photograph
+ *
+ * Prefer `illustration` when the card describes a SYMPTOM. No honest photograph shows a
+ * symptom — it shows a room with people in it — so a photo there is always approximate,
+ * whereas a diagram can say exactly what the sentence says.
+ *
+ * Reach for `image` when the card describes a place, a person or a procedure, where a real
+ * photograph of this clinic is the truthful thing. Its alt text must then describe what is
+ * actually in the frame, not the concern it sits under.
+ */
+export type Outcome =
+  | string
+  | { text: string; illustration: ConcernIllustrationName; image?: never }
+  | { text: string; image: { src: string; alt: string }; illustration?: never }
+
+import type { ConcernIllustrationName } from '@/components/ConcernIllustration'
+
+/** Icons available to the qualifier checklist. Keep the set small and legible at 20px. */
+export type ConcernIcon = 'knot' | 'recurring' | 'neck' | 'injury' | 'needle' | 'question'
+
+/** A qualifier option. A bare string still works; an object adds an icon. */
+export type Concern = string | { label: string; icon: ConcernIcon }
+
 export type Service = {
   slug: string
   /** <h1>. Must be unique across the site. */
@@ -47,17 +75,36 @@ export type Service = {
    */
   heroImage?: { src: string; alt: string }
   /**
+   * Optional second photograph, rendered in the sticky "How it works" column. That column is
+   * otherwise a heading, a sentence and a button next to a long numbered list — an image
+   * gives it something to hold while the steps scroll past it.
+   *
+   * Same alt rule as the hero: describe what is in the frame, never the service being sold.
+   */
+  midImage?: { src: string; alt: string }
+  /**
+   * Short factual reassurances rendered beside the hero CTA — the things a visitor wants
+   * settled before they will message anyone.
+   *
+   * FACTS ONLY, and only facts this page already substantiates further down. Never a
+   * response-time promise the clinic has not agreed to, never an outcome. Three is the
+   * ceiling; past that it stops being reassurance and becomes a feature list.
+   *
+   * Omit and the hero falls back to the generic hours-and-location line.
+   */
+  assurances?: string[]
+  /**
    * Benefit-framed reasons people come in for this service. Describes the concern, never
    * promises an outcome (no-medical-promises rule) — "tension that builds up at a desk",
    * not "we fix your tension". Rendered as a scannable "what we help with" block.
    */
-  outcomes?: string[]
+  outcomes?: readonly Outcome[]
   /**
    * Concern checkboxes for the "Is this right for you?" qualifier — the reader ticks what
    * applies and the component builds a prefilled WhatsApp message. Phrase each as a symptom
    * or situation, not a diagnosis.
    */
-  qualifierConcerns?: string[]
+  qualifierConcerns?: readonly Concern[]
   /**
    * ISO date the clinical content was last reviewed by the practitioner. Drives the
    * "Medically reviewed by" byline AND the reviewedBy/lastReviewed schema — the two E-E-A-T
@@ -184,23 +231,60 @@ export const services: Service[] = [
     targetKeyword: 'dry needling near me',
     intro:
       'Dry needling in Cheras. A neuromuscular technique that uses fine needles to reach trigger points and bands of muscular tension which are difficult to release by hand alone.',
+    /**
+     * The clinic's own dry needling photograph, not a stand-in. Someone searching
+     * "dry needling near me" already knows what a needle is — hiding the technique behind a
+     * generic consultation shot reads as evasive, and the gloves and single-use needles
+     * visible here are the exact trust signal the page's safety copy is making in words.
+     */
     heroImage: {
-      src: '/img/first-visit-consultation.webp',
-      alt: 'A practitioner talking through an assessment before treatment at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
+      src: '/img/dry-needling.webp',
+      alt: 'Gloved practitioner performing dry needling on a patient upper back and shoulder at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
     },
+    midImage: {
+      src: '/img/posture-assessment.webp',
+      alt: 'Practitioner examining a seated patient upper back during assessment at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
+    },
+    /**
+     * The three things someone hesitating over needles actually wants to know. Each is
+     * already stated and justified in the sections below — this only moves them into the
+     * first viewport, where the hesitation happens.
+     */
+    assurances: [
+      'Sterile, single use needles — never reused',
+      'We assess before we needle',
+      'Open seven days · Cheras, Maluri',
+    ],
+    /**
+     * Diagrams, not photographs. Every one of these four is a symptom, and the photographs
+     * that were here showed treatment being delivered — approximately related, never the
+     * thing itself. A drawn knot can be a knot.
+     */
     outcomes: [
-      'Tight, knotted muscles that do not release with stretching or massage',
-      'Deep muscular tension linked to neck, shoulder or lower back trouble',
-      'Trigger points that keep referring pain to the same spot',
-      'Muscles that stay guarded and overactive after an old injury',
+      {
+        text: 'Tight, knotted muscles that do not release with stretching or massage',
+        illustration: 'muscle-knot',
+      },
+      {
+        text: 'Deep muscular tension linked to neck, shoulder or lower back trouble',
+        illustration: 'spine-tension',
+      },
+      {
+        text: 'Trigger points that keep referring pain to the same spot',
+        illustration: 'trigger-point',
+      },
+      {
+        text: 'Muscles that stay guarded and overactive after an old injury',
+        illustration: 'guarded-muscle',
+      },
     ],
     qualifierConcerns: [
-      'I have a muscle knot that will not release',
-      'Massage helps for a day, then the tightness comes back',
-      'My neck or shoulders feel constantly tense',
-      'An old injury left a muscle feeling tight and overactive',
-      'I have had dry needling before and it helped',
-      'I am nervous about needles and want to ask first',
+      { label: 'I have a muscle knot that will not release', icon: 'knot' },
+      { label: 'Massage helps for a day, then the tightness comes back', icon: 'recurring' },
+      { label: 'My neck or shoulders feel constantly tense', icon: 'neck' },
+      { label: 'An old injury left a muscle feeling tight and overactive', icon: 'injury' },
+      { label: 'I have had dry needling before and it helped', icon: 'needle' },
+      { label: 'I am nervous about needles and want to ask first', icon: 'question' },
     ],
     lastReviewed: '2026-07-26',
     longForm: [
@@ -300,15 +384,25 @@ export const services: Service[] = [
     intro:
       'Physiotherapy in Cheras, pairing hands-on treatment with corrective exercise. Once a joint is moving more freely, the exercise work aims to rebuild the strength and control that help keep it that way.',
     heroImage: {
-      src: '/img/consultation-assessment.webp',
-      alt: 'A practitioner assessing a patient posture and movement at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
+      src: '/img/cupping-treatment.webp',
+      alt: 'Cupping therapy applied across a patient upper back at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
     },
+    midImage: {
+      src: '/img/treatment-neck.webp',
+      alt: 'Physiotherapist working on a seated patient neck and shoulder at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
+    },
+    /** Facts this page already substantiates, moved into the first viewport. */
+    assurances: [
+      'Assessment before any treatment plan',
+      'Exercises built for your problem, not a handout',
+      'Open seven days · Cheras, Maluri',
+    ],
     outcomes: [
-      'Pain or stiffness that limits how you move through the day',
-      'A recent strain or flare-up you want assessed properly',
-      'A long-standing problem that keeps returning',
-      'Weakness or poor control after an injury or time off',
-      'Exercises that actually fit your problem, not a generic sheet',
+      { text: 'Pain or stiffness that limits how you move through the day', illustration: 'limited-range' },
+      { text: 'A recent strain or flare-up you want assessed properly', illustration: 'flare-up' },
+      { text: 'A long-standing problem that keeps returning', illustration: 'recurring' },
+      { text: 'Weakness or poor control after an injury or time off', illustration: 'weakness' },
+      { text: 'Exercises that actually fit your problem, not a generic sheet', illustration: 'tailored-plan' },
     ],
     qualifierConcerns: [
       'I have pain or stiffness that limits daily activities',
@@ -406,15 +500,27 @@ export const services: Service[] = [
     intro:
       'Sports injury care in Cheras. We assess what failed and why, then work through staged rehabilitation aimed at getting you back to your sport without carrying the same weakness into it.',
     heroImage: {
-      src: '/img/hero-adjustment.webp',
-      alt: 'Hands-on treatment at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
+      src: '/img/treatment-ankle.webp',
+      alt: 'Practitioner applying kinesiology tape to a patient lower leg at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
     },
+    midImage: {
+      src: '/img/adjustment-hip.webp',
+      alt: 'Chiropractor treating a patient hip on a treatment table at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
+    },
+    assurances: [
+      'Assessed before you are given a plan',
+      'Staged return to your sport, not just rest',
+      'Open seven days · Cheras, Maluri',
+    ],
     outcomes: [
-      'A sprain, strain or overuse injury you want assessed',
-      'Pain that flares up during or after your sport',
-      'An injury that keeps coming back when you return to training',
-      'A staged plan back to your sport, not just rest',
-      'Rehabilitation to continue after surgery, within the limits your surgeon sets',
+      { text: 'A sprain, strain or overuse injury you want assessed', illustration: 'sprain' },
+      { text: 'Pain that flares up during or after your sport', illustration: 'flare-up' },
+      { text: 'An injury that keeps coming back when you return to training', illustration: 'recurring' },
+      { text: 'A staged plan back to your sport, not just rest', illustration: 'staged-return' },
+      {
+        text: 'Rehabilitation to continue after surgery, within the limits your surgeon sets',
+        illustration: 'bounded-limit',
+      },
     ],
     qualifierConcerns: [
       'I have a sprain, strain or overuse injury',
@@ -513,15 +619,27 @@ export const services: Service[] = [
     intro:
       'Posture work for desk workers in Cheras. We assess how you actually sit and move, then combine strength work with practical workstation changes so that a better position becomes sustainable instead of something you have to keep remembering.',
     heroImage: {
-      src: '/img/gonstead-nervoscope.webp',
-      alt: 'A spinal assessment using instrumentation at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
+      src: '/img/posture-assessment.webp',
+      alt: 'Chiropractor examining a seated patient upper back and posture at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
     },
+    midImage: {
+      src: '/img/nervoscope-assessment.webp',
+      alt: 'Close up of a nervoscope being run along a patient spine at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
+    },
+    assurances: [
+      'Posture assessed, not guessed at',
+      'Workstation changes you can actually keep',
+      'Open seven days · Cheras, Maluri',
+    ],
     outcomes: [
-      'Neck and shoulder tension that builds up over a day at a desk',
-      'A forward head or rounded shoulders you have noticed',
-      'Stiffness that eases when you move and returns when you sit',
-      'Practical workstation changes you will actually keep',
-      'Strength work to hold a better position without thinking about it',
+      { text: 'Neck and shoulder tension that builds up over a day at a desk', illustration: 'desk-tension' },
+      { text: 'A forward head or rounded shoulders you have noticed', illustration: 'forward-head' },
+      { text: 'Stiffness that eases when you move and returns when you sit', illustration: 'recurring' },
+      { text: 'Practical workstation changes you will actually keep', illustration: 'workstation' },
+      {
+        text: 'Strength work to hold a better position without thinking about it',
+        illustration: 'hold-position',
+      },
     ],
     qualifierConcerns: [
       'My neck and shoulders ache after a day at a desk',

@@ -2,7 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 
-import { clinic, practitioners, registrationsVerified } from '@/lib/clinic'
+import { practitioners, registrationsVerified } from '@/lib/clinic'
 import { JsonLd } from '@/components/JsonLd'
 import { personSchema } from '@/lib/schema'
 import { CtaBand, Eyebrow, GhostButton, PageHero, Vertebrae } from '@/components/ui'
@@ -42,7 +42,7 @@ export default function AboutPage() {
             <li key={p.slug}>
               <Link
                 href={`/about/${p.slug}`}
-                className="group flex h-full flex-col overflow-hidden rounded-3xl border border-line bg-white transition-shadow hover:shadow-xl hover:shadow-black/5"
+                className="group flex h-full flex-col overflow-hidden rounded-3xl border border-line bg-white shadow-ambient transition-shadow hover:shadow-ambient-raise"
               >
                 <Image
                   src={p.photo}
@@ -110,9 +110,6 @@ export default function AboutPage() {
       <CtaBand
         heading="Want to know which of us to see?"
         body="Tell us your main concern and we'll match you to the right practitioner before you book."
-        bookingUrl={clinic.bookingUrl}
-        phone={clinic.phone}
-        phoneE164={clinic.phoneE164}
       />
     </>
   )

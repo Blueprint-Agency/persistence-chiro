@@ -1,0 +1,316 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-26T00:00:00Z",
+  "title": "Design System: Persistence Chiropractic",
+  "extensions": {
+    "colorMeta": {
+      "brand-gold": {
+        "role": "primary",
+        "displayName": "Brand Gold",
+        "canonical": "#e8c111",
+        "tonalRamp": ["#3d3204", "#5b4c06", "#7d6407", "#a08309", "#c4a20d", "#e8c111", "#f0d558", "#f8ea9f"]
+      },
+      "brand-gold-ink": {
+        "role": "primary",
+        "displayName": "Deep Gold Ink",
+        "canonical": "#7d6407"
+      },
+      "brand-slate": {
+        "role": "secondary",
+        "displayName": "Slate Blue",
+        "canonical": "#2b5672",
+        "tonalRamp": ["#0b1a24", "#12293a", "#17364a", "#1f4560", "#2b5672", "#4a7594", "#7b9fb8", "#c2d6e3"]
+      },
+      "brand-slate-deep": {
+        "role": "secondary",
+        "displayName": "Deep Slate",
+        "canonical": "#17364a"
+      },
+      "brand-slate-soft": {
+        "role": "secondary",
+        "displayName": "Soft Slate",
+        "canonical": "#93b4c8"
+      },
+      "brand-aqua": {
+        "role": "tertiary",
+        "displayName": "Pale Aqua",
+        "canonical": "#dff0f3",
+        "tonalRamp": ["#123338", "#1c4c53", "#2a6a73", "#3c8b96", "#5faab5", "#92c8d1", "#bcdfe6", "#dff0f3"]
+      },
+      "background": {
+        "role": "neutral",
+        "displayName": "Warm Cream",
+        "canonical": "#faf8f4",
+        "tonalRamp": ["#3a352c", "#55503f", "#756f5a", "#968f77", "#b7b096", "#d4cdb8", "#e9e3d6", "#faf8f4"]
+      },
+      "white": {
+        "role": "neutral",
+        "displayName": "White",
+        "canonical": "#ffffff"
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#212121",
+        "tonalRamp": ["#0a0a0a", "#141414", "#212121", "#333333", "#4d4d4d", "#707070", "#a0a0a0", "#d6d6d6"]
+      },
+      "ink-muted": {
+        "role": "neutral",
+        "displayName": "Muted Ink",
+        "canonical": "#414141"
+      },
+      "foreground": {
+        "role": "neutral",
+        "displayName": "Foreground",
+        "canonical": "#212121"
+      },
+      "signal-tension": {
+        "role": "tertiary",
+        "displayName": "Tension Red",
+        "canonical": "#c2412d",
+        "tonalRamp": ["#2e0f09", "#4a1810", "#6b2418", "#8f2a1c", "#c2412d", "#d9705f", "#eaa79b", "#f7ddd7"]
+      },
+      "signal-tension-ink": {
+        "role": "tertiary",
+        "displayName": "Tension Ink",
+        "canonical": "#8f2a1c"
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Warm Hairline",
+        "canonical": "#e5dfd4",
+        "tonalRamp": ["#37342d", "#524d42", "#6f6a5b", "#8f8877", "#b0a996", "#cbc4b3", "#e5dfd4", "#f4f1ea"]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The page h1. Exactly one per page. Usually white on the deep slate hero field."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section h2 that opens each band, normally preceded by a vertebral eyebrow."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Card and sub-section h3."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Standard paragraph, constrained to roughly 65-75 characters of measure."
+      },
+      "body-small": {
+        "displayName": "Body Small",
+        "purpose": "Buttons, captions, utility bar, metadata bylines."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Eyebrows and data labels. Montserrat at 11px, 0.16em tracking, uppercase — a third voice from the second face rather than a third family."
+      },
+      "prose": {
+        "displayName": "Prose",
+        "purpose": "Blog post body. A separate, looser ramp from the marketing scale because MDX carries bare prose and sustained reading wants more air."
+      },
+      "prose-heading": {
+        "displayName": "Prose Heading",
+        "purpose": "h2 inside a blog post, with 2.75rem of space above it."
+      },
+      "prose-subheading": {
+        "displayName": "Prose Subheading",
+        "purpose": "h3 inside a blog post, with 2rem of space above it."
+      }
+    },
+    "shadows": [
+      {
+        "name": "ambient-rest",
+        "value": "0 1px 2px rgba(33,33,33,0.04), 0 8px 24px -12px rgba(23,54,74,0.10)",
+        "purpose": "Default resting state for content cards on the cream ground. You should notice its absence, not its presence."
+      },
+      {
+        "name": "ambient-raise",
+        "value": "0 2px 4px rgba(33,33,33,0.04), 0 18px 40px -16px rgba(23,54,74,0.18)",
+        "purpose": "Hover state on an interactive card. A lift, not a jump."
+      },
+      {
+        "name": "overlay",
+        "value": "0 12px 32px -8px rgba(23,54,74,0.18)",
+        "purpose": "Elements genuinely above the page: nav submenu, mobile drawer, sticky booking bar."
+      }
+    ],
+    "motion": [
+      {
+        "name": "state-transition",
+        "value": "150ms cubic-bezier(0.4, 0, 0.2, 1)",
+        "purpose": "Colour and shadow transitions on interactive elements. Colour only — this system does not animate layout on hover."
+      },
+      {
+        "name": "reveal-ease",
+        "value": "cubic-bezier(0.55, 0, 0.85, 0.25)",
+        "purpose": "The accelerating curve used by the homepage backbone preloader for the mask zoom and spine zoom, which must share it exactly."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "@media (prefers-reduced-motion: reduce) { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }",
+        "purpose": "Global kill switch. Every animation in the system must survive it."
+      }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button (Gold)",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The booking action. Always an anchor, never a form submit — booking is external.",
+      "html": "<a class=\"ds-btn-gold\" href=\"#\">Book an appointment</a>",
+      "css": ".ds-btn-gold { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; background: var(--brand-gold, #e8c111); color: var(--ink, #212121); font-family: 'Source Sans 3', system-ui, sans-serif; font-size: 0.875rem; font-weight: 600; text-decoration: none; padding: 0.75rem 1.5rem; border: none; border-radius: 9999px; transition: background-color 150ms cubic-bezier(0.4,0,0.2,1); } .ds-btn-gold:hover { background: #d4b00d; } .ds-btn-gold:focus-visible { outline: 2px solid var(--brand-gold, #e8c111); outline-offset: 3px; }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Secondary action. Outlined so it never competes with the gold button beside it.",
+      "html": "<a class=\"ds-btn-ghost\" href=\"#\">Meet the team</a>",
+      "css": ".ds-btn-ghost { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; background: transparent; color: var(--brand-slate, #2b5672); font-family: 'Source Sans 3', system-ui, sans-serif; font-size: 0.875rem; font-weight: 600; text-decoration: none; padding: 0.75rem 1.5rem; border: 1px solid rgba(43,86,114,0.3); border-radius: 9999px; transition: background-color 150ms cubic-bezier(0.4,0,0.2,1); } .ds-btn-ghost:hover { background: rgba(43,86,114,0.05); } .ds-btn-ghost:focus-visible { outline: 2px solid var(--brand-gold, #e8c111); outline-offset: 3px; }"
+    },
+    {
+      "name": "Section Eyebrow",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "The system's signature. Four tapering vertebral bars plus a tracked-caps label; opens essentially every section on the site.",
+      "html": "<p class=\"ds-eyebrow\"><span class=\"ds-vertebrae\" aria-hidden=\"true\"><i></i><i></i><i></i><i></i></span><span class=\"ds-eyebrow-label\">From our patients in Cheras</span></p>",
+      "css": ".ds-eyebrow { display: flex; align-items: center; gap: 0.75rem; margin: 0; color: var(--brand-slate, #2b5672); } .ds-vertebrae { display: flex; flex-direction: column; gap: 2px; flex: none; } .ds-vertebrae > i { display: block; width: 0.5rem; height: 0.3125rem; border-radius: 1.5px; background: currentColor; } .ds-vertebrae > i:nth-child(1) { opacity: 1; } .ds-vertebrae > i:nth-child(2) { opacity: 0.75; } .ds-vertebrae > i:nth-child(3) { opacity: 0.5; } .ds-vertebrae > i:nth-child(4) { opacity: 0.28; } .ds-eyebrow-label { font-family: Montserrat, system-ui, sans-serif; font-weight: 600; font-size: 0.6875rem; letter-spacing: 0.16em; text-transform: uppercase; }"
+    },
+    {
+      "name": "Content Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "White surface on the cream ground. Link cards signal on hover by widening the arrow gap, not by changing colour.",
+      "html": "<a class=\"ds-card\" href=\"#\"><h3 class=\"ds-card-title\">Chiropractic treatment</h3><p class=\"ds-card-body\">Gonstead assessment and precise, hands-only spinal adjustment, directed at the segment the examination points to.</p><span class=\"ds-card-more\">Learn more<span aria-hidden=\"true\">&rarr;</span></span></a>",
+      "css": ".ds-card { display: block; background: #ffffff; border: 1px solid var(--line, #e5dfd4); border-radius: 1.5rem; padding: 1.75rem; text-decoration: none; box-shadow: 0 1px 2px rgba(33,33,33,0.04), 0 8px 24px -12px rgba(23,54,74,0.10); transition: box-shadow 150ms cubic-bezier(0.4,0,0.2,1); } .ds-card:hover { box-shadow: 0 2px 4px rgba(33,33,33,0.04), 0 18px 40px -16px rgba(23,54,74,0.18); } .ds-card:focus-visible { outline: 2px solid var(--brand-gold, #e8c111); outline-offset: 3px; } .ds-card-title { font-family: Montserrat, system-ui, sans-serif; font-size: 1.25rem; font-weight: 700; letter-spacing: -0.02em; color: var(--ink, #212121); margin: 0; } .ds-card-body { font-family: 'Source Sans 3', system-ui, sans-serif; font-size: 1rem; line-height: 1.625; color: var(--ink-muted, #414141); margin: 0.75rem 0 0; } .ds-card-more { display: inline-flex; align-items: center; gap: 0.375rem; margin-top: 1.25rem; font-family: 'Source Sans 3', system-ui, sans-serif; font-size: 0.875rem; font-weight: 600; color: var(--brand-slate, #2b5672); transition: gap 150ms cubic-bezier(0.4,0,0.2,1); } .ds-card:hover .ds-card-more { gap: 0.625rem; }"
+    },
+    {
+      "name": "Navigation Submenu Panel",
+      "kind": "nav",
+      "refersTo": "nav-panel",
+      "description": "CSS-only dropdown. Revealed by hover and focus-within so it stays keyboard-reachable with zero JavaScript.",
+      "html": "<ul class=\"ds-nav-panel\"><li><a href=\"#\">Chiropractic treatment</a></li><li><a href=\"#\">Physiotherapy</a></li><li><a href=\"#\">Dry needling</a></li></ul>",
+      "css": ".ds-nav-panel { list-style: none; margin: 0; padding: 0.5rem; width: 16rem; background: var(--background, #faf8f4); border: 1px solid var(--line, #e5dfd4); border-radius: 0.75rem; box-shadow: 0 12px 32px -8px rgba(23,54,74,0.18); } .ds-nav-panel a { display: block; padding: 0.5rem 0.75rem; border-radius: 0.5rem; font-family: 'Source Sans 3', system-ui, sans-serif; font-size: 0.875rem; color: var(--ink-muted, #414141); text-decoration: none; transition: background-color 150ms cubic-bezier(0.4,0,0.2,1), color 150ms cubic-bezier(0.4,0,0.2,1); } .ds-nav-panel a:hover { background: var(--brand-aqua, #dff0f3); color: var(--brand-slate, #2b5672); } .ds-nav-panel a:focus-visible { outline: 2px solid var(--brand-gold, #e8c111); outline-offset: 3px; }"
+    },
+    {
+      "name": "Conversion Band",
+      "kind": "custom",
+      "refersTo": "cta-band",
+      "description": "Full-bleed gold band at the foot of every content page. The contrast button exists because a gold button would vanish here.",
+      "html": "<section class=\"ds-cta\"><div class=\"ds-cta-copy\"><h2>Ready to stop working around the pain?</h2><p>Consult our Gonstead chiropractors today. Open seven days, right next to Sunway Velocity.</p></div><div class=\"ds-cta-actions\"><a class=\"ds-btn-ink\" href=\"#\">Book now</a><a class=\"ds-btn-outline-ink\" href=\"#\">Call 018-2014088</a></div></section>",
+      "css": ".ds-cta { display: flex; flex-direction: column; gap: 1.5rem; background: var(--brand-gold, #e8c111); padding: 3rem 1rem; } @media (min-width: 768px) { .ds-cta { flex-direction: row; align-items: center; justify-content: space-between; } } .ds-cta h2 { font-family: Montserrat, system-ui, sans-serif; font-size: 1.5rem; font-weight: 800; line-height: 1.25; letter-spacing: -0.02em; color: var(--ink, #212121); margin: 0; } .ds-cta p { font-family: 'Source Sans 3', system-ui, sans-serif; font-size: 1rem; line-height: 1.625; color: rgba(33,33,33,0.7); margin: 0.5rem 0 0; max-width: 36rem; } .ds-cta-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; flex: none; } .ds-btn-ink, .ds-btn-outline-ink { display: inline-flex; align-items: center; justify-content: center; font-family: 'Source Sans 3', system-ui, sans-serif; font-size: 0.875rem; font-weight: 600; text-decoration: none; padding: 0.75rem 1.5rem; border-radius: 9999px; transition: background-color 150ms cubic-bezier(0.4,0,0.2,1); } .ds-btn-ink { background: var(--ink, #212121); color: #ffffff; border: none; } .ds-btn-ink:hover { background: var(--brand-slate-deep, #17364a); } .ds-btn-outline-ink { background: transparent; color: var(--ink, #212121); border: 1px solid rgba(33,33,33,0.25); } .ds-btn-outline-ink:hover { background: rgba(33,33,33,0.05); }"
+    },
+    {
+      "name": "Mobile Sticky CTA",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "Fixed bottom bar below lg. WhatsApp green is the one non-palette colour permitted, because it is a platform mark rather than a brand choice.",
+      "html": "<div class=\"ds-sticky\"><a class=\"ds-sticky-book\" href=\"#\">Book a consultation</a><a class=\"ds-sticky-wa\" href=\"#\"><svg viewBox=\"0 0 24 24\" fill=\"currentColor\" width=\"16\" height=\"16\" aria-hidden=\"true\"><path d=\"M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.05-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35M12.04 21.5h-.01a9.4 9.4 0 0 1-4.8-1.32l-.34-.2-3.57.94.95-3.48-.22-.36a9.38 9.38 0 0 1-1.44-5.01c0-5.18 4.22-9.4 9.42-9.4a9.36 9.36 0 0 1 9.4 9.41c0 5.18-4.22 9.4-9.4 9.4M20.5 3.49A11.8 11.8 0 0 0 12.04 0C5.48 0 .14 5.34.13 11.9c0 2.1.55 4.14 1.6 5.95L0 24l6.3-1.65a11.9 11.9 0 0 0 5.73 1.46h.01c6.56 0 11.9-5.34 11.9-11.9a11.8 11.8 0 0 0-3.44-8.42\"/></svg>WhatsApp</a></div>",
+      "css": ".ds-sticky { display: flex; align-items: center; gap: 0.75rem; background: rgba(255,255,255,0.95); backdrop-filter: blur(8px); border-top: 1px solid var(--line, #e5dfd4); box-shadow: 0 12px 32px -8px rgba(23,54,74,0.18); padding: 0.75rem 1rem; padding-bottom: max(0.75rem, env(safe-area-inset-bottom)); } .ds-sticky-book, .ds-sticky-wa { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; font-family: 'Source Sans 3', system-ui, sans-serif; font-size: 0.875rem; font-weight: 600; text-decoration: none; padding: 0.75rem 1.25rem; border-radius: 9999px; } .ds-sticky-book { flex: 1; background: var(--brand-gold, #e8c111); color: var(--ink, #212121); text-align: center; } .ds-sticky-wa { flex: none; background: #25D366; color: #ffffff; }"
+    },
+    {
+      "name": "Reviewed-by Byline",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "E-E-A-T signal for medical pages. Renders nothing without a real review date, so a fabricated date cannot ship.",
+      "html": "<div class=\"ds-byline\"><span class=\"ds-byline-avatar\" aria-hidden=\"true\"></span><p>Medically reviewed by <a href=\"#\">Dr. Valerie Na</a>, Director &amp; Principal Chiropractor<span class=\"ds-byline-meta\">BAppSc (Chiropractic), BHSc, RMIT University, Melbourne &middot; Last reviewed 21 July 2026</span></p></div>",
+      "css": ".ds-byline { display: flex; align-items: center; gap: 0.75rem; background: #ffffff; border-bottom: 1px solid var(--line, #e5dfd4); padding: 1rem; } .ds-byline-avatar { flex: none; width: 2.75rem; height: 2.75rem; border-radius: 9999px; background: var(--brand-aqua, #dff0f3); } .ds-byline p { font-family: 'Source Sans 3', system-ui, sans-serif; font-size: 0.875rem; line-height: 1.375; color: var(--ink-muted, #414141); margin: 0; } .ds-byline a { font-weight: 600; color: var(--ink, #212121); text-decoration: underline; text-underline-offset: 2px; } .ds-byline a:hover { color: var(--brand-slate, #2b5672); } .ds-byline-meta { display: block; color: rgba(65,65,65,0.8); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Segment",
+    "overview": "Everything in this system derives from a single vertebra. The clinic practises Gonstead — a technique that finds the one restricted segment rather than treating the whole back at once — and the interface is built the same way: stacked units, addressed one at a time, tapering in emphasis. The signature mark is four bone-shaped bars in a vertical column, lifted from the spine in the clinic's own logo, and it prefixes every section label on the site. It is not decoration. It describes the method.\n\nThat logic scales up. Pages are a stack of full-bleed bands, each one a segment: slate field, then bone ground, then white, then aqua tint, then the gold conversion band at the foot. Bands are separated by a 1px warm hairline rather than shadow or gap, so the page reads as one continuous column of clearly-jointed sections. The preloader is the same idea made literal — a backbone of four bones pulses, then the page is revealed through the bone shapes.\n\nThe atmosphere is warm, flat and daylit, not clinical-white. Every neutral is sampled from the clinic's actual room: the walls are warm cream, the reception desk is aqua glass, and there is a live plant wall in nearly every photograph. Gold appears rarely and only where a decision is being asked for. The confirmed anti-reference is the site this replaces — the old Wix build, which mixed five stock typefaces with no system and used photography as filler. Two faces is the entire scale here, and every image is of this clinic, these practitioners, this room.",
+    "keyCharacteristics": [
+      "Four-bar vertebral mark on every section eyebrow — the system's one recurring signature",
+      "Warm cream ground, never pure white page background",
+      "Exactly one gold element per view, always the booking action",
+      "Flat surfaces separated by warm 1px hairlines; depth is tonal, not shadowed",
+      "Full-bleed horizontal bands, centred 72rem container inside",
+      "Two typefaces: Montserrat for structure, Source Sans 3 for reading",
+      "No dark mode — the clinic has no dark identity, and gold inverts badly"
+    ],
+    "rules": [
+      {
+        "name": "The One Gold Decision Rule",
+        "body": "A gold fill marks the action being asked for, and there is one per view. If a screen has two gold-filled elements — two buttons, a button plus a band — one of them is wrong; demote it to the ghost button or plain slate text. Its rarity is what makes it read as a decision rather than as branding. The rule governs fills, not the mark: the vertebral glyph and the check glyph render in gold throughout the site as a small ~8px accent, and a glyph is not a call to action. What it may not do is grow — gold on any element large enough to read as a surface is a fill, and the rule applies.",
+        "section": "colors"
+      },
+      {
+        "name": "The Warm Neutral Rule",
+        "body": "No cool grey enters this system. Borders are #e5dfd4, the ground is #faf8f4. If a neutral looks grey next to the gold, it is the wrong neutral.",
+        "section": "colors"
+      },
+      {
+        "name": "The Tint-Not-Type Rule",
+        "body": "Pale Aqua and Brand Gold are surfaces. Deep Gold Ink, Slate Blue and Soft Slate are voices. Crossing them — gold text on cream, aqua text anywhere — fails contrast every time.",
+        "section": "colors"
+      },
+      {
+        "name": "The Diagnostic Signal Rule",
+        "body": "Tension Red is a state, never a colour in the palette. It may only appear inside a diagram, only on the element the diagram is about, and only as the peak of an animation that begins and ends on gold — so a visitor with reduced motion, or a screenshot, sees gold. Gold to red is a thermal ramp, which is what the clinic's nervoscope reads either side of the spine, so the colour describes the instrument's own output rather than borrowing an alarm. It may not become a border, background, text colour, badge or error state.",
+        "section": "colors"
+      },
+      {
+        "name": "The Platform Mark Exception",
+        "body": "Third-party marks keep their own colours, because a recoloured platform logo stops functioning as proof. Three are licensed, and only these: WhatsApp green (#25D366), Google's four-colour set (#4285F4, #EA4335, #FBBC05, #34A853) in the review widget's wordmark and glyph, and Google's review-star amber (#FBBC04). They are quotations, not palette — they may not spread to any element that isn't the platform's own mark, and nothing new joins this list without the same justification.",
+        "section": "colors"
+      },
+      {
+        "name": "The Tightened Display Rule",
+        "body": "Every h1/h2/h3 carries letter-spacing: -0.02em and text-wrap: balance. Both are set globally in @layer base — do not restate them per-component, and do not let a heading ship without them.",
+        "section": "typography"
+      },
+      {
+        "name": "The Base-Layer Rule",
+        "body": "Heading colour lives inside @layer base. Unlayered CSS beats every layered Tailwind utility regardless of specificity, so an unlayered color on h1 silently overrides text-white and renders the hero heading near-black on navy. If you add global element styling, it goes in a layer.",
+        "section": "typography"
+      },
+      {
+        "name": "The Eyebrow Rule",
+        "body": "A section label is never bare text. It is <Eyebrow> — the vertebral mark plus a tracked-caps label — which is what makes a scroll down the page read as a sequence of segments.",
+        "section": "typography"
+      },
+      {
+        "name": "The Warm Shadow Rule",
+        "body": "Every shadow is tinted with the deep slate (rgba(23,54,74,…)), never neutral black. Pure black shadow on #faf8f4 reads grey and cold and breaks the warm-neutral discipline the rest of the palette keeps.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Slate Field Is Flat Rule",
+        "body": "Nothing on the deep slate background gets a shadow. Separation there comes from opacity-stepped white (text-white/75, border-white/25), and a shadow on navy is invisible anyway.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do open every section with <Eyebrow> — the vertebral mark plus a tracked-caps label.",
+      "Do use warm cream (#faf8f4) as the page ground and white only for raised surfaces.",
+      "Do keep exactly one gold element per view, and make it the booking action.",
+      "Do separate bands with a 1px warm hairline (#e5dfd4), not with whitespace alone.",
+      "Do tint shadows with deep slate (rgba(23,54,74,…)), never neutral black.",
+      "Do ship interactivity as CSS or native HTML first — focus-within submenus, <details> drawers and accordions. A client bundle for a menu spends the Core Web Vitals budget the whole rebuild depends on.",
+      "Do give every image explicit width and height, and write alt text that describes what is actually in the frame plus a local modifier.",
+      "Do let evidence components render nothing when their data is missing."
+    ],
+    "donts": [
+      "Don't use #e8c111 as text or #dff0f3 as anything but a surface. Use Deep Gold Ink (#7d6407) when gold needs to speak.",
+      "Don't introduce a cool grey. Every neutral in this system is warm.",
+      "Don't recolour a third-party mark to fit the palette, and don't borrow a platform's colour for anything that isn't its own mark. See The Platform Mark Exception.",
+      "Don't add a third typeface. Montserrat and Source Sans 3 are the entire scale — the five-face pile-up on the old Wix site is the confirmed anti-reference.",
+      "Don't put a shadow on anything sitting on the deep slate field.",
+      "Don't copy the homepage hero's asymmetric 9rem corner cut onto ordinary cards. It is one signature in one place.",
+      "Don't remove or restyle the global gold :focus-visible ring.",
+      "Don't add a dark-mode block. Inheriting prefers-color-scheme inverts the brand colours unpredictably against gold, and the clinic has no dark identity.",
+      "Don't add a square-cornered button. Pills, without exception."
+    ]
+  }
+}

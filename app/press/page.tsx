@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 
 import Link from 'next/link'
 
-import { clinic } from '@/lib/clinic'
 import { JsonLd } from '@/components/JsonLd'
 import { breadcrumbSchema } from '@/lib/schema'
 import { CtaBand, PageHero, Vertebrae } from '@/components/ui'
@@ -55,7 +54,7 @@ export default function PressPage() {
           {features.map((f) => (
             <li
               key={f.title}
-              className="flex flex-col rounded-3xl border border-line bg-white p-8 lg:p-10"
+              className="flex flex-col rounded-3xl border border-line bg-white p-8 shadow-ambient lg:p-10"
             >
               <Vertebrae className="text-brand-gold" />
               <p className="mt-5 label text-brand-slate">
@@ -99,11 +98,7 @@ export default function PressPage() {
         </p>
       </section>
 
-      <CtaBand
-        bookingUrl={clinic.bookingUrl}
-        phone={clinic.phone}
-        phoneE164={clinic.phoneE164}
-      />
+      <CtaBand />
     </>
   )
 }

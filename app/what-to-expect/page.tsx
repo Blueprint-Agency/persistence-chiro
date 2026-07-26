@@ -2,11 +2,11 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { clinic } from '@/lib/clinic'
 import { clinicFaqs, postTreatmentCare, postTreatmentIntro } from '@/lib/faqs'
 import { JsonLd } from '@/components/JsonLd'
 import { faqSchema } from '@/lib/schema'
 import { CtaBand, Eyebrow, PageHero, Vertebrae } from '@/components/ui'
+import { waMessage } from '@/lib/whatsapp'
 
 export const metadata: Metadata = {
   title: 'What to Expect on Your First Chiropractic Visit',
@@ -138,9 +138,7 @@ export default function WhatToExpectPage() {
       <CtaBand
         heading="Ready to book?"
         body="Registered chiropractors in Cheras, Maluri. Open seven days, right next to Sunway Velocity."
-        bookingUrl={clinic.bookingUrl}
-        phone={clinic.phone}
-        phoneE164={clinic.phoneE164}
+        message={waMessage.firstVisit}
       />
     </>
   )

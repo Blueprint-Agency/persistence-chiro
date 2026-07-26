@@ -31,6 +31,18 @@
   /* Gold dark enough to be read as text on the bone ground. #E8C111 as type is illegible. */
   --brand-gold-ink: #7d6407;
 
+  /**
+   * Diagnostic signal. NOT a brand colour and never a surface — it exists only inside the
+   * concern illustrations, where it marks tension at its peak before returning to gold.
+   *
+   * A clay red rather than an alarm red: this is a diagram of a tight muscle, not a warning.
+   * Chosen to sit on the gold→orange→red thermal ramp, so the transition from the gold
+   * marker reads as heat building rather than as a colour swap — which is the same thing the
+   * clinic's nervoscope actually measures either side of the spine.
+   */
+  --signal-tension: #c2412d;
+  --signal-tension-ink: #8f2a1c;
+
   --ink: #212121;
   --ink-muted: #414141;
   /* Warm hairline — a neutral grey rule reads cold against the cream ground. */
@@ -53,6 +65,28 @@
 
   --font-sans: var(--font-body);
   --font-heading: var(--font-heading);
+}
+
+/**
+ * Depth.
+ *
+ * Every shadow is tinted with the deep slate rather than neutral black — pure black on the
+ * cream ground reads grey and cold, which breaks the warm-neutral discipline the rest of
+ * the palette keeps. Kept in a plain @theme (not `inline`) so the literal values compile
+ * into `shadow-ambient` / `shadow-ambient-raise` / `shadow-overlay` utilities.
+ *
+ * Nothing on the deep slate field gets one; a shadow on navy is invisible anyway.
+ */
+@theme {
+  /* Resting state for content cards on the cream ground. You should notice its absence,
+     not its presence. */
+  --shadow-ambient: 0 1px 2px rgba(33, 33, 33, 0.04), 0 8px 24px -12px rgba(23, 54, 74, 0.1);
+  /* Hover on an interactive card. A lift, not a jump. */
+  --shadow-ambient-raise: 0 2px 4px rgba(33, 33, 33, 0.04), 0 18px 40px -16px rgba(23, 54, 74, 0.18);
+  /* Things genuinely above the page: submenu, mobile drawer. */
+  --shadow-overlay: 0 12px 32px -8px rgba(23, 54, 74, 0.18);
+  /* Same, for a bar pinned to the bottom — the light has to come from the other side. */
+  --shadow-overlay-up: 0 -8px 24px -8px rgba(23, 54, 74, 0.14);
 }
 
 body {
@@ -230,8 +264,8 @@ body {
   will-change: mask-size, opacity;
   /* Windows zoom open, then the residual white stripes fade out to finish the reveal. */
   animation:
-    pc-mask-zoom 0.9s cubic-bezier(0.55, 0, 0.85, 0.25) 1.9s forwards,
-    pc-sheet-fade 0.4s ease-in 2.45s forwards;
+    pc-mask-zoom 0.7s cubic-bezier(0.55, 0, 0.85, 0.25) 0.55s forwards,
+    pc-sheet-fade 0.32s ease-in 1s forwards;
 }
 
 .preloader__spine {
@@ -248,8 +282,8 @@ body {
      windows the whole way up and the page never leaks around them. Then a fade turns the
      bones transparent, and that fade is the only thing that reveals the page. */
   animation:
-    pc-spine-zoom 0.9s cubic-bezier(0.55, 0, 0.85, 0.25) 1.9s forwards,
-    pc-spine-fade 0.6s ease-in 2s forwards;
+    pc-spine-zoom 0.7s cubic-bezier(0.55, 0, 0.85, 0.25) 0.55s forwards,
+    pc-spine-fade 0.45s ease-in 0.62s forwards;
 }
 
 /* Taper is colour, not opacity: full slate down to a pale tint, all fully opaque, so the
@@ -262,8 +296,10 @@ body {
   background: var(--brand-slate);
   transform-origin: center;
   will-change: transform;
-  /* Two waves of the pulse; per-bone delay set inline staggers it top to bottom. */
-  animation: pc-preload-pulse 0.85s ease-in-out 2 both;
+  /* One wave of the pulse; per-bone delay set inline staggers it top to bottom. Was two
+     waves — the second bought nothing the first hadn't already said, and cost a second of
+     a searcher's patience. */
+  animation: pc-preload-pulse 0.42s ease-in-out 1 both;
 }
 .preloader__bone:nth-child(2) {
   background: color-mix(in srgb, var(--brand-slate) 68%, #fff);
@@ -321,5 +357,404 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/**
+ * Concern illustration motion. See components/ConcernIllustration.tsx for the drawings.
+ *
+ * Each animation states what its diagram states — the knot never releases, the trigger point
+ * refers somewhere else, the guarded muscle holds. None of them is a generic entrance.
+ *
+ * TWO RULES, both load-bearing:
+ *
+ * 1. Every keyframe set resolves to the RESTING drawing at 0% and 100%. The global
+ *    reduced-motion block below sets `animation-duration: 0.01ms !important`, which snaps
+ *    every animation to its final keyframe — so a final frame of "mid-squeeze" would ship a
+ *    permanently deformed illustration to anyone who asks for less motion.
+ * 2. Durations are 1.6s/3.2s/3.6s/4.4s/5s and share few common factors, so four cards in one
+ *    viewport drift out of phase instead of pulsing in unison, which is what makes repeated
+ *    motion feel like a blinking advert.
+ *
+ * SVG needs `transform-box: fill-box` for `transform-origin: center` to mean the shape's own
+ * centre rather than the viewBox origin. Without it every scale flies off to the top-left.
+ */
+.cx * {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+/* 1. The knot — fibres strain outward and are dragged back; the core tightens as they lose. */
+@keyframes cx-strain {
+  0%,
+  100% {
+    transform: scaleX(1);
+  }
+  45% {
+    transform: scaleX(1.035);
+  }
+}
+/* The core reddens as the fibres are dragged in, and cools once they give up straining. */
+@keyframes cx-tighten {
+  0%,
+  100% {
+    transform: scale(1);
+    fill: var(--brand-gold);
+    stroke: var(--brand-gold-ink);
+  }
+  45% {
+    transform: scale(0.86);
+    fill: var(--signal-tension);
+    stroke: var(--signal-tension-ink);
+  }
+  72% {
+    transform: scale(1.1);
+    fill: var(--signal-tension);
+    stroke: var(--signal-tension-ink);
+  }
+}
+@keyframes cx-drift {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.cx-fibres {
+  animation: cx-strain 4.4s ease-in-out infinite;
+}
+.cx-core {
+  animation: cx-tighten 4.4s ease-in-out infinite;
+}
+.cx-halo {
+  animation: cx-drift 24s linear infinite;
+}
+
+/* 2. The spine — tension settles at the neck, then the lower back, then back again.
+      The clearest use of the signal on the page: a heat reading down the spine, which is
+      what a nervoscope produces. Staggered per segment in ConcernIllustration.tsx. */
+@keyframes cx-heat {
+  0%,
+  100% {
+    fill: var(--brand-gold);
+    stroke: var(--brand-gold-ink);
+  }
+  50% {
+    fill: var(--signal-tension);
+    stroke: var(--signal-tension-ink);
+  }
+}
+.cx-hot {
+  animation: cx-heat 3.2s ease-in-out infinite;
+}
+
+/* 3. The trigger point — the source fires, and the signal travels to the other spot. */
+@keyframes cx-emanate {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+}
+@keyframes cx-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  55% {
+    transform: scale(1.16);
+  }
+}
+/* -28px is exactly two full 7+7 dash periods, so the final frame is pixel-identical to the
+   first — the dashes appear to travel forever without the loop ever visibly jumping. */
+@keyframes cx-flow {
+  to {
+    stroke-dashoffset: -28;
+  }
+}
+/* The source is hyperirritable — that is the definition of a trigger point — so it fires
+   red as it pulses. The ring it refers to stays gold-free and slate: nothing is wrong there,
+   which is exactly what makes referred pain confusing to the person feeling it. */
+@keyframes cx-fire {
+  0%,
+  100% {
+    transform: scale(1);
+    fill: var(--brand-gold);
+    stroke: var(--brand-gold-ink);
+  }
+  55% {
+    transform: scale(1.16);
+    fill: var(--signal-tension);
+    stroke: var(--signal-tension-ink);
+  }
+}
+.cx-ring {
+  animation: cx-emanate 3.6s ease-in-out infinite;
+}
+.cx-source {
+  animation: cx-fire 3.6s ease-in-out infinite;
+}
+.cx-target {
+  animation: cx-pulse 3.6s ease-in-out infinite;
+  animation-delay: 0.6s;
+}
+.cx-refer {
+  animation: cx-flow 1.6s linear infinite;
+}
+
+/* 4. The guarded muscle — pressure closes in, the belly braces, and it holds. */
+@keyframes cx-press-down {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(7px);
+  }
+}
+@keyframes cx-press-up {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+@keyframes cx-brace {
+  0%,
+  100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(0.9);
+  }
+}
+/* Here the signal goes on the FIBRES, not on the gold marker. The gold marks the old injury,
+   and reddening that would say the old injury is inflamed — which is the opposite of what
+   this card describes. What is overactive is the muscle holding around it, so that is what
+   heats up. */
+@keyframes cx-ache {
+  0%,
+  100% {
+    stroke: var(--brand-slate);
+  }
+  50% {
+    stroke: var(--signal-tension);
+  }
+}
+.cx-press-a {
+  animation: cx-press-down 5s ease-in-out infinite;
+}
+.cx-press-b {
+  animation: cx-press-up 5s ease-in-out infinite;
+}
+.cx-belly {
+  animation: cx-brace 5s ease-in-out infinite;
+}
+.cx-ache {
+  animation: cx-ache 5s ease-in-out infinite;
+}
+.cx-site {
+  animation: cx-pulse 5s ease-in-out infinite;
+}
+
+/* Shared motions for the wider illustration set. Same contract as above: every keyframe
+   begins and ends on the resting drawing, and durations avoid common factors so a grid of
+   five cards never pulses in unison. */
+
+/* Movement that sets off freely and is stopped short of where it should reach. */
+@keyframes cx-sweep {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  40% {
+    transform: rotate(-13deg);
+  }
+  60% {
+    transform: rotate(-9deg);
+  }
+}
+.cx-sweep {
+  /* view-box, not fill-box: this rotates about the joint's pivot in the drawing's own
+     coordinates, not about the centre of the line's bounding box. */
+  transform-box: view-box;
+  transform-origin: 74px 188px;
+  animation: cx-sweep 4.2s ease-in-out infinite;
+}
+
+/* Something that cannot hold the line it is meant to. */
+@keyframes cx-sag {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+.cx-sag {
+  animation: cx-sag 4.6s ease-in-out infinite;
+}
+
+/* A joint asked for slightly more than it has. */
+@keyframes cx-hinge {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(5deg);
+  }
+}
+.cx-hinge {
+  transform-box: view-box;
+  transform-origin: 142px 122px;
+  animation: cx-hinge 3.8s ease-in-out infinite;
+}
+
+/* Load added back one stage at a time — the only sequential animation in the set, because
+   it is the only card whose subject is a sequence. */
+@keyframes cx-step {
+  0%,
+  100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(1.06);
+  }
+}
+.cx-step {
+  transform-origin: bottom;
+  animation: cx-step 3.4s ease-in-out infinite;
+}
+
+/* A line being written, rather than one that was always there. */
+@keyframes cx-draw {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+.cx-draw {
+  animation: cx-draw 4.8s ease-in-out infinite;
+}
+
+/* The head drifting forward of the line, and easing back toward it. */
+@keyframes cx-lean {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-9px);
+  }
+}
+.cx-lean {
+  animation: cx-lean 5.4s ease-in-out infinite;
+}
+
+/* Support engaging underneath, quietly. */
+@keyframes cx-hold {
+  0%,
+  100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(1.22);
+  }
+}
+.cx-hold {
+  animation: cx-hold 4s ease-in-out infinite;
+}
+
+/**
+ * Horizontal card rail (reviews, and anything else that scrolls sideways).
+ *
+ * The default OS scrollbar under a row of cards is a grey slab that belongs to the browser,
+ * not the page. This replaces it with a slim slate-tinted bar that reads as part of the
+ * design — and keeps it, rather than hiding it, because a rail with no visible scrollbar
+ * gives a mouse user no signal that there is anything to the right.
+ *
+ * It stays out of the way until wanted: nearly transparent at rest, firmer on hover.
+ */
+.rail {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--brand-slate) 30%, transparent) transparent;
+}
+.rail::-webkit-scrollbar {
+  height: 6px;
+}
+.rail::-webkit-scrollbar-track {
+  background: transparent;
+}
+.rail::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--brand-slate) 28%, transparent);
+}
+.rail:hover::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--brand-slate) 48%, transparent);
+}
+/* The rail is focusable so it can be scrolled from the keyboard; make that visible. */
+.rail:focus-visible {
+  outline: 2px solid var(--brand-gold);
+  outline-offset: 6px;
+  border-radius: 1.5rem;
+}
+
+/**
+ * Hero gallery — four stacked photographs, crossfading on a 24s loop, no JavaScript.
+ *
+ * The loop is four 6s slots. Each slide holds at full opacity for 5s, crossfades out over
+ * 1s, waits out the other three slots, then fades back in over the final 1s. Every slide
+ * shares this one animation and is offset by a negative delay in HeroGallery.tsx, so on the
+ * first frame slide 1 is already at full opacity — no blank hero, no LCP penalty.
+ *
+ *   0%      -> 20.83%  visible          (0s  -> 5s)
+ *   20.83%  -> 25%     fade out         (5s  -> 6s)
+ *   25%     -> 95.83%  hidden           (6s  -> 23s)
+ *   95.83%  -> 100%    fade back in     (23s -> 24s)
+ *
+ * ⚠️ These percentages hard-code FOUR slides. Change the count and they all move.
+ */
+.hero-slide {
+  animation: pc-hero-fade 24s linear infinite;
+}
+
+@keyframes pc-hero-fade {
+  0% {
+    opacity: 1;
+  }
+  20.83% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0;
+  }
+  95.83% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/**
+ * MUST stay below the global reduced-motion block above. That rule sets
+ * `animation-duration: 0.01ms !important` on everything, which would snap every slide to
+ * its final keyframe — and since three of the four end hidden, the hero would render blank.
+ * Here the animation is cancelled outright and the first slide is simply left showing.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .hero-slide {
+    animation: none !important;
+    opacity: 0;
+  }
+  .hero-slide:first-child {
+    opacity: 1;
   }
 }

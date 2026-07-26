@@ -4,10 +4,10 @@ import { notFound } from 'next/navigation'
 
 import { conditionBySlug, publishedConditions } from '@/lib/conditions'
 import { serviceBySlug } from '@/lib/services'
-import { clinic } from '@/lib/clinic'
 import { JsonLd } from '@/components/JsonLd'
 import { breadcrumbSchema, medicalWebPageSchema, faqSchema } from '@/lib/schema'
-import { CheckIcon, CtaBand, Eyebrow, GoldButton, PageHero, Vertebrae } from '@/components/ui'
+import { CheckIcon, CtaBand, Eyebrow, WhatsAppButton, PageHero, Vertebrae } from '@/components/ui'
+import { waMessage } from '@/lib/whatsapp'
 
 // Only published conditions get built. A draft page has no route, so it can't be
 // crawled or indexed while its clinical copy is still missing.
@@ -125,7 +125,7 @@ export default async function ConditionPage({ params }: Props) {
                   {condition.approach.map((a, i) => (
                     <li
                       key={a.heading}
-                      className="flex gap-5 rounded-3xl border border-line bg-white p-7"
+                      className="flex gap-5 rounded-3xl border border-line bg-white p-7 shadow-ambient"
                     >
                       <span
                         aria-hidden="true"
@@ -195,7 +195,7 @@ export default async function ConditionPage({ params }: Props) {
 
           <aside className="lg:sticky lg:top-32 lg:self-start">
             {treatedBy.length > 0 && (
-              <div className="rounded-3xl border border-line bg-white p-8">
+              <div className="rounded-3xl border border-line bg-white p-8 shadow-ambient">
                 <Eyebrow>How we treat it</Eyebrow>
                 <ul className="mt-5 space-y-2.5">
                   {treatedBy.map((m) => (
@@ -219,9 +219,9 @@ export default async function ConditionPage({ params }: Props) {
                 Registered chiropractors in Cheras, Maluri. Open seven days.
               </p>
               <div className="mt-5">
-                <GoldButton href={clinic.bookingUrl} external>
-                  Book an appointment
-                </GoldButton>
+                <WhatsAppButton message={waMessage.condition(condition.title.split(' in ')[0])}>
+                  Book on WhatsApp
+                </WhatsAppButton>
               </div>
             </div>
 
@@ -252,11 +252,7 @@ export default async function ConditionPage({ params }: Props) {
         </div>
       </article>
 
-      <CtaBand
-        bookingUrl={clinic.bookingUrl}
-        phone={clinic.phone}
-        phoneE164={clinic.phoneE164}
-      />
+      <CtaBand message={waMessage.condition(condition.title.split(' in ')[0])} />
     </>
   )
 }

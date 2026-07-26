@@ -10,8 +10,48 @@ import { homeFaqs } from '@/lib/faqs'
 import { homeIntro, offers, testimonials, accreditations, postImages } from '@/lib/home'
 import { faqSchema } from '@/lib/schema'
 import { JsonLd } from '@/components/JsonLd'
-import { Eyebrow, GoldButton, GhostButton, Vertebrae, WhatsAppIcon, CheckIcon } from '@/components/ui'
+import {
+  Eyebrow,
+  GhostButton,
+  Vertebrae,
+  WhatsAppButton,
+  CheckIcon,
+  CtaBand,
+} from '@/components/ui'
+import { StickyCta } from '@/components/service'
 import { Preloader } from '@/components/Preloader'
+import { HeroGallery } from '@/components/HeroGallery'
+import { waMessage } from '@/lib/whatsapp'
+
+/**
+ * Hero gallery. Assessment and consultation only — no adjustment shots.
+ *
+ * The clinic's second positioning claim is that nothing is touched before it is examined, and
+ * a rotating reel of spines being cracked would contradict it in the first viewport, at the
+ * exact moment a nervous first-timer decides whether to stay. All three practitioners appear;
+ * the nervoscope slide is the one image on the site that shows the Gonstead instrumentation
+ * step nothing else illustrates.
+ *
+ * Exactly four — the CSS keyframes in globals.css divide the loop into four slots.
+ */
+const heroSlides = [
+  {
+    src: '/img/hero-consult-spine-model.webp',
+    alt: 'Chiropractor explaining spinal anatomy with a spine model to a patient at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
+  },
+  {
+    src: '/img/hero-consult-xray.webp',
+    alt: 'Chiropractor talking a patient through their spinal X-ray at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
+  },
+  {
+    src: '/img/hero-consult-lightbox.webp',
+    alt: 'Chiropractor pointing out findings on a spinal X-ray lightbox in Cheras, Maluri, Kuala Lumpur',
+  },
+  {
+    src: '/img/hero-assessment-nervoscope.webp',
+    alt: 'Gonstead chiropractor running a nervoscope along a patient spine during assessment in Cheras, Kuala Lumpur',
+  },
+] as const
 
 /**
  * The homepage IS the Cheras page — there is deliberately no /areas/cheras. It already
@@ -19,6 +59,28 @@ import { Preloader } from '@/components/Preloader'
  * page would compete with it from zero. H1 must contain "Chiropractor in Cheras".
  * LocalBusiness JSON-LD is emitted once in the root layout; FAQPage is emitted here
  * because the answers are rendered here.
+ *
+ * BAND ORDER IS LOAD-BEARING — do not reshuffle these sections casually.
+ *
+ *   hero → accreditations → intro/offers → care paths → FAQ → testimonials → blog
+ *        → visit us → conversion band
+ *
+ * The ask sits at the FOOT, after every objection has been handled: the FAQ answers "does
+ * it hurt", the testimonials answer "does it work for people like me", and "visit us"
+ * answers the only question a person in pain actually has left — can I get there, and are
+ * they open. That last one is the strongest possible setup for the booking button, which
+ * is why it is the final band before it.
+ *
+ * The band previously fired mid-page, *before* the FAQ, and the page ended on three blog
+ * thumbnails. Peak-end says the last impression carries disproportionate weight, and the
+ * last impression was an invitation to go read something instead of to book.
+ *
+ * The blog trio stays (it is real internal linking to /blog and those posts need it) but is
+ * buried between the proof and the practical close, where it cannot be the final word.
+ *
+ * BACKGROUND RHYTHM: slate → white → cream → white → cream → aqua → cream → white → gold.
+ * No two adjacent bands share a ground; that alternation plus the 1px warm hairline is what
+ * makes nine bands legible. If you insert a band, check its neighbours.
  */
 export const metadata: Metadata = {
   title: 'Chiropractor in Cheras (Maluri), Kuala Lumpur | Persistence Chiropractic',
@@ -56,15 +118,17 @@ export default function Home() {
               actually shows.
             </p>
 
-            <div className="mt-8 flex flex-wrap gap-3">
-              <GoldButton href={clinic.bookingUrl} external>
-                Book an appointment
-              </GoldButton>
-              <GhostButton href={clinic.whatsappUrl} external tone="light">
-                <WhatsAppIcon />
-                WhatsApp us
-              </GhostButton>
+            <div className="mt-8">
+              <WhatsAppButton message={waMessage.home}>Book on WhatsApp</WhatsAppButton>
             </div>
+
+            {/* The first-timer's real question, answered next to the button rather than in
+                the fourth collapsed FAQ. States process, never an outcome — assessment
+                before adjustment is the Gonstead method (lib/gonstead.ts), not a promise. */}
+            <p className="mt-4 text-sm text-white/70">
+              Your first visit starts with an assessment. Nothing is adjusted until we have
+              examined you.
+            </p>
 
             <ul className="mt-10 flex flex-wrap gap-x-7 gap-y-3 text-sm text-white/70">
               {['Open 7 days a week', 'Registered chiropractors', 'Next to Sunway Velocity'].map(
@@ -79,18 +143,9 @@ export default function Home() {
           </div>
 
           {/* The curved cut is the reference's move, rebuilt with a border radius rather
-              than an SVG mask — one property, and it survives any aspect ratio. */}
-          <div className="relative overflow-hidden rounded-[2rem] lg:rounded-[3rem] lg:rounded-tl-[9rem]">
-            <Image
-              src="/img/hero-adjustment.webp"
-              alt="Chiropractor performing a Gonstead pelvis adjustment at Persistence Chiropractic Care in Cheras, Kuala Lumpur"
-              width={1800}
-              height={1500}
-              priority
-              sizes="(max-width: 1024px) 100vw, 560px"
-              className="h-[300px] w-full object-cover sm:h-[380px] lg:h-[520px]"
-            />
-          </div>
+              than an SVG mask — one property, and it survives any aspect ratio. It lives on
+              the gallery container now, which crops every slide to the same silhouette. */}
+          <HeroGallery slides={heroSlides} />
         </div>
       </section>
 
@@ -137,7 +192,7 @@ export default function Home() {
             <Link
               key={offer.href}
               href={offer.href}
-              className="group overflow-hidden rounded-3xl border border-line bg-white transition-shadow hover:shadow-xl hover:shadow-black/5"
+              className="group overflow-hidden rounded-3xl border border-line bg-white shadow-ambient transition-shadow hover:shadow-ambient-raise"
             >
               <Image
                 src={offer.image}
@@ -233,64 +288,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ---------------------------------------------------------- Testimonials */}
-      <section className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
-        <Eyebrow>What our patients say</Eyebrow>
-        <h2 className="mt-5 max-w-2xl text-3xl font-extrabold leading-tight sm:text-4xl">
-          Reviews from our patients in Cheras
-        </h2>
-
-        <div className="mt-12 grid gap-6 md:grid-cols-2">
-          {testimonials.map((t) => (
-            <figure
-              key={t.name}
-              className="flex flex-col rounded-3xl border border-line bg-white p-8 lg:p-10"
-            >
-              <Vertebrae className="text-brand-gold" />
-              <blockquote className="mt-6 flex-1 space-y-4 text-lg leading-relaxed text-ink">
-                <p>&ldquo;{t.quote}&rdquo;</p>
-                <p className="text-base text-ink-muted">{t.detail}</p>
-              </blockquote>
-              <figcaption className="mt-8 border-t border-line pt-5 label text-brand-slate">
-                {t.name}
-              </figcaption>
-            </figure>
-          ))}
-        </div>
-      </section>
-
-      {/* ------------------------------------------------------------ CTA band */}
-      <section className="bg-brand-gold">
-        <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-12 md:flex-row md:items-center md:justify-between lg:py-14">
-          <div>
-            <h2 className="text-2xl font-extrabold leading-tight sm:text-3xl">
-              Suffering from back pain?
-            </h2>
-            <p className="mt-2 text-ink/70">
-              Consult our Gonstead chiropractors today. Open seven days, right next to Sunway
-              Velocity.
-            </p>
-          </div>
-          <div className="flex flex-none flex-wrap gap-3">
-            <a
-              href={clinic.bookingUrl}
-              target="_blank"
-              rel="noopener"
-              className="inline-flex items-center justify-center rounded-full bg-ink px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-slate-deep"
-            >
-              Book now
-            </a>
-            <a
-              href={`tel:${clinic.phoneE164}`}
-              className="inline-flex items-center justify-center rounded-full border border-ink/25 px-6 py-3 text-sm font-semibold text-ink hover:bg-ink/5"
-            >
-              Call {clinic.phone}
-            </a>
-          </div>
-        </div>
-      </section>
-
       {/* ---------------------------------------------------------------- FAQs */}
+      {/* Moved ahead of the conversion band: "does it hurt" and "what happens on my first
+          visit" are the objections standing between a nervous first-timer and a booking.
+          Asking for the booking before answering them was asking too early. */}
       <section className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
         <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
           <div>
@@ -332,7 +333,98 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ---------------------------------------------------------- Testimonials */}
+      {/* On the aqua tint rather than the cream ground. It sits between the FAQ and the blog,
+          both of which are cream, and three identical grounds in a row would collapse the
+          band rhythm that makes this page scan. Aqua is the reception-desk colour and the
+          same ground the service pages give their reviews — so this is the sitewide pattern,
+          not a one-off. */}
+      <section className="border-y border-line bg-brand-aqua/40">
+        <div className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
+          <Eyebrow>What our patients say</Eyebrow>
+          <h2 className="mt-5 max-w-2xl text-3xl font-extrabold leading-tight sm:text-4xl">
+            Reviews from our patients in Cheras
+          </h2>
+
+          <div className="mt-12 grid gap-6 md:grid-cols-2">
+            {testimonials.map((t) => (
+              <figure
+                key={t.name}
+                className="flex flex-col rounded-3xl border border-line bg-white p-8 shadow-ambient lg:p-10"
+              >
+                <Vertebrae className="text-brand-gold" />
+                <blockquote className="mt-6 flex-1 space-y-4 text-lg leading-relaxed text-ink">
+                  <p>&ldquo;{t.quote}&rdquo;</p>
+                  <p className="text-base text-ink-muted">{t.detail}</p>
+                </blockquote>
+                <figcaption className="mt-8 border-t border-line pt-5 label text-brand-slate">
+                  {t.name}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* --------------------------------------------------------------- Blog */}
+      {/* Kept for the internal links into /blog, but demoted. It serves someone researching
+          chiropractic, not someone deciding tonight, so it must not be the last thing the
+          page says. */}
+      {posts.length > 0 && (
+        <section className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <div>
+              <Eyebrow>From the clinic</Eyebrow>
+              <h2 className="mt-5 text-3xl font-extrabold leading-tight sm:text-4xl">
+                Spine notes, written by our chiropractors.
+              </h2>
+            </div>
+            <Link
+              href="/blog"
+              className="text-sm font-semibold text-brand-slate underline underline-offset-4"
+            >
+              All articles
+            </Link>
+          </div>
+
+          <div className="mt-12 grid gap-8 md:grid-cols-3">
+            {posts.map((post) => (
+              <article key={post.slug}>
+                <Link href={`/blog/${post.slug}`} className="group block">
+                  <Image
+                    src={postImages[post.slug]}
+                    /* Decorative: the <h3> directly below carries the same words, so alt
+                       text here made every card announce its title twice. */
+                    alt=""
+                    width={800}
+                    height={600}
+                    sizes="(max-width: 768px) 100vw, 360px"
+                    className="aspect-[4/3] w-full rounded-2xl object-cover"
+                  />
+                  <p className="mt-5 label text-brand-slate">
+                    {new Date(post.datePublished).toLocaleDateString('en-GB', {
+                      day: 'numeric',
+                      month: 'short',
+                      year: 'numeric',
+                    })}
+                  </p>
+                  <h3 className="mt-2 text-lg font-bold leading-snug group-hover:text-brand-slate">
+                    {post.title}
+                  </h3>
+                  <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-ink-muted">
+                    {post.description}
+                  </p>
+                </Link>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
+
       {/* ------------------------------------------------------------ Visit us */}
+      {/* The last band before the ask, deliberately. For "chiropractor near me" intent the
+          deciding facts are how far away you are and whether you are open — so the address,
+          the hours table and the Maps link are the setup, and the gold band is the payoff. */}
       <section className="border-y border-line bg-white">
         <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 lg:grid-cols-2 lg:items-center lg:gap-16 lg:py-24">
           <div className="overflow-hidden rounded-3xl">
@@ -376,55 +468,25 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --------------------------------------------------------------- Blog */}
-      {posts.length > 0 && (
-        <section className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
-          <div className="flex flex-wrap items-end justify-between gap-6">
-            <div>
-              <Eyebrow>From the clinic</Eyebrow>
-              <h2 className="mt-5 text-3xl font-extrabold leading-tight sm:text-4xl">
-                Spine notes, written by our chiropractors.
-              </h2>
-            </div>
-            <Link
-              href="/blog"
-              className="text-sm font-semibold text-brand-slate underline underline-offset-4"
-            >
-              All articles
-            </Link>
-          </div>
+      {/* ------------------------------------------------------------ CTA band */}
+      {/* The shared component, not a hand-rolled copy of it — two implementations of the
+          signature conversion band on the one page that has to convert is how the copy and
+          the styling drift apart. DESIGN.md puts this at the foot of every content page;
+          this page is no longer the exception. */}
+      <CtaBand
+        heading="Suffering from back pain?"
+        body="Message our Gonstead chiropractors today. Open seven days, right next to Sunway Velocity."
+        message={waMessage.home}
+      />
 
-          <div className="mt-12 grid gap-8 md:grid-cols-3">
-            {posts.map((post) => (
-              <article key={post.slug}>
-                <Link href={`/blog/${post.slug}`} className="group block">
-                  <Image
-                    src={postImages[post.slug]}
-                    alt={post.title}
-                    width={800}
-                    height={600}
-                    sizes="(max-width: 768px) 100vw, 360px"
-                    className="aspect-[4/3] w-full rounded-2xl object-cover"
-                  />
-                  <p className="mt-5 label text-brand-slate">
-                    {new Date(post.datePublished).toLocaleDateString('en-GB', {
-                      day: 'numeric',
-                      month: 'short',
-                      year: 'numeric',
-                    })}
-                  </p>
-                  <h3 className="mt-2 text-lg font-bold leading-snug group-hover:text-brand-slate">
-                    {post.title}
-                  </h3>
-                  <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-ink-muted">
-                    {post.description}
-                  </p>
-                </Link>
-              </article>
-            ))}
-          </div>
-        </section>
-      )}
+      {/* Mobile booking bar. Below `lg` the header CTA is hidden and the gold band is most
+          of a page away, which left a phone visitor — the primary visitor — with no booking
+          action for roughly five screens. Same component the service pages use. */}
+      <StickyCta message={waMessage.home} />
+      {/* Clearance for the fixed bar, in the footer's colour so it reads as the footer
+          beginning rather than as an empty band. The homepage had none at all, so the bar
+          sat on top of the last line of the footer. */}
+      <div aria-hidden="true" className="h-20 bg-brand-slate-deep lg:hidden" />
     </>
   )
 }

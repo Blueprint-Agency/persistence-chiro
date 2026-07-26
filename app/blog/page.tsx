@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { clinic } from '@/lib/clinic'
 import { publishedPosts } from '@/lib/posts'
 import { postImages } from '@/lib/home'
 import { JsonLd } from '@/components/JsonLd'
@@ -53,7 +52,8 @@ export default function BlogIndex() {
                   {postImages[p.slug] ? (
                     <Image
                       src={postImages[p.slug]}
-                      alt={p.title}
+                      /* Decorative: the heading below repeats these exact words. */
+                      alt=""
                       width={800}
                       height={600}
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 360px"
@@ -88,11 +88,7 @@ export default function BlogIndex() {
         )}
       </section>
 
-      <CtaBand
-        bookingUrl={clinic.bookingUrl}
-        phone={clinic.phone}
-        phoneE164={clinic.phoneE164}
-      />
+      <CtaBand />
     </>
   )
 }

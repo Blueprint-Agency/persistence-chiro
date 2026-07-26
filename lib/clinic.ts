@@ -27,8 +27,16 @@ export const clinic = {
   phoneE164: '+60182014088',
   email: 'info@persistencechiropractic.com',
 
-  /** Booking is external (SweetPew). Their slug contains a typo; it is correct as written. */
-  bookingUrl: 'https://www.sweetpew.com/en/my/persistence-chiropratic-care',
+  /**
+   * SweetPew online booking was RETIRED 2026-07-26. Every conversion on this site is now a
+   * WhatsApp conversation, so there is no third-party scheduler to hand visitors off to.
+   * Deleted rather than deprecated on purpose: a `bookingUrl` left in this module is one
+   * autocomplete away from reappearing in a component.
+   *
+   * The short link below still works for a bare "message us" tap, but prefer the builders in
+   * `lib/whatsapp.ts` — wa.link cannot carry a prefilled message and wa.me can, and every
+   * CTA on the site now sends context with it.
+   */
   whatsappUrl: 'https://wa.link/b0541h',
 
   socials: {

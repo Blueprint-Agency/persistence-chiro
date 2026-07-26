@@ -2,10 +2,11 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
 
-import { clinic, hasBio, practitionerBySlug, practitioners, registrationsVerified } from '@/lib/clinic'
+import { hasBio, practitionerBySlug, practitioners, registrationsVerified } from '@/lib/clinic'
 import { JsonLd } from '@/components/JsonLd'
 import { breadcrumbSchema, personSchema } from '@/lib/schema'
-import { CtaBand, Eyebrow, GhostButton, GoldButton, PageHero, Prose, Vertebrae } from '@/components/ui'
+import { CtaBand, Eyebrow, GhostButton, WhatsAppButton, PageHero, Prose, Vertebrae } from '@/components/ui'
+import { waMessage } from '@/lib/whatsapp'
 
 /** Every practitioner gets a route — the team cards on /about all link here. */
 export function generateStaticParams() {
@@ -68,7 +69,7 @@ export default async function PractitionerPage({ params }: Props) {
             </div>
 
             {p.memberships.length > 0 && (
-              <div className="mt-6 rounded-3xl border border-line bg-white p-8">
+              <div className="mt-6 rounded-3xl border border-line bg-white p-8 shadow-ambient">
                 <Eyebrow>Memberships</Eyebrow>
                 <ul className="mt-5 space-y-2">
                   {p.memberships.map((m) => (
@@ -109,9 +110,9 @@ export default async function PractitionerPage({ params }: Props) {
             )}
 
             <div className="mt-10 flex flex-wrap gap-3">
-              <GoldButton href={clinic.bookingUrl} external>
-                Book an appointment
-              </GoldButton>
+              <WhatsAppButton message={waMessage.practitioner(p.name)}>
+                Book with {p.name.replace(/^Dr\.?\s*/, 'Dr ')}
+              </WhatsAppButton>
               <GhostButton href="/about">Back to the team</GhostButton>
             </div>
           </div>
@@ -121,9 +122,7 @@ export default async function PractitionerPage({ params }: Props) {
       <CtaBand
         heading={`See ${p.name} in Cheras.`}
         body="Gonstead chiropractic next to Sunway Velocity. Open seven days."
-        bookingUrl={clinic.bookingUrl}
-        phone={clinic.phone}
-        phoneE164={clinic.phoneE164}
+        message={waMessage.practitioner(p.name)}
       />
     </>
   )

@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { clinic, practitionerBySlug } from '@/lib/clinic'
+import { practitionerBySlug } from '@/lib/clinic'
 import { conditionBySlug } from '@/lib/conditions'
 import { gonsteadIntro, gonsteadSteps } from '@/lib/gonstead'
 import { serviceBySlug } from '@/lib/services'
@@ -17,14 +17,15 @@ import {
   CtaBand,
   Eyebrow,
   GhostButton,
-  GoldButton,
+  WhatsAppButton,
   PageHero,
   Vertebrae,
-  WhatsAppIcon,
 } from '@/components/ui'
 import { RatingBadge, References, ReviewedBy, StickyCta, TrustBar } from '@/components/service'
 import { GoogleReviews } from '@/components/GoogleReviews'
+import { MeetDoctors } from '@/components/MeetDoctors'
 import { ServiceQualifier } from '@/components/ServiceQualifier'
+import { waMessage } from '@/lib/whatsapp'
 
 const reviewer = practitionerBySlug('valerie-na')!
 
@@ -94,13 +95,9 @@ export default function ChiropracticPage() {
         intro={gonsteadIntro}
       >
         <div className="flex flex-wrap gap-3">
-          <GoldButton href={clinic.bookingUrl} external>
-            Book a consultation
-          </GoldButton>
-          <GhostButton href={clinic.whatsappUrl} external tone="light">
-            <WhatsAppIcon />
-            WhatsApp us
-          </GhostButton>
+          <WhatsAppButton message={waMessage.service('chiropractic treatment')}>
+            Book on WhatsApp
+          </WhatsAppButton>
         </div>
         <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-white/70">
           <RatingBadge tone="light" />
@@ -109,7 +106,6 @@ export default function ChiropracticPage() {
       </PageHero>
 
       <TrustBar />
-      <ReviewedBy date={service.lastReviewed} />
 
       {/* ------------------------------------------------------ The six steps */}
       <section className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
@@ -161,7 +157,7 @@ export default function ChiropracticPage() {
           <GhostButton href="/services/physiotherapy">Compare with physiotherapy</GhostButton>
         </div>
 
-        <div className="mt-14 rounded-3xl border border-line bg-white p-8 lg:p-10">
+        <div className="mt-14 rounded-3xl border border-line bg-white p-8 shadow-ambient lg:p-10">
           <Eyebrow>Conditions we commonly see</Eyebrow>
           <ul className="mt-5 grid gap-2.5 sm:grid-cols-2">
             {service.treats.map(conditionBySlug).map(
@@ -182,14 +178,18 @@ export default function ChiropracticPage() {
         </div>
       </section>
 
-      <References items={service.citations} />
-
       {/* ----------------------------------------------------------- Qualifier */}
+      {/* Same placement as the templated service pages — high, on the aqua ground, right
+          after the method rather than behind the citations. */}
       {service.qualifierConcerns && service.qualifierConcerns.length > 0 && (
-        <section className="mx-auto max-w-3xl px-4 py-16 lg:py-24">
-          <ServiceQualifier serviceName="chiropractic care" concerns={service.qualifierConcerns} />
+        <section className="border-y border-line bg-brand-aqua/40">
+          <div className="mx-auto max-w-3xl px-4 py-16 lg:py-24">
+            <ServiceQualifier serviceName="chiropractic care" concerns={service.qualifierConcerns} />
+          </div>
         </section>
       )}
+
+      <MeetDoctors />
 
       <GoogleReviews />
 
@@ -224,17 +224,21 @@ export default function ChiropracticPage() {
         </div>
       </section>
 
+      {/* Provenance at the foot, matching the templated service pages. */}
+      <ReviewedBy date={service.lastReviewed} />
+      <References items={service.citations} />
+
       <CtaBand
         heading="Book a Gonstead assessment"
         body="Registered chiropractors in Cheras, Maluri. Open seven days, right next to Sunway Velocity."
-        bookingUrl={clinic.bookingUrl}
-        phone={clinic.phone}
-        phoneE164={clinic.phoneE164}
+        message={waMessage.service('chiropractic treatment')}
       />
 
       <StickyCta />
-      {/* Clears the fixed mobile bar so it never covers the footer. */}
-      <div aria-hidden="true" className="h-20 lg:hidden" />
+      {/* Clears the fixed mobile bar so it never covers the footer. Slate, not the page
+          ground — as cream it read as an empty white band between the gold CTA and the
+          footer; in the footer's own colour it is simply where the footer starts. */}
+      <div aria-hidden="true" className="h-20 bg-brand-slate-deep lg:hidden" />
     </>
   )
 }

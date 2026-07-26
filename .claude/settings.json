@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(npm run build)",
+      "PowerShell(npm run build *)",
+      "PowerShell(npm test)",
+      "PowerShell(npm test *)",
+      "PowerShell(npm run lint)",
+      "PowerShell(npm run lint *)",
+      "PowerShell(npx tsc --noEmit)",
+      "PowerShell(npx tsc --noEmit *)"
+    ]
+  }
+}
