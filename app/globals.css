@@ -239,6 +239,11 @@ body {
  *
  * Geometry note: the mask SVG is 4000×4000, centred, with bones sized in px at its middle;
  * .preloader__bone matches those px so the pulsing slate bones sit exactly over the holes.
+ *
+ * Performance note: the zoom is a transform on both layers, and `mask-size` is a constant.
+ * Never animate `mask-size` here. It is not a compositable property, so it repaints and
+ * re-rasterises the mask every frame — at the sizes this reveal reaches, that is what made
+ * it stutter. Anything that needs to grow should grow with `transform: scale()`.
  */
 .preloader {
   position: fixed;
@@ -246,6 +251,9 @@ body {
   z-index: 100;
   display: grid;
   place-items: center;
+  /* Both children scale to 32.5x. Clipping to the viewport keeps the compositor from
+     rasterising acres of off-screen layer, and stops the zoom flashing a scrollbar. */
+  overflow: hidden;
 }
 
 /* The white cover with bone-shaped windows. mask-image (the holes) is set inline so the
@@ -258,13 +266,19 @@ body {
   mask-repeat: no-repeat;
   -webkit-mask-position: center;
   mask-position: center;
-  /* 1:1 with the 4000px SVG → bones render at their authored px. */
+  /* 1:1 with the 4000px SVG → bones render at their authored px. FIXED, never animated. */
   -webkit-mask-size: 4000px;
   mask-size: 4000px;
-  will-change: mask-size, opacity;
-  /* Windows zoom open, then the residual white stripes fade out to finish the reveal. */
+  will-change: transform, opacity;
+  /* Windows zoom open, then the residual white stripes fade out to finish the reveal.
+     The zoom is a TRANSFORM on the sheet, not an animation of `mask-size`.
+     Those are visually identical — a 4000px mask on an element scaled 32.5x covers the
+     same 130000px — but only one of them is cheap. `mask-size` is not compositable, so
+     animating it repainted and re-rasterised the mask on every single frame while it grew
+     toward 130000px, which is what made the reveal stutter. A transform is handed to the
+     compositor and costs nothing per frame. */
   animation:
-    pc-mask-zoom 0.7s cubic-bezier(0.55, 0, 0.85, 0.25) 0.55s forwards,
+    pc-zoom 0.7s cubic-bezier(0.55, 0, 0.85, 0.25) 0.55s forwards,
     pc-sheet-fade 0.32s ease-in 1s forwards;
 }
 
@@ -277,12 +291,14 @@ body {
   gap: 10px;
   transform-origin: center;
   will-change: transform, opacity;
-  /* Zoom must track the mask exactly — same curve, delay and duration, and a matching
-     scale factor (4000px → 130000px is 32.5×) — so the opaque bones stay glued over their
-     windows the whole way up and the page never leaks around them. Then a fade turns the
-     bones transparent, and that fade is the only thing that reveals the page. */
+  /* The bones and the sheet now run the SAME keyframe with the same timing, so the opaque
+     bones cannot drift off their windows and the page cannot leak around them. Previously
+     these were two keyframes that merely agreed with each other on paper — and since one
+     animated a compositable transform and the other did not, they did not agree in
+     practice. Then a fade turns the bones transparent, and that fade is the only thing
+     that reveals the page. */
   animation:
-    pc-spine-zoom 0.7s cubic-bezier(0.55, 0, 0.85, 0.25) 0.55s forwards,
+    pc-zoom 0.7s cubic-bezier(0.55, 0, 0.85, 0.25) 0.55s forwards,
     pc-spine-fade 0.45s ease-in 0.62s forwards;
 }
 
@@ -322,15 +338,15 @@ body {
   }
 }
 
-/* Scale the mask so the bone windows grow from ~72px toward filling the frame. */
-@keyframes pc-mask-zoom {
-  to {
-    -webkit-mask-size: 130000px;
-    mask-size: 130000px;
-  }
-}
-
-@keyframes pc-spine-zoom {
+/**
+ * One zoom, shared by the sheet and the bones.
+ *
+ * 32.5x is the factor that takes the 4000px mask to the 130000px the reveal needs, and it
+ * is applied as a transform to both layers at once. Sharing the keyframe is the point: two
+ * separate declarations can be edited apart from each other, and the effect only works
+ * while the bones sit exactly on their windows.
+ */
+@keyframes pc-zoom {
   to {
     transform: scale(32.5);
   }
