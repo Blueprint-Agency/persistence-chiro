@@ -10,6 +10,7 @@ import { Analytics, AnalyticsNoScript } from "@/components/Analytics";
 import { CtaTracking } from "@/components/CtaTracking";
 import { MobileNavClose } from "@/components/MobileNavClose";
 import { GSC_VERIFICATION } from "@/lib/analytics";
+import { isStagingDeployment } from "@/lib/deployment";
 
 // Montserrat for headings, per the brand (AGENTS.md). Source Sans 3 for body — drawn for
 // long-form reading, which is what condition pages are, and warmer than the Inter default.
@@ -28,6 +29,9 @@ export const metadata: Metadata = {
   description:
     "Gonstead chiropractic and physiotherapy in Cheras, Maluri. Registered chiropractors treating back pain, slipped disc, sciatica and sports injury in Kuala Lumpur.",
   alternates: { canonical: "/" },
+  // Belt and braces with robots.txt: a Disallow stops crawling but does not always remove a
+  // URL already known to Google, whereas noindex does. Only ever set on *.vercel.app.
+  ...(isStagingDeployment ? { robots: { index: false, follow: false } } : {}),
   // Search Console ownership. Only emitted when the token env var is set — the DNS
   // method is fine too, this just avoids a second round-trip to the client for DNS access.
   ...(GSC_VERIFICATION ? { verification: { google: GSC_VERIFICATION } } : {}),

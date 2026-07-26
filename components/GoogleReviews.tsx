@@ -2,6 +2,7 @@ import { googleReviews } from '@/lib/clinic'
 import { sampleReviews, sampleReviewSummary, USE_SAMPLE_REVIEWS } from '@/lib/sample-reviews'
 import { Eyebrow } from '@/components/ui'
 import { ServiceTestimonials } from '@/components/service'
+import { isStagingDeployment } from '@/lib/deployment'
 
 /**
  * Google-review styled social proof section.
@@ -86,9 +87,14 @@ function Avatar({ name, color }: { name: string; color: string }) {
 }
 
 export function GoogleReviews() {
-  // Fabricated data is a design-preview affordance for `next dev` only. Any production
-  // build — which is the only thing that reaches a patient — gets the real quotes.
-  const previewSampleData = USE_SAMPLE_REVIEWS && process.env.NODE_ENV !== 'production'
+  // Fabricated data may render in exactly two places: local development, and the
+  // *.vercel.app staging domain used to show the client a layout.
+  //
+  // It can never render on persistencechiropractic.com, because `isStagingDeployment` is
+  // derived from the domain Vercel will serve the build from — attaching the real domain
+  // turns this off by itself. That is the whole reason it is not a feature flag.
+  const previewSampleData =
+    USE_SAMPLE_REVIEWS && (process.env.NODE_ENV !== 'production' || isStagingDeployment)
   if (!previewSampleData) return <ServiceTestimonials />
 
   const summary = sampleReviewSummary
