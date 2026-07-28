@@ -6,14 +6,15 @@ import { publishedPosts } from '@/lib/posts'
 import { postImages } from '@/lib/home'
 import { JsonLd } from '@/components/JsonLd'
 import { breadcrumbSchema, collectionPageSchema } from '@/lib/schema'
+import { pageMetadata } from '@/lib/seo'
 import { CtaBand, PageHero, Vertebrae } from '@/components/ui'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: 'Chiropractic & Spinal Health Blog',
   description:
-    'Articles on back pain, posture, sports injury and spinal health from registered chiropractors in Cheras, Kuala Lumpur.',
-  alternates: { canonical: '/blog' },
-}
+    'Articles on back pain, muscle knots, posture, sleep and sports injury, written by the registered chiropractors at our clinic in Cheras, Kuala Lumpur.',
+  path: '/blog',
+})
 
 export default function BlogIndex() {
   const posts = publishedPosts()

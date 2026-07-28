@@ -1,8 +1,8 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { practitioners, registrationsVerified } from '@/lib/clinic'
-import { Eyebrow, Vertebrae } from '@/components/ui'
+import { practitioners, publishedRegistrations } from '@/lib/clinic'
+import { Eyebrow, RegistrationList, Vertebrae } from '@/components/ui'
 
 /**
  * "Meet your chiropractors" — the three registered practitioners who would actually treat
@@ -16,10 +16,10 @@ import { Eyebrow, Vertebrae } from '@/components/ui'
  * and links to the full profile — the depth differs there, honestly, rather than being
  * padded here.
  *
- * Registration numbers stay behind `registrationsVerified` for the reason set out in
- * lib/clinic.ts: two extractions disagreed about which number belongs to whom, and the live
- * page interleaves the cards so it cannot be settled by reading. A mis-assigned professional
- * registration is worse than an absent one.
+ * Registration numbers show only for practitioners the clinic has confirmed, for the reason
+ * set out in lib/clinic.ts: two extractions disagreed about which number belongs to whom, and
+ * the live page interleaves the cards so it cannot be settled by reading. A mis-assigned
+ * professional registration is worse than an absent one.
  */
 export function MeetDoctors({ heading = 'The chiropractors who would treat you' }: { heading?: string }) {
   return (
@@ -69,9 +69,7 @@ export function MeetDoctors({ heading = 'The chiropractors who would treat you' 
                     </ul>
                   )}
 
-                  {registrationsVerified && p.registrations.length > 0 && (
-                    <p className="mt-3 text-xs text-ink-muted">{p.registrations.join(' · ')}</p>
-                  )}
+                  <RegistrationList items={publishedRegistrations(p)} className="mt-4" />
 
                   <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-slate group-hover:gap-2.5">
                     Read profile

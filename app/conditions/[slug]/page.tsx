@@ -6,6 +6,7 @@ import { conditionBySlug, publishedConditions } from '@/lib/conditions'
 import { serviceBySlug } from '@/lib/services'
 import { JsonLd } from '@/components/JsonLd'
 import { breadcrumbSchema, medicalWebPageSchema, faqSchema } from '@/lib/schema'
+import { pageMetadata } from '@/lib/seo'
 import { CheckIcon, CtaBand, Eyebrow, WhatsAppButton, PageHero, Vertebrae } from '@/components/ui'
 import { waMessage } from '@/lib/whatsapp'
 
@@ -23,16 +24,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const condition = conditionBySlug(slug)
   if (!condition) return {}
 
-  return {
+  return pageMetadata({
     title: condition.metaTitle,
     description: condition.metaDescription,
-    alternates: { canonical: `/conditions/${condition.slug}` },
-    openGraph: {
-      title: condition.metaTitle,
-      description: condition.metaDescription,
-      url: `/conditions/${condition.slug}`,
-    },
-  }
+    path: `/conditions/${condition.slug}`,
+  })
 }
 
 export default async function ConditionPage({ params }: Props) {

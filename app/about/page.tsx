@@ -2,17 +2,25 @@ import Image from 'next/image'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 
-import { practitioners, registrationsVerified } from '@/lib/clinic'
+import { practitioners, publishedRegistrations } from '@/lib/clinic'
 import { JsonLd } from '@/components/JsonLd'
 import { personSchema } from '@/lib/schema'
-import { CtaBand, Eyebrow, GhostButton, PageHero, Vertebrae } from '@/components/ui'
+import { pageMetadata } from '@/lib/seo'
+import {
+  CtaBand,
+  Eyebrow,
+  GhostButton,
+  PageHero,
+  RegistrationList,
+  Vertebrae,
+} from '@/components/ui'
 
-export const metadata: Metadata = {
-  title: 'About Our Chiropractors in Cheras, Kuala Lumpur',
+export const metadata: Metadata = pageMetadata({
+  title: 'Our Chiropractors in Cheras, Kuala Lumpur',
   description:
-    'Meet the chiropractors at Persistence Chiropractic Care in Cheras, Maluri. Founder Dr. Valerie Na, credentials and professional memberships.',
-  alternates: { canonical: '/about' },
-}
+    'Meet the registered chiropractors at Persistence Chiropractic Care in Cheras, Maluri. Founder Dr. Valerie Na, our team, credentials and board memberships.',
+  path: '/about',
+})
 
 export default function AboutPage() {
   return (
@@ -71,11 +79,9 @@ export default function AboutPage() {
                     </ul>
                   )}
 
-                  {/* Registration numbers stay hidden until the clinic confirms the mapping —
-                      see the warning on `registrationsVerified` in lib/clinic.ts. */}
-                  {registrationsVerified && p.registrations.length > 0 && (
-                    <p className="mt-3 text-xs text-ink-muted">{p.registrations.join(' · ')}</p>
-                  )}
+                  {/* Renders nothing for a practitioner whose numbers the clinic hasn't
+                      confirmed — see the note on registrations in lib/clinic.ts. */}
+                  <RegistrationList items={publishedRegistrations(p)} className="mt-4" />
 
                   <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-slate group-hover:gap-2.5">
                     Read profile

@@ -60,7 +60,11 @@ export type Service = {
   slug: string
   /** <h1>. Must be unique across the site. */
   title: string
-  /** <title>. Keep under ~60 chars so it isn't truncated in the SERP. */
+  /**
+   * <title>, WITHOUT the brand. The root layout's title template appends
+   * " | Persistence Chiropractic" — spelling it out here too renders it twice.
+   * Keep to ~45 chars so the whole thing stays under ~60 in the SERP.
+   */
   metaTitle: string
   metaDescription: string
   /** Primary keyword this page owns. No two pages may share one. */
@@ -74,6 +78,15 @@ export type Service = {
    * must describe what is actually in the frame, never the service being sold.
    */
   heroImage?: { src: string; alt: string }
+  /**
+   * Pre-cropped 1200x630 JPEG social card under public/og/, derived from `heroImage`.
+   * The hero itself must NOT be used directly: the source shots are 1.4:1 (and dry
+   * needling is portrait), so Facebook and WhatsApp crop them unpredictably, and they
+   * are WebP, which WhatsApp's preview fetcher still handles unreliably.
+   * Omit and the page falls back to the sitewide shopfront card in lib/seo.ts.
+   * Alt text is reused from `heroImage` — same rule, describe the frame, not the service.
+   */
+  ogImage?: string
   /**
    * Optional second photograph, rendered in the sticky "How it works" column. That column is
    * otherwise a heading, a sentence and a button next to a long numbered list — an image
@@ -152,9 +165,9 @@ export const services: Service[] = [
   {
     slug: 'chiropractic-treatment',
     title: 'Chiropractic Treatment in Cheras, Kuala Lumpur',
-    metaTitle: 'Chiropractic Treatment in Cheras, KL | Persistence',
+    metaTitle: 'Chiropractic Treatment in Cheras, KL',
     metaDescription:
-      'Gonstead chiropractic in Cheras, Maluri. Detailed spinal assessment and precise hands-on adjustment for bone and body alignment.',
+      'Gonstead chiropractic in Cheras, Maluri. Segment-by-segment spinal assessment and a precise hands-on adjustment for bone and body alignment, not a general crack.',
     targetKeyword: 'bone alignment near me',
     intro:
       'Gonstead chiropractic care in Cheras. We assess the spine segment by segment before anything is adjusted, so treatment goes to whichever segment is actually driving your problem. That is not always where you feel it.',
@@ -225,9 +238,9 @@ export const services: Service[] = [
   {
     slug: 'dry-needling',
     title: 'Integrative Dry Needling in Cheras, Kuala Lumpur',
-    metaTitle: 'Dry Needling in Cheras, KL | Persistence Chiropractic',
+    metaTitle: 'Dry Needling in Cheras, KL',
     metaDescription:
-      'Integrative dry needling in Cheras, Maluri to release deep muscle tension and trigger points. Assessment first, single use needles, honest expectations.',
+      'Integrative dry needling in Cheras, Maluri for deep muscle tension, trigger points and muscle knots. Assessment first, single-use needles, honest expectations.',
     targetKeyword: 'dry needling near me',
     intro:
       'Dry needling in Cheras. A neuromuscular technique that uses fine needles to reach trigger points and bands of muscular tension which are difficult to release by hand alone.',
@@ -241,6 +254,7 @@ export const services: Service[] = [
       src: '/img/dry-needling.webp',
       alt: 'Gloved practitioner performing dry needling on a patient upper back and shoulder at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
     },
+    ogImage: '/og/dry-needling.jpg',
     midImage: {
       src: '/img/posture-assessment.webp',
       alt: 'Practitioner examining a seated patient upper back during assessment at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
@@ -395,9 +409,9 @@ export const services: Service[] = [
   {
     slug: 'physiotherapy',
     title: 'Physiotherapy in Cheras, Kuala Lumpur',
-    metaTitle: 'Physio in Cheras, KL | Persistence Chiropractic',
+    metaTitle: 'Physio & Physiotherapy in Cheras, KL',
     metaDescription:
-      'Physiotherapy in Cheras, Maluri. Hands on manual therapy, movement assessment and corrective exercise, alongside chiropractic care under one roof.',
+      'Physio and physiotherapy in Cheras, Maluri. Hands-on manual therapy, movement assessment and corrective exercise, alongside chiropractic care under one roof.',
     targetKeyword: 'physio cheras',
     intro:
       'Physiotherapy in Cheras, pairing hands-on treatment with corrective exercise. Once a joint is moving more freely, the exercise work aims to rebuild the strength and control that help keep it that way.',
@@ -405,6 +419,7 @@ export const services: Service[] = [
       src: '/img/cupping-treatment.webp',
       alt: 'Cupping therapy applied across a patient upper back at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
     },
+    ogImage: '/og/cupping-treatment.jpg',
     midImage: {
       src: '/img/treatment-neck.webp',
       alt: 'Physiotherapist working on a seated patient neck and shoulder at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
@@ -511,9 +526,9 @@ export const services: Service[] = [
   {
     slug: 'sports-injury-rehabilitation',
     title: 'Sports Injury & Rehabilitation in Cheras, Kuala Lumpur',
-    metaTitle: 'Sports Injury Treatment in Cheras, KL | Persistence',
+    metaTitle: 'Sports Injury Treatment in Cheras, KL',
     metaDescription:
-      'Sports injury assessment, staged rehabilitation and criteria based return to sport in Cheras, Maluri. Sprains, strains and overuse injuries.',
+      'Sports injury assessment, staged rehabilitation and criteria-based return to sport in Cheras, Maluri. Sprains, strains and overuse injuries, open seven days.',
     targetKeyword: 'sports injury treatment malaysia',
     intro:
       'Sports injury care in Cheras. We assess what failed and why, then work through staged rehabilitation aimed at getting you back to your sport without carrying the same weakness into it.',
@@ -521,6 +536,7 @@ export const services: Service[] = [
       src: '/img/treatment-ankle.webp',
       alt: 'Practitioner applying kinesiology tape to a patient lower leg at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
     },
+    ogImage: '/og/treatment-ankle.jpg',
     midImage: {
       src: '/img/adjustment-hip.webp',
       alt: 'Chiropractor treating a patient hip on a treatment table at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
@@ -630,7 +646,7 @@ export const services: Service[] = [
   {
     slug: 'posture-correction',
     title: 'Posture Correction in Cheras, Kuala Lumpur',
-    metaTitle: 'Posture Correction in Cheras, KL | Persistence',
+    metaTitle: 'Posture Correction in Cheras, KL',
     metaDescription:
       'Posture assessment and correction for desk workers in Cheras, Maluri. Sitting posture, workstation setup and corrective exercise, with honest expectations.',
     targetKeyword: 'sit posture correction',
@@ -640,6 +656,7 @@ export const services: Service[] = [
       src: '/img/posture-assessment.webp',
       alt: 'Chiropractor examining a seated patient upper back and posture at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
     },
+    ogImage: '/og/posture-assessment.jpg',
     midImage: {
       src: '/img/nervoscope-assessment.webp',
       alt: 'Close up of a nervoscope being run along a patient spine at Persistence Chiropractic Care in Cheras, Kuala Lumpur',

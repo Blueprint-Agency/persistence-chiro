@@ -9,6 +9,7 @@ import { publishedPosts } from '@/lib/posts'
 import { homeFaqs } from '@/lib/faqs'
 import { homeIntro, offers, testimonials, accreditations, postImages } from '@/lib/home'
 import { faqSchema } from '@/lib/schema'
+import { pageMetadata } from '@/lib/seo'
 import { JsonLd } from '@/components/JsonLd'
 import {
   Eyebrow,
@@ -82,12 +83,13 @@ const heroSlides = [
  * No two adjacent bands share a ground; that alternation plus the 1px warm hairline is what
  * makes nine bands legible. If you insert a band, check its neighbours.
  */
-export const metadata: Metadata = {
-  title: 'Chiropractor in Cheras (Maluri), Kuala Lumpur | Persistence Chiropractic',
+// Title is prescribed by seo-strategy.md § Phase 1 — the homepage IS the Cheras page.
+export const metadata: Metadata = pageMetadata({
+  title: 'Chiropractor in Cheras (Maluri), Kuala Lumpur',
   description:
     'Gonstead chiropractic and physiotherapy in Cheras, Maluri. Registered chiropractors treating back pain, slipped disc, sciatica and sports injury. Open seven days.',
-  alternates: { canonical: '/' },
-}
+  path: '/',
+})
 
 export default function Home() {
   const conditions = publishedConditions()

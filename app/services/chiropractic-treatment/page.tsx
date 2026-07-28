@@ -6,6 +6,7 @@ import { practitionerBySlug } from '@/lib/clinic'
 import { conditionBySlug } from '@/lib/conditions'
 import { gonsteadIntro, gonsteadSteps } from '@/lib/gonstead'
 import { serviceBySlug } from '@/lib/services'
+import { pageMetadata } from '@/lib/seo'
 import { JsonLd } from '@/components/JsonLd'
 import {
   breadcrumbSchema,
@@ -43,16 +44,15 @@ const reviewer = practitionerBySlug('valerie-na')!
  */
 const service = serviceBySlug('chiropractic-treatment')!
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: service.metaTitle,
   description: service.metaDescription,
-  alternates: { canonical: '/services/chiropractic-treatment' },
-  openGraph: {
-    title: service.metaTitle,
-    description: service.metaDescription,
-    url: '/services/chiropractic-treatment',
-  },
-}
+  path: '/services/chiropractic-treatment',
+  image:
+    service.ogImage && service.heroImage
+      ? { url: service.ogImage, width: 1200, height: 630, alt: service.heroImage.alt }
+      : undefined,
+})
 
 export default function ChiropracticPage() {
   return (

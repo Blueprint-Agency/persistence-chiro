@@ -19,7 +19,7 @@ import { staticRoutes } from './routes.ts'
 import { clinicFaqs, homeFaqs, postTreatmentCare, postTreatmentIntro } from './faqs.ts'
 import { homeIntro } from './home.ts'
 import { gonsteadIntro, gonsteadSteps } from './gonstead.ts'
-import { founderBio } from './clinic.ts'
+import { founderBio, practitioners, publishedRegistrations } from './clinic.ts'
 
 const conditionSlugs = new Set(conditions.map((c) => c.slug))
 const serviceSlugs = new Set(services.map((m) => m.slug))
@@ -266,6 +266,23 @@ test('published posts link to a page that exists', () => {
   ])
   for (const p of publishedPosts()) {
     assert.ok(targets.has(p.linksTo), `post "${p.slug}" links to unknown page "${p.linksTo}"`)
+  }
+})
+
+/**
+ * Publishing a professional registration number against the wrong practitioner is the one
+ * error on this site that could be reported to a registering body. Every render path —
+ * team cards, profile page, Person schema — goes through `publishedRegistrations`, so this
+ * guards the gate itself rather than each caller.
+ */
+test('unconfirmed registration numbers never publish', () => {
+  for (const p of practitioners) {
+    if (p.registrationsVerified) continue
+    assert.equal(
+      publishedRegistrations(p).length,
+      0,
+      `${p.name} has unverified registrations that would render`,
+    )
   }
 })
 

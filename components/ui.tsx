@@ -223,6 +223,50 @@ export function Prose({ children }: { children: ReactNode }) {
   )
 }
 
+/**
+ * A practitioner's professional registration numbers — the ACM number and the MOH
+ * Traditional & Complementary Medicine practitioner number.
+ *
+ * On a YMYL medical page these are the hardest trust signal available: unlike a bio, a
+ * reader can take the number to the public register and check it. So they get a labelled
+ * `<dl>` rather than a run-on line of codes — an unlabelled "CP-PPB2024/10096" is not
+ * verifiable by anyone who doesn't already know what it is.
+ *
+ * Pass the practitioner through `publishedRegistrations()`; it returns nothing for anyone
+ * whose numbers the clinic hasn't confirmed. See lib/clinic.ts.
+ *
+ * `variant="card"` uses the short body names to fit a team card; `"panel"` spells the
+ * registering bodies out in full on the profile page.
+ */
+export function RegistrationList({
+  items,
+  variant = 'card',
+  className = '',
+}: {
+  items: readonly { label: string; short: string; value: string }[]
+  variant?: 'card' | 'panel'
+  /** Spacing from whatever sits above. Passed in so an empty list contributes no margin. */
+  className?: string
+}) {
+  if (items.length === 0) return null
+
+  const card = variant === 'card'
+  return (
+    <dl className={`${card ? 'space-y-1' : 'space-y-4'} ${className}`}>
+      {items.map((r) => (
+        <div key={r.value} className={card ? 'flex flex-wrap gap-x-1.5 text-xs leading-relaxed' : ''}>
+          <dt className={card ? 'text-ink-muted' : 'text-sm leading-snug text-ink-muted'}>
+            {card ? r.short : r.label}
+          </dt>
+          <dd className={card ? 'font-semibold text-ink-muted' : 'mt-1 font-semibold text-ink'}>
+            {r.value}
+          </dd>
+        </div>
+      ))}
+    </dl>
+  )
+}
+
 /** Check glyph for trust/benefit lists. */
 export function CheckIcon({ className = 'h-4 w-4' }: { className?: string }) {
   return (

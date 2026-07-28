@@ -2,10 +2,20 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
 
-import { hasBio, practitionerBySlug, practitioners, registrationsVerified } from '@/lib/clinic'
+import { hasBio, practitionerBySlug, practitioners, publishedRegistrations } from '@/lib/clinic'
 import { JsonLd } from '@/components/JsonLd'
 import { breadcrumbSchema, personSchema } from '@/lib/schema'
-import { CtaBand, Eyebrow, GhostButton, WhatsAppButton, PageHero, Prose, Vertebrae } from '@/components/ui'
+import { pageMetadata } from '@/lib/seo'
+import {
+  CtaBand,
+  Eyebrow,
+  GhostButton,
+  WhatsAppButton,
+  PageHero,
+  Prose,
+  RegistrationList,
+  Vertebrae,
+} from '@/components/ui'
 import { waMessage } from '@/lib/whatsapp'
 
 /** Every practitioner gets a route — the team cards on /about all link here. */
@@ -25,21 +35,25 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     p.credentials || 'Gonstead-technique chiropractic in Kuala Lumpur.'
   }`
 
-  return {
+  return pageMetadata({
     title,
     description,
-    alternates: { canonical: `/about/${p.slug}` },
-    openGraph: { title, description, url: `/about/${p.slug}`, images: [p.photo] },
+    path: `/about/${p.slug}`,
+    // Deliberately the sitewide shopfront card, not p.photo: the headshots are portrait
+    // 900x1125, and a 1.91:1 social crop of a face cuts it off at the chin.
+
     // Reachable, but not submitted for indexing until there's a real bio to index.
     // Derived from the bio itself so it can't drift — see lib/clinic.ts.
-    ...(hasBio(p) ? {} : { robots: { index: false, follow: true } }),
-  }
+    noindex: !hasBio(p),
+  })
 }
 
 export default async function PractitionerPage({ params }: Props) {
   const { slug } = await params
   const p = practitionerBySlug(slug)
   if (!p) notFound()
+
+  const registrations = publishedRegistrations(p)
 
   return (
     <>
@@ -68,6 +82,17 @@ export default async function PractitionerPage({ params }: Props) {
               />
             </div>
 
+            {/* Registration first, memberships second: a number a reader can look up on a
+                public register outranks a society they'd have to take our word for.
+                `publishedRegistrations` is empty for anyone the clinic hasn't confirmed —
+                see the note on registrations in lib/clinic.ts. */}
+            {registrations.length > 0 && (
+              <div className="mt-6 rounded-3xl border border-line bg-white p-8 shadow-ambient">
+                <Eyebrow>Registration</Eyebrow>
+                <RegistrationList items={registrations} variant="panel" className="mt-5" />
+              </div>
+            )}
+
             {p.memberships.length > 0 && (
               <div className="mt-6 rounded-3xl border border-line bg-white p-8 shadow-ambient">
                 <Eyebrow>Memberships</Eyebrow>
@@ -79,14 +104,6 @@ export default async function PractitionerPage({ params }: Props) {
                     </li>
                   ))}
                 </ul>
-
-                {/* Registration numbers stay hidden until the clinic confirms the mapping —
-                    see the warning on `registrationsVerified` in lib/clinic.ts. */}
-                {registrationsVerified && p.registrations.length > 0 && (
-                  <p className="mt-5 border-t border-line pt-5 text-xs text-ink-muted">
-                    {p.registrations.join(' · ')}
-                  </p>
-                )}
               </div>
             )}
           </div>

@@ -13,6 +13,7 @@ import {
   medicalProcedureSchema,
   reviewedMedicalWebPage,
 } from '@/lib/schema'
+import { pageMetadata } from '@/lib/seo'
 import {
   CheckIcon,
   CtaBand,
@@ -41,16 +42,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const service = serviceBySlug(slug)
   if (!service) return {}
 
-  return {
+  return pageMetadata({
     title: service.metaTitle,
     description: service.metaDescription,
-    alternates: { canonical: `/services/${service.slug}` },
-    openGraph: {
-      title: service.metaTitle,
-      description: service.metaDescription,
-      url: `/services/${service.slug}`,
-    },
-  }
+    path: `/services/${service.slug}`,
+    // Service pages carry their own photography — a specific card outperforms the generic
+    // shopfront. `ogImage` is the pre-cropped 1200x630 JPEG, never the hero itself.
+    image:
+      service.ogImage && service.heroImage
+        ? { url: service.ogImage, width: 1200, height: 630, alt: service.heroImage.alt }
+        : undefined,
+  })
 }
 
 export default async function ServicePage({ params }: Props) {

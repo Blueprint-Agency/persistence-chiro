@@ -4,14 +4,15 @@ import Link from 'next/link'
 import { publishedConditions } from '@/lib/conditions'
 import { JsonLd } from '@/components/JsonLd'
 import { breadcrumbSchema, collectionPageSchema } from '@/lib/schema'
+import { pageMetadata } from '@/lib/seo'
 import { CtaBand, GhostButton, PageHero, Vertebrae } from '@/components/ui'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: 'Conditions We Treat in Cheras, Kuala Lumpur',
   description:
-    'Back pain, slipped disc, sciatica, scoliosis, neck pain and sports injury. Treated with Gonstead chiropractic and physiotherapy in Cheras, Maluri.',
-  alternates: { canonical: '/conditions' },
-}
+    'Back pain, slipped disc, sciatica, scoliosis, neck pain, migraine and hip pain — assessed and treated with Gonstead chiropractic and physio in Cheras, Maluri.',
+  path: '/conditions',
+})
 
 export default function ConditionsHub() {
   const conditions = publishedConditions()

@@ -5,17 +5,18 @@ import Link from 'next/link'
 import { clinic, addressOneLine, hoursDisplay } from '@/lib/clinic'
 import { JsonLd } from '@/components/JsonLd'
 import { breadcrumbSchema, contactPageSchema } from '@/lib/schema'
+import { pageMetadata } from '@/lib/seo'
 import { CtaBand, Eyebrow, GhostButton, WhatsAppButton, PageHero } from '@/components/ui'
 import { waMessage } from '@/lib/whatsapp'
 
 // Competitors rank with their contact pages in this SERP (Excellence sits #12 for
 // "chiropractor cheras" with theirs), so this page gets real metadata, not a stub.
-export const metadata: Metadata = {
-  title: 'Contact & Directions: Chiropractor in Cheras, Maluri',
+export const metadata: Metadata = pageMetadata({
+  title: 'Book a Chiropractor in Cheras, Maluri',
   description:
-    'Persistence Chiropractic Care, Sunway Velocity, Cheras. Opening hours, directions from Maluri LRT, phone and WhatsApp. Open seven days.',
-  alternates: { canonical: '/book-now' },
-}
+    'Book Persistence Chiropractic Care at Sunway Velocity, Cheras. Opening hours, parking, walking directions from Maluri LRT, phone and WhatsApp. Open seven days.',
+  path: '/book-now',
+})
 
 export default function ContactPage() {
   return (

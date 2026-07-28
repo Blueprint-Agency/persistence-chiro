@@ -15,7 +15,11 @@ export type Condition = {
   slug: string
   /** <h1>. Must be unique across the site. */
   title: string
-  /** <title>. Keep under ~60 chars so it isn't truncated in the SERP. */
+  /**
+   * <title>, WITHOUT the brand. The root layout's title template appends
+   * " | Persistence Chiropractic" — spelling it out here too renders it twice.
+   * Keep to ~45 chars so the whole thing stays under ~60 in the SERP.
+   */
   metaTitle: string
   metaDescription: string
   /** Primary keyword this page owns. No two pages may share one. */
@@ -51,9 +55,9 @@ export const conditions: Condition[] = [
   {
     slug: 'back-pain',
     title: 'Back Pain Treatment in Cheras, Kuala Lumpur',
-    metaTitle: 'Back Pain Treatment in Cheras, KL | Persistence Chiropractic',
+    metaTitle: 'Back Pain Treatment in Cheras, KL',
     metaDescription:
-      'Gonstead chiropractic care for lower and upper back pain in Cheras, Maluri. Assessment, adjustment and rehab from registered chiropractors.',
+      'Gonstead chiropractic for lower and upper back pain in Cheras, Maluri. Segment-by-segment assessment, adjustment and rehab from registered chiropractors.',
     targetKeyword: 'back pain treatment kl',
     related: ['slipped-disc', 'sciatica'],
     treatedBy: ['physiotherapy', 'chiropractic-treatment'],
@@ -130,9 +134,9 @@ export const conditions: Condition[] = [
   {
     slug: 'slipped-disc',
     title: 'Slipped Disc Treatment in Cheras, Kuala Lumpur',
-    metaTitle: 'Slipped Disc Treatment in KL | Persistence Chiropractic',
+    metaTitle: 'Slipped Disc Treatment in Cheras, KL',
     metaDescription:
-      'Non-surgical slipped disc (herniated disc) care in Cheras, Maluri. Gonstead assessment, X-ray analysis and a staged treatment plan.',
+      'Non-surgical slipped disc and herniated disc care in Cheras, Maluri. Gonstead assessment, X-ray analysis and a staged plan built around what it shows.',
     targetKeyword: 'slipped disc treatment malaysia',
     related: ['back-pain', 'sciatica'],
     treatedBy: ['physiotherapy', 'chiropractic-treatment'],
@@ -211,9 +215,9 @@ export const conditions: Condition[] = [
   {
     slug: 'sciatica',
     title: 'Sciatica Treatment in Cheras, Kuala Lumpur',
-    metaTitle: 'Sciatica Treatment in Cheras, KL | Persistence Chiropractic',
+    metaTitle: 'Sciatica Treatment in Cheras, KL',
     metaDescription:
-      'Sciatic nerve pain relief through Gonstead chiropractic and targeted rehab. Registered chiropractors in Cheras, Maluri.',
+      'Sciatic nerve pain assessed and treated with Gonstead chiropractic and targeted rehab in Cheras, Maluri. Registered chiropractors, open seven days.',
     targetKeyword: 'sciatica treatment',
     related: ['slipped-disc', 'back-pain'],
     treatedBy: ['dry-needling', 'physiotherapy'],
@@ -292,9 +296,9 @@ export const conditions: Condition[] = [
   {
     slug: 'scoliosis',
     title: 'Scoliosis Care in Cheras, Kuala Lumpur',
-    metaTitle: 'Scoliosis Treatment in KL | Persistence Chiropractic',
+    metaTitle: 'Scoliosis Treatment in Cheras, KL',
     metaDescription:
-      'Scoliosis assessment and chiropractic management in Cheras, Maluri. Postural analysis, X-ray review and conditioning programmes.',
+      'Scoliosis assessment and chiropractic management in Cheras, Maluri. Postural analysis, X-ray review and conditioning programmes for teens and adults.',
     targetKeyword: 'scoliosis treatment malaysia',
     related: ['neck-pain', 'back-pain'],
     treatedBy: ['physiotherapy', 'chiropractic-treatment'],
@@ -372,9 +376,9 @@ export const conditions: Condition[] = [
   {
     slug: 'neck-pain',
     title: 'Neck Pain and Stiffness in Cheras, Kuala Lumpur',
-    metaTitle: 'Neck Pain & Stiffness Treatment in KL | Persistence',
+    metaTitle: 'Neck Pain & Stiffness Care in Cheras, KL',
     metaDescription:
-      'Neck pain, tech neck and posture correction for desk workers in Cheras, Maluri. Gonstead chiropractic plus ergonomic guidance.',
+      'Neck pain, stiffness and tech neck in desk workers, assessed in Cheras, Maluri. Gonstead chiropractic, dry needling and practical ergonomic guidance.',
     targetKeyword: 'stiffness neck pain',
     related: ['migraine', 'scoliosis'],
     treatedBy: ['dry-needling', 'physiotherapy'],
@@ -453,7 +457,7 @@ export const conditions: Condition[] = [
   {
     slug: 'migraine',
     title: 'Migraine and Headache Care in Cheras, Kuala Lumpur',
-    metaTitle: 'Migraine & Headache Care in KL | Persistence Chiro',
+    metaTitle: 'Migraine & Headache Care in Cheras, KL',
     metaDescription:
       'Assessment for migraine and neck-related headaches in Cheras, Maluri. We look at the cervical contribution and refer for medical management where needed.',
     targetKeyword: 'migraine headache',
@@ -543,9 +547,9 @@ export const conditions: Condition[] = [
   {
     slug: 'hip-pain',
     title: 'Hip Pain Treatment in Cheras, Kuala Lumpur',
-    metaTitle: 'Hip Pain Treatment in Cheras, KL | Persistence Chiro',
+    metaTitle: 'Hip Pain Treatment in Cheras, KL',
     metaDescription:
-      'Assessment and care for hip pain, groin ache and lower back and hip complaints in Cheras, Maluri. Gonstead chiropractic plus targeted rehabilitation.',
+      'Assessment and care for hip pain, groin ache and combined lower back and hip complaints in Cheras, Maluri. Gonstead chiropractic plus targeted rehab.',
     targetKeyword: 'lower back ache hip pain',
     related: ['back-pain', 'sciatica'],
     treatedBy: ['chiropractic-treatment', 'sports-injury-rehabilitation'],
@@ -632,10 +636,13 @@ export const conditions: Condition[] = [
   {
     slug: 'shoulder-imbalance',
     title: 'Shoulder Imbalance and Postural Strain in Cheras, Kuala Lumpur',
-    metaTitle: 'Shoulder & Neck Pain Care in KL | Persistence Chiro',
+    metaTitle: 'Shoulder Pain & Uneven Shoulders in Cheras',
     metaDescription:
-      'Care for uneven shoulders, shoulder and neck pain and postural strain in Cheras, Maluri. Assessment, dry needling and a posture-focused programme.',
-    targetKeyword: 'shoulder and neck pain',
+      'Care for uneven shoulders, shoulder pain and postural strain in Cheras, Maluri. Assessment, dry needling and a posture-focused rehabilitation programme.',
+    // Was 'shoulder and neck pain', which /conditions/neck-pain already owns — two pages
+    // competing for one query is the cannibalisation the one-page-one-intent rule exists
+    // to prevent. This page's h1 and body are about imbalance, so the keyword follows them.
+    targetKeyword: 'uneven shoulders',
     related: ['neck-pain', 'back-pain'],
     treatedBy: ['dry-needling', 'posture-correction'],
 

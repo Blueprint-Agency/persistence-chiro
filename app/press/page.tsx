@@ -4,14 +4,15 @@ import Link from 'next/link'
 
 import { JsonLd } from '@/components/JsonLd'
 import { breadcrumbSchema } from '@/lib/schema'
+import { pageMetadata } from '@/lib/seo'
 import { CtaBand, PageHero, Vertebrae } from '@/components/ui'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: 'Press & Publications',
   description:
-    'Media features and publications about Persistence Chiropractic Care, Cheras, Kuala Lumpur.',
-  alternates: { canonical: '/press' },
-}
+    'Media features, interviews and publications about Persistence Chiropractic Care and our chiropractors in Cheras, Maluri, Kuala Lumpur.',
+  path: '/press',
+})
 
 /**
  * Single page, no [slug] children — two items don't warrant an index/detail split.

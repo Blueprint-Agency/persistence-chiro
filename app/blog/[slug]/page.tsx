@@ -8,6 +8,7 @@ import { conditionBySlug } from '@/lib/conditions'
 import { serviceBySlug } from '@/lib/services'
 import { JsonLd } from '@/components/JsonLd'
 import { blogPostingSchema, breadcrumbSchema } from '@/lib/schema'
+import { pageMetadata } from '@/lib/seo'
 import { CtaBand, Eyebrow } from '@/components/ui'
 import { waMessage } from '@/lib/whatsapp'
 
@@ -22,18 +23,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = postBySlug(slug)
   if (!post) return {}
 
-  return {
+  return pageMetadata({
     title: post.title,
     description: post.description,
-    alternates: { canonical: `/blog/${post.slug}` },
-    openGraph: {
-      type: 'article',
-      title: post.title,
-      description: post.description,
-      url: `/blog/${post.slug}`,
-      publishedTime: post.datePublished,
-    },
-  }
+    path: `/blog/${post.slug}`,
+    type: 'article',
+    publishedTime: post.datePublished,
+  })
 }
 
 export default async function PostPage({ params }: Props) {

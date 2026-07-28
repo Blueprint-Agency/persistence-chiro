@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { publishedServices, servicesIntro } from '@/lib/services'
 import { JsonLd } from '@/components/JsonLd'
 import { breadcrumbSchema, collectionPageSchema } from '@/lib/schema'
+import { pageMetadata } from '@/lib/seo'
 import { CtaBand, Eyebrow, PageHero, Vertebrae } from '@/components/ui'
 
 /**
@@ -14,12 +15,12 @@ import { CtaBand, Eyebrow, PageHero, Vertebrae } from '@/components/ui'
  * with its own child for one term is the cannibalisation the architecture exists to
  * prevent. This page exists to route visitors and to pass link equity down.
  */
-export const metadata: Metadata = {
-  title: 'Our Services: Chiropractic & Physiotherapy in Cheras, KL',
+export const metadata: Metadata = pageMetadata({
+  title: 'Chiropractic & Physiotherapy Services, Cheras',
   description:
-    'Chiropractic treatment, dry needling, physiotherapy, sports injury rehabilitation and posture correction in Cheras, Maluri, Kuala Lumpur.',
-  alternates: { canonical: '/services' },
-}
+    'Chiropractic treatment, dry needling, physiotherapy, sports injury rehabilitation and posture correction under one roof in Cheras, Maluri, Kuala Lumpur.',
+  path: '/services',
+})
 
 export default function ServicesHub() {
   const services = publishedServices()

@@ -5,16 +5,17 @@ import { keyPartners, partners } from '@/lib/partners'
 import { events } from '@/lib/events'
 import { JsonLd } from '@/components/JsonLd'
 import { breadcrumbSchema } from '@/lib/schema'
+import { pageMetadata } from '@/lib/seo'
 import { CtaBand, CheckIcon, Eyebrow, PageHero } from '@/components/ui'
 import { PartnerEnquiry } from '@/components/PartnerEnquiry'
 import { waMessage } from '@/lib/whatsapp'
 
-export const metadata: Metadata = {
-  title: 'Partner With Us — Corporate Wellness in Cheras, KL',
+export const metadata: Metadata = pageMetadata({
+  title: 'Corporate Wellness & Partnerships, Cheras KL',
   description:
     'Work with Persistence Chiropractic in Cheras, Kuala Lumpur — corporate wellness talks, workshops, health screenings, event booths and brand collaborations.',
-  alternates: { canonical: '/partner-with-us' },
-}
+  path: '/partner-with-us',
+})
 
 const reasons = [
   {

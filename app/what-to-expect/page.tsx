@@ -5,15 +5,16 @@ import Link from 'next/link'
 import { clinicFaqs, postTreatmentCare, postTreatmentIntro } from '@/lib/faqs'
 import { JsonLd } from '@/components/JsonLd'
 import { faqSchema } from '@/lib/schema'
+import { pageMetadata } from '@/lib/seo'
 import { CtaBand, Eyebrow, PageHero, Vertebrae } from '@/components/ui'
 import { waMessage } from '@/lib/whatsapp'
 
-export const metadata: Metadata = {
-  title: 'What to Expect on Your First Chiropractic Visit',
+export const metadata: Metadata = pageMetadata({
+  title: 'First Chiropractic Visit: What to Expect',
   description:
     'What happens on a first visit to Persistence Chiropractic Care in Cheras, Maluri. Assessment, X-rays, aftercare, and answers to the questions patients ask most.',
-  alternates: { canonical: '/what-to-expect' },
-}
+  path: '/what-to-expect',
+})
 
 export default function WhatToExpectPage() {
   return (

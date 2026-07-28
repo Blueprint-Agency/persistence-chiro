@@ -11,6 +11,7 @@ import { CtaTracking } from "@/components/CtaTracking";
 import { MobileNavClose } from "@/components/MobileNavClose";
 import { GSC_VERIFICATION } from "@/lib/analytics";
 import { isStagingDeployment } from "@/lib/deployment";
+import { OG_IMAGE } from "@/lib/seo";
 
 // Montserrat for headings, per the brand (AGENTS.md). Source Sans 3 for body — drawn for
 // long-form reading, which is what condition pages are, and warmer than the Inter default.
@@ -35,11 +36,19 @@ export const metadata: Metadata = {
   // Search Console ownership. Only emitted when the token env var is set — the DNS
   // method is fine too, this just avoids a second round-trip to the client for DNS access.
   ...(GSC_VERIFICATION ? { verification: { google: GSC_VERIFICATION } } : {}),
+  // Fallback card only. Every route builds its own through lib/seo.ts `pageMetadata()`,
+  // which is what makes og:url per-page — Next.js overrides `openGraph` shallowly, so a
+  // route that sets it replaces this whole object rather than extending it.
   openGraph: {
     type: "website",
     locale: "en_MY",
     siteName: "Persistence Chiropractic Care",
     url: "/",
+    images: [OG_IMAGE],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: [OG_IMAGE.url],
   },
 };
 

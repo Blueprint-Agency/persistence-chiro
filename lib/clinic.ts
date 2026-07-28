@@ -98,19 +98,44 @@ export const hoursDisplay = [
 ]
 
 /**
- * ⚠️ REGISTRATION NUMBERS ARE UNVERIFIED — DO NOT PUBLISH UNTIL THE CLINIC CONFIRMS.
+ * Professional registrations.
  *
- * Two independent extractions of the live /about-us page disagreed about which
- * chiropractor holds which number, because the Wix markup interleaves the team cards.
- * The values below come from the card-by-card read (the more direct of the two), but a
- * mis-assigned professional registration number for a registered healthcare practitioner
- * is not an acceptable error.
+ * Two independent extractions of the live /about-us page disagreed about which chiropractor
+ * holds which number — the Wix markup interleaves the team cards — so every number here
+ * started out unverified and hidden. A mis-assigned professional registration for a
+ * registered healthcare practitioner is not an acceptable error.
  *
- * `registrationsVerified` gates rendering: /about-us shows names, roles and memberships
- * but withholds the numbers until this flips true. Confirm against the ACM register and
- * the MOH T&CM register, then set it.
+ * The gate is therefore PER PRACTITIONER (`registrationsVerified` on each entry below), not
+ * global: one confirmed practitioner can publish without dragging two guesses out with them.
+ * `true` means the clinic confirmed those exact numbers for that exact person; only then do
+ * they render on the cards, the profile page and the Person schema.
+ *
+ * CONFIRMED 2026-07-28 by the clinic: Dr. Valerie Na only. The other two are still the
+ * card-by-card read of the Wix page — check them against the ACM register and the MOH T&CM
+ * register before flipping their flag.
+ *
+ * `label` is the full wording the registering body uses, for the profile page. `short` is the
+ * card-sized abbreviation — the MOH title alone is longer than a team card is wide.
  */
-export const registrationsVerified = false
+export type Registration = { label: string; short: string; value: string }
+
+export const acmNo = (value: string): Registration => ({
+  label: 'ACM No.',
+  short: 'ACM No.',
+  value,
+})
+
+export const mohTcmNo = (value: string): Registration => ({
+  label: 'Registered Practitioner under Traditional and Complementary Medicine Division (MOH)',
+  short: 'MOH T&CM',
+  value,
+})
+
+/** The registrations we are allowed to show. Empty until the clinic confirms that person's. */
+export const publishedRegistrations = (p: {
+  registrations: readonly Registration[]
+  registrationsVerified: boolean
+}): readonly Registration[] => (p.registrationsVerified ? p.registrations : [])
 
 /** Founder bio. VERBATIM from the live /about-us page. */
 export const founderBio = [
@@ -138,7 +163,9 @@ export const practitioners = [
     slug: 'valerie-na',
     photo: '/img/dr-valerie-na.webp',
     credentials: 'BAppSc (Chiropractic), BHSc, RMIT University, Melbourne',
-    registrations: ['ACM-2021-384', 'MOH T&CM CP-PPB2024/10096'],
+    // Supplied by the clinic 2026-07-28 — the only pair confirmed against a named person.
+    registrations: [acmNo('ACM-2021-384'), mohTcmNo('CP-PPB2024/10096')],
+    registrationsVerified: true,
     memberships: [
       'Gonstead Chiropractic Society Australia',
       'Association of Chiropractic Malaysia',
@@ -152,7 +179,9 @@ export const practitioners = [
     slug: 'kee-shan-lim',
     photo: '/img/dr-kee-shan-lim.webp',
     credentials: '',
-    registrations: ['ACM-2023-508', 'MOH T&CM CP-PPB2025/18923'],
+    // Unconfirmed — read off the interleaved Wix cards, not supplied by the clinic.
+    registrations: [acmNo('ACM-2023-508'), mohTcmNo('CP-PPB2025/18923')],
+    registrationsVerified: false,
     memberships: [
       'Gonstead Chiropractic Society Australia',
       'Association of Chiropractic Malaysia',
@@ -167,7 +196,9 @@ export const practitioners = [
     slug: 'rynn-hoh',
     photo: '/img/dr-rynn-hoh.webp',
     credentials: '',
-    registrations: ['MOH T&CM CP-PP2026/15619'],
+    // Unconfirmed — read off the interleaved Wix cards, not supplied by the clinic.
+    registrations: [mohTcmNo('CP-PP2026/15619')],
+    registrationsVerified: false,
     memberships: [
       'Gonstead Chiropractic Society Australia',
       'Association of Chiropractic Malaysia',

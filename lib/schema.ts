@@ -2,7 +2,7 @@
  * JSON-LD builders. One per template, per the schema table in
  * `proposed-site-architecture.md`. All NAP flows from `clinic` — never inline it here.
  */
-import { clinic } from './clinic'
+import { clinic, publishedRegistrations, type Registration } from './clinic'
 import { whatsappLink, waMessage } from './whatsapp'
 
 export const SITE_URL = 'https://www.persistencechiropractic.com'
@@ -229,12 +229,24 @@ export function contactPageSchema(o: { url: string }) {
   }
 }
 
+/**
+ * `hasCredential` carries the professional registration numbers, which is the part of a
+ * practitioner's entity Google can corroborate against the public ACM and MOH T&CM
+ * registers — E-E-A-T for a YMYL medical page in a form a crawler can actually match.
+ *
+ * It reads through `publishedRegistrations`, so an unconfirmed number is absent from the
+ * markup exactly as it is from the page: the gate can't be bypassed by emitting schema.
+ */
 export function personSchema(p: {
   name: string
   role: string
   credentials: string
   memberships: readonly string[]
+  registrations: readonly Registration[]
+  registrationsVerified: boolean
 }) {
+  const registrations = publishedRegistrations(p)
+
   return {
     '@context': 'https://schema.org',
     '@type': 'Person',
@@ -242,6 +254,14 @@ export function personSchema(p: {
     jobTitle: p.role,
     description: p.credentials || undefined,
     memberOf: p.memberships.map((m) => ({ '@type': 'Organization', name: m })),
+    hasCredential: registrations.length
+      ? registrations.map((r) => ({
+          '@type': 'EducationalOccupationalCredential',
+          credentialCategory: 'Professional registration',
+          name: r.label,
+          identifier: r.value,
+        }))
+      : undefined,
     worksFor: { '@id': `${SITE_URL}/#clinic` },
   }
 }
