@@ -49,6 +49,44 @@
   --line: #e5dfd4;
 }
 
+/**
+ * 2026 brand board, as supplied by the client.
+ *
+ * Seven named swatches, transcribed from the guideline exactly — these are the "correct
+ * working files" the board insists on, so nothing here is nudged or re-mixed. They are
+ * declared as their own `--pc-*` namespace rather than overwriting the tokens above so the
+ * old and new systems can sit side by side while the client decides.
+ *
+ * The board's own rule: pick ONE primary and pair it with the secondaries. Lavender is the
+ * one in use — the clinic's logo wordmark is already blue, and Forest is its natural dark
+ * partner. Olive stays defined but unused; using both primaries is what the board forbids.
+ */
+:root {
+  /* Primary (70%). Only one of these two may be in play at a time. */
+  --pc-olive: #839381;
+  --pc-lavender: #84b8e3;
+
+  /* Secondary. */
+  --pc-teal: #a5c9ca; /* 20% */
+  --pc-forest: #006980; /* 20% */
+  --pc-sand: #dddfd1; /* 10–15% */
+  --pc-skin: #fbbe9d; /* 10–15% */
+  --pc-gold: #ffd6a2; /* 10–15% */
+
+  /**
+   * Two derived values, for the same reason the old palette derived `--brand-slate-deep`:
+   * a raw swatch fails a specific legibility test and the board doesn't supply a fix.
+   *
+   * Forest at full strength carries solid white at 6.2:1, but the footer and hero body copy
+   * are white at 70% — which lands at 3.9:1 on Forest, under AA. Darkened until white/70
+   * clears 4.5:1. Type, marks and small fills still use the exact swatch.
+   */
+  --pc-forest-deep: #005264;
+  /* Sand is a band tint at 10–15%, far too present as a whole-page floor. This is Sand at
+     ~40% over white — the ground the board's own layout sits on. */
+  --pc-ground: #f2f3ed;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -62,6 +100,15 @@
   --color-ink: var(--ink);
   --color-ink-muted: var(--ink-muted);
   --color-line: var(--line);
+
+  --color-pc-olive: var(--pc-olive);
+  --color-pc-lavender: var(--pc-lavender);
+  --color-pc-teal: var(--pc-teal);
+  --color-pc-forest: var(--pc-forest);
+  --color-pc-forest-deep: var(--pc-forest-deep);
+  --color-pc-sand: var(--pc-sand);
+  --color-pc-skin: var(--pc-skin);
+  --color-pc-gold: var(--pc-gold);
 
   --font-sans: var(--font-body);
   --font-heading: var(--font-heading);
@@ -92,6 +139,49 @@
 body {
   background: var(--background);
   color: var(--foreground);
+}
+
+/**
+ * 2026 palette PREVIEW — scoped, temporary, one line to remove.
+ *
+ * Any page that renders `<div data-brand="2026" hidden />` repoints the semantic tokens at
+ * the new board for that page only. `:has()` on the body is what makes it route-scoped
+ * without a client component: the header, footer and sticky CTA live in the root layout,
+ * outside the page subtree, so a wrapper class on the page could never reach them and the
+ * preview would show a new-palette body under an old-palette header.
+ *
+ * Because `@theme inline` compiles every utility down to `var(--brand-*)` rather than a
+ * literal, redefining those variables here re-tints `bg-brand-slate-deep`, `border-line`,
+ * `bg-brand-aqua/40` and the rest wherever they appear inside this body — no class churn.
+ * Only the handful of places where the *role* changed (a dark hero becoming a light one)
+ * needed editing by hand.
+ *
+ * WHEN APPROVED: move these seven declarations into `:root` above, replacing the old brand
+ * values, and delete both this block and the marker div in app/page.tsx. WHEN REJECTED:
+ * delete the marker div and this block.
+ */
+body:has([data-brand='2026']) {
+  /* Sand-washed floor; white stays the raised surface. */
+  --background: var(--pc-ground);
+
+  /* Conversion colour: the board's own "Persistence Gold". Pale, so it is a ground for ink
+     text (the CTA band) rather than a fill that has to shout on its own. */
+  --brand-gold: var(--pc-gold);
+  /* Gold as a *voice* is hopeless at #ffd6a2 — Forest carries gold-voiced text instead. */
+  --brand-gold-ink: var(--pc-forest);
+
+  /* Forest takes both slate roles: exact swatch for type and marks, darkened for fields
+     that carry white body copy. */
+  --brand-slate: var(--pc-forest);
+  --brand-slate-deep: var(--pc-forest-deep);
+  /* Secondary voice on the Forest field. Sand clears AA there at 6.1:1; Teal would not. */
+  --brand-slate-soft: var(--pc-sand);
+
+  /* The tint band — reception-desk aqua becomes the board's Teal. */
+  --brand-aqua: var(--pc-teal);
+
+  /* Sand doubles as the hairline: still warm, now unmistakably from the board. */
+  --line: var(--pc-sand);
 }
 
 /* Headings carry the display face. Montserrat is geometric and goes loose at display

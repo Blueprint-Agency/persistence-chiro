@@ -222,8 +222,19 @@ export function References({
  * Mobile sticky booking bar. The header is sticky on desktop, but on a phone the booking
  * CTA otherwise scrolls out of reach for the length of a service page. Hidden on lg where
  * the header CTA and the sidebar cover it. Sits above the iOS home indicator.
+ *
+ * `tone="contrast"` matches WhatsAppButton's: for a palette whose conversion colour is pale
+ * enough to disappear against this bar's white ground. This is the primary booking action
+ * for the site's primary visitor, so it is the last pill on the site allowed to go soft.
  */
-export function StickyCta({ message = waMessage.general }: { message?: string }) {
+export function StickyCta({
+  message = waMessage.general,
+  tone = 'gold',
+}: {
+  message?: string
+  tone?: 'gold' | 'contrast'
+}) {
+  const fill = tone === 'contrast' ? 'bg-brand-slate-deep text-white' : 'bg-brand-gold text-ink'
   return (
     <div className="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-white/95 shadow-overlay-up backdrop-blur lg:hidden">
       <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
@@ -233,7 +244,7 @@ export function StickyCta({ message = waMessage.general }: { message?: string })
           href={whatsappLink(message)}
           target="_blank"
           rel="noopener"
-          className="inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-brand-gold px-5 py-3 text-center text-sm font-semibold text-ink"
+          className={`inline-flex flex-1 items-center justify-center gap-2 rounded-full px-5 py-3 text-center text-sm font-semibold ${fill}`}
         >
           <WhatsAppIcon />
           Book on WhatsApp

@@ -21,15 +21,22 @@ export function Vertebrae({ className = '' }: { className?: string }) {
   )
 }
 
-/** Section eyebrow: the vertebral marker plus a label. */
+/**
+ * Section eyebrow: the vertebral marker plus a label.
+ *
+ * `light` is for the deep field, `slate` for light grounds. `ink` exists for a *mid-tone*
+ * ground — a band saturated enough that slate no longer clears AA against it but not dark
+ * enough for the light tone. The homepage hero is the only one so far.
+ */
 export function Eyebrow({
   children,
   tone = 'slate',
 }: {
   children: ReactNode
-  tone?: 'slate' | 'light'
+  tone?: 'slate' | 'light' | 'ink'
 }) {
-  const color = tone === 'light' ? 'text-brand-slate-soft' : 'text-brand-slate'
+  const color =
+    tone === 'light' ? 'text-brand-slate-soft' : tone === 'ink' ? 'text-ink' : 'text-brand-slate'
   return (
     <p className={`flex items-center gap-3 ${color}`}>
       <Vertebrae />
@@ -110,20 +117,30 @@ export function GhostButton({
  *
  * `message` is the text pre-typed into the visitor's chat box. Pass one from `waMessage` so
  * the clinic can tell a hero tap from a slipped-disc page tap before anyone replies.
+ *
+ * `tone="contrast"` is for a button sitting on a *light coloured* band, where a pale fill
+ * has nothing to separate itself from the ground. It is the same conversion action, still
+ * the only one in the view — the One Gold Decision Rule governs how many, not which hue.
  */
 export function WhatsAppButton({
   message,
   children = 'WhatsApp us to book',
+  tone = 'gold',
 }: {
   message: string
   children?: ReactNode
+  tone?: 'gold' | 'contrast'
 }) {
+  const fill =
+    tone === 'contrast'
+      ? 'bg-brand-slate-deep text-white hover:bg-brand-slate'
+      : 'bg-brand-gold text-ink hover:bg-[#d4b00d]'
   return (
     <a
       href={whatsappLink(message)}
       target="_blank"
       rel="noopener"
-      className={`${BUTTON_BASE} bg-brand-gold text-ink hover:bg-[#d4b00d]`}
+      className={`${BUTTON_BASE} ${fill}`}
     >
       <WhatsAppIcon />
       {children}

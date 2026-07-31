@@ -82,6 +82,10 @@ const heroSlides = [
  * BACKGROUND RHYTHM: slate → white → cream → white → cream → aqua → cream → white → gold.
  * No two adjacent bands share a ground; that alternation plus the 1px warm hairline is what
  * makes nine bands legible. If you insert a band, check its neighbours.
+ *
+ * Under the 2026 preview palette the same rhythm reads:
+ * lavender → white → sand → white → skin → teal → sand → white → gold. The alternation is
+ * unchanged; only the hues moved.
  */
 // Title is prescribed by seo-strategy.md § Phase 1 — the homepage IS the Cheras page.
 export const metadata: Metadata = pageMetadata({
@@ -98,6 +102,13 @@ export default function Home() {
 
   return (
     <>
+      {/* 2026 PALETTE PREVIEW — homepage only, remove to revert.
+          Renders nothing. `body:has([data-brand="2026"])` in globals.css picks it up and
+          repoints the brand tokens for this route, header and footer included. Every other
+          page still renders the current gold/slate palette, so the two can be compared by
+          moving between `/` and any other route. */}
+      <div data-brand="2026" hidden />
+
       {/* Backbone reveal — homepage only. Fixed overlay, so it covers the header too
           despite living inside <main>. Plays once per session, then unmounts. */}
       <Preloader />
@@ -105,38 +116,47 @@ export default function Home() {
       <JsonLd data={faqSchema(homeFaqs)} />
 
       {/* ---------------------------------------------------------------- Hero */}
-      <section className="relative bg-brand-slate-deep text-white">
+      {/* PREVIEW CHANGE. The board makes a primary colour 70% of the composition, which a
+          dark navy field cannot deliver — so the hero inverts: Lavender ground, ink type,
+          Forest for the action. It is the single biggest visible difference on the page and
+          the honest reading of the ratios. Everything on it is measured against Lavender:
+          ink 7.7:1, muted ink 4.8:1, deep Forest glyphs 3.9:1. */}
+      <section className="relative bg-pc-lavender text-ink">
         <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-14 lg:grid-cols-[1.05fr_1fr] lg:gap-8 lg:py-20">
           <div>
-            <Eyebrow tone="light">Gonstead chiropractic &middot; Cheras, Maluri</Eyebrow>
+            <Eyebrow tone="ink">Gonstead chiropractic &middot; Cheras, Maluri</Eyebrow>
 
-            <h1 className="mt-6 text-4xl font-extrabold leading-[1.08] text-white sm:text-5xl lg:text-[3.4rem]">
+            <h1 className="mt-6 text-4xl font-extrabold leading-[1.08] text-ink sm:text-5xl lg:text-[3.4rem]">
               Chiropractor in Cheras for backs that have waited long enough.
             </h1>
 
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/75">
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink-muted">
               Drug-free, hands-on chiropractic &amp; physiotherapy in Cheras. Personalised
               treatment and precise spinal adjustments, built around what your assessment
               actually shows.
             </p>
 
             <div className="mt-8">
-              <WhatsAppButton message={waMessage.home}>Book on WhatsApp</WhatsAppButton>
+              {/* Forest rather than the pale gold: on a Lavender ground a #ffd6a2 pill is
+                  1.2:1 against its own field and stops reading as a button at all. */}
+              <WhatsAppButton message={waMessage.home} tone="contrast">
+                Book on WhatsApp
+              </WhatsAppButton>
             </div>
 
             {/* The first-timer's real question, answered next to the button rather than in
                 the fourth collapsed FAQ. States process, never an outcome — assessment
                 before adjustment is the Gonstead method (lib/gonstead.ts), not a promise. */}
-            <p className="mt-4 text-sm text-white/70">
+            <p className="mt-4 text-sm text-ink-muted">
               Your first visit starts with an assessment. Nothing is adjusted until we have
               examined you.
             </p>
 
-            <ul className="mt-10 flex flex-wrap gap-x-7 gap-y-3 text-sm text-white/70">
+            <ul className="mt-10 flex flex-wrap gap-x-7 gap-y-3 text-sm text-ink-muted">
               {['Open 7 days a week', 'Registered chiropractors', 'Next to Sunway Velocity'].map(
                 (item) => (
                   <li key={item} className="flex items-center gap-2">
-                    <CheckIcon className="h-4 w-4 text-brand-gold" />
+                    <CheckIcon className="h-4 w-4 text-brand-slate-deep" />
                     {item}
                   </li>
                 ),
@@ -293,9 +313,14 @@ export default function Home() {
       {/* ---------------------------------------------------------------- FAQs */}
       {/* Moved ahead of the conversion band: "does it hurt" and "what happens on my first
           visit" are the objections standing between a nervous first-timer and a booking.
-          Asking for the booking before answering them was asking too early. */}
-      <section className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
-        <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+          Asking for the booking before answering them was asking too early.
+
+          PREVIEW CHANGE: given its own Skin-tinted band rather than sitting on the page
+          ground. It falls between two white bands, and the board's warm secondary is the
+          one colour on it that reads as reassurance rather than as clinical information —
+          which is exactly this band's job. */}
+      <section className="border-y border-line bg-pc-skin/30">
+        <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16 lg:py-24">
           <div>
             <Eyebrow>Before you book</Eyebrow>
             <h2 className="mt-5 text-3xl font-extrabold leading-tight sm:text-4xl">
@@ -354,7 +379,10 @@ export default function Home() {
                 key={t.name}
                 className="flex flex-col rounded-3xl border border-line bg-white p-8 shadow-ambient lg:p-10"
               >
-                <Vertebrae className="text-brand-gold" />
+                {/* PREVIEW CHANGE: Forest, not gold. The mark stays gold on the Forest
+                    field — pale gold on dark reads beautifully — but #ffd6a2 on a white
+                    card is 1.3:1 and the signature simply vanishes. */}
+                <Vertebrae className="text-brand-slate" />
                 <blockquote className="mt-6 flex-1 space-y-4 text-lg leading-relaxed text-ink">
                   <p>&ldquo;{t.quote}&rdquo;</p>
                   <p className="text-base text-ink-muted">{t.detail}</p>
@@ -484,7 +512,7 @@ export default function Home() {
       {/* Mobile booking bar. Below `lg` the header CTA is hidden and the gold band is most
           of a page away, which left a phone visitor — the primary visitor — with no booking
           action for roughly five screens. Same component the service pages use. */}
-      <StickyCta message={waMessage.home} />
+      <StickyCta message={waMessage.home} tone="contrast" />
       {/* Clearance for the fixed bar, in the footer's colour so it reads as the footer
           beginning rather than as an empty band. The homepage had none at all, so the bar
           sat on top of the last line of the footer. */}
