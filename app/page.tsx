@@ -148,27 +148,39 @@ export default function Home() {
             </Eyebrow>
 
             {/**
-             * The h1 answers the client's note that the clinic is not chiropractors alone,
-             * inside two constraints it cannot break:
+             * ⚠️ CLIENT-CHOSEN WORDING, 2026-08-01. It knowingly breaks two rules in the
+             * strategy docs. Both were put to the client with the costs spelled out and this
+             * line is what they picked, so DO NOT "correct" it back — raise it with them.
              *
-             * 1. seo-strategy.md § Phase 1 — the h1 MUST contain "Chiropractor in Cheras",
-             *    contiguously. It leads the line for that reason.
-             * 2. kpi-keyword-map.md #5 gives "physio cheras" to /services/physiotherapy,
-             *    whose own h1 is "Physiotherapy in Cheras, Kuala Lumpur". So this line says
-             *    *physiotherapists* — the practitioners — and never "physiotherapy in
-             *    Cheras". One page, one intent: naming the second discipline is a relevance
-             *    signal, claiming its query would be cannibalisation.
+             * 1. seo-strategy.md § Phase 1 says the h1 MUST contain "Chiropractor in Cheras"
+             *    contiguously. It no longer does. The page ranks #16 for "chiro cheras" and
+             *    holds most of the site's referring domains.
+             *    MITIGATION: the exact phrase survives in the <title> (see `metadata` above,
+             *    "Chiropractor in Cheras (Maluri), Kuala Lumpur"), which is the stronger of
+             *    the two signals. That is what makes this survivable rather than reckless.
              *
-             * "Backs that have waited long enough" moves down into the lead rather than
-             * being cut — an h1 carrying both disciplines and the emotive close runs to
-             * seventeen words and five lines at the display size.
+             * 2. kpi-keyword-map.md #5 assigns "physio cheras" to /services/physiotherapy,
+             *    whose own h1 is "Physiotherapy in Cheras, Kuala Lumpur" — the phrase this
+             *    line now repeats verbatim. Two pages competing for one query is the
+             *    cannibalisation the whole architecture was built to avoid.
+             *    The service page keeps exact-match in its h1, title and targetKeyword, so it
+             *    should still win; the homepage now competes with it weakly rather than not
+             *    at all. If "physio cheras" slips, this is the first thing to look at.
+             *
+             * The tail is deliberately NOT the requested "heal your body naturally". That is
+             * an outcome promise on a YMYL page for a clinic that may not advertise treating
+             * anything, and it is the exact class of claim stripped from this site in July
+             * and again this session. "Supporting your body's natural recovery" is the
+             * clinic's own approved framing — faqs.ts already says care "is intended to
+             * support your body's own recovery". Confirmed with the client.
              */}
             {/* Black, per the client — `text-ink` (#212121), which is this system's black.
                 Pure #000 would be a new colour and reads cold against the warm Sand field;
                 ink is 11.9:1 here, and every other line stays on the deep token so the h1
                 is the one thing on the field wearing it. */}
             <h1 className="mt-6 text-4xl font-extrabold leading-[1.08] text-ink sm:text-5xl lg:text-[3.4rem]">
-              Chiropractor in Cheras, with Physiotherapists under the same roof.
+              Chiropractic and Physiotherapy in Cheras, supporting your body&rsquo;s natural
+              recovery.
             </h1>
 
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-brand-slate-deep">

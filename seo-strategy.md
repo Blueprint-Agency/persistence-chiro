@@ -54,6 +54,21 @@ Traffic has decayed ~90% since mid-2024 (300+ → 24/mo) — likely stale/thin c
 
 ### Phase 1 — Technical + on-page foundation (weeks 1–2)
 - **Homepage retitle:** `Chiropractor in Cheras (Maluri), Kuala Lumpur | Persistence Chiropractic`. H1 must contain "Chiropractor in Cheras". Currently the site doesn't anchor itself to Cheras/Maluri strongly enough to rank for proximity terms.
+
+  > **⚠️ OVERRIDDEN BY THE CLIENT, 2026-08-01 — the build no longer follows this rule.**
+  > The homepage h1 now reads *"Chiropractic and Physiotherapy in Cheras, supporting your
+  > body's natural recovery."* The mandatory phrase is gone from the h1, and the line
+  > repeats `/services/physiotherapy`'s own h1 verbatim, so two pages now compete for
+  > "physio cheras" (see `kpi-keyword-map.md` #5).
+  >
+  > The costs were put to the client before the change and this is the wording they chose.
+  > Two things limit the damage: the `<title>` still carries "Chiropractor in Cheras", which
+  > is the stronger signal of the two, and the physiotherapy page keeps exact-match in its
+  > h1, title and target keyword.
+  >
+  > **Watch in Search Console:** homepage position for "chiro cheras" / "chiropractor
+  > cheras", and `/services/physiotherapy` for "physio cheras". If either slips, this is the
+  > change to raise with the client — not something to quietly revert.
 - **Schema markup:** `Chiropractic`/`LocalBusiness` JSON-LD with NAP, geo coords (Maluri), opening hours, `aggregateRating` once reviews flow.
 - **Fix the "chiro cheras" ranking page:** Google now ranks the homepage #16 for it (previously the thin `/book-now` page). Still no dedicated Cheras page — build a proper Cheras/Maluri landing page and internally link it sitewide to convert the homepage's #16 into a top-3.
 - Core Web Vitals pass, mobile-first, clean URL structure, XML sitemap, image alt text with local modifiers.
