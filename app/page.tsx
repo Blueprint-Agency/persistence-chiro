@@ -148,45 +148,53 @@ export default function Home() {
             </Eyebrow>
 
             {/**
-             * ⚠️ CLIENT-CHOSEN WORDING, 2026-08-01. It knowingly breaks two rules in the
-             * strategy docs. Both were put to the client with the costs spelled out and this
-             * line is what they picked, so DO NOT "correct" it back — raise it with them.
+             * CLIENT-CHOSEN WORDING, 2026-08-01, picked from a set of options with the
+             * trade-offs spelled out. Do not "correct" it — raise it with them.
              *
-             * 1. seo-strategy.md § Phase 1 says the h1 MUST contain "Chiropractor in Cheras"
-             *    contiguously. It no longer does. The page ranks #16 for "chiro cheras" and
-             *    holds most of the site's referring domains.
-             *    MITIGATION: the exact phrase survives in the <title> (see `metadata` above,
-             *    "Chiropractor in Cheras (Maluri), Kuala Lumpur"), which is the stronger of
-             *    the two signals. That is what makes this survivable rather than reckless.
+             * It answers the client's actual objection (the clinic is not chiropractors
+             * alone) in the fewest words available, and "under one roof" carries a real
+             * benefit rather than a claim: you are not referred out for the other half.
              *
-             * 2. kpi-keyword-map.md #5 assigns "physio cheras" to /services/physiotherapy,
-             *    whose own h1 is "Physiotherapy in Cheras, Kuala Lumpur" — the phrase this
-             *    line now repeats verbatim. Two pages competing for one query is the
-             *    cannibalisation the whole architecture was built to avoid.
-             *    The service page keeps exact-match in its h1, title and targetKeyword, so it
-             *    should still win; the homepage now competes with it weakly rather than not
-             *    at all. If "physio cheras" slips, this is the first thing to look at.
+             * ⚠️ ONE RULE STILL BROKEN, deliberately. seo-strategy.md § Phase 1 says this h1
+             * MUST contain "Chiropractor in Cheras" contiguously; "Chiropractor and
+             * Physiotherapist in Cheras" does not. This page ranks #16 for "chiro cheras"
+             * and holds most of the site's referring domains.
+             * MITIGATION: the exact phrase survives in the <title> above ("Chiropractor in
+             * Cheras (Maluri), Kuala Lumpur"), which is the stronger of the two signals, and
+             * the h1 is a weak one by comparison. Watch "chiro cheras" and "chiropractor
+             * cheras" in Search Console; if they slip, this is the line to revisit.
              *
-             * The tail is deliberately NOT the requested "heal your body naturally". That is
-             * an outcome promise on a YMYL page for a clinic that may not advertise treating
-             * anything, and it is the exact class of claim stripped from this site in July
-             * and again this session. "Supporting your body's natural recovery" is the
-             * clinic's own approved framing — faqs.ts already says care "is intended to
-             * support your body's own recovery". Confirmed with the client.
+             * RESOLVED by this wording: the previous h1 repeated "Physiotherapy in Cheras"
+             * verbatim, which is the exact h1 of /services/physiotherapy and its target
+             * keyword (kpi-keyword-map.md #5). Naming the *practitioner* rather than the
+             * discipline keeps the homepage out of that page's query. Keep it that way — do
+             * not let this line drift back toward "Physiotherapy in Cheras".
+             *
+             * The tail is deliberately NOT the earlier "heal your body naturally". That is an
+             * outcome promise on a YMYL page for a clinic that may not advertise treating
+             * anything, and it is the class of claim stripped from this site in July and
+             * again this session.
              */}
             {/* Black, per the client — `text-ink` (#212121), which is this system's black.
                 Pure #000 would be a new colour and reads cold against the warm Sand field;
                 ink is 11.9:1 here, and every other line stays on the deep token so the h1
                 is the one thing on the field wearing it. */}
             <h1 className="mt-6 text-4xl font-extrabold leading-[1.08] text-ink sm:text-5xl lg:text-[3.4rem]">
-              Chiropractic and Physiotherapy in Cheras, supporting your body&rsquo;s natural
-              recovery.
+              Chiropractor and Physiotherapist in Cheras, under one roof.
             </h1>
 
+            {/* Client's wording, 2026-08-01. "For backs that have waited long enough" was
+                cut with it — it was the only line in this viewport addressed to a person in
+                pain rather than describing the clinic, so if the hero ever needs more warmth,
+                that is the line to bring back.
+
+                Note the repetition it accepts: this is the fourth mention of the disciplines
+                and the third "Cheras" on one screen. In body copy that is weak enough not to
+                threaten /services/physiotherapy the way an h1 would — but do not let the
+                phrase climb back into a heading. */}
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-brand-slate-deep">
-              Drug-free, hands-on Chiropractic and Physiotherapy in Cheras &mdash; for backs
-              that have waited long enough. Personalised care built around what your
-              assessment actually shows.
+              Drug-free, hands-on Chiropractic and Physiotherapy in Cheras. Personalised care
+              built around what your assessment actually shows.
             </p>
 
             <div className="mt-8">

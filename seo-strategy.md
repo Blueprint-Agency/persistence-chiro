@@ -56,19 +56,25 @@ Traffic has decayed ~90% since mid-2024 (300+ → 24/mo) — likely stale/thin c
 - **Homepage retitle:** `Chiropractor in Cheras (Maluri), Kuala Lumpur | Persistence Chiropractic`. H1 must contain "Chiropractor in Cheras". Currently the site doesn't anchor itself to Cheras/Maluri strongly enough to rank for proximity terms.
 
   > **⚠️ OVERRIDDEN BY THE CLIENT, 2026-08-01 — the build no longer follows this rule.**
-  > The homepage h1 now reads *"Chiropractic and Physiotherapy in Cheras, supporting your
-  > body's natural recovery."* The mandatory phrase is gone from the h1, and the line
-  > repeats `/services/physiotherapy`'s own h1 verbatim, so two pages now compete for
-  > "physio cheras" (see `kpi-keyword-map.md` #5).
+  > The homepage h1 reads *"Chiropractor and Physiotherapist in Cheras, under one roof."*
+  > The mandatory phrase is not contiguous in it, on the page that ranks #16 for "chiro
+  > cheras" and holds most of the site's referring domains.
   >
-  > The costs were put to the client before the change and this is the wording they chose.
-  > Two things limit the damage: the `<title>` still carries "Chiropractor in Cheras", which
-  > is the stronger signal of the two, and the physiotherapy page keeps exact-match in its
-  > h1, title and target keyword.
+  > The cost was put to the client and this is the wording they chose. Two things limit the
+  > damage: the `<title>` still carries "Chiropractor in Cheras", which is much the stronger
+  > of the two signals, and an h1 is a weak ranking factor by comparison.
   >
-  > **Watch in Search Console:** homepage position for "chiro cheras" / "chiropractor
-  > cheras", and `/services/physiotherapy` for "physio cheras". If either slips, this is the
-  > change to raise with the client — not something to quietly revert.
+  > The client's reason is sound and worth recording — the clinic is chiropractors *and*
+  > physiotherapists, and an h1 that names only one of them misrepresents the business to
+  > every visitor in order to satisfy a phrase-match rule written before that was raised.
+  >
+  > **Watch in Search Console:** homepage position for "chiro cheras" and "chiropractor
+  > cheras". If they slip, this is the change to raise with the client — not something to
+  > quietly revert.
+  >
+  > *(An interim wording, "Chiropractic and Physiotherapy in Cheras…", also duplicated
+  > `/services/physiotherapy`'s own h1 and put two pages on "physio cheras". Naming the
+  > practitioner instead of the discipline resolved that. Don't let the line drift back.)*
 - **Schema markup:** `Chiropractic`/`LocalBusiness` JSON-LD with NAP, geo coords (Maluri), opening hours, `aggregateRating` once reviews flow.
 - **Fix the "chiro cheras" ranking page:** Google now ranks the homepage #16 for it (previously the thin `/book-now` page). Still no dedicated Cheras page — build a proper Cheras/Maluri landing page and internally link it sitewide to convert the homepage's #16 into a top-3.
 - Core Web Vitals pass, mobile-first, clean URL structure, XML sitemap, image alt text with local modifiers.
