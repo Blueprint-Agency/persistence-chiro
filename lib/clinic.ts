@@ -11,9 +11,22 @@ export const clinic = {
   name: 'Persistence Chiropractic Care',
   legalName: 'Persistence Chiropractic Care',
 
-  // Byte-identical to Google Business Profile. Do not reformat.
+  /**
+   * Byte-identical to the Google Business Profile. Do not reformat.
+   *
+   * ⚠️ "V06" IS A DIGIT ZERO, NOT A LETTER O. It read `VO6` here and in AGENTS.md, PRODUCT.md
+   * and proposed-site-architecture.md until 2026-08-01, when a character-level comparison
+   * against the live listing caught it and the client confirmed the digit is correct. All
+   * four were fixed together.
+   *
+   * It is one character and it looks like nothing, which is exactly the problem: the two
+   * glyphs are near-identical in most UI faces, this string is the single source every page's
+   * LocalBusiness schema and every external citation is built from, and a mismatched address
+   * is the NAP inconsistency this file's own header warns costs local-pack ranking. If you
+   * find yourself "correcting" it back to a letter, check the listing first.
+   */
   address: {
-    street: 'VO6-G-02, Signature 2, Lingkaran SV',
+    street: 'V06-G-02, Signature 2, Lingkaran SV',
     locality: 'Sunway Velocity',
     region: 'Kuala Lumpur',
     postalCode: '55100',
@@ -78,13 +91,15 @@ export const clinic = {
 /**
  * Google Business Profile star rating, for social proof on money pages.
  *
- * ⚠️ GATED LIKE `registrationsVerified`. The rating badge renders ONLY when `verified`
- * is true, so we never ship a fabricated or stale number. Google Maps serves bots an
- * empty shell and there is no GBP connector wired up, so these values cannot be scraped
- * automatically — a human must read the live listing (clinic.mapsUrl) and fill them in.
+ * ⚠️ GATED LIKE `registrationsVerified`. The review section renders ONLY when `verified` is
+ * true, so a fabricated or stale number can never ship on its own.
  *
- * TO ACTIVATE: set the real `rating` and `count` from the Google listing, then flip
- * `verified` to true. `url` points a "read the reviews" link at the real GBP entity.
+ * These are filled in and live. To REFRESH them: the summary is readable off the Business
+ * Profile knowledge panel (a browser-rendering scrape gets it; the individual review text is
+ * lazy-loaded and is not retrievable that way, so those come from the GBP dashboard by hand
+ * into lib/reviews.ts). Refresh both together or the count and the quotes disagree.
+ *
+ * `url` points a "read the reviews" link at the real GBP entity.
  */
 export const googleReviews = {
   /**

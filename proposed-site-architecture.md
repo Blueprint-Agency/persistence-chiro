@@ -8,7 +8,7 @@
 | | |
 |---|---|
 | Legal name | Persistence Chiropractic Care |
-| Address | VO6-G-02, Signature 2, Lingkaran SV, Sunway Velocity, 55100 Kuala Lumpur |
+| Address | V06-G-02, Signature 2, Lingkaran SV, Sunway Velocity, 55100 Kuala Lumpur |
 | Phone | 018-2014088 |
 | Email | info@persistencechiropractic.com |
 | Hours | Mon–Thu 10:00–20:00 · Fri 10:00–17:00 · Sat 10:00–20:00 · Sun 10:00–15:00 |
