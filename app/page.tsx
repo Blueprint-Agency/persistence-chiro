@@ -17,7 +17,6 @@ import {
   Vertebrae,
   WhatsAppButton,
   CheckIcon,
-  CtaBand,
 } from '@/components/ui'
 import { StickyCta } from '@/components/service'
 import { Preloader } from '@/components/Preloader'
@@ -64,27 +63,31 @@ const heroSlides = [
  * BAND ORDER IS LOAD-BEARING — do not reshuffle these sections casually.
  *
  *   hero → accreditations → intro/offers → care paths → FAQ → testimonials → blog
- *        → visit us → conversion band
+ *        → visit us
  *
- * The ask sits at the FOOT, after every objection has been handled: the FAQ answers "does
- * it hurt", the testimonials answer "does it work for people like me", and "visit us"
- * answers the only question a person in pain actually has left — can I get there, and are
- * they open. That last one is the strongest possible setup for the booking button, which
- * is why it is the final band before it.
+ * The conversion band that used to close the page was removed at the client's request; see
+ * the note where it stood. "Visit us" is now the last band, which still means the page ends
+ * on the practical facts a "near me" visitor needs rather than on blog thumbnails.
  *
- * The band previously fired mid-page, *before* the FAQ, and the page ended on three blog
- * thumbnails. Peak-end says the last impression carries disproportionate weight, and the
- * last impression was an invitation to go read something instead of to book.
+ * The ORDER is still built to handle objections in sequence: the FAQ answers "does it
+ * hurt", the testimonials answer "does it work for people like me", and "visit us" answers
+ * the only question a person in pain actually has left — can I get there, and are they
+ * open. That sequence was the setup for the ask; the ask itself is now carried by the
+ * sticky header and, below `lg`, the fixed bar. Keep the order even though the band it
+ * built toward is gone — reshuffling it puts objections after the point they matter.
  *
  * The blog trio stays (it is real internal linking to /blog and those posts need it) but is
- * buried between the proof and the practical close, where it cannot be the final word.
+ * buried between the proof and the practical close, so it cannot be the final word. The
+ * page once ended on three blog thumbnails, which made the last impression an invitation to
+ * go and read something. Peak-end says that position carries disproportionate weight, so
+ * whatever ends this page should not be a detour.
  *
- * BACKGROUND RHYTHM: slate → white → cream → white → cream → aqua → cream → white → gold.
+ * BACKGROUND RHYTHM: slate → white → cream → white → cream → aqua → cream → white.
  * No two adjacent bands share a ground; that alternation plus the 1px warm hairline is what
- * makes nine bands legible. If you insert a band, check its neighbours.
+ * makes eight bands legible. If you insert a band, check its neighbours.
  *
  * Under the 2026 preview palette the same rhythm reads:
- * sand → white → sand/40 → white → skin → teal/40 → sand/40 → white → gold. The alternation
+ * sand → white → sand/40 → white → skin → teal/40 → sand/40 → white. The alternation
  * still holds — no two adjacent bands are the same value — but the hero and the page ground
  * are now the same hue at different strengths, with the white strip between them doing the
  * separating.
@@ -579,20 +582,22 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ------------------------------------------------------------ CTA band */}
-      {/* The shared component, not a hand-rolled copy of it — two implementations of the
-          signature conversion band on the one page that has to convert is how the copy and
-          the styling drift apart. DESIGN.md puts this at the foot of every content page;
-          this page is no longer the exception. */}
-      <CtaBand
-        heading="Suffering from back pain?"
-        body="Message our Gonstead chiropractors today. Open seven days, right next to Sunway Velocity."
-        message={waMessage.home}
-      />
+      {/* ------------------------------------------------- (no CTA band here) */}
+      {/* REMOVED at the client's request, 2026-08-01. DESIGN.md still calls the conversion
+          band a signature component at the foot of every content page, and it still is —
+          on every route except this one. Do not re-add it here without asking them.
 
-      {/* Mobile booking bar. Below `lg` the header CTA is hidden and the gold band is most
-          of a page away, which left a phone visitor — the primary visitor — with no booking
-          action for roughly five screens. Same component the service pages use. */}
+          What still carries the ask: the sticky header CTA on desktop, present on every
+          scroll position, and the fixed StickyCta bar below `lg`. Both survive, which is
+          why removing the band costs less than it looks. What is genuinely lost is the
+          restatement at the foot, after "Visit us" has answered "can I get there and are
+          they open" — which was the strongest setup for the ask on the page. Watch the CTA
+          conversion events (lib/events.ts) before concluding it made no difference. */}
+
+      {/* Mobile booking bar. Below `lg` the header CTA is hidden, which left a phone visitor
+          — the primary visitor — with no booking action for roughly five screens. Now that
+          the band is gone it is the only in-page ask below `lg`. Same component the service
+          pages use. */}
       <StickyCta message={waMessage.home} tone="contrast" />
       {/* Clearance for the fixed bar, in the footer's colour so it reads as the footer
           beginning rather than as an empty band. The homepage had none at all, so the bar
