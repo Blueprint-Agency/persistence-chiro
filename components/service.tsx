@@ -6,7 +6,7 @@ import { accreditations, testimonials } from '@/lib/home'
 import { Eyebrow, Vertebrae, WhatsAppIcon } from '@/components/ui'
 import { whatsappLink, waMessage } from '@/lib/whatsapp'
 
-/** Founder + principal chiropractor reviews the clinical content on the money pages. */
+/** The founding chiropractor reviews the clinical content on the money pages. */
 const reviewer = practitionerBySlug('valerie-na')!
 
 /**
@@ -97,16 +97,33 @@ export function ServiceTestimonials() {
             "there are more" signal than a scrollbar.
             `tabIndex` makes the rail keyboard-scrollable, which a plain overflow container
             is not. Negative margin lets cards bleed to the viewport edge while the first one
-            still lines up with the heading. */}
+            still lines up with the heading.
+
+            With one review there is nothing to scroll, so the rail stops being a rail: no
+            focusable scroll container to tab into and no snap points, since offering a
+            keyboard user a scrollable region with one item wastes a tab stop. The card also
+            widens, because a 24rem card next to a lot of empty band looks like the rest
+            failed to load. All of it restores itself when a second review is approved. */}
+        {(() => {
+          const isRail = testimonials.length > 1
+          return (
         <ul
-          tabIndex={0}
+          tabIndex={isRail ? 0 : undefined}
           aria-label="Patient reviews"
-          className="rail -mx-4 mt-10 flex snap-x snap-mandatory gap-6 overflow-x-auto px-4 pb-5 lg:mx-0 lg:px-0"
+          className={
+            isRail
+              ? 'rail -mx-4 mt-10 flex snap-x snap-mandatory gap-6 overflow-x-auto px-4 pb-5 lg:mx-0 lg:px-0'
+              : 'mt-10 flex gap-6'
+          }
         >
           {testimonials.map((t) => (
             <li
               key={t.name}
-              className="w-[82%] flex-none snap-start sm:w-[26rem] lg:w-[24rem]"
+              className={
+                isRail
+                  ? 'w-[82%] flex-none snap-start sm:w-[26rem] lg:w-[24rem]'
+                  : 'w-full max-w-2xl'
+              }
             >
               <figure className="flex h-full flex-col rounded-3xl border border-line bg-white p-8 shadow-ambient">
                 <Vertebrae className="text-brand-gold" />
@@ -122,6 +139,8 @@ export function ServiceTestimonials() {
             </li>
           ))}
         </ul>
+          )
+        })()}
         <a
           href={googleReviews.url}
           target="_blank"
@@ -136,9 +155,15 @@ export function ServiceTestimonials() {
 }
 
 /**
- * "Medically reviewed by" byline — the core E-E-A-T signal for a YMYL page. Names a real
- * registered practitioner, links to their bio, and shows when the content was last checked.
- * Renders nothing without a date, so a page can't display a fabricated review date.
+ * "Reviewed by" byline — the core E-E-A-T signal for a YMYL page. Names a real registered
+ * practitioner, links to their bio, and shows when the content was last checked. Renders
+ * nothing without a date, so a page can't display a fabricated review date.
+ *
+ * NOT "Medically reviewed by". Client instruction, 2026-08-01: that phrasing belongs to
+ * registered medical practitioners, and the reviewer here is a chiropractor. Same reasoning
+ * that removed "Dr" from the practitioner names. The E-E-A-T signal is unaffected — what
+ * Google reads is the named person, their credentials, the link to their profile and the
+ * `reviewedBy`/`lastReviewed` schema, none of which depends on the word "medically".
  */
 export function ReviewedBy({ date }: { date?: string }) {
   if (!date) return null
@@ -158,7 +183,7 @@ export function ReviewedBy({ date }: { date?: string }) {
           className="h-11 w-11 flex-none rounded-full object-cover"
         />
         <p className="text-sm leading-snug text-ink-muted">
-          Medically reviewed by{' '}
+          Reviewed by{' '}
           <Link
             href={`/about/${reviewer.slug}`}
             className="font-semibold text-ink underline underline-offset-2 hover:text-brand-slate"

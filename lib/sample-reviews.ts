@@ -53,7 +53,7 @@ export const sampleReviews: SampleReview[] = [
     name: 'Aisyah R.',
     color: '#17364a',
     when: '3 weeks ago',
-    body: 'Came in for lower back stiffness after months at my desk. Dr Valerie explained exactly what she was seeing on the assessment before doing anything. Really thorough and never pushy.',
+    body: 'Came in for lower back stiffness after months at my desk. Valerie explained exactly what she was seeing on the assessment before doing anything. Really thorough and never pushy.',
   },
   {
     name: 'Wei Jian L.',

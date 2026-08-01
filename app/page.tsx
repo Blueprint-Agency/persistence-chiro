@@ -404,7 +404,15 @@ export default function Home() {
             Reviews from our patients in Cheras
           </h2>
 
-          <div className="mt-12 grid gap-6 md:grid-cols-2">
+          {/* Two-up only when there are two. Retiring the "Dr Derek" review left one, and a
+              lone card in a 2-column grid reads as a card that failed to load rather than as
+              a clinic with one published review. Restores itself the moment a second review
+              is approved — see the note in lib/home.ts. */}
+          <div
+            className={`mt-12 grid gap-6 ${
+              testimonials.length > 1 ? 'md:grid-cols-2' : 'max-w-2xl'
+            }`}
+          >
             {testimonials.map((t) => (
               <figure
                 key={t.name}

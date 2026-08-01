@@ -120,7 +120,7 @@ export type Service = {
   qualifierConcerns?: readonly Concern[]
   /**
    * ISO date the clinical content was last reviewed by the practitioner. Drives the
-   * "Medically reviewed by" byline AND the reviewedBy/lastReviewed schema — the two E-E-A-T
+   * "Reviewed by" byline AND the reviewedBy/lastReviewed schema — the two E-E-A-T
    * signals a YMYL medical page needs. Only set once the copy has actually been checked;
    * unset means no byline and no review date is claimed.
    */

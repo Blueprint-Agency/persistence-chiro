@@ -9,7 +9,7 @@ import { Eyebrow, RegistrationList, Vertebrae } from '@/components/ui'
  * you. On a YMYL medical page, who is doing the work is a first-order trust question, and it
  * was previously answerable only by leaving the page.
  *
- * WHAT THIS DOES NOT DO: invent biographies. Only Dr. Valerie Na has published credentials
+ * WHAT THIS DOES NOT DO: invent biographies. Only Valerie Na has published credentials
  * and a bio; the live about-us page carries nothing for the other two beyond role,
  * memberships and a registration number, and fabricating experience for a registered
  * healthcare practitioner is not an option. So every card shows the same verifiable fields

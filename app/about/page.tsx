@@ -18,7 +18,7 @@ import {
 export const metadata: Metadata = pageMetadata({
   title: 'Our Chiropractors in Cheras, Kuala Lumpur',
   description:
-    'Meet the registered chiropractors at Persistence Chiropractic Care in Cheras, Maluri. Founder Dr. Valerie Na, our team, credentials and board memberships.',
+    'Meet the registered chiropractors at Persistence Chiropractic Care in Cheras, Maluri. Founder Valerie Na, our team, credentials and board memberships.',
   path: '/about',
 })
 

@@ -160,7 +160,7 @@ export const hoursSummary = (() => {
  * `true` means the clinic confirmed those exact numbers for that exact person; only then do
  * they render on the cards, the profile page and the Person schema.
  *
- * CONFIRMED 2026-07-28 by the clinic: Dr. Valerie Na only. The other two are still the
+ * CONFIRMED 2026-07-28 by the clinic: Valerie Na only. The other two are still the
  * card-by-card read of the Wix page — check them against the ACM register and the MOH T&CM
  * register before flipping their flag.
  *
@@ -187,9 +187,18 @@ export const publishedRegistrations = (p: {
   registrationsVerified: boolean
 }): readonly Registration[] => (p.registrationsVerified ? p.registrations : [])
 
-/** Founder bio. VERBATIM from the live /about-us page. */
+/**
+ * Founder bio. From the live /about-us page, bar the opening clause.
+ *
+ * That clause said "founder and principal chiropractor". The client moved the business
+ * titles here on 2026-08-01 and out of the `role` line, which now reads plain
+ * "Chiropractor" for all three practitioners: founder and director describe what she does
+ * for the business, and this is the one place on the site with room to say so without it
+ * reading as a clinical rank next to her name. "Principal chiropractor" did not come back
+ * with them, deliberately.
+ */
 export const founderBio = [
-  'As a founder and principal chiropractor in Persistence Chiropractic Care, Valerie pursued Chiropractic in a globally renowned university in Melbourne, Australia. Valerie has always had a strong desire to help others. Her fascination with being a chiropractor began when she met a childhood friend who exposed her to the field of chiropractic. Valerie began her voyage into exploration after becoming fascinated by her friend’s stories and knowledge.',
+  'As the founder and director of Persistence Chiropractic Care, Valerie pursued Chiropractic in a globally renowned university in Melbourne, Australia. Valerie has always had a strong desire to help others. Her fascination with being a chiropractor began when she met a childhood friend who exposed her to the field of chiropractic. Valerie began her voyage into exploration after becoming fascinated by her friend’s stories and knowledge.',
   'Valerie did plenty of research and taught herself the fundamentals of chiropractic in her early days of exploration. From attending webinars and observing numerous chiropractors, she further developed her craft and went on to work with patients struggling with physical pain. She says the best part of the job is when a patient finally recognises what has been driving their problem and knows what to do about it.',
   'Today, Persistence Chiropractic Care cares for people of all ages, pre or post-surgery, and offers acute, chronic, and wellness chiropractic care and adjustments.',
 ]
@@ -208,10 +217,10 @@ export const founderBio = [
 export const hasBio = (p: { bio: readonly string[] }) => p.bio.length > 0
 export const practitioners = [
   {
-    name: 'Dr. Valerie Na',
-    role: 'Director & Principal Chiropractor',
+    name: 'Valerie Na',
+    role: 'Chiropractor',
     slug: 'valerie-na',
-    photo: '/img/dr-valerie-na.webp',
+    photo: '/img/valerie-na.webp',
     credentials: 'BAppSc (Chiropractic), BHSc, RMIT University, Melbourne',
     // Supplied by the clinic 2026-07-28 — the only pair confirmed against a named person.
     registrations: [acmNo('ACM-2021-384'), mohTcmNo('CP-PPB2024/10096')],
@@ -224,10 +233,10 @@ export const practitioners = [
   },
   {
     // Blog bylines give the full name as Kee Shan Lim; the team card says "Kee Shan".
-    name: 'Dr. Kee Shan Lim',
+    name: 'Kee Shan Lim',
     role: 'Chiropractor',
     slug: 'kee-shan-lim',
-    photo: '/img/dr-kee-shan-lim.webp',
+    photo: '/img/kee-shan-lim.webp',
     credentials: '',
     // Unconfirmed — read off the interleaved Wix cards, not supplied by the clinic.
     registrations: [acmNo('ACM-2023-508'), mohTcmNo('CP-PPB2025/18923')],
@@ -241,10 +250,10 @@ export const practitioners = [
   },
   {
     // No ACM number appears on this card — confirm whether one exists.
-    name: 'Dr. Rynn Hoh',
+    name: 'Rynn Hoh',
     role: 'Chiropractor',
     slug: 'rynn-hoh',
-    photo: '/img/dr-rynn-hoh.webp',
+    photo: '/img/rynn-hoh.webp',
     credentials: '',
     // Unconfirmed — read off the interleaved Wix cards, not supplied by the clinic.
     registrations: [mohTcmNo('CP-PP2026/15619')],

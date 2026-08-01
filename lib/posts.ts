@@ -120,7 +120,7 @@ export const posts: Post[] = [
     description:
       'Why consistency matters more than intensity in a chiropractic care plan, what changes between visits, and why stopping early tends to undo the progress.',
     datePublished: '2022-10-23',
-    author: 'Dr Valerie Na',
+    author: 'Valerie Na',
     linksTo: 'back-pain',
     draft: false,
   },

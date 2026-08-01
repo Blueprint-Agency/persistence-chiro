@@ -77,30 +77,33 @@ export const offers = [
 ]
 
 /**
- * Patient testimonials, verbatim from the live homepage.
+ * Patient testimonials, migrated from the live homepage.
  *
- * ⚠️ The first one names "Dr Derek", who is not on the current practitioner roster in
- * `clinic.ts`. It is published on the live site today, so it is migrated as-is rather
- * than silently dropped — but the clinic should confirm whether to keep a testimonial
- * crediting a chiropractor who no longer appears on /about-us. Six further testimonials
- * exist unrendered in the Wix page JSON; they are not used here because we don't know
- * whether they were approved for publication.
+ * These render on the homepage AND on all five service pages (`ServiceTestimonials` in
+ * components/service.tsx), so anything in them is on six routes, not one.
+ *
+ * TWO CLIENT DECISIONS, 2026-08-01, taken when "Dr" was dropped as a title for the clinic's
+ * own practitioners:
+ *
+ * 1. The testimonial crediting "Dr Derek" was RETIRED. He is not on the practitioner roster
+ *    in `clinic.ts`, so it pointed six pages at a chiropractor who no longer appears on
+ *    /about — an open question in this file since migration, now settled.
+ * 2. The remaining quote is verbatim except for the honorific, removed to match how the team
+ *    is named everywhere else. Dropping "Dr." does not change what the patient said about
+ *    their experience, and nothing else in the text was touched.
+ *
+ * ONE testimonial is not a healthy amount of social proof, and the layouts adapt to that
+ * rather than fix it. Six further reviews sit unrendered in the Wix page JSON; they are
+ * unused because nobody has confirmed they were approved for publication. Getting two or
+ * three approved is the real fix, and it is outstanding client work.
  */
 export const testimonials = [
   {
-    name: 'Beverley',
-    /** Trimmed to the first two paragraphs; the full text runs five and buries the point. */
-    quote:
-      'Dr Derek practices the Gonstead chiropractic method, which encompasses a detailed set of procedures aimed at pinpointing the root causes of discomfort. After months of suffering from knee instability and weakness, I am grateful to have regained an active lifestyle thanks to Dr Derek!',
-    detail:
-      'With the X-Ray analysis, he has also identified other spinal issues that would have gone unnoticed and leading to detrimental consequences in the future.',
-  },
-  {
     name: 'Yeow Rong Low',
     quote:
-      'Went for 4 sessions and have been noticing improvements after each adjustment by Dr. Valerie! I always feel my lower back is tense and used to "crack" myself every night before I sleep and since then I didn\'t feel like cracking my lower back on my bed anymore after the first adjustment.',
+      'Went for 4 sessions and have been noticing improvements after each adjustment by Valerie! I always feel my lower back is tense and used to "crack" myself every night before I sleep and since then I didn\'t feel like cracking my lower back on my bed anymore after the first adjustment.',
     detail:
-      'Dr. Valerie is very patient with all my questions & concerns while being really friendly to explain everything to me in details. Highly recommended!',
+      'Valerie is very patient with all my questions & concerns while being really friendly to explain everything to me in details. Highly recommended!',
   },
 ]
 
