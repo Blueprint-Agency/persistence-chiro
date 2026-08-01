@@ -1,29 +1,24 @@
 import Image from 'next/image'
 
 import { clinic, googleReviews } from '@/lib/clinic'
-import { sampleReviews, sampleReviewSummary, USE_SAMPLE_REVIEWS } from '@/lib/sample-reviews'
+import { relativeDate, reviews } from '@/lib/reviews'
 import { Eyebrow } from '@/components/ui'
-import { ServiceTestimonials } from '@/components/service'
 import { RailArrows } from '@/components/RailArrows'
-import { isStagingDeployment } from '@/lib/deployment'
 
 /**
  * Google-review styled social proof section.
  *
- * ⚠️ THE SAMPLE REVIEWS IN lib/sample-reviews.ts ARE FABRICATED AND CANNOT REACH
- * PRODUCTION. The guard is structural, not a flag someone has to remember to flip: the
- * placeholder branch is gated on NODE_ENV, so `next build` never takes it. In production
- * this falls back to `ServiceTestimonials` — the clinic's real, migrated patient quotes —
- * so the page keeps its social proof and none of it is invented.
+ * These are REAL reviews now. Until 2026-08-01 this rendered fabricated placeholders behind
+ * a NODE_ENV + domain gate, and fell back to the clinic's migrated quotes in production. The
+ * client supplied genuine reviews from the Business Profile, so the placeholders are gone
+ * (lib/sample-reviews.ts deleted) and this renders everywhere, unconditionally.
  *
- * Publishing invented patient reviews on a registered healthcare practice's site is an
- * advertising and professional-conduct risk, which is why this is enforced in code rather
- * than documented in a comment. See PRODUCT.md, "Unverified is unpublished".
+ * ⚠️ THE GATE IS NOT COMING BACK, AND NOTHING INVENTED GOES IN lib/reviews.ts. That file is
+ * the whole safety story now: publishing invented patient reviews on a registered healthcare
+ * practice's site is an advertising and professional-conduct risk. If you ever need
+ * placeholder reviews again to preview a layout, build the layout against the real ones.
  *
- * TO SHIP REAL GOOGLE REVIEWS: replace `sampleReviews` / `sampleReviewSummary` with real
- * data pulled from the Business Profile, then delete this gate and render unconditionally.
- *
- * Static server component: the whole thing is markup, no client JS.
+ * Still a static server component. The only JS is the rail arrows, which are enhancement.
  */
 
 /** Google's four-colour wordmark, done in text so it stays a few bytes and scales cleanly. */
@@ -111,18 +106,12 @@ function Avatar({ name, color }: { name: string; color: string }) {
 }
 
 export function GoogleReviews() {
-  // Fabricated data may render in exactly two places: local development, and the
-  // *.vercel.app staging domain used to show the client a layout.
-  //
-  // It can never render on persistencechiropractic.com, because `isStagingDeployment` is
-  // derived from the domain Vercel will serve the build from — attaching the real domain
-  // turns this off by itself. That is the whole reason it is not a feature flag.
-  const previewSampleData =
-    USE_SAMPLE_REVIEWS && (process.env.NODE_ENV !== 'production' || isStagingDeployment)
-  if (!previewSampleData) return <ServiceTestimonials />
+  // Renders nothing rather than an empty widget with a zero count — same contract as the
+  // rating badge and the registration lists: no data means no claim.
+  if (!googleReviews.verified || reviews.length === 0) return null
 
-  const summary = sampleReviewSummary
-  const reviews = sampleReviews
+  // Captions are computed once, at build time, from one clock. See `relativeDate`.
+  const now = new Date()
 
   return (
     <section aria-label="Reviews" className="border-t border-line bg-brand-aqua/40">
@@ -150,7 +139,7 @@ export function GoogleReviews() {
               <p className="text-base font-bold leading-snug text-ink">{clinic.name}</p>
               <Stars className="mt-2 h-4 w-4" />
               <p className="mt-2 text-sm text-ink-muted">
-                {summary.count} <GoogleWordmark /> reviews
+                {googleReviews.count} <GoogleWordmark /> reviews
               </p>
               <a
                 href={googleReviews.url}
@@ -193,7 +182,9 @@ export function GoogleReviews() {
                         <span className="block truncate text-sm font-semibold text-ink">
                           {r.name}
                         </span>
-                        <span className="block text-xs text-ink-muted">{r.when}</span>
+                        <span className="block text-xs text-ink-muted">
+                          {relativeDate(r.date, now)}
+                        </span>
                       </figcaption>
                       <GoogleGlyph />
                     </div>
@@ -204,7 +195,13 @@ export function GoogleReviews() {
                     {/* Clamped to four lines so every card is the same height and the rail
                         scans. The overflow is not hidden from the visitor — "Read more" goes
                         to the listing, which is where the full review actually lives. */}
-                    <blockquote className="mt-3 line-clamp-4 text-sm leading-relaxed text-ink-muted">
+                    {/* `lang` on the quote, not the card: one review is in Chinese, and
+                        without it a screen reader reads Mandarin with an English voice and
+                        the browser hyphenates it by English rules. */}
+                    <blockquote
+                      lang={r.lang}
+                      className="mt-3 line-clamp-4 text-sm leading-relaxed text-ink-muted"
+                    >
                       {r.body}
                     </blockquote>
                     <a

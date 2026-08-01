@@ -443,12 +443,9 @@ export default function Home() {
           pages already use, so there is now one review treatment on the site instead of two
           — and one place to change when the real Google data lands.
 
-          ⚠️ WHAT RENDERS DEPENDS ON THE DEPLOYMENT, by design. The Google-styled block draws
-          on FABRICATED reviews (lib/sample-reviews.ts) and appears only in `next dev` and on
-          the *.vercel.app preview. On persistencechiropractic.com the component falls back to
-          `ServiceTestimonials` — the clinic's real migrated quote. Publishing invented
-          patient reviews for a registered healthcare practice is an advertising and conduct
-          risk, so the gate is structural rather than a flag anyone has to remember.
+          The reviews are REAL as of 2026-08-01 — the client supplied them from the Business
+          Profile and lib/sample-reviews.ts is gone, so this renders everywhere rather than
+          only on the preview domain. Nothing invented may go back into lib/reviews.ts.
 
           It keeps its own aqua band, so the band rhythm either side is unchanged. */}
       <GoogleReviews />

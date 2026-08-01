@@ -87,9 +87,17 @@ export const clinic = {
  * `verified` to true. `url` points a "read the reviews" link at the real GBP entity.
  */
 export const googleReviews = {
-  verified: false,
-  rating: 0,
-  count: 0,
+  /**
+   * CONFIRMED 2026-08-01 against the live Business Profile: 5.0 from 224 reviews.
+   *
+   * ⚠️ `count` IS A SNAPSHOT AND WILL DRIFT. It only moves when someone updates this line, so
+   * treat it as "at least this many" and refresh it whenever the reviews themselves are
+   * refreshed in lib/reviews.ts. If it ever needs to be live, that is the Places API or the
+   * Featurable route, not a bigger number typed in here.
+   */
+  verified: true,
+  rating: 5.0,
+  count: 224,
   url: clinic.mapsUrl,
 } as const
 
