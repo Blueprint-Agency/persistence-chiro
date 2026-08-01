@@ -42,7 +42,7 @@ export default function AboutPage() {
       <section className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
         <Eyebrow>Our team</Eyebrow>
         <h2 className="mt-5 max-w-2xl text-3xl font-extrabold leading-tight sm:text-4xl">
-          The chiropractors who will actually be treating you.
+          The chiropractors who will actually be looking after you.
         </h2>
 
         <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

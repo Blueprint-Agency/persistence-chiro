@@ -5,7 +5,7 @@ import { practitioners, publishedRegistrations } from '@/lib/clinic'
 import { Eyebrow, RegistrationList, Vertebrae } from '@/components/ui'
 
 /**
- * "Meet your chiropractors" — the three registered practitioners who would actually treat
+ * "Meet your chiropractors" — the three registered practitioners who would actually look after
  * you. On a YMYL medical page, who is doing the work is a first-order trust question, and it
  * was previously answerable only by leaving the page.
  *
@@ -21,7 +21,7 @@ import { Eyebrow, RegistrationList, Vertebrae } from '@/components/ui'
  * the live page interleaves the cards so it cannot be settled by reading. A mis-assigned
  * professional registration is worse than an absent one.
  */
-export function MeetDoctors({ heading = 'The chiropractors who would treat you' }: { heading?: string }) {
+export function MeetDoctors({ heading = 'The chiropractors who would look after you' }: { heading?: string }) {
   return (
     <section className="border-t border-line bg-white">
       <div className="mx-auto max-w-6xl px-4 py-16 lg:py-24">

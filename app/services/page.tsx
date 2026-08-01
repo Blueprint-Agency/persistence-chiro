@@ -18,7 +18,7 @@ import { CtaBand, Eyebrow, PageHero, Vertebrae } from '@/components/ui'
 export const metadata: Metadata = pageMetadata({
   title: 'Chiropractic & Physiotherapy Services, Cheras',
   description:
-    'Chiropractic treatment, dry needling, physiotherapy, sports injury rehabilitation and posture correction under one roof in Cheras, Maluri, Kuala Lumpur.',
+    'Chiropractic care, dry needling, physiotherapy, sports injury rehabilitation and posture correction under one roof in Cheras, Maluri, Kuala Lumpur.',
   path: '/services',
 })
 
@@ -33,7 +33,7 @@ export default function ServicesHub() {
           data={collectionPageSchema({
             name: 'Our Services — Chiropractic & Physiotherapy in Cheras, KL',
             description:
-              'Chiropractic treatment, dry needling, physiotherapy, sports injury rehabilitation and posture correction in Cheras, Maluri.',
+              'Chiropractic care, dry needling, physiotherapy, sports injury rehabilitation and posture correction in Cheras, Maluri.',
             url: '/services',
             items: services.map((s) => ({
               name: s.title.split(' in ')[0],

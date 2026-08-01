@@ -97,6 +97,56 @@ export const hoursDisplay = [
   { label: 'Sunday', value: '10:00am – 3:00pm' },
 ]
 
+const DAY_SHORT: Record<string, string> = {
+  Monday: 'Mon',
+  Tuesday: 'Tue',
+  Wednesday: 'Wed',
+  Thursday: 'Thu',
+  Friday: 'Fri',
+  Saturday: 'Sat',
+  Sunday: 'Sun',
+}
+
+/** 24h "20:00" -> "8pm", "10:30" -> "10.30am". Minutes only appear when there are any. */
+function clock(time: string) {
+  const [h, m] = time.split(':').map(Number)
+  return `${h % 12 || 12}${m ? `.${String(m).padStart(2, '0')}` : ''}${h < 12 ? 'am' : 'pm'}`
+}
+
+/** A run of three or more days collapses to a range; one or two are listed. */
+function daySpan(days: readonly string[]) {
+  return days.length >= 3
+    ? `${DAY_SHORT[days[0]]}–${DAY_SHORT[days[days.length - 1]]}`
+    : days.map((d) => DAY_SHORT[d]).join(' & ')
+}
+
+/**
+ * The whole week on one line — "Mon–Thu & Sat 10am–8pm · Fri 10am–5pm · Sun 10am–3pm".
+ *
+ * DERIVED from `clinic.hours`, never typed out. The header's utility bar used to carry a
+ * hand-written "Mon to Thu, 10am to 8pm", which was both a second copy of the hours and an
+ * incomplete one — it silently dropped Friday's earlier close and both weekend days, on the
+ * one strip a "chiropractor near me" visitor reads before deciding whether to come today.
+ * Opening hours are part of the NAP consistency the local pack scores; a partial second copy
+ * is exactly how they drift out of sync with the Google Business Profile.
+ *
+ * Blocks sharing an open/close pair are merged, so Monday–Thursday and Saturday state their
+ * shared 8pm close once. Change `clinic.hours` and this follows.
+ */
+export const hoursSummary = (() => {
+  const byTime = new Map<string, string[]>()
+  for (const block of clinic.hours) {
+    const key = `${block.opens}-${block.closes}`
+    byTime.set(key, [...(byTime.get(key) ?? []), daySpan(block.days)])
+  }
+  return [...byTime]
+    .map(([key, spans]) => {
+      const [opens, closes] = key.split('-')
+      return `${spans.join(' & ')} ${clock(opens)}–${clock(closes)}`
+    })
+    .join(' · ')
+})()
+
 /**
  * Professional registrations.
  *
@@ -141,7 +191,7 @@ export const publishedRegistrations = (p: {
 export const founderBio = [
   'As a founder and principal chiropractor in Persistence Chiropractic Care, Valerie pursued Chiropractic in a globally renowned university in Melbourne, Australia. Valerie has always had a strong desire to help others. Her fascination with being a chiropractor began when she met a childhood friend who exposed her to the field of chiropractic. Valerie began her voyage into exploration after becoming fascinated by her friend’s stories and knowledge.',
   'Valerie did plenty of research and taught herself the fundamentals of chiropractic in her early days of exploration. From attending webinars and observing numerous chiropractors, she further developed her craft and went on to work with patients struggling with physical pain. She says the best part of the job is when a patient finally recognises what has been driving their problem and knows what to do about it.',
-  'Today, Persistence Chiropractic Care treats people of all ages, pre or post-surgery, and offers acute, chronic, and wellness chiropractic care and adjustments.',
+  'Today, Persistence Chiropractic Care cares for people of all ages, pre or post-surgery, and offers acute, chronic, and wellness chiropractic care and adjustments.',
 ]
 
 /**

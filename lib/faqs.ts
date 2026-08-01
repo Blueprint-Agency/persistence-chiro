@@ -23,7 +23,7 @@ export type Faq = { q: string; a: string }
 export const clinicFaqs: Faq[] = [
   {
     q: 'Is Chiropractic & Physiotherapy suitable for all ages?',
-    a: 'We see patients of every age, from infants through to older adults, as well as teenagers and pregnant women. Our youngest patient was 4 months old and our eldest 96. Suitability still depends on the individual, and some presentations are not appropriate for adjustment, so an assessment always comes before any treatment. If your chiropractor feels another healthcare provider would better help you, you will be referred appropriately.',
+    a: 'We see patients of every age, from infants through to older adults, as well as teenagers and pregnant women. Our youngest patient was 4 months old and our eldest 96. Suitability still depends on the individual, and some presentations are not appropriate for adjustment, so an assessment always comes before anything is adjusted. If your chiropractor feels another healthcare provider would better help you, you will be referred appropriately.',
   },
   {
     q: 'What are the benefits of getting a Chiropractic adjustment?',
@@ -42,19 +42,19 @@ export const clinicFaqs: Faq[] = [
     a: 'Physiotherapy is not only for severe injuries. Assessing a problem early often means it is easier to manage before it becomes chronic or recurring, and recovery tends to be more straightforward.',
   },
   {
-    q: 'Will Physiotherapy treatment be painful?',
-    a: 'Physiotherapy should not cause excessive pain. Some mild discomfort may occur during assessment or exercise, but treatment is always adjusted according to your tolerance and comfort level.',
+    q: 'Will Physiotherapy be painful?',
+    a: 'Physiotherapy should not cause excessive pain. Some mild discomfort may occur during assessment or exercise, but the work is always adjusted according to your tolerance and comfort level.',
   },
   {
-    q: 'Do I still need Physiotherapy after Chiropractic treatment?',
+    q: 'Do I still need Physiotherapy after Chiropractic care?',
     a: 'Chiropractic care aims to restore joint mobility and ease discomfort, while Physiotherapy focuses on strengthening muscles and improving movement control. For many patients the two approaches work well together, and your practitioner will advise whether both are appropriate for you.',
   },
   {
-    q: 'Can I continue gym or sports during my treatment?',
+    q: 'Can I continue gym or sports during my care?',
     a: 'In many cases, yes. However, modifications may be required. Our practitioners guide patients on safe loading, exercise progression, and return-to-sport strategies.',
   },
   {
-    q: 'What should I wear for my treatment sessions?',
+    q: 'What should I wear for my sessions?',
     a: 'We encourage our patients to wear non-restrictive clothing that is comfortable and easy to move in. Some examples such as loose-fitting clothing, shorts, yoga pants, or leggings would be best suited.',
   },
 ]
@@ -74,10 +74,10 @@ export const homeFaqs: Faq[] = [
   },
   {
     q: 'What should I expect during my first visit?',
-    a: "Your first visit will include a full health history and symptom review, followed by a physical assessment such as posture, movement, range of motion, and joint/muscle testing (and spinal checks when relevant). Your practitioner will then explain what's happening, share the working diagnosis, and outline a personalised treatment plan and timeline. First visits run about 30–60 minutes; follow-ups are 20–45 minutes depending on the case. Bring any previous reports, scans or MRI/X-ray results if you have them. If you're not sure whether to start with chiropractic or physiotherapy, text us your main concern and we'll advise you.",
+    a: "Your first visit will include a full health history and symptom review, followed by a physical assessment such as posture, movement, range of motion, and joint/muscle testing (and spinal checks when relevant). Your practitioner will then explain what's happening, share the working diagnosis, and outline a personalised care plan and timeline. First visits run about 30–60 minutes; follow-ups are 20–45 minutes depending on the case. Bring any previous reports, scans or MRI/X-ray results if you have them. If you're not sure whether to start with chiropractic or physiotherapy, text us your main concern and we'll advise you.",
   },
   {
-    q: 'Do I need an X-Ray before starting my chiropractic treatments?',
+    q: 'Do I need an X-Ray before starting my chiropractic care?',
     a: 'An X-Ray imaging is an essential tool for us to know how each of your joints are positioned respectively, essentially the alignment of each spinal segment. It helps to identify pathologies and developmental issues such as scoliosis or curvature assessment from your X-Rays. However, an X-Ray is not mandatory for pregnant women and children (depending on the situation). If you are still having doubts, feel free to contact us to know more.',
   },
   // "What should I wear" is deliberately absent: `clinicFaqs` already carries it with the
@@ -90,14 +90,14 @@ export const homeFaqs: Faq[] = [
 ]
 
 /**
- * Post-treatment aftercare. VERBATIM from the live site.
+ * Aftercare between visits. VERBATIM from the live site, bar the banned word.
  * Genuinely useful content and a strong internal-link magnet — patients search
  * "sore after chiropractic adjustment" and this answers it.
  */
-export const postTreatmentIntro =
-  'Chiropractic treatment is intended to support your body’s own recovery, and what you do between visits matters as much as the adjustment itself. If your body feels sore after a recent adjustment, that is a very common occurrence as your tissues take time to settle. Do tell your chiropractor how you felt after each visit, whether that was better, unchanged or worse. It is all useful information to us.'
+export const aftercareIntro =
+  'Chiropractic care is intended to support your body’s own recovery, and what you do between visits matters as much as the adjustment itself. If your body feels sore after a recent adjustment, that is a very common occurrence as your tissues take time to settle. Do tell your chiropractor how you felt after each visit, whether that was better, unchanged or worse. It is all useful information to us.'
 
-export const postTreatmentCare = [
+export const aftercare = [
   {
     heading: 'Walking / Movement',
     body: 'Have some light movements or take a slow walk to stimulate your blood flow. Motion is key! Try to avoid any movement that can cause discomfort. Vigorous exercises should also be avoided for at least 2-3 days following your adjustments.',

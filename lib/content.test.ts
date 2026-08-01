@@ -16,7 +16,7 @@ import { services } from './services.ts'
 import { posts, publishedPosts } from './posts.ts'
 import { HELD_POST_SLUGS, LEGACY_POST_SLUGS, redirects } from '../redirects.ts'
 import { staticRoutes } from './routes.ts'
-import { clinicFaqs, homeFaqs, postTreatmentCare, postTreatmentIntro } from './faqs.ts'
+import { clinicFaqs, homeFaqs, aftercare, aftercareIntro } from './faqs.ts'
 import { homeIntro } from './home.ts'
 import { gonsteadIntro, gonsteadSteps } from './gonstead.ts'
 import { founderBio, practitioners, publishedRegistrations } from './clinic.ts'
@@ -100,7 +100,7 @@ test('no promissory medical claims in published copy', () => {
     ['gonsteadIntro', gonsteadIntro],
     ...gonsteadSteps.map((s) => [`gonstead/${s.name}`, s.body] as [string, string]),
     ['founderBio', founderBio.join(' ')],
-    ['postTreatment', [postTreatmentIntro, ...postTreatmentCare.map((c) => c.body)].join(' ')],
+    ['aftercare', [aftercareIntro, ...aftercare.map((c) => c.body)].join(' ')],
   ]
 
   const hits: string[] = []
@@ -152,15 +152,15 @@ test('condition cross-links resolve', () => {
       assert.ok(conditionSlugs.has(slug), `${c.slug}.related -> missing condition "${slug}"`)
       assert.notEqual(slug, c.slug, `${c.slug}.related links to itself`)
     }
-    for (const slug of c.treatedBy) {
-      assert.ok(serviceSlugs.has(slug), `${c.slug}.treatedBy -> missing service "${slug}"`)
+    for (const slug of c.helpedBy) {
+      assert.ok(serviceSlugs.has(slug), `${c.slug}.helpedBy -> missing service "${slug}"`)
     }
   }
 })
 
 test('service cross-links resolve', () => {
   for (const s of services) {
-    for (const slug of s.treats) {
+    for (const slug of s.helpsWith) {
       assert.ok(conditionSlugs.has(slug), `${s.slug}.treats -> missing condition "${slug}"`)
     }
   }

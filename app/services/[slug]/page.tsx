@@ -60,7 +60,7 @@ export default async function ServicePage({ params }: Props) {
   const service = serviceBySlug(slug)
   if (!service || service.draft) notFound()
 
-  const treats = service.treats.map(conditionBySlug).filter(Boolean)
+  const helpsWith = service.helpsWith.map(conditionBySlug).filter(Boolean)
 
   // The first section IS the page's subject, so it carries the hero intro; the rest become
   // the numbered "how it works" steps.
@@ -250,7 +250,7 @@ export default async function ServicePage({ params }: Props) {
                   What {shortName.toLowerCase()} involves here
                 </h2>
                 <p className="mt-5 leading-relaxed text-ink-muted">
-                  We assess before we treat, then explain what we find in plain terms,
+                  We assess before we begin, then explain what we find in plain terms,
                   including the parts your care is unlikely to change.
                 </p>
                 <div className="mt-8">
@@ -348,19 +348,19 @@ export default async function ServicePage({ params }: Props) {
       )}
 
       {/* --------------------------------------------------------- Where to go next */}
-      {/* The internal-link block: conditions this service treats, plus the sibling pages.
+      {/* The internal-link block: conditions this service helps with, plus the sibling pages.
           Real SEO value, low decision value — so it sits after the FAQ, where someone who
           has finished reading is choosing a next page rather than choosing whether to come in. */}
-      {(treats.length > 0 || (service.relatedLinks && service.relatedLinks.length > 0)) && (
+      {(helpsWith.length > 0 || (service.relatedLinks && service.relatedLinks.length > 0)) && (
         <section className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
           <Eyebrow>Where to go next</Eyebrow>
           <h2 className="mt-5 max-w-2xl text-3xl font-extrabold leading-tight sm:text-4xl">
             Related conditions and services
           </h2>
 
-          {treats.length > 0 && (
+          {helpsWith.length > 0 && (
             <ul className="mt-8 grid gap-2.5 sm:grid-cols-2 lg:grid-cols-4">
-              {treats.map((c) => (
+              {helpsWith.map((c) => (
                 <li key={c!.slug}>
                   <Link
                     href={`/conditions/${c!.slug}`}

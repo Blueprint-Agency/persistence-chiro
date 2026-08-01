@@ -116,7 +116,7 @@ export default function ContactPage() {
                 href="/conditions"
                 className="font-semibold text-brand-slate underline underline-offset-4"
               >
-                conditions we treat
+                conditions we help with
               </Link>
               , or message us your main concern and we will point you to the right one.
             </p>

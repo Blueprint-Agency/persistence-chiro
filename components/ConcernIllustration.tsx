@@ -4,7 +4,7 @@
  * Drawn rather than photographed on purpose. These describe a *symptom* — a knot, a referral
  * pattern, a guarded muscle — and no honest photograph shows a symptom; it shows a room with
  * people in it. A diagram can say the thing the sentence underneath says, which a stock-ish
- * treatment photo cannot.
+ * clinical photo cannot.
  *
  * THE SYSTEM, so the next one stays part of the set:
  *   ground   pale aqua, the clinic's own reception colour, full bleed

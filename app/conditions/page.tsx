@@ -8,9 +8,9 @@ import { pageMetadata } from '@/lib/seo'
 import { CtaBand, GhostButton, PageHero, Vertebrae } from '@/components/ui'
 
 export const metadata: Metadata = pageMetadata({
-  title: 'Conditions We Treat in Cheras, Kuala Lumpur',
+  title: 'Conditions We Help With in Cheras, Kuala Lumpur',
   description:
-    'Back pain, slipped disc, sciatica, scoliosis, neck pain, migraine and hip pain — assessed and treated with Gonstead chiropractic and physio in Cheras, Maluri.',
+    'Back pain, slipped disc, sciatica, scoliosis, neck pain, migraine and hip pain — assessed with Gonstead chiropractic and physio in Cheras, Maluri.',
   path: '/conditions',
 })
 
@@ -23,7 +23,7 @@ export default function ConditionsHub() {
       {conditions.length > 0 && (
         <JsonLd
           data={collectionPageSchema({
-            name: 'Conditions We Treat in Cheras, Kuala Lumpur',
+            name: 'Conditions We Help With in Cheras, Kuala Lumpur',
             description:
               'Back pain, slipped disc, sciatica, scoliosis, neck pain, migraine, hip pain and shoulder imbalance.',
             url: '/conditions',
@@ -37,7 +37,7 @@ export default function ConditionsHub() {
 
       <PageHero
         eyebrow="Conditions"
-        title="Conditions we treat"
+        title="Conditions we help with"
         intro="Chiropractic and physiotherapy care in Cheras, Maluri, Kuala Lumpur."
       />
 
@@ -48,11 +48,11 @@ export default function ConditionsHub() {
           <div className="max-w-2xl">
             <h2 className="text-2xl font-bold">Condition pages are being prepared.</h2>
             <p className="mt-4 text-lg leading-relaxed text-ink-muted">
-              In the meantime, the two pages below cover how we assess and treat. You can also
+              In the meantime, the two pages below cover how we assess and what we do. You can also
               message us with your symptoms and we&rsquo;ll tell you which applies to you.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <GhostButton href="/services/chiropractic-treatment">Our Gonstead approach</GhostButton>
+              <GhostButton href="/services/chiropractic-care">Our Gonstead approach</GhostButton>
               <GhostButton href="/services/physiotherapy">Physiotherapy</GhostButton>
             </div>
           </div>

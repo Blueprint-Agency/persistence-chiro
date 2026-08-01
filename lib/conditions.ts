@@ -1,7 +1,7 @@
 /**
  * Condition pages — symptom-first intent ("back pain treatment KL").
  *
- * Shape is fixed (symptoms -> how we treat -> FAQ), so this is typed data rather than
+ * Shape is fixed (symptoms -> how we help -> FAQ), so this is typed data rather than
  * MDX: it gives us FAQPage schema for free and stops the six pages drifting apart.
  * Blog prose stays MDX; this does not.
  *
@@ -26,8 +26,14 @@ export type Condition = {
   targetKeyword: string
   /** Slugs of conditions to cross-link. Two each, per the internal-linking rules. */
   related: string[]
-  /** Physiotherapy modality slugs that treat this condition. */
-  treatedBy: string[]
+  /**
+   * Physiotherapy modality slugs that help with this condition.
+   *
+   * Named `helpedBy`, not `treatedBy`. The word is banned in published copy (see the
+   * non-negotiable in AGENTS.md) and an identifier is where the banned verb creeps back in:
+   * the next person writing the heading above this list reaches for the field name.
+   */
+  helpedBy: string[]
 
   /** Lead paragraph under the h1. Plain language — the reader is in pain, not studying. */
   intro: string
@@ -54,13 +60,13 @@ export type Condition = {
 export const conditions: Condition[] = [
   {
     slug: 'back-pain',
-    title: 'Back Pain Treatment in Cheras, Kuala Lumpur',
-    metaTitle: 'Back Pain Treatment in Cheras, KL',
+    title: 'Back Pain Care in Cheras, Kuala Lumpur',
+    metaTitle: 'Back Pain Care in Cheras, KL',
     metaDescription:
       'Gonstead chiropractic for lower and upper back pain in Cheras, Maluri. Segment-by-segment assessment, adjustment and rehab from registered chiropractors.',
     targetKeyword: 'back pain treatment kl',
     related: ['slipped-disc', 'sciatica'],
-    treatedBy: ['physiotherapy', 'chiropractic-treatment'],
+    helpedBy: ['physiotherapy', 'chiropractic-care'],
 
     intro:
       'Most back pain is mechanical. The joints, discs and muscles of the spine stop moving the way they should, and the tissue around them gets irritated. It is very common, and it rarely means something is seriously wrong. Most of it settles without surgery. It is still worth finding out precisely what is going on rather than guessing at it.',
@@ -75,7 +81,7 @@ export const conditions: Condition[] = [
     causes: [
       {
         heading: 'Prolonged sitting',
-        body: 'Long hours at a desk load the lower back continuously and let the muscles that support it switch off. This is the single most common contributor we see in Kuala Lumpur, and it responds well to a combination of treatment and changes to how you sit.',
+        body: 'Long hours at a desk load the lower back continuously and let the muscles that support it switch off. This is the single most common contributor we see in Kuala Lumpur, and it responds well to a combination of hands-on care and changes to how you sit.',
       },
       {
         heading: 'Lifting and sudden loading',
@@ -92,8 +98,8 @@ export const conditions: Condition[] = [
     ],
     approach: [
       {
-        heading: 'We find the segment before we treat it',
-        body: 'Your first visit follows the Gonstead six-step assessment: history, visualisation, instrumentation, palpation, X-ray analysis where indicated, and only then an adjustment. We want to know which specific joint is producing your pain before anything is treated. Adjusting the whole spine and hoping is not how this works.',
+        heading: 'We find the segment before we work on it',
+        body: 'Your first visit follows the Gonstead six-step assessment: history, visualisation, instrumentation, palpation, X-ray analysis where indicated, and only then an adjustment. We want to know which specific joint is producing your pain before anything is adjusted. Adjusting the whole spine and hoping is not how this works.',
       },
       {
         heading: 'Adjustment, delivered by hand',
@@ -133,13 +139,13 @@ export const conditions: Condition[] = [
   },
   {
     slug: 'slipped-disc',
-    title: 'Slipped Disc Treatment in Cheras, Kuala Lumpur',
-    metaTitle: 'Slipped Disc Treatment in Cheras, KL',
+    title: 'Slipped Disc Care in Cheras, Kuala Lumpur',
+    metaTitle: 'Slipped Disc Care in Cheras, KL',
     metaDescription:
       'Non-surgical slipped disc and herniated disc care in Cheras, Maluri. Gonstead assessment, X-ray analysis and a staged plan built around what it shows.',
     targetKeyword: 'slipped disc treatment malaysia',
     related: ['back-pain', 'sciatica'],
-    treatedBy: ['physiotherapy', 'chiropractic-treatment'],
+    helpedBy: ['physiotherapy', 'chiropractic-care'],
 
     intro:
       '"Slipped disc" is the everyday name for a disc that has bulged or herniated. The soft centre of a spinal disc pushes outward against the tougher ring around it, sometimes far enough to press on a nearby nerve. Nothing has actually slipped out of place, which is why the term sounds more alarming than it needs to. Many discs settle with time and the right loading, and most people never need surgery. The plan depends on which level is involved and how the nerve is behaving, so that is what the first appointment sets out to establish.',
@@ -194,12 +200,12 @@ export const conditions: Condition[] = [
     ],
     faqs: [
       {
-        q: 'Can a chiropractor treat a slipped disc, or do I need surgery?',
+        q: 'Can a chiropractor help with a slipped disc, or do I need surgery?',
         a: 'Many disc presentations are managed conservatively. Surgery is generally considered when conservative care has not helped, or when there is progressive nerve weakness or a red-flag presentation. A surgical opinion is a legitimate and sometimes necessary step, and being sent for one does not mean anything has gone wrong. Your chiropractor will assess your case and refer you appropriately if a specialist would serve you better.',
       },
       {
         q: 'Is chiropractic adjustment safe with a herniated disc?',
-        a: 'It depends on the presentation. The assessment comes before any treatment for that reason. Some disc cases are suitable for adjustment, others need imaging or a medical opinion first, and the approach is adapted accordingly. Tell us about any numbness, weakness or bladder and bowel changes when you book.',
+        a: 'It depends on the presentation. The assessment comes first for that reason. Some disc cases are suitable for adjustment, others need imaging or a medical opinion first, and the approach is adapted accordingly. Tell us about any numbness, weakness or bladder and bowel changes when you book.',
       },
       {
         q: 'Do I need an MRI before coming in?',
@@ -214,13 +220,13 @@ export const conditions: Condition[] = [
   },
   {
     slug: 'sciatica',
-    title: 'Sciatica Treatment in Cheras, Kuala Lumpur',
-    metaTitle: 'Sciatica Treatment in Cheras, KL',
+    title: 'Sciatica Care in Cheras, Kuala Lumpur',
+    metaTitle: 'Sciatica Care in Cheras, KL',
     metaDescription:
-      'Sciatic nerve pain assessed and treated with Gonstead chiropractic and targeted rehab in Cheras, Maluri. Registered chiropractors, open seven days.',
+      'Sciatic nerve pain assessed and managed with Gonstead chiropractic and targeted rehab in Cheras, Maluri. Registered chiropractors, open seven days.',
     targetKeyword: 'sciatica treatment',
     related: ['slipped-disc', 'back-pain'],
-    treatedBy: ['dry-needling', 'physiotherapy'],
+    helpedBy: ['dry-needling', 'physiotherapy'],
 
     intro:
       'Sciatica is a description rather than a diagnosis. It names pain that travels along the path of the sciatic nerve, from the lower back through the buttock and down the back of the leg. Something is irritating or compressing that nerve, and the assessment has to work out what and where. The cause is usually mechanical. Most people settle with conservative care and never need surgery.',
@@ -296,12 +302,12 @@ export const conditions: Condition[] = [
   {
     slug: 'scoliosis',
     title: 'Scoliosis Care in Cheras, Kuala Lumpur',
-    metaTitle: 'Scoliosis Treatment in Cheras, KL',
+    metaTitle: 'Scoliosis Care in Cheras, KL',
     metaDescription:
       'Scoliosis assessment and chiropractic management in Cheras, Maluri. Postural analysis, X-ray review and conditioning programmes for teens and adults.',
     targetKeyword: 'scoliosis treatment malaysia',
     related: ['neck-pain', 'back-pain'],
-    treatedBy: ['physiotherapy', 'chiropractic-treatment'],
+    helpedBy: ['physiotherapy', 'chiropractic-care'],
 
     intro:
       'Scoliosis is a sideways curvature of the spine, often with an element of rotation. Many curves are mild, get discovered by chance and never cause much trouble. Others bring stiffness, muscular fatigue and pain, particularly through the working day. We should be straightforward about what chiropractic care does here. We work on how well and how comfortably your spine moves. Straightening the curve is not something an adjustment does. Curve magnitude and progression are matters for orthopaedic assessment, and where that is what you need, we will say so.',
@@ -360,7 +366,7 @@ export const conditions: Condition[] = [
       },
       {
         q: 'My teenager has been told they have scoliosis. What should we do?',
-        a: 'An adolescent curve should be assessed and monitored by an orthopaedic specialist, because curves can change while a child is still growing and the treatment decisions at that stage are theirs to make. Chiropractic and physiotherapy can play a supporting role for comfort and conditioning alongside that care. We are happy to assess and to refer appropriately.',
+        a: 'An adolescent curve should be assessed and monitored by an orthopaedic specialist, because curves can change while a child is still growing and the decisions at that stage are theirs to make. Chiropractic and physiotherapy can play a supporting role for comfort and conditioning alongside that care. We are happy to assess and to refer appropriately.',
       },
       {
         q: 'Will I need an X-ray?',
@@ -381,7 +387,7 @@ export const conditions: Condition[] = [
       'Neck pain, stiffness and tech neck in desk workers, assessed in Cheras, Maluri. Gonstead chiropractic, dry needling and practical ergonomic guidance.',
     targetKeyword: 'stiffness neck pain',
     related: ['migraine', 'scoliosis'],
-    treatedBy: ['dry-needling', 'physiotherapy'],
+    helpedBy: ['dry-needling', 'physiotherapy'],
 
     intro:
       'Neck pain in office workers is usually a loading problem rather than an injury. Hours spent with the head tilted forward towards a screen or a phone ask the small joints and muscles at the base of the neck to hold a position they were never meant to hold all day, and eventually they complain about it. It builds gradually and it is very common. Most cases respond well once the irritated segment is found and the habits feeding it are dealt with.',
@@ -414,7 +420,7 @@ export const conditions: Condition[] = [
     ],
     approach: [
       {
-        heading: 'We find the segment before we treat it',
+        heading: 'We find the segment before we work on it',
         body: 'Your first visit follows the Gonstead six-step assessment: history, visualisation, instrumentation with the nervoscope, palpation, X-ray analysis where indicated, and only then an adjustment. Visualisation matters particularly here, because the level of your head, ears and shoulders tells us a great deal about how you are loading your neck before we have touched you.',
       },
       {
@@ -441,7 +447,7 @@ export const conditions: Condition[] = [
       },
       {
         q: 'Can chiropractic fix my posture?',
-        a: 'No single treatment changes posture on its own, because posture is largely a set of habits. Adjustments can restore movement to segments that have become restricted, which often makes a better position more comfortable to hold. The lasting change comes from your desk setup and from building endurance in the muscles that hold you upright. Your chiropractor will tell you honestly what is likely to change and what is not.',
+        a: 'No single approach changes posture on its own, because posture is largely a set of habits. Adjustments can restore movement to segments that have become restricted, which often makes a better position more comfortable to hold. The lasting change comes from your desk setup and from building endurance in the muscles that hold you upright. Your chiropractor will tell you honestly what is likely to change and what is not.',
       },
       {
         q: 'Is it safe to have my neck adjusted?',
@@ -462,10 +468,10 @@ export const conditions: Condition[] = [
       'Assessment for migraine and neck-related headaches in Cheras, Maluri. We look at the cervical contribution and refer for medical management where needed.',
     targetKeyword: 'migraine headache',
     related: ['neck-pain', 'shoulder-imbalance'],
-    treatedBy: ['chiropractic-treatment', 'physiotherapy'],
+    helpedBy: ['chiropractic-care', 'physiotherapy'],
 
     intro:
-      'Not every bad headache is a migraine, and not every migraine has anything to do with the neck. The distinction decides who should be treating you. Migraine is a neurological condition, managed medically, and chiropractic care does not treat it. Chiropractic can look at whether some part of what you are feeling is coming from the joints and muscles of the upper neck. That is a separate and reasonably common source of head pain. The assessment sorts out which one you are dealing with, and if the answer is that you need a doctor rather than us, we will say so.',
+      'Not every bad headache is a migraine, and not every migraine has anything to do with the neck. The distinction decides who should be looking after you. Migraine is a neurological condition, managed medically, and chiropractic care does not treat it. Chiropractic can look at whether some part of what you are feeling is coming from the joints and muscles of the upper neck. That is a separate and reasonably common source of head pain. The assessment sorts out which one you are dealing with, and if the answer is that you need a doctor rather than us, we will say so.',
     symptoms: [
       'Head pain that begins at the base of the skull and wraps forward towards the temple or eye',
       'Headache consistently on the same side, alongside neck stiffness or a restricted turn',
@@ -546,13 +552,13 @@ export const conditions: Condition[] = [
   },
   {
     slug: 'hip-pain',
-    title: 'Hip Pain Treatment in Cheras, Kuala Lumpur',
-    metaTitle: 'Hip Pain Treatment in Cheras, KL',
+    title: 'Hip Pain Care in Cheras, Kuala Lumpur',
+    metaTitle: 'Hip Pain Care in Cheras, KL',
     metaDescription:
       'Assessment and care for hip pain, groin ache and combined lower back and hip complaints in Cheras, Maluri. Gonstead chiropractic plus targeted rehab.',
     targetKeyword: 'lower back ache hip pain',
     related: ['back-pain', 'sciatica'],
-    treatedBy: ['chiropractic-treatment', 'sports-injury-rehabilitation'],
+    helpedBy: ['chiropractic-care', 'sports-injury-rehabilitation'],
 
     intro:
       'Hip pain is awkward to pin down, because the hip, the pelvis and the lower back share the same neighbourhood and refer pain into each other. People often arrive certain the problem is their hip when the joint itself examines well, or convinced it is their back when the hip is what limits them. Where you feel it is only a starting point. The assessment has to establish which structure is actually irritated and what pattern of loading keeps it that way, because a hip joint problem, a gluteal tendon problem and a lower back problem do not get the same plan.',
@@ -575,7 +581,7 @@ export const conditions: Condition[] = [
       },
       {
         heading: 'Joint restriction in the lower back and pelvis',
-        body: 'When a lumbar segment or a sacroiliac joint stops moving well, the hip on that side takes up the difference. We assess the spine and pelvis alongside the hip as standard for that reason. Treating the hip alone often leaves the driver untouched.',
+        body: 'When a lumbar segment or a sacroiliac joint stops moving well, the hip on that side takes up the difference. We assess the spine and pelvis alongside the hip as standard for that reason. Working on the hip alone often leaves the driver untouched.',
       },
       {
         heading: 'Age-related joint change',
@@ -644,10 +650,10 @@ export const conditions: Condition[] = [
     // to prevent. This page's h1 and body are about imbalance, so the keyword follows them.
     targetKeyword: 'uneven shoulders',
     related: ['neck-pain', 'back-pain'],
-    treatedBy: ['dry-needling', 'posture-correction'],
+    helpedBy: ['dry-needling', 'posture-correction'],
 
     intro:
-      'Almost nobody is perfectly symmetrical, and a shoulder sitting slightly higher than the other rarely needs treating on its own. It becomes worth looking at once symptoms come with it: an ache across one side of the neck and shoulder that builds through the working day, tightness that never fully clears, or a shoulder that no longer moves as freely as the other one. Most of what people call shoulder imbalance is a loading pattern. One side is doing more work, for more hours, than it has the endurance for. An assessment can describe that accurately, and how you work and train can change it.',
+      'Almost nobody is perfectly symmetrical, and a shoulder sitting slightly higher than the other rarely needs attention on its own. It becomes worth looking at once symptoms come with it: an ache across one side of the neck and shoulder that builds through the working day, tightness that never fully clears, or a shoulder that no longer moves as freely as the other one. Most of what people call shoulder imbalance is a loading pattern. One side is doing more work, for more hours, than it has the endurance for. An assessment can describe that accurately, and how you work and train can change it.',
     symptoms: [
       'One shoulder or shoulder blade visibly sitting higher, or clothes and bag straps sliding off one side',
       'An ache across the top of one shoulder and into the neck that worsens through the working day',
@@ -704,7 +710,7 @@ export const conditions: Condition[] = [
     faqs: [
       {
         q: 'Is one shoulder being higher than the other a problem?',
-        a: 'Not necessarily. Mild asymmetry is extremely common and plenty of people have it with no symptoms at all. What makes it worth assessing is pain, restricted movement, or an asymmetry that has changed. If you have no symptoms and nothing has changed, that is usually reassuring rather than something to treat.',
+        a: 'Not necessarily. Mild asymmetry is extremely common and plenty of people have it with no symptoms at all. What makes it worth assessing is pain, restricted movement, or an asymmetry that has changed. If you have no symptoms and nothing has changed, that is usually reassuring rather than something to act on.',
       },
       {
         q: 'Can chiropractic correct uneven shoulders?',
@@ -720,7 +726,7 @@ export const conditions: Condition[] = [
       },
       {
         q: 'How do I stop it coming back?',
-        a: 'Mostly by changing what caused it, which is why the desk setup and the endurance programme are not optional extras. Treatment takes load off irritated tissue, and the tissue goes straight back under load as soon as you sit down in the same position again. In practice: centre your monitor, alternate which shoulder carries your bag, and stand and move every 30 to 45 minutes.',
+        a: 'Mostly by changing what caused it, which is why the desk setup and the endurance programme are not optional extras. Hands-on work takes load off irritated tissue, and the tissue goes straight back under load as soon as you sit down in the same position again. In practice: centre your monitor, alternate which shoulder carries your bag, and stand and move every 30 to 45 minutes.',
       },
     ],
     draft: false,

@@ -53,6 +53,22 @@ const PAGE_REDIRECTS: Redirect[] = [
   },
   { source: '/our-partners', destination: '/partner-with-us', statusCode: 301 },
   { source: '/landingpage', destination: '/', statusCode: 301 },
+  /**
+   * NOT a Wix legacy URL — a URL this rebuild published and then renamed, 2026-08-01, when
+   * the client banned "treatment" from the site (see the non-negotiable in AGENTS.md).
+   *
+   * It is the only page whose *address* carried the word. Renaming a live, indexed page is
+   * not free: /services/chiropractic-treatment is the destination of internal links from the
+   * homepage, /conditions, /what-to-expect and five condition pages, and it is the service
+   * page with the most equity pointed at it. All of those links were repointed at the new
+   * URL in the same change, so nothing on the site relies on this rule — it exists for
+   * Google's index, external links and anyone's bookmark, and it needs to stay indefinitely.
+   */
+  {
+    source: '/services/chiropractic-treatment',
+    destination: '/services/chiropractic-care',
+    statusCode: 301,
+  },
 ]
 
 /**

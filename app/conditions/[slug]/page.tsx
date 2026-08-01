@@ -37,7 +37,7 @@ export default async function ConditionPage({ params }: Props) {
   if (!condition || condition.draft) notFound()
 
   const related = condition.related.map(conditionBySlug).filter(Boolean)
-  const treatedBy = condition.treatedBy.map(serviceBySlug).filter(Boolean)
+  const helpedBy = condition.helpedBy.map(serviceBySlug).filter(Boolean)
 
   return (
     <>
@@ -113,7 +113,7 @@ export default async function ConditionPage({ params }: Props) {
 
             {condition.approach.length > 0 && (
               <section>
-                <Eyebrow>How we treat it</Eyebrow>
+                <Eyebrow>How we help</Eyebrow>
                 <h2 className="mt-5 text-3xl font-extrabold leading-tight">
                   Our approach
                 </h2>
@@ -190,11 +190,11 @@ export default async function ConditionPage({ params }: Props) {
           </div>
 
           <aside className="lg:sticky lg:top-32 lg:self-start">
-            {treatedBy.length > 0 && (
+            {helpedBy.length > 0 && (
               <div className="rounded-3xl border border-line bg-white p-8 shadow-ambient">
-                <Eyebrow>How we treat it</Eyebrow>
+                <Eyebrow>How we help</Eyebrow>
                 <ul className="mt-5 space-y-2.5">
-                  {treatedBy.map((m) => (
+                  {helpedBy.map((m) => (
                     <li key={m!.slug}>
                       <Link
                         href={`/services/${m!.slug}`}
@@ -240,7 +240,7 @@ export default async function ConditionPage({ params }: Props) {
                   href="/conditions"
                   className="mt-5 inline-block text-sm font-semibold text-brand-slate underline underline-offset-4"
                 >
-                  All conditions we treat in Cheras
+                  All conditions we help with in Cheras
                 </Link>
               </nav>
             )}

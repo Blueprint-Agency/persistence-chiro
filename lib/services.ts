@@ -7,7 +7,7 @@
  * modality pages. Seven live Wix services had already been folded to four; those four now
  * fold to five alongside chiropractic:
  *
- *   /chiropractic                      -> /services/chiropractic-treatment
+ *   /chiropractic                      -> /services/chiropractic-care
  *   /physiotherapy                     -> /services/physiotherapy
  *   /physiotherapy/dry-needling        -> /services/dry-needling
  *   /physiotherapy/sports-rehab        -> /services/sports-injury-rehabilitation
@@ -139,7 +139,7 @@ export type Service = {
   /** Service blocks. First one is the page's primary service. */
   sections: { heading: string; body: string }[]
   /** Condition slugs this service is used for — the cross-link back into /conditions. */
-  treats: string[]
+  helpsWith: string[]
   /**
    * In-context internal links rendered as a button row under the sections — descriptive
    * anchor text into other services/pages. Optional; the chiropractic dedicated route
@@ -150,7 +150,7 @@ export type Service = {
   faqs: { q: string; a: string }[]
   /**
    * True when the service has a hand-built route file instead of rendering through
-   * app/services/[slug]/page.tsx. Only chiropractic-treatment does: it carries the
+   * app/services/[slug]/page.tsx. Only chiropractic-care does: it carries the
    * Gonstead six-step walkthrough, which is a bespoke layout rather than section blocks.
    * Excluded from generateStaticParams so the two routes can't collide at build time.
    */
@@ -163,14 +163,14 @@ export const servicesIntro =
 
 export const services: Service[] = [
   {
-    slug: 'chiropractic-treatment',
-    title: 'Chiropractic Treatment in Cheras, Kuala Lumpur',
-    metaTitle: 'Chiropractic Treatment in Cheras, KL',
+    slug: 'chiropractic-care',
+    title: 'Chiropractic Care in Cheras, Kuala Lumpur',
+    metaTitle: 'Chiropractic Care in Cheras, KL',
     metaDescription:
       'Gonstead chiropractic in Cheras, Maluri. Segment-by-segment spinal assessment and a precise hands-on adjustment for bone and body alignment, not a general crack.',
     targetKeyword: 'bone alignment near me',
     intro:
-      'Gonstead chiropractic care in Cheras. We assess the spine segment by segment before anything is adjusted, so treatment goes to whichever segment is actually driving your problem. That is not always where you feel it.',
+      'Gonstead chiropractic care in Cheras. We assess the spine segment by segment before anything is adjusted, so the work goes to whichever segment is actually driving your problem. That is not always where you feel it.',
     outcomes: [
       'Back, neck or joint pain you want assessed segment by segment',
       'A recurring problem you would like to understand, not just mask',
@@ -187,8 +187,8 @@ export const services: Service[] = [
     lastReviewed: '2026-07-26',
     longForm: [
       {
-        heading: 'Is chiropractic treatment safe?',
-        body: 'Chiropractic adjustment is widely used for mechanical spine and joint problems, and serious complications are considered rare when care follows a proper assessment. As with any treatment there can be short lived after effects, most often mild soreness or stiffness for a day or so. The assessment exists partly to screen for the small number of situations where adjustment would not be appropriate, which is why we work through it before deciding what, if anything, to adjust. We will always tell you honestly if we think chiropractic is not the right approach for your case.',
+        heading: 'Is chiropractic care safe?',
+        body: 'Chiropractic adjustment is widely used for mechanical spine and joint problems, and serious complications are considered rare when care follows a proper assessment. As with any hands-on care there can be short lived after effects, most often mild soreness or stiffness for a day or so. The assessment exists partly to screen for the small number of situations where adjustment would not be appropriate, which is why we work through it before deciding what, if anything, to adjust. We will always tell you honestly if we think chiropractic is not the right approach for your case.',
       },
     ],
     citations: [
@@ -217,19 +217,19 @@ export const services: Service[] = [
         body: 'Where segments have become restricted, adjustment aims to improve how well they move. How much changes, and over what period, depends on what is causing the restriction and how long it has been there.',
       },
     ],
-    treats: ['back-pain', 'slipped-disc', 'sciatica', 'neck-pain', 'scoliosis'],
+    helpsWith: ['back-pain', 'slipped-disc', 'sciatica', 'neck-pain', 'scoliosis'],
     faqs: [
       {
         q: 'What is the Gonstead method?',
-        a: 'Gonstead is a chiropractic technique built around a detailed six-step assessment before any adjustment is made. That includes instrumentation and, where indicated, X-ray analysis. The aim is to identify precisely which segment is involved rather than treating the region generally.',
+        a: 'Gonstead is a chiropractic technique built around a detailed six-step assessment before any adjustment is made. That includes instrumentation and, where indicated, X-ray analysis. The aim is to identify precisely which segment is involved rather than working on the region generally.',
       },
       {
-        q: 'Do I need an X-ray before chiropractic treatment?',
+        q: 'Do I need an X-ray before chiropractic care?',
         a: 'Not always. X-rays help identify how each spinal segment sits and can rule out pathologies, but they are not mandatory, and we often go without one for pregnant women and children. Your chiropractor will explain whether imaging is appropriate in your case and why.',
       },
       {
         q: 'Is chiropractic the same as bone setting or tit tar?',
-        a: 'No. Chiropractic is a regulated healthcare profession with formal university training, and assessment comes before treatment. Traditional bone setting works differently and is not regulated in the same way. We would encourage you to ask any practitioner about their qualifications before treatment.',
+        a: 'No. Chiropractic is a regulated healthcare profession with formal university training, and assessment comes before anything is adjusted. Traditional bone setting works differently and is not regulated in the same way. We would encourage you to ask any practitioner about their qualifications beforehand.',
       },
     ],
     dedicatedRoute: true,
@@ -272,7 +272,7 @@ export const services: Service[] = [
     /**
      * Supplied pain-visualisation images: a person with the affected muscle group overlaid
      * and the painful area lit. They do the same job the SVG diagrams did — showing a
-     * symptom rather than a treatment — with more immediacy.
+     * symptom rather than a service — with more immediacy.
      *
      * ⚠️ ALT TEXT CARRIES NO LOCAL MODIFIER, unlike every other image on the site. These are
      * illustrative composites, not photographs of this clinic, these practitioners or these
@@ -322,7 +322,7 @@ export const services: Service[] = [
     longForm: [
       {
         heading: 'What is dry needling, and how is it different from acupuncture?',
-        body: 'Dry needling is a Western, anatomy based technique. A fine filament needle is placed directly into a myofascial trigger point, which is a small, hyperirritable knot within a taut band of muscle, with the aim of releasing that tension. Nothing is injected, which is where the word "dry" comes from. Acupuncture can use similar needles, but it comes from traditional Chinese medicine and selects points along meridians rather than by muscle anatomy. Even when the needles look alike, the two are aiming at different things. At our clinic in Cheras we treat dry needling as one tool within an assessment led plan, not a standalone therapy.',
+        body: 'Dry needling is a Western, anatomy based technique. A fine filament needle is placed directly into a myofascial trigger point, which is a small, hyperirritable knot within a taut band of muscle, with the aim of releasing that tension. Nothing is injected, which is where the word "dry" comes from. Acupuncture can use similar needles, but it comes from traditional Chinese medicine and selects points along meridians rather than by muscle anatomy. Even when the needles look alike, the two are aiming at different things. At our clinic in Cheras we use dry needling as one tool within an assessment led plan, not a standalone therapy.',
       },
       {
         heading: 'Is dry needling safe, and what should I expect afterwards?',
@@ -353,7 +353,7 @@ export const services: Service[] = [
     sections: [
       {
         heading: 'Integrative dry needling',
-        body: 'Dry needling is a neuromuscular technique that uses fine, single use needles to reach trigger points and tight bands of muscle that are difficult to release by hand alone. We use it as part of a treatment plan rather than on its own, and only where the assessment points to muscle as the thing driving your problem.',
+        body: 'Dry needling is a neuromuscular technique that uses fine, single use needles to reach trigger points and tight bands of muscle that are difficult to release by hand alone. We use it as part of a wider plan rather than on its own, and only where the assessment points to muscle as the thing driving your problem.',
       },
       {
         heading: 'What dry needling actually does',
@@ -361,14 +361,14 @@ export const services: Service[] = [
       },
       {
         heading: 'What a session involves',
-        body: 'We assess the area first to work out which muscles are involved, then place fine needles into the points identified. Most patients describe a brief twitch or a dull ache rather than sharp pain. A session usually takes fifteen to thirty minutes depending on how much we are treating, and the needling is only part of it. What we find often shapes the exercise or hands on work we pair it with.',
+        body: 'We assess the area first to work out which muscles are involved, then place fine needles into the points identified. Most patients describe a brief twitch or a dull ache rather than sharp pain. A session usually takes fifteen to thirty minutes depending on how much ground we are covering, and the needling is only part of it. What we find often shapes the exercise or hands on work we pair it with.',
       },
       {
         heading: 'Is it safe, and what to expect afterwards',
         body: 'Dry needling is generally very safe when it is carried out by a trained practitioner. We use sterile, single use needles that are disposed of after one session and never reused. Mild soreness, and occasionally a small bruise, for a day or so afterwards is common and settles on its own. Tell your practitioner if you are pregnant, take blood thinners or have a strong fear of needles, because there are situations where we would choose not to needle and use another approach instead.',
       },
       {
-        heading: 'How it works with the rest of your treatment',
+        heading: 'How it works with the rest of your care',
         body: 'Needling releases tension, but on its own it does not change the habit or weakness that let the muscle tighten, which is why we rarely use it alone. Under one roof in Cheras we combine it with chiropractic care and physiotherapy, and the assessment decides where to start. For some people needling comes first to calm things down, and for others the strength work matters more.',
       },
       {
@@ -376,16 +376,16 @@ export const services: Service[] = [
         body: 'This depends on how long the problem has been there and what is driving it, so we will not give you a fixed number at the first visit. Some people notice a change quickly, while others need the muscle work supported over several weeks alongside exercise. We would rather review honestly as we go than sell you a package up front.',
       },
     ],
-    treats: ['back-pain', 'neck-pain', 'shoulder-imbalance', 'sciatica'],
+    helpsWith: ['back-pain', 'neck-pain', 'shoulder-imbalance', 'sciatica'],
     relatedLinks: [
       { href: '/services/physiotherapy', label: 'How dry needling fits with physiotherapy' },
-      { href: '/services/chiropractic-treatment', label: 'Compare with chiropractic care' },
+      { href: '/services/chiropractic-care', label: 'Compare with chiropractic care' },
       { href: '/what-to-expect', label: 'What to expect on your first visit' },
     ],
     faqs: [
       {
         q: 'Is dry needling the same as acupuncture?',
-        a: 'They use similar needles but come from different traditions. Dry needling is based on Western anatomy and targets specific trigger points in muscle, whereas acupuncture follows traditional Chinese meridian theory and treats points chosen on a different basis. The needles look alike, but what we are aiming at is not the same.',
+        a: 'They use similar needles but come from different traditions. Dry needling is based on Western anatomy and targets specific trigger points in muscle, whereas acupuncture follows traditional Chinese meridian theory and works on points chosen on a different basis. The needles look alike, but what we are aiming at is not the same.',
       },
       {
         q: 'Does dry needling hurt?',
@@ -414,19 +414,19 @@ export const services: Service[] = [
       'Physio and physiotherapy in Cheras, Maluri. Hands-on manual therapy, movement assessment and corrective exercise, alongside chiropractic care under one roof.',
     targetKeyword: 'physio cheras',
     intro:
-      'Physiotherapy in Cheras, pairing hands-on treatment with corrective exercise. Once a joint is moving more freely, the exercise work aims to rebuild the strength and control that help keep it that way.',
+      'Physiotherapy in Cheras, pairing hands-on care with corrective exercise. Once a joint is moving more freely, the exercise work aims to rebuild the strength and control that help keep it that way.',
     heroImage: {
-      src: '/img/cupping-treatment.webp',
+      src: '/img/cupping-therapy.webp',
       alt: 'Cupping therapy applied across a patient upper back at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
     },
-    ogImage: '/og/cupping-treatment.jpg',
+    ogImage: '/og/cupping-therapy.jpg',
     midImage: {
-      src: '/img/treatment-neck.webp',
+      src: '/img/therapy-neck.webp',
       alt: 'Physiotherapist working on a seated patient neck and shoulder at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
     },
     /** Facts this page already substantiates, moved into the first viewport. */
     assurances: [
-      'Assessment before any treatment plan',
+      'Assessment before any care plan',
       'Exercises built for your problem, not a handout',
       'Open seven days · Cheras, Maluri',
     ],
@@ -448,7 +448,7 @@ export const services: Service[] = [
     longForm: [
       {
         heading: 'What happens in a physiotherapy assessment?',
-        body: 'A first physiotherapy visit is mostly assessment. We take a history, ask what makes the problem better or worse and what you need to get back to, then look at how you actually move, test the affected area and check the joints and muscles around it. The aim is to work out what is driving the problem rather than only where you feel it, because pain in one place often traces back to how something else is moving. From there we explain what we have found in plain terms and agree a plan, which usually pairs some hands on treatment with a small, specific exercise programme.',
+        body: 'A first physiotherapy visit is mostly assessment. We take a history, ask what makes the problem better or worse and what you need to get back to, then look at how you actually move, test the affected area and check the joints and muscles around it. The aim is to work out what is driving the problem rather than only where you feel it, because pain in one place often traces back to how something else is moving. From there we explain what we have found in plain terms and agree a plan, which usually pairs some hands on care with a small, specific exercise programme.',
       },
       {
         heading: 'Physiotherapy or chiropractic: which do you need?',
@@ -458,7 +458,7 @@ export const services: Service[] = [
     citations: [
       {
         claim:
-          'Clinical guidelines recommend staying active and using exercise based treatment for most non specific low back pain, rather than prolonged rest.',
+          'Clinical guidelines recommend staying active and using exercise based care for most non specific low back pain, rather than prolonged rest.',
         source: 'NICE guideline NG59, Low back pain and sciatica',
       },
       {
@@ -470,7 +470,7 @@ export const services: Service[] = [
     sections: [
       {
         heading: 'Physiotherapy in Cheras',
-        body: 'Physiotherapy in Cheras, pairing hands on treatment with corrective exercise. We assess how you move before we treat, so the work goes to whatever is actually driving the problem rather than only the spot that hurts. Once a joint is moving more freely, the exercise aims to rebuild the strength and control that help keep it that way.',
+        body: 'Physiotherapy in Cheras, pairing hands on care with corrective exercise. We assess how you move before we begin, so the work goes to whatever is actually driving the problem rather than only the spot that hurts. Once a joint is moving more freely, the exercise aims to rebuild the strength and control that help keep it that way.',
       },
       {
         heading: 'Precision manual therapy',
@@ -478,7 +478,7 @@ export const services: Service[] = [
       },
       {
         heading: 'Movement, gait and biomechanical assessment',
-        body: 'A detailed look at posture, gait and how you move under load, so we can identify what is contributing to the problem rather than only where you feel it. Pain in one place often traces back to how something else is moving, and treating the sore spot alone tends to let it return. Where footwear or orthotics are relevant, we look at those too.',
+        body: 'A detailed look at posture, gait and how you move under load, so we can identify what is contributing to the problem rather than only where you feel it. Pain in one place often traces back to how something else is moving, and working on the sore spot alone tends to let it return. Where footwear or orthotics are relevant, we look at those too.',
       },
       {
         heading: 'Corrective exercise programming',
@@ -486,16 +486,16 @@ export const services: Service[] = [
       },
       {
         heading: 'What your first physiotherapy session involves',
-        body: 'The first visit is mostly assessment. We ask about your history, what aggravates and eases the problem and what you need to get back to, then examine how you move and test the area. Hands on treatment usually follows, along with the first few exercises to take home. A session generally runs around forty five minutes to an hour, and you should leave understanding what we think is going on and what the plan is.',
+        body: 'The first visit is mostly assessment. We ask about your history, what aggravates and eases the problem and what you need to get back to, then examine how you move and test the area. Hands on care usually follows, along with the first few exercises to take home. A session generally runs around forty five minutes to an hour, and you should leave understanding what we think is going on and what the plan is.',
       },
       {
         heading: 'Physiotherapy or chiropractic, and how we combine them',
         body: 'Broadly, chiropractic care works on how a restricted joint moves, while physiotherapy works on the strength and control around it. Neither is better in the abstract, and many people benefit from both. Under one roof in Cheras we also offer dry needling, and the assessment decides where to start. If you are not sure which you need, message us your main concern and we will point you to the right starting point.',
       },
     ],
-    treats: ['back-pain', 'slipped-disc', 'neck-pain', 'sciatica', 'scoliosis'],
+    helpsWith: ['back-pain', 'slipped-disc', 'neck-pain', 'sciatica', 'scoliosis'],
     relatedLinks: [
-      { href: '/services/chiropractic-treatment', label: 'Compare with chiropractic care' },
+      { href: '/services/chiropractic-care', label: 'Compare with chiropractic care' },
       { href: '/services/sports-injury-rehabilitation', label: 'Sports injury and rehabilitation' },
       { href: '/what-to-expect', label: 'What to expect on your first visit' },
     ],
@@ -526,20 +526,20 @@ export const services: Service[] = [
   {
     slug: 'sports-injury-rehabilitation',
     title: 'Sports Injury & Rehabilitation in Cheras, Kuala Lumpur',
-    metaTitle: 'Sports Injury Treatment in Cheras, KL',
+    metaTitle: 'Sports Injury Care in Cheras, KL',
     metaDescription:
       'Sports injury assessment, staged rehabilitation and criteria-based return to sport in Cheras, Maluri. Sprains, strains and overuse injuries, open seven days.',
     targetKeyword: 'sports injury treatment malaysia',
     intro:
       'Sports injury care in Cheras. We assess what failed and why, then work through staged rehabilitation aimed at getting you back to your sport without carrying the same weakness into it.',
     heroImage: {
-      src: '/img/treatment-ankle.webp',
+      src: '/img/rehab-ankle.webp',
       alt: 'Practitioner applying kinesiology tape to a patient lower leg at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
     },
-    ogImage: '/og/treatment-ankle.jpg',
+    ogImage: '/og/rehab-ankle.jpg',
     midImage: {
       src: '/img/adjustment-hip.webp',
-      alt: 'Chiropractor treating a patient hip on a treatment table at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
+      alt: 'Chiropractor working on a patient hip on a therapy table at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
     },
     assurances: [
       'Assessed before you are given a plan',
@@ -594,7 +594,7 @@ export const services: Service[] = [
       },
       {
         heading: 'Finding what failed, and why',
-        body: 'An injury is usually the visible end of something that was already off, whether that is a weakness, a movement pattern or a training load that climbed too fast. We assess the injured area and the way you move around it, because treating the sore tissue alone tends to let the same thing happen again. Understanding why it went is what shapes the rest of the plan.',
+        body: 'An injury is usually the visible end of something that was already off, whether that is a weakness, a movement pattern or a training load that climbed too fast. We assess the injured area and the way you move around it, because working on the sore tissue alone tends to let the same thing happen again. Understanding why it went is what shapes the rest of the plan.',
       },
       {
         heading: 'Staged rehabilitation, from settling down to loading up',
@@ -606,14 +606,14 @@ export const services: Service[] = [
       },
       {
         heading: 'Recovery support and therapeutic modalities',
-        body: 'Alongside the active work we use adjunct therapies to help manage pain and support tissue recovery through the early stages. These are there to make the rehabilitation possible, not to replace it. Where dry needling or hands on treatment is useful for the muscular side of things, we combine them under the same roof.',
+        body: 'Alongside the active work we use adjunct therapies to help manage pain and support tissue recovery through the early stages. These are there to make the rehabilitation possible, not to replace it. Where dry needling or hands on care is useful for the muscular side of things, we combine them under the same roof.',
       },
       {
         heading: 'Core and spinal stability for durability',
         body: 'Targeted work for the deep stabilising muscles that support the spine and control the trunk under load. Good stability through the middle tends to make the limbs more efficient and the whole system more durable, which is part of how we aim to lower the chance of the injury recurring once you are back.',
       },
     ],
-    treats: ['back-pain', 'shoulder-imbalance', 'hip-pain'],
+    helpsWith: ['back-pain', 'shoulder-imbalance', 'hip-pain'],
     relatedLinks: [
       { href: '/services/physiotherapy', label: 'Our physiotherapy approach' },
       { href: '/services/dry-needling', label: 'Dry needling for muscle tension' },
@@ -629,8 +629,8 @@ export const services: Service[] = [
         a: 'That depends on the injury, the sport and how rehabilitation progresses, so we will not give you a date at the first visit. We base the decision on what the area can do under testing rather than on symptoms alone, because returning before the tissue tolerates the load is the most common reason an injury recurs.',
       },
       {
-        q: 'Do you treat non-athletes, and weekend or desk injuries?',
-        a: 'Yes. A tweaked back from lifting, a knee that flares up on a weekend run or an overuse strain from repetitive work are all treated the same way, by assessing what happened and rebuilding the area properly. You do not have to compete at anything to be seen.',
+        q: 'Do you see non-athletes, and weekend or desk injuries?',
+        a: 'Yes. A tweaked back from lifting, a knee that flares up on a weekend run or an overuse strain from repetitive work are all approached the same way, by assessing what happened and rebuilding the area properly. You do not have to compete at anything to be seen.',
       },
       {
         q: 'Do I need a scan or X-ray before starting?',
@@ -687,7 +687,7 @@ export const services: Service[] = [
     longForm: [
       {
         heading: 'Can posture really be changed?',
-        body: 'It depends what you mean by changed. Comfort and endurance often improve, and people tend to find they can hold a better position for longer before it starts to feel like effort. What no course of treatment can promise is to permanently reshape a fixed structure or hand you a perfect posture that holds itself. We would rather be plain about that, and focus on the parts that genuinely respond, which are usually strength, mobility and habit.',
+        body: 'It depends what you mean by changed. Comfort and endurance often improve, and people tend to find they can hold a better position for longer before it starts to feel like effort. What no course of care can promise is to permanently reshape a fixed structure or hand you a perfect posture that holds itself. We would rather be plain about that, and focus on the parts that genuinely respond, which are usually strength, mobility and habit.',
       },
       {
         heading: 'Is sitting at a desk the cause of my posture problems?',
@@ -725,17 +725,17 @@ export const services: Service[] = [
       },
       {
         heading: 'Corrective exercise',
-        body: 'Targeted strength and mobility work for the muscles that hold a position over a working day. No single treatment changes posture on its own, so the exercise is what carries the work between visits. It does not need to be long, but it does need to be regular, and we adjust it as you get stronger.',
+        body: 'Targeted strength and mobility work for the muscles that hold a position over a working day. No single approach changes posture on its own, so the exercise is what carries the work between visits. It does not need to be long, but it does need to be regular, and we adjust it as you get stronger.',
       },
       {
         heading: 'What posture work can and cannot change',
         body: 'We would rather be plain about this. Comfort and endurance often improve, and people tend to find they can hold a better position for longer before it starts to feel like effort. What we cannot do is promise to straighten out a fixed structure or hand you a permanent posture from a course of visits. Your practitioner will tell you what is realistic in your case and what is not.',
       },
     ],
-    treats: ['neck-pain', 'shoulder-imbalance', 'back-pain'],
+    helpsWith: ['neck-pain', 'shoulder-imbalance', 'back-pain'],
     relatedLinks: [
       { href: '/services/physiotherapy', label: 'Our physiotherapy approach' },
-      { href: '/services/chiropractic-treatment', label: 'How chiropractic care can help' },
+      { href: '/services/chiropractic-care', label: 'How chiropractic care can help' },
       { href: '/what-to-expect', label: 'What to expect on your first visit' },
     ],
     faqs: [

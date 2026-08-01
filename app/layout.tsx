@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     template: "%s | Persistence Chiropractic",
   },
   description:
-    "Gonstead chiropractic and physiotherapy in Cheras, Maluri. Registered chiropractors treating back pain, slipped disc, sciatica and sports injury in Kuala Lumpur.",
+    "Gonstead chiropractic and physiotherapy in Cheras, Maluri. Registered chiropractors for back pain, slipped disc, sciatica and sports injury in Kuala Lumpur.",
   alternates: { canonical: "/" },
   // Belt and braces with robots.txt: a Disallow stops crawling but does not always remove a
   // URL already known to Google, whereas noindex does. Only ever set on *.vercel.app.

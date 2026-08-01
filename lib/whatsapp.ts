@@ -43,8 +43,8 @@ export const waMessage = {
    * A condition page: "back pain", "slipped disc".
    *
    * Condition titles are written for the SERP and end in a service word — "Slipped Disc
-   * Treatment", "Migraine and Headache Care". A visitor does not say "I've been dealing with
-   * slipped disc treatment", so the trailing noun is stripped before the sentence is built.
+   * Care", "Migraine and Headache Care". A visitor does not say "I've been dealing with
+   * slipped disc care", so the trailing noun is stripped before the sentence is built.
    */
   condition: (condition: string) =>
     `${HELLO}, I'd like to book an appointment. I've been dealing with ${condition

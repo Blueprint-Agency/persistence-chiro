@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { clinicFaqs, postTreatmentCare, postTreatmentIntro } from '@/lib/faqs'
+import { clinicFaqs, aftercare, aftercareIntro } from '@/lib/faqs'
 import { JsonLd } from '@/components/JsonLd'
 import { faqSchema } from '@/lib/schema'
 import { pageMetadata } from '@/lib/seo'
@@ -39,7 +39,7 @@ export default function WhatToExpectPage() {
             <p className="mt-5 text-lg leading-relaxed text-ink-muted">
               Your first appointment follows the{' '}
               <Link
-                href="/services/chiropractic-treatment"
+                href="/services/chiropractic-care"
                 className="font-semibold text-brand-gold-ink underline underline-offset-4"
               >
                 Gonstead six-step assessment
@@ -75,11 +75,11 @@ export default function WhatToExpectPage() {
               <h2 className="mt-5 text-3xl font-extrabold leading-tight sm:text-4xl">
                 Looking after your back afterwards
               </h2>
-              <p className="mt-5 leading-relaxed text-ink-muted">{postTreatmentIntro}</p>
+              <p className="mt-5 leading-relaxed text-ink-muted">{aftercareIntro}</p>
 
               {/* The clinic's own nervoscope — the instrument named in the Instrumentation
                   step. A photo of the actual kit says "we measure this" better than a
-                  stock treatment-room shot. */}
+                  stock clinic-room shot. */}
               <div className="mt-8 overflow-hidden rounded-3xl">
                 <Image
                   src="/img/gonstead-nervoscope.webp"
@@ -93,7 +93,7 @@ export default function WhatToExpectPage() {
             </div>
 
             <dl className="divide-y divide-line border-y border-line">
-              {postTreatmentCare.map((item) => (
+              {aftercare.map((item) => (
                 <div key={item.heading} className="flex gap-5 py-7">
                   <Vertebrae className="mt-2 text-brand-gold" />
                   <div>

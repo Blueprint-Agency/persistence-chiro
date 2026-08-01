@@ -52,6 +52,27 @@ These are the reason the project exists. Don't simplify them away.
 
 - **One page, one intent.** No two pages target the same query. The homepage *is* the
   Cheras page — do not build `/areas/cheras`.
+- **Never write "treat" or "treatment" in published copy.** Client instruction, 2026-08-01.
+  Say **"help with"**, **"care"**, **"care for"**, or name the thing actually done
+  (*assess*, *adjust*, *rehab*, *manage*). This covers everything a patient or a regulator
+  sees: body copy, headings, `h1`, card titles, link text, button labels, alt text, FAQ
+  questions and answers, `<title>` and meta descriptions. There is no "just this once" — if
+  a line genuinely cannot be written without the word, **stop and ask the client**, don't
+  ship it and flag it afterwards.
+
+  Two carve-outs, both deliberate:
+
+  1. **Disclaimers keep the word.** Lines that say what chiropractic does *not* do —
+     "Chiropractic does not treat migraine", "we will refer you rather than treat you here",
+     "knowing when it is not ours to treat" — reduce exposure rather than create it, and
+     "does not help with migraine" is vaguer and less protective. Confirmed with the client.
+  2. **`targetKeyword` fields keep the word.** They are internal tracking, never rendered.
+     The clinic still ranks for "back pain treatment kl"; it just doesn't say it. Confirmed
+     with the client: *"We can rank on SEO with the word treatment, just can't show
+     treatment word in our page content."*
+
+  Search `treat` — not `treatment` — before shipping copy. It catches *treated*, *treating*
+  and *treats*, which is how the first sweep missed several.
 - **JSON-LD on every template**, per the schema table in `proposed-site-architecture.md`.
 - **Core Web Vitals pass.** Static render by default. `next/image` for every image, always
   with width/height. No client component unless it genuinely needs interactivity.

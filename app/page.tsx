@@ -91,7 +91,7 @@ const heroSlides = [
 export const metadata: Metadata = pageMetadata({
   title: 'Chiropractor in Cheras (Maluri), Kuala Lumpur',
   description:
-    'Gonstead chiropractic and physiotherapy in Cheras, Maluri. Registered chiropractors treating back pain, slipped disc, sciatica and sports injury. Open seven days.',
+    'Gonstead chiropractic and physiotherapy in Cheras, Maluri. Registered chiropractors for back pain, slipped disc, sciatica and sports injury. Open seven days.',
   path: '/',
 })
 
@@ -127,16 +127,34 @@ export default function Home() {
       <section className="relative bg-pc-forest text-white">
         <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-14 lg:grid-cols-[1.05fr_1fr] lg:gap-8 lg:py-20">
           <div>
-            <Eyebrow tone="light">Gonstead chiropractic &middot; Cheras, Maluri</Eyebrow>
+            <Eyebrow tone="light">
+              Gonstead chiropractic &amp; physiotherapy &middot; Cheras, Maluri
+            </Eyebrow>
 
+            {/**
+             * The h1 answers the client's note that the clinic is not chiropractors alone,
+             * inside two constraints it cannot break:
+             *
+             * 1. seo-strategy.md § Phase 1 — the h1 MUST contain "Chiropractor in Cheras",
+             *    contiguously. It leads the line for that reason.
+             * 2. kpi-keyword-map.md #5 gives "physio cheras" to /services/physiotherapy,
+             *    whose own h1 is "Physiotherapy in Cheras, Kuala Lumpur". So this line says
+             *    *physiotherapists* — the practitioners — and never "physiotherapy in
+             *    Cheras". One page, one intent: naming the second discipline is a relevance
+             *    signal, claiming its query would be cannibalisation.
+             *
+             * "Backs that have waited long enough" moves down into the lead rather than
+             * being cut — an h1 carrying both disciplines and the emotive close runs to
+             * seventeen words and five lines at the display size.
+             */}
             <h1 className="mt-6 text-4xl font-extrabold leading-[1.08] text-white sm:text-5xl lg:text-[3.4rem]">
-              Chiropractor in Cheras for backs that have waited long enough.
+              Chiropractor in Cheras, with Physiotherapists under the same roof.
             </h1>
 
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/85">
-              Drug-free, hands-on chiropractic &amp; physiotherapy in Cheras. Personalised
-              treatment and precise spinal adjustments, built around what your assessment
-              actually shows.
+              Drug-free, hands-on Chiropractic and Physiotherapy in Cheras &mdash; for backs
+              that have waited long enough. Personalised care built around what your
+              assessment actually shows.
             </p>
 
             <div className="mt-8">
@@ -153,15 +171,27 @@ export default function Home() {
               examined you.
             </p>
 
+            {/**
+             * Three facts a "chiropractor near me" visitor checks before anything else.
+             *
+             * The landmark is now Sunway Medical Centre Velocity rather than the mall, at
+             * the client's request. It is the stronger of the two signals: a private
+             * hospital is a credibility marker as well as a proximity one, and the mall is
+             * already named in the address, the Find us band and the footer, so nothing is
+             * lost. It is a statement of distance only — the clinic is independent of the
+             * hospital and no line here may imply otherwise.
+             */}
             <ul className="mt-10 flex flex-wrap gap-x-7 gap-y-3 text-sm text-white/85">
-              {['Open 7 days a week', 'Registered chiropractors', 'Next to Sunway Velocity'].map(
-                (item) => (
-                  <li key={item} className="flex items-center gap-2">
-                    <CheckIcon className="h-4 w-4 text-brand-gold" />
-                    {item}
-                  </li>
-                ),
-              )}
+              {[
+                'Open 7 days a week',
+                'Registered Chiropractors & Physiotherapists',
+                '3-min walk to Sunway Medical Centre Velocity',
+              ].map((item) => (
+                <li key={item} className="flex items-center gap-2">
+                  <CheckIcon className="h-4 w-4 text-brand-gold" />
+                  {item}
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -244,7 +274,7 @@ export default function Home() {
           <div className="max-w-2xl">
             <Eyebrow>Where to start</Eyebrow>
             <h2 className="mt-5 text-3xl font-extrabold leading-tight sm:text-4xl">
-              Chiropractic or physiotherapy?
+              Chiropractic or Physiotherapy?
             </h2>
             <p className="mt-5 text-lg leading-relaxed text-ink-muted">
               Chiropractic works on how your joints move. Physiotherapy builds the strength around
@@ -276,7 +306,7 @@ export default function Home() {
                 </ul>
               )}
               <div className="mt-8">
-                <GhostButton href="/services/chiropractic-treatment" tone="light">
+                <GhostButton href="/services/chiropractic-care" tone="light">
                   How Gonstead works
                 </GhostButton>
               </div>
@@ -286,7 +316,7 @@ export default function Home() {
               <Vertebrae className="text-brand-slate" />
               <h3 className="mt-5 text-2xl font-bold">Physiotherapy</h3>
               <p className="mt-3 leading-relaxed text-ink-muted">
-                Hands-on treatment plus the loading and rehab work that stops the same injury
+                Hands-on care plus the loading and rehab work that stops the same injury
                 coming back. What we work on depends on what you need to get back to.
               </p>
               {modalities.length > 0 && (
@@ -304,7 +334,7 @@ export default function Home() {
                 </ul>
               )}
               <div className="mt-8">
-                <GhostButton href="/services">Explore physiotherapy</GhostButton>
+                <GhostButton href="/services">Explore Physiotherapy</GhostButton>
               </div>
             </article>
           </div>

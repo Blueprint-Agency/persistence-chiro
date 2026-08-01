@@ -11,7 +11,7 @@
 export const staticRoutes = [
   '/',
   '/services',
-  '/services/chiropractic-treatment',
+  '/services/chiropractic-care',
   '/conditions',
   '/what-to-expect',
   '/about',

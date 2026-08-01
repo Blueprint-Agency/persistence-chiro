@@ -37,17 +37,17 @@ const reviewer = practitionerBySlug('valerie-na')!
  * routes can't collide.
  *
  * Gonstead is deliberately NOT a separate page. A standalone /chiropractic and a
- * /services/chiropractic-treatment would mean the same thing to Google and split link
+ * /services/chiropractic-care would mean the same thing to Google and split link
  * equity between them — unaffordable at DA 6. Gonstead is the differentiator that makes
  * this page worth ranking, so it lives inside it. If GSC later shows "gonstead" queries
  * earning impressions of their own, splitting it back out is the easier direction to go.
  */
-const service = serviceBySlug('chiropractic-treatment')!
+const service = serviceBySlug('chiropractic-care')!
 
 export const metadata: Metadata = pageMetadata({
   title: service.metaTitle,
   description: service.metaDescription,
-  path: '/services/chiropractic-treatment',
+  path: '/services/chiropractic-care',
   image:
     service.ogImage && service.heroImage
       ? { url: service.ogImage, width: 1200, height: 630, alt: service.heroImage.alt }
@@ -61,7 +61,7 @@ export default function ChiropracticPage() {
         data={medicalProcedureSchema({
           name: service.title,
           description: service.metaDescription,
-          url: '/services/chiropractic-treatment',
+          url: '/services/chiropractic-care',
         })}
       />
       {/* Every answer below renders on the page, so the schema is legitimate. */}
@@ -71,7 +71,7 @@ export default function ChiropracticPage() {
           data={reviewedMedicalWebPage({
             name: service.title,
             description: service.metaDescription,
-            url: '/services/chiropractic-treatment',
+            url: '/services/chiropractic-care',
             lastReviewed: service.lastReviewed,
             reviewer: {
               name: reviewer.name,
@@ -85,17 +85,17 @@ export default function ChiropracticPage() {
       <JsonLd
         data={breadcrumbSchema([
           { name: 'Services', url: '/services' },
-          { name: 'Chiropractic Treatment', url: '/services/chiropractic-treatment' },
+          { name: 'Chiropractic Care', url: '/services/chiropractic-care' },
         ])}
       />
 
       <PageHero
         eyebrow="Our services"
-        title="Chiropractic treatment in Cheras, Kuala Lumpur"
+        title="Chiropractic care in Cheras, Kuala Lumpur"
         intro={gonsteadIntro}
       >
         <div className="flex flex-wrap gap-3">
-          <WhatsAppButton message={waMessage.service('chiropractic treatment')}>
+          <WhatsAppButton message={waMessage.service('chiropractic care')}>
             Book on WhatsApp
           </WhatsAppButton>
         </div>
@@ -160,7 +160,7 @@ export default function ChiropracticPage() {
         <div className="mt-14 rounded-3xl border border-line bg-white p-8 shadow-ambient lg:p-10">
           <Eyebrow>Conditions we commonly see</Eyebrow>
           <ul className="mt-5 grid gap-2.5 sm:grid-cols-2">
-            {service.treats.map(conditionBySlug).map(
+            {service.helpsWith.map(conditionBySlug).map(
               (c) =>
                 c && (
                   <li key={c.slug}>
@@ -231,7 +231,7 @@ export default function ChiropracticPage() {
       <CtaBand
         heading="Book a Gonstead assessment"
         body="Registered chiropractors in Cheras, Maluri. Open seven days, right next to Sunway Velocity."
-        message={waMessage.service('chiropractic treatment')}
+        message={waMessage.service('chiropractic care')}
       />
 
       <StickyCta />

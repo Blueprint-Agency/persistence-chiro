@@ -13,7 +13,7 @@ import { SITE_URL } from '@/lib/schema'
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date()
 
-  // /services/chiropractic-treatment is in BOTH staticRoutes (it has a hand-built route
+  // /services/chiropractic-care is in BOTH staticRoutes (it has a hand-built route
   // file) and publishedServices (it is a service). Listing a URL twice in a sitemap is
   // invalid, so the last-write-wins dedupe below is load-bearing, not defensive.
   const entries: MetadataRoute.Sitemap = [

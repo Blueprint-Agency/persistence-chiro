@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { clinic } from '@/lib/clinic'
+import { clinic, hoursSummary } from '@/lib/clinic'
 import { mainNav } from '@/lib/nav'
 import { WhatsAppButton, WhatsAppIcon } from '@/components/ui'
 import { waMessage } from '@/lib/whatsapp'
@@ -30,8 +30,14 @@ export function Header() {
           <span aria-hidden="true" className="text-white/30">
             |
           </span>
+          {/* The full week, derived from clinic.hours (see `hoursSummary`) rather than typed
+              out here. It runs to about sixty characters, which crowds the phone number and
+              WhatsApp link out of the bar at `md`, so the schedule itself appears from `lg`
+              and narrower desktops keep "Open 7 days" alone. Every viewport still has the
+              complete table in the footer. */}
           <span className="text-brand-slate-soft">
-            Open 7 days &middot; Mon to Thu, 10am to 8pm
+            Open 7 days
+            <span className="hidden lg:inline"> &middot; {hoursSummary}</span>
           </span>
           <div className="ml-auto flex items-center gap-5">
             <a href={`tel:${clinic.phoneE164}`} className="font-semibold hover:underline">
