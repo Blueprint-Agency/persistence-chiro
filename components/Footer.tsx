@@ -18,17 +18,25 @@ export function Footer() {
       <div className="mx-auto max-w-6xl px-4 py-16 lg:py-20">
         <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr] lg:gap-16">
           <div>
-            {/* The wordmark is pale blue and sage — it disappears on the slate field, so
-                it gets a light plate rather than being dropped or recoloured. */}
-            <div className="inline-block rounded-2xl bg-white px-5 py-4">
-              <Image
-                src="/img/logo-persistence.png"
-                alt="Persistence Chiropractic Care"
-                width={480}
-                height={107}
-                className="h-8 w-auto"
-              />
-            </div>
+            {/* All-white wordmark, supplied by the client. It replaces the colour logo on a
+                white plate that used to sit here — the plate existed only because the pale
+                blue and sage disappeared on the slate field, and a proper white cut is the
+                right fix rather than a box around the wrong asset.
+
+                `unoptimized` because this is an SVG: Next's image optimiser refuses SVG
+                unless `dangerouslyAllowSVG` is set, and enabling that sitewide to serve one
+                vector we authored is the wrong trade. There is nothing to optimise anyway.
+
+                Header stays on the colour PNG — it sits on the cream ground, where the
+                white cut would be invisible. */}
+            <Image
+              src="/img/logo-persistence-white.svg"
+              alt="Persistence Chiropractic Care"
+              width={3320}
+              height={740}
+              unoptimized
+              className="h-9 w-auto"
+            />
 
             <p className="mt-6 max-w-sm leading-relaxed text-white/70">
               Gonstead-technique chiropractic and physiotherapy in Cheras, Maluri. Dedicated to
