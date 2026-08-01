@@ -125,7 +125,8 @@ export default function Home() {
        * the palette review — Lavender, then Forest, then Teal, now #dddfd1.
        *
        * #005264 on #dddfd1 is 6.5:1, comfortably AA, and the booking pill reads at 6.5:1
-       * against the field with its label at 8.8:1.
+       * against the field with its label at 8.8:1. The h1 is the exception — ink, at the
+       * client's request; see the note on it.
        *
        * NO OPACITY, still. There is a little more headroom than Teal gave, but not enough:
        * the deep token at 85% over Sand composites to 4.76:1 and at 80% to 4.29:1, so a
@@ -162,7 +163,11 @@ export default function Home() {
              * being cut — an h1 carrying both disciplines and the emotive close runs to
              * seventeen words and five lines at the display size.
              */}
-            <h1 className="mt-6 text-4xl font-extrabold leading-[1.08] text-brand-slate-deep sm:text-5xl lg:text-[3.4rem]">
+            {/* Black, per the client — `text-ink` (#212121), which is this system's black.
+                Pure #000 would be a new colour and reads cold against the warm Sand field;
+                ink is 11.9:1 here, and every other line stays on the deep token so the h1
+                is the one thing on the field wearing it. */}
+            <h1 className="mt-6 text-4xl font-extrabold leading-[1.08] text-ink sm:text-5xl lg:text-[3.4rem]">
               Chiropractor in Cheras, with Physiotherapists under the same roof.
             </h1>
 
