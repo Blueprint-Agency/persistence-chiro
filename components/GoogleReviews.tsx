@@ -1,7 +1,10 @@
-import { googleReviews } from '@/lib/clinic'
+import Image from 'next/image'
+
+import { clinic, googleReviews } from '@/lib/clinic'
 import { sampleReviews, sampleReviewSummary, USE_SAMPLE_REVIEWS } from '@/lib/sample-reviews'
 import { Eyebrow } from '@/components/ui'
 import { ServiceTestimonials } from '@/components/service'
+import { RailArrows } from '@/components/RailArrows'
 import { isStagingDeployment } from '@/lib/deployment'
 
 /**
@@ -74,6 +77,27 @@ function Stars({ className = 'h-4 w-4' }: { className?: string }) {
   )
 }
 
+/**
+ * The blue "verified" tick Google puts beside a review's stars.
+ *
+ * Google blue (#4285F4) is already licensed to this site under the Platform Mark Exception
+ * in DESIGN.md — it is one of the four wordmark colours. No new foreign colour enters here.
+ */
+function VerifiedTick({ className = 'h-4 w-4' }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+      <path
+        fill="#4285F4"
+        d="M12 1.5l2.6 1.9 3.2-.1 1 3 2.7 1.7-1 3 1 3-2.7 1.7-1 3-3.2-.1L12 22.5l-2.6-1.9-3.2.1-1-3L2.5 16l1-3-1-3 2.7-1.7 1-3 3.2.1z"
+      />
+      <path
+        fill="#fff"
+        d="M10.9 15.4l-3-3 1.2-1.2 1.8 1.8 4.1-4.1 1.2 1.2z"
+      />
+    </svg>
+  )
+}
+
 function Avatar({ name, color }: { name: string; color: string }) {
   return (
     <span
@@ -108,58 +132,86 @@ export function GoogleReviews() {
           What people say after being seen here
         </h2>
 
-        {/* Summary header — mirrors a Google Business Profile ratings block. */}
-        <div className="flex flex-col gap-6 rounded-3xl border border-line bg-white p-8 shadow-ambient sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex items-center gap-5">
-            <GoogleGlyph className="h-10 w-10" />
-            <div>
-              <p className="flex items-baseline gap-2">
-                <span className="text-4xl font-extrabold leading-none text-ink">
-                  {summary.rating.toFixed(1)}
-                </span>
-                <Stars className="h-5 w-5" />
+        {/* Business panel beside the rail, the way an embedded Google widget arranges it:
+            who is being reviewed on the left, the reviews themselves on the right. It stacks
+            to a row above the cards below `lg`, where a 16rem column would leave the rail
+            too narrow to show a card and a half. */}
+        <div className="mt-10 grid gap-8 lg:grid-cols-[15rem_1fr] lg:items-center lg:gap-12">
+          <div className="flex items-center gap-5 lg:block">
+            <Image
+              src="/img/clinic-reception.webp"
+              alt="Reception at Persistence Chiropractic Care, Sunway Velocity, Cheras Kuala Lumpur"
+              width={800}
+              height={550}
+              sizes="240px"
+              className="h-20 w-20 flex-none rounded-2xl object-cover lg:h-28 lg:w-full"
+            />
+            <div className="lg:mt-5">
+              <p className="text-base font-bold leading-snug text-ink">{clinic.name}</p>
+              <Stars className="mt-2 h-4 w-4" />
+              <p className="mt-2 text-sm text-ink-muted">
+                {summary.count} <GoogleWordmark /> reviews
               </p>
-              <p className="mt-1.5 text-sm text-ink-muted">
-                Based on {summary.count} <GoogleWordmark /> reviews
-              </p>
+              <a
+                href={googleReviews.url}
+                target="_blank"
+                rel="noopener"
+                className="mt-4 inline-flex items-center justify-center rounded-full border border-brand-slate/30 px-5 py-2.5 text-sm font-semibold text-brand-slate transition-colors hover:bg-brand-slate/5"
+              >
+                Write a review
+              </a>
             </div>
           </div>
-          <a
-            href={googleReviews.url}
-            target="_blank"
-            rel="noopener"
-            className="inline-flex flex-none items-center justify-center rounded-full border border-brand-slate/30 px-6 py-3 text-sm font-semibold text-brand-slate transition-colors hover:bg-brand-slate/5"
-          >
-            Write a review
-          </a>
-        </div>
 
-        {/* Individual review cards, on a horizontal rail — eight of these stacked in a grid
-            was three screens of scrolling before a visitor reached anything else. */}
-        <ul
-          tabIndex={0}
-          aria-label="Google reviews"
-          className="rail -mx-4 mt-8 flex snap-x snap-mandatory gap-6 overflow-x-auto px-4 pb-5 lg:mx-0 lg:px-0"
-        >
-          {reviews.map((r) => (
-            <li key={r.name} className="w-[82%] flex-none snap-start sm:w-[24rem] lg:w-[22rem]">
-              <figure className="flex h-full flex-col rounded-3xl border border-line bg-white p-6 shadow-ambient">
-                <div className="flex items-center gap-3">
-                  <Avatar name={r.name} color={r.color} />
-                  <figcaption className="min-w-0 flex-1">
-                    <span className="block truncate text-sm font-semibold text-ink">{r.name}</span>
-                    <span className="block text-xs text-ink-muted">{r.when}</span>
-                  </figcaption>
-                  <GoogleGlyph />
-                </div>
-                <Stars className="mt-4 h-4 w-4" />
-                <blockquote className="mt-3 text-sm leading-relaxed text-ink-muted">
-                  {r.body}
-                </blockquote>
-              </figure>
-            </li>
-          ))}
-        </ul>
+          {/* The rail itself. `relative` so the arrows can hang off its edges. */}
+          <div className="relative">
+            <ul
+              id="google-review-rail"
+              tabIndex={0}
+              aria-label="Google reviews"
+              className="rail -mx-4 flex snap-x snap-mandatory gap-6 overflow-x-auto px-4 pb-5 lg:mx-0 lg:px-0"
+            >
+              {reviews.map((r) => (
+                <li
+                  key={r.name}
+                  className="w-[82%] flex-none snap-start sm:w-[21rem] lg:w-[19rem]"
+                >
+                  <figure className="flex h-full flex-col rounded-3xl border border-line bg-white p-6 shadow-ambient">
+                    <div className="flex items-center gap-3">
+                      <Avatar name={r.name} color={r.color} />
+                      <figcaption className="min-w-0 flex-1">
+                        <span className="block truncate text-sm font-semibold text-ink">
+                          {r.name}
+                        </span>
+                        <span className="block text-xs text-ink-muted">{r.when}</span>
+                      </figcaption>
+                      <GoogleGlyph />
+                    </div>
+                    <p className="mt-4 flex items-center gap-1.5">
+                      <Stars className="h-4 w-4" />
+                      <VerifiedTick />
+                    </p>
+                    {/* Clamped to four lines so every card is the same height and the rail
+                        scans. The overflow is not hidden from the visitor — "Read more" goes
+                        to the listing, which is where the full review actually lives. */}
+                    <blockquote className="mt-3 line-clamp-4 text-sm leading-relaxed text-ink-muted">
+                      {r.body}
+                    </blockquote>
+                    <a
+                      href={googleReviews.url}
+                      target="_blank"
+                      rel="noopener"
+                      className="mt-4 inline-block text-sm font-semibold text-brand-slate underline underline-offset-4"
+                    >
+                      Read more
+                    </a>
+                  </figure>
+                </li>
+              ))}
+            </ul>
+            <RailArrows targetId="google-review-rail" />
+          </div>
+        </div>
       </div>
     </section>
   )

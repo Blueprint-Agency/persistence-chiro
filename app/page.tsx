@@ -7,7 +7,7 @@ import { publishedConditions } from '@/lib/conditions'
 import { publishedServices } from '@/lib/services'
 import { publishedPosts } from '@/lib/posts'
 import { homeFaqs } from '@/lib/faqs'
-import { homeIntro, offers, testimonials, accreditations, postImages } from '@/lib/home'
+import { homeIntro, offers, accreditations, postImages } from '@/lib/home'
 import { faqSchema } from '@/lib/schema'
 import { pageMetadata } from '@/lib/seo'
 import { JsonLd } from '@/components/JsonLd'
@@ -19,6 +19,7 @@ import {
   CheckIcon,
 } from '@/components/ui'
 import { StickyCta } from '@/components/service'
+import { GoogleReviews } from '@/components/GoogleReviews'
 import { Preloader } from '@/components/Preloader'
 import { HeroGallery } from '@/components/HeroGallery'
 import { waMessage } from '@/lib/whatsapp'
@@ -437,48 +438,20 @@ export default function Home() {
       </section>
 
       {/* ---------------------------------------------------------- Testimonials */}
-      {/* On the aqua tint rather than the cream ground. It sits between the FAQ and the blog,
-          both of which are cream, and three identical grounds in a row would collapse the
-          band rhythm that makes this page scan. Aqua is the reception-desk colour and the
-          same ground the service pages give their reviews — so this is the sitewide pattern,
-          not a one-off. */}
-      <section className="border-y border-line bg-brand-aqua/40">
-        <div className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
-          <Eyebrow>What our patients say</Eyebrow>
-          <h2 className="mt-5 max-w-2xl text-3xl font-extrabold leading-tight sm:text-4xl">
-            Reviews from our patients in Cheras
-          </h2>
+      {/* Google-review styled, at the client's request, replacing a bespoke two-up quote
+          grid that lived only here. `GoogleReviews` is the same component the five service
+          pages already use, so there is now one review treatment on the site instead of two
+          — and one place to change when the real Google data lands.
 
-          {/* Two-up only when there are two. Retiring the "Dr Derek" review left one, and a
-              lone card in a 2-column grid reads as a card that failed to load rather than as
-              a clinic with one published review. Restores itself the moment a second review
-              is approved — see the note in lib/home.ts. */}
-          <div
-            className={`mt-12 grid gap-6 ${
-              testimonials.length > 1 ? 'md:grid-cols-2' : 'max-w-2xl'
-            }`}
-          >
-            {testimonials.map((t) => (
-              <figure
-                key={t.name}
-                className="flex flex-col rounded-3xl border border-line bg-white p-8 shadow-ambient lg:p-10"
-              >
-                {/* PREVIEW CHANGE: Forest, not gold. The mark stays gold on the Forest
-                    field — pale gold on dark reads beautifully — but #ffd6a2 on a white
-                    card is 1.3:1 and the signature simply vanishes. */}
-                <Vertebrae className="text-brand-slate" />
-                <blockquote className="mt-6 flex-1 space-y-4 text-lg leading-relaxed text-ink">
-                  <p>&ldquo;{t.quote}&rdquo;</p>
-                  <p className="text-base text-ink-muted">{t.detail}</p>
-                </blockquote>
-                <figcaption className="mt-8 border-t border-line pt-5 label text-brand-slate">
-                  {t.name}
-                </figcaption>
-              </figure>
-            ))}
-          </div>
-        </div>
-      </section>
+          ⚠️ WHAT RENDERS DEPENDS ON THE DEPLOYMENT, by design. The Google-styled block draws
+          on FABRICATED reviews (lib/sample-reviews.ts) and appears only in `next dev` and on
+          the *.vercel.app preview. On persistencechiropractic.com the component falls back to
+          `ServiceTestimonials` — the clinic's real migrated quote. Publishing invented
+          patient reviews for a registered healthcare practice is an advertising and conduct
+          risk, so the gate is structural rather than a flag anyone has to remember.
+
+          It keeps its own aqua band, so the band rhythm either side is unchanged. */}
+      <GoogleReviews />
 
       {/* --------------------------------------------------------------- Blog */}
       {/* Kept for the internal links into /blog, but demoted. It serves someone researching
