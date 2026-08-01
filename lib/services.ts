@@ -225,7 +225,7 @@ export const services: Service[] = [
       },
       {
         q: 'Do I need an X-ray before chiropractic care?',
-        a: 'Not always. X-rays help identify how each spinal segment sits and can rule out pathologies, but they are not mandatory, and we often go without one for pregnant women and children. Your chiropractor will explain whether imaging is appropriate in your case and why.',
+        a: 'An X-ray gives us a clearer picture of what is happening in your spine: how each segment sits, and whether there is any pathology present. That is what lets the Gonstead assessment name the specific segment involved instead of working in general terms. It is not mandatory, though, and we often go without one for pregnant women and children. Your chiropractor will explain whether imaging is appropriate in your case and why.',
       },
       {
         q: 'Is chiropractic the same as bone setting or tit tar?',

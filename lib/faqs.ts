@@ -78,7 +78,7 @@ export const homeFaqs: Faq[] = [
   },
   {
     q: 'Do I need an X-Ray before starting my chiropractic care?',
-    a: 'An X-Ray imaging is an essential tool for us to know how each of your joints are positioned respectively, essentially the alignment of each spinal segment. It helps to identify pathologies and developmental issues such as scoliosis or curvature assessment from your X-Rays. However, an X-Ray is not mandatory for pregnant women and children (depending on the situation). If you are still having doubts, feel free to contact us to know more.',
+    a: 'An X-Ray gives us a clearer picture of what is actually happening in your spine: how each segment sits, how the discs and joints look, and whether anything is present that would change the plan. That detail is what lets a Gonstead assessment be specific about the segment involved rather than working in general terms. It is not mandatory for everyone, and it is avoided for pregnant women and children unless there is a clear reason. If you are unsure, message us before your visit and we will talk it through.',
   },
   // "What should I wear" is deliberately absent: `clinicFaqs` already carries it with the
   // same answer, and it renders on /what-to-expect. Duplicating it here would put

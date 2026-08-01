@@ -124,7 +124,7 @@ export const conditions: Condition[] = [
       },
       {
         q: 'Do I need an X-ray for back pain?',
-        a: 'Not always. X-rays help us see how each spinal segment is positioned, rule out pathology, and assess the discs and joints. They are not mandatory for every patient, though, and they are avoided for pregnant women and children unless there is a clear reason. Your chiropractor will explain why an X-ray is or is not indicated in your case.',
+        a: 'An X-ray gives us a clearer picture of what is happening in your spine: how each segment is positioned, how the discs and joints look, and whether anything is present that should change the plan. That is what makes the Gonstead assessment specific to your back rather than general. It is not mandatory for every patient, though, and it is avoided for pregnant women and children unless there is a clear reason. Your chiropractor will explain why an X-ray is or is not indicated in your case.',
       },
       {
         q: 'Should I rest or keep moving?',
@@ -370,7 +370,7 @@ export const conditions: Condition[] = [
       },
       {
         q: 'Will I need an X-ray?',
-        a: 'X-ray analysis is often useful with scoliosis, as it shows how the spine is positioned and helps rule out other pathology. It is not automatic for every patient, and it is avoided for pregnant women and children unless there is a clear reason. Your chiropractor will explain why an X-ray is or is not indicated in your case.',
+        a: 'X-ray analysis gives a clear picture of what the curve is actually doing: where it sits, how the spine is positioned around it, and whether anything else is present. With scoliosis that detail matters more than most, and it is what the Gonstead assessment works from. It is not automatic for every patient, and it is avoided for pregnant women and children unless there is a clear reason. Your chiropractor will explain why an X-ray is or is not indicated in your case.',
       },
       {
         q: 'Is exercise safe with scoliosis?',
@@ -622,7 +622,7 @@ export const conditions: Condition[] = [
       },
       {
         q: 'Do I need an X-ray or a scan for hip pain?',
-        a: 'Not always. X-ray analysis is used where it will change what we do, such as ruling out pathology or clarifying the state of the joint. It is avoided for pregnant women and children unless there is a clear reason. If your presentation suggests an MRI or a specialist opinion would alter the plan, your chiropractor will say so and arrange the referral.',
+        a: 'Where imaging is used, it is because it gives a clearer picture of what is happening in the joint and in the spine above it, which is what the Gonstead assessment works from. X-ray analysis is used where it will change what we do, such as ruling out pathology or clarifying the state of the joint, and it is avoided for pregnant women and children unless there is a clear reason. If your presentation suggests an MRI or a specialist opinion would alter the plan, your chiropractor will say so and arrange the referral.',
       },
       {
         q: 'Should I rest my hip or keep moving it?',
