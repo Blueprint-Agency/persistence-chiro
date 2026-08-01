@@ -1,9 +1,8 @@
 import Image from 'next/image'
-import Link from 'next/link'
 
 import { clinic, addressOneLine, hoursDisplay } from '@/lib/clinic'
 import { mainNav } from '@/lib/nav'
-import { WhatsAppButton, Vertebrae } from '@/components/ui'
+import { NavLink, WhatsAppButton, Vertebrae } from '@/components/ui'
 import { waMessage } from '@/lib/whatsapp'
 
 /**
@@ -128,9 +127,9 @@ export function Footer() {
             <ul className="mt-5 space-y-2.5 text-white/70">
               {nav.map((item) => (
                 <li key={item.href}>
-                  <Link href={item.href} className="hover:text-white">
+                  <NavLink item={item} className="hover:text-white">
                     {item.label}
-                  </Link>
+                  </NavLink>
                 </li>
               ))}
             </ul>

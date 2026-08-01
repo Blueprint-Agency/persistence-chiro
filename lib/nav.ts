@@ -2,10 +2,17 @@
  * Site navigation. Derived from the content modules so a draft page can never leak into
  * the nav — and so the nav and the sitemap can't disagree about what exists.
  */
+import { clinic } from './clinic'
 import { publishedConditions } from './conditions'
 import { publishedServices } from './services'
 
-export type NavItem = { href: string; label: string; children?: NavItem[] }
+export type NavItem = {
+  href: string
+  label: string
+  children?: NavItem[]
+  /** Off-site. Renders as a plain <a> with target/rel rather than a client-routed <Link>. */
+  external?: boolean
+}
 
 export const mainNav = (): NavItem[] => [
   {
@@ -40,5 +47,16 @@ export const mainNav = (): NavItem[] => [
     ],
   },
   { href: '/blog', label: 'Blog' },
-  { href: '/book-now', label: 'Book Now' },
+  /**
+   * Points off-site to SweetPew, at the client's request (2026-08-01). It used to go to
+   * /book-now.
+   *
+   * ⚠️ /book-now is still a real, indexed page and still in the sitemap — it carries the
+   * NAP, the map and the directions, and the Wix version of it ranked #13 for "chiro
+   * cheras" (see the note in redirects.ts). Losing its nav link drops it to ONE internal
+   * link sitewide, the "Directions & contact" button on the homepage. That is thin for a
+   * page with history. If it starts slipping, the fix is a second internal link from
+   * /what-to-expect or the footer, not reverting this.
+   */
+  { href: clinic.bookingUrl, label: 'Book Now', external: true },
 ]

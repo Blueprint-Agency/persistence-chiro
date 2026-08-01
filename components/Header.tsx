@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 import { clinic, hoursSummary } from '@/lib/clinic'
 import { mainNav } from '@/lib/nav'
-import { WhatsAppButton, WhatsAppIcon } from '@/components/ui'
+import { NavLink, WhatsAppButton, WhatsAppIcon } from '@/components/ui'
 import { waMessage } from '@/lib/whatsapp'
 
 /**
@@ -72,8 +72,10 @@ export function Header() {
           <ul className="ml-auto hidden items-center gap-6 lg:flex">
             {nav.map((item) => (
               <li key={item.href} className="group relative">
-                <Link
-                  href={item.href}
+                {/* `NavLink` rather than `Link` throughout: "Book Now" points at SweetPew,
+                    and a client-routed <Link> to an off-site URL loses target/rel. */}
+                <NavLink
+                  item={item}
                   className="flex items-center gap-1 py-2 text-sm font-medium text-ink-muted transition-colors hover:text-brand-slate"
                 >
                   {item.label}
@@ -87,7 +89,7 @@ export function Header() {
                       <path d="M5.5 7.5 10 12l4.5-4.5z" />
                     </svg>
                   )}
-                </Link>
+                </NavLink>
 
                 {/* CSS-only submenu. focus-within keeps it keyboard-reachable without JS. */}
                 {item.children && item.children.length > 0 && (
@@ -139,9 +141,9 @@ export function Header() {
                 <ul className="divide-y divide-line">
                   {nav.map((item) => (
                     <li key={item.href} className="py-1">
-                      <Link href={item.href} className="block py-2.5 font-medium text-ink">
+                      <NavLink item={item} className="block py-2.5 font-medium text-ink">
                         {item.label}
-                      </Link>
+                      </NavLink>
                       {item.children && item.children.length > 0 && (
                         <ul className="pb-2 pl-4">
                           {item.children.map((child) => (

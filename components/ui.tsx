@@ -2,12 +2,46 @@ import Link from 'next/link'
 import type { ReactNode } from 'react'
 
 
+import type { NavItem } from '@/lib/nav'
 import { whatsappLink, waMessage } from '@/lib/whatsapp'
 
 /**
  * Shared primitives. Only things used in three or more places live here — everything
  * else stays inline in the page that needs it.
  */
+
+/**
+ * One nav row, internal or off-site.
+ *
+ * Exists because "Book Now" points at SweetPew while every other item is a route. Passing
+ * an absolute URL to next/link renders a plain anchor but drops `target` and `rel`, so an
+ * off-site booking link would open in the same tab with no `noopener` — losing the visitor's
+ * place on the site and handing the opened page a reference to this window. The three places
+ * that render `mainNav()` (desktop bar, mobile drawer, footer) all go through here so none
+ * of them can get that wrong independently.
+ */
+export function NavLink({
+  item,
+  className,
+  children,
+}: {
+  item: NavItem
+  className?: string
+  children: ReactNode
+}) {
+  if (item.external) {
+    return (
+      <a href={item.href} target="_blank" rel="noopener" className={className}>
+        {children}
+      </a>
+    )
+  }
+  return (
+    <Link href={item.href} className={className}>
+      {children}
+    </Link>
+  )
+}
 
 /** The signature marker. Segment count is fixed at four; it's a mark, not a data display. */
 export function Vertebrae({ className = '' }: { className?: string }) {
@@ -24,19 +58,31 @@ export function Vertebrae({ className = '' }: { className?: string }) {
 /**
  * Section eyebrow: the vertebral marker plus a label.
  *
- * `light` is for the deep field, `slate` for light grounds. `ink` exists for a *mid-tone*
- * ground — a band saturated enough that slate no longer clears AA against it but not dark
- * enough for the light tone. The homepage hero is the only one so far.
+ * `light` is for the deep field, `slate` for light grounds. The other two exist for
+ * *mid-tone* grounds — a band saturated enough that slate no longer clears AA against it,
+ * but nowhere near dark enough for the light tone:
+ *
+ *   `ink`  — neutral, maximum contrast, when the band's own hue should not be repeated.
+ *   `deep` — the field colour used as a voice. Reads as part of the palette rather than as
+ *            black on top of it, and is what the homepage hero uses on Teal (4.94:1).
+ *
+ * At 11px these are small text, so anything below 4.5:1 fails. Check before adding a third.
  */
 export function Eyebrow({
   children,
   tone = 'slate',
 }: {
   children: ReactNode
-  tone?: 'slate' | 'light' | 'ink'
+  tone?: 'slate' | 'light' | 'ink' | 'deep'
 }) {
   const color =
-    tone === 'light' ? 'text-brand-slate-soft' : tone === 'ink' ? 'text-ink' : 'text-brand-slate'
+    tone === 'light'
+      ? 'text-brand-slate-soft'
+      : tone === 'ink'
+        ? 'text-ink'
+        : tone === 'deep'
+          ? 'text-brand-slate-deep'
+          : 'text-brand-slate'
   return (
     <p className={`flex items-center gap-3 ${color}`}>
       <Vertebrae />

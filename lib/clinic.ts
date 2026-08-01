@@ -28,14 +28,25 @@ export const clinic = {
   email: 'info@persistencechiropractic.com',
 
   /**
-   * SweetPew online booking was RETIRED 2026-07-26. Every conversion on this site is now a
-   * WhatsApp conversation, so there is no third-party scheduler to hand visitors off to.
-   * Deleted rather than deprecated on purpose: a `bookingUrl` left in this module is one
-   * autocomplete away from reappearing in a component.
+   * SweetPew online booking. Retired 2026-07-26 when every CTA became a WhatsApp chat, and
+   * REINSTATED 2026-08-01 at the client's request — for the "Book Now" nav item only.
    *
-   * The short link below still works for a bare "message us" tap, but prefer the builders in
+   * ⚠️ ONE CONSUMER: `mainNav()` in lib/nav.ts. Nothing else on the site should reach for
+   * this. Every conversion button — hero, CTA band, sticky bar, service pages — stays a
+   * WhatsApp conversation, because that is where the clinic actually replies and it is the
+   * only path that carries a prefilled message identifying the page the visitor came from
+   * (see `waMessage` in lib/whatsapp.ts). Two competing booking systems in one view is how
+   * a visitor ends up doing neither.
+   *
+   * The slug typo ("chiropratic") is SweetPew's own and is correct as written — see
+   * AGENTS.md. Do not "fix" it; the corrected spelling 404s.
+   */
+  bookingUrl: 'https://www.sweetpew.com/en/my/persistence-chiropratic-care',
+
+  /**
+   * The short link works for a bare "message us" tap, but prefer the builders in
    * `lib/whatsapp.ts` — wa.link cannot carry a prefilled message and wa.me can, and every
-   * CTA on the site now sends context with it.
+   * CTA on the site sends context with it.
    */
   whatsappUrl: 'https://wa.link/b0541h',
 

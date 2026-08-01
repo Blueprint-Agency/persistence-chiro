@@ -84,7 +84,7 @@ const heroSlides = [
  * makes nine bands legible. If you insert a band, check its neighbours.
  *
  * Under the 2026 preview palette the same rhythm reads:
- * forest → white → sand → white → skin → teal → sand → white → gold. The alternation is
+ * teal → white → sand → white → skin → teal/40 → sand → white → gold. The alternation is
  * unchanged; only the hues moved.
  */
 // Title is prescribed by seo-strategy.md § Phase 1 — the homepage IS the Cheras page.
@@ -116,18 +116,29 @@ export default function Home() {
       <JsonLd data={faqSchema(homeFaqs)} />
 
       {/* ---------------------------------------------------------------- Hero */}
-      {/* PREVIEW CHANGE. Forest at its exact board value, per the client — the Lavender
-          field was rejected. So the hero stays a dark field and the supporting copy stays
-          white, as it was before the palette swap.
-          The one thing that had to move: #006980 is lighter than the navy it replaces, and
-          white at 70% lands on it at 3.9:1 — under AA. Every muted line here is /85, which
-          clears it at 5.0:1. Do not walk those back to /70 or /75 on this ground.
-          Note that this leaves the board's 70% primary with no large surface anywhere on
-          the page; see the palette block in globals.css. */}
-      <section className="relative bg-pc-forest text-white">
+      {/**
+       * PREVIEW CHANGE, at the client's request: Teal field, everything on it in the deep
+       * colour the service-page heroes use as their background (`--brand-slate-deep`, which
+       * on this page resolves to #005264).
+       *
+       * ⚠️ NO OPACITY ON THIS GROUND. The previous dark hero muted its supporting lines with
+       * `text-white/85`; the inverse does not work here. #005264 at 85% over Teal composites
+       * to roughly 3.8:1, under AA, so every line below is the flat token at full strength
+       * and the hierarchy comes from size and weight instead. #005264 on #a5c9ca is 4.94:1,
+       * which clears AA but has no headroom to spend on a fade.
+       *
+       * Two things could not survive a light field and changed with it: the eyebrow (Sand on
+       * a dark field, now the deep tone) and the booking button (pale gold is 1.3:1 against
+       * Teal and stops reading as a button — it takes the contrast fill, white on #005264 at
+       * 8.8:1).
+       *
+       * The Teal band under the testimonials is the same hue at 40%, five bands away. Check
+       * them together if either moves.
+       */}
+      <section className="relative bg-pc-teal text-brand-slate-deep">
         <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-14 lg:grid-cols-[1.05fr_1fr] lg:gap-8 lg:py-20">
           <div>
-            <Eyebrow tone="light">
+            <Eyebrow tone="deep">
               Gonstead chiropractic &amp; physiotherapy &middot; Cheras, Maluri
             </Eyebrow>
 
@@ -147,26 +158,28 @@ export default function Home() {
              * being cut — an h1 carrying both disciplines and the emotive close runs to
              * seventeen words and five lines at the display size.
              */}
-            <h1 className="mt-6 text-4xl font-extrabold leading-[1.08] text-white sm:text-5xl lg:text-[3.4rem]">
+            <h1 className="mt-6 text-4xl font-extrabold leading-[1.08] text-brand-slate-deep sm:text-5xl lg:text-[3.4rem]">
               Chiropractor in Cheras, with Physiotherapists under the same roof.
             </h1>
 
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/85">
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-brand-slate-deep">
               Drug-free, hands-on Chiropractic and Physiotherapy in Cheras &mdash; for backs
               that have waited long enough. Personalised care built around what your
               assessment actually shows.
             </p>
 
             <div className="mt-8">
-              {/* Back to the gold fill now the field is dark: #ffd6a2 on Forest is 4.6:1 and
-                  the pale gold is at its best on this ground. */}
-              <WhatsAppButton message={waMessage.home}>Book on WhatsApp</WhatsAppButton>
+              {/* Contrast fill, not gold: on the Teal field #ffd6a2 is 1.3:1 and the pill
+                  loses its edge entirely. This is #005264 with white text at 8.8:1. */}
+              <WhatsAppButton message={waMessage.home} tone="contrast">
+                Book on WhatsApp
+              </WhatsAppButton>
             </div>
 
             {/* The first-timer's real question, answered next to the button rather than in
                 the fourth collapsed FAQ. States process, never an outcome — assessment
                 before adjustment is the Gonstead method (lib/gonstead.ts), not a promise. */}
-            <p className="mt-4 text-sm text-white/85">
+            <p className="mt-4 text-sm text-brand-slate-deep">
               Your first visit starts with an assessment. Nothing is adjusted until we have
               examined you.
             </p>
@@ -181,14 +194,14 @@ export default function Home() {
              * lost. It is a statement of distance only — the clinic is independent of the
              * hospital and no line here may imply otherwise.
              */}
-            <ul className="mt-10 flex flex-wrap gap-x-7 gap-y-3 text-sm text-white/85">
+            <ul className="mt-10 flex flex-wrap gap-x-7 gap-y-3 text-sm text-brand-slate-deep">
               {[
                 'Open 7 days a week',
                 'Registered Chiropractors & Physiotherapists',
                 '3-min walk to Sunway Medical Centre Velocity',
               ].map((item) => (
                 <li key={item} className="flex items-center gap-2">
-                  <CheckIcon className="h-4 w-4 text-brand-gold" />
+                  <CheckIcon className="h-4 w-4 text-brand-slate-deep" />
                   {item}
                 </li>
               ))}
