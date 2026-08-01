@@ -163,8 +163,18 @@ export function GoogleReviews() {
             </div>
           </div>
 
-          {/* The rail itself. `relative` so the arrows can hang off its edges. */}
-          <div className="relative">
+          {/**
+           * The rail itself. `relative` so the arrows can hang off its edges.
+           *
+           * ⚠️ `min-w-0` IS LOAD-BEARING — do not remove it. A grid item defaults to
+           * `min-width: auto`, which means it refuses to shrink below the intrinsic width of
+           * its contents. With eight 19rem cards inside, the `1fr` track grew to fit all of
+           * them, pushed the 72rem container past the viewport, and gave the whole DOCUMENT a
+           * horizontal scrollbar — the rail never scrolled because it was never narrower than
+           * its content. `min-w-0` lets the track shrink so the overflow happens inside the
+           * `<ul>`, which is the only place it should.
+           */}
+          <div className="relative min-w-0">
             <ul
               id="google-review-rail"
               tabIndex={0}
