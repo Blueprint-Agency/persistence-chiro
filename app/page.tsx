@@ -84,8 +84,10 @@ const heroSlides = [
  * makes nine bands legible. If you insert a band, check its neighbours.
  *
  * Under the 2026 preview palette the same rhythm reads:
- * teal → white → sand → white → skin → teal/40 → sand → white → gold. The alternation is
- * unchanged; only the hues moved.
+ * sand → white → sand/40 → white → skin → teal/40 → sand/40 → white → gold. The alternation
+ * still holds — no two adjacent bands are the same value — but the hero and the page ground
+ * are now the same hue at different strengths, with the white strip between them doing the
+ * separating.
  */
 // Title is prescribed by seo-strategy.md § Phase 1 — the homepage IS the Cheras page.
 export const metadata: Metadata = pageMetadata({
@@ -117,25 +119,27 @@ export default function Home() {
 
       {/* ---------------------------------------------------------------- Hero */}
       {/**
-       * PREVIEW CHANGE, at the client's request: Teal field, everything on it in the deep
+       * PREVIEW CHANGE, at the client's request: Sand field, everything on it in the deep
        * colour the service-page heroes use as their background (`--brand-slate-deep`, which
-       * on this page resolves to #005264).
+       * on this page resolves to #005264). Sand is the third field this hero has worn during
+       * the palette review — Lavender, then Forest, then Teal, now #dddfd1.
        *
-       * ⚠️ NO OPACITY ON THIS GROUND. The previous dark hero muted its supporting lines with
-       * `text-white/85`; the inverse does not work here. #005264 at 85% over Teal composites
-       * to roughly 3.8:1, under AA, so every line below is the flat token at full strength
-       * and the hierarchy comes from size and weight instead. #005264 on #a5c9ca is 4.94:1,
-       * which clears AA but has no headroom to spend on a fade.
+       * #005264 on #dddfd1 is 6.5:1, comfortably AA, and the booking pill reads at 6.5:1
+       * against the field with its label at 8.8:1.
        *
-       * Two things could not survive a light field and changed with it: the eyebrow (Sand on
-       * a dark field, now the deep tone) and the booking button (pale gold is 1.3:1 against
-       * Teal and stops reading as a button — it takes the contrast fill, white on #005264 at
-       * 8.8:1).
+       * NO OPACITY, still. There is a little more headroom than Teal gave, but not enough:
+       * the deep token at 85% over Sand composites to 4.76:1 and at 80% to 4.29:1, so a
+       * muted variant is one nudge from failing AA and would have to be re-checked every
+       * time the field moves. Every line here is the flat token, and hierarchy comes from
+       * size and weight.
        *
-       * The Teal band under the testimonials is the same hue at 40%, five bands away. Check
-       * them together if either moves.
+       * ⚠️ Sand is ALSO `--line` (the hairline) and, at 40% over white, the page ground. So
+       * this band, the intro band below it and every rule on the page are now one family.
+       * The white accreditation strip between the first two is what keeps the hero reading
+       * as its own field rather than as the top of the page ground — do not remove it or
+       * give it a tint without looking at the hero again.
        */}
-      <section className="relative bg-pc-teal text-brand-slate-deep">
+      <section className="relative bg-pc-sand text-brand-slate-deep">
         <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-14 lg:grid-cols-[1.05fr_1fr] lg:gap-8 lg:py-20">
           <div>
             <Eyebrow tone="deep">
