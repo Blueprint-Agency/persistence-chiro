@@ -57,9 +57,15 @@
  * declared as their own `--pc-*` namespace rather than overwriting the tokens above so the
  * old and new systems can sit side by side while the client decides.
  *
- * The board's own rule: pick ONE primary and pair it with the secondaries. Lavender is the
- * one in use — the clinic's logo wordmark is already blue, and Forest is its natural dark
- * partner. Olive stays defined but unused; using both primaries is what the board forbids.
+ * The board's own rule: pick ONE primary and pair it with the secondaries — so Olive stays
+ * defined and unused, because using both primaries is what the board forbids.
+ *
+ * ⚠️ OPEN QUESTION. Lavender is nominally the chosen primary, but the client rejected it as
+ * the hero field, which was the only surface on the page big enough to carry a 70% ratio.
+ * As it stands the palette runs entirely on secondaries and no primary is really in play.
+ * That is a decision for the client, not something to quietly fix by reintroducing Lavender
+ * somewhere smaller: either it earns a large surface, or Olive is the primary, or the board's
+ * ratios don't survive contact with this layout and the client should be told so.
  */
 :root {
   /* Primary (70%). Only one of these two may be in play at a time. */

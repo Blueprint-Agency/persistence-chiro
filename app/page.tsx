@@ -84,7 +84,7 @@ const heroSlides = [
  * makes nine bands legible. If you insert a band, check its neighbours.
  *
  * Under the 2026 preview palette the same rhythm reads:
- * lavender → white → sand → white → skin → teal → sand → white → gold. The alternation is
+ * forest → white → sand → white → skin → teal → sand → white → gold. The alternation is
  * unchanged; only the hues moved.
  */
 // Title is prescribed by seo-strategy.md § Phase 1 — the homepage IS the Cheras page.
@@ -116,47 +116,48 @@ export default function Home() {
       <JsonLd data={faqSchema(homeFaqs)} />
 
       {/* ---------------------------------------------------------------- Hero */}
-      {/* PREVIEW CHANGE. The board makes a primary colour 70% of the composition, which a
-          dark navy field cannot deliver — so the hero inverts: Lavender ground, ink type,
-          Forest for the action. It is the single biggest visible difference on the page and
-          the honest reading of the ratios. Everything on it is measured against Lavender:
-          ink 7.7:1, muted ink 4.8:1, deep Forest glyphs 3.9:1. */}
-      <section className="relative bg-pc-lavender text-ink">
+      {/* PREVIEW CHANGE. Forest at its exact board value, per the client — the Lavender
+          field was rejected. So the hero stays a dark field and the supporting copy stays
+          white, as it was before the palette swap.
+          The one thing that had to move: #006980 is lighter than the navy it replaces, and
+          white at 70% lands on it at 3.9:1 — under AA. Every muted line here is /85, which
+          clears it at 5.0:1. Do not walk those back to /70 or /75 on this ground.
+          Note that this leaves the board's 70% primary with no large surface anywhere on
+          the page; see the palette block in globals.css. */}
+      <section className="relative bg-pc-forest text-white">
         <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-14 lg:grid-cols-[1.05fr_1fr] lg:gap-8 lg:py-20">
           <div>
-            <Eyebrow tone="ink">Gonstead chiropractic &middot; Cheras, Maluri</Eyebrow>
+            <Eyebrow tone="light">Gonstead chiropractic &middot; Cheras, Maluri</Eyebrow>
 
-            <h1 className="mt-6 text-4xl font-extrabold leading-[1.08] text-ink sm:text-5xl lg:text-[3.4rem]">
+            <h1 className="mt-6 text-4xl font-extrabold leading-[1.08] text-white sm:text-5xl lg:text-[3.4rem]">
               Chiropractor in Cheras for backs that have waited long enough.
             </h1>
 
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink-muted">
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/85">
               Drug-free, hands-on chiropractic &amp; physiotherapy in Cheras. Personalised
               treatment and precise spinal adjustments, built around what your assessment
               actually shows.
             </p>
 
             <div className="mt-8">
-              {/* Forest rather than the pale gold: on a Lavender ground a #ffd6a2 pill is
-                  1.2:1 against its own field and stops reading as a button at all. */}
-              <WhatsAppButton message={waMessage.home} tone="contrast">
-                Book on WhatsApp
-              </WhatsAppButton>
+              {/* Back to the gold fill now the field is dark: #ffd6a2 on Forest is 4.6:1 and
+                  the pale gold is at its best on this ground. */}
+              <WhatsAppButton message={waMessage.home}>Book on WhatsApp</WhatsAppButton>
             </div>
 
             {/* The first-timer's real question, answered next to the button rather than in
                 the fourth collapsed FAQ. States process, never an outcome — assessment
                 before adjustment is the Gonstead method (lib/gonstead.ts), not a promise. */}
-            <p className="mt-4 text-sm text-ink-muted">
+            <p className="mt-4 text-sm text-white/85">
               Your first visit starts with an assessment. Nothing is adjusted until we have
               examined you.
             </p>
 
-            <ul className="mt-10 flex flex-wrap gap-x-7 gap-y-3 text-sm text-ink-muted">
+            <ul className="mt-10 flex flex-wrap gap-x-7 gap-y-3 text-sm text-white/85">
               {['Open 7 days a week', 'Registered chiropractors', 'Next to Sunway Velocity'].map(
                 (item) => (
                   <li key={item} className="flex items-center gap-2">
-                    <CheckIcon className="h-4 w-4 text-brand-slate-deep" />
+                    <CheckIcon className="h-4 w-4 text-brand-gold" />
                     {item}
                   </li>
                 ),
