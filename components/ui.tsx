@@ -58,31 +58,18 @@ export function Vertebrae({ className = '' }: { className?: string }) {
 /**
  * Section eyebrow: the vertebral marker plus a label.
  *
- * `light` is for the deep field, `slate` for light grounds. The other two exist for
- * *mid-tone* grounds — a band saturated enough that slate no longer clears AA against it,
- * but nowhere near dark enough for the light tone:
- *
- *   `ink`  — neutral, maximum contrast, when the band's own hue should not be repeated.
- *   `deep` — the field colour used as a voice. Reads as part of the palette rather than as
- *            black on top of it, and is what the homepage hero uses on Teal (4.94:1).
- *
- * At 11px these are small text, so anything below 4.5:1 fails. Check before adding a third.
+ * `light` is for the deep field, `slate` for light grounds. Two further tones (`ink` and
+ * `deep`) existed for the 2026 palette preview's mid-tone hero and went with it — at 11px
+ * this is small text, so any new tone needs 4.5:1 against its actual band before it ships.
  */
 export function Eyebrow({
   children,
   tone = 'slate',
 }: {
   children: ReactNode
-  tone?: 'slate' | 'light' | 'ink' | 'deep'
+  tone?: 'slate' | 'light'
 }) {
-  const color =
-    tone === 'light'
-      ? 'text-brand-slate-soft'
-      : tone === 'ink'
-        ? 'text-ink'
-        : tone === 'deep'
-          ? 'text-brand-slate-deep'
-          : 'text-brand-slate'
+  const color = tone === 'light' ? 'text-brand-slate-soft' : 'text-brand-slate'
   return (
     <p className={`flex items-center gap-3 ${color}`}>
       <Vertebrae />
@@ -163,30 +150,20 @@ export function GhostButton({
  *
  * `message` is the text pre-typed into the visitor's chat box. Pass one from `waMessage` so
  * the clinic can tell a hero tap from a slipped-disc page tap before anyone replies.
- *
- * `tone="contrast"` is for a button sitting on a *light coloured* band, where a pale fill
- * has nothing to separate itself from the ground. It is the same conversion action, still
- * the only one in the view — the One Gold Decision Rule governs how many, not which hue.
  */
 export function WhatsAppButton({
   message,
   children = 'WhatsApp us to book',
-  tone = 'gold',
 }: {
   message: string
   children?: ReactNode
-  tone?: 'gold' | 'contrast'
 }) {
-  const fill =
-    tone === 'contrast'
-      ? 'bg-brand-slate-deep text-white hover:bg-brand-slate'
-      : 'bg-brand-gold text-ink hover:bg-[#d4b00d]'
   return (
     <a
       href={whatsappLink(message)}
       target="_blank"
       rel="noopener"
-      className={`${BUTTON_BASE} ${fill}`}
+      className={`${BUTTON_BASE} bg-brand-gold text-ink hover:bg-[#d4b00d]`}
     >
       <WhatsAppIcon />
       {children}

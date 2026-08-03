@@ -86,12 +86,6 @@ const heroSlides = [
  * BACKGROUND RHYTHM: slate → white → cream → white → cream → aqua → cream → white.
  * No two adjacent bands share a ground; that alternation plus the 1px warm hairline is what
  * makes eight bands legible. If you insert a band, check its neighbours.
- *
- * Under the 2026 preview palette the same rhythm reads:
- * sand → white → sand/40 → white → skin → teal/40 → sand/40 → white. The alternation
- * still holds — no two adjacent bands are the same value — but the hero and the page ground
- * are now the same hue at different strengths, with the white strip between them doing the
- * separating.
  */
 // Title is prescribed by seo-strategy.md § Phase 1 — the homepage IS the Cheras page.
 export const metadata: Metadata = pageMetadata({
@@ -108,13 +102,6 @@ export default function Home() {
 
   return (
     <>
-      {/* 2026 PALETTE PREVIEW — homepage only, remove to revert.
-          Renders nothing. `body:has([data-brand="2026"])` in globals.css picks it up and
-          repoints the brand tokens for this route, header and footer included. Every other
-          page still renders the current gold/slate palette, so the two can be compared by
-          moving between `/` and any other route. */}
-      <div data-brand="2026" hidden />
-
       {/* Backbone reveal — homepage only. Fixed overlay, so it covers the header too
           despite living inside <main>. Plays once per session, then unmounts. */}
       <Preloader />
@@ -123,31 +110,23 @@ export default function Home() {
 
       {/* ---------------------------------------------------------------- Hero */}
       {/**
-       * PREVIEW CHANGE, at the client's request: Sand field, everything on it in the deep
-       * colour the service-page heroes use as their background (`--brand-slate-deep`, which
-       * on this page resolves to #005264). Sand is the third field this hero has worn during
-       * the palette review — Lavender, then Forest, then Teal, now #dddfd1.
+       * The deep slate field. This is the page's darkest surface and the only full-bleed one,
+       * which is what makes the white accreditation strip below it read as a separate band
+       * rather than as more hero.
        *
-       * #005264 on #dddfd1 is 6.5:1, comfortably AA, and the booking pill reads at 6.5:1
-       * against the field with its label at 8.8:1. The h1 is the exception — ink, at the
-       * client's request; see the note on it.
+       * Everything on it is white or white-on-opacity: solid white for the h1, /75 for the
+       * lead (7.7:1) and /70 for the small print (7.0:1). Both clear AA on #17364a — the
+       * reason `--brand-slate-deep` exists as a derived token at all is that the raw brand
+       * #2B5672 does not carry white body copy at these sizes.
        *
-       * NO OPACITY, still. There is a little more headroom than Teal gave, but not enough:
-       * the deep token at 85% over Sand composites to 4.76:1 and at 80% to 4.29:1, so a
-       * muted variant is one nudge from failing AA and would have to be re-checked every
-       * time the field moves. Every line here is the flat token, and hierarchy comes from
-       * size and weight.
-       *
-       * ⚠️ Sand is ALSO `--line` (the hairline) and, at 40% over white, the page ground. So
-       * this band, the intro band below it and every rule on the page are now one family.
-       * The white accreditation strip between the first two is what keeps the hero reading
-       * as its own field rather than as the top of the page ground — do not remove it or
-       * give it a tint without looking at the hero again.
+       * The client's 2026 board briefly put this hero on a light field (Lavender, then
+       * Forest, Teal and Sand in turn); that preview was withdrawn on 2026-08-03 and the
+       * navy is back. If it is ever revisited, the working is in the git history.
        */}
-      <section className="relative bg-pc-sand text-brand-slate-deep">
+      <section className="relative bg-brand-slate-deep text-white">
         <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-14 lg:grid-cols-[1.05fr_1fr] lg:gap-8 lg:py-20">
           <div>
-            <Eyebrow tone="deep">
+            <Eyebrow tone="light">
               Gonstead chiropractic &amp; physiotherapy &middot; Cheras, Maluri
             </Eyebrow>
 
@@ -179,11 +158,12 @@ export default function Home() {
              * anything, and it is the class of claim stripped from this site in July and
              * again this session.
              */}
-            {/* Black, per the client — `text-ink` (#212121), which is this system's black.
-                Pure #000 would be a new colour and reads cold against the warm Sand field;
-                ink is 11.9:1 here, and every other line stays on the deep token so the h1
-                is the one thing on the field wearing it. */}
-            <h1 className="mt-6 text-4xl font-extrabold leading-[1.08] text-ink sm:text-5xl lg:text-[3.4rem]">
+            {/* ⚠️ The client asked for this h1 in black on 2026-08-02. That was a decision
+                about the Sand field it then sat on; ink is 1.3:1 on the navy and simply
+                cannot be read here, so reverting the palette reverted the colour with it.
+                The WORDING is untouched. If they want black back, the field has to go light
+                again — raise the two together, don't split them. */}
+            <h1 className="mt-6 text-4xl font-extrabold leading-[1.08] text-white sm:text-5xl lg:text-[3.4rem]">
               Chiropractor and Physiotherapist in Cheras, under one roof.
             </h1>
 
@@ -196,23 +176,19 @@ export default function Home() {
                 and the third "Cheras" on one screen. In body copy that is weak enough not to
                 threaten /services/physiotherapy the way an h1 would — but do not let the
                 phrase climb back into a heading. */}
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-brand-slate-deep">
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/75">
               Drug-free, hands-on Chiropractic and Physiotherapy in Cheras. Personalised care
               built around what your assessment actually shows.
             </p>
 
             <div className="mt-8">
-              {/* Contrast fill, not gold: on the Teal field #ffd6a2 is 1.3:1 and the pill
-                  loses its edge entirely. This is #005264 with white text at 8.8:1. */}
-              <WhatsAppButton message={waMessage.home} tone="contrast">
-                Book on WhatsApp
-              </WhatsAppButton>
+              <WhatsAppButton message={waMessage.home}>Book on WhatsApp</WhatsAppButton>
             </div>
 
             {/* The first-timer's real question, answered next to the button rather than in
                 the fourth collapsed FAQ. States process, never an outcome — assessment
                 before adjustment is the Gonstead method (lib/gonstead.ts), not a promise. */}
-            <p className="mt-4 text-sm text-brand-slate-deep">
+            <p className="mt-4 text-sm text-white/70">
               Your first visit starts with an assessment. Nothing is adjusted until we have
               examined you.
             </p>
@@ -227,14 +203,14 @@ export default function Home() {
              * lost. It is a statement of distance only — the clinic is independent of the
              * hospital and no line here may imply otherwise.
              */}
-            <ul className="mt-10 flex flex-wrap gap-x-7 gap-y-3 text-sm text-brand-slate-deep">
+            <ul className="mt-10 flex flex-wrap gap-x-7 gap-y-3 text-sm text-white/70">
               {[
                 'Open 7 days a week',
                 'Registered Chiropractors & Physiotherapists',
                 '3-min walk to Sunway Medical Centre Velocity',
               ].map((item) => (
                 <li key={item} className="flex items-center gap-2">
-                  <CheckIcon className="h-4 w-4 text-brand-slate-deep" />
+                  <CheckIcon className="h-4 w-4 text-brand-gold" />
                   {item}
                 </li>
               ))}
@@ -392,12 +368,11 @@ export default function Home() {
           visit" are the objections standing between a nervous first-timer and a booking.
           Asking for the booking before answering them was asking too early.
 
-          PREVIEW CHANGE: given its own Skin-tinted band rather than sitting on the page
-          ground. It falls between two white bands, and the board's warm secondary is the
-          one colour on it that reads as reassurance rather than as clinical information —
-          which is exactly this band's job. */}
-      <section className="border-y border-line bg-pc-skin/30">
-        <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16 lg:py-24">
+          Sits on the page ground with no band of its own — it falls between two white
+          sections, so the cream is already the change of value. The 2026 preview gave it a
+          warm Skin tint; that went with the rest of the preview. */}
+      <section className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
+        <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
           <div>
             <Eyebrow>Before you book</Eyebrow>
             <h2 className="mt-5 text-3xl font-extrabold leading-tight sm:text-4xl">
@@ -568,7 +543,7 @@ export default function Home() {
           — the primary visitor — with no booking action for roughly five screens. Now that
           the band is gone it is the only in-page ask below `lg`. Same component the service
           pages use. */}
-      <StickyCta message={waMessage.home} tone="contrast" />
+      <StickyCta message={waMessage.home} />
       {/* Clearance for the fixed bar, in the footer's colour so it reads as the footer
           beginning rather than as an empty band. The homepage had none at all, so the bar
           sat on top of the last line of the footer. */}

@@ -50,48 +50,13 @@
 }
 
 /**
- * 2026 brand board, as supplied by the client.
- *
- * Seven named swatches, transcribed from the guideline exactly — these are the "correct
- * working files" the board insists on, so nothing here is nudged or re-mixed. They are
- * declared as their own `--pc-*` namespace rather than overwriting the tokens above so the
- * old and new systems can sit side by side while the client decides.
- *
- * The board's own rule: pick ONE primary and pair it with the secondaries — so Olive stays
- * defined and unused, because using both primaries is what the board forbids.
- *
- * ⚠️ OPEN QUESTION. Lavender is nominally the chosen primary, but the client rejected it as
- * the hero field, which was the only surface on the page big enough to carry a 70% ratio.
- * As it stands the palette runs entirely on secondaries and no primary is really in play.
- * That is a decision for the client, not something to quietly fix by reintroducing Lavender
- * somewhere smaller: either it earns a large surface, or Olive is the primary, or the board's
- * ratios don't survive contact with this layout and the client should be told so.
+ * The client's 2026 brand board (Olive, Lavender, Teal, Forest, Sand, Skin, pale Gold) was
+ * previewed on the homepage between 2026-07-31 and 2026-08-03 and then withdrawn — see the
+ * git history around `b20ddb9` for the full transcription and the contrast working if it is
+ * ever revived. The board never survived its own ratio rule here: it asks for one primary at
+ * 70%, the client rejected Lavender as the hero field, and the hero was the only surface on
+ * the page big enough to carry that share. Reintroducing it needs that resolved first.
  */
-:root {
-  /* Primary (70%). Only one of these two may be in play at a time. */
-  --pc-olive: #839381;
-  --pc-lavender: #84b8e3;
-
-  /* Secondary. */
-  --pc-teal: #a5c9ca; /* 20% */
-  --pc-forest: #006980; /* 20% */
-  --pc-sand: #dddfd1; /* 10–15% */
-  --pc-skin: #fbbe9d; /* 10–15% */
-  --pc-gold: #ffd6a2; /* 10–15% */
-
-  /**
-   * Two derived values, for the same reason the old palette derived `--brand-slate-deep`:
-   * a raw swatch fails a specific legibility test and the board doesn't supply a fix.
-   *
-   * Forest at full strength carries solid white at 6.2:1, but the footer and hero body copy
-   * are white at 70% — which lands at 3.9:1 on Forest, under AA. Darkened until white/70
-   * clears 4.5:1. Type, marks and small fills still use the exact swatch.
-   */
-  --pc-forest-deep: #005264;
-  /* Sand is a band tint at 10–15%, far too present as a whole-page floor. This is Sand at
-     ~40% over white — the ground the board's own layout sits on. */
-  --pc-ground: #f2f3ed;
-}
 
 @theme inline {
   --color-background: var(--background);
@@ -106,15 +71,6 @@
   --color-ink: var(--ink);
   --color-ink-muted: var(--ink-muted);
   --color-line: var(--line);
-
-  --color-pc-olive: var(--pc-olive);
-  --color-pc-lavender: var(--pc-lavender);
-  --color-pc-teal: var(--pc-teal);
-  --color-pc-forest: var(--pc-forest);
-  --color-pc-forest-deep: var(--pc-forest-deep);
-  --color-pc-sand: var(--pc-sand);
-  --color-pc-skin: var(--pc-skin);
-  --color-pc-gold: var(--pc-gold);
 
   --font-sans: var(--font-body);
   --font-heading: var(--font-heading);
@@ -145,49 +101,6 @@
 body {
   background: var(--background);
   color: var(--foreground);
-}
-
-/**
- * 2026 palette PREVIEW — scoped, temporary, one line to remove.
- *
- * Any page that renders `<div data-brand="2026" hidden />` repoints the semantic tokens at
- * the new board for that page only. `:has()` on the body is what makes it route-scoped
- * without a client component: the header, footer and sticky CTA live in the root layout,
- * outside the page subtree, so a wrapper class on the page could never reach them and the
- * preview would show a new-palette body under an old-palette header.
- *
- * Because `@theme inline` compiles every utility down to `var(--brand-*)` rather than a
- * literal, redefining those variables here re-tints `bg-brand-slate-deep`, `border-line`,
- * `bg-brand-aqua/40` and the rest wherever they appear inside this body — no class churn.
- * Only the handful of places where the *role* changed (a dark hero becoming a light one)
- * needed editing by hand.
- *
- * WHEN APPROVED: move these seven declarations into `:root` above, replacing the old brand
- * values, and delete both this block and the marker div in app/page.tsx. WHEN REJECTED:
- * delete the marker div and this block.
- */
-body:has([data-brand='2026']) {
-  /* Sand-washed floor; white stays the raised surface. */
-  --background: var(--pc-ground);
-
-  /* Conversion colour: the board's own "Persistence Gold". Pale, so it is a ground for ink
-     text (the CTA band) rather than a fill that has to shout on its own. */
-  --brand-gold: var(--pc-gold);
-  /* Gold as a *voice* is hopeless at #ffd6a2 — Forest carries gold-voiced text instead. */
-  --brand-gold-ink: var(--pc-forest);
-
-  /* Forest takes both slate roles: exact swatch for type and marks, darkened for fields
-     that carry white body copy. */
-  --brand-slate: var(--pc-forest);
-  --brand-slate-deep: var(--pc-forest-deep);
-  /* Secondary voice on the Forest field. Sand clears AA there at 6.1:1; Teal would not. */
-  --brand-slate-soft: var(--pc-sand);
-
-  /* The tint band — reception-desk aqua becomes the board's Teal. */
-  --brand-aqua: var(--pc-teal);
-
-  /* Sand doubles as the hairline: still warm, now unmistakably from the board. */
-  --line: var(--pc-sand);
 }
 
 /* Headings carry the display face. Montserrat is geometric and goes loose at display
