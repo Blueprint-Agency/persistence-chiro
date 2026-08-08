@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 import { googleReviews, practitionerBySlug } from '@/lib/clinic'
 import { accreditations, testimonials } from '@/lib/home'
-import { Eyebrow, Vertebrae, WhatsAppIcon } from '@/components/ui'
+import { CheckIcon, Eyebrow, Vertebrae, WhatsAppButton, WhatsAppIcon } from '@/components/ui'
 import { whatsappLink, waMessage } from '@/lib/whatsapp'
 
 /** The founding chiropractor reviews the clinical content on the money pages. */
@@ -149,6 +149,94 @@ export function ServiceTestimonials() {
         >
           Read more reviews on Google
         </a>
+      </div>
+    </section>
+  )
+}
+
+/**
+ * The service page hero: text column, photograph beside it on desktop.
+ *
+ * SHARED SO THE TWO ROUTES CANNOT DRIFT. app/services/[slug] built this inline and
+ * app/services/chiropractic-care used the generic `PageHero`, which has no image slot, so the
+ * flagship money page was the one service page with no hero photograph at all. Rather than
+ * give PageHero an image (it is also the hero for /about, /press, /conditions and others, none
+ * of which wants one), the layout lives here and both service routes call it.
+ *
+ * `attention` is passed through to the CTA rather than hardcoded, because the prop's contract
+ * is one animated button per page and the hero is the page's decision about where that goes.
+ */
+export function ServiceHero({
+  title,
+  intro,
+  image,
+  assurances,
+  message,
+  cta = 'Book on WhatsApp',
+}: {
+  title: string
+  intro?: string
+  image?: { src: string; alt: string }
+  assurances?: readonly string[]
+  message: string
+  cta?: string
+}) {
+  return (
+    <section className="bg-brand-slate-deep text-white">
+      <div className="mx-auto max-w-6xl px-4 py-14 lg:py-20">
+        <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-16">
+          <div>
+            <Eyebrow tone="light">Our services</Eyebrow>
+            <h1 className="mt-6 max-w-2xl text-4xl font-extrabold leading-[1.1] text-white sm:text-5xl">
+              {title}
+            </h1>
+            {intro && (
+              <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/75">{intro}</p>
+            )}
+            {/* One CTA. A second button beside it splits the decision without adding a path —
+                the phone number is still in the header bar and the footer for anyone who
+                wants it. */}
+            <div className="mt-8">
+              <WhatsAppButton attention message={message}>
+                {cta}
+              </WhatsAppButton>
+            </div>
+            {/* Reassurance sits with the button, not nine paragraphs below it. These restate
+                facts the page substantiates further down — the visitor should not have to
+                scroll to find out whether the needles are reused. */}
+            {assurances && assurances.length > 0 ? (
+              <ul className="mt-6 grid gap-2.5 text-sm text-white/75 sm:grid-cols-2 lg:grid-cols-1">
+                {assurances.map((a) => (
+                  <li key={a} className="flex items-start gap-2.5">
+                    <CheckIcon className="mt-0.5 h-4 w-4 flex-none text-brand-gold" />
+                    {a}
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-white/70">
+                <span>Open seven days · Cheras, Maluri</span>
+              </div>
+            )}
+
+            <div className="mt-6">
+              <RatingBadge tone="light" />
+            </div>
+          </div>
+
+          {image && (
+            <div className="relative aspect-[4/3] overflow-hidden rounded-3xl lg:aspect-[4/5]">
+              <Image
+                src={image.src}
+                alt={image.alt}
+                fill
+                sizes="(max-width: 1024px) 100vw, 480px"
+                className="object-cover"
+                priority
+              />
+            </div>
+          )}
+        </div>
       </div>
     </section>
   )

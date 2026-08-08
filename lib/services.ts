@@ -177,6 +177,19 @@ export type Service = {
   relatedLinks?: { href: string; label: string }[]
   faqs: { q: string; a: string }[]
   /**
+   * When set, `<MeetDoctors>` does NOT render on this page, and the string is the reason.
+   *
+   * A single field rather than a boolean plus a note, deliberately: the section cannot be
+   * suppressed without someone writing down why, which is the same contract `holdReason`
+   * has with `draft` in lib/posts.ts. `content.test.ts` asserts the reason is substantial.
+   *
+   * This exists because `practitioners` in lib/clinic.ts holds chiropractors only, and
+   * `<MeetDoctors>` is hardcoded to "Meet your chiropractors". On a page selling a service
+   * chiropractors are not licensed to deliver, that section does not merely look thin, it
+   * implies the wrong profession provides the care.
+   */
+  practitionersWithheld?: string
+  /**
    * True when the service has a hand-built route file instead of rendering through
    * app/services/[slug]/page.tsx. Only chiropractic-care does: it carries the
    * Gonstead six-step walkthrough, which is a bespoke layout rather than section blocks.
@@ -200,15 +213,23 @@ export const services: Service[] = [
     intro:
       'Gonstead chiropractic care in Cheras. We assess the spine segment by segment before anything is adjusted, so the work goes to whichever segment is actually driving your problem. That is not always where you feel it.',
     /**
-     * No `heroImage`: this route's PageHero is a text hero with no image slot, and setting a
-     * hero that never renders would be a lie in the data. The OG card is therefore cropped
-     * from hero-assessment-nervoscope.webp and the dedicated route passes its own alt text
-     * rather than borrowing `heroImage.alt` the way the templated pages do.
+     * The adjustment itself, and the only page on the site that leads with it.
      *
-     * The subject is not decorative. It is a nervoscope being run down a spine, which is
-     * step three of the six below, so the card shows the differentiator this page ranks on.
-     * Before this the page had no ogImage at all and fell back to the sitewide shopfront.
+     * The homepage deliberately does NOT: a critique in .impeccable/ argues an adjustment
+     * photo there contradicts the "thoroughness before contact" positioning, and it is right,
+     * because a homepage visitor has not chosen anything yet. Someone reading
+     * /services/chiropractic-care has. Hiding the hands-on work from them would read as
+     * evasive, which is the same reasoning that put a real needle on the dry needling page.
+     *
+     * The frame helps: hands placed carefully on a gowned lower back, no dramatic thrust, so
+     * it shows the "delivered precisely and skilfully by hand only" the sections claim rather
+     * than the high velocity cracking a first timer is afraid of.
      */
+    heroImage: {
+      src: '/img/adjustment-back.webp',
+      alt: 'Chiropractor placing both hands on a patient lower back before an adjustment at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
+    },
+    /** Pre-cropped 1200x630 from `heroImage`, same contract as the templated pages. */
     ogImage: '/og/chiropractic-care.jpg',
     /** Facts stated and justified further down, moved into the first viewport. */
     assurances: [
@@ -694,6 +715,8 @@ export const services: Service[] = [
       { href: '/services/posture-correction', label: 'Posture correction for desk workers' },
       { href: '/what-to-expect', label: 'What to expect on your first visit' },
     ],
+    practitionersWithheld:
+      'Client instruction, 2026-08-08. The clinic\'s physiotherapists are still within their probation period and are not to be named on the site yet, and chiropractors are not licensed to deliver physiotherapy, so the three practitioners in lib/clinic.ts cannot stand in for them. Until then this page names no individual: a section headed "Meet your chiropractors" on a physiotherapy page implies the wrong profession provides the care, which is a worse problem than an absent team section. Remove this field once the clinic supplies the physiotherapist list and lib/clinic.ts can filter by role.',
     faqs: [
       {
         q: 'Is the first physiotherapy session painful?',

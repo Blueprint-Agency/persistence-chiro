@@ -14,20 +14,12 @@ import {
   medicalProcedureSchema,
   reviewedMedicalWebPage,
 } from '@/lib/schema'
-import {
-  CheckIcon,
-  CtaBand,
-  Eyebrow,
-  GhostButton,
-  WhatsAppButton,
-  PageHero,
-  Vertebrae,
-} from '@/components/ui'
+import { CheckIcon, CtaBand, Eyebrow, GhostButton, Vertebrae } from '@/components/ui'
 import {
   KeyTakeaways,
-  RatingBadge,
   References,
   ReviewedBy,
+  ServiceHero,
   StickyCta,
   TrustBar,
 } from '@/components/service'
@@ -56,17 +48,12 @@ export const metadata: Metadata = pageMetadata({
   title: service.metaTitle,
   description: service.metaDescription,
   path: '/services/chiropractic-care',
-  // The templated pages derive this alt from `heroImage`. This route's hero is text only, so
-  // there is no heroImage to borrow from and the alt is written here against the card itself.
-  // Same rule as everywhere else: describe what is in the frame, never the service being sold.
-  image: service.ogImage
-    ? {
-        url: service.ogImage,
-        width: 1200,
-        height: 630,
-        alt: 'Chiropractor running a nervoscope down a patient spine at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
-      }
-    : undefined,
+  // Identical to the templated route now that this page has a heroImage to derive the alt
+  // from. `ogImage` is the pre-cropped 1200x630 JPEG, never the hero itself.
+  image:
+    service.ogImage && service.heroImage
+      ? { url: service.ogImage, width: 1200, height: 630, alt: service.heroImage.alt }
+      : undefined,
 })
 
 export default function ChiropracticPage() {
@@ -104,33 +91,18 @@ export default function ChiropracticPage() {
         ])}
       />
 
-      <PageHero
-        eyebrow="Our services"
+      {/* Was the generic <PageHero>, which has no image slot, so the flagship money page was
+          the only service page with no hero photograph. Now the same <ServiceHero> the
+          templated routes use, which is also what keeps the two from drifting.
+          `title` stays hand-written rather than taken from `service.title`: the data value is
+          title case for the SERP, and this h1 has always read in sentence case. */}
+      <ServiceHero
         title="Chiropractic care in Cheras, Kuala Lumpur"
         intro={gonsteadIntro}
-      >
-        {/* `attention` on the hero CTA only, matching the templated service pages. */}
-        <div className="flex flex-wrap gap-3">
-          <WhatsAppButton attention message={waMessage.service('chiropractic care')}>
-            Book on WhatsApp
-          </WhatsAppButton>
-        </div>
-        {/* Reassurance sits with the button rather than nine paragraphs below it, matching the
-            templated service pages. Facts only, and only facts this page substantiates. */}
-        {service.assurances && service.assurances.length > 0 && (
-          <ul className="mt-6 grid gap-2.5 text-sm text-white/75 sm:grid-cols-2 lg:grid-cols-3">
-            {service.assurances.map((a) => (
-              <li key={a} className="flex items-start gap-2.5">
-                <CheckIcon className="mt-0.5 h-4 w-4 flex-none text-brand-gold" />
-                {a}
-              </li>
-            ))}
-          </ul>
-        )}
-        <div className="mt-6">
-          <RatingBadge tone="light" />
-        </div>
-      </PageHero>
+        image={service.heroImage}
+        assurances={service.assurances}
+        message={waMessage.service('chiropractic care')}
+      />
 
       <TrustBar />
 

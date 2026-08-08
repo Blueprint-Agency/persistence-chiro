@@ -252,6 +252,22 @@ test('every held-back post has an explicit redirect ahead of the wildcard', () =
   }
 })
 
+/**
+ * Same contract `holdReason` has with `draft`: a suppressed team section must say why it is
+ * suppressed, or the next person to read the file assumes it was an oversight and puts the
+ * chiropractors back onto a physiotherapy page. That specific mistake is the one this field
+ * exists to prevent, so the reason is enforced rather than trusted.
+ */
+test('a withheld practitioner section states why', () => {
+  for (const s of services) {
+    if (s.practitionersWithheld === undefined) continue
+    assert.ok(
+      s.practitionersWithheld.length > 40,
+      `services/${s.slug} withholds practitioners with no substantive reason`,
+    )
+  }
+})
+
 test('held-back posts state why they are held', () => {
   for (const p of posts.filter((p) => p.draft)) {
     assert.ok(

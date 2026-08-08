@@ -25,9 +25,9 @@ import {
 import {
   ComparisonTable,
   KeyTakeaways,
-  RatingBadge,
   References,
   ReviewedBy,
+  ServiceHero,
   StickyCta,
   TrustBar,
 } from '@/components/service'
@@ -112,71 +112,15 @@ export default async function ServicePage({ params }: Props) {
       />
 
       {/* ------------------------------------------------------------------ Hero */}
-      <section className="bg-brand-slate-deep text-white">
-        <div className="mx-auto max-w-6xl px-4 py-14 lg:py-20">
-          <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-16">
-            <div>
-              <Eyebrow tone="light">Our services</Eyebrow>
-              <h1 className="mt-6 max-w-2xl text-4xl font-extrabold leading-[1.1] text-white sm:text-5xl">
-                {service.title}
-              </h1>
-              {lead?.body && (
-                <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/75">
-                  {lead.body}
-                </p>
-              )}
-              {/* One CTA. A second button beside it splits the decision without adding a
-                  path — the phone number is still in the header bar and the footer for
-                  anyone who wants it. */}
-              {/* `attention` here and nowhere else on the page. The mid-page and CTA band
-                  buttons stay still: the motion is a signal, and a signal repeated four times
-                  down a page stops being one. */}
-              <div className="mt-8">
-                <WhatsAppButton
-                  attention
-                  message={waMessage.service(service.title.split(' in ')[0])}
-                >
-                  Book on WhatsApp
-                </WhatsAppButton>
-              </div>
-              {/* Reassurance sits with the button, not nine paragraphs below it. These are
-                  restatements of facts the page substantiates further down — the visitor
-                  should not have to scroll to find out whether the needles are reused. */}
-              {service.assurances && service.assurances.length > 0 ? (
-                <ul className="mt-6 grid gap-2.5 text-sm text-white/75 sm:grid-cols-2 lg:grid-cols-1">
-                  {service.assurances.map((a) => (
-                    <li key={a} className="flex items-start gap-2.5">
-                      <CheckIcon className="mt-0.5 h-4 w-4 flex-none text-brand-gold" />
-                      {a}
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-white/70">
-                  <span>Open seven days · Cheras, Maluri</span>
-                </div>
-              )}
-
-              <div className="mt-6">
-                <RatingBadge tone="light" />
-              </div>
-            </div>
-
-            {service.heroImage && (
-              <div className="relative aspect-[4/3] overflow-hidden rounded-3xl lg:aspect-[4/5]">
-                <Image
-                  src={service.heroImage.src}
-                  alt={service.heroImage.alt}
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 480px"
-                  className="object-cover"
-                  priority
-                />
-              </div>
-            )}
-          </div>
-        </div>
-      </section>
+      {/* Layout lives in <ServiceHero> so this route and the hand-built chiropractic one
+          cannot drift apart. `attention` on the CTA is inside that component. */}
+      <ServiceHero
+        title={service.title}
+        intro={lead?.body}
+        image={service.heroImage}
+        assurances={service.assurances}
+        message={waMessage.service(service.title.split(' in ')[0])}
+      />
 
       <TrustBar />
 
@@ -336,7 +280,10 @@ export default async function ServicePage({ params }: Props) {
           table is the scannable version of the paragraph above it rather than a new topic. */}
       <ComparisonTable data={service.comparison} />
 
-      <MeetDoctors />
+      {/* `practitionersWithheld` carries the reason this is suppressed where it is. The team
+          section is a first-order trust signal on a YMYL page, so it is only ever withheld
+          when naming the people we CAN name would misrepresent who delivers the service. */}
+      {!service.practitionersWithheld && <MeetDoctors />}
 
       <GoogleReviews />
 

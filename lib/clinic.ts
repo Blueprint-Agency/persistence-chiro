@@ -256,24 +256,26 @@ export const founderBio = [
 export const hasBio = (p: { bio: readonly string[] }) => p.bio.length > 0
 
 /**
- * ⚠️ CHIROPRACTORS ONLY. NO PHYSIOTHERAPIST IS LISTED YET.
+ * ⚠️ CHIROPRACTORS ONLY. NO PHYSIOTHERAPIST IS LISTED, AND ONE MUST NOT BE INVENTED.
  *
- * This array is the source for `<MeetDoctors>`, which renders on /services/physiotherapy as
- * well — so that page currently sells physiotherapy and then introduces three chiropractors.
- * It is the one real E-E-A-T gap against the Cheras competitors, who list their physios by
- * name with university and certification (Your Physio lists sixteen).
+ * ⚠️ CHIROPRACTORS ARE NOT LICENSED TO DELIVER PHYSIOTHERAPY. Client confirmation,
+ * 2026-08-08. So this array cannot stand in for a physiotherapy team, and `<MeetDoctors>`
+ * (hardcoded to "Meet your chiropractors") must not render on a physiotherapy page: doing so
+ * implies the wrong profession provides the care. /services/physiotherapy therefore sets
+ * `practitionersWithheld` in lib/services.ts and shows no team section at all.
  *
- * Left as is deliberately, not overlooked: the clinic is supplying the actual physiotherapist
- * list once the owner provides it (confirmed 2026-08-08), and inventing a practitioner for a
- * page that says "registered physiotherapists" is the same class of error the registration
- * gate below exists to prevent.
+ * An earlier version of this note suggested the page could simply "say plainly" that the
+ * chiropractors deliver physiotherapy. That was wrong and is recorded here so it is not
+ * proposed again.
+ *
+ * The clinic does employ physiotherapists; they are within their probation period and are not
+ * to be named on the site until it ends. Absent is the correct state, not a gap to paper over
+ * — the same reasoning as the registration gate below.
  *
  * WHEN THE LIST ARRIVES: add each physio with a `role` of 'Physiotherapist', leave
- * `registrationsVerified` false until their MOH/allied-health numbers are confirmed against
- * the register, and give `<MeetDoctors>` a way to filter by role so the physiotherapy page
- * shows physiotherapists and the chiropractic page shows chiropractors. The component's
- * eyebrow and default heading are hardcoded to "chiropractors" and will need the same
- * treatment.
+ * `registrationsVerified` false until their MOH / allied-health numbers are confirmed against
+ * the register, give `<MeetDoctors>` a way to filter by role, and un-hardcode its eyebrow and
+ * default heading. Then drop `practitionersWithheld` from the physiotherapy entry.
  */
 export const practitioners = [
   {
