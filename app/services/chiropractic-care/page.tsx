@@ -229,6 +229,73 @@ export default function ChiropracticPage() {
         </div>
       </section>
 
+      {/* ------------------------------------------------- Patient photographs */}
+      {/* Sits after the six steps deliberately. Before the method is explained the pairs are
+          just an assertion; after it, they illustrate the thing the reader has just been
+          walked through.
+
+          ⚠️ These are the only outcome claims anywhere on the site, and an image makes its
+          claim silently — `lib/content.test.ts` reads copy and would wave through any
+          photograph, however strong its implication. Two rules hold this section in bounds:
+
+          1. THE DISCLAIMER SHIPS WITH THE IMAGES, as a figcaption, never a footnote
+             elsewhere on the page.
+          2. THE CAPTIONS DESCRIBE THE LINE, NOT A RESULT. Particularly the second pair. Its
+             dashed line traces a lateral curve, and `conditions.ts` (scoliosis) says in
+             reviewed copy that "straightening the curve is not something an adjustment does"
+             and "the curve itself stays as it is". Read as curve correction, that photograph
+             contradicts the clinic's own published position two clicks away; read as what the
+             camera saw from behind on two days, it does not. The caption does that work and
+             is not decorative — raised with the client 2026-08-08, included at their
+             direction. Do not reword it towards "corrected", "straightened" or "improved". */}
+      <section className="border-y border-line bg-white">
+        <div className="mx-auto max-w-3xl px-4 py-16 lg:py-24">
+          <Eyebrow>Patient photographs</Eyebrow>
+          <h2 className="mt-5 text-3xl font-extrabold leading-tight sm:text-4xl">
+            What a change in posture can look like
+          </h2>
+          <p className="mt-5 leading-relaxed text-ink-muted">
+            Two patients at our clinic in Cheras, photographed from behind during their care
+            and shared with their permission. The line marks the same vertical in each pair,
+            so the two photographs can be compared against something fixed.
+          </p>
+
+          <figure className="mt-10 space-y-6">
+            {[
+              {
+                src: '/img/before-after-posture.webp',
+                alt: 'Back view of the same patient in two photographs at Persistence Chiropractic Care in Cheras, Kuala Lumpur, a vertical red line in each marking the position of the head and spine',
+              },
+              {
+                src: '/img/before-after-spinal-curve.webp',
+                alt: 'Back view of the same patient in two photographs at Persistence Chiropractic Care in Cheras, Kuala Lumpur, a dashed line in each following the line of the spine from the neck downwards',
+              },
+            ].map((pair) => (
+              <div
+                key={pair.src}
+                className="overflow-hidden rounded-3xl border border-line shadow-ambient"
+              >
+                <Image
+                  src={pair.src}
+                  alt={pair.alt}
+                  width={1080}
+                  height={1350}
+                  sizes="(max-width: 768px) 100vw, 640px"
+                  className="w-full"
+                />
+              </div>
+            ))}
+            <figcaption className="text-sm leading-relaxed text-ink-muted">
+              Two people&rsquo;s photographs, not a prediction of yours. Each pair shows how
+              someone stood in front of a camera on two different days, which is not the same
+              thing as a measurement, and posture differs from person to person and from visit
+              to visit. What we can tell you before we have assessed you is what we would look
+              at, not what would change.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
       {/* ----------------------------------------------------------- Qualifier */}
       {/* Same placement as the templated service pages — high, on the aqua ground, right
           after the method rather than behind the citations. */}
