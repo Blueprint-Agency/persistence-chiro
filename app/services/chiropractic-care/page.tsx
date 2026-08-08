@@ -15,6 +15,7 @@ import {
   reviewedMedicalWebPage,
 } from '@/lib/schema'
 import {
+  CheckIcon,
   CtaBand,
   Eyebrow,
   GhostButton,
@@ -22,7 +23,14 @@ import {
   PageHero,
   Vertebrae,
 } from '@/components/ui'
-import { RatingBadge, References, ReviewedBy, StickyCta, TrustBar } from '@/components/service'
+import {
+  KeyTakeaways,
+  RatingBadge,
+  References,
+  ReviewedBy,
+  StickyCta,
+  TrustBar,
+} from '@/components/service'
 import { GoogleReviews } from '@/components/GoogleReviews'
 import { MeetDoctors } from '@/components/MeetDoctors'
 import { ServiceQualifier } from '@/components/ServiceQualifier'
@@ -48,10 +56,17 @@ export const metadata: Metadata = pageMetadata({
   title: service.metaTitle,
   description: service.metaDescription,
   path: '/services/chiropractic-care',
-  image:
-    service.ogImage && service.heroImage
-      ? { url: service.ogImage, width: 1200, height: 630, alt: service.heroImage.alt }
-      : undefined,
+  // The templated pages derive this alt from `heroImage`. This route's hero is text only, so
+  // there is no heroImage to borrow from and the alt is written here against the card itself.
+  // Same rule as everywhere else: describe what is in the frame, never the service being sold.
+  image: service.ogImage
+    ? {
+        url: service.ogImage,
+        width: 1200,
+        height: 630,
+        alt: 'Chiropractor running a nervoscope down a patient spine at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
+      }
+    : undefined,
 })
 
 export default function ChiropracticPage() {
@@ -99,13 +114,76 @@ export default function ChiropracticPage() {
             Book on WhatsApp
           </WhatsAppButton>
         </div>
-        <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-white/70">
+        {/* Reassurance sits with the button rather than nine paragraphs below it, matching the
+            templated service pages. Facts only, and only facts this page substantiates. */}
+        {service.assurances && service.assurances.length > 0 && (
+          <ul className="mt-6 grid gap-2.5 text-sm text-white/75 sm:grid-cols-2 lg:grid-cols-3">
+            {service.assurances.map((a) => (
+              <li key={a} className="flex items-start gap-2.5">
+                <CheckIcon className="mt-0.5 h-4 w-4 flex-none text-brand-gold" />
+                {a}
+              </li>
+            ))}
+          </ul>
+        )}
+        <div className="mt-6">
           <RatingBadge tone="light" />
-          <span>Open seven days · Cheras, Maluri</span>
         </div>
       </PageHero>
 
       <TrustBar />
+
+      {/* ------------------------------------------------------ Key takeaways */}
+      <KeyTakeaways items={service.keyTakeaways} />
+
+      {/* -------------------------------------------------- What we help with */}
+      {/* `outcomes` and `sections` were both authored in services.ts and neither was rendered
+          on this route: the templated page reads them, the hand-built one never did. That put
+          three blocks of copy in the repo that no visitor and no crawler ever saw, including
+          the "bone and body alignment" block, which is the phrasing this page's target keyword
+          is built on. Both now render. */}
+      {service.outcomes && service.outcomes.length > 0 && (
+        <section className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
+          <Eyebrow>What we help with</Eyebrow>
+          <h2 className="mt-5 max-w-2xl text-3xl font-extrabold leading-tight sm:text-4xl">
+            Reasons people come in for chiropractic care
+          </h2>
+          <ul className="mt-10 grid gap-6 sm:grid-cols-2">
+            {service.outcomes.map((outcome) => {
+              const text = typeof outcome === 'string' ? outcome : outcome.text
+              return (
+                <li
+                  key={text}
+                  className="flex items-start gap-3 rounded-3xl border border-line bg-white p-6 shadow-ambient"
+                >
+                  <CheckIcon className="mt-0.5 h-5 w-5 flex-none text-brand-slate" />
+                  <p className="leading-relaxed text-ink-muted">{text}</p>
+                </li>
+              )
+            })}
+          </ul>
+        </section>
+      )}
+
+      {/* ------------------------------------------------ The three main parts */}
+      {service.sections.length > 0 && (
+        <section className="border-y border-line bg-white">
+          <div className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
+            <Eyebrow>What it involves</Eyebrow>
+            <h2 className="mt-5 max-w-2xl text-3xl font-extrabold leading-tight sm:text-4xl">
+              What chiropractic care here involves
+            </h2>
+            <div className="mt-10 grid gap-8 md:grid-cols-3">
+              {service.sections.map((s) => (
+                <div key={s.heading}>
+                  <h3 className="text-xl font-bold">{s.heading}</h3>
+                  <p className="mt-3 leading-relaxed text-ink-muted">{s.body}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ------------------------------------------------------ The six steps */}
       <section className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
@@ -185,6 +263,24 @@ export default function ChiropracticPage() {
         <section className="border-y border-line bg-brand-aqua/40">
           <div className="mx-auto max-w-3xl px-4 py-16 lg:py-24">
             <ServiceQualifier serviceName="chiropractic care" concerns={service.qualifierConcerns} />
+          </div>
+        </section>
+      )}
+
+      {/* ----------------------------------------------------- Long-form depth */}
+      {/* Also previously unrendered on this route. The safety block in particular was written,
+          reviewed and then never shown, which on a YMYL page is the section most worth having. */}
+      {service.longForm && service.longForm.length > 0 && (
+        <section className="mx-auto max-w-3xl px-4 py-16 lg:py-24">
+          <div className="space-y-12">
+            {service.longForm.map((block) => (
+              <div key={block.heading}>
+                <h2 className="text-2xl font-extrabold leading-tight sm:text-3xl">
+                  {block.heading}
+                </h2>
+                <p className="mt-4 text-lg leading-relaxed text-ink-muted">{block.body}</p>
+              </div>
+            ))}
           </div>
         </section>
       )}

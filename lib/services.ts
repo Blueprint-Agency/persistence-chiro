@@ -199,6 +199,23 @@ export const services: Service[] = [
     targetKeyword: 'bone alignment near me',
     intro:
       'Gonstead chiropractic care in Cheras. We assess the spine segment by segment before anything is adjusted, so the work goes to whichever segment is actually driving your problem. That is not always where you feel it.',
+    /**
+     * No `heroImage`: this route's PageHero is a text hero with no image slot, and setting a
+     * hero that never renders would be a lie in the data. The OG card is therefore cropped
+     * from hero-assessment-nervoscope.webp and the dedicated route passes its own alt text
+     * rather than borrowing `heroImage.alt` the way the templated pages do.
+     *
+     * The subject is not decorative. It is a nervoscope being run down a spine, which is
+     * step three of the six below, so the card shows the differentiator this page ranks on.
+     * Before this the page had no ogImage at all and fell back to the sitewide shopfront.
+     */
+    ogImage: '/og/chiropractic-care.jpg',
+    /** Facts stated and justified further down, moved into the first viewport. */
+    assurances: [
+      'Assessed segment by segment before anything is adjusted',
+      'We will say so if chiropractic is not the right approach',
+      'Open seven days · Cheras, Maluri',
+    ],
     outcomes: [
       'Back, neck or joint pain you want assessed segment by segment',
       'A recurring problem you would like to understand, not just mask',
@@ -213,10 +230,51 @@ export const services: Service[] = [
       'I am pregnant or bringing a child and want a gentle assessment',
     ],
     lastReviewed: '2026-07-26',
+    /**
+     * Chosen so that none of the five repeats an FAQ below. The FAQs already answer what
+     * Gonstead is, whether an X-ray is needed and how chiropractic differs from bone setting,
+     * and publishing the same answer twice on one route is the duplication the FAQ collision
+     * test exists to prevent. These are the four questions a first time patient asks in the
+     * room instead, plus the opening hours.
+     */
+    keyTakeaways: [
+      {
+        q: 'Will I be adjusted on my first visit?',
+        a: 'Often, but not always. The assessment comes first, and if it points away from adjusting you that day we will say so rather than adjust anyway.',
+      },
+      {
+        q: 'Does an adjustment hurt?',
+        a: 'Most people describe brief pressure and a release rather than pain. Mild soreness for a day afterwards is common and settles on its own.',
+      },
+      {
+        q: 'How many visits will I need?',
+        a: 'It depends on what is driving the problem and how long it has been there, so we will not quote you a number at the first visit or sell a package up front.',
+      },
+      {
+        q: 'Is chiropractic care safe?',
+        a: 'Serious complications are considered rare when care follows a proper assessment. Screening for the cases where adjustment would not suit is part of why we assess first.',
+      },
+      {
+        q: 'When are you open?',
+        a: 'Seven days a week, at Sunway Velocity in Maluri. Monday to Thursday and Saturday until 8pm, Friday until 5pm, Sunday until 3pm.',
+      },
+    ],
     longForm: [
       {
         heading: 'Is chiropractic care safe?',
         body: 'Chiropractic adjustment is widely used for mechanical spine and joint problems, and serious complications are considered rare when care follows a proper assessment. As with any hands-on care there can be short lived after effects, most often mild soreness or stiffness for a day or so. The assessment exists partly to screen for the small number of situations where adjustment would not be appropriate, which is why we work through it before deciding what, if anything, to adjust. We will always tell you honestly if we think chiropractic is not the right approach for your case.',
+      },
+      {
+        heading: 'Does a chiropractic adjustment hurt?',
+        body: 'Most people describe an adjustment as brief pressure followed by a release rather than as pain. The popping sound that often comes with it is gas moving within the joint, not bone grinding on bone, and it is not a measure of whether the adjustment worked. Some soreness for a day afterwards is common, particularly on a first visit or where an area has been guarded for a long time. Tell your chiropractor if anything feels worse than uncomfortable, because the contact and the force can both be adjusted, and there are lower force approaches we use for patients who would rather not be adjusted in the usual way.',
+      },
+      {
+        heading: 'How many visits will I need, and will I have to keep coming back?',
+        body: 'There is no honest way to answer that before we have assessed you, so we will not give you a number at the first visit or ask you to buy a package. How a case progresses depends on what is driving it, how long it has been there and what you do between visits. Some people come for a defined stretch and stop. Others choose to come occasionally once the original problem has settled, which is a choice rather than something we would tell you is necessary. We would rather review honestly as we go and tell you when we think you no longer need us.',
+      },
+      {
+        heading: 'Can I come at the weekend, and where exactly are you?',
+        body: 'We are open seven days, including Sunday, which is usually the easiest slot to get if weekday appointments are difficult. Saturday runs to 8pm and Sunday to 3pm. The clinic is at Signature 2 in the Sunway Velocity development in Maluri, on the Cheras side of Kuala Lumpur, with mall parking if you drive and Maluri and Cochrane stations both within walking distance if you do not. Maluri is an interchange, so the Ampang, Sri Petaling and Kajang lines all reach us. The full address and a map link are in the footer of every page.',
       },
     ],
     citations: [
@@ -258,6 +316,18 @@ export const services: Service[] = [
       {
         q: 'Is chiropractic the same as bone setting or tit tar?',
         a: 'No. Chiropractic is a regulated healthcare profession with formal university training, and assessment comes before anything is adjusted. Traditional bone setting works differently and is not regulated in the same way. We would encourage you to ask any practitioner about their qualifications beforehand.',
+      },
+      {
+        q: 'Can I see a chiropractor while pregnant?',
+        a: 'Yes, pregnancy is one of the more common reasons people come to us, and we adjust through it regularly. We avoid imaging during pregnancy unless there is a compelling reason, and the assessment and the positioning both change as the pregnancy progresses. Tell your chiropractor how far along you are at the first visit so the approach can be set accordingly.',
+      },
+      {
+        q: 'Do you see children and teenagers?',
+        a: 'Yes, the clinic cares for patients of all ages, and children are assessed differently from adults rather than being given a smaller version of adult care. We generally go without an X-ray for children. A parent or guardian stays in the room throughout, and we will explain what we are looking at as we go.',
+      },
+      {
+        q: 'What happens if chiropractic is not the right approach for me?',
+        a: 'We tell you, and we do not adjust you anyway. Part of what the six step assessment is for is finding the cases that belong somewhere else, whether that means physiotherapy here, imaging first, or a medical opinion we help you arrange. Knowing when a problem is not ours to treat is part of the job, and you are not charged for a course of care we do not think you need.',
       },
     ],
     dedicatedRoute: true,
@@ -668,6 +738,24 @@ export const services: Service[] = [
     metaTitle: 'Sports Injury Care in Cheras, KL',
     metaDescription:
       'Sports injury assessment, staged rehabilitation and criteria-based return to sport in Cheras, Maluri. Sprains, strains and overuse injuries, open seven days.',
+    /**
+     * KEPT ON PURPOSE AT 10 SEARCHES A MONTH. Client decision, 2026-08-08.
+     *
+     * The national modifier looks wrong on a single clinic site, and it is the obvious thing
+     * to "fix" by swapping in a local one. Do not. Every variant was measured against the
+     * Malaysia index first: `sports injury treatment kl` 0, `sports rehab kl` 0,
+     * `sports physiotherapy kuala lumpur` 0, `sports injury clinic kuala lumpur` 10 (eleven
+     * of twelve months at zero, so noise at the reporting floor), `sports injury near me` 20.
+     * Localising this keyword costs volume rather than adding it, because the whole cluster
+     * is empty rather than mislocalised.
+     *
+     * The only nearby term with real demand is `sports massage kl` (170/mo, difficulty 8,
+     * commercial intent), and that is a different service, not a rewording of this one. If the
+     * clinic ever offers sports massage, retargeting this page is the move; until then the
+     * keyword stays and the page earns its place through internal linking rather than search.
+     * Low volume is not low value here: sprains still walk in, they just arrive via
+     * `physio cheras`, the Business Profile or a condition page.
+     */
     targetKeyword: 'sports injury treatment malaysia',
     intro:
       'Sports injury care in Cheras. We assess what failed and why, then work through staged rehabilitation aimed at getting you back to your sport without carrying the same weakness into it.',
@@ -823,6 +911,34 @@ export const services: Service[] = [
       'I have tried a posture brace and it did not hold',
     ],
     lastReviewed: '2026-07-26',
+    /**
+     * "sit posture correction" runs 390/mo in Malaysia at competition 0.07, the highest volume
+     * and the softest competition of any service page here, and the intent leans informational
+     * rather than navigational. So these answer what to actually DO, which is what that
+     * searcher wants, and none of them repeats one of the five FAQs below.
+     */
+    keyTakeaways: [
+      {
+        q: 'What is the fastest change I can make today?',
+        a: 'Move more often. For most desk related complaints the trouble comes from holding one position for hours, so changing position regularly tends to matter more than finding a perfect one.',
+      },
+      {
+        q: 'How should my desk be set up?',
+        a: 'Roughly: the top of the screen near eye level, elbows at about a right angle, feet flat on the floor or a rest, and the screen about an arm length away.',
+      },
+      {
+        q: 'Which exercises are usually involved?',
+        a: 'Chin tucks, a doorway chest stretch, wall angels and an upper trapezius stretch are common starting points. Which ones suit you depends on what the assessment finds.',
+      },
+      {
+        q: 'Is my chair to blame?',
+        a: 'Rarely on its own. Time in one position tends to matter more than the chair, and an expensive chair you sit still in for four hours is not a fix.',
+      },
+      {
+        q: 'When are you open?',
+        a: 'Seven days a week, at Sunway Velocity in Maluri. Monday to Thursday and Saturday until 8pm, Friday until 5pm, Sunday until 3pm.',
+      },
+    ],
     longForm: [
       {
         heading: 'Can posture really be changed?',
@@ -831,6 +947,24 @@ export const services: Service[] = [
       {
         heading: 'Is sitting at a desk the cause of my posture problems?',
         body: 'Prolonged sitting is a common contributor, though rarely the only one. For most desk related complaints, the trouble comes from holding any one position for too long rather than from a single wrong posture, so moving regularly tends to matter more than finding a perfect setup. We combine practical workstation changes with strength work, because the position you can hold through a working day is the one that counts.',
+      },
+      {
+        /**
+         * The gap every competing page on this keyword leaves open. Two KL clinic pages
+         * ranking for posture correction, one of them 3,200 words long, both say "corrective
+         * exercises" and "ergonomic assessment" and neither names a single exercise or a
+         * single measurement. Naming them is the whole reason to read this page.
+         *
+         * Hedged deliberately: these are described as common starting points, not as a
+         * programme, and the paragraph says outright that which ones apply is what an
+         * assessment is for. No outcome is promised.
+         */
+        heading: 'Which exercises help with forward head posture and rounded shoulders?',
+        body: 'Four come up most often, and they are worth knowing by name. A chin tuck, drawing the chin straight back rather than tipping it down, works the deep neck flexors that hold the head over the shoulders. A doorway chest stretch opens the pectoral muscles that pull the shoulders forward. Wall angels, sliding the arms up a wall with the back flat against it, ask the upper back to extend and the shoulder blades to move. An upper trapezius stretch eases the neck to shoulder tension that builds through a day at a screen. These are common starting points rather than a prescription, and which of them apply to you, in what order and how often, is exactly what the assessment is for. Doing all four badly is generally less useful than doing the right one properly.',
+      },
+      {
+        heading: 'How should I set up my desk?',
+        body: 'The usual starting points are simple enough to check in a minute. The top of the screen sits near eye level, so the neck is not held in flexion all day. Elbows rest at about a right angle with the shoulders down rather than shrugged. Feet reach the floor or a footrest, with the hips roughly level with or slightly above the knees. The screen sits about an arm length away. If you work on a laptop, that combination is impossible without either a stand and a separate keyboard or a monitor, because the screen and the keyboard want to be in two different places. None of it matters as much as changing position regularly, though, so think of the setup as the thing that makes moving easier rather than as the answer on its own.',
       },
     ],
     citations: [
@@ -897,6 +1031,14 @@ export const services: Service[] = [
       {
         q: 'Do I need chiropractic or physiotherapy for posture?',
         a: 'It depends what the assessment finds, and posture work often draws on both. Broadly, chiropractic care addresses how stiff joints move while physiotherapy builds the strength and control to hold a better position. If you are unsure, message us your main concern and we will point you to the right starting point.',
+      },
+      {
+        q: 'How often should I get up if I sit all day?',
+        a: 'Roughly every thirty minutes is the usual advice, and standing for a moment counts. The point is not the number, it is that no position is meant to be held for hours, and a short break taken often tends to beat a long one taken rarely. Setting a recurring reminder works better for most people than relying on noticing.',
+      },
+      {
+        q: 'I work from home on a laptop. Can you help with that?',
+        a: 'Yes, and laptops are one of the most common setups we see. A laptop puts the screen and the keyboard in the same place, which means the neck and the arms cannot both be comfortable at once. Usually the fix is a stand plus a separate keyboard, or an external monitor. Tell us what you actually work on and where you sit, because advice built around a desk you do not have is not much use.',
       },
     ],
     draft: false,
