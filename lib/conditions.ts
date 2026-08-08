@@ -54,6 +54,60 @@ export type Condition = {
    */
   redFlags: string[]
   faqs: { q: string; a: string }[]
+
+  /**
+   * ---------------------------------------------------------------------------------------
+   * Parity fields with `Service`. All optional, so a condition that has not been filled in
+   * yet degrades to exactly the page it rendered before rather than to a broken one.
+   *
+   * These exist because the condition template was a tier below the service template on both
+   * trust and conversion: no rating, no reviews, no reviewer byline, no citations, no mobile
+   * sticky CTA. Conditions are the SYMPTOM-INTENT entry points, which is the top of the
+   * funnel, so the pages a person in pain lands on first were the weakest ones we had.
+   * ---------------------------------------------------------------------------------------
+   */
+
+  /**
+   * Answer-engine extraction block. Five self-contained pairs, none repeating an FAQ below,
+   * since both would otherwise publish the same answer twice on one route.
+   */
+  keyTakeaways?: { q: string; a: string }[]
+  /**
+   * Verifiable, cautiously worded facts attributed to a journal, guideline or regulator.
+   * Never a competitor, never an efficacy promise.
+   */
+  citations?: { claim: string; source: string; url?: string }[]
+  /**
+   * Concern checkboxes for the "Is this right for you?" qualifier, which builds a prefilled
+   * WhatsApp message from what the reader ticks. Phrase each as a symptom or a situation,
+   * never as a diagnosis.
+   */
+  qualifierConcerns?: readonly string[]
+  /**
+   * ISO date the clinical copy was ACTUALLY reviewed by the named practitioner. Drives the
+   * "Reviewed by" byline and the reviewedBy/lastReviewed schema.
+   *
+   * ⚠️ DO NOT SET THIS TO MAKE THE BYLINE APPEAR. It is a factual claim that a named,
+   * registered practitioner read this page on that date. Unset means no claim is made, which
+   * is the correct state until the clinic confirms a review actually happened — the same
+   * contract as `registrationsVerified` in lib/clinic.ts and `googleReviews.verified`.
+   */
+  lastReviewed?: string
+  /**
+   * ⚠️ NOT RENDERED ON THE PAGE YET, and deliberately unset on all eight conditions.
+   *
+   * Conditions use `PageHero`, which is text only, so there is no hero slot to put a
+   * photograph in. The pair is declared because the OG card needs a source and an alt, and
+   * because giving conditions a real hero is the obvious next step; setting them before that
+   * slot exists would put an image in the data that no visitor ever sees.
+   *
+   * Until then every condition falls back to the sitewide shopfront card in lib/seo.ts,
+   * which is honest but generic. Alt must describe what is in the frame, never the condition.
+   */
+  heroImage?: { src: string; alt: string }
+  /** Pre-cropped 1200x630 JPEG under public/og/, derived from `heroImage`. */
+  ogImage?: string
+
   draft: boolean
 }
 
@@ -458,6 +512,56 @@ export const conditions: Condition[] = [
         a: 'The short version: top of the screen roughly at eye level, forearms supported, feet flat, and a laptop raised onto a stand with a separate keyboard. No setup is good enough to sit in for eight unbroken hours, though. Stand and move every 30 to 45 minutes. We will go through your own setup with you during your visit.',
       },
     ],
+    /**
+     * `stiffness neck pain` runs 1,600/mo in Malaysia at difficulty 22, the largest keyword
+     * on the site with the softest competition against it, so this is the first condition
+     * filled in on the extended template.
+     *
+     * None of the five repeats an FAQ above: those already answer tech neck, whether posture
+     * can be fixed, adjustment safety and desk setup. These are the four questions left over,
+     * plus the opening hours.
+     */
+    keyTakeaways: [
+      {
+        q: 'Why is my neck worse by the end of the day?',
+        a: 'Because it is a loading problem rather than an injury. Holding the head forward for hours asks small joints and muscles to do a job they were not built to hold, and they tend to complain late in the day.',
+      },
+      {
+        q: 'How long does it usually take to settle?',
+        a: 'It varies with how long it has been there and what is feeding it, so we will not quote a number at a first visit. Desk related cases often respond well once the irritated segment is found and the habits change.',
+      },
+      {
+        q: 'Can neck stiffness be behind my headaches?',
+        a: 'Sometimes. Headaches that begin at the base of the skull and wrap forward are often traced to the upper neck. Migraine is a different problem and managed medically, though a consultation can help tell the two apart.',
+      },
+      {
+        q: 'Do neck pillows or braces help?',
+        a: 'A supportive pillow is worth getting right, because it stops the neck being loaded overnight. A brace does not build the endurance needed to hold a position, so we would not suggest relying on one.',
+      },
+      {
+        q: 'When are you open?',
+        a: 'Seven days a week, at Sunway Velocity in Maluri. Monday to Thursday and Saturday until 8pm, Friday until 5pm, Sunday until 3pm.',
+      },
+    ],
+    qualifierConcerns: [
+      'My neck aches by the end of a day at a desk',
+      'I cannot turn my head fully to one side',
+      'I get headaches that start at the base of my skull',
+      'I have tingling into my shoulder blade or arm',
+      'I want help setting up my desk and screen',
+    ],
+    citations: [
+      {
+        claim:
+          'Neck pain is consistently ranked among the leading causes of years lived with disability worldwide.',
+        source: 'Global Burden of Disease Study, The Lancet',
+      },
+      {
+        claim:
+          'Guidance for non specific neck pain generally favours staying active, with manual therapy and exercise used alongside it rather than prolonged rest.',
+        source: 'NICE Clinical Knowledge Summaries, Neck pain',
+      },
+    ],
     draft: false,
   },
   {
@@ -465,13 +569,13 @@ export const conditions: Condition[] = [
     title: 'Migraine and Headache Care in Cheras, Kuala Lumpur',
     metaTitle: 'Migraine & Headache Care in Cheras, KL',
     metaDescription:
-      'Assessment for migraine and neck-related headaches in Cheras, Maluri. We look at the cervical contribution and refer for medical management where needed.',
+      'Migraine and headache assessment in Cheras, Maluri. Chiropractic is not the direct treatment, but a consultation can tell you whether your neck is involved.',
     targetKeyword: 'migraine headache',
     related: ['neck-pain', 'shoulder-imbalance'],
     helpedBy: ['chiropractic-care', 'physiotherapy'],
 
     intro:
-      'Not every bad headache is a migraine, and not every migraine has anything to do with the neck. The distinction decides who should be looking after you. Migraine is a neurological condition, managed medically, and chiropractic care does not treat it. Chiropractic can look at whether some part of what you are feeling is coming from the joints and muscles of the upper neck. That is a separate and reasonably common source of head pain. The assessment sorts out which one you are dealing with, and if the answer is that you need a doctor rather than us, we will say so.',
+      'Not every bad headache is a migraine, and not every migraine has anything to do with the neck. Working out which one you are dealing with is exactly what a consultation is for, and you are welcome to come and find out. Migraine itself is a neurological condition whose medical management belongs with a doctor, so chiropractic is not the direct treatment for it. What we can assess is whether part of what you are feeling is coming from the joints and muscles of the upper neck, which is a separate and reasonably common source of head pain. If the assessment points to your doctor rather than to us, we will say so plainly and help you get there.',
     symptoms: [
       'Head pain that begins at the base of the skull and wraps forward towards the temple or eye',
       'Headache consistently on the same side, alongside neck stiffness or a restricted turn',
@@ -508,8 +612,8 @@ export const conditions: Condition[] = [
         body: 'If the assessment points to restricted segments in the upper neck, the adjustment is specific to those segments and delivered by hand, and your chiropractor will explain what they found before anything happens. Where the surrounding muscle is a factor, our physiotherapy side may add manual therapy and a programme for the deep neck and upper back. We are aiming at better neck movement and less load on that tissue. Any effect on the headaches themselves follows from that, and it varies from person to person.',
       },
       {
-        heading: 'Where it is migraine, we refer',
-        body: 'If your pattern looks neurological rather than mechanical, the appropriate step is medical management, and we will say so plainly rather than book you a course of care. Chiropractic does not treat migraine and we would rather not imply otherwise. Some people have both: a genuine migraine disorder and a neck adding to the overall headache burden. In that case working alongside your doctor is reasonable.',
+        heading: 'Where it is migraine, we work alongside your doctor',
+        body: 'If your pattern looks neurological rather than mechanical, the appropriate step is medical management, and we will say so plainly rather than book you a course of care. Chiropractic is not the treatment for migraine and we would rather not imply otherwise. Plenty of people have both, though: a genuine migraine disorder and a neck adding to the overall headache burden. In that case working alongside your doctor is reasonable, and a consultation is a sensible way to find out whether it applies to you.',
       },
       {
         heading: 'What you track between visits',
@@ -529,7 +633,7 @@ export const conditions: Condition[] = [
     faqs: [
       {
         q: 'Can a chiropractor treat my migraine?',
-        a: 'No. Migraine is a neurological condition and its management belongs with a doctor or neurologist. We can assess whether part of your head pain is coming from the joints and muscles of the upper neck, which is a different problem that happens to feel similar. If the assessment says your headaches are migrainous, we will tell you so and refer you appropriately rather than treat you here.',
+        a: 'Not directly. Migraine is a neurological condition and its management belongs with a doctor or neurologist, so it is not what chiropractic sets out to treat. A consultation is still worth having, because it can work out whether part of your head pain is coming from the joints and muscles of the upper neck, which is a different problem that happens to feel similar. If the assessment says your headaches are migrainous, we will tell you and help you get to the right person.',
       },
       {
         q: 'How do I know if my headache is coming from my neck?',

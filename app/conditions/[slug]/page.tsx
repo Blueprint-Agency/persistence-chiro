@@ -4,11 +4,29 @@ import { notFound } from 'next/navigation'
 
 import { conditionBySlug, publishedConditions } from '@/lib/conditions'
 import { serviceBySlug } from '@/lib/services'
+import { practitionerBySlug } from '@/lib/clinic'
 import { JsonLd } from '@/components/JsonLd'
-import { breadcrumbSchema, medicalWebPageSchema, faqSchema } from '@/lib/schema'
+import {
+  breadcrumbSchema,
+  medicalWebPageSchema,
+  faqSchema,
+  reviewedMedicalWebPage,
+} from '@/lib/schema'
 import { pageMetadata } from '@/lib/seo'
 import { CheckIcon, CtaBand, Eyebrow, WhatsAppButton, PageHero, Vertebrae } from '@/components/ui'
+import {
+  KeyTakeaways,
+  RatingBadge,
+  References,
+  ReviewedBy,
+  StickyCta,
+  TrustBar,
+} from '@/components/service'
+import { GoogleReviews } from '@/components/GoogleReviews'
+import { ServiceQualifier } from '@/components/ServiceQualifier'
 import { waMessage } from '@/lib/whatsapp'
+
+const reviewer = practitionerBySlug('valerie-na')!
 
 // Only published conditions get built. A draft page has no route, so it can't be
 // crawled or indexed while its clinical copy is still missing.
@@ -28,6 +46,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: condition.metaTitle,
     description: condition.metaDescription,
     path: `/conditions/${condition.slug}`,
+    // Same contract as the service pages: `ogImage` is the pre-cropped 1200x630 JPEG, never
+    // the hero itself, and the alt is reused from the hero. Falls back to the sitewide
+    // shopfront card when a condition has no photography yet.
+    image:
+      condition.ogImage && condition.heroImage
+        ? { url: condition.ogImage, width: 1200, height: 630, alt: condition.heroImage.alt }
+        : undefined,
   })
 }
 
@@ -51,6 +76,25 @@ export default async function ConditionPage({ params }: Props) {
       {/* FAQ schema is only emitted when the answers actually render below — Google
           treats invisible FAQ markup as a violation. */}
       {condition.faqs.length > 0 && <JsonLd data={faqSchema(condition.faqs)} />}
+      {/* reviewedBy + lastReviewed, the two E-E-A-T signals a YMYL page needs. Only emitted
+          when the clinic has confirmed a review actually happened — see the warning on
+          `lastReviewed` in lib/conditions.ts. */}
+      {condition.lastReviewed && (
+        <JsonLd
+          data={reviewedMedicalWebPage({
+            name: condition.title,
+            description: condition.metaDescription,
+            url: `/conditions/${condition.slug}`,
+            lastReviewed: condition.lastReviewed,
+            reviewer: {
+              name: reviewer.name,
+              role: reviewer.role,
+              credentials: reviewer.credentials,
+              slug: reviewer.slug,
+            },
+          })}
+        />
+      )}
       <JsonLd
         data={breadcrumbSchema([
           { name: 'Conditions', url: '/conditions' },
@@ -60,7 +104,17 @@ export default async function ConditionPage({ params }: Props) {
 
       {/* The hero carries `intro`, not metaDescription — the meta line is written for the
           SERP, this one is written for someone who has already arrived and is in pain. */}
-      <PageHero eyebrow="Conditions" title={condition.title} intro={condition.intro} />
+      <PageHero eyebrow="Conditions" title={condition.title} intro={condition.intro}>
+        {/* The rating was on every service page and no condition page, which is backwards:
+            conditions are where symptom-intent search lands, so they are the first thing a
+            stranger sees. Renders nothing unless googleReviews.verified is true. */}
+        <RatingBadge tone="light" />
+      </PageHero>
+
+      <TrustBar />
+
+      {/* Answer-engine extraction block, high, before the reader has to commit to reading. */}
+      <KeyTakeaways items={condition.keyTakeaways} />
 
       <article className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
         <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
@@ -248,7 +302,39 @@ export default async function ConditionPage({ params }: Props) {
         </div>
       </article>
 
+      {/* ----------------------------------------------------------- Qualifier */}
+      {/* Sits after the article rather than mid-grid: the symptom list is the recognition
+          moment, but it lives inside the two-column layout and a full-width band cannot be
+          cut into it without restructuring the page. A reader who has reached the end of the
+          FAQs is warm enough, and this is the lowest-friction way to start a conversation. */}
+      {condition.qualifierConcerns && condition.qualifierConcerns.length > 0 && (
+        <section className="border-y border-line bg-brand-aqua/40">
+          <div className="mx-auto max-w-3xl px-4 py-16 lg:py-24">
+            <ServiceQualifier
+              serviceName={condition.title.split(' in ')[0].toLowerCase()}
+              concerns={condition.qualifierConcerns}
+            />
+          </div>
+        </section>
+      )}
+
+      {/* Social proof. Chiropractors care for every condition in this collection, so unlike
+          /services/physiotherapy there is no misrepresentation in naming them here. */}
+      <GoogleReviews />
+
+      {/* Provenance at the foot, matching the service pages: who checked the clinical copy
+          and what it is sourced from are credentials rather than reading. Both render nothing
+          until the data exists, so an unreviewed page makes no claim. */}
+      <ReviewedBy date={condition.lastReviewed} />
+      <References items={condition.citations} />
+
       <CtaBand message={waMessage.condition(condition.title.split(' in ')[0])} />
+
+      {/* The mobile conversion gap this template had: on a phone the only CTA was the aside,
+          which scrolls away and never comes back. Someone in pain reading a symptom page is
+          the visitor most worth catching. */}
+      <StickyCta message={waMessage.condition(condition.title.split(' in ')[0])} />
+      <div aria-hidden="true" className="h-20 bg-brand-slate-deep lg:hidden" />
     </>
   )
 }
