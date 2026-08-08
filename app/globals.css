@@ -432,27 +432,41 @@ body {
  * is precisely what that preference exists to stop.
  *
  * The layer is scaled past the section on BOTH axes so the vertical drift can never expose an
- * edge. 1.18 against a ±6% translate leaves margin at every viewport ratio.
+ * edge. 1.26 against a ±10% translate leaves margin at every viewport ratio.
  */
 .hero-parallax__layer {
-  transform: scale(1.18);
+  transform: scale(1.26);
 }
 
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
     .hero-parallax__layer {
-      animation: pc-hero-parallax linear both;
+      /*
+       * LONGHANDS, NOT THE `animation` SHORTHAND, and `duration: auto` is the load-bearing
+       * line. The first version of this used `animation: pc-hero-parallax linear both`,
+       * which omits a duration, and the shorthand resolves an omitted duration to 0s. A
+       * progress-based timeline with a 0s duration does not scrub: it snaps to the end
+       * keyframe and sits there, which looked exactly like "the parallax does not work"
+       * while the image was in fact stuck at its final transform.
+       *
+       * `auto` is what tells the animation to span the whole timeline instead.
+       */
+      animation-name: pc-hero-parallax;
+      animation-duration: auto;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
       animation-timeline: view();
+      animation-range: cover 0% cover 100%;
     }
   }
 }
 
 @keyframes pc-hero-parallax {
   from {
-    transform: translate3d(0, -6%, 0) scale(1.18);
+    transform: translate3d(0, -10%, 0) scale(1.26);
   }
   to {
-    transform: translate3d(0, 6%, 0) scale(1.18);
+    transform: translate3d(0, 10%, 0) scale(1.26);
   }
 }
 

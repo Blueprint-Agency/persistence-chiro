@@ -62,7 +62,18 @@ export function ConditionHero({
         </>
       )}
 
-      <div className="mx-auto max-w-3xl px-4 py-20 text-center lg:py-28">
+      {/*
+       * Wider than the 3xl well this started at. Condition intros run long (slipped disc is
+       * ~95 words) and at 2xl the paragraph stacked into seven centred lines on a desktop,
+       * which reads as a column of text floating in a photograph rather than as a hero.
+       *
+       * This deliberately runs past the 65 to 75 character measure DESIGN.md sets for body
+       * copy, and that is the right trade HERE and nowhere else: it is four lines of hero
+       * copy that a reader scans once, not clinical prose they read carefully. If it ever
+       * reads too wide, shorten the two or three longest intros rather than narrowing this
+       * again, because the line count is the actual problem.
+       */}
+      <div className="mx-auto max-w-5xl px-4 py-20 text-center lg:py-28">
         {/* Eyebrow is a flex row by default, so it needs centring explicitly. */}
         <div className="flex justify-center">
           <Eyebrow tone="light">Conditions</Eyebrow>
@@ -73,7 +84,7 @@ export function ConditionHero({
         </h1>
 
         {intro && (
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/80">{intro}</p>
+          <p className="mx-auto mt-6 max-w-4xl text-lg leading-relaxed text-white/80">{intro}</p>
         )}
 
         {/* The condition pages had no hero CTA at all: the only ask above the fold was a
