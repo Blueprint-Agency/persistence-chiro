@@ -29,7 +29,7 @@ const INTERESTS = [
   'Something else',
 ] as const
 
-const SIZES = ['', 'Under 20', '20–50', '50–200', '200+'] as const
+const SIZES = ['', 'Under 20', '20 to 50', '50 to 200', '200+'] as const
 
 export function PartnerEnquiry() {
   const [name, setName] = useState('')

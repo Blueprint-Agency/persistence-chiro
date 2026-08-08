@@ -155,6 +155,109 @@ export function ServiceTestimonials() {
 }
 
 /**
+ * Key takeaways: the answer-engine extraction block, rendered high on the page.
+ *
+ * A definition list rather than a card grid, because that is what it is — and because an
+ * extractor reading the markup gets an unambiguous question/answer pairing out of dt/dd
+ * that a stack of divs does not give it. The gold rule down the left is the only decoration;
+ * this block is scanned in about four seconds and anything more competes with the hero.
+ */
+export function KeyTakeaways({ items }: { items?: { q: string; a: string }[] }) {
+  if (!items || items.length === 0) return null
+  return (
+    <section className="border-b border-line bg-white">
+      <div className="mx-auto max-w-6xl px-4 py-14 lg:py-16">
+        <Eyebrow>Key takeaways</Eyebrow>
+        <h2 className="mt-5 max-w-2xl text-3xl font-extrabold leading-tight sm:text-4xl">
+          The short answers
+        </h2>
+        <dl className="mt-10 grid gap-x-12 gap-y-7 md:grid-cols-2">
+          {items.map((t) => (
+            <div key={t.q} className="border-l-2 border-brand-gold pl-5">
+              <dt className="font-bold leading-snug text-ink">{t.q}</dt>
+              <dd className="mt-2 leading-relaxed text-ink-muted">{t.a}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </section>
+  )
+}
+
+/**
+ * Side-by-side comparison of two disciplines the clinic actually offers.
+ *
+ * The table scrolls inside its own container rather than letting the page scroll sideways —
+ * a full row of prose will not fit a phone at a readable size, and a body that pans
+ * horizontally is the bug that had to be fixed out of the review rail.
+ *
+ * `note` renders after the table and is not optional in the type: a comparison that stops at
+ * the last row invites the reader to total up the columns and pick a winner, which is not
+ * what an assessment led clinic can honestly tell them to do.
+ */
+export function ComparisonTable({
+  data,
+}: {
+  data?: {
+    heading: string
+    intro: string
+    columns: readonly [string, string]
+    rows: readonly { label: string; a: string; b: string }[]
+    note: string
+  }
+}) {
+  if (!data) return null
+  return (
+    <section className="border-t border-line bg-brand-aqua/40">
+      <div className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
+        <Eyebrow>Choosing between them</Eyebrow>
+        <h2 className="mt-5 max-w-2xl text-3xl font-extrabold leading-tight sm:text-4xl">
+          {data.heading}
+        </h2>
+        <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink-muted">{data.intro}</p>
+
+        <div className="mt-10 overflow-x-auto">
+          <table className="w-full min-w-[42rem] border-collapse text-left">
+            <thead>
+              <tr className="border-b-2 border-brand-slate/20">
+                <th scope="col" className="w-[22%] py-4 pr-6">
+                  <span className="sr-only">What is being compared</span>
+                </th>
+                {data.columns.map((c) => (
+                  <th
+                    key={c}
+                    scope="col"
+                    className="w-[39%] py-4 pr-6 text-base font-bold text-ink"
+                  >
+                    {c}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-line">
+              {data.rows.map((row) => (
+                <tr key={row.label} className="align-top">
+                  <th
+                    scope="row"
+                    className="py-5 pr-6 text-sm font-semibold leading-snug text-brand-slate"
+                  >
+                    {row.label}
+                  </th>
+                  <td className="py-5 pr-6 leading-relaxed text-ink-muted">{row.a}</td>
+                  <td className="py-5 pr-6 leading-relaxed text-ink-muted">{row.b}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <p className="mt-8 max-w-2xl leading-relaxed text-ink-muted">{data.note}</p>
+      </div>
+    </section>
+  )
+}
+
+/**
  * "Reviewed by" byline — the core E-E-A-T signal for a YMYL page. Names a real registered
  * practitioner, links to their bio, and shows when the content was last checked. Renders
  * nothing without a date, so a page can't display a fabricated review date.

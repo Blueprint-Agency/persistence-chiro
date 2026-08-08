@@ -125,10 +125,10 @@ export const addressOneLine = [
 
 /** Display order for the hours table. Mirrors `clinic.hours` — kept adjacent so they can't drift. */
 export const hoursDisplay = [
-  { label: 'Monday – Thursday', value: '10:00am – 8:00pm' },
-  { label: 'Friday', value: '10:00am – 5:00pm' },
-  { label: 'Saturday', value: '10:00am – 8:00pm' },
-  { label: 'Sunday', value: '10:00am – 3:00pm' },
+  { label: 'Monday to Thursday', value: '10:00am to 8:00pm' },
+  { label: 'Friday', value: '10:00am to 5:00pm' },
+  { label: 'Saturday', value: '10:00am to 8:00pm' },
+  { label: 'Sunday', value: '10:00am to 3:00pm' },
 ]
 
 const DAY_SHORT: Record<string, string> = {
@@ -150,12 +150,17 @@ function clock(time: string) {
 /** A run of three or more days collapses to a range; one or two are listed. */
 function daySpan(days: readonly string[]) {
   return days.length >= 3
-    ? `${DAY_SHORT[days[0]]}–${DAY_SHORT[days[days.length - 1]]}`
+    ? `${DAY_SHORT[days[0]]} to ${DAY_SHORT[days[days.length - 1]]}`
     : days.map((d) => DAY_SHORT[d]).join(' & ')
 }
 
 /**
- * The whole week on one line — "Mon–Thu & Sat 10am–8pm · Fri 10am–5pm · Sun 10am–3pm".
+ * The whole week on one line: "Mon to Thu & Sat 10am to 8pm · Fri 10am to 5pm · Sun 10am to 3pm".
+ *
+ * Ranges read "to" rather than taking an en dash. That is the house no-dashes rule applied
+ * to rendered copy (AGENTS.md), and this string renders in the header utility bar on every
+ * route, so it is about nine characters longer than it used to be. If the strip ever runs
+ * out of room, shorten it by dropping a block, not by reinstating the dash.
  *
  * DERIVED from `clinic.hours`, never typed out. The header's utility bar used to carry a
  * hand-written "Mon to Thu, 10am to 8pm", which was both a second copy of the hours and an
@@ -176,7 +181,7 @@ export const hoursSummary = (() => {
   return [...byTime]
     .map(([key, spans]) => {
       const [opens, closes] = key.split('-')
-      return `${spans.join(' & ')} ${clock(opens)}–${clock(closes)}`
+      return `${spans.join(' & ')} ${clock(opens)} to ${clock(closes)}`
     })
     .join(' · ')
 })()
@@ -249,6 +254,27 @@ export const founderBio = [
  * supplies real bios — at which point they start indexing on their own, no flag to flip.
  */
 export const hasBio = (p: { bio: readonly string[] }) => p.bio.length > 0
+
+/**
+ * ⚠️ CHIROPRACTORS ONLY. NO PHYSIOTHERAPIST IS LISTED YET.
+ *
+ * This array is the source for `<MeetDoctors>`, which renders on /services/physiotherapy as
+ * well — so that page currently sells physiotherapy and then introduces three chiropractors.
+ * It is the one real E-E-A-T gap against the Cheras competitors, who list their physios by
+ * name with university and certification (Your Physio lists sixteen).
+ *
+ * Left as is deliberately, not overlooked: the clinic is supplying the actual physiotherapist
+ * list once the owner provides it (confirmed 2026-08-08), and inventing a practitioner for a
+ * page that says "registered physiotherapists" is the same class of error the registration
+ * gate below exists to prevent.
+ *
+ * WHEN THE LIST ARRIVES: add each physio with a `role` of 'Physiotherapist', leave
+ * `registrationsVerified` false until their MOH/allied-health numbers are confirmed against
+ * the register, and give `<MeetDoctors>` a way to filter by role so the physiotherapy page
+ * shows physiotherapists and the chiropractic page shows chiropractors. The component's
+ * eyebrow and default heading are hardcoded to "chiropractors" and will need the same
+ * treatment.
+ */
 export const practitioners = [
   {
     name: 'Valerie Na',

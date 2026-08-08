@@ -10,7 +10,7 @@ import { CtaBand, GhostButton, PageHero, Vertebrae } from '@/components/ui'
 export const metadata: Metadata = pageMetadata({
   title: 'Conditions We Help With in Cheras, Kuala Lumpur',
   description:
-    'Back pain, slipped disc, sciatica, scoliosis, neck pain, migraine and hip pain — assessed with Gonstead chiropractic and physio in Cheras, Maluri.',
+    'Back pain, slipped disc, sciatica, scoliosis, neck pain, migraine and hip pain, assessed with Gonstead chiropractic and physio in Cheras, Maluri.',
   path: '/conditions',
 })
 

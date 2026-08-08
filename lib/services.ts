@@ -126,6 +126,34 @@ export type Service = {
    */
   lastReviewed?: string
   /**
+   * Answer-engine extraction block, rendered high on the page. Five self-contained question
+   * and answer pairs, each of which has to stand alone if an AI engine lifts it out of
+   * context — no "as mentioned above", no dependency on the section before it.
+   *
+   * DELIBERATELY NOT THE SAME AS `faqs`. The FAQ is what someone asks once they are already
+   * interested and it carries the FAQPage schema; this is the set of blockers that stop a
+   * visitor before they read anything (referral, cost of time, which discipline, opening
+   * hours). Duplicating an answer across both would publish it twice on one route, which is
+   * the collision `content.test.ts` guards against for the two FAQ arrays.
+   */
+  keyTakeaways?: { q: string; a: string }[]
+  /**
+   * Side-by-side comparison of this service against another discipline offered here.
+   *
+   * Only earns its place where the clinic genuinely offers both and can therefore answer
+   * the question without a conflict of interest — the physiotherapy/chiropractic decision
+   * is the case it was built for. A comparison against something we do not offer would be
+   * marketing rather than help, and `note` exists so the block cannot end on a winner.
+   */
+  comparison?: {
+    heading: string
+    intro: string
+    columns: readonly [string, string]
+    rows: readonly { label: string; a: string; b: string }[]
+    /** The honest closer. Required, so the table always ends on "it depends". */
+    note: string
+  }
+  /**
    * Long-form, keyword-targeted H2 sections rendered below the conversion layout. This is
    * where the depth lives — each heading should read like a real search query (e.g. "Is dry
    * needling safe?") and the body stays hedged, no promissory claims.
@@ -256,8 +284,8 @@ export const services: Service[] = [
     },
     ogImage: '/og/dry-needling.jpg',
     midImage: {
-      src: '/img/posture-assessment.webp',
-      alt: 'Practitioner examining a seated patient upper back during assessment at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
+      src: '/img/dry-needling-session.webp',
+      alt: 'Gloved practitioner placing a single-use needle into a trigger point in a patient shoulder at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
     },
     /**
      * The three things someone hesitating over needles actually wants to know. Each is
@@ -265,7 +293,7 @@ export const services: Service[] = [
      * first viewport, where the hesitation happens.
      */
     assurances: [
-      'Sterile, single use needles — never reused',
+      'Sterile, single use needles, never reused',
       'We assess before we needle',
       'Open seven days · Cheras, Maluri',
     ],
@@ -411,7 +439,7 @@ export const services: Service[] = [
     title: 'Physiotherapy in Cheras, Kuala Lumpur',
     metaTitle: 'Physio & Physiotherapy in Cheras, KL',
     metaDescription:
-      'Physio and physiotherapy in Cheras, Maluri. Hands-on manual therapy, movement assessment and corrective exercise, alongside chiropractic care under one roof.',
+      'Physio in Cheras, Maluri, beside Sunway Velocity. Assessment first, then hands-on care and corrective exercise. Open seven days, no referral needed.',
     targetKeyword: 'physio cheras',
     intro:
       'Physiotherapy in Cheras, pairing hands-on care with corrective exercise. Once a joint is moving more freely, the exercise work aims to rebuild the strength and control that help keep it that way.',
@@ -445,6 +473,37 @@ export const services: Service[] = [
       'I am not sure whether I need physio or chiropractic',
     ],
     lastReviewed: '2026-07-26',
+    /**
+     * The four blockers plus the location answer, for the visitor who has not decided to
+     * read yet. "physio cheras" is a NAVIGATIONAL term (260/mo, Malaysia) — someone
+     * searching it is choosing a clinic to walk into, not researching physiotherapy, so
+     * the answers that matter first are logistical rather than clinical.
+     *
+     * Every answer here is stated again in full further down the page. That is deliberate:
+     * this block is the summary, not the only place a claim appears.
+     */
+    keyTakeaways: [
+      {
+        q: 'Do I need a referral to see a physiotherapist?',
+        a: 'No. You can book directly with us in Cheras. If your case needs imaging or a medical opinion first, we will tell you and help you arrange it.',
+      },
+      {
+        q: 'How long is a first session?',
+        a: 'Around forty five minutes to an hour, and most of that is assessment rather than hands on care. You should leave knowing what we think is going on.',
+      },
+      {
+        q: 'Should I book physiotherapy or chiropractic?',
+        a: 'It depends on what the assessment finds. Both are available here under one roof, so you are not fitted to whichever one a clinic happens to offer.',
+      },
+      {
+        q: 'Will I be given exercises?',
+        a: 'Yes, in most cases. A small programme built around your problem and progressed as you get stronger, rather than a printed sheet handed to everyone.',
+      },
+      {
+        q: 'When are you open?',
+        a: 'Seven days a week, including Sunday, at Sunway Velocity in Maluri. Monday to Thursday and Saturday until 8pm, Friday until 5pm, Sunday until 3pm.',
+      },
+    ],
     longForm: [
       {
         heading: 'What happens in a physiotherapy assessment?',
@@ -454,7 +513,56 @@ export const services: Service[] = [
         heading: 'Physiotherapy or chiropractic: which do you need?',
         body: 'Broadly, chiropractic care works on how a restricted joint moves, while physiotherapy builds the strength and control around it, and a good number of people benefit from both. Neither is better in the abstract; it depends on what the assessment finds. Because we offer chiropractic care, physiotherapy and dry needling under one roof in Cheras, we can start wherever the findings point and adjust as things change, rather than fitting you to whatever a single discipline happens to offer.',
       },
+      {
+        /**
+         * Proximity copy for a navigational keyword. Landmarks and stations only — the
+         * street address is NOT retyped here. `lib/clinic.ts` is the single source every
+         * LocalBusiness schema and external citation is built from, and a second hand
+         * written copy in a content string is exactly how NAP drifts out of sync.
+         */
+        heading: 'Where is the clinic, and how do I get there?',
+        body: 'We are at Signature 2, inside the Sunway Velocity development in Maluri, on the Cheras side of Kuala Lumpur. The mall car park is the simplest option if you are driving, and both Maluri and Cochrane stations are within walking distance if you are not. Maluri is an interchange, so the Ampang and Sri Petaling lines and the Kajang line all reach us. We are open seven days, which matters if weekdays are difficult: Monday to Thursday and Saturday until 8pm, Friday until 5pm, and Sunday until 3pm. The full address and a map link are in the footer of every page.',
+      },
     ],
+    /**
+     * The one comparison on the site we can make without a conflict of interest, because
+     * both columns are offered here. It exists because no competitor page on this SERP
+     * answers the question at all, and `note` keeps it from resolving into a winner.
+     */
+    comparison: {
+      heading: 'Physiotherapy or chiropractic care?',
+      intro:
+        'The honest answer is that it depends on what the assessment finds, and plenty of people here end up having both. This is the rough shape of the difference.',
+      columns: ['Physiotherapy', 'Chiropractic care'],
+      rows: [
+        {
+          label: 'Works mainly on',
+          a: 'Strength, control and how you move',
+          b: 'How a restricted spinal joint moves',
+        },
+        {
+          label: 'A first visit looks like',
+          a: 'Movement testing and assessment, then hands on care and your first exercises',
+          b: 'A Gonstead analysis, segment by segment, before anything is adjusted',
+        },
+        {
+          label: 'Main tools',
+          a: 'Manual therapy, joint mobilisation, corrective exercise',
+          b: 'A precise hands on adjustment of the segment identified',
+        },
+        {
+          label: 'Between visits',
+          a: 'An exercise programme carries most of the work',
+          b: 'Usually less to do at home, though we may still give you something',
+        },
+        {
+          label: 'Often suits',
+          a: 'Recovery after injury, weakness, movement that keeps breaking down',
+          b: 'A joint that feels stuck, or a problem returning to the same spot',
+        },
+      ],
+      note: 'Neither is better in the abstract. If you are not sure which you need, message us your main concern and we will point you to the right starting point rather than book you into whichever one you happened to click.',
+    },
     citations: [
       {
         claim:
@@ -470,7 +578,14 @@ export const services: Service[] = [
     sections: [
       {
         heading: 'Physiotherapy in Cheras',
-        body: 'Physiotherapy in Cheras, pairing hands on care with corrective exercise. We assess how you move before we begin, so the work goes to whatever is actually driving the problem rather than only the spot that hurts. Once a joint is moving more freely, the exercise aims to rebuild the strength and control that help keep it that way.',
+        /**
+         * ANSWER FIRST. This string is the hero paragraph (the template takes `sections[0]`
+         * as the lead), so it is the first 60 words a visitor and an answer engine both
+         * read. It used to open by describing the approach; it now opens by settling the
+         * two things a navigational searcher wants first, which are where we are and
+         * whether they can just book.
+         */
+        body: 'Physio in Cheras, on the Maluri side beside Sunway Velocity, open seven days. No referral is needed and you can book directly. A first visit is mostly assessment: we look at how you actually move before anything begins, so the work goes to whatever is driving the problem rather than only the spot that hurts. From there we pair hands on care with a small exercise programme aimed at rebuilding the strength and control that help keep a joint moving freely.',
       },
       {
         heading: 'Precision manual therapy',
@@ -493,10 +608,20 @@ export const services: Service[] = [
         body: 'Broadly, chiropractic care works on how a restricted joint moves, while physiotherapy works on the strength and control around it. Neither is better in the abstract, and many people benefit from both. Under one roof in Cheras we also offer dry needling, and the assessment decides where to start. If you are not sure which you need, message us your main concern and we will point you to the right starting point.',
       },
     ],
-    helpsWith: ['back-pain', 'slipped-disc', 'neck-pain', 'sciatica', 'scoliosis'],
+    helpsWith: [
+      'back-pain',
+      'slipped-disc',
+      'neck-pain',
+      'sciatica',
+      'scoliosis',
+      'hip-pain',
+      'shoulder-imbalance',
+    ],
     relatedLinks: [
       { href: '/services/chiropractic-care', label: 'Compare with chiropractic care' },
       { href: '/services/sports-injury-rehabilitation', label: 'Sports injury and rehabilitation' },
+      { href: '/services/dry-needling', label: 'Dry needling for muscle that stays tight' },
+      { href: '/services/posture-correction', label: 'Posture correction for desk workers' },
       { href: '/what-to-expect', label: 'What to expect on your first visit' },
     ],
     faqs: [
@@ -517,8 +642,22 @@ export const services: Service[] = [
         a: 'Yes, in most cases. The exercise is where a lot of the lasting change tends to come from, so we prescribe a small, specific programme and progress it as you improve. It is designed to fit into a normal day rather than take over your evening.',
       },
       {
-        q: 'Should I see a chiropractor or a physiotherapist?',
-        a: 'It depends what the assessment finds. Broadly, chiropractic care works on how a restricted joint moves and physiotherapy works on the strength and control around it, and many patients benefit from both. If you are unsure, message us your main concern and we will point you to the right starting point.',
+        /**
+         * Reworded from "Should I see a chiropractor or a physiotherapist?". That question is
+         * now answered twice above, in `keyTakeaways` and in the comparison table, and a
+         * third copy inside FAQPage schema would publish the same answer three times on one
+         * route. This asks the question the other two leave open instead.
+         */
+        q: 'Can I have physiotherapy and chiropractic care together?',
+        a: 'Yes, and a good number of patients here do. The two work on different things, so combining them is common rather than unusual: chiropractic care addresses how a restricted joint moves and physiotherapy builds the strength and control around it. The assessment decides where to start and whether both are worth using at all, and we will say so if we think one alone is enough.',
+      },
+      {
+        q: 'Where in Cheras are you, and is there parking?',
+        a: 'We are at Signature 2 in the Sunway Velocity development in Maluri, on the Cheras side of Kuala Lumpur. The mall car park is the easiest option if you drive, and Maluri and Cochrane stations are both within walking distance if you take the train. The full address and a map link sit in the footer of every page.',
+      },
+      {
+        q: 'Are you open at weekends?',
+        a: 'Yes, we are open seven days a week including Sunday. Saturday runs to 8pm and Sunday to 3pm, which is usually the easiest slot to get if weekdays are difficult. Monday to Thursday we are open until 8pm and Friday until 5pm.',
       },
     ],
     draft: false,

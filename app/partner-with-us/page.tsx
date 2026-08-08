@@ -13,7 +13,7 @@ import { waMessage } from '@/lib/whatsapp'
 export const metadata: Metadata = pageMetadata({
   title: 'Corporate Wellness & Partnerships, Cheras KL',
   description:
-    'Work with Persistence Chiropractic in Cheras, Kuala Lumpur — corporate wellness talks, workshops, health screenings, event booths and brand collaborations.',
+    'Work with Persistence Chiropractic in Cheras, Kuala Lumpur: corporate wellness talks, workshops, health screenings, event booths and brand collaborations.',
   path: '/partner-with-us',
 })
 
@@ -151,7 +151,7 @@ export default function PartnerWithUsPage() {
 
       <CtaBand
         heading="Prefer to just message us?"
-        body="Reach the clinic directly on WhatsApp or by phone — we are happy to talk through what a partnership could look like."
+        body="Reach the clinic directly on WhatsApp or by phone. We are happy to talk through what a partnership could look like."
         message={waMessage.partner}
       />
     </>

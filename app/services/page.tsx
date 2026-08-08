@@ -31,7 +31,7 @@ export default function ServicesHub() {
       {services.length > 0 && (
         <JsonLd
           data={collectionPageSchema({
-            name: 'Our Services — Chiropractic & Physiotherapy in Cheras, KL',
+            name: 'Our Services: Chiropractic & Physiotherapy in Cheras, KL',
             description:
               'Chiropractic care, dry needling, physiotherapy, sports injury rehabilitation and posture correction in Cheras, Maluri.',
             url: '/services',

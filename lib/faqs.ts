@@ -74,7 +74,7 @@ export const homeFaqs: Faq[] = [
   },
   {
     q: 'What should I expect during my first visit?',
-    a: "Your first visit will include a full health history and symptom review, followed by a physical assessment such as posture, movement, range of motion, and joint/muscle testing (and spinal checks when relevant). Your practitioner will then explain what's happening, share the working diagnosis, and outline a personalised care plan and timeline. First visits run about 30–60 minutes; follow-ups are 20–45 minutes depending on the case. Bring any previous reports, scans or MRI/X-ray results if you have them. If you're not sure whether to start with chiropractic or physiotherapy, text us your main concern and we'll advise you.",
+    a: "Your first visit will include a full health history and symptom review, followed by a physical assessment such as posture, movement, range of motion, and joint/muscle testing (and spinal checks when relevant). Your practitioner will then explain what's happening, share the working diagnosis, and outline a personalised care plan and timeline. First visits run about 30 to 60 minutes; follow-ups are 20 to 45 minutes depending on the case. Bring any previous reports, scans or MRI/X-ray results if you have them. If you're not sure whether to start with chiropractic or physiotherapy, text us your main concern and we'll advise you.",
   },
   {
     q: 'Do I need an X-Ray before starting my chiropractic care?',

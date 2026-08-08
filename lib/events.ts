@@ -50,7 +50,7 @@ export const events: Event[] = [
   },
   {
     file: '/img/events/event-move-with-meaning.webp',
-    title: 'Move with Meaning — with Yen Ru',
+    title: 'Move with Meaning, with Yen Ru',
     blurb: 'A spinal-wellness session with Yen Ru for a group of yoga enthusiasts.',
     alt: 'Persistence Chiropractic spinal-wellness session with Yen Ru for yoga enthusiasts in Kuala Lumpur',
   },

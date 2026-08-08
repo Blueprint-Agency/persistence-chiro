@@ -88,9 +88,23 @@ test('no promissory medical claims in published copy', () => {
             m.metaDescription,
             ...m.sections.map((s) => s.body),
             // These user-facing fields carry prose too, so they must clear the same guard.
-            ...(m.outcomes ?? []),
+            // `outcomes` is a union: a bare string, or an object carrying the copy on `.text`
+            // alongside an image or illustration. Spreading it raw stringified the object
+            // forms to "[object Object]", so four of the five dry needling outcomes were
+            // silently exempt from the guard. Normalise to the text before joining.
+            ...(m.outcomes ?? []).map((o) => (typeof o === 'string' ? o : o.text)),
             ...(m.longForm ?? []).flatMap((l) => [l.heading, l.body]),
             ...(m.citations ?? []).map((c) => c.claim),
+            ...m.faqs.flatMap((f) => [f.q, f.a]),
+            ...(m.keyTakeaways ?? []).flatMap((k) => [k.q, k.a]),
+            ...(m.comparison
+              ? [
+                  m.comparison.heading,
+                  m.comparison.intro,
+                  m.comparison.note,
+                  ...m.comparison.rows.flatMap((r) => [r.label, r.a, r.b]),
+                ]
+              : []),
           ].join(' '),
         ] as [string, string],
     ),

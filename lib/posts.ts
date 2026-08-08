@@ -86,13 +86,13 @@ export const posts: Post[] = [
     slug: 'blog-boost-your-bone-health-webinar',
     title: 'Boost Your Bone Health: Spine & Joint Health (Webinar)',
     description:
-      'Our webinar on bone, spine and joint health — what affects bone density, why it matters for your spine, and the habits that support it.',
+      'Our webinar on bone, spine and joint health: what affects bone density, why it matters for your spine, and the habits that support it.',
     datePublished: '2022-11-07',
     author: 'Persistence Chiropractic Care',
     linksTo: 'back-pain',
     draft: true,
     holdReason:
-      '98 words and it exists only to point at a webinar recording that did not survive the migration. Thin content — rewrite with the webinar takeaways or drop it and 301 to /blog.',
+      '98 words and it exists only to point at a webinar recording that did not survive the migration. Thin content: rewrite with the webinar takeaways or drop it and 301 to /blog.',
   },
   {
     slug: 'derek-s-journey-with-gonstead-chiropractic-care',
@@ -108,7 +108,7 @@ export const posts: Post[] = [
     slug: 'three-years-of-gratitude-and-growth-celebrating-wellness-world-spine-day-and-our-community',
     title: 'Three Years of Gratitude and Growth: Celebrating Wellness, World Spine Day, and Our Community',
     description:
-      'Three years of Persistence Chiropractic in Cheras — marking World Spine Day with the patients, partners and community who made the clinic what it is.',
+      'Three years of Persistence Chiropractic in Cheras, marking World Spine Day with the patients, partners and community who made the clinic what it is.',
     datePublished: '2025-08-25',
     author: 'Persistence Chiropractic Care',
     linksTo: 'back-pain',
@@ -138,7 +138,7 @@ export const posts: Post[] = [
     slug: 'chiropractic-care-charity-talk-for-ti-ratana-welfare',
     title: 'Making a Difference in the Community: Chiropractic Care & Charity Talk for Ti-Ratana Welfare',
     description:
-      'Our team ran a spinal health talk and screening for Ti-Ratana Welfare Society — what we covered, and what community outreach looks like for a Cheras clinic.',
+      'Our team ran a spinal health talk and screening for Ti-Ratana Welfare Society. What we covered, and what community outreach looks like for a Cheras clinic.',
     datePublished: '2025-08-25',
     author: 'Persistence Chiropractic Care',
     linksTo: 'back-pain',
@@ -170,7 +170,7 @@ export const posts: Post[] = [
     slug: 'health-benefits-of-ergonomic-chairs',
     title: 'Health Benefits of Ergonomic Chairs: Why You Need One',
     description:
-      'What actually matters in an ergonomic chair if you sit at a desk all day — seat depth, lumbar support, armrest height — and what is just marketing.',
+      'What actually matters in an ergonomic chair if you sit at a desk all day: seat depth, lumbar support, armrest height, and what is just marketing.',
     datePublished: '2023-01-30',
     author: 'Persistence Chiropractic Care',
     linksTo: 'neck-pain',

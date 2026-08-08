@@ -22,7 +22,15 @@ import {
   WhatsAppButton,
   Vertebrae,
 } from '@/components/ui'
-import { RatingBadge, References, ReviewedBy, StickyCta, TrustBar } from '@/components/service'
+import {
+  ComparisonTable,
+  KeyTakeaways,
+  RatingBadge,
+  References,
+  ReviewedBy,
+  StickyCta,
+  TrustBar,
+} from '@/components/service'
 import { GoogleReviews } from '@/components/GoogleReviews'
 import { MeetDoctors } from '@/components/MeetDoctors'
 import { ConcernIllustration } from '@/components/ConcernIllustration'
@@ -165,6 +173,14 @@ export default async function ServicePage({ params }: Props) {
       </section>
 
       <TrustBar />
+
+      {/* ------------------------------------------------------ Key takeaways */}
+      {/* Directly under the trust bar, above the first thing that asks the reader to think.
+          These are the blockers that stop a visitor before they read anything — can I just
+          book, how long will it take, which discipline, are you open — and every one is
+          answered again in full further down. Sitting them here costs one screen and saves
+          a scroll for the answer engines that lift them verbatim. */}
+      <KeyTakeaways items={service.keyTakeaways} />
 
       {/* --------------------------------------------------- What we help with */}
       {/* Full width, four cards, one photograph each. This is the "is this me?" moment and it
@@ -309,6 +325,10 @@ export default async function ServicePage({ params }: Props) {
           </div>
         </section>
       )}
+
+      {/* Sits immediately after the long-form block that raises the question in prose, so the
+          table is the scannable version of the paragraph above it rather than a new topic. */}
+      <ComparisonTable data={service.comparison} />
 
       <MeetDoctors />
 
