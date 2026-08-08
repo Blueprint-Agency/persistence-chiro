@@ -109,8 +109,9 @@ export default function ChiropracticPage() {
         title="Chiropractic care in Cheras, Kuala Lumpur"
         intro={gonsteadIntro}
       >
+        {/* `attention` on the hero CTA only, matching the templated service pages. */}
         <div className="flex flex-wrap gap-3">
-          <WhatsAppButton message={waMessage.service('chiropractic care')}>
+          <WhatsAppButton attention message={waMessage.service('chiropractic care')}>
             Book on WhatsApp
           </WhatsAppButton>
         </div>

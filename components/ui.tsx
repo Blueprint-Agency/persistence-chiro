@@ -154,16 +154,28 @@ export function GhostButton({
 export function WhatsAppButton({
   message,
   children = 'WhatsApp us to book',
+  attention = false,
 }: {
   message: string
   children?: ReactNode
+  /**
+   * Adds the periodic pulse-and-wobble (see `.cta-attention` in globals.css).
+   *
+   * OPT IN, AND ONE PER PAGE. Off by default because this button appears in the header, the
+   * CTA band and mid-page on nearly every route, and animating all of them at once would
+   * turn the site into a carnival and make the motion mean nothing. Give it to the single
+   * highest-intent CTA on a page, which on the service pages is the hero.
+   */
+  attention?: boolean
 }) {
   return (
     <a
       href={whatsappLink(message)}
       target="_blank"
       rel="noopener"
-      className={`${BUTTON_BASE} bg-brand-gold text-ink hover:bg-[#d4b00d]`}
+      className={`${BUTTON_BASE} bg-brand-gold text-ink hover:bg-[#d4b00d] ${
+        attention ? 'cta-attention' : ''
+      }`}
     >
       <WhatsAppIcon />
       {children}

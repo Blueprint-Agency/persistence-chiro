@@ -411,6 +411,95 @@ body {
 }
 
 /**
+ * Attention motion for the primary WhatsApp CTA. Opt in with `attention` on WhatsAppButton;
+ * it is NOT on the button by default, because the button is a sitewide primitive and a
+ * shaking header would be intolerable.
+ *
+ * THE CYCLE IS MOSTLY STILL ON PURPOSE. Seventy per cent of the six seconds is no movement
+ * at all, then one short pulse and a four-beat wobble that decays. Continuous shake is the
+ * version of this that reads as a scam banner: it stops registering within a few seconds,
+ * and on a medical page it undercuts exactly the credibility the rest of the page is built
+ * on. A quiet button that moves once every six seconds keeps its meaning.
+ *
+ * Transform and opacity only, so both animations stay on the compositor and cost nothing in
+ * layout or paint per frame — the same reason the preloader animates a transform rather than
+ * a mask (see pc-zoom above). Core Web Vitals are a non-negotiable in AGENTS.md.
+ *
+ * `prefers-reduced-motion` is already handled by the global block above, which flattens both
+ * of these to a single 0.01ms tick. Nothing extra is needed here.
+ */
+.cta-attention {
+  position: relative;
+  animation: pc-cta-nudge 6s ease-in-out infinite;
+}
+
+/* The ring is a ::after rather than a box-shadow so it can scale past the pill's own bounds
+   without affecting layout. `pointer-events: none` keeps it from ever eating the tap. */
+.cta-attention::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  border: 2px solid var(--brand-gold);
+  opacity: 0;
+  pointer-events: none;
+  animation: pc-cta-ring 6s ease-out infinite;
+}
+
+/* Once the pointer or keyboard focus is on the button the motion has done its job, and a
+   target that moves while you are trying to hit it is a usability problem, not a nudge.
+   `animation: none` rather than a pause, so the transform resets instead of freezing
+   mid-wobble at whatever angle the cycle happened to be on. */
+.cta-attention:hover,
+.cta-attention:focus-visible {
+  animation: none;
+}
+.cta-attention:hover::after,
+.cta-attention:focus-visible::after {
+  animation: none;
+}
+
+@keyframes pc-cta-nudge {
+  0%,
+  70%,
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+  73% {
+    transform: scale(1.05) rotate(0deg);
+  }
+  77% {
+    transform: scale(1.03) rotate(-1.6deg);
+  }
+  81% {
+    transform: scale(1.03) rotate(1.6deg);
+  }
+  85% {
+    transform: scale(1.02) rotate(-1deg);
+  }
+  89% {
+    transform: scale(1.01) rotate(0.6deg);
+  }
+}
+
+@keyframes pc-cta-ring {
+  0%,
+  70% {
+    transform: scale(1);
+    opacity: 0;
+  }
+  73% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  92%,
+  100% {
+    transform: scale(1.3);
+    opacity: 0;
+  }
+}
+
+/**
  * Concern illustration motion. See components/ConcernIllustration.tsx for the drawings.
  *
  * Each animation states what its diagram states — the knot never releases, the trigger point

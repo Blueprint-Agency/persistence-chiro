@@ -128,8 +128,14 @@ export default async function ServicePage({ params }: Props) {
               {/* One CTA. A second button beside it splits the decision without adding a
                   path — the phone number is still in the header bar and the footer for
                   anyone who wants it. */}
+              {/* `attention` here and nowhere else on the page. The mid-page and CTA band
+                  buttons stay still: the motion is a signal, and a signal repeated four times
+                  down a page stops being one. */}
               <div className="mt-8">
-                <WhatsAppButton message={waMessage.service(service.title.split(' in ')[0])}>
+                <WhatsAppButton
+                  attention
+                  message={waMessage.service(service.title.split(' in ')[0])}
+                >
                   Book on WhatsApp
                 </WhatsAppButton>
               </div>
