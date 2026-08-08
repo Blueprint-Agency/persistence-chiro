@@ -119,6 +119,31 @@ body {
     text-wrap: balance;
     letter-spacing: -0.02em;
   }
+
+  /**
+   * No orphans in body copy — a last line carrying one word ("…a lot / easier.") reads as a
+   * mistake, and this site's paragraphs are mostly two or three lines, where a single
+   * stranded word is the whole bottom line of the block.
+   *
+   * `pretty` rather than `balance`: balance evens every line and would reflow the *whole*
+   * paragraph, which on long clinical prose is both wrong and expensive. `pretty` only
+   * touches the end, pulling a word down so the last line never stands alone.
+   *
+   * Deliberately NOT solved by widening the container. The 65–75 character measure in
+   * DESIGN.md is the constraint that produced the wrap; stretching a paragraph to ~95
+   * characters to force one line would trade a readable measure for a fix that only holds
+   * at desktop and orphans again on a laptop.
+   *
+   * Progressive enhancement — browsers without `text-wrap: pretty` (Safari before 26) just
+   * get today's wrapping. Nothing depends on it, so there is no fallback to maintain.
+   */
+  p,
+  li,
+  dd,
+  figcaption,
+  blockquote {
+    text-wrap: pretty;
+  }
 }
 
 /* Visible focus is an accessibility floor, not a style choice. Gold reads on both the
