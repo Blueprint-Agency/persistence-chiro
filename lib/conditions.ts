@@ -189,6 +189,47 @@ export const conditions: Condition[] = [
         a: 'Severity alone does not rule out chiropractic care, but it does change the assessment. Some presentations need imaging or a medical referral first, and if your chiropractor believes another healthcare provider would serve you better, you will be referred. Tell us about any recent trauma, numbness, or weakness when you book.',
       },
     ],
+    keyTakeaways: [
+      {
+        q: 'What causes most back pain?',
+        a: 'Most is mechanical, meaning it comes from how the spine is being loaded and moved rather than from serious disease. That is why the assessment looks at movement before it looks for anything else.',
+      },
+      {
+        q: 'Do I need a referral to come in?',
+        a: 'No. You can book directly with us in Cheras. If your case needs imaging or a medical opinion first, we will tell you and help you arrange it.',
+      },
+      {
+        q: 'What happens on a first visit?',
+        a: 'Mostly assessment. History, then the Gonstead six steps, then an explanation in plain terms of what we found before anything is adjusted.',
+      },
+      {
+        q: 'Will I have to keep coming back?',
+        a: 'We will not quote a number of visits or sell a package at the first appointment. We review as we go and tell you when we think you no longer need us.',
+      },
+      {
+        q: 'When are you open?',
+        a: 'Seven days a week, at Sunway Velocity in Maluri. Monday to Thursday and Saturday until 8pm, Friday until 5pm, Sunday until 3pm.',
+      },
+    ],
+    qualifierConcerns: [
+      'My lower back aches after sitting or standing for a while',
+      'The pain keeps coming back every few months',
+      'I struggle to bend, lift or get out of a chair',
+      'I have had back pain for months and want it assessed properly',
+      'I am not sure whether I need a chiropractor or a physiotherapist',
+    ],
+    citations: [
+      {
+        claim:
+          'Low back pain is consistently ranked the single leading cause of years lived with disability worldwide.',
+        source: 'Global Burden of Disease Study, The Lancet',
+      },
+      {
+        claim:
+          'Clinical guidelines recommend staying active and using exercise based care for most non specific low back pain, rather than prolonged rest.',
+        source: 'NICE guideline NG59, Low back pain and sciatica',
+      },
+    ],
     draft: false,
   },
   {
@@ -268,6 +309,47 @@ export const conditions: Condition[] = [
       {
         q: 'How long does a slipped disc take to settle?',
         a: 'Recovery varies a great deal with the size of the herniation, how long symptoms have been present, and how the spine is loaded day to day. Some people notice change within weeks, others need months of consistent work. Your chiropractor will give you a timeline based on your own assessment rather than a general figure.',
+      },
+    ],
+    keyTakeaways: [
+      {
+        q: 'What is actually happening in a slipped disc?',
+        a: 'The outer wall of a disc becomes irritated or bulges, and can press on nearby nerve tissue. Nothing slips out of place, despite the name, which is why the medical term is a herniated or prolapsed disc.',
+      },
+      {
+        q: 'Does a slipped disc mean surgery?',
+        a: 'For most people, no. Surgery is generally considered where there is progressive nerve weakness, a red flag presentation, or symptoms that have not settled with conservative care.',
+      },
+      {
+        q: 'Does a scan showing a bulge explain my pain?',
+        a: 'Not on its own. Disc bulges are commonly found in people with no symptoms at all, which is why what you can and cannot do matters more than the wording on a report.',
+      },
+      {
+        q: 'Should I be resting?',
+        a: 'Usually some movement is better tolerated than complete rest, but which movements suit you depends on your presentation. That is what the assessment is for.',
+      },
+      {
+        q: 'When are you open?',
+        a: 'Seven days a week, at Sunway Velocity in Maluri. Monday to Thursday and Saturday until 8pm, Friday until 5pm, Sunday until 3pm.',
+      },
+    ],
+    qualifierConcerns: [
+      'I have back pain with a symptom running into my leg',
+      'I have been told I have a slipped or herniated disc',
+      'Sitting or bending forward makes it worse',
+      'I want to know whether surgery is my only option',
+      'I have a scan report and would like it explained',
+    ],
+    citations: [
+      {
+        claim:
+          'Imaging findings such as disc bulges and protrusions are commonly present in people without any symptoms, and increase with age.',
+        source: 'Brinjikji et al. (2015), American Journal of Neuroradiology',
+      },
+      {
+        claim:
+          'Non surgical care is the usual first approach for lumbar disc problems, with surgery considered for specific indications such as progressive neurological deficit.',
+        source: 'NICE guideline NG59, Low back pain and sciatica',
       },
     ],
     draft: false,
@@ -351,6 +433,47 @@ export const conditions: Condition[] = [
         a: 'Most people with sciatica are managed without either. Injections and surgery are typically considered where conservative care has not helped, or where there is progressive nerve weakness or a red-flag presentation. If your chiropractor feels another healthcare provider would better help you, you will be referred appropriately.',
       },
     ],
+    keyTakeaways: [
+      {
+        q: 'Is sciatica a diagnosis?',
+        a: 'Not really. It describes a symptom pattern, pain following the sciatic nerve down the leg, rather than naming a cause. Working out what is irritating the nerve is the point of assessing it.',
+      },
+      {
+        q: 'When is leg pain an emergency?',
+        a: 'Loss of bladder or bowel control, numbness around the groin or inner thighs, or weakness in a leg that is getting worse need same day medical attention rather than an appointment with us.',
+      },
+      {
+        q: 'What tends to make it worse day to day?',
+        a: 'Long periods sitting, bending forward and driving are the common aggravators. Which of them applies to you shapes what we suggest between visits.',
+      },
+      {
+        q: 'Is leg pain worse news than back pain?',
+        a: 'Not necessarily, but it does change what we screen for, which is why the assessment comes before any hands on care rather than after it.',
+      },
+      {
+        q: 'When are you open?',
+        a: 'Seven days a week, at Sunway Velocity in Maluri. Monday to Thursday and Saturday until 8pm, Friday until 5pm, Sunday until 3pm.',
+      },
+    ],
+    qualifierConcerns: [
+      'I have pain running down my leg',
+      'Sitting or driving makes it worse',
+      'I have pins and needles or numbness in my leg or foot',
+      'It started after lifting or a sudden movement',
+      'I want it assessed before I consider an injection or surgery',
+    ],
+    citations: [
+      {
+        claim:
+          'Sciatica describes a symptom pattern rather than a diagnosis, and identifying the underlying cause is what guides management.',
+        source: 'NICE guideline NG59, Low back pain and sciatica',
+      },
+      {
+        claim:
+          'Cauda equina syndrome, indicated by bladder or bowel disturbance and saddle numbness, is a surgical emergency requiring immediate assessment.',
+        source: 'NICE Clinical Knowledge Summaries, Sciatica',
+      },
+    ],
     draft: false,
   },
   {
@@ -429,6 +552,47 @@ export const conditions: Condition[] = [
       {
         q: 'Is exercise safe with scoliosis?',
         a: 'For most people, staying active is helpful, and general conditioning tends to be better tolerated than avoiding movement. What is appropriate depends on your curve and your symptoms, so the programme is set after assessment rather than from a template. If you are under orthopaedic care or wearing a brace, bring that guidance with you.',
+      },
+    ],
+    keyTakeaways: [
+      {
+        q: 'What is scoliosis?',
+        a: 'A sideways curve of the spine with an element of rotation. It most often appears during adolescent growth, and in the majority of cases no cause is ever identified.',
+      },
+      {
+        q: 'Does a curve always get worse?',
+        a: 'No. Many curves stay stable, particularly once growth has finished. Monitoring over time is how that is established rather than assumed in either direction.',
+      },
+      {
+        q: 'What can care here actually help with?',
+        a: 'Comfort, movement and the muscular symptoms that often sit alongside a curve. Changing the curve itself is a separate question and belongs with a specialist.',
+      },
+      {
+        q: 'Who else should be involved?',
+        a: 'Curves that are larger or progressing are managed by an orthopaedic or spinal specialist, and bracing decisions sit with them. We will refer where that is appropriate.',
+      },
+      {
+        q: 'When are you open?',
+        a: 'Seven days a week, at Sunway Velocity in Maluri. Monday to Thursday and Saturday until 8pm, Friday until 5pm, Sunday until 3pm.',
+      },
+    ],
+    qualifierConcerns: [
+      'I have been told I have a curve in my spine',
+      'My child or teenager has been referred for a scoliosis check',
+      'I have noticed uneven shoulders or hips',
+      'My back aches alongside the curve',
+      'I want to understand what monitoring involves',
+    ],
+    citations: [
+      {
+        claim:
+          'In most adolescent scoliosis no underlying cause is identified, which is why it is described as idiopathic.',
+        source: 'Scoliosis Research Society',
+      },
+      {
+        claim:
+          'Specialist assessment is advised for curves that present during growth or that show signs of progressing.',
+        source: 'NICE Clinical Knowledge Summaries, Scoliosis',
       },
     ],
     draft: false,
@@ -652,6 +816,54 @@ export const conditions: Condition[] = [
         a: 'That is not our decision to make, and nothing we do should be taken as a reason to change it. Medication decisions sit with the doctor who prescribed it. Bring a list of what you are taking to your first visit so we have the full picture.',
       },
     ],
+    /**
+     * Written to the reframed positioning (client instruction, 2026-08-08): the page invites
+     * people to come and find out rather than turning them away, while the one boundary line
+     * in the approach section still states that chiropractic is not the treatment for
+     * migraine. So none of these promises anything about migraine itself; they answer the
+     * questions that decide whether a consultation is worth someone's time.
+     */
+    keyTakeaways: [
+      {
+        q: 'What is the difference between migraine and a neck headache?',
+        a: 'Migraine is a neurological condition. A cervicogenic headache starts in the joints and muscles of the upper neck and is felt in the head. They can feel similar, and some people have both.',
+      },
+      {
+        q: 'Is it worth coming in if I already have a migraine diagnosis?',
+        a: 'It can be, if you also have neck symptoms. Plenty of people have both, and a consultation can tell you whether the neck is adding to the overall headache burden.',
+      },
+      {
+        q: 'What will the first visit involve?',
+        a: 'Mostly history taking, then the Gonstead assessment. We are establishing whether there is a neck contribution at all, not arriving at a headache diagnosis, which is your doctor’s job.',
+      },
+      {
+        q: 'What should I bring?',
+        a: 'A list of your medication, and if you can, a simple record of when the headaches happen and what came before them. Patterns are hard to judge from memory.',
+      },
+      {
+        q: 'When are you open?',
+        a: 'Seven days a week, at Sunway Velocity in Maluri. Monday to Thursday and Saturday until 8pm, Friday until 5pm, Sunday until 3pm.',
+      },
+    ],
+    qualifierConcerns: [
+      'My headaches start at the base of my skull',
+      'My headaches are worse after a day at a desk',
+      'I have a migraine diagnosis and neck pain as well',
+      'I want to know whether my neck is involved',
+      'I am not sure whether to see a doctor or a chiropractor',
+    ],
+    citations: [
+      {
+        claim:
+          'Cervicogenic headache is classified as a distinct headache disorder attributed to structures in the neck.',
+        source: 'International Classification of Headache Disorders, ICHD-3',
+      },
+      {
+        claim:
+          'Headache disorders are among the most common disorders of the nervous system worldwide.',
+        source: 'World Health Organization',
+      },
+    ],
     draft: false,
   },
   {
@@ -739,6 +951,47 @@ export const conditions: Condition[] = [
       {
         q: 'How long will it take to feel better?',
         a: 'It depends on which structure is involved, how long it has been going on, and how the hip is loaded day to day. Tendon-related hip pain in particular tends to be measured in months rather than weeks. Your practitioner will give you a timeline based on your own assessment rather than a general figure.',
+      },
+    ],
+    keyTakeaways: [
+      {
+        q: 'Where is true hip joint pain usually felt?',
+        a: 'Most often in the groin rather than on the outside of the hip. Pain on the outside more commonly involves the tendons there, or is being referred from the lower back.',
+      },
+      {
+        q: 'What are the common causes in adults?',
+        a: 'It varies with age and activity. Tendon irritation around the outside of the hip, joint changes that come with age, and referral from the lower back are the three we see most.',
+      },
+      {
+        q: 'Can I keep walking on it?',
+        a: 'Usually yes, within comfort. Complete rest tends to stiffen a hip rather than settle it, though how much to do depends on what is driving the pain.',
+      },
+      {
+        q: 'Do I need a referral to come in?',
+        a: 'No. You can book directly. If imaging or a medical opinion is needed first, we will tell you and help you arrange it rather than press on regardless.',
+      },
+      {
+        q: 'When are you open?',
+        a: 'Seven days a week, at Sunway Velocity in Maluri. Monday to Thursday and Saturday until 8pm, Friday until 5pm, Sunday until 3pm.',
+      },
+    ],
+    qualifierConcerns: [
+      'I have pain in my groin or on the outside of my hip',
+      'It hurts to walk, climb stairs or get out of a car',
+      'I cannot lie on that side at night',
+      'I am not sure whether it is my hip or my lower back',
+      'I have been told I have hip arthritis',
+    ],
+    citations: [
+      {
+        claim:
+          'Pain arising from the hip joint itself is commonly felt in the groin, whereas pain on the outside of the hip more often involves the tendons around the greater trochanter.',
+        source: 'British Journal of Sports Medicine',
+      },
+      {
+        claim:
+          'Exercise is recommended as a core part of managing hip osteoarthritis, alongside education and, where relevant, weight management.',
+        source: 'NICE guideline NG226, Osteoarthritis in over 16s',
       },
     ],
     draft: false,
@@ -831,6 +1084,47 @@ export const conditions: Condition[] = [
       {
         q: 'How do I stop it coming back?',
         a: 'Mostly by changing what caused it, which is why the desk setup and the endurance programme are not optional extras. Hands-on work takes load off irritated tissue, and the tissue goes straight back under load as soon as you sit down in the same position again. In practice: centre your monitor, alternate which shoulder carries your bag, and stand and move every 30 to 45 minutes.',
+      },
+    ],
+    keyTakeaways: [
+      {
+        q: 'How common is a small difference?',
+        a: 'Very. Most people are slightly asymmetric, and a difference you can see in a photograph is not on its own a sign that something is wrong.',
+      },
+      {
+        q: 'When is it worth having assessed?',
+        a: 'When it comes with pain or stiffness, when you have noticed it changing, or when it appears in a child or teenager during a growth spurt.',
+      },
+      {
+        q: 'What usually causes it?',
+        a: 'Habit and loading more often than structure. Carrying a bag on one side, a dominant arm, a screen set off centre, or one stiff segment doing less work than the other side.',
+      },
+      {
+        q: 'What can realistically change?',
+        a: 'Comfort, and how easily you hold a level position, often improve. A fixed structural difference is another matter, and your practitioner will say plainly which one you have.',
+      },
+      {
+        q: 'When are you open?',
+        a: 'Seven days a week, at Sunway Velocity in Maluri. Monday to Thursday and Saturday until 8pm, Friday until 5pm, Sunday until 3pm.',
+      },
+    ],
+    qualifierConcerns: [
+      'One of my shoulders sits higher than the other',
+      'My neck or shoulder aches on one side',
+      'I noticed it in photographs',
+      'I carry a bag or work on one side all day',
+      'I want to know whether it means scoliosis',
+    ],
+    citations: [
+      {
+        claim:
+          'Mild postural asymmetry is common in the general population and is not by itself an indication of underlying disease.',
+        source: 'Chartered Society of Physiotherapy guidance',
+      },
+      {
+        claim:
+          'Screening for adolescent idiopathic scoliosis looks for trunk and rib asymmetry on forward bending rather than shoulder height alone.',
+        source: 'Scoliosis Research Society',
       },
     ],
     draft: false,
