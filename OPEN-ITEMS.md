@@ -11,21 +11,7 @@ Last updated **2026-08-08**, after the services and conditions revamp.
 
 ---
 
-## 1. Condition reviewer bylines — needs Valerie Na
-
-`lastReviewed` is unset on all eight entries in `lib/conditions.ts`, so no "Reviewed by"
-byline and no `reviewedBy` schema renders anywhere under `/conditions`.
-
-This is deliberate. The field asserts that a named, registered practitioner read that page
-on that date, and no such review has happened. Setting it to make the byline appear would
-fabricate an E-E-A-T signal — the same reasoning behind `registrationsVerified` and
-`googleReviews.verified` in `lib/clinic.ts`.
-
-**One confirmation from Valerie that she has read the clinical copy turns the byline and the
-schema on for all eight pages at once.** Cheapest remaining E-E-A-T win on the site, and it
-costs a conversation rather than a commit.
-
-## 2. Physiotherapist names — blocked until probation ends
+## 1. Physiotherapist names — blocked until probation ends
 
 The clinic's physiotherapists are within their probation period and are not to be named on
 the site yet (client, 2026-08-08). **Chiropractors are not licensed to deliver
@@ -44,30 +30,28 @@ When the list arrives:
    and default heading.
 4. Drop `practitionersWithheld` from the physiotherapy entry.
 
-## 3. Three other team sections — needs a scope-of-practice answer
+## 2. Three other team sections — needs a scope-of-practice answer
 
 `/services/dry-needling`, `/services/sports-injury-rehabilitation` and
 `/services/posture-correction` still render "Meet your chiropractors". If physiotherapists
-deliver any of those, the same misrepresentation as item 2 applies.
+deliver any of those, the same misrepresentation as item 1 applies.
 
 **Ask which of the three are physio-delivered**, then set `practitionersWithheld` on those.
 One line per page now the field exists.
 
-## 4. Condition hero photography — needs assets
+## 3. Per-condition photography — needs assets
 
-`PageHero` is text-only, so all eight condition pages fall back to the sitewide shopfront OG
-card when shared. `heroImage` / `ogImage` are declared on the `Condition` type but left unset
-on purpose, because pointing them at an image nothing renders would be a lie in the data.
+Conditions now have a hero slot (`<ConditionHero>`) and every page shares one honest fallback,
+the reception photograph, behind a scrim. What is still missing is **per-condition imagery**:
 
-Two things unblock together when real photos exist:
-
-- Give conditions a hero slot (the shared `<ServiceHero>` in `components/service.tsx` is the
-  obvious thing to reuse), then generate 1200x630 OG crops from each hero.
+- Set `heroImage` on individual conditions to override the shared fallback, then generate a
+  1200x630 `ogImage` crop from each. Until then all eight share the sitewide OG card, so a
+  link to the sciatica page and a link to the migraine page preview identically.
 - Replace the animated `ConcernIllustration` diagrams on the service pages. The client finds
   them weak and prefers photographs, as on `/services/dry-needling`. The `Outcome` type in
   `lib/services.ts` already supports `image`, so that swap is **data-only** once photos land.
 
-## 5. Google Search Console access — needs the clinic
+## 4. Google Search Console access — needs the clinic
 
 The connected GSC account has Five Clinic, Vatti, Kaiteki and Yoga Sadhana. **Persistence is
 not on it.**
@@ -88,7 +72,7 @@ data:
 
 **Getting the clinic to grant GSC access unblocks all four retargeting decisions at once.**
 
-## 6. Sports massage — needs a yes or no from the clinic
+## 5. Sports massage — needs a yes or no from the clinic
 
 `sports massage kl` runs **170/mo at difficulty 8 with commercial intent**, and competitors
 bid on it. It is the best untapped keyword found anywhere on this site.
@@ -104,7 +88,7 @@ move.** If it does not, the page stays as it is and earns its place through inte
 rather than search — low volume is not low value, since sprains still walk in via
 `physio cheras`, the Business Profile and the condition pages.
 
-## 7. Pricing — a client decision, not an SEO one
+## 6. Pricing — a client decision, not an SEO one
 
 Pricing stays off the site on volume grounds. Every pricing keyword measured between 0 and
 50/mo in Malaysia, and the only term clearing 50 was `home physiotherapy price`, which is a

@@ -411,6 +411,52 @@ body {
 }
 
 /**
+ * Condition hero parallax. See components/ConditionHero.tsx.
+ *
+ * NO JAVASCRIPT, and deliberately not the two obvious ways of doing it.
+ *
+ * `background-attachment: fixed` is the classic one-liner, and it is broken on iOS Safari,
+ * where it silently degrades to a static background. It also forces the browser to repaint a
+ * full-viewport image on every scroll frame, which is exactly the jank the preloader comment
+ * further up this file was written about.
+ *
+ * A scroll listener would work everywhere and would make this a client component. The site is
+ * static by default (AGENTS.md) and a decorative drift is not a good enough reason to ship
+ * JS and a hydration boundary onto eight pages.
+ *
+ * So: a scroll-driven animation. The transform is handed to the compositor, costs nothing per
+ * frame, and needs no script. Where `animation-timeline` is unsupported the @supports block
+ * never applies and the hero renders as a still photograph under the scrim, which is a
+ * perfectly good hero rather than a broken one. `prefers-reduced-motion` is honoured
+ * explicitly here as well as by the global rule, because a background that moves under text
+ * is precisely what that preference exists to stop.
+ *
+ * The layer is scaled past the section on BOTH axes so the vertical drift can never expose an
+ * edge. 1.18 against a ±6% translate leaves margin at every viewport ratio.
+ */
+.hero-parallax__layer {
+  transform: scale(1.18);
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-parallax__layer {
+      animation: pc-hero-parallax linear both;
+      animation-timeline: view();
+    }
+  }
+}
+
+@keyframes pc-hero-parallax {
+  from {
+    transform: translate3d(0, -6%, 0) scale(1.18);
+  }
+  to {
+    transform: translate3d(0, 6%, 0) scale(1.18);
+  }
+}
+
+/**
  * Attention motion for the primary WhatsApp CTA. Opt in with `attention` on WhatsAppButton;
  * it is NOT on the button by default, because the button is a sitewide primitive and a
  * shaking header would be intolerable.

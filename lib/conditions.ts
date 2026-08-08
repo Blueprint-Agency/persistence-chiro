@@ -91,6 +91,11 @@ export type Condition = {
    * registered practitioner read this page on that date. Unset means no claim is made, which
    * is the correct state until the clinic confirms a review actually happened — the same
    * contract as `registrationsVerified` in lib/clinic.ts and `googleReviews.verified`.
+   *
+   * CONFIRMED 2026-08-08: the client confirmed Valerie Na has reviewed the clinical copy on
+   * all eight condition pages, so all eight now carry that date and the byline and
+   * reviewedBy schema render. If the copy on a page changes materially, the honest move is
+   * to have it re-read and move the date, not to leave a stale one standing.
    */
   lastReviewed?: string
   /**
@@ -230,6 +235,7 @@ export const conditions: Condition[] = [
         source: 'NICE guideline NG59, Low back pain and sciatica',
       },
     ],
+    lastReviewed: '2026-08-08',
     draft: false,
   },
   {
@@ -352,6 +358,7 @@ export const conditions: Condition[] = [
         source: 'NICE guideline NG59, Low back pain and sciatica',
       },
     ],
+    lastReviewed: '2026-08-08',
     draft: false,
   },
   {
@@ -474,6 +481,7 @@ export const conditions: Condition[] = [
         source: 'NICE Clinical Knowledge Summaries, Sciatica',
       },
     ],
+    lastReviewed: '2026-08-08',
     draft: false,
   },
   {
@@ -595,6 +603,7 @@ export const conditions: Condition[] = [
         source: 'NICE Clinical Knowledge Summaries, Scoliosis',
       },
     ],
+    lastReviewed: '2026-08-08',
     draft: false,
   },
   {
@@ -726,6 +735,7 @@ export const conditions: Condition[] = [
         source: 'NICE Clinical Knowledge Summaries, Neck pain',
       },
     ],
+    lastReviewed: '2026-08-08',
     draft: false,
   },
   {
@@ -864,6 +874,7 @@ export const conditions: Condition[] = [
         source: 'World Health Organization',
       },
     ],
+    lastReviewed: '2026-08-08',
     draft: false,
   },
   {
@@ -994,6 +1005,7 @@ export const conditions: Condition[] = [
         source: 'NICE guideline NG226, Osteoarthritis in over 16s',
       },
     ],
+    lastReviewed: '2026-08-08',
     draft: false,
   },
   {
@@ -1127,6 +1139,7 @@ export const conditions: Condition[] = [
         source: 'Scoliosis Research Society',
       },
     ],
+    lastReviewed: '2026-08-08',
     draft: false,
   },
 ]

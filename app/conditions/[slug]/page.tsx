@@ -13,20 +13,33 @@ import {
   reviewedMedicalWebPage,
 } from '@/lib/schema'
 import { pageMetadata } from '@/lib/seo'
-import { CheckIcon, CtaBand, Eyebrow, WhatsAppButton, PageHero, Vertebrae } from '@/components/ui'
+import { CheckIcon, CtaBand, Eyebrow, WhatsAppButton, Vertebrae } from '@/components/ui'
 import {
   KeyTakeaways,
-  RatingBadge,
   References,
   ReviewedBy,
   StickyCta,
   TrustBar,
 } from '@/components/service'
+import { ConditionHero } from '@/components/ConditionHero'
 import { GoogleReviews } from '@/components/GoogleReviews'
 import { ServiceQualifier } from '@/components/ServiceQualifier'
 import { waMessage } from '@/lib/whatsapp'
 
 const reviewer = practitionerBySlug('valerie-na')!
+
+/**
+ * Shared hero photograph for every condition page until per-condition photography exists.
+ *
+ * The reception rather than a clinical room on purpose. Someone arriving on a symptom page
+ * from search is deciding whether this is a real place they could walk into, and the desk,
+ * the brand mark and the seating answer that question in a way an empty adjustment room does
+ * not. Set `heroImage` on an individual condition to override it.
+ */
+const CONDITION_HERO_FALLBACK = {
+  src: '/img/clinic-reception.webp',
+  alt: 'Reception desk at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
+}
 
 // Only published conditions get built. A draft page has no route, so it can't be
 // crawled or indexed while its clinical copy is still missing.
@@ -103,13 +116,16 @@ export default async function ConditionPage({ params }: Props) {
       />
 
       {/* The hero carries `intro`, not metaDescription — the meta line is written for the
-          SERP, this one is written for someone who has already arrived and is in pain. */}
-      <PageHero eyebrow="Conditions" title={condition.title} intro={condition.intro}>
-        {/* The rating was on every service page and no condition page, which is backwards:
-            conditions are where symptom-intent search lands, so they are the first thing a
-            stranger sees. Renders nothing unless googleReviews.verified is true. */}
-        <RatingBadge tone="light" />
-      </PageHero>
+          SERP, this one is written for someone who has already arrived and is in pain.
+          `heroImage` falls back to the shared reception photograph: conditions have no
+          per-page photography yet, and a generic honest shot of the actual clinic beats the
+          flat colour field that was here before. */}
+      <ConditionHero
+        title={condition.title}
+        intro={condition.intro}
+        image={condition.heroImage ?? CONDITION_HERO_FALLBACK}
+        message={waMessage.condition(condition.title.split(' in ')[0])}
+      />
 
       <TrustBar />
 
