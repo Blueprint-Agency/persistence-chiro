@@ -41,6 +41,7 @@ path. There is no booking logic in this codebase and there shouldn't be — CTAs
 | `seo-strategy.md` | Keyword targets, competitor gap, 5-phase plan, 90-day KPIs |
 | `proposed-site-architecture.md` | Target URL map, redirects, internal linking, schema per template |
 | `current-url-structure.md` | What exists on Wix today — the migration source |
+| `OPEN-ITEMS.md` | Work blocked on the client, an asset or an access grant — read before proposing any of it as new |
 
 **Note:** `proposed-site-architecture.md` ends with a "Wix implementation constraint"
 about flat slugs and CMS dynamic pages. That constraint does not apply here — Next.js
