@@ -199,9 +199,14 @@ export const hoursSummary = (() => {
  * `true` means the clinic confirmed those exact numbers for that exact person; only then do
  * they render on the cards, the profile page and the Person schema.
  *
- * CONFIRMED 2026-07-28 by the clinic: Valerie Na only. The other two are still the
- * card-by-card read of the Wix page — check them against the ACM register and the MOH T&CM
- * register before flipping their flag.
+ * ALL THREE ARE NOW CONFIRMED and rendering: Valerie Na on 2026-07-28, Kee Shan Lim and Rynn
+ * Hoh on 2026-08-09, when the client sent their two cards side by side and said which was
+ * whose. That is what the gate was for — the numbers themselves were never in doubt, only the
+ * pairing, and a side-by-side is the one form of evidence the interleaved markup could not
+ * corrupt. Note the shape it confirmed is asymmetric: Kee Shan holds both an ACM and an MOH
+ * number, Rynn holds MOH only.
+ *
+ * The gate stays, per practitioner, for whoever arrives next.
  *
  * `label` is the full wording the registering body uses, for the profile page. `short` is the
  * card-sized abbreviation — the MOH title alone is longer than a team card is wide.
@@ -247,13 +252,45 @@ export const founderBio = [
  * a card that 404s is worse than a short page.
  *
  * Indexing is a separate question from routing, and it keys off `bio` rather than a
- * hand-set flag — the two cannot drift. Only Valerie has a bio and credentials on the
- * live site; the other two have neither, anywhere, and inventing education or experience
- * for a registered healthcare practitioner is not an option. So their pages exist and are
- * reachable, but carry `robots: noindex` and stay out of the sitemap until the clinic
- * supplies real bios — at which point they start indexing on their own, no flag to flip.
+ * hand-set flag — the two cannot drift. All three now have one: Valerie's came off the live
+ * site, and the clinic supplied Kee Shan's and Rynn's on 2026-08-09, so all three pages index
+ * and sit in the sitemap. That happened on its own when the bios landed; there was no flag to
+ * flip, which is the point of deriving it.
+ *
+ * Keep it derived. If a fourth practitioner arrives without a bio, inventing education or
+ * experience for a registered healthcare practitioner is still not an option — their page
+ * exists, stays reachable, and goes `noindex` until real copy arrives.
  */
 export const hasBio = (p: { bio: readonly string[] }) => p.bio.length > 0
+
+/**
+ * Associate chiropractor bios. Supplied by the clinic 2026-08-09, published close to verbatim.
+ *
+ * Two deliberate departures from the text as it arrived:
+ *
+ * 1. "Whether treating office workers with neck and back pain" is now "Whether caring for".
+ *    The banned-word rule in AGENTS.md covers everything a patient sees, and a bio is not a
+ *    disclaimer, so it gets no carve-out. Nothing else in either bio used the word.
+ * 2. The em dash before "without relying solely on medication" is a comma. Rendered copy on
+ *    this site does not take dashes.
+ *
+ * `role` stays plain "Chiropractor" for all three. Kee Shan's "Associate Chiropractor" opens
+ * his bio instead, which is where the client put "founder and director" on 2026-08-01 for the
+ * same reason: a business title next to a name reads as a clinical rank.
+ */
+export const keeShanBio = [
+  'Kee Shan Lim is an Associate Chiropractor at Persistence Chiropractic Care who graduated with a Bachelor of Science (Hons) in Chiropractic from the International Medical University (IMU), Malaysia.',
+  'Driven by the belief that everyone deserves to live a healthier and happier life, Kee Shan chose chiropractic because of its natural, hands-on approach to helping people move better, recover from pain, and improve their overall quality of life, without relying solely on medication.',
+  'Committed to lifelong learning, Kee Shan regularly attends professional seminars, workshops, and continuing education programmes in both Malaysia and Australia to further refine his clinical skills and stay up to date with the latest developments in chiropractic care. His goal is to provide patient-centred care for individuals of all ages, occupations, and activity levels.',
+  'Whether caring for office workers with neck and back pain, active individuals recovering from sports-related injuries, or those simply looking to maintain a healthy spine, Kee Shan believes that every patient deserves to be heard, understood, and cared for with sincerity.',
+  'As he continues to grow in his chiropractic career, Kee Shan remains dedicated to delivering high-quality care and helping more people achieve healthier, more active lives through chiropractic.',
+]
+
+export const rynnBio = [
+  'Rynn is a sports enthusiast and chiropractor with a strong interest in helping individuals move better, perform better, and stay active. His academic background spans neuroscience and chiropractic, having studied at a renowned university in Melbourne and in Malaysia.',
+  'His passion for chiropractic grew from his interest in the human anatomy, biomechanics, and the relationship between the nervous system and physical performance. As someone who enjoys sports himself, Rynn developed a strong interest in working with athletes and active individuals, helping them better understand their bodies and manage the physical demands of their sport and daily activities.',
+  'He believes that chiropractic care should not only focus on relieving symptoms, but also on understanding the factors contributing to a person’s condition. His approach is centred around helping patients understand their bodies, improve their movement, and take an active role in their recovery and long-term physical health.',
+]
 
 /**
  * ⚠️ CHIROPRACTORS ONLY. NO PHYSIOTHERAPIST IS LISTED, AND ONE MUST NOT BE INVENTED.
@@ -299,16 +336,17 @@ export const practitioners = [
     role: 'Chiropractor',
     slug: 'kee-shan-lim',
     photo: '/img/kee-shan-lim.webp',
-    credentials: '',
-    // Unconfirmed — read off the interleaved Wix cards, not supplied by the clinic.
+    // From the bio the clinic supplied 2026-08-09, abbreviated to match Valerie's format.
+    credentials: 'BSc (Hons) Chiropractic, International Medical University (IMU), Malaysia',
+    // CONFIRMED 2026-08-09: the client sent the two cards side by side and named which is
+    // whose, which is the one thing the interleaved markup could not settle.
     registrations: [acmNo('ACM-2023-508'), mohTcmNo('CP-PPB2025/18923')],
-    registrationsVerified: false,
+    registrationsVerified: true,
     memberships: [
       'Gonstead Chiropractic Society Australia',
       'Association of Chiropractic Malaysia',
     ],
-    // No bio or credentials exist for them on the live site or anywhere in this repo.
-    bio: [],
+    bio: keeShanBio,
   },
   {
     // No ACM number appears on this card — confirm whether one exists.
@@ -316,16 +354,42 @@ export const practitioners = [
     role: 'Chiropractor',
     slug: 'rynn-hoh',
     photo: '/img/rynn-hoh.webp',
+    /**
+     * STILL EMPTY ON PURPOSE. The bio the clinic supplied 2026-08-09 says his background
+     * "spans neuroscience and chiropractic, having studied at a renowned university in
+     * Melbourne and in Malaysia" — no degree, no institution. This field holds a named
+     * qualification from a named university and feeds `description` in the Person schema, so
+     * filling it means guessing which degree and which Melbourne university, for a registered
+     * healthcare practitioner. The bio carries what we were actually told instead.
+     *
+     * ASK THE CLINIC for the degree titles and the two universities; then this is one line.
+     */
     credentials: '',
-    // Unconfirmed — read off the interleaved Wix cards, not supplied by the clinic.
+    /**
+     * CONFIRMED 2026-08-09 alongside Kee Shan's, from the same side-by-side.
+     *
+     * ONE ENTRY, NOT TWO, AND THAT IS THE CONFIRMED STATE. His card carries the MOH T&CM
+     * registration and no ACM number, where Kee Shan's carries both. Do not "restore" an ACM
+     * number here from a stray extraction — the absence was checked, not overlooked. See the
+     * note on his memberships below.
+     */
     registrations: [mohTcmNo('CP-PP2026/15619')],
-    registrationsVerified: false,
+    registrationsVerified: true,
+    /**
+     * ⚠️ THIS LIST CLAIMS ACM MEMBERSHIP WHILE THE REGISTRATIONS ABOVE CARRY NO ACM NUMBER.
+     *
+     * Not impossible — a card need not print every number — but it is the one internal
+     * inconsistency left on this page, and `memberships` has no verification gate the way
+     * `registrations` does, so nothing else catches it. Both lines came off the same Wix read;
+     * only the numbers were confirmed on 2026-08-09.
+     *
+     * ASK whether Rynn holds ACM membership. If yes, get the number. If no, delete the line.
+     */
     memberships: [
       'Gonstead Chiropractic Society Australia',
       'Association of Chiropractic Malaysia',
     ],
-    // No bio or credentials exist for them on the live site or anywhere in this repo.
-    bio: [],
+    bio: rynnBio,
   },
 ] as const
 

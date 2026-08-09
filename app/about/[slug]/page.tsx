@@ -42,8 +42,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     // Deliberately the sitewide shopfront card, not p.photo: the headshots are portrait
     // 900x1125, and a 1.91:1 social crop of a face cuts it off at the chin.
 
-    // Reachable, but not submitted for indexing until there's a real bio to index.
-    // Derived from the bio itself so it can't drift — see lib/clinic.ts.
+    // Reachable, but not submitted for indexing until there's a real bio to index. Derived
+    // from the bio itself so it can't drift — see lib/clinic.ts. All three currently pass.
     noindex: !hasBio(p),
   })
 }

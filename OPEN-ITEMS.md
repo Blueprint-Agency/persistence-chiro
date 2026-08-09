@@ -4,7 +4,7 @@ Work that is **blocked on a person, an asset or an access grant** — not on cod
 item below has its reasoning recorded in a comment next to the thing it governs; this file
 exists so the list can be found in one place instead of stumbled upon in four.
 
-Last updated **2026-08-08**, after the services and conditions revamp.
+Last updated **2026-08-09**, when the two associate bios landed.
 
 > Keep this file honest. When an item is resolved, delete it here *and* remove the
 > corresponding gate or comment in the code. A stale blocker is worse than no list.
@@ -88,7 +88,36 @@ move.** If it does not, the page stays as it is and earns its place through inte
 rather than search — low volume is not low value, since sprains still walk in via
 `physio cheras`, the Business Profile and the condition pages.
 
-## 6. Pricing — a client decision, not an SEO one
+## 6. Rynn Hoh's qualifications — needs two names from the clinic
+
+The bio supplied 2026-08-09 unblocked his profile page, which now indexes. What it does not
+give is a qualification: it says his background "spans neuroscience and chiropractic, having
+studied at a renowned university in Melbourne and in Malaysia" — no degree, no institution.
+
+So `credentials` in `lib/clinic.ts` stays empty for him alone, and his card and profile show
+no credentials line where the other two do. That field also feeds `description` in his Person
+schema, which is the one thing on a YMYL profile page a search engine reads as a qualification
+claim, so a guess there is worse than a gap.
+
+**Ask for the degree titles and both universities.** One line each, then it renders everywhere
+at once. His registrations are a separate gate — see item 7.
+
+## 7. Rynn Hoh's ACM membership — one yes or no
+
+Registrations are **resolved**: the client sent Kee Shan's and Rynn's cards side by side on
+2026-08-09 and named which was whose, so `registrationsVerified` is now `true` for all three
+and every number renders.
+
+What that confirmed is asymmetric. Kee Shan holds an ACM number and an MOH T&CM number; **Rynn
+holds MOH only**. Yet his `memberships` array still claims the Association of Chiropractic
+Malaysia. Both lines came off the same Wix read and only the numbers were confirmed, and unlike
+`registrations`, `memberships` has no verification gate — so nothing in the code catches this.
+
+Not impossible; a card need not print every number. But it is the last internal inconsistency
+on the about pages. **Ask whether Rynn holds ACM membership** — if yes, get the number; if no,
+delete the line.
+
+## 8. Pricing — a client decision, not an SEO one
 
 Pricing stays off the site on volume grounds. Every pricing keyword measured between 0 and
 50/mo in Malaysia, and the only term clearing 50 was `home physiotherapy price`, which is a

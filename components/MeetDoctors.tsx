@@ -9,17 +9,17 @@ import { Eyebrow, RegistrationList, Vertebrae } from '@/components/ui'
  * you. On a YMYL medical page, who is doing the work is a first-order trust question, and it
  * was previously answerable only by leaving the page.
  *
- * WHAT THIS DOES NOT DO: invent biographies. Only Valerie Na has published credentials
- * and a bio; the live about-us page carries nothing for the other two beyond role,
- * memberships and a registration number, and fabricating experience for a registered
- * healthcare practitioner is not an option. So every card shows the same verifiable fields
- * and links to the full profile — the depth differs there, honestly, rather than being
- * padded here.
+ * WHAT THIS DOES NOT DO: invent biographies. Every card shows the same verifiable fields and
+ * links to the full profile, where the depth differs honestly rather than being padded here.
+ * All three now have a real bio — the clinic supplied Kee Shan's and Rynn's on 2026-08-09 —
+ * but Rynn's `credentials` line is still blank because what we were given names no degree and
+ * no university, and fabricating either for a registered healthcare practitioner is not an
+ * option. The card simply omits the line; see lib/clinic.ts.
  *
- * Registration numbers show only for practitioners the clinic has confirmed, for the reason
- * set out in lib/clinic.ts: two extractions disagreed about which number belongs to whom, and
- * the live page interleaves the cards so it cannot be settled by reading. A mis-assigned
- * professional registration is worse than an absent one.
+ * Registration numbers show only for practitioners the clinic has confirmed — all three, since
+ * 2026-08-09. The gate stays for whoever arrives next, for the reason set out in lib/clinic.ts:
+ * a mis-assigned professional registration is worse than an absent one. Expect an uneven number
+ * of lines per card; Rynn Hoh holds an MOH registration and no ACM one.
  */
 export function MeetDoctors({ heading = 'The chiropractors who would look after you' }: { heading?: string }) {
   return (
