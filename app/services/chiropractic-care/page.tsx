@@ -229,10 +229,26 @@ export default function ChiropracticPage() {
         </div>
       </section>
 
+      {/* ----------------------------------------------------------- Qualifier */}
+      {/* Same placement as the templated service pages — high, on the aqua ground, right
+          after the method rather than behind the citations.
+
+          MOVED ABOVE THE PHOTOGRAPHS 2026-08-09 at the client's request, which also puts it
+          directly after the method here as it is on every templated page. The ask converts
+          a reader while they still have the six steps in mind, instead of making them scroll
+          past two outcome photographs first. */}
+      {service.qualifierConcerns && service.qualifierConcerns.length > 0 && (
+        <section className="border-y border-line bg-brand-aqua/40">
+          <div className="mx-auto max-w-3xl px-4 py-16 lg:py-24">
+            <ServiceQualifier serviceName="chiropractic care" concerns={service.qualifierConcerns} />
+          </div>
+        </section>
+      )}
+
       {/* ------------------------------------------------- Patient photographs */}
-      {/* Sits after the six steps deliberately. Before the method is explained the pairs are
-          just an assertion; after it, they illustrate the thing the reader has just been
-          walked through.
+      {/* Still after the six steps, which is the placement that matters. Before the method is
+          explained the pairs are just an assertion; after it, they illustrate the thing the
+          reader has just been walked through. The qualifier now sits between the two.
 
           ⚠️ These are the only outcome claims anywhere on the site, and an image makes its
           claim silently — `lib/content.test.ts` reads copy and would wave through any
@@ -260,32 +276,43 @@ export default function ChiropracticPage() {
             so the two photographs can be compared against something fixed.
           </p>
 
-          <figure className="mt-10 space-y-6">
-            {[
-              {
-                src: '/img/before-after-posture.webp',
-                alt: 'Back view of the same patient in two photographs at Persistence Chiropractic Care in Cheras, Kuala Lumpur, a vertical red line in each marking the position of the head and spine',
-              },
-              {
-                src: '/img/before-after-spinal-curve.webp',
-                alt: 'Back view of the same patient in two photographs at Persistence Chiropractic Care in Cheras, Kuala Lumpur, a dashed line in each following the line of the spine from the neck downwards',
-              },
-            ].map((pair) => (
-              <div
-                key={pair.src}
-                className="overflow-hidden rounded-3xl border border-line shadow-ambient"
-              >
-                <Image
-                  src={pair.src}
-                  alt={pair.alt}
-                  width={1080}
-                  height={1350}
-                  sizes="(max-width: 768px) 100vw, 640px"
-                  className="w-full"
-                />
-              </div>
-            ))}
-            <figcaption className="text-sm leading-relaxed text-ink-muted">
+          <figure className="mt-10">
+            {/* Both pairs on one row, at the client's request 2026-08-09. They stacked before,
+                which made the section two full-width photographs tall on a laptop and pushed
+                the disclaimer below the fold of the second one — the caption has to be visible
+                with the images it qualifies, not scrolled to.
+
+                Each file is already a composite: two photographs plus a Before/After band. So
+                one row is four photographs wide and they are genuinely small at this measure.
+                That is the trade the single row costs. Stacking returns at `sm`, where two
+                composites side by side would be unreadable rather than merely small. */}
+            <div className="grid gap-6 sm:grid-cols-2">
+              {[
+                {
+                  src: '/img/before-after-posture.webp',
+                  alt: 'Back view of the same patient in two photographs at Persistence Chiropractic Care in Cheras, Kuala Lumpur, a vertical red line in each marking the position of the head and spine',
+                },
+                {
+                  src: '/img/before-after-spinal-curve.webp',
+                  alt: 'Back view of the same patient in two photographs at Persistence Chiropractic Care in Cheras, Kuala Lumpur, a dashed line in each following the line of the spine from the neck downwards',
+                },
+              ].map((pair) => (
+                <div
+                  key={pair.src}
+                  className="overflow-hidden rounded-3xl border border-line shadow-ambient"
+                >
+                  <Image
+                    src={pair.src}
+                    alt={pair.alt}
+                    width={1080}
+                    height={1350}
+                    sizes="(max-width: 640px) 100vw, 360px"
+                    className="w-full"
+                  />
+                </div>
+              ))}
+            </div>
+            <figcaption className="mt-6 text-sm leading-relaxed text-ink-muted">
               Two people&rsquo;s photographs, not a prediction of yours. Each pair shows how
               someone stood in front of a camera on two different days, which is not the same
               thing as a measurement, and posture differs from person to person and from visit
@@ -295,17 +322,6 @@ export default function ChiropracticPage() {
           </figure>
         </div>
       </section>
-
-      {/* ----------------------------------------------------------- Qualifier */}
-      {/* Same placement as the templated service pages — high, on the aqua ground, right
-          after the method rather than behind the citations. */}
-      {service.qualifierConcerns && service.qualifierConcerns.length > 0 && (
-        <section className="border-y border-line bg-brand-aqua/40">
-          <div className="mx-auto max-w-3xl px-4 py-16 lg:py-24">
-            <ServiceQualifier serviceName="chiropractic care" concerns={service.qualifierConcerns} />
-          </div>
-        </section>
-      )}
 
       {/* ----------------------------------------------------- Long-form depth */}
       {/* Also previously unrendered on this route. The safety block in particular was written,
