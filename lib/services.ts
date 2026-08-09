@@ -196,6 +196,24 @@ export type Service = {
    * Excluded from generateStaticParams so the two routes can't collide at build time.
    */
   dedicatedRoute?: boolean
+  /**
+   * Marker appended to this service's row in the nav dropdown, and nowhere else.
+   *
+   * IT LABELS THE MENU. IT DOES NOT GATE THE PAGE. A service carrying this keeps a fully
+   * live, indexed route with a working booking CTA, which is the confirmed intent for dry
+   * needling (client, 2026-08-09: the page should be live and indexed, the badge is a title
+   * for now). Do not add a `noindex`, pull the sitemap entry or soften the CTA to "match"
+   * the badge — that would undo the decision.
+   *
+   * The field that actually withholds a service is `draft`, which pulls the page, the nav
+   * row and the sitemap entry together. If a service ever genuinely is not bookable, reach
+   * for that one, not this.
+   *
+   * Lives on the service rather than in lib/nav.ts on purpose: nav labels are derived from
+   * the content modules so the two cannot disagree, and a slug matched by hand in the nav
+   * would be the first thing to rot when a slug changes.
+   */
+  navBadge?: string
   draft: boolean
 }
 
@@ -243,12 +261,26 @@ export const services: Service[] = [
       'A precise adjustment rather than a general crack',
       'Wanting to know whether the Gonstead approach suits your case',
     ],
+    /**
+     * Ordered pain → specific population → no pain at all, ending on the catch-all. The
+     * athlete and wellness rows were added 2026-08-09 at the client's request, and they are
+     * the two that widen the page beyond people who are already hurting: the list previously
+     * assumed a problem in four rows out of five, which quietly told a healthy visitor this
+     * page was not for them.
+     *
+     * Both are phrased as what the READER wants, not as what care delivers. "I am an athlete
+     * and want to manage an injury or perform better" is a person describing themselves;
+     * "chiropractic improves athletic performance" would be an outcome claim, and this list
+     * sits on a YMYL page. Keep any future row in the first voice.
+     */
     qualifierConcerns: [
       'I have back, neck or joint pain',
       'My problem keeps returning',
       'I want to understand what is actually driving it',
-      'I am curious whether chiropractic suits my case',
+      'I am an athlete and want to manage an injury or perform better',
       'I am pregnant or bringing a child and want a gentle assessment',
+      'I do not have a specific problem but am interested in wellness care',
+      'I am curious whether chiropractic suits my case',
     ],
     lastReviewed: '2026-07-26',
     /**
@@ -523,6 +555,9 @@ export const services: Service[] = [
         a: 'It depends on what the assessment finds, and the two are often used together rather than as alternatives. Broadly, needling addresses tight, irritable muscle while an adjustment addresses how a spinal joint moves. If you are unsure, message us your main concern and we will point you to the right starting point.',
       },
     ],
+    // Client request 2026-08-09, menu only and deliberately so: the page stays live, indexed
+    // and bookable, and "(Coming Soon)" is a title for now. See `navBadge` on the type.
+    navBadge: '(Coming Soon)',
     draft: false,
   },
   {

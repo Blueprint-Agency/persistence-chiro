@@ -12,6 +12,16 @@ export type NavItem = {
   children?: NavItem[]
   /** Off-site. Renders as a plain <a> with target/rel rather than a client-routed <Link>. */
   external?: boolean
+  /**
+   * Small marker after the label, e.g. "(Coming Soon)". Rendered verbatim, parentheses and
+   * all, so what is written here is exactly what appears. Submenu rows only — a top-level
+   * item has no room for one.
+   *
+   * It sits inside the link, so it is part of the accessible name and a screen reader reads
+   * "Integrative Dry Needling (Coming Soon)" as one destination rather than announcing a
+   * decoration separately.
+   */
+  badge?: string
 }
 
 export const mainNav = (): NavItem[] => [
@@ -21,6 +31,7 @@ export const mainNav = (): NavItem[] => [
     children: publishedServices().map((s) => ({
       href: `/services/${s.slug}`,
       label: s.title.split(' in ')[0],
+      badge: s.navBadge,
     })),
   },
   {

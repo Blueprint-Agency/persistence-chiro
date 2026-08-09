@@ -16,6 +16,25 @@ import { waMessage } from '@/lib/whatsapp'
  * are the first three things a "chiropractor near me" visitor checks, so they sit above
  * the fold on every route instead of only in the footer.
  */
+/**
+ * Status marker after a submenu label, e.g. "(Coming Soon)". Set per service via `navBadge`
+ * in lib/services.ts; renders nothing when unset, so both call sites can stay unconditional.
+ *
+ * Gold-ink rather than a tinted pill: the row's hover state fills with brand-aqua, and a
+ * badge on an aqua chip would vanish into it at exactly the moment someone is looking at it.
+ * Gold-ink is also the site's designated colour for gold used as type — raw #E8C111 is
+ * illegible on the bone ground.
+ *
+ * Inside the <a>, not beside it, so it forms part of the link's accessible name instead of
+ * being announced as a stray fragment. `whitespace-nowrap` keeps the marker from breaking
+ * mid-phrase when a long label wraps in the 16rem dropdown, which "Integrative Dry Needling"
+ * does.
+ */
+function NavBadge({ children }: { children?: string }) {
+  if (!children) return null
+  return <span className="ml-1.5 whitespace-nowrap text-xs text-brand-gold-ink">{children}</span>
+}
+
 export function Header() {
   const nav = mainNav()
 
@@ -98,9 +117,10 @@ export function Header() {
                       <li key={child.href}>
                         <Link
                           href={child.href}
-                          className="block rounded-lg px-3 py-2 text-sm text-ink-muted hover:bg-brand-aqua hover:text-brand-slate"
+                          className="block rounded-lg px-3 py-2 text-sm leading-snug text-ink-muted hover:bg-brand-aqua hover:text-brand-slate"
                         >
                           {child.label}
+                          <NavBadge>{child.badge}</NavBadge>
                         </Link>
                       </li>
                     ))}
@@ -150,9 +170,10 @@ export function Header() {
                             <li key={child.href}>
                               <Link
                                 href={child.href}
-                                className="block py-1.5 text-sm text-ink-muted"
+                                className="block py-1.5 text-sm leading-snug text-ink-muted"
                               >
                                 {child.label}
+                                <NavBadge>{child.badge}</NavBadge>
                               </Link>
                             </li>
                           ))}
