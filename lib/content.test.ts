@@ -14,7 +14,12 @@ import assert from 'node:assert/strict'
 import { conditions } from './conditions.ts'
 import { services } from './services.ts'
 import { posts, publishedPosts } from './posts.ts'
-import { HELD_POST_SLUGS, LEGACY_POST_SLUGS, redirects } from '../redirects.ts'
+import {
+  HELD_POST_SLUGS,
+  LEGACY_PAGE_URLS,
+  LEGACY_POST_SLUGS,
+  redirects,
+} from '../redirects.ts'
 import { staticRoutes } from './routes.ts'
 import { clinicFaqs, homeFaqs, aftercare, aftercareIntro } from './faqs.ts'
 import { homeIntro } from './home.ts'
@@ -190,6 +195,51 @@ test('every legacy blog post is covered by a redirect', () => {
   assert.ok(LEGACY_POST_SLUGS.length === 14, 'expected 14 legacy posts')
   for (const s of LEGACY_POST_SLUGS) {
     assert.match(s, /^[a-z0-9-]+$/, `legacy slug "${s}" has characters the wildcard won't pass through`)
+  }
+})
+
+/**
+ * DEPLOY GATE, and the one this file was missing.
+ *
+ * Every other redirect test here checks redirect SHAPE — that each rule is a literal 301,
+ * that its destination is a real route, that draft posts precede the wildcard. None of them
+ * checked COVERAGE: that every URL Wix actually serves has a rule at all. The blog side was
+ * safe by construction (one wildcard covers every /post/ slug); the page side was a
+ * hand-maintained list, and /about-us and /contact-us sat missing from it until an audit on
+ * 2026-08-10 reconciled the two by hand.
+ *
+ * A legacy page URL is covered when EITHER a redirect claims it, OR the rebuild publishes
+ * the same path. Both are fine; a URL matching neither 404s on cutover and throws away that
+ * page's crawl history.
+ */
+test('every legacy page URL is either redirected or still published', () => {
+  const redirected = new Set(redirects.map((r) => r.source))
+  const published = new Set(staticRoutes)
+
+  const orphaned = LEGACY_PAGE_URLS.filter(
+    (url) => !redirected.has(url) && !published.has(url),
+  )
+
+  assert.deepEqual(
+    orphaned,
+    [],
+    `legacy Wix URL(s) would 404 on launch — add a redirect in redirects.ts:\n  ${orphaned.join('\n  ')}`,
+  )
+})
+
+/**
+ * The mirror of the test above. A redirect whose source the rebuild ALSO publishes as a
+ * route can never fire — Next matches redirects before routes, so the rule would silently
+ * shadow a live page. /book-now and /what-to-expect keep their Wix paths deliberately, so
+ * this is a real hazard rather than a hypothetical one.
+ */
+test('no redirect shadows a route the site publishes', () => {
+  const published = new Set(staticRoutes)
+  for (const r of redirects) {
+    assert.ok(
+      !published.has(r.source),
+      `redirect ${r.source} -> ${r.destination} shadows a live route of the same path`,
+    )
   }
 })
 

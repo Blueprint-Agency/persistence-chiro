@@ -41,6 +41,27 @@ export const LEGACY_POST_SLUGS = [
 
 const PAGE_REDIRECTS: Redirect[] = [
   { source: '/our-services', destination: '/services', statusCode: 301 },
+  /**
+   * The team page. In the live Wix `pages-sitemap.xml` and returning 200 today, so it is
+   * indexed and carries whatever the clinic's referring domains point at — it is the
+   * strongest E-E-A-T page on the old site.
+   *
+   * MISSING UNTIL 2026-08-10, when the legacy sitemap was reconciled against this file
+   * during an SEO audit. Nothing caught it because the coverage test below did not exist:
+   * the blog side was fully guarded by the `/post/:slug` wildcard tests while the page side
+   * was a hand-maintained list with no assertion that it was complete.
+   */
+  { source: '/about-us', destination: '/about', statusCode: 301 },
+  /**
+   * ⚠️ AN EARLIER NOTE IN THIS FILE CLAIMED /contact-us "never launched publicly, so no
+   * redirect is owed to it". THAT WAS WRONG. It is in the live Wix `pages-sitemap.xml` and
+   * returns 200, so it is public, crawlable and indexed. Do not remove this rule on the
+   * strength of that assumption returning.
+   *
+   * /book-now is the right destination rather than /: it absorbed the NAP, map, hours and
+   * booking content /contact-us held, so the intent is preserved rather than diluted.
+   */
+  { source: '/contact-us', destination: '/book-now', statusCode: 301 },
   { source: '/press-and-publications', destination: '/press', statusCode: 301 },
   { source: '/going-places-magazine-september-feature', destination: '/press', statusCode: 301 },
   // NOT in the Wix sitemap — found only by following a "Read More" link off
@@ -78,8 +99,39 @@ const PAGE_REDIRECTS: Redirect[] = [
  * 301'd it to /contact-us. The proposal restores it as one of the seven main pages, so the
  * legacy URL now resolves to a live page of the same intent and keeps whatever equity that
  * ranking carries. It absorbs the NAP, map, hours and booking content that /contact-us
- * held; /contact-us itself never launched publicly, so no redirect is owed to it.
+ * held, which is why /contact-us now 301s HERE — see the rule above. (This note previously
+ * said /contact-us "never launched publicly, so no redirect is owed to it". The live Wix
+ * sitemap says otherwise; the claim was retracted 2026-08-10.)
  */
+
+/**
+ * Every page URL the live Wix site publishes, taken verbatim from its `pages-sitemap.xml`
+ * on 2026-08-10 and each one confirmed to return 200.
+ *
+ * This exists so `content.test.ts` can assert the redirect map is COMPLETE, not merely
+ * well-formed. Two URLs (/about-us, /contact-us) were missing for the whole life of the
+ * rebuild because every existing test checked redirect *shape* — that each rule is a 301
+ * pointing at a real route — and none checked that every legacy URL had a rule at all.
+ *
+ * A URL belongs here if Wix serves it. It is satisfied either by a redirect rule or by the
+ * rebuild publishing the same path (/, /blog, /book-now, /what-to-expect all do).
+ *
+ * ⚠️ NOT the blog posts. Those are `LEGACY_POST_SLUGS`, covered by the /post/:slug wildcard
+ * and its own tests. Keep the two lists separate; they are guarded differently.
+ */
+export const LEGACY_PAGE_URLS = [
+  '/',
+  '/about-us',
+  '/blog',
+  '/book-now',
+  '/contact-us',
+  '/going-places-magazine-september-feature',
+  '/landingpage',
+  '/our-partners',
+  '/our-services',
+  '/press-and-publications',
+  '/what-to-expect',
+] as const
 
 /**
  * Posts held back from republication. Their legacy URLs must NOT fall through to the
