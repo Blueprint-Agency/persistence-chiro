@@ -226,7 +226,10 @@ export const services: Service[] = [
     title: 'Chiropractic Care in Cheras, Kuala Lumpur',
     metaTitle: 'Chiropractic Care in Cheras, KL',
     metaDescription:
-      'Gonstead chiropractic in Cheras, Maluri. Segment-by-segment spinal assessment and a precise hands-on adjustment for bone and body alignment, not a general crack.',
+      // 152 characters. Was 161, one past what Google renders; "hands-on" went rather than
+      // a local modifier or the "bone and body alignment" phrasing that carries the target
+      // keyword. The page body still establishes that the adjustment is manual.
+      'Gonstead chiropractic in Cheras, Maluri. Segment-by-segment spinal assessment and a precise adjustment for bone and body alignment, not a general crack.',
     targetKeyword: 'bone alignment near me',
     intro:
       'Gonstead chiropractic care in Cheras. We assess the spine segment by segment before anything is adjusted, so the work goes to whichever segment is actually driving your problem. That is not always where you feel it.',

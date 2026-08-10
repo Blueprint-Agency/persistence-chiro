@@ -29,6 +29,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     path: `/blog/${post.slug}`,
     type: 'article',
     publishedTime: post.datePublished,
+    // Post titles are editorial headlines, not composed SEO strings — the brand suffix
+    // pushed eleven of thirteen past what Google renders, and the brand is what got cut.
+    // See the note on `brand` in lib/seo.ts before copying this to another route.
+    brand: false,
   })
 }
 

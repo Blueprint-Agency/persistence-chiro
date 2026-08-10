@@ -2,9 +2,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 
-import { practitioners, publishedRegistrations } from '@/lib/clinic'
+import { indexablePractitioners, practitioners, publishedRegistrations } from '@/lib/clinic'
 import { JsonLd } from '@/components/JsonLd'
-import { personSchema } from '@/lib/schema'
+import { breadcrumbSchema, collectionPageSchema, personSchema } from '@/lib/schema'
 import { pageMetadata } from '@/lib/seo'
 import {
   CtaBand,
@@ -16,7 +16,9 @@ import {
 } from '@/components/ui'
 
 export const metadata: Metadata = pageMetadata({
-  title: 'Our Chiropractors in Cheras, Kuala Lumpur',
+  // "Kuala Lumpur" abbreviated to KL to clear the ~60 Google renders, matching what every
+  // condition and service metaTitle already does. Both local modifiers are kept.
+  title: 'Our Chiropractors in Cheras, KL',
   description:
     'Meet the registered chiropractors at Persistence Chiropractic Care in Cheras, Maluri. Founder Valerie Na, our team, credentials and board memberships.',
   path: '/about',
@@ -28,6 +30,25 @@ export default function AboutPage() {
       {practitioners.map((p) => (
         <JsonLd key={p.slug} data={personSchema(p)} />
       ))}
+      {/* This page is an index of the three practitioner pages, exactly as /conditions and
+          /services index theirs — it was the one hub emitting no CollectionPage, so the
+          three Person nodes above sat on the page with nothing tying them into a set.
+          `indexablePractitioners` rather than `practitioners`: a profile held back for want
+          of a bio is noindex, and listing it here would advertise a page we asked Google not
+          to index. */}
+      <JsonLd
+        data={collectionPageSchema({
+          name: 'Our chiropractors in Cheras, Maluri',
+          description:
+            'The registered chiropractors practising the Gonstead method at Persistence Chiropractic Care in Cheras, Kuala Lumpur.',
+          url: '/about',
+          items: indexablePractitioners().map((p) => ({
+            name: p.name,
+            url: `/about/${p.slug}`,
+          })),
+        })}
+      />
+      <JsonLd data={breadcrumbSchema([{ name: 'About', url: '/about' }])} />
 
       <PageHero
         eyebrow="About us"

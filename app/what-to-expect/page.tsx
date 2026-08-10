@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 import { clinicFaqs, aftercare, aftercareIntro } from '@/lib/faqs'
 import { JsonLd } from '@/components/JsonLd'
-import { faqSchema } from '@/lib/schema'
+import { breadcrumbSchema, faqSchema } from '@/lib/schema'
 import { pageMetadata } from '@/lib/seo'
 import { CtaBand, Eyebrow, PageHero, Vertebrae } from '@/components/ui'
 import { waMessage } from '@/lib/whatsapp'
@@ -21,6 +21,9 @@ export default function WhatToExpectPage() {
     <>
       {/* Every answer below renders on the page, so the schema is legitimate. */}
       <JsonLd data={faqSchema(clinicFaqs)} />
+      {/* Single-item trail, matching /blog, /press and /book-now: this is a top-level page,
+          and the convention here is that every non-home route states where it sits. */}
+      <JsonLd data={breadcrumbSchema([{ name: 'What to Expect', url: '/what-to-expect' }])} />
 
       <PageHero
         eyebrow="What to expect"

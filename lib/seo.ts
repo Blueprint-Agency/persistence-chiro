@@ -48,6 +48,23 @@ type PageMetadataInput = {
   publishedTime?: string
   /** Reachable but not submitted for indexing. Used for pages still awaiting real copy. */
   noindex?: boolean
+  /**
+   * Set `false` to omit the ` | Persistence Chiropractic` suffix.
+   *
+   * ONE CONSUMER: /blog/[slug]. Every other route should keep the brand — on a money page
+   * the suffix is worth its 25 characters, because a searcher scanning a local SERP is
+   * partly choosing between clinics by name.
+   *
+   * Blog posts are the exception because their titles are real editorial headlines rather
+   * than composed SEO strings, so the suffix pushes them past what Google renders and the
+   * brand is what gets cut anyway. Eleven of the thirteen posts exceeded 60 characters
+   * before this existed; "Making a Difference in the Community: Chiropractic Care & Charity
+   * Talk for Ti-Ratana Welfare" reached 123 and was truncated mid-phrase.
+   *
+   * Do NOT reach for this to fix a long title on a hub or money page. There the right fix
+   * is a shorter title — the suffix is not the problem.
+   */
+  brand?: boolean
 }
 
 export function pageMetadata({
@@ -58,8 +75,9 @@ export function pageMetadata({
   type = 'website',
   publishedTime,
   noindex,
+  brand = true,
 }: PageMetadataInput): Metadata {
-  const fullTitle = `${title} | ${BRAND}`
+  const fullTitle = brand ? `${title} | ${BRAND}` : title
 
   return {
     // `absolute` rather than leaning on the root layout's title template, because the

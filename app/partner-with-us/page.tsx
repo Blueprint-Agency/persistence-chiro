@@ -11,7 +11,9 @@ import { PartnerEnquiry } from '@/components/PartnerEnquiry'
 import { waMessage } from '@/lib/whatsapp'
 
 export const metadata: Metadata = pageMetadata({
-  title: 'Corporate Wellness & Partnerships, Cheras KL',
+  // "& Partnerships" dropped to clear ~60 — it is the weakest term here and the page's own
+  // h1 and body carry it. This is not a money page, so the local modifiers matter more.
+  title: 'Corporate Wellness in Cheras, KL',
   description:
     'Work with Persistence Chiropractic in Cheras, Kuala Lumpur: corporate wellness talks, workshops, health screenings, event booths and brand collaborations.',
   path: '/partner-with-us',

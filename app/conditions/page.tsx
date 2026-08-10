@@ -8,7 +8,10 @@ import { pageMetadata } from '@/lib/seo'
 import { CtaBand, GhostButton, PageHero, Vertebrae } from '@/components/ui'
 
 export const metadata: Metadata = pageMetadata({
-  title: 'Conditions We Help With in Cheras, Kuala Lumpur',
+  // 33 characters, which is the budget: `pageMetadata` appends a 27-character brand suffix
+  // and Google renders about 60. "Kuala Lumpur" went rather than "Cheras" — the local pack
+  // this page feeds is a Cheras one, and every child page carries KL in its own title.
+  title: 'Conditions We Help With in Cheras',
   description:
     'Back pain, slipped disc, sciatica, scoliosis, neck pain, migraine and hip pain, assessed with Gonstead chiropractic and physio in Cheras, Maluri.',
   path: '/conditions',
