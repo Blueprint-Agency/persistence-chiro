@@ -5,7 +5,7 @@ import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { JsonLd } from "@/components/JsonLd";
-import { localBusinessSchema, SITE_URL } from "@/lib/schema";
+import { localBusinessSchema, webSiteSchema, SITE_URL } from "@/lib/schema";
 import { Analytics, AnalyticsNoScript } from "@/components/Analytics";
 import { CtaTracking } from "@/components/CtaTracking";
 import { MobileNavClose } from "@/components/MobileNavClose";
@@ -67,6 +67,9 @@ export default function RootLayout({
         {/* Sitewide business schema. Every other template references it by @id rather
             than repeating NAP. */}
         <JsonLd data={localBusinessSchema()} />
+        {/* The site as an entity, distinct from the business. Sitewide because it describes
+            the site rather than any one page — every competitor in this SERP carries one. */}
+        <JsonLd data={webSiteSchema()} />
         {/* Keyboard and screen-reader users otherwise tab the logo, six nav items and every
             focus-within submenu child before reaching the h1 — on every route. */}
         <a

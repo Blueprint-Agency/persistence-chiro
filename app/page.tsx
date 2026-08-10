@@ -20,6 +20,7 @@ import {
 } from '@/components/ui'
 import { StickyCta } from '@/components/service'
 import { GoogleReviews } from '@/components/GoogleReviews'
+import { MeetDoctors } from '@/components/MeetDoctors'
 import { Preloader } from '@/components/Preloader'
 import { HeroGallery } from '@/components/HeroGallery'
 import { waMessage } from '@/lib/whatsapp'
@@ -63,8 +64,8 @@ const heroSlides = [
  *
  * BAND ORDER IS LOAD-BEARING — do not reshuffle these sections casually.
  *
- *   hero → accreditations → intro/offers → care paths → FAQ → testimonials → blog
- *        → visit us
+ *   hero → accreditations → intro/offers → care paths → FAQ → meet the team
+ *        → testimonials → blog → visit us
  *
  * The conversion band that used to close the page was removed at the client's request; see
  * the note where it stood. "Visit us" is now the last band, which still means the page ends
@@ -83,9 +84,17 @@ const heroSlides = [
  * go and read something. Peak-end says that position carries disproportionate weight, so
  * whatever ends this page should not be a detour.
  *
- * BACKGROUND RHYTHM: slate → white → cream → white → cream → aqua → cream → white.
+ * BACKGROUND RHYTHM: slate → white → cream → white → cream → white → aqua → cream → white.
  * No two adjacent bands share a ground; that alternation plus the 1px warm hairline is what
- * makes eight bands legible. If you insert a band, check its neighbours.
+ * makes nine bands legible. If you insert a band, check its neighbours.
+ *
+ * The white in the middle of that run is "meet the team", added 2026-08-11. It went between
+ * the FAQ (cream) and the reviews (aqua) because those are the only neighbours that leave a
+ * white slot free — every other insertion point would have put two whites together. It also
+ * happens to be where it belongs in the objection sequence: the FAQ answers "does it hurt",
+ * this answers "who would be doing it", and the reviews then answer "does it work for people
+ * like me". Do not move it next to the accreditation strip or "visit us" without changing
+ * its ground.
  */
 // Title is prescribed by seo-strategy.md § Phase 1 — the homepage IS the Cheras page.
 export const metadata: Metadata = pageMetadata({
@@ -411,6 +420,19 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* ------------------------------------------------------- Meet the team */}
+      {/* Who would actually be looking after you — a first-order trust question on a YMYL
+          page, and one the homepage previously answered only by sending you to /about.
+          Same component the service pages use, so there is one treatment of the team on the
+          site rather than two, and it is the visible half of the `employee` block now on the
+          clinic's JSON-LD. Every card is gated: registration numbers render only for the
+          practitioners the clinic has confirmed, and a missing credentials line stays missing
+          rather than being invented (lib/clinic.ts).
+
+          Three links to /about/<slug> is also the homepage's only internal linking into the
+          practitioner pages, which are otherwise reachable only via /about. */}
+      <MeetDoctors />
 
       {/* ---------------------------------------------------------- Testimonials */}
       {/* Google-review styled, at the client's request, replacing a bespoke two-up quote

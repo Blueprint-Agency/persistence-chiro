@@ -75,7 +75,25 @@ Traffic has decayed ~90% since mid-2024 (300+ → 24/mo) — likely stale/thin c
   > *(An interim wording, "Chiropractic and Physiotherapy in Cheras…", also duplicated
   > `/services/physiotherapy`'s own h1 and put two pages on "physio cheras". Naming the
   > practitioner instead of the discipline resolved that. Don't let the line drift back.)*
-- **Schema markup:** `Chiropractic`/`LocalBusiness` JSON-LD with NAP, geo coords (Maluri), opening hours, `aggregateRating` once reviews flow.
+- **Schema markup:** `Chiropractic`/`LocalBusiness` JSON-LD with NAP, geo coords (Maluri), opening hours. ~~`aggregateRating` once reviews flow.~~
+
+  > **⚠️ THE `aggregateRating` HALF OF THIS LINE IS WITHDRAWN — 2026-08-10. DO NOT IMPLEMENT IT.**
+  >
+  > Google's structured-data policy excludes **self-serving reviews**: a rating about an
+  > entity, published on that entity's own site, is not eligible for review snippets on
+  > `LocalBusiness` or `Organization` types. Adding it buys no stars in the SERP and puts a
+  > structured-data manual action in play on a YMYL medical site.
+  >
+  > This is a live temptation rather than a hypothetical one: `googleReviews` in
+  > `lib/clinic.ts` already holds `verified: true`, 5.0 from 224 reviews, gated and ready.
+  > That data is there to render **on the page** as social proof, which is fine and which the
+  > site does. Marking it up is the part that is not.
+  >
+  > The rating already reaches searchers through the Business Profile, which is where Google
+  > wants to source it. Nothing is lost by leaving it out of the JSON-LD.
+  >
+  > *(Found during the 2026-08-10 SEO audit, which noted this line would eventually be
+  > actioned by someone reading Phase 1 as a checklist.)*
 - **Fix the "chiro cheras" ranking page:** Google now ranks the homepage #16 for it (previously the thin `/book-now` page). Still no dedicated Cheras page — build a proper Cheras/Maluri landing page and internally link it sitewide to convert the homepage's #16 into a top-3.
 - Core Web Vitals pass, mobile-first, clean URL structure, XML sitemap, image alt text with local modifiers.
 

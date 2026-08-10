@@ -2,7 +2,8 @@
  * JSON-LD builders. One per template, per the schema table in
  * `proposed-site-architecture.md`. All NAP flows from `clinic` — never inline it here.
  */
-import { clinic, publishedRegistrations, type Registration } from './clinic'
+import { clinic, practitioners, publishedRegistrations, type Registration } from './clinic'
+import { publishedServices } from './services'
 import { whatsappLink, waMessage } from './whatsapp'
 
 export const SITE_URL = 'https://www.persistencechiropractic.com'
@@ -24,8 +25,42 @@ const openingHoursSpecification = clinic.hours.map((h) => ({
 }))
 
 /**
+ * The site as an entity, separate from the business. Standard on every competitor in this
+ * SERP (`mychiro.com.my`, `ianthechiro.com`, `goldenspinegroup.com`, Connect and Bliss all
+ * carry one) and absent here until 2026-08-11.
+ *
+ * NO `SearchAction`. The Wix site declared one pointing at `/search?q=` and the rebuild has
+ * no search route, so claiming a sitelinks searchbox would advertise a URL that 404s.
+ */
+export function webSiteSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': `${SITE_URL}/#website`,
+    url: SITE_URL,
+    name: clinic.name,
+    inLanguage: 'en-MY',
+    publisher: { '@id': `${SITE_URL}/#clinic` },
+  }
+}
+
+/**
  * Homepage + contact. `Chiropractic` is a MedicalBusiness subtype and the most specific
  * type Google recognises for this clinic — more specific beats generic LocalBusiness.
+ *
+ * ENRICHED 2026-08-11 after a like-for-like comparison against the six clinics holding this
+ * SERP. The rebuild's homepage emitted two schema types against seven to nine for the three
+ * strongest rivals. `employee`, `founder` and `availableService` are the parts that were
+ * genuinely missing: who provides the care, and what care is on offer.
+ *
+ * These are NESTED on the clinic node rather than emitted as competing top-level nodes.
+ * That is deliberate — a `Person` already has a canonical top-level node on /about and
+ * /about/<slug>, and repeating it here would describe the same person twice. `@id` on the
+ * clinic keeps one authoritative business entity that every template references.
+ *
+ * `employee` reads through `publishedRegistrations`, so an unconfirmed registration number
+ * is absent from the business node exactly as it is from the practitioner's own page. The
+ * gate is not bypassable by going through a different builder.
  */
 export function localBusinessSchema() {
   return {
@@ -39,11 +74,49 @@ export function localBusinessSchema() {
     address: postalAddress,
     geo: { '@type': 'GeoCoordinates', latitude: clinic.geo.lat, longitude: clinic.geo.lng },
     openingHoursSpecification,
+    logo: `${SITE_URL}/img/logo-persistence.png`,
+    image: `${SITE_URL}/og-default.jpg`,
+    // Links the entity to the Business Profile listing Google already ranks, which is the
+    // one place the reviews and the local pack position actually live.
+    hasMap: clinic.mapsUrl,
+    medicalSpecialty: 'Chiropractic',
     areaServed: [
       { '@type': 'Place', name: 'Cheras' },
       { '@type': 'Place', name: 'Maluri' },
       { '@type': 'Place', name: 'Kuala Lumpur' },
     ],
+    /** Derived, so a service added or unpublished in lib/services.ts follows automatically. */
+    availableService: publishedServices().map((s) => ({
+      '@type': 'MedicalProcedure',
+      name: s.title,
+      url: `${SITE_URL}/services/${s.slug}`,
+    })),
+    employee: practitioners.map((p) => {
+      const registrations = publishedRegistrations(p)
+      return {
+        '@type': 'Person',
+        name: p.name,
+        jobTitle: p.role,
+        url: `${SITE_URL}/about/${p.slug}`,
+        ...(p.credentials ? { description: p.credentials } : {}),
+        ...(registrations.length
+          ? {
+              hasCredential: registrations.map((r) => ({
+                '@type': 'EducationalOccupationalCredential',
+                credentialCategory: 'Professional registration',
+                name: r.label,
+                identifier: r.value,
+              })),
+            }
+          : {}),
+      }
+    }),
+    // Stated on her own profile and in `founderBio`, so this claims nothing new.
+    founder: {
+      '@type': 'Person',
+      name: 'Valerie Na',
+      url: `${SITE_URL}/about/valerie-na`,
+    },
     sameAs: [clinic.socials.instagram, clinic.socials.facebook],
     /**
      * Points at WhatsApp, not a scheduler. SweetPew was retired 2026-07-26 and structured
