@@ -43,6 +43,29 @@ await mkdir(OUT, { recursive: true })
 
 const results = []
 
+// Favicon: the lockup's wordmark is illegible at 32px, so crop the circular spine mark
+// off the left of the trimmed logo (it's as tall as the lockup, hence the square = height).
+{
+  const lockup = () => sharp(`${SRC}/home-01-persistence-chiropractic-care-logo.png`).trim()
+  const { info: trimmed } = await lockup().toBuffer({ resolveWithObject: true })
+  const square = { left: 0, top: 0, width: trimmed.height, height: trimmed.height }
+  const info = await lockup()
+    .extract(square)
+    .resize(512, 512, { fit: 'contain', background: { r: 255, g: 255, b: 255, alpha: 0 } })
+    .png({ compressionLevel: 9 })
+    .toFile('app/icon.png')
+  results.push(`app/icon.png  ${info.width}x${info.height}  ${Math.round(info.size / 1024)}KB`)
+
+  // Same mark, flattened onto white — iOS renders transparency in a touch icon as black.
+  const apple = await lockup()
+    .extract(square)
+    .resize(180, 180, { fit: 'contain', background: '#fff' })
+    .flatten({ background: '#fff' })
+    .png({ compressionLevel: 9 })
+    .toFile('app/apple-icon.png')
+  results.push(`app/apple-icon.png  ${apple.width}x${apple.height}  ${Math.round(apple.size / 1024)}KB`)
+}
+
 for (const [src, name, w, h, opts] of PHOTOS) {
   const file = `${OUT}/${name}.webp`
   const info = await sharp(`${SRC}/${src}`)
