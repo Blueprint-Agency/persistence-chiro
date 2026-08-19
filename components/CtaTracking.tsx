@@ -1,14 +1,9 @@
 'use client'
 
 import { useEffect } from 'react'
+import { sendGTMEvent } from '@next/third-parties/google'
 
 import { ctaEventFor, GA4_ID, GTM_ID } from '@/lib/analytics'
-
-declare global {
-  interface Window {
-    dataLayer?: Record<string, unknown>[]
-  }
-}
 
 /**
  * Fires a conversion event when a visitor clicks a booking, WhatsApp, phone or maps link.
@@ -23,8 +18,9 @@ declare global {
  *
  * `closest('a')` handles clicks landing on an icon or span inside the link.
  *
- * Events go to `dataLayer` in both the GTM and direct-GA4 cases: gtag.js reads the same
- * queue, so a single push works for either wiring.
+ * Events go to `dataLayer` via `sendGTMEvent` (@next/third-parties), which is safe to call
+ * before the container loads — the queue is replayed on init. gtag.js reads the same queue,
+ * so a single push works for either the GTM or the direct-GA4 wiring.
  */
 export function CtaTracking() {
   useEffect(() => {
@@ -38,8 +34,7 @@ export function CtaTracking() {
       const event = ctaEventFor(link.getAttribute('href'))
       if (!event) return
 
-      window.dataLayer = window.dataLayer || []
-      window.dataLayer.push({
+      sendGTMEvent({
         event,
         // Where on the site the click happened — lets the client see whether the header
         // CTA, a condition page or the footer is actually converting.
