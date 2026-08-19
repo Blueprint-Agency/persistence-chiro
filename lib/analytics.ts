@@ -21,7 +21,15 @@
  * granting GTM access.
  */
 
-export const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID
+/**
+ * The clinic's live container, hard-coded as the production default so the tag works
+ * without anyone setting a Vercel env var. A GTM container id is public — it ships in the
+ * page source of every site that uses one — so there is nothing here to keep out of git.
+ * The env var still wins if it is set, and `npm run dev` stays untracked.
+ */
+const GTM_ID_DEFAULT = process.env.NODE_ENV === 'production' ? 'GTM-5SNV5K3J' : undefined
+
+export const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || GTM_ID_DEFAULT
 export const GA4_ID = process.env.NEXT_PUBLIC_GA4_ID
 export const GSC_VERIFICATION = process.env.NEXT_PUBLIC_GSC_VERIFICATION
 
