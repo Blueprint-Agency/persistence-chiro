@@ -111,19 +111,22 @@ export default function PartnerWithUsPage() {
             supported across Kuala Lumpur.
           </p>
 
+          {/* Logos carry their own aspect ratio (see lib/partners.ts), so each is capped on
+              both axes and left to fill whichever it hits first — a wide wordmark spans the
+              tile, a square mark reaches full height. */}
           <ul className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3">
             {keyPartners.map((p) => (
               <li
                 key={p.file}
-                className="flex items-center justify-center rounded-2xl border border-line bg-white p-8"
+                className="flex items-center justify-center rounded-2xl border border-line bg-white p-5 sm:p-8"
               >
                 <Image
                   src={p.file}
                   alt={`${p.name} logo`}
-                  width={200}
-                  height={200}
-                  sizes="(max-width: 640px) 45vw, 200px"
-                  className="h-20 w-auto max-w-full object-contain"
+                  width={p.w}
+                  height={p.h}
+                  sizes="(min-width: 640px) 300px, 45vw"
+                  className="h-auto max-h-24 w-auto max-w-full object-contain sm:max-h-28"
                 />
               </li>
             ))}
@@ -134,15 +137,15 @@ export default function PartnerWithUsPage() {
             {partners.map((p) => (
               <li
                 key={p.file}
-                className="flex items-center justify-center rounded-2xl border border-line bg-white p-6 sm:p-8"
+                className="flex items-center justify-center rounded-2xl border border-line bg-white p-4 sm:p-6"
               >
                 <Image
                   src={p.file}
                   alt={`${p.name} logo`}
-                  width={200}
-                  height={200}
-                  sizes="(max-width: 640px) 45vw, 240px"
-                  className="h-16 w-auto max-w-full object-contain sm:h-20"
+                  width={p.w}
+                  height={p.h}
+                  sizes="(min-width: 1024px) 230px, (min-width: 640px) 30vw, 45vw"
+                  className="h-auto max-h-16 w-auto max-w-full object-contain sm:max-h-20"
                 />
               </li>
             ))}
