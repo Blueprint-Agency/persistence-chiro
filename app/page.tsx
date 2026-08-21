@@ -2,7 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 
-import { clinic, hoursDisplay } from '@/lib/clinic'
+import { clinic, googleReviews, hoursDisplay } from '@/lib/clinic'
 import { publishedConditions } from '@/lib/conditions'
 import { publishedServices } from '@/lib/services'
 import { publishedPosts } from '@/lib/posts'
@@ -96,11 +96,54 @@ const heroSlides = [
  * like me". Do not move it next to the accreditation strip or "visit us" without changing
  * its ground.
  */
+/**
+ * Social proof for the snippet, not for the page.
+ *
+ * Search Console (21 Jul – 19 Aug 2026) shows the homepage holding position 3.8 on "chiro
+ * cheras", 6.0 on "best chiropractic malaysia" and 7.7 on "best chiropractor in malaysia" —
+ * and taking ZERO clicks from any of them across ~300 impressions. We are being seen and not
+ * chosen, so the snippet is the thing to fix, not the ranking.
+ *
+ * The rating already renders on the page via <GoogleReviews>. It was missing from the one
+ * place that decides whether the visit happens at all. The nearest competitor puts "700+
+ * five-star reviews" in their description; ours said "Open seven days".
+ *
+ * Gated on `verified` for the same reason the component is: no data means no claim, and a
+ * meta description is the worst place to ship an unbacked number because Google may render
+ * it verbatim. `count` is a drifting snapshot, so it is written as "224+" — the file that
+ * owns it says to treat it as "at least this many".
+ */
+const socialProof = googleReviews.verified
+  ? ` Rated ${googleReviews.rating.toFixed(1)} from ${googleReviews.count}+ Google reviews.`
+  : ''
+
 // Title is prescribed by seo-strategy.md § Phase 1 — the homepage IS the Cheras page.
 export const metadata: Metadata = pageMetadata({
-  title: 'Chiropractor in Cheras (Maluri), Kuala Lumpur',
+  /**
+   * Three locality terms, one character budget. All three survive; the abbreviation pays.
+   *
+   * seo-strategy.md § Phase 1 prescribes `Chiropractor in Cheras (Maluri), Kuala Lumpur`,
+   * which reaches 72 characters with the brand suffix — past what Google renders, so the
+   * brand was being truncated on every impression. The fix is NOT to drop a locality. It is
+   * to spend "Kuala Lumpur" down to "KL", which lands the whole title at 61.
+   *
+   * Why the abbreviation is the right thing to cut: we rank 21.5 for "chiropractor kuala
+   * lumpur" WITH the full form in this title, and 17.0 for "chiro kl" WITHOUT "KL" in it.
+   * Exact-match here is not carrying the ranking, and Google resolves the two as one entity.
+   *
+   * ⚠️ DO NOT "SIMPLIFY" MALURI OUT OF THIS TITLE. An earlier pass removed it on the grounds
+   * that Search Console reports ZERO impressions for any query containing "maluri". That
+   * reasoning was wrong twice over. Impressions measure demand × our own visibility, so a
+   * zero cannot distinguish "nobody searches it" from "we do not rank for it". And GSC is
+   * structurally blind to assistant queries — someone asking ChatGPT "chiropractor near
+   * Maluri" generates no impression anywhere in that data, on a site whose brief is AEO and
+   * GEO as much as SEO. Maluri is the colloquial name locals actually say out loud; Sunway
+   * Velocity sits on the Cheras/Maluri boundary and Maluri is the MRT/LRT interchange.
+   */
+  title: 'Chiropractor in Cheras, Maluri, KL',
   description:
-    'Gonstead chiropractic and physiotherapy in Cheras, Maluri. Registered chiropractors for back pain, slipped disc, sciatica and sports injury. Open seven days.',
+    `Gonstead chiropractic and physiotherapy in Cheras, Maluri.${socialProof}` +
+    ' Back pain, slipped disc, sciatica. Open seven days.',
   path: '/',
 })
 
