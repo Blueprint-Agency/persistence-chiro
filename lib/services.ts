@@ -874,14 +874,56 @@ export const services: Service[] = [
       'Staged return to your sport, not just rest',
       'Open seven days · Cheras, Maluri',
     ],
+    /**
+     * Photographs rather than the five SVG diagrams, matching physiotherapy and dry needling.
+     * Only the last two are this page's own images; the first three are the physiotherapy
+     * symptom frames, which show the same concerns and are reused deliberately rather than
+     * commissioned twice.
+     *
+     * Row order does visual work: three lit-symptom frames (the problem), then two clinic
+     * frames (what happens about it). The "keeps coming back" card takes the neck frame, not
+     * the physiotherapy clinician-and-shoulder one — that shot and the post-surgical card
+     * below are near-identical compositions and sat badly in the same row.
+     *
+     * ⚠️ ALT TEXT CARRIES NO LOCAL MODIFIER, for the same reason recorded on the dry
+     * needling and physiotherapy outcomes: these are stock and composite images, not
+     * photographs of this clinic, these practitioners or these patients.
+     */
     outcomes: [
-      { text: 'A sprain, strain or overuse injury you want assessed', illustration: 'sprain' },
-      { text: 'Pain that flares up during or after your sport', illustration: 'flare-up' },
-      { text: 'An injury that keeps coming back when you return to training', illustration: 'recurring' },
-      { text: 'A staged plan back to your sport, not just rest', illustration: 'staged-return' },
+      {
+        text: 'A sprain, strain or overuse injury you want assessed',
+        image: {
+          src: '/img/physio-weakness.webp',
+          alt: 'Illustration of ankle pain lit up on a woman seated at a desk with her feet on the floor',
+        },
+      },
+      {
+        text: 'Pain that flares up during or after your sport',
+        image: {
+          src: '/img/physio-recent-strain.webp',
+          alt: 'Illustration of lower back pain lit up on a man standing at a kitchen counter with a hand on his back',
+        },
+      },
+      {
+        text: 'An injury that keeps coming back when you return to training',
+        image: {
+          src: '/img/physio-pain-stiffness.webp',
+          alt: 'Illustration of neck and shoulder muscles lit up on a man holding the side of his neck',
+        },
+      },
+      {
+        text: 'A staged plan back to your sport, not just rest',
+        image: {
+          src: '/img/sports-staged-return.webp',
+          alt: 'Woman balancing on one leg on a wobble cushion while a therapist steadies her hands',
+        },
+      },
       {
         text: 'Rehabilitation to continue after surgery, within the limits your surgeon sets',
-        illustration: 'bounded-limit',
+        image: {
+          src: '/img/sports-post-surgical.webp',
+          alt: 'Clinician guiding a seated man through shoulder range of movement in a clinic room',
+        },
       },
     ],
     qualifierConcerns: [
