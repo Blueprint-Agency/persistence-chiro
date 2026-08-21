@@ -587,12 +587,52 @@ export const services: Service[] = [
       'Exercises built for your problem, not a handout',
       'Open seven days · Cheras, Maluri',
     ],
+    /**
+     * Supplied images, replacing the five SVG diagrams — same job (show the symptom, not
+     * the service), more immediacy. Sources are 2:1 and the card slot is 4:3, so a third of
+     * the width is cut; "recurring" is cropped left because both figures sit hard against
+     * that edge and a centre crop takes the clinician out of frame.
+     *
+     * ⚠️ ALT TEXT CARRIES NO LOCAL MODIFIER, for the same reason recorded on the dry
+     * needling outcomes above: these are stock and composite images, not photographs of
+     * this clinic, these practitioners or these patients. Describe the frame, nothing more.
+     */
     outcomes: [
-      { text: 'Pain or stiffness that limits how you move through the day', illustration: 'limited-range' },
-      { text: 'A recent strain or flare-up you want assessed properly', illustration: 'flare-up' },
-      { text: 'A long-standing problem that keeps returning', illustration: 'recurring' },
-      { text: 'Weakness or poor control after an injury or time off', illustration: 'weakness' },
-      { text: 'Exercises that actually fit your problem, not a generic sheet', illustration: 'tailored-plan' },
+      {
+        text: 'Pain or stiffness that limits how you move through the day',
+        image: {
+          src: '/img/physio-pain-stiffness.webp',
+          alt: 'Illustration of neck and shoulder muscles lit up on a man holding the side of his neck',
+        },
+      },
+      {
+        text: 'A recent strain or flare-up you want assessed properly',
+        image: {
+          src: '/img/physio-recent-strain.webp',
+          alt: 'Illustration of lower back pain lit up on a man standing at a kitchen counter with a hand on his back',
+        },
+      },
+      {
+        text: 'A long-standing problem that keeps returning',
+        image: {
+          src: '/img/physio-recurring.webp',
+          alt: 'Clinician resting a hand on the shoulder of a seated woman during an assessment',
+        },
+      },
+      {
+        text: 'Weakness or poor control after an injury or time off',
+        image: {
+          src: '/img/physio-weakness.webp',
+          alt: 'Illustration of ankle pain lit up on a woman seated at a desk with her feet on the floor',
+        },
+      },
+      {
+        text: 'Exercises that actually fit your problem, not a generic sheet',
+        image: {
+          src: '/img/physio-tailored-exercise.webp',
+          alt: 'Woman working through a resistance band exercise while a therapist holds the other end of the band',
+        },
+      },
     ],
     qualifierConcerns: [
       'I have pain or stiffness that limits daily activities',
