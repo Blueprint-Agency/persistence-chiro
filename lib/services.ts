@@ -1036,14 +1036,59 @@ export const services: Service[] = [
       'Workstation changes you can actually keep',
       'Open seven days · Cheras, Maluri',
     ],
+    /**
+     * Photographs rather than the five SVG diagrams, which retires the last diagram set on
+     * the site. Each was commissioned for the card it sits on, so unlike sports injury
+     * nothing here is borrowed from another page.
+     *
+     * Row rhythm matches the other service pages: the two symptom frames carry the warm
+     * glow, and the three that describe a shape or an answer — forward head, workstation,
+     * strength work — deliberately do not.
+     *
+     * The forward-head frame keeps its red plumb line. A single panel showing where the head
+     * sits relative to the line DESCRIBES the concern; it is the before/after pair in
+     * `before-after-posture.webp` that would read as an outcome claim, which is why that
+     * image is not used here.
+     *
+     * ⚠️ ALT TEXT CARRIES NO LOCAL MODIFIER, for the same reason recorded on the dry
+     * needling, physiotherapy and sports injury outcomes: these are stock and composite
+     * images, not photographs of this clinic, these practitioners or these patients.
+     */
     outcomes: [
-      { text: 'Neck and shoulder tension that builds up over a day at a desk', illustration: 'desk-tension' },
-      { text: 'A forward head or rounded shoulders you have noticed', illustration: 'forward-head' },
-      { text: 'Stiffness that eases when you move and returns when you sit', illustration: 'recurring' },
-      { text: 'Practical workstation changes you will actually keep', illustration: 'workstation' },
+      {
+        text: 'Neck and shoulder tension that builds up over a day at a desk',
+        image: {
+          src: '/img/posture-desk-tension.webp',
+          alt: 'Illustration of neck and shoulder muscles lit up on a man squeezing his neck at a desk in the evening',
+        },
+      },
+      {
+        text: 'A forward head or rounded shoulders you have noticed',
+        image: {
+          src: '/img/posture-forward-head.webp',
+          alt: 'Side profile of a standing man whose head sits forward of a red vertical reference line, with rounded shoulders',
+        },
+      },
+      {
+        text: 'Stiffness that eases when you move and returns when you sit',
+        image: {
+          src: '/img/posture-sitting-stiffness.webp',
+          alt: 'Illustration of lower back pain lit up on a woman easing her back as she stands from a desk',
+        },
+      },
+      {
+        text: 'Practical workstation changes you will actually keep',
+        image: {
+          src: '/img/posture-workstation.webp',
+          alt: 'Man adjusting the height of his monitor at a home office desk beside an ergonomic chair',
+        },
+      },
       {
         text: 'Strength work to hold a better position without thinking about it',
-        illustration: 'hold-position',
+        image: {
+          src: '/img/posture-hold-position.webp',
+          alt: 'Woman pulling a resistance band apart at chest height in a bright exercise room',
+        },
       },
     ],
     qualifierConcerns: [
