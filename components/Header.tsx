@@ -132,7 +132,7 @@ export function Header() {
 
           <div className="ml-auto flex items-center gap-3 lg:ml-0">
             <div className="hidden sm:block">
-              <WhatsAppButton message={waMessage.general}>Book on WhatsApp</WhatsAppButton>
+              <WhatsAppButton message={waMessage.general}>Enquire on WhatsApp</WhatsAppButton>
             </div>
 
             {/* Mobile menu. <details> is the whole implementation — no state, no bundle.
@@ -186,7 +186,7 @@ export function Header() {
                 {/* One CTA here too. The number stays reachable from the utility bar above
                     and the footer, both of which are NAP citations rather than buttons. */}
                 <div className="mt-5 flex flex-col gap-2">
-                  <WhatsAppButton message={waMessage.general}>Book on WhatsApp</WhatsAppButton>
+                  <WhatsAppButton message={waMessage.general}>Enquire on WhatsApp</WhatsAppButton>
                 </div>
               </div>
             </details>

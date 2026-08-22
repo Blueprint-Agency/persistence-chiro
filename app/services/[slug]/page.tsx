@@ -221,7 +221,7 @@ export default async function ServicePage({ params }: Props) {
                 </p>
                 <div className="mt-8">
                   <WhatsAppButton message={waMessage.service(shortName)}>
-                    Book on WhatsApp
+                    Enquire on WhatsApp
                   </WhatsAppButton>
                 </div>
 

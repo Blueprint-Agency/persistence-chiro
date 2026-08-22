@@ -234,7 +234,7 @@ export default function Home() {
             </p>
 
             <div className="mt-8">
-              <WhatsAppButton message={waMessage.home}>Book on WhatsApp</WhatsAppButton>
+              <WhatsAppButton message={waMessage.home}>Enquire on WhatsApp</WhatsAppButton>
             </div>
 
             {/* The first-timer's real question, answered next to the button rather than in

@@ -49,7 +49,7 @@ export function Footer() {
                 column below — removing the button does not remove the number, which local
                 SEO depends on appearing on every page. */}
             <div className="mt-7">
-              <WhatsAppButton message={waMessage.general}>Book on WhatsApp</WhatsAppButton>
+              <WhatsAppButton message={waMessage.general}>Enquire on WhatsApp</WhatsAppButton>
             </div>
 
             <ul className="mt-8 flex gap-5 text-sm text-white/70">

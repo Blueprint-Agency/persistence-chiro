@@ -286,7 +286,7 @@ export default async function ConditionPage({ params }: Props) {
               </p>
               <div className="mt-5">
                 <WhatsAppButton message={waMessage.condition(condition.title.split(' in ')[0])}>
-                  Book on WhatsApp
+                  Enquire on WhatsApp
                 </WhatsAppButton>
               </div>
             </div>

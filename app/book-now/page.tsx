@@ -30,7 +30,7 @@ export default function ContactPage() {
         intro="Right next to Sunway Velocity and Sunway Medical Centre, Cheras. Open seven days a week."
       >
         <div>
-          <WhatsAppButton message={waMessage.general}>Book on WhatsApp</WhatsAppButton>
+          <WhatsAppButton message={waMessage.general}>Enquire on WhatsApp</WhatsAppButton>
         </div>
       </PageHero>
 

@@ -172,7 +172,7 @@ export function ServiceHero({
   image,
   assurances,
   message,
-  cta = 'Book on WhatsApp',
+  cta = 'Enquire on WhatsApp',
 }: {
   title: string
   intro?: string
@@ -455,7 +455,7 @@ export function StickyCta({ message = waMessage.general }: { message?: string })
           className="inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-brand-gold px-5 py-3 text-center text-sm font-semibold text-ink"
         >
           <WhatsAppIcon />
-          Book on WhatsApp
+          Enquire on WhatsApp
         </a>
       </div>
     </div>
