@@ -64,19 +64,22 @@ const heroSlides = [
  *
  * BAND ORDER IS LOAD-BEARING — do not reshuffle these sections casually.
  *
- *   hero → accreditations → intro/offers → care paths → FAQ → meet the team
- *        → testimonials → blog → visit us
+ *   hero → accreditations → intro/offers → care paths → patient photographs
+ *        → testimonials → FAQ → meet the team → blog → visit us
  *
  * The conversion band that used to close the page was removed at the client's request; see
  * the note where it stood. "Visit us" is now the last band, which still means the page ends
  * on the practical facts a "near me" visitor needs rather than on blog thumbnails.
  *
- * The ORDER is still built to handle objections in sequence: the FAQ answers "does it
- * hurt", the testimonials answer "does it work for people like me", and "visit us" answers
- * the only question a person in pain actually has left — can I get there, and are they
- * open. That sequence was the setup for the ask; the ask itself is now carried by the
- * sticky header and, below `lg`, the fixed bar. Keep the order even though the band it
- * built toward is gone — reshuffling it puts objections after the point they matter.
+ * The ORDER is still built to handle objections in sequence. The proof pair — patient
+ * photographs, then testimonials — answers "does this do anything for people like me"; the
+ * FAQ then answers "does it hurt, and what happens on my first visit"; and "visit us"
+ * answers the only question a person in pain actually has left — can I get there, and are
+ * they open. Proof ahead of the FAQ is deliberate (client request, 2026-08-24): the FAQ is
+ * read by someone already half-persuaded, so it works better as the last hesitation to clear
+ * than as the first thing a cold visitor is handed. That sequence was the setup for the ask;
+ * the ask itself is now carried by the sticky header and, below `lg`, the fixed bar. Keep
+ * the order — reshuffling it puts objections after the point they matter.
  *
  * The blog trio stays (it is real internal linking to /blog and those posts need it) but is
  * buried between the proof and the practical close, so it cannot be the final word. The
@@ -84,17 +87,19 @@ const heroSlides = [
  * go and read something. Peak-end says that position carries disproportionate weight, so
  * whatever ends this page should not be a detour.
  *
- * BACKGROUND RHYTHM: slate → white → cream → white → cream → white → aqua → cream → white.
- * No two adjacent bands share a ground; that alternation plus the 1px warm hairline is what
- * makes nine bands legible. If you insert a band, check its neighbours.
+ * BACKGROUND RHYTHM: slate → white → cream → white → cream → aqua → cream → white → cream
+ * → white. No two adjacent bands share a ground; that alternation plus the 1px warm hairline
+ * is what makes ten bands legible. If you insert a band, check its neighbours.
  *
- * The white in the middle of that run is "meet the team", added 2026-08-11. It went between
- * the FAQ (cream) and the reviews (aqua) because those are the only neighbours that leave a
- * white slot free — every other insertion point would have put two whites together. It also
- * happens to be where it belongs in the objection sequence: the FAQ answers "does it hurt",
- * this answers "who would be doing it", and the reviews then answer "does it work for people
- * like me". Do not move it next to the accreditation strip or "visit us" without changing
- * its ground.
+ * The cream between the white care paths and the aqua reviews is "patient photographs",
+ * added 2026-08-24. It carries no band of its own for that reason — the page ground is
+ * already the change of value on both sides.
+ *
+ * "Meet the team" (white, added 2026-08-11) now sits between the FAQ (cream) and the blog
+ * (cream), which is still the only slot on the page leaving a white gap free. It also still
+ * lands where it belongs in the sequence: the FAQ answers "does it hurt", this answers "who
+ * would be doing it". Do not move it next to the accreditation strip or "visit us" without
+ * changing its ground.
  */
 /**
  * Social proof for the snippet, not for the page.
@@ -415,14 +420,115 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ---------------------------------------------------------------- FAQs */}
-      {/* Moved ahead of the conversion band: "does it hurt" and "what happens on my first
-          visit" are the objections standing between a nervous first-timer and a booking.
-          Asking for the booking before answering them was asking too early.
+      {/* --------------------------------------------------- Patient photographs */}
+      {/* Added 2026-08-24 at the client's request, immediately above the reviews. The
+          photographs and the reviews make the same argument in two registers, and the images
+          are the half a visitor takes in without stopping to read — so they open the proof
+          band rather than sitting only on a service page most homepage visitors never reach.
 
-          Sits on the page ground with no band of its own — it falls between two white
-          sections, so the cream is already the change of value. The 2026 preview gave it a
-          warm Skin tint; that went with the rest of the preview. */}
+          Same two composites as /services/chiropractic-care, and the same two rules hold them
+          in bounds here. These are the only outcome claims anywhere on the site and an image
+          makes its claim silently, so:
+
+          1. THE DISCLAIMER SHIPS WITH THE IMAGES, as a figcaption, never a footnote elsewhere.
+          2. THE COPY DESCRIBES THE LINE, NOT A RESULT. Do not reword the caption or the
+             standfirst towards "corrected", "straightened" or "improved" — the scoliosis copy
+             in lib/conditions.ts says in reviewed text that "the curve itself stays as it is",
+             and these photographs must not contradict it two clicks away.
+
+          Page ground (cream): the care paths above are white, the reviews below are aqua. */}
+      <section className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
+        <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+          <div>
+            <Eyebrow>Patient photographs</Eyebrow>
+            <h2 className="mt-5 text-3xl font-extrabold leading-tight sm:text-4xl">
+              What a change in posture can look like
+            </h2>
+            <p className="mt-5 leading-relaxed text-ink-muted">
+              Two of our patients, photographed from behind on two different days. The lines mark
+              what we look at when we assess posture &mdash; where the head sits over the
+              shoulders, and how the spine runs from the neck down.
+            </p>
+            <div className="mt-8">
+              <GhostButton href="/services/chiropractic-care">
+                How chiropractic care works
+              </GhostButton>
+            </div>
+          </div>
+
+          <figure>
+            {/* Both pairs on one row, matching the service page. Each file is already a
+                composite of two photographs plus a Before/After band, so one row is four
+                photographs wide; stacking returns at `sm`, where side by side would be
+                unreadable rather than merely small. */}
+            <div className="grid gap-6 sm:grid-cols-2">
+              {[
+                {
+                  src: '/img/before-after-posture.webp',
+                  alt: 'Back view of the same patient in two photographs at Persistence Chiropractic Care in Cheras, Kuala Lumpur, a vertical red line in each marking the position of the head and spine',
+                },
+                {
+                  src: '/img/before-after-spinal-curve.webp',
+                  alt: 'Back view of the same patient in two photographs at Persistence Chiropractic Care in Cheras, Kuala Lumpur, a dashed line in each following the line of the spine from the neck downwards',
+                },
+              ].map((pair) => (
+                <div
+                  key={pair.src}
+                  className="overflow-hidden rounded-3xl border border-line shadow-ambient"
+                >
+                  <Image
+                    src={pair.src}
+                    alt={pair.alt}
+                    width={1080}
+                    height={1350}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 45vw, 330px"
+                    className="w-full"
+                  />
+                </div>
+              ))}
+            </div>
+            <figcaption className="mt-6 text-sm leading-relaxed text-ink-muted">
+              {/* Carried verbatim from /services/chiropractic-care. The permission sentence is
+                  the only published statement that these two patients agreed to their
+                  photographs being used; it must ship wherever the photographs do. */}
+              Photographed from behind at our clinic in Cheras and shared with their
+              permission. Two people&rsquo;s photographs, not a prediction of yours: each pair shows how
+              someone stood in front of a camera on two different days, which is not the same
+              thing as a measurement, and posture differs from person to person and from visit
+              to visit. What we can tell you before we have assessed you is what we would look
+              at, not what would change.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      {/* ---------------------------------------------------------- Testimonials */}
+      {/* Google-review styled, at the client's request, replacing a bespoke two-up quote
+          grid that lived only here. `GoogleReviews` is the same component the five service
+          pages already use, so there is now one review treatment on the site instead of two
+          — and one place to change when the real Google data lands.
+
+          The reviews are REAL as of 2026-08-01 — the client supplied them from the Business
+          Profile and lib/sample-reviews.ts is gone, so this renders everywhere rather than
+          only on the preview domain. Nothing invented may go back into lib/reviews.ts.
+
+          It keeps its own aqua band. Since 2026-08-24 it sits directly under the patient
+          photographs and above the FAQ — cream either side, so the aqua reads as the centre
+          of the proof band rather than as a stray tint. */}
+      <GoogleReviews />
+
+      {/* ---------------------------------------------------------------- FAQs */}
+      {/* "Does it hurt" and "what happens on my first visit" are the objections standing
+          between a nervous first-timer and a booking, so they are answered before the page
+          reaches the practical close.
+
+          Moved below the proof band 2026-08-24 at the client's request. It now reads to
+          someone the photographs and the reviews have already half-persuaded, which is the
+          audience these questions are actually written for.
+
+          Sits on the page ground with no band of its own — aqua above and white below, so
+          the cream is already the change of value. The 2026 preview gave it a warm Skin tint;
+          that went with the rest of the preview. */}
       <section className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
         <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
           <div>
@@ -474,21 +580,10 @@ export default function Home() {
           rather than being invented (lib/clinic.ts).
 
           Three links to /about/<slug> is also the homepage's only internal linking into the
-          practitioner pages, which are otherwise reachable only via /about. */}
+          practitioner pages, which are otherwise reachable only via /about.
+
+          It followed the FAQ before 2026-08-24 and still does; only the reviews moved. */}
       <MeetDoctors />
-
-      {/* ---------------------------------------------------------- Testimonials */}
-      {/* Google-review styled, at the client's request, replacing a bespoke two-up quote
-          grid that lived only here. `GoogleReviews` is the same component the five service
-          pages already use, so there is now one review treatment on the site instead of two
-          — and one place to change when the real Google data lands.
-
-          The reviews are REAL as of 2026-08-01 — the client supplied them from the Business
-          Profile and lib/sample-reviews.ts is gone, so this renders everywhere rather than
-          only on the preview domain. Nothing invented may go back into lib/reviews.ts.
-
-          It keeps its own aqua band, so the band rhythm either side is unchanged. */}
-      <GoogleReviews />
 
       {/* --------------------------------------------------------------- Blog */}
       {/* Kept for the internal links into /blog, but demoted. It serves someone researching
