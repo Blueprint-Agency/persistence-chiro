@@ -91,17 +91,15 @@ test('no promissory medical claims in published copy', () => {
           `services/${m.slug}`,
           [
             m.metaDescription,
-            ...m.sections.map((s) => s.body),
+            ...(m.sections ?? []).map((s) => s.body),
             // These user-facing fields carry prose too, so they must clear the same guard.
             // `outcomes` is a union: a bare string, or an object carrying the copy on `.text`
             // alongside an image or illustration. Spreading it raw stringified the object
             // forms to "[object Object]", so four of the five dry needling outcomes were
             // silently exempt from the guard. Normalise to the text before joining.
             ...(m.outcomes ?? []).map((o) => (typeof o === 'string' ? o : o.text)),
-            ...(m.longForm ?? []).flatMap((l) => [l.heading, l.body]),
             ...(m.citations ?? []).map((c) => c.claim),
             ...m.faqs.flatMap((f) => [f.q, f.a]),
-            ...(m.keyTakeaways ?? []).flatMap((k) => [k.q, k.a]),
             ...(m.comparison
               ? [
                   m.comparison.heading,
@@ -109,6 +107,12 @@ test('no promissory medical claims in published copy', () => {
                   m.comparison.note,
                   ...m.comparison.rows.flatMap((r) => [r.label, r.a, r.b]),
                 ]
+              : []),
+            // The fit check is rendered prose like any other and has to clear the same guard.
+            // Its left column is the block most likely to reach for "we guarantee we will
+            // always..." phrasing, which the banned list catches.
+            ...(m.fitCheck
+              ? [...m.fitCheck.rightFor, ...m.fitCheck.notRightFor, m.fitCheck.note]
               : []),
           ].join(' '),
         ] as [string, string],
@@ -152,6 +156,142 @@ test('new blog posts carry no promissory claims or stray dashes', async () => {
     if (/[—–]/.test(text)) hits.push(`blog/${p.slug}: contains an em/en dash`)
   }
   assert.deepEqual(hits, [], `new-post issue(s):\n  ${hits.join('\n  ')}`)
+})
+
+/**
+ * `faqs[].links` names a phrase to wrap in a link. The renderer skips a phrase it cannot
+ * find rather than throwing, so the page still builds and the visitor still reads the
+ * paragraph — which means nothing at runtime would ever tell anyone the link had vanished.
+ * This is what tells them.
+ *
+ * Exactly once, not at least once: two occurrences and the link lands on whichever one comes
+ * first, which is a coin toss rather than an editorial decision.
+ */
+test('every in-prose link phrase occurs exactly once in its body', () => {
+  const hits: string[] = []
+  for (const s of services) {
+    for (const faq of s.faqs) {
+      for (const link of faq.links ?? []) {
+        const count = faq.a.split(link.phrase).length - 1
+        if (count !== 1) {
+          hits.push(`services/${s.slug} "${faq.q}": phrase "${link.phrase}" occurs ${count}x`)
+        }
+      }
+    }
+  }
+  assert.deepEqual(hits, [], `in-prose link problem(s):\n  ${hits.join('\n  ')}`)
+})
+
+/**
+ * Every in-prose link target has to be a route the site actually publishes, for the same
+ * reason the redirect table is tested: an internal link into a 404 wastes the crawl and
+ * strands the reader.
+ */
+test('every in-prose link points at a published route', () => {
+  const published = new Set<string>([
+    ...staticRoutes,
+    ...conditions.map((c) => `/conditions/${c.slug}`),
+    ...services.map((m) => `/services/${m.slug}`),
+  ])
+  const hits: string[] = []
+  for (const s of services) {
+    for (const faq of s.faqs) {
+      for (const link of faq.links ?? []) {
+        if (!published.has(link.href)) {
+          hits.push(`services/${s.slug} "${faq.q}" -> ${link.href}`)
+        }
+      }
+      if ((faq.links ?? []).some((l) => l.href === `/services/${s.slug}`)) {
+        hits.push(`services/${s.slug} "${faq.q}" links to itself`)
+      }
+    }
+    for (const link of s.relatedLinks ?? []) {
+      if (!published.has(link.href)) hits.push(`services/${s.slug}.relatedLinks -> ${link.href}`)
+      if (link.href === `/services/${s.slug}`) {
+        hits.push(`services/${s.slug}.relatedLinks links to itself`)
+      }
+    }
+  }
+  assert.deepEqual(hits, [], `broken internal link(s):\n  ${hits.join('\n  ')}`)
+})
+
+/**
+ * The fit check exists to be honest about a mismatch, not to tell a reader off, so the
+ * closing note is required by the type and has to be substantial rather than a token
+ * sentence — same contract `practitionersWithheld` has with its reason string.
+ *
+ * The columns must BALANCE. They render side by side and are written to be read across, so
+ * a page with five ticks against two crosses stops being an honest fit check and becomes a
+ * sales pitch with a disclaimer stapled to it, which is the shape this block exists to avoid.
+ */
+test('every fit check is balanced and closes on a substantial note', () => {
+  for (const s of services) {
+    if (!s.fitCheck) continue
+    const { rightFor, notRightFor, note } = s.fitCheck
+    assert.ok(
+      notRightFor.length >= 3,
+      `services/${s.slug}.fitCheck has fewer than 3 crosses; a one-line refusal reads as a caveat`,
+    )
+    assert.equal(
+      rightFor.length,
+      notRightFor.length,
+      `services/${s.slug}.fitCheck columns are uneven (${rightFor.length} ticks vs ${notRightFor.length} crosses); they render side by side and are meant to be read across`,
+    )
+    assert.ok(
+      note.length > 120,
+      `services/${s.slug}.fitCheck.note is too short to say what to do instead`,
+    )
+  }
+})
+
+/**
+ * Both fit-check columns describe EXPECTATIONS OF THE CLINIC, which is what keeps the block
+ * distinct from `outcomes` (why people come in) and `qualifierConcerns` (what hurts). If a
+ * line is copied from either, one route publishes the same sentence three times.
+ */
+test('no fit-check line is duplicated from outcomes or the qualifier', () => {
+  const norm = (t: string) => t.toLowerCase().replace(/[^a-z ]/g, '').replace(/\s+/g, ' ').trim()
+  const hits: string[] = []
+  for (const s of services) {
+    if (!s.fitCheck) continue
+    const elsewhere = new Set([
+      ...(s.outcomes ?? []).map((o) => norm(typeof o === 'string' ? o : o.text)),
+      ...(s.qualifierConcerns ?? []).map((c) => norm(typeof c === 'string' ? c : c.label)),
+    ])
+    for (const line of [...s.fitCheck.rightFor, ...s.fitCheck.notRightFor]) {
+      if (elsewhere.has(norm(line))) hits.push(`services/${s.slug}: "${line}"`)
+    }
+  }
+  assert.deepEqual(hits, [], `fit-check line(s) duplicated elsewhere on the page: ${hits.join('; ')}`)
+})
+
+/**
+ * `pageFaqSchema` publishes BOTH rendered Q&A blocks on a route inside one FAQPage: the short
+ * answers (`keyTakeaways`) and the FAQ proper (`faqs`). That is only legitimate while the two
+ * say different things. If a takeaway drifts into repeating an FAQ, one page ships the same
+ * question or the same answer twice inside a single FAQPage, which is the duplication the
+ * split exists to avoid.
+ *
+ * Questions AND answers, because either alone can collide: two wordings of "is it safe" with
+ * one answer is as duplicated as the same question asked twice.
+ */
+test('no key takeaway repeats an FAQ on the same page', () => {
+  const norm = (t: string) => t.toLowerCase().replace(/[^a-z0-9 ]/g, '').replace(/\s+/g, ' ').trim()
+  const hits: string[] = []
+  // Conditions only. The service pages carried `keyTakeaways` until 2026-08-23; with it
+  // deleted there, `faqs` is the single Q&A array on a service and nothing can collide.
+  const pages: [string, { q: string; a: string }[] | undefined, readonly { q: string; a: string }[]][] =
+    conditions.map((c) => [`conditions/${c.slug}`, c.keyTakeaways, c.faqs] as [string, { q: string; a: string }[] | undefined, readonly { q: string; a: string }[]])
+  for (const [where, takeaways, faqs] of pages) {
+    if (!takeaways) continue
+    const faqQ = new Set(faqs.map((f) => norm(f.q)))
+    const faqA = new Set(faqs.map((f) => norm(f.a)))
+    for (const t of takeaways) {
+      if (faqQ.has(norm(t.q))) hits.push(`${where}: question "${t.q}" is also an FAQ`)
+      if (faqA.has(norm(t.a))) hits.push(`${where}: answer to "${t.q}" is also an FAQ answer`)
+    }
+  }
+  assert.deepEqual(hits, [], `duplicate Q&A inside one FAQPage: ${hits.join('; ')}`)
 })
 
 test('no two pages target the same keyword', () => {

@@ -207,6 +207,32 @@ export function reviewedMedicalWebPage(o: {
  * FAQ block. Only emit when the answers are genuinely on the page — Google treats
  * schema that isn't visible in the rendered content as a violation.
  */
+/**
+ * FAQPage for a route that answers questions in TWO rendered blocks: the short answers
+ * (`keyTakeaways`) and the FAQ proper (`faqs`).
+ *
+ * Both blocks render on the page, which is the condition Google puts on FAQPage, but only
+ * `faqs` used to reach the schema. That left the takeaways as plain prose whose machine
+ * readability depended on where they happened to sit in the document — the cost the service
+ * pages were about to pay for moving them below the reviews (2026-08-23). In structured data
+ * position stops mattering, so the layout decision is free.
+ *
+ * NOT ABOUT RICH RESULTS. Google restricted FAQ rich snippets to well-known authoritative
+ * government and health sites in 2023, and a private clinic is not one, so nothing new will
+ * appear in the SERP. The value is that the answer engines which parse JSON-LD now see ten
+ * Q&A pairs on a money page instead of five.
+ *
+ * THE TWO ARRAYS MUST NOT OVERLAP. Publishing one answer twice inside a single FAQPage is
+ * the duplication the whole block is meant to avoid; `content.test.ts` asserts it, so a
+ * reworded takeaway that drifts into an FAQ fails the build rather than shipping.
+ */
+export function pageFaqSchema(
+  takeaways: readonly { q: string; a: string }[] | undefined,
+  faqs: readonly { q: string; a: string }[],
+) {
+  return faqSchema([...(takeaways ?? []), ...faqs])
+}
+
 export function faqSchema(faqs: readonly { q: string; a: string }[]) {
   return {
     '@context': 'https://schema.org',

@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
-import Link from 'next/link'
 
 import { practitionerBySlug } from '@/lib/clinic'
 import { conditionBySlug } from '@/lib/conditions'
@@ -10,18 +9,22 @@ import { pageMetadata } from '@/lib/seo'
 import { JsonLd } from '@/components/JsonLd'
 import {
   breadcrumbSchema,
-  faqSchema,
   medicalProcedureSchema,
+  faqSchema,
   reviewedMedicalWebPage,
 } from '@/lib/schema'
-import { CheckIcon, CtaBand, Eyebrow, GhostButton, Vertebrae } from '@/components/ui'
+import { CtaBand, Eyebrow } from '@/components/ui'
 import {
-  KeyTakeaways,
+  InlineCta,
+  Faqs,
+  FitCheck,
+  OutcomeCards,
   References,
   ReviewedBy,
   ServiceHero,
   StickyCta,
   TrustBar,
+  WhereToGoNext,
 } from '@/components/service'
 import { GoogleReviews } from '@/components/GoogleReviews'
 import { MeetDoctors } from '@/components/MeetDoctors'
@@ -41,8 +44,18 @@ const reviewer = practitionerBySlug('valerie-na')!
  * equity between them — unaffordable at DA 6. Gonstead is the differentiator that makes
  * this page worth ranking, so it lives inside it. If GSC later shows "gonstead" queries
  * earning impressions of their own, splitting it back out is the easier direction to go.
+ *
+ * EVERYTHING THIS PAGE SHARES WITH THE TEMPLATED ROUTE NOW COMES FROM `@/components/service`.
+ * A 2026-08-23 audit found four blocks that had been reimplemented here by hand and had
+ * quietly drifted: the outcome cards silently dropped photographs, the long-form blocks
+ * could not carry in-prose links, the internal-link block did not exist, and the
+ * MedicalProcedure schema shipped without `howPerformed`. Only what is genuinely bespoke
+ * belongs inline below: the three-column section grid, the six steps, and the patient
+ * photographs.
  */
 const service = serviceBySlug('chiropractic-care')!
+
+const helpsWith = service.helpsWith.map(conditionBySlug).filter((c) => c !== undefined)
 
 export const metadata: Metadata = pageMetadata({
   title: service.metaTitle,
@@ -64,9 +77,16 @@ export default function ChiropracticPage() {
           name: service.title,
           description: service.metaDescription,
           url: '/services/chiropractic-care',
+          // `gonsteadIntro` rather than a `sections` entry, because this route no longer
+          // renders `sections` at all — and schema must describe what the page actually
+          // says. This string IS on the page: it is the lead paragraph under the h1, and it
+          // describes how the procedure is performed, which is what the field is for.
+          howPerformed: gonsteadIntro,
         })}
       />
-      {/* Every answer below renders on the page, so the schema is legitimate. */}
+      {/* Both the short answers and the FAQ render on the page, so both belong in the
+          schema. Carrying only `faqs` left half the Q&A on this route invisible to anything
+          that reads JSON-LD rather than prose. */}
       <JsonLd data={faqSchema(service.faqs)} />
       {service.lastReviewed && (
         <JsonLd
@@ -104,59 +124,30 @@ export default function ChiropracticPage() {
         message={waMessage.service('chiropractic care')}
       />
 
-      <TrustBar />
-
-      {/* ------------------------------------------------------ Key takeaways */}
-      <KeyTakeaways items={service.keyTakeaways} />
+      {/* ------------------------------------------------------ Social proof */}
+      {/* SWAPPED WITH THE TRUST BAR AND KEY TAKEAWAYS, 2026-08-23, at the client's
+          direction: a visitor arriving cold trusts what other patients say sooner than an
+          accreditation logo they do not recognise, so the reviews take the slot directly
+          under the hero and the credentials move down to sit with the practitioners.
+          The hero's <RatingBadge> already shows the score; this is the evidence behind it. */}
+      <GoogleReviews />
 
       {/* -------------------------------------------------- What we help with */}
-      {/* `outcomes` and `sections` were both authored in services.ts and neither was rendered
-          on this route: the templated page reads them, the hand-built one never did. That put
-          three blocks of copy in the repo that no visitor and no crawler ever saw, including
-          the "bone and body alignment" block, which is the phrasing this page's target keyword
-          is built on. Both now render. */}
-      {service.outcomes && service.outcomes.length > 0 && (
-        <section className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
-          <Eyebrow>What we help with</Eyebrow>
-          <h2 className="mt-5 max-w-2xl text-3xl font-extrabold leading-tight sm:text-4xl">
-            Reasons people come in for chiropractic care
-          </h2>
-          <ul className="mt-10 grid gap-6 sm:grid-cols-2">
-            {service.outcomes.map((outcome) => {
-              const text = typeof outcome === 'string' ? outcome : outcome.text
-              return (
-                <li
-                  key={text}
-                  className="flex items-start gap-3 rounded-3xl border border-line bg-white p-6 shadow-ambient"
-                >
-                  <CheckIcon className="mt-0.5 h-5 w-5 flex-none text-brand-slate" />
-                  <p className="leading-relaxed text-ink-muted">{text}</p>
-                </li>
-              )
-            })}
-          </ul>
-        </section>
-      )}
+      {/* Shared renderer, so a photograph added to `outcomes` in services.ts appears here
+          the same way it appears on the templated routes. The hand-rolled version this
+          replaced read only `outcome.text` and would have dropped one silently. */}
+      <OutcomeCards outcomes={service.outcomes} serviceName="chiropractic care" />
 
-      {/* ------------------------------------------------ The three main parts */}
-      {service.sections.length > 0 && (
-        <section className="border-y border-line bg-white">
-          <div className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
-            <Eyebrow>What it involves</Eyebrow>
-            <h2 className="mt-5 max-w-2xl text-3xl font-extrabold leading-tight sm:text-4xl">
-              What chiropractic care here involves
-            </h2>
-            <div className="mt-10 grid gap-8 md:grid-cols-3">
-              {service.sections.map((s) => (
-                <div key={s.heading}>
-                  <h3 className="text-xl font-bold">{s.heading}</h3>
-                  <p className="mt-3 leading-relaxed text-ink-muted">{s.body}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
+      {/* ---------------------------------------------------------- Mid-page ask */}
+      {/* The page previously asked once in the hero and then not again until the CTA band at
+          the foot, with only the mobile sticky bar in between. This is the break between
+          recognising the problem and reading how the care works. */}
+      <InlineCta
+        heading="Tell us what is going on"
+        body="Start with the assessment. We will tell you what we find, what we would do about it, and whether chiropractic is the right approach for your case at all."
+        message={waMessage.service('chiropractic care')}
+        secondary={{ href: '/what-to-expect', label: 'What happens on a first visit' }}
+      />
 
       {/* ------------------------------------------------------ The six steps */}
       <section className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
@@ -166,21 +157,33 @@ export default function ChiropracticPage() {
             <h2 className="mt-5 text-3xl font-extrabold leading-tight sm:text-4xl">
               The six steps of a Gonstead assessment
             </h2>
+            {/* The closing sentence is rehomed from the deleted "Bone and body alignment"
+                block. It was the only place this page's target keyword appeared in visible
+                body copy — everywhere else it sits in the meta description, the schema or an
+                image alt — and a money page whose keyword is absent from its own prose is the
+                thin signal this rebuild exists to avoid. It is also the only line of that
+                section that said anything the six steps below do not already say. */}
             <p className="mt-5 leading-relaxed text-ink-muted">
-              Gonstead is a process of elimination. Each step narrows the search until only the
-              segment actually causing your pain is left. We then adjust that one joint rather
-              than the whole spine.
+              Gonstead is a process of elimination: each step narrows the search until only the
+              segment causing your pain is left, so we adjust that one joint rather than the
+              whole spine. Where segments have become restricted, adjustment aims to improve
+              bone and body alignment by improving how well they move. How much changes depends
+              on the cause, and on how long it has been there.
             </p>
-            <div className="mt-8 overflow-hidden rounded-3xl">
-              <Image
-                src="/img/consultation-assessment.webp"
-                alt="Gonstead chiropractor assessing spinal alignment before an adjustment in Cheras, Kuala Lumpur"
-                width={1100}
-                height={1400}
-                sizes="(max-width: 1024px) 100vw, 420px"
-                className="w-full object-cover"
-              />
-            </div>
+            {/* The photograph was hardcoded here and was the only service image living
+                outside lib/services.ts. Same file, same slot, now read from `midImage`. */}
+            {service.midImage && (
+              <div className="mt-8 overflow-hidden rounded-3xl">
+                <Image
+                  src={service.midImage.src}
+                  alt={service.midImage.alt}
+                  width={1100}
+                  height={1400}
+                  sizes="(max-width: 1024px) 100vw, 420px"
+                  className="w-full object-cover"
+                />
+              </div>
+            )}
           </div>
 
           {/* Numbered because the steps genuinely run in sequence — each one depends on
@@ -188,10 +191,7 @@ export default function ChiropracticPage() {
           <ol className="divide-y divide-line border-y border-line">
             {gonsteadSteps.map((step, i) => (
               <li key={step.name} className="flex gap-6 py-7">
-                <span
-                  aria-hidden="true"
-                  className="label flex-none pt-1.5 text-brand-gold-ink"
-                >
+                <span aria-hidden="true" className="label flex-none pt-1.5 text-brand-gold-ink">
                   {String(i + 1).padStart(2, '0')}
                 </span>
                 <div>
@@ -202,41 +202,16 @@ export default function ChiropracticPage() {
             ))}
           </ol>
         </div>
-
-        <div className="mt-12 flex flex-wrap gap-3">
-          <GhostButton href="/what-to-expect">What to expect on your first visit</GhostButton>
-          <GhostButton href="/services/physiotherapy">Compare with physiotherapy</GhostButton>
-        </div>
-
-        <div className="mt-14 rounded-3xl border border-line bg-white p-8 shadow-ambient lg:p-10">
-          <Eyebrow>Conditions we commonly see</Eyebrow>
-          <ul className="mt-5 grid gap-2.5 sm:grid-cols-2">
-            {service.helpsWith.map(conditionBySlug).map(
-              (c) =>
-                c && (
-                  <li key={c.slug}>
-                    <Link
-                      href={`/conditions/${c.slug}`}
-                      className="flex items-start gap-2.5 text-ink-muted hover:text-brand-slate"
-                    >
-                      <Vertebrae className="mt-1.5 text-brand-gold" />
-                      {c.title.split(' in ')[0]}
-                    </Link>
-                  </li>
-                ),
-            )}
-          </ul>
-        </div>
       </section>
 
       {/* ----------------------------------------------------------- Qualifier */}
-      {/* Same placement as the templated service pages — high, on the aqua ground, right
-          after the method rather than behind the citations.
+      {/* AFTER the method. Client instruction, 2026-08-09: the ask should convert a reader
+          while they still have the six steps in mind rather than making them scroll past the
+          patient photographs first. The templated routes ran it before their steps until
+          2026-08-23 and now match this, so the five service pages read the same way.
 
-          MOVED ABOVE THE PHOTOGRAPHS 2026-08-09 at the client's request, which also puts it
-          directly after the method here as it is on every templated page. The ask converts
-          a reader while they still have the six steps in mind, instead of making them scroll
-          past two outcome photographs first. */}
+          The mid-page <InlineCta> above covers the earlier high-intent moment this slot used
+          to serve, so nothing is lost by the later placement. */}
       {service.qualifierConcerns && service.qualifierConcerns.length > 0 && (
         <section className="border-y border-line bg-brand-aqua/40">
           <div className="mx-auto max-w-3xl px-4 py-16 lg:py-24">
@@ -264,18 +239,12 @@ export default function ChiropracticPage() {
              camera saw from behind on two days, it does not. The caption does that work and
              is not decorative — raised with the client 2026-08-08, included at their
              direction. Do not reword it towards "corrected", "straightened" or "improved". */}
-      <section className="border-y border-line bg-white">
+      <section className="border-b border-line bg-white">
         <div className="mx-auto max-w-3xl px-4 py-16 lg:py-24">
           <Eyebrow>Patient photographs</Eyebrow>
           <h2 className="mt-5 text-3xl font-extrabold leading-tight sm:text-4xl">
             What a change in posture can look like
           </h2>
-          <p className="mt-5 leading-relaxed text-ink-muted">
-            Two patients at our clinic in Cheras, photographed from behind during their care
-            and shared with their permission. The line marks the same vertical in each pair,
-            so the two photographs can be compared against something fixed.
-          </p>
-
           <figure className="mt-10">
             {/* Both pairs on one row, at the client's request 2026-08-09. They stacked before,
                 which made the section two full-width photographs tall on a laptop and pushed
@@ -313,7 +282,13 @@ export default function ChiropracticPage() {
               ))}
             </div>
             <figcaption className="mt-6 text-sm leading-relaxed text-ink-muted">
-              Two people&rsquo;s photographs, not a prediction of yours. Each pair shows how
+              {/* "Shared with their permission" was in the standing paragraph above these
+                  images until it was removed 2026-08-23, and it appeared nowhere else on the
+                  site. It is the only published statement that these two patients agreed to
+                  their photographs being used, so it moved down here rather than going with
+                  the paragraph. Do not drop it for length. */}
+              Photographed from behind at our clinic in Cheras and shared with their
+              permission. Two people&rsquo;s photographs, not a prediction of yours: each pair shows how
               someone stood in front of a camera on two different days, which is not the same
               thing as a measurement, and posture differs from person to person and from visit
               to visit. What we can tell you before we have assessed you is what we would look
@@ -323,58 +298,36 @@ export default function ChiropracticPage() {
         </div>
       </section>
 
-      {/* ----------------------------------------------------- Long-form depth */}
-      {/* Also previously unrendered on this route. The safety block in particular was written,
-          reviewed and then never shown, which on a YMYL page is the section most worth having. */}
-      {service.longForm && service.longForm.length > 0 && (
-        <section className="mx-auto max-w-3xl px-4 py-16 lg:py-24">
-          <div className="space-y-12">
-            {service.longForm.map((block) => (
-              <div key={block.heading}>
-                <h2 className="text-2xl font-extrabold leading-tight sm:text-3xl">
-                  {block.heading}
-                </h2>
-                <p className="mt-4 text-lg leading-relaxed text-ink-muted">{block.body}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-      )}
+
+      {/* --------------------------------------------------- Who this is not for */}
+      {/* The one block a competitor teardown (ianthechiro.my, 2026-08-23) had and we did not.
+          Placed after the depth and before the team: it is the last honesty beat before the
+          page starts asking for trust in named people and reviews. */}
+      <FitCheck data={service.fitCheck} serviceName="chiropractic care" />
 
       <MeetDoctors />
 
-      <GoogleReviews />
+      {/* ------------------------------------------------------- Credentials */}
+      {/* The accreditations sit directly under the people who hold them, which reads better
+          than floating them under the hero as a logo strip a cold visitor cannot place.
+
+          The key-takeaways block used to follow this and was removed 2026-08-23: with
+          `longForm` gone it left the page ending on two Q&A blocks back to back, and four of
+          its five questions were already answered by an FAQ. The answers worth keeping moved
+          into `faqs`. Cream ground because the FAQ below and <MeetDoctors/> above are both
+          white, and this was the band that used to break that run. */}
+      <TrustBar tone="cream" />
 
       {/* ------------------------------------------------------------------ FAQs */}
-      <section className="border-t border-line bg-white">
-        <div className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
-          <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
-            <div>
-              <Eyebrow>Questions</Eyebrow>
-              <h2 className="mt-5 text-3xl font-extrabold leading-tight sm:text-4xl">
-                Frequently asked questions
-              </h2>
-            </div>
+      {/* The page's ONLY long-answer block since `longForm` was deleted, so its questions
+          carry `h3` and its answers carry the in-prose links. */}
+      <Faqs faqs={service.faqs} />
 
-            <div className="divide-y divide-line border-y border-line">
-              {service.faqs.map((faq) => (
-                <details key={faq.q} className="faq py-5">
-                  <summary className="flex items-start justify-between gap-6 text-lg font-semibold text-ink">
-                    {faq.q}
-                    <span
-                      aria-hidden="true"
-                      className="faq-sign mt-1 flex-none text-2xl font-light leading-none text-brand-slate transition-transform"
-                    >
-                      +
-                    </span>
-                  </summary>
-                  <p className="mt-4 leading-relaxed text-ink-muted">{faq.a}</p>
-                </details>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* ---------------------------------------------------- Where to go next */}
+      {/* The conditions list used to sit inside the Gonstead section and the sibling links
+          were two hardcoded ghost buttons, so this page had no internal-link block and never
+          linked back to /services at all. Same component the templated routes use. */}
+      <WhereToGoNext helpsWith={helpsWith} relatedLinks={service.relatedLinks} />
 
       {/* Provenance at the foot, matching the templated service pages. */}
       <ReviewedBy date={service.lastReviewed} />

@@ -126,18 +126,6 @@ export type Service = {
    */
   lastReviewed?: string
   /**
-   * Answer-engine extraction block, rendered high on the page. Five self-contained question
-   * and answer pairs, each of which has to stand alone if an AI engine lifts it out of
-   * context — no "as mentioned above", no dependency on the section before it.
-   *
-   * DELIBERATELY NOT THE SAME AS `faqs`. The FAQ is what someone asks once they are already
-   * interested and it carries the FAQPage schema; this is the set of blockers that stop a
-   * visitor before they read anything (referral, cost of time, which discipline, opening
-   * hours). Duplicating an answer across both would publish it twice on one route, which is
-   * the collision `content.test.ts` guards against for the two FAQ arrays.
-   */
-  keyTakeaways?: { q: string; a: string }[]
-  /**
    * Side-by-side comparison of this service against another discipline offered here.
    *
    * Only earns its place where the clinic genuinely offers both and can therefore answer
@@ -154,18 +142,56 @@ export type Service = {
     note: string
   }
   /**
-   * Long-form, keyword-targeted H2 sections rendered below the conversion layout. This is
-   * where the depth lives — each heading should read like a real search query (e.g. "Is dry
-   * needling safe?") and the body stays hedged, no promissory claims.
-   */
-  longForm?: { heading: string; body: string }[]
-  /**
    * Citations: verifiable, cautiously worded facts attributed to a journal, clinical
    * guideline or regulator. Never a competitor, never an efficacy promise. 2–4 is plenty.
    */
   citations?: { claim: string; source: string; url?: string }[]
-  /** Service blocks. First one is the page's primary service. */
-  sections: { heading: string; body: string }[]
+  /**
+   * The two-column fit check: who this service suits, and who it does not.
+   *
+   * Adapted from a competitor teardown (ianthechiro.my, 2026-08-23), which is the one thing
+   * their service template does better than ours. Every other trust block on this site
+   * argues the clinic's case by describing what it does well; the right-hand column argues it
+   * by turning work away, which a reader discounts far less. It is also the only place the
+   * "assessment before contact" positioning can be stated as a refusal rather than a boast.
+   *
+   * BOTH COLUMNS ARE ABOUT EXPECTATIONS OF THE CLINIC, not about symptoms. That is what keeps
+   * this block distinct from the two lists it sits near: `outcomes` is why people come in,
+   * `qualifierConcerns` is what hurts. Writing symptoms here would publish the same list
+   * three times on one route.
+   *
+   * RULES for `notRightFor`. Each item describes an EXPECTATION we will not meet, never a
+   * judgement of the person holding it — "you want to be adjusted without being assessed" is
+   * a mismatch, "you are the kind of patient who..." is a sneer. Nothing here may imply the
+   * reader is wasting our time. Pair each one with its mirror in `rightFor` where you can:
+   * read across the two columns and the same decision should be visible from both sides.
+   *
+   * `note` is required so the block cannot end on the refusal, exactly as `comparison.note`
+   * stops that table ending on a winner. It is the sentence that says what to do instead.
+   */
+  fitCheck?: {
+    /** Left column, ticked. What someone who suits this service wants from a clinic. */
+    rightFor: readonly string[]
+    /** Right column, crossed. Expectations a first visit here would not meet. */
+    notRightFor: readonly string[]
+    /** The closer. Required, so the block never ends on what we will not do. */
+    note: string
+  }
+  /**
+   * Service blocks, rendered by /services/[slug] as the hero intro (the first) and the
+   * numbered "How it works" steps (the rest).
+   *
+   * OPTIONAL, because chiropractic-care has none. Its hand-built route renders the Gonstead
+   * six-step walkthrough in that slot instead, and the three blocks that used to sit above it
+   * were a contents list for it: block one named the six steps the section below enumerates,
+   * block two paraphrased step six almost word for word. Removed 2026-08-23 at the client's
+   * direction. The one sentence with no counterpart, the target-keyword line about bone and
+   * body alignment, moved into that section's lead paragraph rather than going with it.
+   *
+   * A templated service without `sections` renders no hero intro and no steps, which is a
+   * broken page — so leave it out only on a route that renders something else in its place.
+   */
+  sections?: { heading: string; body: string }[]
   /** Condition slugs this service is used for — the cross-link back into /conditions. */
   helpsWith: string[]
   /**
@@ -175,7 +201,28 @@ export type Service = {
    * markup inside the plain-text section bodies.
    */
   relatedLinks?: { href: string; label: string }[]
-  faqs: { q: string; a: string }[]
+  /**
+   * The FAQ, and since 2026-08-23 the only long-answer block on a service page.
+   *
+   * `longForm` used to sit above this with its own H2 per question, and it was deleted at
+   * the client's direction because its question set had drifted onto the same ground as this
+   * array and `keyTakeaways`: on two of the five services every single one of its questions
+   * was already answered by one of the other two blocks, and physiotherapy answered its
+   * location four separate times. Whatever those blocks said that this one did not has been
+   * folded in here.
+   *
+   * `links` came with it. Each entry names a `phrase` that already appears in `a`, and the
+   * renderer wraps that exact run of text in a link — descriptive anchor text that cannot
+   * drift from the sentence around it, and the only in-prose internal linking on these pages.
+   * The phrase must occur EXACTLY ONCE in the answer; `content.test.ts` asserts it.
+   *
+   * The plain `a` string is what reaches `FAQPage` schema, so markup never leaks into JSON-LD.
+   */
+  faqs: {
+    q: string
+    a: string
+    links?: readonly { phrase: string; href: string }[]
+  }[]
   /**
    * When set, `<MeetDoctors>` does NOT render on this page, and the string is the reason.
    *
@@ -252,17 +299,78 @@ export const services: Service[] = [
     },
     /** Pre-cropped 1200x630 from `heroImage`, same contract as the templated pages. */
     ogImage: '/og/chiropractic-care.jpg',
+    /**
+     * Was hardcoded into the six-step column in the route file, which made this the only
+     * service whose second photograph lived outside the data module. Same image, same slot,
+     * now declared where every other service declares it.
+     */
+    midImage: {
+      src: '/img/consultation-assessment.webp',
+      alt: 'Gonstead chiropractor assessing spinal alignment before an adjustment in Cheras, Kuala Lumpur',
+    },
     /** Facts stated and justified further down, moved into the first viewport. */
     assurances: [
       'Assessed segment by segment before anything is adjusted',
       'We will say so if chiropractic is not the right approach',
       'Open seven days · Cheras, Maluri',
     ],
+    /**
+     * The flagship page was the only service whose outcomes were bare strings, so it was the
+     * only one with no pictures in this section. That was invisible while the route had its
+     * own text-only renderer; once both routes moved onto the shared <OutcomeCards> it read
+     * as four failed image loads, which is how it was spotted (2026-08-23).
+     *
+     * PHOTOGRAPHS, NOT DIAGRAMS, and deliberately so. The rule on `Outcome` says a diagram
+     * suits a card describing a SYMPTOM, because no honest photograph shows one. Every card
+     * here leans on the PROCEDURE instead — assessed segment by segment, understood, adjusted
+     * precisely, explained — and a real frame from this clinic is the truthful thing for that.
+     *
+     * None of these four appears anywhere else under /services/*, and none is the hero or the
+     * mid-page shot on this route, so the page never shows the same photograph twice. Each alt
+     * describes what is actually in the frame, never the concern the card sits under.
+     */
     outcomes: [
-      'Back, neck or joint pain you want assessed segment by segment',
-      'A recurring problem you would like to understand, not just mask',
-      'A precise adjustment rather than a general crack',
-      'Wanting to know whether the Gonstead approach suits your case',
+      {
+        /**
+         * The one card of the four that names a SYMPTOM rather than a procedure, so it takes
+         * the pain illustration rather than a clinic photograph — the rule on `Outcome`,
+         * and the reason it exists: no honest frame of this clinic shows someone's neck
+         * hurting, only a room with people in it. It first shipped with a nervoscope photo,
+         * which illustrated the assessment in the second half of the sentence and left the
+         * pain in the first half unrepresented.
+         *
+         * Shared with physiotherapy and sports injury, which is already how the pain
+         * illustrations work across the service pages. Its alt carries no clinic name on
+         * purpose: this is a generic illustration, not clinic imagery, and naming Cheras in
+         * the alt of a stock frame would be a local-SEO signal we have not earned.
+         */
+        text: 'Back, neck or joint pain you want assessed segment by segment',
+        image: {
+          src: '/img/physio-pain-stiffness.webp',
+          alt: 'Illustration of neck and shoulder muscles lit up on a man holding the side of his neck',
+        },
+      },
+      {
+        text: 'A recurring problem you would like to understand, not just mask',
+        image: {
+          src: '/img/hero-consult-xray.webp',
+          alt: 'Chiropractor talking a patient through their spinal X-ray at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
+        },
+      },
+      {
+        text: 'A precise adjustment rather than a general crack',
+        image: {
+          src: '/img/adjustment-hip.webp',
+          alt: 'Chiropractor working on a patient hip on a therapy table at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
+        },
+      },
+      {
+        text: 'Wanting to know whether the Gonstead approach suits your case',
+        image: {
+          src: '/img/hero-consult-spine-model.webp',
+          alt: 'Chiropractor explaining spinal anatomy with a spine model to a patient at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
+        },
+      },
     ],
     /**
      * Ordered pain → specific population → no pain at all, ending on the catch-all. The
@@ -293,46 +401,6 @@ export const services: Service[] = [
      * test exists to prevent. These are the four questions a first time patient asks in the
      * room instead, plus the opening hours.
      */
-    keyTakeaways: [
-      {
-        q: 'Will I be adjusted on my first visit?',
-        a: 'Often, but not always. The assessment comes first, and if it points away from adjusting you that day we will say so rather than adjust anyway.',
-      },
-      {
-        q: 'Does an adjustment hurt?',
-        a: 'Most people describe brief pressure and a release rather than pain. Mild soreness for a day afterwards is common and settles on its own.',
-      },
-      {
-        q: 'How many visits will I need?',
-        a: 'It depends on what is driving the problem and how long it has been there, so we will not quote you a number at the first visit or sell a package up front.',
-      },
-      {
-        q: 'Is chiropractic care safe?',
-        a: 'Serious complications are considered rare when care follows a proper assessment. Screening for the cases where adjustment would not suit is part of why we assess first.',
-      },
-      {
-        q: 'When are you open?',
-        a: 'Seven days a week, at Sunway Velocity in Maluri. Monday to Thursday and Saturday until 8pm, Friday until 5pm, Sunday until 3pm.',
-      },
-    ],
-    longForm: [
-      {
-        heading: 'Is chiropractic care safe?',
-        body: 'Chiropractic adjustment is widely used for mechanical spine and joint problems, and serious complications are considered rare when care follows a proper assessment. As with any hands-on care there can be short lived after effects, most often mild soreness or stiffness for a day or so. The assessment exists partly to screen for the small number of situations where adjustment would not be appropriate, which is why we work through it before deciding what, if anything, to adjust. We will always tell you honestly if we think chiropractic is not the right approach for your case.',
-      },
-      {
-        heading: 'Does a chiropractic adjustment hurt?',
-        body: 'Most people describe an adjustment as brief pressure followed by a release rather than as pain. The popping sound that often comes with it is gas moving within the joint, not bone grinding on bone, and it is not a measure of whether the adjustment worked. Some soreness for a day afterwards is common, particularly on a first visit or where an area has been guarded for a long time. Tell your chiropractor if anything feels worse than uncomfortable, because the contact and the force can both be adjusted, and there are lower force approaches we use for patients who would rather not be adjusted in the usual way.',
-      },
-      {
-        heading: 'How many visits will I need, and will I have to keep coming back?',
-        body: 'There is no honest way to answer that before we have assessed you, so we will not give you a number at the first visit or ask you to buy a package. How a case progresses depends on what is driving it, how long it has been there and what you do between visits. Some people come for a defined stretch and stop. Others choose to come occasionally once the original problem has settled, which is a choice rather than something we would tell you is necessary. We would rather review honestly as we go and tell you when we think you no longer need us.',
-      },
-      {
-        heading: 'Can I come at the weekend, and where exactly are you?',
-        body: 'We are open seven days, including Sunday, which is usually the easiest slot to get if weekday appointments are difficult. Saturday runs to 8pm and Sunday to 3pm. The clinic is at Signature 2 in the Sunway Velocity development in Maluri, on the Cheras side of Kuala Lumpur, with mall parking if you drive and Maluri and Cochrane stations both within walking distance if you do not. Maluri is an interchange, so the Ampang, Sri Petaling and Kajang lines all reach us. The full address and a map link are in the footer of every page.',
-      },
-    ],
     citations: [
       {
         claim:
@@ -345,22 +413,44 @@ export const services: Service[] = [
         source: 'Association of Chiropractic Malaysia; Ministry of Health Malaysia',
       },
     ],
-    sections: [
-      {
-        heading: 'Gonstead spinal assessment',
-        body: 'A full six-step analysis: history, visualisation, instrumentation, palpation, X-ray analysis where indicated, and only then adjustment. Working through it in that order narrows the search down before any force is applied.',
-      },
-      {
-        heading: 'Hands-on spinal adjustment',
-        body: 'Adjustments are delivered precisely and skilfully by hand only, targeted at the specific segment identified during assessment. What one patient gets is rarely what the next one gets, because the assessments come out differently.',
-      },
-      {
-        heading: 'Bone and body alignment',
-        body: 'Where segments have become restricted, adjustment aims to improve how well they move. How much changes, and over what period, depends on what is causing the restriction and how long it has been there.',
-      },
-    ],
+    /**
+     * The fit check. The last item on the right is a disclaimer under the AGENTS.md carve-out
+     * — it says what chiropractic does NOT do, which is the case the carve-out exists for, so
+     * the word "treat" stays. Rewriting it as "does not help with infection" would be both
+     * vaguer and less protective.
+     */
+    fitCheck: {
+      rightFor: [
+        'You want the problem assessed segment by segment before anything is adjusted.',
+        'You would rather be told honestly when adjusting is not the right call that day.',
+        'You want to understand what keeps bringing a problem back, not just quiet it down.',
+        'You want a precise adjustment to the segment involved rather than a general crack.',
+      ],
+      notRightFor: [
+        'You want to be adjusted straight away, without being assessed first.',
+        'You expect every visit to end with a click, whatever the assessment finds.',
+        'You want a number of visits quoted, or an outcome promised, before we have seen you.',
+        'Your problem is not mechanical. Chiropractic does not treat infection, fracture or disease of the organs, and we would refer you rather than adjust you.',
+      ],
+      note: 'None of that makes you a difficult patient. It means a first visit here would not give you what you came for, and we would rather say so now than at the end of an appointment you have paid for. If what you want is the assessment first and an honest answer about whether adjusting is the right call, that is exactly what a first visit is.',
+    },
     helpsWith: ['back-pain', 'slipped-disc', 'sciatica', 'neck-pain', 'scoliosis'],
+    /**
+     * Were hardcoded as two <GhostButton>s inside the six-step section of the route file,
+     * which meant the flagship page was the only service with no "Where to go next" block
+     * and the only one that never linked back to /services. Declared here now, rendered by
+     * the same block the templated routes use.
+     */
+    relatedLinks: [
+      { href: '/what-to-expect', label: 'What to expect on your first visit' },
+      { href: '/services/physiotherapy', label: 'Compare with physiotherapy' },
+      { href: '/services/dry-needling', label: 'Dry needling in Cheras' },
+    ],
     faqs: [
+      {
+        q: 'Will I be adjusted on my first visit?',
+        a: 'Often, but not always. The assessment comes first, and if it points away from adjusting you that day we will say so rather than adjust anyway.',
+      },
       {
         q: 'What is the Gonstead method?',
         a: 'Gonstead is a chiropractic technique built around a detailed six-step assessment before any adjustment is made. That includes instrumentation and, where indicated, X-ray analysis. The aim is to identify precisely which segment is involved rather than working on the region generally.',
@@ -380,6 +470,29 @@ export const services: Service[] = [
       {
         q: 'Do you see children and teenagers?',
         a: 'Yes, the clinic cares for patients of all ages, and children are assessed differently from adults rather than being given a smaller version of adult care. We generally go without an X-ray for children. A parent or guardian stays in the room throughout, and we will explain what we are looking at as we go.',
+      },
+      {
+        q: 'What are the risks and side effects of chiropractic care?',
+        a: 'Chiropractic adjustment is widely used for mechanical spine and joint problems, and serious complications are considered rare when care follows a proper assessment. The after effects that do occur are usually short lived, most often mild soreness or stiffness for a day or so. The assessment also screens for the small number of situations where adjusting would not be appropriate, and where it points at physiotherapy instead we will tell you honestly and start you there.',
+        links: [
+          { phrase: 'a proper assessment', href: '/what-to-expect' },
+          { phrase: 'physiotherapy', href: '/services/physiotherapy' },
+        ],
+      },
+      {
+        q: 'What does an adjustment feel like, and what if I am nervous?',
+        a: 'Most people describe brief pressure followed by a release rather than pain, and the popping sound that often comes with it is gas moving within the joint rather than bone grinding on bone, not a measure of whether it worked. Tell your chiropractor if anything feels worse than uncomfortable, because the contact and the force can both be adjusted and there are lower force approaches for patients who would rather not be adjusted in the usual way. Where the assessment points at muscle tension rather than joint restriction, we may suggest dry needling alongside the adjustment or in place of it.',
+        links: [{ phrase: 'dry needling', href: '/services/dry-needling' }],
+      },
+      {
+        q: 'Will I be asked to buy a package or commit to a plan?',
+        a: 'No. There is no honest way to say how a case will progress before we have assessed you, so we will not quote a number of visits at the first visit or sell a course up front. Some people come for a defined stretch and stop, others choose to come occasionally once the original problem has settled, and we would rather review as we go and tell you when we think you no longer need us.',
+        links: [{ phrase: 'the first visit', href: '/what-to-expect' }],
+      },
+      {
+        q: 'Where exactly are you, and how do I get there?',
+        a: 'The clinic is at Signature 2 in the Sunway Velocity development in Maluri, on the Cheras side of Kuala Lumpur, with mall parking if you drive and Maluri and Cochrane stations both within walking distance if you do not. Maluri is an interchange, so the Ampang, Sri Petaling and Kajang lines all reach us. We are open seven days: Monday to Thursday and Saturday until 8pm, Friday until 5pm, and Sunday until 3pm. You can check the opening hours and directions before you come.',
+        links: [{ phrase: 'the opening hours and directions', href: '/book-now' }],
       },
       {
         q: 'What happens if chiropractic is not the right approach for me?',
@@ -473,20 +586,6 @@ export const services: Service[] = [
       { label: 'I am nervous about needles and want to ask first', icon: 'question' },
     ],
     lastReviewed: '2026-07-26',
-    longForm: [
-      {
-        heading: 'What is dry needling, and how is it different from acupuncture?',
-        body: 'Dry needling is a Western, anatomy based technique. A fine filament needle is placed directly into a myofascial trigger point, which is a small, hyperirritable knot within a taut band of muscle, with the aim of releasing that tension. Nothing is injected, which is where the word "dry" comes from. Acupuncture can use similar needles, but it comes from traditional Chinese medicine and selects points along meridians rather than by muscle anatomy. Even when the needles look alike, the two are aiming at different things. At our clinic in Cheras we use dry needling as one tool within an assessment led plan, not a standalone therapy.',
-      },
-      {
-        heading: 'Is dry needling safe, and what should I expect afterwards?',
-        body: 'Dry needling is generally considered safe when it is carried out by a trained practitioner using sterile, single use needles. The most common after effects are mild and short lived: temporary soreness at the site, and occasionally a small bruise, usually settling within a day or two. More significant reactions are uncommon. We check your history first, because there are situations, such as pregnancy, medications that affect bleeding, or a strong fear of needles, where we would choose a different approach. You can eat, drink and move normally afterwards, and we usually pair the session with specific exercises so the muscle has a reason to stay released.',
-      },
-      {
-        heading: 'What does dry needling help with?',
-        body: 'People most often come to us for dry needling when a muscle stays tight despite stretching and massage, when trigger points keep referring pain to the same spot, or when an old injury has left a muscle guarded and overactive. It is commonly used around the neck, shoulders and lower back, and alongside care for problems such as sciatica and shoulder imbalance. It is worth being realistic. Needling can help calm an irritable muscle, but on its own it does not change the habit, weakness or joint restriction that let the muscle tighten in the first place. That is why the assessment matters, and why we combine it with chiropractic care and physiotherapy where the findings point that way.',
-      },
-    ],
     citations: [
       {
         claim:
@@ -504,6 +603,21 @@ export const services: Service[] = [
         source: 'Ministry of Health Malaysia',
       },
     ],
+    fitCheck: {
+      rightFor: [
+        'A muscle stays tight despite stretching and massage, and you want to know why.',
+        'You want the needling to sit inside a plan, with exercise or adjustment alongside it.',
+        'You want sterile single use needles and a practitioner who checks your history first.',
+        'You would rather be told needling is not the answer than have it done anyway.',
+      ],
+      notRightFor: [
+        'You want needling on request, without an assessment of why the muscle is tight in the first place.',
+        'You have a strong fear of needles. We would rather use another approach than talk you into this one.',
+        'You want the needling on its own, with no exercise or follow-up work between sessions.',
+        'You are looking for acupuncture. It uses similar needles but selects points differently, and it is not what we offer.',
+      ],
+      note: 'If any of that is you, it does not mean we cannot help. It means dry needling is probably not where we would start, and a first visit is exactly where that gets decided. We would rather point you at the approach that suits than sell you the one you walked in asking for.',
+    },
     sections: [
       {
         heading: 'Integrative dry needling',
@@ -538,8 +652,17 @@ export const services: Service[] = [
     ],
     faqs: [
       {
+        q: 'Do I need a referral for dry needling?',
+        a: 'No. You can book directly with us in Cheras. We assess before any needle is used, and if needling is not the right approach for your case we will tell you.',
+      },
+      {
+        q: 'How long is a first session?',
+        a: 'Around forty five minutes to an hour, and most of that is assessment rather than needling. You should leave knowing what we think is going on.',
+      },
+      {
         q: 'Is dry needling the same as acupuncture?',
-        a: 'They use similar needles but come from different traditions. Dry needling is based on Western anatomy and targets specific trigger points in muscle, whereas acupuncture follows traditional Chinese meridian theory and works on points chosen on a different basis. The needles look alike, but what we are aiming at is not the same.',
+        a: 'No. Dry needling is a Western, anatomy based technique: a fine filament needle is placed directly into a myofascial trigger point, a small hyperirritable knot within a taut band of muscle, with the aim of releasing that tension. Nothing is injected, which is where the word "dry" comes from. Acupuncture uses similar needles but comes from traditional Chinese medicine and selects points along meridians rather than by muscle anatomy. Here it is one tool within an assessment led plan, not a standalone therapy.',
+        links: [{ phrase: 'an assessment led plan', href: '/what-to-expect' }],
       },
       {
         q: 'Does dry needling hurt?',
@@ -552,6 +675,20 @@ export const services: Service[] = [
       {
         q: 'Are the needles safe, and are they reused?',
         a: 'Needles are never reused. We use sterile, single use needles that are disposed of after one session. Dry needling is generally very safe in trained hands, though mild soreness or a small bruise afterwards is possible and normal.',
+      },
+      {
+        q: 'Is dry needling safe, and are there side effects?',
+        a: 'It is generally considered safe when carried out by a trained practitioner using sterile, single use needles. The most common after effects are mild and short lived: temporary soreness at the site, and occasionally a small bruise, usually settling within a day or two. You can eat, drink, work and train normally afterwards. We check your history first, because there are situations, such as pregnancy, medications that affect bleeding, or a strong fear of needles, where we would choose a different approach. We usually pair a session with specific exercises so the muscle has a reason to stay released.',
+        links: [{ phrase: 'specific exercises', href: '/services/physiotherapy' }],
+      },
+      {
+        q: 'What does dry needling help with?',
+        a: 'People most often come to us when a muscle stays tight despite stretching and massage, when trigger points keep referring pain to the same spot, or when an old injury has left a muscle guarded and overactive. It is commonly used around the neck, shoulders and lower back, and alongside care for problems such as sciatica and shoulder imbalance. Needling can calm an irritable muscle, but on its own it does not change the habit, weakness or joint restriction that let it tighten, which is why we combine it with chiropractic care where the findings point that way.',
+        links: [
+          { phrase: 'sciatica', href: '/conditions/sciatica' },
+          { phrase: 'shoulder imbalance', href: '/conditions/shoulder-imbalance' },
+          { phrase: 'chiropractic care', href: '/services/chiropractic-care' },
+        ],
       },
       {
         q: 'Should I have dry needling or a chiropractic adjustment?',
@@ -651,48 +788,6 @@ export const services: Service[] = [
      * Every answer here is stated again in full further down the page. That is deliberate:
      * this block is the summary, not the only place a claim appears.
      */
-    keyTakeaways: [
-      {
-        q: 'Do I need a referral to see a physiotherapist?',
-        a: 'No. You can book directly with us in Cheras. If your case needs imaging or a medical opinion first, we will tell you and help you arrange it.',
-      },
-      {
-        q: 'How long is a first session?',
-        a: 'Around forty five minutes to an hour, and most of that is assessment rather than hands on care. You should leave knowing what we think is going on.',
-      },
-      {
-        q: 'Should I book physiotherapy or chiropractic?',
-        a: 'It depends on what the assessment finds. Both are available here under one roof, so you are not fitted to whichever one a clinic happens to offer.',
-      },
-      {
-        q: 'Will I be given exercises?',
-        a: 'Yes, in most cases. A small programme built around your problem and progressed as you get stronger, rather than a printed sheet handed to everyone.',
-      },
-      {
-        q: 'When are you open?',
-        a: 'Seven days a week, including Sunday, at Sunway Velocity in Maluri. Monday to Thursday and Saturday until 8pm, Friday until 5pm, Sunday until 3pm.',
-      },
-    ],
-    longForm: [
-      {
-        heading: 'What happens in a physiotherapy assessment?',
-        body: 'A first physiotherapy visit is mostly assessment. We take a history, ask what makes the problem better or worse and what you need to get back to, then look at how you actually move, test the affected area and check the joints and muscles around it. The aim is to work out what is driving the problem rather than only where you feel it, because pain in one place often traces back to how something else is moving. From there we explain what we have found in plain terms and agree a plan, which usually pairs some hands on care with a small, specific exercise programme.',
-      },
-      {
-        heading: 'Physiotherapy or chiropractic: which do you need?',
-        body: 'Broadly, chiropractic care works on how a restricted joint moves, while physiotherapy builds the strength and control around it, and a good number of people benefit from both. Neither is better in the abstract; it depends on what the assessment finds. Because we offer chiropractic care, physiotherapy and dry needling under one roof in Cheras, we can start wherever the findings point and adjust as things change, rather than fitting you to whatever a single discipline happens to offer.',
-      },
-      {
-        /**
-         * Proximity copy for a navigational keyword. Landmarks and stations only — the
-         * street address is NOT retyped here. `lib/clinic.ts` is the single source every
-         * LocalBusiness schema and external citation is built from, and a second hand
-         * written copy in a content string is exactly how NAP drifts out of sync.
-         */
-        heading: 'Where is the clinic, and how do I get there?',
-        body: 'We are at Signature 2, inside the Sunway Velocity development in Maluri, on the Cheras side of Kuala Lumpur. The mall car park is the simplest option if you are driving, and both Maluri and Cochrane stations are within walking distance if you are not. Maluri is an interchange, so the Ampang and Sri Petaling lines and the Kajang line all reach us. We are open seven days, which matters if weekdays are difficult: Monday to Thursday and Saturday until 8pm, Friday until 5pm, and Sunday until 3pm. The full address and a map link are in the footer of every page.',
-      },
-    ],
     /**
      * The one comparison on the site we can make without a conflict of interest, because
      * both columns are offered here. It exists because no competitor page on this SERP
@@ -744,6 +839,21 @@ export const services: Service[] = [
         source: 'Allied Health Professions Act 2016, Malaysia',
       },
     ],
+    fitCheck: {
+      rightFor: [
+        'You want to know what is driving the problem, not only where you feel it.',
+        'You are willing to do a small, specific exercise programme between visits.',
+        'You want hands on care and rehabilitation from one place rather than one or the other.',
+        'You would rather be referred on than kept in a course of care that is not working.',
+      ],
+      notRightFor: [
+        'You want a passive session only, with nothing to do between visits. The exercise is most of the work.',
+        'You want a fixed number of sessions agreed before anyone has assessed you.',
+        'You are looking for a relaxation massage or a spa session rather than clinical rehabilitation.',
+        'Your problem needs imaging or a medical opinion first. Physiotherapy does not treat fracture, infection or disease of the organs, and we would refer you rather than press on.',
+      ],
+      note: 'None of that makes you a difficult patient. It means a first visit here would not give you what you came for, and we would rather say so at the start than at the end. If what you want is an honest assessment and a plan you understand well enough to follow, that is exactly what a first visit is.',
+    },
     sections: [
       {
         heading: 'Physiotherapy in Cheras',
@@ -797,6 +907,15 @@ export const services: Service[] = [
       'Client instruction, 2026-08-08. The clinic\'s physiotherapists are still within their probation period and are not to be named on the site yet, and chiropractors are not licensed to deliver physiotherapy, so the three practitioners in lib/clinic.ts cannot stand in for them. Until then this page names no individual: a section headed "Meet your chiropractors" on a physiotherapy page implies the wrong profession provides the care, which is a worse problem than an absent team section. Remove this field once the clinic supplies the physiotherapist list and lib/clinic.ts can filter by role.',
     faqs: [
       {
+        q: 'What happens in a physiotherapy assessment?',
+        a: 'A first physiotherapy visit is mostly assessment. We take a history, ask what makes the problem better or worse and what you need to get back to, then look at how you actually move, test the affected area and check the joints and muscles around it. The aim is to work out what is driving the problem rather than only where you feel it, because pain in one place often traces back to how something else is moving. From there we explain what we found in plain terms and agree a plan, which usually pairs some hands on care with a small, specific exercise programme.',
+        links: [{ phrase: 'A first physiotherapy visit', href: '/what-to-expect' }],
+      },
+      {
+        q: 'How long is a first session?',
+        a: 'Around forty five minutes to an hour, and most of that is assessment rather than hands on care. You should leave knowing what we think is going on.',
+      },
+      {
         q: 'Is the first physiotherapy session painful?',
         a: 'It should not be excessively painful. Some tests may briefly reproduce your familiar symptoms so we can pin down the problem, but your physiotherapist works within your comfort level and will stop if you ask. Mild soreness for a day afterwards can happen, particularly after hands on work.',
       },
@@ -814,21 +933,24 @@ export const services: Service[] = [
       },
       {
         /**
-         * Reworded from "Should I see a chiropractor or a physiotherapist?". That question is
-         * now answered twice above, in `keyTakeaways` and in the comparison table, and a
-         * third copy inside FAQPage schema would publish the same answer three times on one
-         * route. This asks the question the other two leave open instead.
+         * Reworded from "Should I see a chiropractor or a physiotherapist?". The comparison
+         * table above already answers that one, and a second copy inside FAQPage schema would
+         * publish the same answer twice on one route. This asks the question the table leaves
+         * open instead. (It used to be answered three times: a `keyTakeaways` entry said it
+         * too, until that block was deleted from the service pages on 2026-08-23.)
          */
         q: 'Can I have physiotherapy and chiropractic care together?',
-        a: 'Yes, and a good number of patients here do. The two work on different things, so combining them is common rather than unusual: chiropractic care addresses how a restricted joint moves and physiotherapy builds the strength and control around it. The assessment decides where to start and whether both are worth using at all, and we will say so if we think one alone is enough.',
+        a: 'Yes, and a good number of patients here do. The two work on different things, so combining them is common rather than unusual: chiropractic care addresses how a restricted joint moves and physiotherapy builds the strength and control around it, and dry needling sits alongside either where a muscle is the problem. The assessment decides where to start and whether both are worth using at all, and we will say so if we think one alone is enough.',
+        links: [{ phrase: 'dry needling', href: '/services/dry-needling' }],
       },
       {
         q: 'Where in Cheras are you, and is there parking?',
-        a: 'We are at Signature 2 in the Sunway Velocity development in Maluri, on the Cheras side of Kuala Lumpur. The mall car park is the easiest option if you drive, and Maluri and Cochrane stations are both within walking distance if you take the train. The full address and a map link sit in the footer of every page.',
+        a: 'We are at Signature 2 in the Sunway Velocity development in Maluri, on the Cheras side of Kuala Lumpur. The mall car park is the easiest option if you drive, and Maluri and Cochrane stations are both within walking distance if you take the train. Maluri is an interchange, so the Ampang, Sri Petaling and Kajang lines all reach us. The full address and a map link sit in the footer of every page.',
       },
       {
         q: 'Are you open at weekends?',
-        a: 'Yes, we are open seven days a week including Sunday. Saturday runs to 8pm and Sunday to 3pm, which is usually the easiest slot to get if weekdays are difficult. Monday to Thursday we are open until 8pm and Friday until 5pm.',
+        a: 'Yes, we are open seven days including Sunday. Saturday runs to 8pm and Sunday to 3pm, which is usually the easiest slot to get if weekdays are difficult. Monday to Thursday we are open until 8pm and Friday until 5pm.',
+        links: [{ phrase: 'open seven days', href: '/book-now' }],
       },
     ],
     draft: false,
@@ -935,16 +1057,6 @@ export const services: Service[] = [
       'I injured myself at the weekend and I am not an athlete',
     ],
     lastReviewed: '2026-07-26',
-    longForm: [
-      {
-        heading: 'How does sports injury rehabilitation progress?',
-        body: 'Rehabilitation moves through stages rather than all at once. Early on the aim is to protect the injured area and keep it moving without aggravating it. As it settles we rebuild range of movement, then strength, then the speed, control and agility your sport demands. Each stage needs to hold before the next one begins, and how quickly you progress depends on the injury and how you respond rather than on a fixed timetable.',
-      },
-      {
-        heading: 'When is it safe to return to sport?',
-        body: 'We prefer to base a return on what the area can do under testing, not simply on the pain having eased. That usually means checking strength, balance and sport specific movement, and building the training load back up gradually. Returning before the tissue tolerates the load is one of the most common reasons an injury comes back, so we would rather be honest about readiness than rush a date.',
-      },
-    ],
     citations: [
       {
         claim:
@@ -957,6 +1069,21 @@ export const services: Service[] = [
         source: 'British Journal of Sports Medicine',
       },
     ],
+    fitCheck: {
+      rightFor: [
+        'You want the return to sport decided on what the area can do, not on the calendar.',
+        'You are ready to do staged strength work rather than wait for the pain to pass.',
+        'You want to keep training where it is safe to, with the load adjusted rather than stopped.',
+        'You want an honest answer about readiness, even when it is not the one you hoped for.',
+      ],
+      notRightFor: [
+        'You want a date for returning to sport before the area has been tested under load.',
+        'You want the pain settled but would rather skip the strength work that keeps it settled.',
+        'You want to keep training exactly as before, with nothing about the load or the movement changed.',
+        'The injury may need a surgeon or imaging first. We would refer you rather than start rehabilitation regardless.',
+      ],
+      note: 'None of that makes you a difficult patient, and most of it is simply what being in a hurry to get back sounds like. It means we would give you an honest answer about readiness rather than sign off a date, which is the part that decides whether the same injury returns in three months. If that is what you want from a clinic, a first visit is where it starts.',
+    },
     sections: [
       {
         heading: 'Sports injury rehabilitation in Cheras',
@@ -991,12 +1118,44 @@ export const services: Service[] = [
     ],
     faqs: [
       {
+        q: 'Do I need a referral?',
+        a: 'No referral is needed to book with us in Cheras. Bring any scan reports or notes from a doctor or surgeon if you have them, because they save time at the assessment.',
+      },
+      {
+        q: 'How long is a first session?',
+        a: 'Around forty five minutes to an hour, most of it assessment. You should leave knowing what we think failed and what the first stage of rehabilitation looks like.',
+      },
+      {
+        q: 'Will I see a chiropractor or a physiotherapist?',
+        a: 'Whichever the assessment points to, and often both. Both disciplines are under one roof here, so you are not routed by who happens to be free.',
+      },
+      {
         q: 'How soon after an injury should I be assessed?',
         a: 'Once the acute swelling has settled enough to move the area, an assessment is usually more informative. If you cannot put weight through the limb, or there is obvious deformity or severe swelling, go to A&E first rather than booking with us.',
       },
       {
         q: 'When can I return to my sport?',
         a: 'That depends on the injury, the sport and how rehabilitation progresses, so we will not give you a date at the first visit. We base the decision on what the area can do under testing rather than on symptoms alone, because returning before the tissue tolerates the load is the most common reason an injury recurs.',
+      },
+      {
+        q: 'How does sports injury rehabilitation progress?',
+        a: 'It moves through stages rather than all at once. Early on the aim is to protect the injured area and keep it moving without aggravating it. As it settles we rebuild range of movement, then strength, then the speed, control and agility your sport demands. Each stage needs to hold before the next one begins, and how quickly you progress depends on the injury and how you respond rather than on a fixed timetable.',
+      },
+      {
+        q: 'Which sports injuries do you see most often?',
+        a: 'The most common are the ones that come from load rather than contact: runners with knee, shin or achilles complaints, gym injuries around the shoulder and lower back, and ankle sprains that never quite settled after the first one. Racket and court sports bring their own shoulder and elbow problems. A good share of what we see is a recurrence rather than a fresh injury, which usually points at a stage of rehabilitation that was cut short the first time round. We also see plenty of back pain and hip pain that has nothing to do with sport, and the staged approach behind it is the same.',
+        links: [
+          { phrase: 'back pain', href: '/conditions/back-pain' },
+          { phrase: 'hip pain', href: '/conditions/hip-pain' },
+        ],
+      },
+      {
+        q: 'Can I keep training while I rehabilitate?',
+        a: 'Usually yes, with what you do and how much of it adjusted rather than stopped altogether. Complete rest is rarely the aim, because losing condition creates its own problems and most people do better when something keeps loading the rest of the body. What changes is the movement that provokes the injury, the volume, and sometimes the surface or the tempo. Working out what you can safely keep doing is part of the assessment rather than an afterthought, and where a muscle has stayed guarded we may use dry needling alongside the strength work.',
+        links: [
+          { phrase: 'the assessment', href: '/what-to-expect' },
+          { phrase: 'dry needling', href: '/services/dry-needling' },
+        ],
       },
       {
         q: 'Do you see non-athletes, and weekend or desk injuries?',
@@ -1105,56 +1264,6 @@ export const services: Service[] = [
      * rather than navigational. So these answer what to actually DO, which is what that
      * searcher wants, and none of them repeats one of the five FAQs below.
      */
-    keyTakeaways: [
-      {
-        q: 'What is the fastest change I can make today?',
-        a: 'Move more often. For most desk related complaints the trouble comes from holding one position for hours, so changing position regularly tends to matter more than finding a perfect one.',
-      },
-      {
-        q: 'How should my desk be set up?',
-        a: 'Roughly: the top of the screen near eye level, elbows at about a right angle, feet flat on the floor or a rest, and the screen about an arm length away.',
-      },
-      {
-        q: 'Which exercises are usually involved?',
-        a: 'Chin tucks, a doorway chest stretch, wall angels and an upper trapezius stretch are common starting points. Which ones suit you depends on what the assessment finds.',
-      },
-      {
-        q: 'Is my chair to blame?',
-        a: 'Rarely on its own. Time in one position tends to matter more than the chair, and an expensive chair you sit still in for four hours is not a fix.',
-      },
-      {
-        q: 'When are you open?',
-        a: 'Seven days a week, at Sunway Velocity in Maluri. Monday to Thursday and Saturday until 8pm, Friday until 5pm, Sunday until 3pm.',
-      },
-    ],
-    longForm: [
-      {
-        heading: 'Can posture really be changed?',
-        body: 'It depends what you mean by changed. Comfort and endurance often improve, and people tend to find they can hold a better position for longer before it starts to feel like effort. What no course of care can promise is to permanently reshape a fixed structure or hand you a perfect posture that holds itself. We would rather be plain about that, and focus on the parts that genuinely respond, which are usually strength, mobility and habit.',
-      },
-      {
-        heading: 'Is sitting at a desk the cause of my posture problems?',
-        body: 'Prolonged sitting is a common contributor, though rarely the only one. For most desk related complaints, the trouble comes from holding any one position for too long rather than from a single wrong posture, so moving regularly tends to matter more than finding a perfect setup. We combine practical workstation changes with strength work, because the position you can hold through a working day is the one that counts.',
-      },
-      {
-        /**
-         * The gap every competing page on this keyword leaves open. Two KL clinic pages
-         * ranking for posture correction, one of them 3,200 words long, both say "corrective
-         * exercises" and "ergonomic assessment" and neither names a single exercise or a
-         * single measurement. Naming them is the whole reason to read this page.
-         *
-         * Hedged deliberately: these are described as common starting points, not as a
-         * programme, and the paragraph says outright that which ones apply is what an
-         * assessment is for. No outcome is promised.
-         */
-        heading: 'Which exercises help with forward head posture and rounded shoulders?',
-        body: 'Four come up most often, and they are worth knowing by name. A chin tuck, drawing the chin straight back rather than tipping it down, works the deep neck flexors that hold the head over the shoulders. A doorway chest stretch opens the pectoral muscles that pull the shoulders forward. Wall angels, sliding the arms up a wall with the back flat against it, ask the upper back to extend and the shoulder blades to move. An upper trapezius stretch eases the neck to shoulder tension that builds through a day at a screen. These are common starting points rather than a prescription, and which of them apply to you, in what order and how often, is exactly what the assessment is for. Doing all four badly is generally less useful than doing the right one properly.',
-      },
-      {
-        heading: 'How should I set up my desk?',
-        body: 'The usual starting points are simple enough to check in a minute. The top of the screen sits near eye level, so the neck is not held in flexion all day. Elbows rest at about a right angle with the shoulders down rather than shrugged. Feet reach the floor or a footrest, with the hips roughly level with or slightly above the knees. The screen sits about an arm length away. If you work on a laptop, that combination is impossible without either a stand and a separate keyboard or a monitor, because the screen and the keyboard want to be in two different places. None of it matters as much as changing position regularly, though, so think of the setup as the thing that makes moving easier rather than as the answer on its own.',
-      },
-    ],
     citations: [
       {
         claim:
@@ -1167,6 +1276,21 @@ export const services: Service[] = [
         source: 'Chartered Society of Physiotherapy guidance',
       },
     ],
+    fitCheck: {
+      rightFor: [
+        'You want to know which parts of your posture can realistically change and which cannot.',
+        'You are willing to do strength and mobility work rather than rely on a brace.',
+        'You want workstation changes you can actually keep up through a working day.',
+        'You want the assessment to decide which exercises apply to you, not a generic list.',
+      ],
+      notRightFor: [
+        'You want a permanently perfect posture that holds itself with no ongoing effort.',
+        'You want a number of visits quoted before anyone has looked at how you actually move.',
+        'You want a brace or a gadget instead of the strength and habit work that holds a position.',
+        'You have a structural curve such as scoliosis and want it reversed. Care can help with comfort and movement; the curve itself stays as it is.',
+      ],
+      note: 'None of that makes you a difficult patient. It means what you are hoping for and what posture work can honestly do are two different things, and we would rather be plain about that before you pay for anything. What does tend to respond is comfort, endurance and how long you can hold a better position before it takes effort, and a first visit is where we work out which of those applies to you.',
+    },
     sections: [
       {
         heading: 'Posture correction in Cheras',
@@ -1202,11 +1326,21 @@ export const services: Service[] = [
     faqs: [
       {
         q: 'Can posture actually be corrected?',
-        a: 'Not in the way most people mean it. Comfort often improves, and patients tend to find they can hold a better position for longer before it starts to feel like work. Your practitioner will tell you honestly what is likely to shift in your case and what is not.',
+        a: 'Not in the way most people mean it. Comfort and endurance often improve, and people tend to find they can hold a better position for longer before it starts to feel like effort. What no course of care can promise is to permanently reshape a fixed structure or hand you a perfect posture that holds itself. We would rather be plain about that and focus on the parts that genuinely respond, which are usually strength, mobility and habit, so your practitioner will tell you honestly what is likely to shift in your case and what is not.',
       },
       {
         q: 'I sit at a desk all day. Is that the cause?',
-        a: 'Prolonged sitting is a common contributor, though rarely the only one. Movement breaks generally matter more than any single "correct" position. The body copes with most positions reasonably well until you stay in one of them for hours.',
+        a: 'Prolonged sitting is a common contributor, though rarely the only one. For most desk related complaints the trouble comes from holding any one position for too long rather than from a single wrong posture, so moving regularly tends to matter more than finding a perfect setup. We combine practical workstation changes with strength work, because the position you can hold through a working day is the one that counts.',
+        links: [{ phrase: 'strength work', href: '/services/physiotherapy' }],
+      },
+      {
+        q: 'Which exercises help with forward head posture and rounded shoulders?',
+        a: 'Four come up most often. A chin tuck, drawing the chin straight back rather than tipping it down, works the deep neck flexors that hold the head over the shoulders. A doorway chest stretch opens the pectoral muscles that pull the shoulders forward. Wall angels, sliding the arms up a wall with the back flat against it, ask the upper back to extend and the shoulder blades to move. An upper trapezius stretch eases the neck to shoulder tension that builds through a day at a screen. These are common starting points rather than a prescription, and which of them apply to you, in what order and how often, is exactly what the assessment is for.',
+        links: [{ phrase: 'what the assessment is for', href: '/what-to-expect' }],
+      },
+      {
+        q: 'Is my chair to blame?',
+        a: 'Rarely on its own. Time spent in one position tends to matter more than the chair, and an expensive chair you sit still in for four hours is not a fix. Get the setup roughly right, then move regularly.',
       },
       {
         q: 'Will a posture brace help?',
@@ -1226,7 +1360,7 @@ export const services: Service[] = [
       },
       {
         q: 'I work from home on a laptop. Can you help with that?',
-        a: 'Yes, and laptops are one of the most common setups we see. A laptop puts the screen and the keyboard in the same place, which means the neck and the arms cannot both be comfortable at once. Usually the fix is a stand plus a separate keyboard, or an external monitor. Tell us what you actually work on and where you sit, because advice built around a desk you do not have is not much use.',
+        a: 'Yes, and laptops are one of the most common setups we see. The usual starting points are simple: the top of the screen near eye level so the neck is not held in flexion all day, elbows at about a right angle with the shoulders down rather than shrugged, feet on the floor or a footrest, and the screen about an arm length away. A laptop makes that combination impossible on its own, because the screen and the keyboard want to be in two different places, so the fix is usually a stand plus a separate keyboard, or an external monitor. Tell us what you actually work on and where you sit, because advice built around a desk you do not have is not much use.',
       },
     ],
     draft: false,

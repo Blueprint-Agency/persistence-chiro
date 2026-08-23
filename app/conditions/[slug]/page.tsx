@@ -9,7 +9,7 @@ import { JsonLd } from '@/components/JsonLd'
 import {
   breadcrumbSchema,
   medicalWebPageSchema,
-  faqSchema,
+  pageFaqSchema,
   reviewedMedicalWebPage,
 } from '@/lib/schema'
 import { pageMetadata } from '@/lib/seo'
@@ -88,7 +88,11 @@ export default async function ConditionPage({ params }: Props) {
       />
       {/* FAQ schema is only emitted when the answers actually render below — Google
           treats invisible FAQ markup as a violation. */}
-      {condition.faqs.length > 0 && <JsonLd data={faqSchema(condition.faqs)} />}
+      {/* Same contract as the service routes: the short answers render here too, so they
+          belong in the schema alongside the FAQ rather than only in prose. */}
+      {(condition.faqs.length > 0 || (condition.keyTakeaways?.length ?? 0) > 0) && (
+        <JsonLd data={pageFaqSchema(condition.keyTakeaways, condition.faqs)} />
+      )}
       {/* reviewedBy + lastReviewed, the two E-E-A-T signals a YMYL page needs. Only emitted
           when the clinic has confirmed a review actually happened — see the warning on
           `lastReviewed` in lib/conditions.ts. */}

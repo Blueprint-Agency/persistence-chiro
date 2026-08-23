@@ -1,9 +1,19 @@
+import { Fragment, type ReactNode } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
 import { googleReviews, practitionerBySlug } from '@/lib/clinic'
 import { accreditations, testimonials } from '@/lib/home'
-import { CheckIcon, Eyebrow, Vertebrae, WhatsAppButton, WhatsAppIcon } from '@/components/ui'
+import type { Outcome } from '@/lib/services'
+import { ConcernIllustration } from '@/components/ConcernIllustration'
+import {
+  CheckIcon,
+  Eyebrow,
+  GhostButton,
+  Vertebrae,
+  WhatsAppButton,
+  WhatsAppIcon,
+} from '@/components/ui'
 import { whatsappLink, waMessage } from '@/lib/whatsapp'
 
 /** The founding chiropractor reviews the clinical content on the money pages. */
@@ -52,9 +62,17 @@ export function RatingBadge({ tone = 'light' }: { tone?: 'light' | 'dark' }) {
  * Trust bar: accreditation logos plus a one-line credential statement. The logos are the
  * same trimmed exports the homepage uses. No efficacy claim here, only who we are.
  */
-export function TrustBar() {
+export function TrustBar({ tone = 'white' }: { tone?: 'white' | 'cream' }) {
   return (
-    <section aria-label="Accreditations" className="border-y border-line bg-white">
+    /* `tone` exists for the same reason <KeyTakeaways> has one: the condition pages run this
+       directly under the hero where white is right, while the service pages moved it down
+       between <MeetDoctors/> and the FAQ, both of which are white. Three white bands in a row
+       read as one slab however many hairlines sit between them. Deleting <KeyTakeaways/> from
+       the service pages removed the cream band that used to break that run. */
+    <section
+      aria-label="Accreditations"
+      className={`border-y border-line ${tone === 'white' ? 'bg-white' : ''}`}
+    >
       <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-8 lg:flex-row lg:items-center lg:justify-between lg:gap-10">
         <p className="max-w-sm text-sm font-semibold leading-relaxed text-ink">
           Registered chiropractors and physiotherapists in Cheras, Maluri. Open seven days,
@@ -250,10 +268,24 @@ export function ServiceHero({
  * that a stack of divs does not give it. The gold rule down the left is the only decoration;
  * this block is scanned in about four seconds and anything more competes with the hero.
  */
-export function KeyTakeaways({ items }: { items?: { q: string; a: string }[] }) {
+export function KeyTakeaways({
+  items,
+  tone = 'white',
+}: {
+  items?: { q: string; a: string }[]
+  /**
+   * Which ground the band sits on. `white` is the original and stays the default, because
+   * the condition pages run this directly under the hero where white is right.
+   *
+   * The service pages pass `cream`. They moved this block down next to <MeetDoctors/>,
+   * <TrustBar/> and the FAQ, all three of which are white, and four white bands in a row
+   * read as one undifferentiated slab however many hairlines sit between them.
+   */
+  tone?: 'white' | 'cream'
+}) {
   if (!items || items.length === 0) return null
   return (
-    <section className="border-b border-line bg-white">
+    <section className={`border-b border-line ${tone === 'white' ? 'bg-white' : ''}`}>
       <div className="mx-auto max-w-6xl px-4 py-14 lg:py-16">
         <Eyebrow>Key takeaways</Eyebrow>
         <h2 className="mt-5 max-w-2xl text-3xl font-extrabold leading-tight sm:text-4xl">
@@ -267,6 +299,419 @@ export function KeyTakeaways({ items }: { items?: { q: string; a: string }[] }) 
             </div>
           ))}
         </dl>
+      </div>
+    </section>
+  )
+}
+
+/**
+ * Wraps each `phrase` in `body` with a link to its `href`, leaving the rest as plain text.
+ *
+ * Exists so `faqs[].a` can stay a plain string in lib/services.ts — the banned-claim
+ * guard in content.test.ts scans those bodies with a regex, and markup inside them would
+ * both break that scan and let anchor text drift away from the sentence around it.
+ *
+ * A phrase that is not found is skipped rather than thrown on: the page still renders, and
+ * `content.test.ts` is what fails the build, which keeps a copy edit from taking the site
+ * down while still making the mistake impossible to ship unnoticed.
+ */
+function linkifyBody(
+  body: string,
+  links?: readonly { phrase: string; href: string }[],
+): ReactNode {
+  if (!links || links.length === 0) return body
+
+  // Longest phrase first, so a phrase containing another cannot be eaten by it.
+  const ordered = [...links].sort((a, b) => b.phrase.length - a.phrase.length)
+  let parts: ReactNode[] = [body]
+
+  for (const { phrase, href } of ordered) {
+    const next: ReactNode[] = []
+    let linked = false
+    for (const part of parts) {
+      if (linked || typeof part !== 'string') {
+        next.push(part)
+        continue
+      }
+      const at = part.indexOf(phrase)
+      if (at === -1) {
+        next.push(part)
+        continue
+      }
+      next.push(
+        part.slice(0, at),
+        <Link
+          key={href}
+          href={href}
+          className="font-medium text-brand-slate underline underline-offset-2 hover:text-ink"
+        >
+          {phrase}
+        </Link>,
+        part.slice(at + phrase.length),
+      )
+      linked = true
+    }
+    parts = next
+  }
+
+  return parts.map((part, i) => <Fragment key={i}>{part}</Fragment>)
+}
+
+/**
+ * The FAQ list. Shared by both service routes so the markup cannot drift between them.
+ *
+ * THE QUESTION IS AN `h3`, not bare text in the `<summary>`. `<summary>` takes heading
+ * content, so this is valid, and it matters because deleting `longForm` took every
+ * question-shaped `h2` off these pages with it. These questions read like real searches
+ * ("Do I need an X-ray before chiropractic care?"); leaving them as unmarked text would hand
+ * a crawler ten paragraphs with no structure and one `h2` saying "Frequently asked questions".
+ *
+ * `h3` rather than `h2` because the section's own `h2` is their parent, so the outline stays
+ * correct: one `h1`, section `h2`s, questions beneath the section that holds them.
+ */
+export function Faqs({
+  faqs,
+}: {
+  faqs: readonly { q: string; a: string; links?: readonly { phrase: string; href: string }[] }[]
+}) {
+  if (faqs.length === 0) return null
+  return (
+    <section className="border-t border-line bg-white">
+      <div className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
+        <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+          <div>
+            <Eyebrow>Questions</Eyebrow>
+            <h2 className="mt-5 text-3xl font-extrabold leading-tight sm:text-4xl">
+              Frequently asked questions
+            </h2>
+          </div>
+
+          <div className="divide-y divide-line border-y border-line">
+            {faqs.map((faq) => (
+              <details key={faq.q} className="faq py-5">
+                <summary className="flex items-start justify-between gap-6">
+                  <h3 className="text-lg font-semibold text-ink">{faq.q}</h3>
+                  <span
+                    aria-hidden="true"
+                    className="faq-sign mt-0.5 flex-none text-2xl font-light leading-none text-brand-slate transition-transform"
+                  >
+                    +
+                  </span>
+                </summary>
+                <p className="mt-4 leading-relaxed text-ink-muted">
+                  {linkifyBody(faq.a, faq.links)}
+                </p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+/**
+ * "Reasons people come in" cards. ONE renderer, used by both service routes.
+ *
+ * The hand-built chiropractic route used to read only `outcome.text`, so any photograph or
+ * illustration added to that service would have vanished with no error and no test failure.
+ * The `Outcome` union is only honoured if there is a single place that honours it.
+ */
+export function OutcomeCards({
+  outcomes,
+  serviceName,
+}: {
+  outcomes?: readonly Outcome[]
+  serviceName: string
+}) {
+  if (!outcomes || outcomes.length === 0) return null
+
+  /**
+   * Does ANY card carry a picture? This decides the whole layout, and getting it wrong is
+   * what made the shared renderer look broken on its first outing.
+   *
+   * The four-across grid exists to sit narrow photographs side by side. Give it cards with
+   * no media and it produces four thin columns of text under a heading, each with the empty
+   * band where a photo would be, which reads as "the images failed to load" rather than as a
+   * list — reported on /services/chiropractic-care, the one service whose outcomes are all
+   * bare strings. So a media-less set gets the two-column text layout that page had before
+   * it moved onto this component, and a mixed set counts as media (one missing picture among
+   * three is a content gap to fill, not a reason to drop the layout for the other three).
+   */
+  const hasMedia = outcomes.some((o) => typeof o !== 'string' && (o.image || o.illustration))
+
+  return (
+    <section className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
+      <Eyebrow>What we help with</Eyebrow>
+      <h2 className="mt-5 max-w-2xl text-3xl font-extrabold leading-tight sm:text-4xl">
+        Reasons people come in for {serviceName}
+      </h2>
+
+      {/* With pictures, the column count follows the content: four outcomes fill one row of
+          four, five fill 3+2. Forcing five into a four-column grid leaves a single orphan
+          card, which reads as a mistake rather than as a list.
+          Without pictures, two columns — text wants a readable measure, not a photo slot. */}
+      <ul
+        className={
+          hasMedia
+            ? `mt-12 grid gap-6 sm:grid-cols-2 ${
+                outcomes.length % 4 === 0 ? 'lg:grid-cols-4' : 'lg:grid-cols-3'
+              }`
+            : 'mt-10 grid gap-6 sm:grid-cols-2'
+        }
+      >
+        {outcomes.map((outcome) => {
+          const text = typeof outcome === 'string' ? outcome : outcome.text
+          const image = typeof outcome === 'string' ? null : outcome.image
+          const illustration = typeof outcome === 'string' ? null : outcome.illustration
+          return (
+            <li
+              key={text}
+              className={
+                hasMedia
+                  ? 'flex h-full flex-col overflow-hidden rounded-3xl border border-line bg-white shadow-ambient'
+                  : 'flex items-start gap-3 rounded-3xl border border-line bg-white p-6 shadow-ambient'
+              }
+            >
+              {hasMedia ? (
+                <>
+                  {illustration ? (
+                    <ConcernIllustration name={illustration} />
+                  ) : (
+                    image && (
+                      <Image
+                        src={image.src}
+                        alt={image.alt}
+                        width={1400}
+                        height={1000}
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 280px"
+                        className="aspect-[4/3] w-full object-cover"
+                      />
+                    )
+                  )}
+                  <div className="flex flex-1 items-start gap-3 p-6">
+                    <CheckIcon className="mt-0.5 h-5 w-5 flex-none text-brand-slate" />
+                    <p className="leading-relaxed text-ink-muted">{text}</p>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <CheckIcon className="mt-0.5 h-5 w-5 flex-none text-brand-slate" />
+                  <p className="leading-relaxed text-ink-muted">{text}</p>
+                </>
+              )}
+            </li>
+          )
+        })}
+      </ul>
+    </section>
+  )
+}
+
+/**
+ * Mid-page conversion card.
+ *
+ * The service pages asked for the booking once in the hero and then not again until the
+ * foot, with only the mobile sticky bar in between, so a desktop reader who decided halfway
+ * down had nothing to click without scrolling to one end or the other. This sits at the
+ * break between recognising the problem and reading how the care works, which is where the
+ * decision actually happens.
+ *
+ * No `attention` on the button. That pulse belongs to the single highest-intent CTA on a
+ * page and the hero already has it; two of them would make the animation mean nothing.
+ *
+ * ⚠️ NO VERTICAL SPACING OF ITS OWN. It sits inside the rhythm of whatever surrounds it: the
+ * padded container above supplies the gap over the card, and whatever follows must supply the
+ * gap under it. A padded container does that for free; a full-bleed band does not, and its
+ * top border lands hard against the card. Add `mt-16 lg:mt-24` to the band, as the templated
+ * route does for its "How it works" section.
+ */
+export function InlineCta({
+  heading,
+  body,
+  message,
+  secondary,
+}: {
+  heading: string
+  body: string
+  message: string
+  secondary?: { href: string; label: string }
+}) {
+  return (
+    <section className="mx-auto max-w-6xl px-4">
+      <div className="rounded-3xl border border-line bg-white p-8 shadow-ambient lg:flex lg:items-center lg:justify-between lg:gap-10 lg:p-10">
+        <div className="max-w-xl">
+          <h2 className="text-2xl font-extrabold leading-tight sm:text-3xl">{heading}</h2>
+          <p className="mt-3 leading-relaxed text-ink-muted">{body}</p>
+          <p className="mt-3 text-sm text-ink-muted/80">
+            Open seven days &middot; Cheras, Maluri &middot; no referral needed
+          </p>
+        </div>
+        <div className="mt-7 flex flex-wrap gap-3 lg:mt-0 lg:flex-none lg:flex-col">
+          <WhatsAppButton message={message}>Enquire on WhatsApp</WhatsAppButton>
+          {secondary && <GhostButton href={secondary.href}>{secondary.label}</GhostButton>}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+/**
+ * The fit check: who this service suits on the left, who it does not on the right.
+ *
+ * Every other trust block on a service page argues the clinic's case by describing what it
+ * does well. The right-hand column argues it by turning work away, which a reader discounts
+ * far less, and it is the only place the "assessed before adjusted" positioning can be
+ * stated as a refusal rather than as a boast.
+ *
+ * Two columns rather than one list of refusals, at the client's direction 2026-08-23. A lone
+ * crossed list is a page telling a visitor what it will not do for them and nothing else;
+ * side by side, each cross has a tick opposite it and the reader picks a side instead of
+ * being warned off. The pairs are written to read across, so keep them in matching order.
+ *
+ * `note` is not optional in the type and renders under both columns, so the block can never
+ * end on the refusal. Same contract `ComparisonTable` has with its own `note`.
+ *
+ * NO RED, and no green. The cross is the muted slate this site uses for secondary marks,
+ * because the right-hand column is honesty rather than error, and a red column would read as
+ * a warning about the reader. Gold stays out of both: it means "the action being asked for"
+ * everywhere else on the site and this block asks for nothing.
+ */
+export function FitCheck({
+  data,
+  serviceName,
+}: {
+  data?: { rightFor: readonly string[]; notRightFor: readonly string[]; note: string }
+  serviceName: string
+}) {
+  if (!data) return null
+  /**
+   * Each `mark` is the FINISHED 24px element, not an icon to be wrapped.
+   *
+   * `CheckIcon` already draws its own filled circle with the tick knocked out of it, so the
+   * badge span this used to put behind both marks gave the tick column two concentric
+   * circles. The cross needs the span because `CrossIcon` is a bare X; the tick must not
+   * have it. Anything added here has to arrive as its own circle at the same 24px.
+   */
+  const columns = [
+    {
+      key: 'fit',
+      heading: `This is likely a good fit if…`,
+      items: data.rightFor,
+      mark: <CheckIcon className="mt-0.5 h-6 w-6 flex-none text-brand-slate" />,
+    },
+    {
+      key: 'not',
+      heading: `It is likely not the right fit if…`,
+      items: data.notRightFor,
+      mark: (
+        <span
+          aria-hidden="true"
+          className="mt-0.5 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-brand-slate/10 text-brand-slate/70"
+        >
+          <CrossIcon className="h-3.5 w-3.5" />
+        </span>
+      ),
+    },
+  ]
+  return (
+    <section className="border-y border-line">
+      <div className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
+        <Eyebrow>Being straight with you</Eyebrow>
+        {/* Not "Is X right for you?" — <ServiceQualifier> already owns that question a few
+            sections up, and two headings asking the same thing on one page is the collision
+            the one-page-one-intent rule exists to prevent. */}
+        <h2 className="mt-5 max-w-2xl text-3xl font-extrabold leading-tight sm:text-4xl">
+          Who {serviceName} is for, and who it is not
+        </h2>
+
+        <div className="mt-12 grid gap-6 lg:grid-cols-2 lg:gap-8">
+          {columns.map((col) => (
+            <div
+              key={col.key}
+              className="rounded-3xl border border-line bg-white p-8 shadow-ambient lg:p-9"
+            >
+              <h3 className="text-lg font-bold text-ink">{col.heading}</h3>
+              <ul className="mt-6 space-y-4">
+                {col.items.map((item) => (
+                  <li key={item} className="flex items-start gap-3.5">
+                    {col.mark}
+                    <span className="leading-relaxed text-ink-muted">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        <p className="mt-10 max-w-3xl border-l-2 border-brand-gold pl-5 leading-relaxed text-ink">
+          {data.note}
+        </p>
+      </div>
+    </section>
+  )
+}
+
+/** The counterpart to CheckIcon. Muted slate, never red: this is honesty, not an error. */
+function CrossIcon({ className = 'h-4 w-4' }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 20 20" fill="none" className={className} aria-hidden="true">
+      <path d="M5 5l10 10M15 5L5 15" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" />
+    </svg>
+  )
+}
+
+/**
+ * The internal-link block: conditions this service is used for, plus the sibling pages.
+ *
+ * Real SEO value, low decision value, so it sits after the FAQ where someone who has
+ * finished reading is choosing a next page rather than choosing whether to come in.
+ *
+ * Shared by both service routes. The hand-built chiropractic page never had one at all: its
+ * conditions list was buried inside the Gonstead section and its two sibling links were
+ * hardcoded ghost buttons, which left the flagship page as the weakest internal-link hub on
+ * the site and the only service that never linked back to /services.
+ */
+export function WhereToGoNext({
+  helpsWith,
+  relatedLinks,
+}: {
+  helpsWith: { slug: string; title: string }[]
+  relatedLinks?: readonly { href: string; label: string }[]
+}) {
+  const hasLinks = relatedLinks && relatedLinks.length > 0
+  if (helpsWith.length === 0 && !hasLinks) return null
+  return (
+    <section className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
+      <Eyebrow>Where to go next</Eyebrow>
+      <h2 className="mt-5 max-w-2xl text-3xl font-extrabold leading-tight sm:text-4xl">
+        Related conditions and services
+      </h2>
+
+      {helpsWith.length > 0 && (
+        <ul className="mt-8 grid gap-2.5 sm:grid-cols-2 lg:grid-cols-4">
+          {helpsWith.map((c) => (
+            <li key={c.slug}>
+              <Link
+                href={`/conditions/${c.slug}`}
+                className="flex items-start gap-2.5 text-ink-muted hover:text-brand-slate"
+              >
+                <Vertebrae className="mt-1.5 text-brand-gold" />
+                {c.title.split(' in ')[0]}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      <div className="mt-10 flex flex-wrap gap-3">
+        {hasLinks &&
+          relatedLinks.map((link) => (
+            <GhostButton key={link.href} href={link.href}>
+              {link.label}
+            </GhostButton>
+          ))}
+        <GhostButton href="/services">All our services in Cheras</GhostButton>
       </div>
     </section>
   )
