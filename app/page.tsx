@@ -446,8 +446,8 @@ export default function Home() {
             </h2>
             <p className="mt-5 leading-relaxed text-ink-muted">
               Two of our patients, photographed from behind on two different days. The lines mark
-              what we look at when we assess posture &mdash; where the head sits over the
-              shoulders, and how the spine runs from the neck down.
+              what we look at when we assess posture: where the head sits over the shoulders,
+              and how the spine runs from the neck down.
             </p>
             <div className="mt-8">
               <GhostButton href="/services/chiropractic-care">
