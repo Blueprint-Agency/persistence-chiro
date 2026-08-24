@@ -245,6 +245,14 @@ export function faqSchema(faqs: readonly { q: string; a: string }[]) {
   }
 }
 
+/**
+ * Some posts are bylined to a named practitioner, others to the clinic itself
+ * (`post.author === clinic.name`) — the latter is an Organization, not a Person, and
+ * schema.org has no single type that covers both. Emitting `Person` for a clinic-authored
+ * post would misrepresent the clinic's own name as a person's; comparing against the same
+ * `clinic.name` this file already treats as the single source of truth keeps the two in
+ * step without a second field on `Post`.
+ */
 export function blogPostingSchema(o: {
   title: string
   description: string
@@ -252,6 +260,8 @@ export function blogPostingSchema(o: {
   datePublished: string
   author: string
 }) {
+  const isClinic = o.author === clinic.name
+
   return {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
@@ -259,7 +269,9 @@ export function blogPostingSchema(o: {
     description: o.description,
     url: `${SITE_URL}/blog/${o.slug}`,
     datePublished: o.datePublished,
-    author: { '@type': 'Person', name: o.author },
+    author: isClinic
+      ? { '@type': 'Organization', '@id': `${SITE_URL}/#clinic` }
+      : { '@type': 'Person', name: o.author },
     publisher: { '@id': `${SITE_URL}/#clinic` },
   }
 }

@@ -228,11 +228,13 @@ export const conditions: Condition[] = [
         claim:
           'Low back pain is consistently ranked the single leading cause of years lived with disability worldwide.',
         source: 'Global Burden of Disease Study, The Lancet',
+        url: 'https://www.thelancet.com/journals/lanrhe/article/PIIS2665-9913(23)00098-X/fulltext',
       },
       {
         claim:
           'Clinical guidelines recommend staying active and using exercise based care for most non specific low back pain, rather than prolonged rest.',
         source: 'NICE guideline NG59, Low back pain and sciatica',
+        url: 'https://www.nice.org.uk/guidance/ng59',
       },
     ],
     lastReviewed: '2026-08-08',
@@ -351,11 +353,13 @@ export const conditions: Condition[] = [
         claim:
           'Imaging findings such as disc bulges and protrusions are commonly present in people without any symptoms, and increase with age.',
         source: 'Brinjikji et al. (2015), American Journal of Neuroradiology',
+        url: 'https://www.ajnr.org/content/36/4/811',
       },
       {
         claim:
           'Non surgical care is the usual first approach for lumbar disc problems, with surgery considered for specific indications such as progressive neurological deficit.',
         source: 'NICE guideline NG59, Low back pain and sciatica',
+        url: 'https://www.nice.org.uk/guidance/ng59',
       },
     ],
     lastReviewed: '2026-08-08',
@@ -474,11 +478,13 @@ export const conditions: Condition[] = [
         claim:
           'Sciatica describes a symptom pattern rather than a diagnosis, and identifying the underlying cause is what guides management.',
         source: 'NICE guideline NG59, Low back pain and sciatica',
+        url: 'https://www.nice.org.uk/guidance/ng59',
       },
       {
         claim:
           'Cauda equina syndrome, indicated by bladder or bowel disturbance and saddle numbness, is a surgical emergency requiring immediate assessment.',
         source: 'NICE Clinical Knowledge Summaries, Sciatica',
+        url: 'https://cks.nice.org.uk/topics/sciatica/',
       },
     ],
     lastReviewed: '2026-08-08',
@@ -596,11 +602,13 @@ export const conditions: Condition[] = [
         claim:
           'In most adolescent scoliosis no underlying cause is identified, which is why it is described as idiopathic.',
         source: 'Scoliosis Research Society',
+        url: 'https://www.srs.org/Patients/Conditions/Scoliosis/Idiopathic-Scoliosis',
       },
       {
         claim:
           'Specialist assessment is advised for curves that present during growth or that show signs of progressing.',
-        source: 'NICE Clinical Knowledge Summaries, Scoliosis',
+        source: 'Janicki & Alman (2007), Paediatrics & Child Health',
+        url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC2532872/',
       },
     ],
     lastReviewed: '2026-08-08',
@@ -728,11 +736,13 @@ export const conditions: Condition[] = [
         claim:
           'Neck pain is consistently ranked among the leading causes of years lived with disability worldwide.',
         source: 'Global Burden of Disease Study, The Lancet',
+        url: 'https://www.thelancet.com/journals/lanrhe/article/PIIS2665-9913(23)00321-1/fulltext',
       },
       {
         claim:
           'Guidance for non specific neck pain generally favours staying active, with manual therapy and exercise used alongside it rather than prolonged rest.',
         source: 'NICE Clinical Knowledge Summaries, Neck pain',
+        url: 'https://cks.nice.org.uk/topics/neck-pain-non-specific/',
       },
     ],
     lastReviewed: '2026-08-08',
@@ -867,11 +877,13 @@ export const conditions: Condition[] = [
         claim:
           'Cervicogenic headache is classified as a distinct headache disorder attributed to structures in the neck.',
         source: 'International Classification of Headache Disorders, ICHD-3',
+        url: 'https://ichd-3.org/11-headache-or-facial-pain-attributed-to-disorder-of-the-cranium-neck-eyes-ears-nose-sinuses-teeth-mouth-or-other-facial-or-cervical-structure/11-2-headache-attributed-to-disorder-of-the-neck/11-2-1-cervicogenic-headache/',
       },
       {
         claim:
           'Headache disorders are among the most common disorders of the nervous system worldwide.',
         source: 'World Health Organization',
+        url: 'https://www.who.int/news-room/fact-sheets/detail/headache-disorders',
       },
     ],
     lastReviewed: '2026-08-08',
@@ -998,11 +1010,13 @@ export const conditions: Condition[] = [
         claim:
           'Pain arising from the hip joint itself is commonly felt in the groin, whereas pain on the outside of the hip more often involves the tendons around the greater trochanter.',
         source: 'British Journal of Sports Medicine',
+        url: 'https://bjsm.bmj.com/content/47/10/649',
       },
       {
         claim:
           'Exercise is recommended as a core part of managing hip osteoarthritis, alongside education and, where relevant, weight management.',
         source: 'NICE guideline NG226, Osteoarthritis in over 16s',
+        url: 'https://www.nice.org.uk/guidance/ng226',
       },
     ],
     lastReviewed: '2026-08-08',
@@ -1131,12 +1145,14 @@ export const conditions: Condition[] = [
       {
         claim:
           'Mild postural asymmetry is common in the general population and is not by itself an indication of underlying disease.',
-        source: 'Chartered Society of Physiotherapy guidance',
+        source: 'Twarowska-Grybalow & Truszczyńska-Baszak (2023), International Journal of Environmental Research and Public Health',
+        url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC10048875/',
       },
       {
         claim:
           'Screening for adolescent idiopathic scoliosis looks for trunk and rib asymmetry on forward bending rather than shoulder height alone.',
         source: 'Scoliosis Research Society',
+        url: 'https://www.srs.org/Patients/Diagnosis-And-Treatment/Diagnosing-Scoliosis',
       },
     ],
     lastReviewed: '2026-08-08',

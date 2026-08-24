@@ -406,11 +406,13 @@ export const services: Service[] = [
         claim:
           'Routine imaging is not recommended for non specific spinal pain and is advised only when there are specific clinical indications.',
         source: 'NICE guideline NG59, Low back pain and sciatica',
+        url: 'https://www.nice.org.uk/guidance/ng59',
       },
       {
         claim:
           'Chiropractic is a regulated healthcare practice; in Malaysia practitioners register under the Ministry of Health framework.',
         source: 'Association of Chiropractic Malaysia; Ministry of Health Malaysia',
+        url: 'https://www.moh.gov.my/en/corporate-info/division-information/traditional-and-complementary-medicine-division',
       },
     ],
     /**
@@ -590,17 +592,20 @@ export const services: Service[] = [
       {
         claim:
           'Myofascial trigger points are described as hyperirritable spots within a taut band of skeletal muscle.',
-        source: 'Travell & Simons, Myofascial Pain and Dysfunction: The Trigger Point Manual',
+        source: 'McAphee et al. (2022), International Journal of Sports Physical Therapy',
+        url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC9159711/',
       },
       {
         claim:
           'Surveys of trigger point dry needling report that adverse events are usually minor and transient, such as soreness or minor bruising.',
         source: 'Brady et al. (2014), Journal of Manual & Manipulative Therapy',
+        url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC4101552/',
       },
       {
         claim:
           'In Malaysia, chiropractic and physiotherapy are regulated healthcare practices, and practitioners are expected to hold recognised qualifications.',
         source: 'Ministry of Health Malaysia',
+        url: 'https://www.moh.gov.my/en/corporate-info/division-information/traditional-and-complementary-medicine-division',
       },
     ],
     fitCheck: {
@@ -832,11 +837,13 @@ export const services: Service[] = [
         claim:
           'Clinical guidelines recommend staying active and using exercise based care for most non specific low back pain, rather than prolonged rest.',
         source: 'NICE guideline NG59, Low back pain and sciatica',
+        url: 'https://www.nice.org.uk/guidance/ng59',
       },
       {
         claim:
           'Physiotherapists in Malaysia practise under the Ministry of Health and its allied health professions framework.',
         source: 'Allied Health Professions Act 2016, Malaysia',
+        url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC10835829/',
       },
     ],
     fitCheck: {
@@ -1062,11 +1069,13 @@ export const services: Service[] = [
         claim:
           'Return to sport decisions are best guided by criteria such as strength and functional testing rather than time alone, which helps reduce reinjury risk.',
         source: 'Ardern et al. (2016), Consensus statement on return to sport, British Journal of Sports Medicine',
+        url: 'https://bjsm.bmj.com/content/50/14/853',
       },
       {
         claim:
           'For most soft tissue injuries, guided early movement within pain limits is generally preferred over prolonged immobilisation.',
         source: 'British Journal of Sports Medicine',
+        url: 'https://bjsm.bmj.com/content/54/2/72',
       },
     ],
     fitCheck: {
@@ -1269,11 +1278,13 @@ export const services: Service[] = [
         claim:
           'Contemporary physiotherapy research questions the idea of a single correct posture and emphasises movement and variation instead.',
         source: 'O’Sullivan et al., research on posture and back pain',
+        url: 'https://bjsm.bmj.com/content/54/12/698',
       },
       {
         claim:
           'Prolonged static sitting is associated with musculoskeletal discomfort, and regular movement breaks are commonly advised.',
         source: 'Chartered Society of Physiotherapy guidance',
+        url: 'https://www.csp.org.uk/public-patient/keeping-active-healthy',
       },
     ],
     fitCheck: {
