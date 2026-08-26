@@ -3,7 +3,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import { publishedPosts } from '@/lib/posts'
-import { postImages } from '@/lib/home'
 import { readingTime } from '@/lib/reading-time'
 import { JsonLd } from '@/components/JsonLd'
 import { breadcrumbSchema, collectionPageSchema } from '@/lib/schema'
@@ -60,7 +59,7 @@ export default function BlogIndex() {
             <div className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
               <Eyebrow>Latest</Eyebrow>
 
-              {postImages[featured.slug] ? (
+              {featured.heroImage ? (
                 <div className="mt-8 grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-16">
                   <div>
                     <Link href={`/blog/${featured.slug}`} className="group">
@@ -85,7 +84,7 @@ export default function BlogIndex() {
                   </div>
                   <Link href={`/blog/${featured.slug}`} tabIndex={-1} aria-hidden="true">
                     <Image
-                      src={postImages[featured.slug]}
+                      src={featured.heroImage!.src}
                       alt=""
                       width={800}
                       height={640}
@@ -135,16 +134,15 @@ export default function BlogIndex() {
 
                   <div className="divide-y divide-line border-y border-line">
                     {rest.map((p) => {
-                      const img = postImages[p.slug]
                       return (
                         <Link
                           key={p.slug}
                           href={`/blog/${p.slug}`}
                           className="group flex items-center gap-6 py-6"
                         >
-                          {img && (
+                          {p.heroImage && (
                             <Image
-                              src={img}
+                              src={p.heroImage.src}
                               alt=""
                               width={112}
                               height={112}

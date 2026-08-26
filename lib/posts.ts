@@ -165,6 +165,13 @@ export const posts: Post[] = [
     datePublished: '2026-08-26',
     author: 'Persistence Chiropractic Care',
     linksTo: 'chiropractic-care',
+    // Reused from /what-to-expect rather than sourcing anything new — real clinic
+    // photography, not stock, and it illustrates the "assessment before anything happens"
+    // point this post keeps making.
+    heroImage: {
+      src: '/img/first-visit-consultation.webp',
+      alt: 'Chiropractor assessing a patient neck during a consultation at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
+    },
     keyTakeaways: [
       {
         q: 'What makes a chiropractor good in Kuala Lumpur, rather than just popular?',
@@ -262,6 +269,12 @@ export const posts: Post[] = [
     datePublished: '2025-09-01',
     author: 'Persistence Chiropractic Care',
     linksTo: 'back-pain',
+    // Licensed stock carried over from the original Wix post cover: a flat teal silhouette
+    // illustration, not clinic photography or a real patient, so no local modifier in the alt.
+    heroImage: {
+      src: '/img/post-womans-life.webp',
+      alt: 'Illustration of a woman silhouette through the stages of life, from infant to grandmother, including pregnancy',
+    },
     draft: false,
   },
   {
@@ -282,6 +295,13 @@ export const posts: Post[] = [
     datePublished: '2025-09-30',
     author: 'Persistence Chiropractic Care',
     linksTo: 'sports-injury-rehabilitation',
+    // Licensed stock carried over from the original Wix post cover, not clinic photography
+    // (a volleyball player, not this clinic or a patient), so the alt below names no local
+    // modifier and no clinic, same discipline as the dry-needling/physio illustration alts.
+    heroImage: {
+      src: '/img/post-spike-higher.webp',
+      alt: 'Volleyball player jumping to set the ball at the net',
+    },
     draft: false,
   },
   {
@@ -366,6 +386,12 @@ export const posts: Post[] = [
     datePublished: '2025-05-07',
     author: 'Persistence Chiropractic Care',
     linksTo: 'back-pain',
+    // Licensed stock carried over from the original Wix post cover, not clinic photography
+    // or a real patient, so no local modifier in the alt.
+    heroImage: {
+      src: '/img/post-house-chores.webp',
+      alt: 'Woman kneeling and resting her head on a pile of laundry beside a laundry basket',
+    },
     draft: false,
   },
   {

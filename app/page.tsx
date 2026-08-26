@@ -7,7 +7,7 @@ import { publishedConditions } from '@/lib/conditions'
 import { publishedServices } from '@/lib/services'
 import { publishedPosts } from '@/lib/posts'
 import { homeFaqs } from '@/lib/faqs'
-import { homeIntro, offers, accreditations, postImages } from '@/lib/home'
+import { homeIntro, offers, accreditations } from '@/lib/home'
 import { faqSchema } from '@/lib/schema'
 import { pageMetadata } from '@/lib/seo'
 import { JsonLd } from '@/components/JsonLd'
@@ -155,7 +155,7 @@ export const metadata: Metadata = pageMetadata({
 export default function Home() {
   const conditions = publishedConditions()
   const modalities = publishedServices()
-  const posts = publishedPosts().filter((p) => postImages[p.slug]).slice(0, 3)
+  const posts = publishedPosts().filter((p) => p.heroImage).slice(0, 3)
 
   return (
     <>
@@ -611,7 +611,7 @@ export default function Home() {
               <article key={post.slug}>
                 <Link href={`/blog/${post.slug}`} className="group block">
                   <Image
-                    src={postImages[post.slug]}
+                    src={post.heroImage!.src}
                     /* Decorative: the <h3> directly below carries the same words, so alt
                        text here made every card announce its title twice. */
                     alt=""

@@ -124,10 +124,3 @@ export const accreditations = [
     height: 206,
   },
 ]
-
-/** Blog teaser artwork, keyed by slug. Only the three the homepage features. */
-export const postImages: Record<string, string> = {
-  'spike-higher-play-longer': '/img/post-spike-higher.webp',
-  'chiropractic-care-through-the-stages-of-a-woman-s-life': '/img/post-womans-life.webp',
-  'are-house-chores-a-pain-in-the-back-here-s-what-chiropractors-say': '/img/post-house-chores.webp',
-}
