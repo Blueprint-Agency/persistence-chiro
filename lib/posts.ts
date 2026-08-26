@@ -156,6 +156,86 @@ export const posts: Post[] = [
     draft: false,
   },
   {
+    // Month 1 content schedule item, built via the persistence-content-builder skill.
+    // Deliberately not a ranked listicle: AGENTS.md forbids naming or citing a competitor,
+    // and there is no honest way to crown ourselves "best" without either. Instead this
+    // teaches the reader what to verify in any KL chiropractor, which our own clinic is
+    // positioned to pass on every count without the post ever claiming so directly.
+    slug: 'best-chiropractor-kuala-lumpur',
+    title: 'Best Chiropractor in Kuala Lumpur: What to Actually Check',
+    description:
+      'What actually separates a good chiropractor from a busy one in Kuala Lumpur: registration, assessment, and the questions worth asking first.',
+    datePublished: '2026-08-26',
+    author: 'Persistence Chiropractic Care',
+    linksTo: 'chiropractic-care',
+    keyTakeaways: [
+      {
+        q: 'What makes a chiropractor good in Kuala Lumpur, rather than just popular?',
+        a: 'Verifiable registration with the Ministry of Health and, separately, membership with the Association of Chiropractic Malaysia, alongside an assessment that happens before any adjustment. Reviews and search rankings for "best chiropractor Kuala Lumpur" do not tell you either of those things.',
+      },
+      {
+        q: 'Is one chiropractic technique genuinely better than another?',
+        a: 'No published evidence puts one named technique ahead of the others across the board. What matters more is whether the chiropractor can explain how they decided where to work on you.',
+      },
+      {
+        q: 'How do I check if a chiropractor in KL is actually registered?',
+        a: 'Ask directly for their Ministry of Health T&CM registration number and whether they hold Association of Chiropractic Malaysia membership. A genuinely registered practitioner answers both without hesitation.',
+      },
+      {
+        q: 'What should a first visit with a good chiropractor look like?',
+        a: 'History taken first, then a physical examination, then an explanation of what was found, before anything is adjusted, not an adjustment within the first few minutes regardless of what brought you in.',
+      },
+      {
+        q: 'Should I worry if a clinic is not the top result in a search for the best chiropractor?',
+        a: 'Not particularly. Search rankings and review counts reflect marketing and popularity more than they reflect registration, assessment quality or the approach actually used.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'How much does a chiropractor cost in Kuala Lumpur?',
+        a: 'It varies by clinic and is usually priced per visit rather than as a fixed package, because a fair quote depends on what the assessment finds. Ask what a first visit costs specifically before you book, since most clinics do not publish this upfront.',
+      },
+      {
+        q: "Do I need a doctor's referral to see a chiropractor in KL?",
+        a: 'No. Chiropractors in Malaysia can be seen directly without a referral, though a chiropractor who takes a proper history should refer you onward if your case needs imaging or a medical opinion first.',
+      },
+      {
+        q: "What's the difference between a chiropractor and a physiotherapist?",
+        a: 'Broadly, a chiropractor works on how a restricted spinal joint moves, while a physiotherapist works on the strength and control around it, and a fair number of patients end up needing both. Which one to start with depends on what an assessment finds, not on which you happened to search for first.',
+      },
+      {
+        q: 'Are there unregistered or unqualified practitioners operating in KL?',
+        a: "It's a real risk worth taking seriously, given how few patients check credentials: a 2023 survey of Klang Valley adults found under five percent were aware of the Act that regulates the profession here. Asking to see a registration number directly is the simplest way to rule this out.",
+      },
+      {
+        q: 'Is it normal for a chiropractor to recommend ongoing visits?',
+        a: 'It can be, for a recurring or long-standing problem, but a plan should be reviewed honestly as it goes rather than sold as a fixed number of sessions before you have even been assessed once.',
+      },
+    ],
+    citations: [
+      {
+        claim:
+          "A 2023 survey of adults in Malaysia's Klang Valley found that only 4.8 percent were aware of the Act that regulates chiropractic practice, despite almost half of respondents holding a university degree.",
+        source: 'Wong, Haneline & Tan (2023), Journal of Chiropractic Humanities',
+        url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC10562678/',
+      },
+      {
+        claim: 'The Association of Chiropractic Malaysia, the profession’s professional body, was established in 2013.',
+        source: 'Association of Chiropractic Malaysia',
+        url: 'https://chiroacm.org/about-us',
+      },
+      {
+        claim:
+          'Reviews comparing thrust spinal manipulation to non-thrust mobilisation have generally found no consistent difference in pain and disability outcomes, though findings vary by spinal region.',
+        source: 'Gevers-Montoro et al. (2021), Frontiers in Pain Research',
+        url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC8915715/',
+      },
+    ],
+    // UNSET DELIBERATELY, same reasoning as gonstead-technique above.
+    // lastReviewed: undefined,
+    draft: false,
+  },
+  {
     // First net-new SEO post (not a migrated Wix post, so not in LEGACY_POST_SLUGS and it
     // needs no /post/ redirect). Written 2026-07-25 via the persistence-content-builder skill.
     slug: 'muscle-knots',

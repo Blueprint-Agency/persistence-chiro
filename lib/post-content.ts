@@ -8,6 +8,7 @@ import type { ComponentType } from 'react'
  * MDX file, a `posts.ts` entry, and one line here.
  */
 import GonsteadTechnique from '@/content/blog/gonstead-technique.mdx'
+import BestChiropractorKualaLumpur from '@/content/blog/best-chiropractor-kuala-lumpur.mdx'
 import MuscleKnots from '@/content/blog/muscle-knots.mdx'
 import ADeeperUnderstandingOfScoliosis from '@/content/blog/a-deeper-understanding-of-scoliosis.mdx'
 import AreHouseChores from '@/content/blog/are-house-chores-a-pain-in-the-back-here-s-what-chiropractors-say.mdx'
@@ -26,6 +27,7 @@ import FirstTimeVisit from '@/content/blog/what-to-expect-when-going-to-the-chir
 
 export const postBodies: Record<string, ComponentType> = {
   'gonstead-technique': GonsteadTechnique,
+  'best-chiropractor-kuala-lumpur': BestChiropractorKualaLumpur,
   'muscle-knots': MuscleKnots,
   'a-deeper-understanding-of-scoliosis': ADeeperUnderstandingOfScoliosis,
   'are-house-chores-a-pain-in-the-back-here-s-what-chiropractors-say': AreHouseChores,
