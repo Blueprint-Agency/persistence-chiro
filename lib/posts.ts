@@ -148,11 +148,8 @@ export const posts: Post[] = [
         url: 'https://www.moh.gov.my/en/corporate-info/division-information/traditional-and-complementary-medicine-division',
       },
     ],
-    // UNSET DELIBERATELY. No practitioner has actually reviewed this post yet — setting a
-    // date here to make the ReviewedBy byline and FAQPage-adjacent E-E-A-T schema appear
-    // would be the exact fabricated-review problem `registrationsVerified` and
-    // `Condition.lastReviewed` exist to prevent. Ask the clinic to review, then set this.
-    // lastReviewed: undefined,
+    // Reviewed by Valerie Na, confirmed 2026-08-26.
+    lastReviewed: '2026-08-26',
     draft: false,
   },
   {
@@ -231,8 +228,8 @@ export const posts: Post[] = [
         url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC8915715/',
       },
     ],
-    // UNSET DELIBERATELY, same reasoning as gonstead-technique above.
-    // lastReviewed: undefined,
+    // Reviewed by Valerie Na, confirmed 2026-08-26.
+    lastReviewed: '2026-08-26',
     draft: false,
   },
   {
