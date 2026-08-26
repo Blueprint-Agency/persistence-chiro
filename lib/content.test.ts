@@ -117,6 +117,16 @@ test('no promissory medical claims in published copy', () => {
           ].join(' '),
         ] as [string, string],
     ),
+    // Posts' structured Q&A/citations (post.keyTakeaways / post.faqs / post.citations) live
+    // in this file, not in the MDX body, so the separate "new blog posts carry no
+    // promissory claims" test below — which only reads the raw .mdx file text — never sees
+    // them. Scanning them here is what actually closes that gap.
+    ...posts.flatMap((p) => [
+      [`posts/${p.slug}`, [p.title, p.description].join(' ')] as [string, string],
+      ...(p.keyTakeaways ?? []).map((t) => [`posts/${p.slug} keyTakeaway`, `${t.q} ${t.a}`] as [string, string]),
+      ...(p.faqs ?? []).map((f) => [`posts/${p.slug} faq`, `${f.q} ${f.a}`] as [string, string]),
+      ...(p.citations ?? []).map((c) => [`posts/${p.slug} citation`, c.claim] as [string, string]),
+    ]),
     ...clinicFaqs.map((f) => [`clinicFaqs`, `${f.q} ${f.a}`] as [string, string]),
     ...homeFaqs.map((f) => [`homeFaqs`, `${f.q} ${f.a}`] as [string, string]),
     ['homeIntro', [homeIntro.heading, ...homeIntro.body].join(' ')],
@@ -278,10 +288,13 @@ test('no fit-check line is duplicated from outcomes or the qualifier', () => {
 test('no key takeaway repeats an FAQ on the same page', () => {
   const norm = (t: string) => t.toLowerCase().replace(/[^a-z0-9 ]/g, '').replace(/\s+/g, ' ').trim()
   const hits: string[] = []
-  // Conditions only. The service pages carried `keyTakeaways` until 2026-08-23; with it
+  // Conditions and posts. The service pages carried `keyTakeaways` until 2026-08-23; with it
   // deleted there, `faqs` is the single Q&A array on a service and nothing can collide.
   const pages: [string, { q: string; a: string }[] | undefined, readonly { q: string; a: string }[]][] =
-    conditions.map((c) => [`conditions/${c.slug}`, c.keyTakeaways, c.faqs] as [string, { q: string; a: string }[] | undefined, readonly { q: string; a: string }[]])
+    [
+      ...conditions.map((c) => [`conditions/${c.slug}`, c.keyTakeaways, c.faqs] as [string, { q: string; a: string }[] | undefined, readonly { q: string; a: string }[]]),
+      ...posts.map((p) => [`posts/${p.slug}`, p.keyTakeaways, p.faqs ?? []] as [string, { q: string; a: string }[] | undefined, readonly { q: string; a: string }[]]),
+    ]
   for (const [where, takeaways, faqs] of pages) {
     if (!takeaways) continue
     const faqQ = new Set(faqs.map((f) => norm(f.q)))

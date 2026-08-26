@@ -206,6 +206,19 @@ body {
   .post-body > * + * {
     margin-top: 1.25rem;
   }
+  /* The opening line, set apart as a card rather than a larger font size, so a post reads
+     as starting with an answer without breaking the uniform type scale the rest of the
+     body runs on. Every MDX body opens with a plain paragraph, so this needs no markup
+     change to reach every post, old and new alike. Matches the sitewide card component:
+     24px corners, white on the cream ground, warm hairline, ambient shadow. */
+  .post-body > p:first-of-type {
+    padding: 1.75rem;
+    border-radius: 1.5rem;
+    border: 1px solid var(--line);
+    background: var(--white);
+    box-shadow: var(--shadow-ambient);
+    color: var(--ink);
+  }
   .post-body h2 {
     margin-top: 2.75rem;
     font-size: 1.5rem;
@@ -242,6 +255,12 @@ body {
     border-left: 3px solid var(--brand-gold);
     padding-left: 1.25rem;
     font-style: italic;
+  }
+  /* The last row's cells still carry their own border-b (see mdx-components.tsx); dropping
+     it here avoids that hairline sitting flush against the wrapper's own bottom border. */
+  .post-body table tr:last-child td,
+  .post-body table tr:last-child th {
+    border-bottom: none;
   }
 }
 

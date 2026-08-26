@@ -20,7 +20,12 @@ const nextConfig: NextConfig = {
 };
 
 // Turbopack (default in 16) needs remark/rehype plugins named as strings, not imported
-// functions. No plugins yet — add them here as strings if we ever need one.
-const withMDX = createMDX({});
+// functions. remark-gfm adds GitHub-flavoured markdown table syntax — without it a pipe
+// table in a post renders as a literal line of "|" characters instead of a <table>.
+const withMDX = createMDX({
+  options: {
+    remarkPlugins: ['remark-gfm'],
+  },
+});
 
 export default withMDX(nextConfig);

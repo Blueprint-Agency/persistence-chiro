@@ -28,6 +28,16 @@ const PHOTOS = [
   ['home-42-spike-higher-play-longer.jpg', 'post-spike-higher', 800, 600, {}],
   ['home-44-chiropractic-care-through-stages-woman-s.webp', 'post-womans-life', 800, 600, {}],
   ['home-46-house-chores-pain-back-here-s.png', 'post-house-chores', 800, 600, {}],
+  // Licensed stock (Unsplash License, free commercial use), not clinic photography — used
+  // once, on the Gonstead blog post, which has no dedicated shoot of its own. Photographer:
+  // Julius Toltesi. https://unsplash.com/photos/ZzkNkbUxFMc
+  [
+    'blog-gonstead-hero-unsplash.jpg',
+    'blog-gonstead-hero',
+    900,
+    1125,
+    { position: sharp.strategy.attention },
+  ],
 ]
 
 /** Logos keep transparency, so PNG out. Trimmed because the Wix originals are mostly padding. */

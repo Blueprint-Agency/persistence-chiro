@@ -132,7 +132,11 @@ export function ServiceQualifier({
       <fieldset>
         <legend className="sr-only">Select the concerns that apply to you</legend>
 
-        <ul className="grid gap-3 sm:grid-cols-2">
+        {/* list-none pl-0: defends against `.post-body ul` (globals.css) re-adding bullet
+            markers when this renders inside a blog post via InlineQualifier — Tailwind's
+            own preflight already zeroes list-style outside that scope, so this is a no-op
+            on the service pages that also render this component. */}
+        <ul className="grid list-none gap-3 pl-0 sm:grid-cols-2">
           {concerns.map((concern) => {
             const label = labelOf(concern)
             const icon = iconOf(concern)
@@ -174,7 +178,9 @@ export function ServiceQualifier({
         href={href}
         target="_blank"
         rel="noopener"
-        className="mt-7 inline-flex items-center justify-center gap-2 rounded-full bg-brand-gold px-7 py-3.5 text-sm font-semibold text-ink transition-colors hover:bg-[#d4b00d]"
+        /* no-underline: `.post-body a` (globals.css) underlines every link when this renders
+           inside a blog post via InlineQualifier; a CTA button should never carry one. */
+        className="mt-7 inline-flex items-center justify-center gap-2 rounded-full bg-brand-gold px-7 py-3.5 text-sm font-semibold text-ink no-underline transition-colors hover:bg-[#d4b00d]"
       >
         <WhatsAppIcon />
         Ask us on WhatsApp

@@ -27,9 +27,134 @@ export type Post = {
   draft: boolean
   /** Why this post is still held back. Empty when draft is false. */
   holdReason?: string
+  /**
+   * Optional hero photograph, rendered beside the title on the article page and on the
+   * blog index's featured slot. Most posts carry none: this clinic's photography is of
+   * this clinic, not stock filler (see DESIGN.md), and there is no dedicated shoot for
+   * most topics. When one is set from a licensed stock source rather than the clinic's
+   * own photography, say so in a comment next to the entry — same discipline as crediting
+   * the Unsplash photo behind `blog-gonstead-hero.webp`.
+   */
+  heroImage?: { src: string; alt: string }
+  /**
+   * Structured Q&A, matching `Condition.keyTakeaways` / `Condition.faqs`. Rendered inline in
+   * the MDX body via `<KeyTakeawayList slug="..." />` / `<FaqList slug="..." />`
+   * (mdx-components.tsx) and fed into `pageFaqSchema` for FAQPage structured data — one
+   * array serves both, so the rendered page and the schema can never drift apart the way
+   * they would if the FAQ were retyped as freehand MDX prose.
+   *
+   * Optional: legacy posts keep their Q&A as plain MDX paragraphs rather than being
+   * retrofitted, so a post with neither field simply emits no FAQPage schema.
+   */
+  keyTakeaways?: { q: string; a: string }[]
+  faqs?: { q: string; a: string }[]
+  /**
+   * Verifiable, cautiously worded facts attributed to a journal, historical record or
+   * regulator, matching `Condition.citations` / `Service.citations`. Never a competitor,
+   * never an efficacy promise. Renders via `<References>` on the article page.
+   */
+  citations?: { claim: string; source: string; url?: string }[]
+  /**
+   * ISO date the clinical content was ACTUALLY reviewed by the practitioner (always Valerie
+   * Na — see `reviewer` in components/service.tsx). Same contract as `Condition.lastReviewed`
+   * / `Service.lastReviewed`: unset means no claim is made, which is the correct state until
+   * the clinic confirms a review actually happened. DO NOT set this to make the byline
+   * appear.
+   */
+  lastReviewed?: string
 }
 
 export const posts: Post[] = [
+  {
+    // Month 1 content schedule item, built as a blog post rather than the sixth service
+    // page the schedule specified: /services/chiropractic-care already owns "Gonstead"
+    // (dedicated route, six-step walkthrough, an FAQ literally titled "What is the Gonstead
+    // method?"), and the proposal fixes the service namespace at five slugs. A standalone
+    // service page here would cannibalise chiropractic-care's own ranking for the term.
+    slug: 'gonstead-technique',
+    title: 'Gonstead Chiropractor KL: What the Technique Involves',
+    description:
+      'What the Gonstead technique actually involves, the six-step assessment behind it, and how it differs from a general adjustment. Cheras, Kuala Lumpur.',
+    datePublished: '2026-08-26',
+    author: 'Persistence Chiropractic Care',
+    linksTo: 'chiropractic-care',
+    // Licensed stock (Unsplash License, free commercial use), not clinic photography.
+    // Photographer: Julius Toltesi. https://unsplash.com/photos/ZzkNkbUxFMc
+    heroImage: {
+      src: '/img/blog-gonstead-hero.webp',
+      alt: 'Chiropractor placing both hands on a patient upper back during a spinal adjustment',
+    },
+    keyTakeaways: [
+      {
+        q: 'What is the Gonstead technique?',
+        a: 'A chiropractic system built around a thorough, structured assessment, history taking, visual and instrument checks, hands on palpation and X-ray analysis where indicated, used to find the exact spinal segment behind a problem before it is adjusted.',
+      },
+      {
+        q: 'Who created it?',
+        a: 'Dr Clarence Gonstead, an American chiropractor who developed and refined the system over several decades of practice in Mount Horeb, Wisconsin, beginning in the 1920s.',
+      },
+      {
+        q: 'How is it different from a general adjustment?',
+        a: 'A general adjustment can move through the spine broadly. Gonstead is built to identify one specific segment first, so the adjustment that follows is aimed precisely rather than applied generally.',
+      },
+      {
+        q: 'Is Gonstead better than other chiropractic techniques?',
+        a: 'There is no good evidence that any one chiropractic technique outperforms the others for most people. What Gonstead offers is a particularly structured, repeatable process for finding where to work, which is why our chiropractors use it.',
+      },
+      {
+        q: 'Is it safe, and who is it suitable for?',
+        a: 'Assessment comes first specifically so an adjustment is only used where it is appropriate. Where it is not, or a case would be better served elsewhere, that is exactly what the assessment is for.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Does Gonstead chiropractic hurt?',
+        a: 'The assessment itself does not, beyond ordinary palpation. The adjustment is usually described as brief pressure followed by release rather than pain, though any tenderness already present in the area can make it feel more noticeable.',
+      },
+      {
+        q: 'Do I need an X-ray for a Gonstead assessment?',
+        a: 'Not for every patient. It is used where it is clinically indicated, particularly where it would change the plan, and it is generally avoided for pregnant women and children unless there is a clear reason.',
+      },
+      {
+        q: 'Is Gonstead suitable for children?',
+        a: 'Yes, the assessment adapts to the person rather than following a fixed protocol, and the approach for a child differs from the approach for an adult accordingly.',
+      },
+      {
+        q: 'How long does a Gonstead assessment take?',
+        a: 'A first visit usually takes longer than a routine follow up, because it works through all six steps rather than going straight to an adjustment. Expect to spend more time than a quick, general session.',
+      },
+      {
+        q: 'Can I request Gonstead specifically when I book?',
+        a: 'Yes. It is worth mentioning if you have a preference, though your chiropractor will still start with the same assessment either way, since that is what decides whether and how an adjustment happens.',
+      },
+    ],
+    citations: [
+      {
+        claim:
+          'Dr Clarence Gonstead opened his chiropractic clinic in Mount Horeb, Wisconsin in 1924, and it later became the largest single doctor chiropractic practice in the world.',
+        source: 'Wisconsin Historical Society',
+        url: 'https://www.wisconsinhistory.org/Records/Article/CS16980',
+      },
+      {
+        claim:
+          'Reviews comparing thrust spinal manipulation to non-thrust mobilisation have generally found no consistent difference in pain and disability outcomes, though findings vary by spinal region.',
+        source: 'Gevers-Montoro et al. (2021), Frontiers in Pain Research',
+        url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC8915715/',
+      },
+      {
+        claim:
+          'In Malaysia, chiropractic is a regulated healthcare practice, and practitioners are expected to hold recognised qualifications.',
+        source: 'Ministry of Health Malaysia',
+        url: 'https://www.moh.gov.my/en/corporate-info/division-information/traditional-and-complementary-medicine-division',
+      },
+    ],
+    // UNSET DELIBERATELY. No practitioner has actually reviewed this post yet — setting a
+    // date here to make the ReviewedBy byline and FAQPage-adjacent E-E-A-T schema appear
+    // would be the exact fabricated-review problem `registrationsVerified` and
+    // `Condition.lastReviewed` exist to prevent. Ask the clinic to review, then set this.
+    // lastReviewed: undefined,
+    draft: false,
+  },
   {
     // First net-new SEO post (not a migrated Wix post, so not in LEGACY_POST_SLUGS and it
     // needs no /post/ redirect). Written 2026-07-25 via the persistence-content-builder skill.

@@ -7,6 +7,7 @@ import type { ComponentType } from 'react'
  * at build time and the route stays fully prerendered. Adding a post means adding the
  * MDX file, a `posts.ts` entry, and one line here.
  */
+import GonsteadTechnique from '@/content/blog/gonstead-technique.mdx'
 import MuscleKnots from '@/content/blog/muscle-knots.mdx'
 import ADeeperUnderstandingOfScoliosis from '@/content/blog/a-deeper-understanding-of-scoliosis.mdx'
 import AreHouseChores from '@/content/blog/are-house-chores-a-pain-in-the-back-here-s-what-chiropractors-say.mdx'
@@ -24,6 +25,7 @@ import ThreeYears from '@/content/blog/three-years-of-gratitude-and-growth-celeb
 import FirstTimeVisit from '@/content/blog/what-to-expect-when-going-to-the-chiropractor-for-the-first-time.mdx'
 
 export const postBodies: Record<string, ComponentType> = {
+  'gonstead-technique': GonsteadTechnique,
   'muscle-knots': MuscleKnots,
   'a-deeper-understanding-of-scoliosis': ADeeperUnderstandingOfScoliosis,
   'are-house-chores-a-pain-in-the-back-here-s-what-chiropractors-say': AreHouseChores,

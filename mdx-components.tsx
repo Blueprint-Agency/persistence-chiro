@@ -1,5 +1,10 @@
 import type { MDXComponents } from 'mdx/types'
 
+import { FaqList } from '@/components/FaqList'
+import { GonsteadStepList } from '@/components/GonsteadStepList'
+import { InlineQualifier } from '@/components/InlineQualifier'
+import { KeyTakeawayList } from '@/components/KeyTakeawayList'
+
 /**
  * Required at the project root by @next/mdx.
  *
@@ -7,7 +12,11 @@ import type { MDXComponents } from 'mdx/types'
  * components in). Adding a parameter back will not error — it will just silently receive
  * undefined.
  *
- * Blog posts are plain prose, so these are the only elements that need styling.
+ * Blog posts are plain prose, so the element overrides below are the only styling most
+ * posts need. `GonsteadStepList` and `InlineQualifier` are the exception: real, data-backed
+ * components a post can drop in by tag name (`<GonsteadStepList />`,
+ * `<InlineQualifier slug="..." />`) when its content genuinely calls for one, rather than
+ * every post getting a table/qualifier/step-list bolted on whether it fits or not.
  */
 export function useMDXComponents(): MDXComponents {
   return {
@@ -22,5 +31,21 @@ export function useMDXComponents(): MDXComponents {
         {children}
       </a>
     ),
+    table: ({ children }) => (
+      <div className="overflow-x-auto rounded-2xl border border-line">
+        <table className="w-full border-collapse text-sm">{children}</table>
+      </div>
+    ),
+    thead: ({ children }) => <thead className="bg-brand-aqua/40">{children}</thead>,
+    th: ({ children }) => (
+      <th className="border-b border-line px-4 py-3 text-left font-bold text-ink">{children}</th>
+    ),
+    td: ({ children }) => (
+      <td className="border-b border-line px-4 py-3 align-top text-ink-muted">{children}</td>
+    ),
+    GonsteadStepList,
+    InlineQualifier,
+    KeyTakeawayList,
+    FaqList,
   }
 }
