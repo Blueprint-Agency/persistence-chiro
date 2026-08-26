@@ -84,6 +84,28 @@ These are the reason the project exists. Don't simplify them away.
 - **Alt text with local modifiers** on clinic imagery.
 - Accessibility basics: semantic headings (one `h1`), labelled controls, visible focus.
 
+## Copy voice — sound human, not AI
+
+Apply this pass to every piece of published copy (body text, headings, FAQ, meta
+descriptions, blog posts) before shipping it. It's a checklist, not a vibe — run through
+each letter:
+
+- **R — Repetition.** Don't restate the same point three different ways or reflexively
+  list things in threes. Cut the redundant restatement.
+- **E — Em dash.** A reliable AI tell when used as connective tissue everywhere a period,
+  comma, or nothing would do. Strip it out.
+- **A — Amplified language.** No "game-changing," "unlock," "revolutionize," "seamless,"
+  "crucial," "elevate," or similar hype words a person writing plainly about their own
+  clinic wouldn't reach for.
+- **C — Contrast.** Avoid "it's not just X, it's Y" and "not only... but also"
+  constructions. Say the plain thing directly.
+- **T — Trust your gut.** Re-read once more after the first four checks. If it still
+  reads as AI-written but doesn't fit a category above, fix it anyway.
+
+Since the audience is Malaysian, light local flavor (Malaysian English cadence, the
+occasional lah/word choice) is welcome but should stay subtle — around 10% of the piece,
+not a costume. Never let it collide with the "no treat/treatment" rule above.
+
 ## Conventions
 
 - App Router, TypeScript, Tailwind v4, no `src/` dir, `@/*` import alias.
