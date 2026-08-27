@@ -630,23 +630,23 @@ export const services: Service[] = [
       },
       {
         heading: 'What dry needling actually does',
-        body: 'A trigger point is a small, irritable knot within a tight band of muscle that can refer pain to other areas. A fine needle placed into that point often produces a brief involuntary twitch, which is the muscle letting go. The aim is to ease the tension, settle the local irritation and give the muscle room to move more normally again. How much it helps, and for how long, varies from person to person and depends on what is keeping the muscle tight in the first place.',
+        body: 'A trigger point is a tight, irritable knot that can refer pain elsewhere. A needle placed into it often triggers a brief twitch, the muscle letting go. How much that helps depends on what is keeping the muscle tight.',
       },
       {
         heading: 'What a session involves',
-        body: 'We assess the area first to work out which muscles are involved, then place fine needles into the points identified. Most patients describe a brief twitch or a dull ache rather than sharp pain. A session usually takes fifteen to thirty minutes depending on how much ground we are covering, and the needling is only part of it. What we find often shapes the exercise or hands on work we pair it with.',
+        body: 'We assess first, then place fine needles into the points found. Expect a brief twitch or dull ache, not sharp pain. Sessions run fifteen to thirty minutes and shape the exercise or hands on work paired with it.',
       },
       {
         heading: 'Is it safe, and what to expect afterwards',
-        body: 'Dry needling is generally very safe when it is carried out by a trained practitioner. We use sterile, single use needles that are disposed of after one session and never reused. Mild soreness, and occasionally a small bruise, for a day or so afterwards is common and settles on its own. Tell your practitioner if you are pregnant, take blood thinners or have a strong fear of needles, because there are situations where we would choose not to needle and use another approach instead.',
+        body: 'Dry needling is generally very safe in trained hands, with sterile needles used once. Mild soreness or a small bruise for a day or so is common and settles on its own. Tell us if you are pregnant, on blood thinners, or needle-averse.',
       },
       {
         heading: 'How it works with the rest of your care',
-        body: 'Needling releases tension, but on its own it does not change the habit or weakness that let the muscle tighten, which is why we rarely use it alone. Under one roof in Cheras we combine it with chiropractic care and physiotherapy, and the assessment decides where to start. For some people needling comes first to calm things down, and for others the strength work matters more.',
+        body: 'Needling eases tension but does not fix the habit or weakness that tightened the muscle. Under one roof in Cheras we pair it with chiropractic care and physiotherapy. The assessment decides where to start.',
       },
       {
         heading: 'How many sessions you might need',
-        body: 'This depends on how long the problem has been there and what is driving it, so we will not give you a fixed number at the first visit. Some people notice a change quickly, while others need the muscle work supported over several weeks alongside exercise. We would rather review honestly as we go than sell you a package up front.',
+        body: 'This depends on how long the problem has been there, so we will not quote a fixed number upfront. Some notice a change quickly, others need weeks of support. We review honestly as we go rather than sell a package.',
       },
     ],
     helpsWith: ['back-pain', 'neck-pain', 'shoulder-imbalance', 'sciatica'],
@@ -875,23 +875,23 @@ export const services: Service[] = [
       },
       {
         heading: 'Precision manual therapy',
-        body: 'Refined hands on techniques, including joint mobilisation and myofascial release, aimed at improving how a joint moves and easing pain with precision. Manual therapy tends to work best as a way in rather than the whole plan. It can settle things enough that the active work becomes possible, and what we use depends on what the assessment finds.',
+        body: 'Hands on techniques, including joint mobilisation and myofascial release, ease pain and improve how a joint moves. It works best as a way in, not the whole plan, settling things enough for the active work to begin.',
       },
       {
         heading: 'Movement, gait and biomechanical assessment',
-        body: 'A detailed look at posture, gait and how you move under load, so we can identify what is contributing to the problem rather than only where you feel it. Pain in one place often traces back to how something else is moving, and working on the sore spot alone tends to let it return. Where footwear or orthotics are relevant, we look at those too.',
+        body: 'A detailed look at posture, gait and how you move under load, to find what is contributing, not just where you feel it. Pain in one place often traces back to how something else moves. Where footwear or orthotics matter, we check those too.',
       },
       {
         heading: 'Corrective exercise programming',
-        body: 'Progressive plans built around your condition, goals and daily life. Most of the lasting change tends to come from the exercise, which is why we prescribe it properly rather than hand you a generic sheet. The programme starts small, and we adjust it as you get stronger so it stays matched to what you can actually manage between visits.',
+        body: 'Progressive plans built around your condition, goals and daily life. Most lasting change comes from the exercise, so we prescribe it properly rather than hand you a generic sheet. It starts small and adjusts as you get stronger.',
       },
       {
         heading: 'What your first physiotherapy session involves',
-        body: 'The first visit is mostly assessment. We ask about your history, what aggravates and eases the problem and what you need to get back to, then examine how you move and test the area. Hands on care usually follows, along with the first few exercises to take home. A session generally runs around forty five minutes to an hour, and you should leave understanding what we think is going on and what the plan is.',
+        body: 'The first visit is mostly assessment: your history, what aggravates and eases things, and how you move. Hands on care usually follows, with the first few exercises to take home. It runs about forty five minutes to an hour.',
       },
       {
         heading: 'Physiotherapy or chiropractic, and how we combine them',
-        body: 'Broadly, chiropractic care works on how a restricted joint moves, while physiotherapy works on the strength and control around it. Neither is better in the abstract, and many people benefit from both. Under one roof in Cheras we also offer dry needling, and the assessment decides where to start. If you are not sure which you need, message us your main concern and we will point you to the right starting point.',
+        body: 'Broadly, chiropractic care works on how a restricted joint moves, physiotherapy on the strength and control around it. Many people benefit from both, plus dry needling, under one roof in Cheras. Message us your main concern and we will point you to a starting point.',
       },
     ],
     helpsWith: [
@@ -1100,23 +1100,23 @@ export const services: Service[] = [
       },
       {
         heading: 'Finding what failed, and why',
-        body: 'An injury is usually the visible end of something that was already off, whether that is a weakness, a movement pattern or a training load that climbed too fast. We assess the injured area and the way you move around it, because working on the sore tissue alone tends to let the same thing happen again. Understanding why it went is what shapes the rest of the plan.',
+        body: 'An injury is usually the visible end of something already off: a weakness, a movement pattern, or load that climbed too fast. We assess the injured area and how you move around it. Why it happened shapes the rest of the plan.',
       },
       {
         heading: 'Staged rehabilitation, from settling down to loading up',
-        body: 'Rehabilitation moves through stages rather than all at once. Early on the aim is to protect the area and keep it moving without aggravating it. As it settles we rebuild range, then strength, then the speed, control and agility your sport actually demands. Each stage has to hold before the next one starts, and how quickly you move through them depends on the injury and how you respond.',
+        body: 'Rehabilitation moves through stages, not all at once. Early on we protect the area and keep it moving; as it settles we rebuild range, then strength, then the speed and agility your sport demands. Each stage has to hold before the next starts.',
       },
       {
         heading: 'Returning to sport on criteria, not a date',
-        body: 'We would rather clear you to return on what the area can do than on how many weeks have passed. That means testing strength, balance and sport specific movement, and building the load back up gradually, rather than pronouncing you ready because the pain has gone. Returning before the tissue tolerates the load is the single most common reason an injury comes back.',
+        body: 'We clear you to return on what the area can do, not how many weeks have passed. That means testing strength, balance and sport specific movement, then loading back up gradually. Returning too soon is the most common reason an injury comes back.',
       },
       {
         heading: 'Recovery support and therapeutic modalities',
-        body: 'Alongside the active work we use adjunct therapies to help manage pain and support tissue recovery through the early stages. These are there to make the rehabilitation possible, not to replace it. Where dry needling or hands on care is useful for the muscular side of things, we combine them under the same roof.',
+        body: 'Alongside the active work, we use adjunct therapies to ease pain and support tissue recovery early on. These make the rehabilitation possible, not replace it. Where dry needling or hands on care helps, we combine them under the same roof.',
       },
       {
         heading: 'Core and spinal stability for durability',
-        body: 'Targeted work for the deep stabilising muscles that support the spine and control the trunk under load. Good stability through the middle tends to make the limbs more efficient and the whole system more durable, which is part of how we aim to lower the chance of the injury recurring once you are back.',
+        body: 'Targeted work for the deep stabilising muscles that support the spine and control the trunk under load. Good stability through the middle makes the limbs more efficient and the whole system more durable, lowering the chance of the injury coming back.',
       },
     ],
     helpsWith: ['back-pain', 'shoulder-imbalance', 'hip-pain'],
@@ -1309,23 +1309,23 @@ export const services: Service[] = [
       },
       {
         heading: 'Postural assessment',
-        body: 'We look at how you sit, stand and move rather than at a single photograph. Posture is as much habit as structure, so the position you hold through a working day tells us more than the one you can manage for thirty seconds in a clinic. We also look at where your strength and mobility fall short, because those are usually what pulls you back into the old position.',
+        body: 'We look at how you sit, stand and move, not a single photograph. How you hold up through a working day tells us more than thirty seconds in clinic. We also check where strength and mobility fall short.',
       },
       {
         heading: 'Forward head and rounded shoulders',
-        body: 'The pattern we see most in desk workers is the head drifting forward and the shoulders rounding in, often with a stiff upper back behind it. It tends to build up over years at a screen rather than appear overnight. Naming it is the easy part. What matters is working out which bits are tight, which are weak and which are simply habit, because the mix is different for each person.',
+        body: 'The pattern we see most in desk workers is the head drifting forward and shoulders rounding in, usually with a stiff upper back behind it. It builds up over years at a screen, not overnight. What matters is which bits are tight, weak, or just habit.',
       },
       {
         heading: 'Sitting posture and workstation setup',
-        body: 'Practical changes to chair height, screen position and desk setup, based on where you actually work. With most of the desk related complaints we see, the trouble comes from holding any one position for too long, so moving regularly tends to matter more than finding a single perfect posture. Small changes you will actually keep beat an ideal setup you abandon by lunchtime.',
+        body: 'Practical changes to chair height, screen position and desk setup, based on how you actually work. Most desk related complaints come from holding one position too long, so moving regularly matters more than finding the perfect posture.',
       },
       {
         heading: 'Corrective exercise',
-        body: 'Targeted strength and mobility work for the muscles that hold a position over a working day. No single approach changes posture on its own, so the exercise is what carries the work between visits. It does not need to be long, but it does need to be regular, and we adjust it as you get stronger.',
+        body: 'Targeted strength and mobility work for the muscles that hold a position over the day. No single approach changes posture alone, so the exercise carries the work between visits. It does not need to be long, just regular.',
       },
       {
         heading: 'What posture work can and cannot change',
-        body: 'We would rather be plain about this. Comfort and endurance often improve, and people tend to find they can hold a better position for longer before it starts to feel like effort. What we cannot do is promise to straighten out a fixed structure or hand you a permanent posture from a course of visits. Your practitioner will tell you what is realistic in your case and what is not.',
+        body: 'To be plain: comfort and endurance usually improve, and holding a better position gets easier over time. What we cannot do is promise to straighten a fixed structure or a permanent posture. Your practitioner will tell you what is realistic for you.',
       },
     ],
     helpsWith: ['neck-pain', 'shoulder-imbalance', 'back-pain'],

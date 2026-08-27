@@ -124,14 +124,6 @@ export default function ChiropracticPage() {
         message={waMessage.service('chiropractic care')}
       />
 
-      {/* ------------------------------------------------------ Social proof */}
-      {/* SWAPPED WITH THE TRUST BAR AND KEY TAKEAWAYS, 2026-08-23, at the client's
-          direction: a visitor arriving cold trusts what other patients say sooner than an
-          accreditation logo they do not recognise, so the reviews take the slot directly
-          under the hero and the credentials move down to sit with the practitioners.
-          The hero's <RatingBadge> already shows the score; this is the evidence behind it. */}
-      <GoogleReviews />
-
       {/* -------------------------------------------------- What we help with */}
       {/* Shared renderer, so a photograph added to `outcomes` in services.ts appears here
           the same way it appears on the templated routes. The hand-rolled version this
@@ -143,7 +135,7 @@ export default function ChiropracticPage() {
           the foot, with only the mobile sticky bar in between. This is the break between
           recognising the problem and reading how the care works. */}
       <InlineCta
-        heading="Tell us what is going on"
+        heading="Not sure what you need? Tell us what's going on"
         body="Start with the assessment. We will tell you what we find, what we would do about it, and whether chiropractic is the right approach for your case at all."
         message={waMessage.service('chiropractic care')}
         secondary={{ href: '/what-to-expect', label: 'What happens on a first visit' }}
@@ -155,7 +147,7 @@ export default function ChiropracticPage() {
           <div className="lg:sticky lg:top-32 lg:self-start">
             <Eyebrow>The method</Eyebrow>
             <h2 className="mt-5 text-3xl font-extrabold leading-tight sm:text-4xl">
-              The six steps of a Gonstead assessment
+              What happens during assessment
             </h2>
             {/* The closing sentence is rehomed from the deleted "Bone and body alignment"
                 block. It was the only place this page's target keyword appeared in visible
@@ -219,6 +211,14 @@ export default function ChiropracticPage() {
           </div>
         </section>
       )}
+
+      {/* ------------------------------------------------------ Social proof */}
+      {/* Client layout revision, 2026-08-27: reasons, then how the assessment works, then the
+          WhatsApp ask and lead qualifier stay exactly where they were. Social proof moves down
+          from directly under the hero to here, immediately before the patient photographs it
+          backs up. The hero's <RatingBadge> already shows the score; this is the evidence
+          behind it. */}
+      <GoogleReviews />
 
       {/* ------------------------------------------------- Patient photographs */}
       {/* Still after the six steps, which is the placement that matters. Before the method is
@@ -302,7 +302,7 @@ export default function ChiropracticPage() {
       {/* --------------------------------------------------- Who this is not for */}
       {/* The one block a competitor teardown (ianthechiro.my, 2026-08-23) had and we did not.
           Placed after the depth and before the team: it is the last honesty beat before the
-          page starts asking for trust in named people and reviews. */}
+          page starts asking for trust in named people. */}
       <FitCheck data={service.fitCheck} serviceName="chiropractic care" />
 
       <MeetDoctors />

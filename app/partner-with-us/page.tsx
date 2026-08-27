@@ -84,21 +84,6 @@ export default function PartnerWithUsPage() {
         </div>
       </section>
 
-      {/* ------------------------------------------------------------- Enquiry */}
-      <section className="mx-auto max-w-3xl px-4 py-16 lg:py-24">
-        <Eyebrow>Start a conversation</Eyebrow>
-        <h2 className="mt-5 text-3xl font-extrabold leading-tight sm:text-4xl">
-          Tell us what you have in mind.
-        </h2>
-        <p className="mt-5 text-lg leading-relaxed text-ink-muted">
-          A few quick questions, then it opens WhatsApp with your answers ready to send. No
-          forms to chase, no waiting on email.
-        </p>
-        <div className="mt-8">
-          <PartnerEnquiry />
-        </div>
-      </section>
-
       {/* -------------------------------------------------------------- Logo wall */}
       <section className="border-t border-line bg-white">
         <div className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
@@ -113,13 +98,11 @@ export default function PartnerWithUsPage() {
 
           {/* Logos carry their own aspect ratio (see lib/partners.ts), so each is capped on
               both axes and left to fill whichever it hits first — a wide wordmark spans the
-              tile, a square mark reaches full height. */}
+              tile, a square mark reaches full height. No card around each logo: the client
+              asked for the marks to sit on the page directly rather than inside a bordered box. */}
           <ul className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3">
             {keyPartners.map((p) => (
-              <li
-                key={p.file}
-                className="flex items-center justify-center rounded-2xl border border-line bg-white p-5 sm:p-8"
-              >
+              <li key={p.file} className="flex items-center justify-center p-5 sm:p-8">
                 <Image
                   src={p.file}
                   alt={`${p.name} logo`}
@@ -135,10 +118,7 @@ export default function PartnerWithUsPage() {
           <p className="mt-14 label text-brand-slate">We have also worked with</p>
           <ul className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
             {partners.map((p) => (
-              <li
-                key={p.file}
-                className="flex items-center justify-center rounded-2xl border border-line bg-white p-4 sm:p-6"
-              >
+              <li key={p.file} className="flex items-center justify-center p-4 sm:p-6">
                 <Image
                   src={p.file}
                   alt={`${p.name} logo`}
@@ -151,6 +131,21 @@ export default function PartnerWithUsPage() {
             ))}
           </ul>
           <p className="mt-6 text-sm text-ink-muted">…and many more.</p>
+        </div>
+      </section>
+
+      {/* ------------------------------------------------------------- Enquiry */}
+      <section className="mx-auto max-w-3xl px-4 py-16 lg:py-24">
+        <Eyebrow>Start a conversation</Eyebrow>
+        <h2 className="mt-5 text-3xl font-extrabold leading-tight sm:text-4xl">
+          Tell us what you have in mind.
+        </h2>
+        <p className="mt-5 text-lg leading-relaxed text-ink-muted">
+          A few quick questions, then it opens WhatsApp with your answers ready to send. No
+          forms to chase, no waiting on email.
+        </p>
+        <div className="mt-8">
+          <PartnerEnquiry />
         </div>
       </section>
 

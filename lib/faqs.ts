@@ -108,10 +108,10 @@ export const aftercare = [
   },
   {
     heading: 'Sleeping and sitting',
-    body: "You spend 1/3 of your life in bed on average. Hence, having a good and supportive mattress and pillow is paramount. Choose a mattress and pillow that cushions the head and cradles your back and neck, but allows for a neutral spine position, instead of tilted too forward. Sleep on your back or side, and try to avoid sleeping on your stomach if possible. It is recommended for your legs to be flexed at a 30-45 degree angle when you're sleeping on your side. Sit on a firm chair with your hips all the way back to the rear of the chair. Try to have your hips higher than your knees, supporting your curve at your low back. You are also recommended to support your lumbar spine with a lumbar support, rolled towel or cushion. This is especially important sitting in the car. Do not sit for more than 30 minutes at a time. Get up every hour for a stretch and a short walk, even if only for a few minutes.",
+    body: 'Choose a supportive mattress and pillow that keep your spine neutral, and sleep on your back or side rather than your stomach. When sitting, keep your hips back in the chair with lumbar support, and get up for a stretch every 30 minutes.',
   },
   {
     heading: 'Ice pack',
-    body: 'Apply an ice pack that is wrapped in a cloth or paper towel to the area suggested by your chiropractor for 3 lots of 5 minute durations, separated by 5 minute rest intervals. This can help settle pain and joint swelling. We generally advise against heat on a freshly irritated joint, as it tends to increase swelling, even though it often feels soothing at the time. If you are unsure which applies to you, ask your chiropractor.',
+    body: 'Apply an ice pack wrapped in cloth for 3 rounds of 5 minutes, with 5 minute rests between. This helps settle pain and swelling. Avoid heat on a freshly irritated joint, and check with your chiropractor if you are unsure.',
   },
 ] as const

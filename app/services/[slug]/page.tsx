@@ -119,14 +119,6 @@ export default async function ServicePage({ params }: Props) {
         message={waMessage.service(service.title.split(' in ')[0])}
       />
 
-      {/* ------------------------------------------------------ Social proof */}
-      {/* SWAPPED WITH THE TRUST BAR AND KEY TAKEAWAYS, 2026-08-23, at the client's
-          direction: a visitor arriving cold trusts what other patients say sooner than an
-          accreditation logo they do not recognise, so the reviews take the slot directly
-          under the hero and the credentials move down to sit with the practitioners.
-          The hero's <RatingBadge> already shows the score; this is the evidence behind it. */}
-      <GoogleReviews />
-
       {/* --------------------------------------------------- What we help with */}
       {/* Full width, four cards, one photograph each. This is the "is this me?" moment and it
           is scanned rather than read — a picture of the region gets recognised before the
@@ -143,7 +135,7 @@ export default async function ServicePage({ params }: Props) {
           down had nothing to click. This is the break between recognising the problem and
           being asked to fill in the qualifier. */}
       <InlineCta
-        heading="Tell us what is going on"
+        heading="Not sure what you need? Tell us what's going on"
         body="Start with the assessment. We will tell you what we find, what we would do about it, and whether this is the right approach for your case at all."
         message={waMessage.service(shortName)}
         secondary={{ href: '/what-to-expect', label: 'What happens on a first visit' }}
@@ -230,6 +222,11 @@ export default async function ServicePage({ params }: Props) {
         </section>
       )}
 
+      {/* ------------------------------------------------------ Social proof */}
+      {/* Client layout revision, 2026-08-27: reasons, then how it works, then the WhatsApp ask
+          and lead qualifier stay exactly where they were. Social proof moves down from
+          directly under the hero to here, immediately after the qualifier. */}
+      <GoogleReviews />
 
       {/* Physiotherapy only. The scannable version of the choice its FAQ answers in prose,
           and it sits after the qualifier so a reader who has just ticked their concerns can
@@ -239,7 +236,7 @@ export default async function ServicePage({ params }: Props) {
       {/* --------------------------------------------------- Who this is not for */}
       {/* The one block a competitor teardown (ianthechiro.my, 2026-08-23) had and we did not.
           Placed after the depth and before the team: it is the last honesty beat before the
-          page starts asking for trust in named people and reviews. */}
+          page starts asking for trust in named people. */}
       <FitCheck data={service.fitCheck} serviceName={shortName.toLowerCase()} />
 
       {/* `practitionersWithheld` carries the reason this is suppressed where it is. The team
