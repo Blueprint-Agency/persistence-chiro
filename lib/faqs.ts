@@ -95,7 +95,7 @@ export const homeFaqs: Faq[] = [
  * "sore after chiropractic adjustment" and this answers it.
  */
 export const aftercareIntro =
-  'Chiropractic care is intended to support your body’s own recovery, and what you do between visits matters as much as the adjustment itself. If your body feels sore after a recent adjustment, that is a very common occurrence as your tissues take time to settle. Do tell your chiropractor how you felt after each visit, whether that was better, unchanged or worse. It is all useful information to us.'
+  'Chiropractic care supports your body’s own recovery, and what you do between visits matters too. Soreness after a recent adjustment is common and settles as your tissues adjust. Tell us how you felt at each visit, better or worse.'
 
 export const aftercare = [
   {
