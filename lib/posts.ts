@@ -215,6 +215,10 @@ export const posts: Post[] = [
         q: 'Is it normal for a chiropractor to recommend ongoing visits?',
         a: 'It can be, for a recurring or long-standing problem, but a plan should be reviewed honestly as it goes rather than sold as a fixed number of sessions before you have even been assessed once.',
       },
+      {
+        q: 'Is a clinic near Sunway Velocity in Cheras easier to reach by public transport?',
+        a: 'Yes, if you are coming by rail. Maluri MRT and LRT stations sit close together with a short covered walkway between them, both a short walk from Sunway Velocity, which is not true of every clinic in the wider Klang Valley.',
+      },
     ],
     citations: [
       {
@@ -234,9 +238,282 @@ export const posts: Post[] = [
         source: 'Gevers-Montoro et al. (2021), Frontiers in Pain Research',
         url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC8915715/',
       },
+      {
+        claim:
+          'Maluri MRT station (Kajang Line) and Maluri LRT station (Ampang Line) are connected by a paid-to-paid linkway roughly two minutes long, and the station serves shoppers heading to Sunway Velocity.',
+        source: 'klia2.info, Maluri MRT station guide',
+        url: 'https://www.klia2.info/rail/mrt-sbk/maluri-mrt-station/',
+      },
     ],
     // Reviewed by Valerie Na, confirmed 2026-08-26.
     lastReviewed: '2026-08-26',
+    draft: false,
+  },
+  {
+    // Month 1 content schedule item, built via the persistence-content-builder skill.
+    // Coexists with /services/dry-needling's single "Is dry needling the same as
+    // acupuncture?" FAQ the same way gonstead-technique coexists with chiropractic-care's
+    // short Gonstead FAQ: the service page targets a different keyword ("dry needling near
+    // me") and answers this in one paragraph, this post goes into full comparative depth
+    // (mechanism, Malaysian regulation under two different Acts, session mechanics, which
+    // one fits which problem) that a single FAQ answer can't carry.
+    slug: 'dry-needling-vs-acupuncture',
+    title: "Dry Needling vs Acupuncture: What's Actually Different",
+    description:
+      "Dry needling and acupuncture both use needles, but the theory, technique and regulation in Malaysia differ. Here's what actually separates them.",
+    datePublished: '2026-08-27',
+    author: 'Persistence Chiropractic Care',
+    linksTo: 'dry-needling',
+    // Real clinic photography, reused from the dry-needling service page's mid-article
+    // slot (lib/services.ts) rather than sourcing anything new.
+    heroImage: {
+      src: '/img/dry-needling-session.webp',
+      alt: 'Gloved practitioner placing a single-use needle into a trigger point in a patient shoulder at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
+    },
+    keyTakeaways: [
+      {
+        q: 'What is the core difference between dry needling and acupuncture?',
+        a: 'Dry needling is a Western, anatomy based technique that targets a specific tight band of muscle, a myofascial trigger point. Acupuncture comes from traditional Chinese medicine and selects points along meridians rather than by muscle anatomy.',
+      },
+      {
+        q: 'Are the two regulated the same way in Malaysia?',
+        a: 'No. Physiotherapists, who most commonly perform dry needling here, register under the Allied Health Professions Act 2016 (Act 774). Acupuncture falls under traditional Chinese medicine, one of the recognised practice areas of the Traditional and Complementary Medicine Act 2016 (Act 775), registered separately with the T&CM Council.',
+      },
+      {
+        q: 'Does one use more needles than the other?',
+        a: 'Generally yes. Dry needling typically uses somewhere between three and twenty needles placed directly into tight muscle. Acupuncture sessions can use eight to thirty needles placed along meridian points, which may sit well away from where discomfort is felt.',
+      },
+      {
+        q: 'What is each one generally used for?',
+        a: 'Dry needling is aimed at muscle and movement problems, a stubborn trigger point or tension that keeps returning. Acupuncture is used more broadly, including for things outside dry needling scope entirely, such as stress, sleep or nausea.',
+      },
+      {
+        q: 'Is one better than the other?',
+        a: 'Neither is inherently better. They are built for different problems, so which one fits depends on what an assessment finds is actually driving your case, not on which technique sounds more effective.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Is dry needling the same as acupuncture, and why do they look so similar?',
+        a: 'They look similar because both use a fine, solid filament needle, but the reasoning behind where it goes is different. Dry needling targets a muscle found to be tight during assessment. Acupuncture targets a point on a meridian, a pathway from traditional Chinese medicine, which is not necessarily anywhere near the muscle causing discomfort.',
+      },
+      {
+        q: 'Does dry needling hurt more than acupuncture?',
+        a: 'They tend to feel different rather than one being simply more painful. Dry needling is usually described as a brief twitch response followed by a dull ache, sometimes with soreness the next day. Acupuncture needles sit more superficially and are generally described as a dull, heavy sensation rather than sharp pain.',
+      },
+      {
+        q: 'Is dry needling regulated the same way as acupuncture in Malaysia?',
+        a: 'No, and this is worth checking before you book either one. Dry needling here is performed by physiotherapists registered under the Allied Health Professions Act 2016. Acupuncture is registered separately under the Traditional and Complementary Medicine Act 2016 through the T&CM Council. Neither registration covers the other technique.',
+      },
+      {
+        q: 'Can a physiotherapist perform acupuncture, or an acupuncturist perform dry needling?',
+        a: 'Not on the strength of their existing registration alone. The two sit under different Acts and different councils in Malaysia, so a practitioner would need separate training and registration to practise the other technique legitimately.',
+      },
+      {
+        q: 'Which is better for a stubborn muscle knot versus general stress or wellness?',
+        a: 'A stubborn, locatable muscle knot is generally the closer fit for dry needling, since it targets that specific tissue directly. A broader goal such as stress or general wellbeing sits more within what acupuncture is used for, and is not something dry needling is aimed at.',
+      },
+    ],
+    citations: [
+      {
+        claim:
+          'Physiotherapists are among the allied health professions listed under Malaysia’s Allied Health Professions Act 2016 (Act 774), which requires registration with the Malaysian Allied Health Professions Council (MAHPC).',
+        source: 'Bernama, "MAHPC Extends Allied Health Practitioners’ Registration Deadline To Dec 2026"',
+        url: 'https://www.bernama.com/en/news.php?id=2437599',
+      },
+      {
+        claim:
+          'Malaysia’s Traditional and Complementary Medicine Act 2016 (Act 775) established the T&CM Council, which registers practitioners in recognised practice areas including traditional Chinese medicine.',
+        source: 'Thoo & Partners, "Registration of Traditional and Complementary Medicine Practitioners"',
+        url: 'https://www.thoopartners.com/registration-of-traditional-and-complementary-medicine-practitioners/',
+      },
+      {
+        claim:
+          'Surveys of trigger point dry needling report that adverse events are usually minor and transient, such as soreness or minor bruising.',
+        source: 'Brady et al. (2014), Journal of Manual & Manipulative Therapy',
+        url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC4101552/',
+      },
+    ],
+    draft: false,
+  },
+  {
+    // Month 1 content schedule item, built via the persistence-content-builder skill.
+    // /services/physiotherapy already carries a dedicated comparison TABLE for this exact
+    // query (lib/services.ts .comparison, built deliberately "because no competitor page on
+    // this SERP answers the question at all") plus its own H2 section, a stronger overlap
+    // signal than the one-FAQ-paragraph cases (Gonstead, dry needling vs acupuncture). This
+    // post does not restate that table; it links to it and adds three angles the table
+    // doesn't cover: the regulatory contrast (Act 775/T&CM Council vs Act 774/MAHPC, same
+    // framing that worked for dry-needling-vs-acupuncture), which condition leans which way
+    // grounded in this site's own conditions.ts helpedBy data rather than generic claims,
+    // and what combining both actually looks like at a single clinic offering all three.
+    slug: 'chiropractic-vs-physiotherapy',
+    title: 'Chiropractic vs Physiotherapy: How to Actually Decide',
+    description:
+      "Chiropractic and physiotherapy are regulated under two different Malaysian Acts and suit different conditions. Here's how to actually decide between them.",
+    datePublished: '2026-08-27',
+    author: 'Persistence Chiropractic Care',
+    linksTo: 'chiropractic-care',
+    // Real clinic photography, previously unused elsewhere on the site.
+    heroImage: {
+      src: '/img/treatment-room.webp',
+      alt: 'Treatment room at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
+    },
+    keyTakeaways: [
+      {
+        q: 'Are chiropractic and physiotherapy regulated the same way in Malaysia?',
+        a: 'No. Chiropractic is one of the recognised practice areas under the Traditional and Complementary Medicine Act 2016 (Act 775), registered through the T&CM Council. Physiotherapy falls under the Allied Health Professions Act 2016 (Act 774), registered with the Malaysian Allied Health Professions Council.',
+      },
+      {
+        q: 'What does each mainly work on?',
+        a: 'Chiropractic care works on how a restricted spinal joint moves, most often through a hands on adjustment. Physiotherapy works on the strength and control around a problem, through movement assessment, hands on care and a structured exercise programme.',
+      },
+      {
+        q: 'Does the same condition always call for the same one?',
+        a: 'No, it genuinely varies. Sciatica and neck pain often lean toward physiotherapy and dry needling first, while back pain, a slipped disc, scoliosis and migraine can draw on both, and which starts first depends on what an assessment finds.',
+      },
+      {
+        q: 'Is it normal to need both?',
+        a: 'Yes. A joint that has been stuck for a while often carries tight muscle around it, and freeing the joint does not automatically retrain that muscle, so combining both is common rather than a sign either approach fell short.',
+      },
+      {
+        q: 'When is neither the right call?',
+        a: 'When the problem is not mechanical: infection, fracture, or disease affecting an organ. A practitioner who takes that seriously refers you to a doctor rather than adjusting or exercising you regardless.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Which is better, chiropractic or physiotherapy?',
+        a: 'Neither is better in the abstract. They work on different things and suit different presentations, so which one fits depends on what an assessment finds is driving your specific case.',
+      },
+      {
+        q: 'Do I need a referral to see a chiropractor or a physiotherapist in Malaysia?',
+        a: 'No, both can be seen directly without a referral. A practitioner who takes a proper history should still refer you onward if your case needs imaging or a medical opinion first.',
+      },
+      {
+        q: 'Is it normal to be recommended both chiropractic and physiotherapy?',
+        a: 'Yes, and it is a common combination rather than a sign that one approach did not work. Many problems involve both a joint that has stopped moving well and muscle that has tightened up around it.',
+      },
+      {
+        q: 'Can the same practitioner be trained in both?',
+        a: 'Registration in one does not cover the other, since they sit under separate Acts and separate councils in Malaysia. A practitioner would need distinct training and registration to legitimately practise both.',
+      },
+      {
+        q: 'How do I know which one to book first?',
+        a: 'If you are not sure, message a clinic your main concern before booking. A place that offers both under one roof can point you to a sensible starting point rather than leave you to guess from a website.',
+      },
+    ],
+    citations: [
+      {
+        claim:
+          'Malaysia’s Traditional and Complementary Medicine Act 2016 (Act 775) established the T&CM Council, which registers practitioners across seven recognised practice areas including chiropractic.',
+        source: 'Thoo & Partners, "Registration of Traditional and Complementary Medicine Practitioners"',
+        url: 'https://www.thoopartners.com/registration-of-traditional-and-complementary-medicine-practitioners/',
+      },
+      {
+        claim:
+          'Physiotherapists are among the allied health professions listed under Malaysia’s Allied Health Professions Act 2016 (Act 774), which requires registration with the Malaysian Allied Health Professions Council (MAHPC).',
+        source: 'Bernama, "MAHPC Extends Allied Health Practitioners’ Registration Deadline To Dec 2026"',
+        url: 'https://www.bernama.com/en/news.php?id=2437599',
+      },
+      {
+        claim:
+          'Clinical guidelines recommend staying active and using exercise based care for most non specific low back pain, rather than prolonged rest.',
+        source: 'NICE guideline NG59, Low back pain and sciatica',
+        url: 'https://www.nice.org.uk/guidance/ng59',
+      },
+    ],
+    draft: false,
+  },
+  {
+    // Month 1 content schedule item, reframed from a "Herniated/Bulging Disc" CONDITION
+    // page (which would have cannibalised /conditions/slipped-disc — its own intro already
+    // says "'Slipped disc' is the everyday name for a disc that has bulged or herniated")
+    // into a comparison blog post instead, same move as dry-needling-vs-acupuncture and
+    // chiropractic-vs-physiotherapy. Routes to slipped-disc for the actual care pathway
+    // rather than duplicating causes/approach/redFlags. Confirmed via WebFetch that no
+    // Malaysia-specific competitor content exists for this exact comparison at all, and
+    // that ranking competitors are neurosurgery/spine-surgery practices whose "treatment"
+    // sections default to procedures, genuinely different context from a conservative,
+    // assessment-first clinic.
+    slug: 'bulging-disc-vs-herniated-disc',
+    title: "Bulging Disc vs Herniated Disc: What's the Difference",
+    description:
+      "Bulging disc and herniated disc get used interchangeably, but there's a real structural difference. Here's what it is, and what it does and doesn't change.",
+    datePublished: '2026-08-27',
+    author: 'Persistence Chiropractic Care',
+    linksTo: 'slipped-disc',
+    // Real clinic photography, reused from the homepage (lib/home.ts) - X-ray analysis is
+    // literally how the two are actually told apart, so it fits this post's own point.
+    heroImage: {
+      src: '/img/xray-assessment.webp',
+      alt: 'Chiropractor reviewing a spinal X-ray with a patient at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
+    },
+    keyTakeaways: [
+      {
+        q: "What's the actual structural difference between a bulging disc and a herniated disc?",
+        a: "In a bulging disc, the disc's inner material pushes outward but stays contained within the outer layer. In a herniated disc, the outer layer has torn and some of that material has escaped through it.",
+      },
+      {
+        q: 'Is a herniated disc always worse than a bulging disc?',
+        a: 'Usually more likely to cause sharp or sudden symptoms, since torn tissue and displaced material are more likely to irritate a nearby nerve, but not always. Plenty of people have either finding on a scan with no symptoms at all.',
+      },
+      {
+        q: 'Why do the terms get used interchangeably?',
+        a: 'Even major clinics blur the line in patient materials, and "slipped disc" is commonly used as the umbrella term for the whole group. The label alone is not a reliable way to judge how serious a case is.',
+      },
+      {
+        q: 'Does the label change what a chiropractor does about it?',
+        a: 'Not fundamentally. Either way the approach starts with a proper assessment, establishing which level is involved and how it is behaving, before anything is adjusted.',
+      },
+      {
+        q: 'How do you actually tell the two apart?',
+        a: 'Only imaging reliably distinguishes them, not how the pain feels. Imaging is used where an assessment indicates it rather than as a routine first step for every back pain presentation.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Is a bulging disc the same as a slipped disc?',
+        a: '"Slipped disc" is generally used as the everyday umbrella term covering bulges, protrusions and herniations alike, rather than referring to one specific structural finding.',
+      },
+      {
+        q: 'Can a bulging disc become a herniated disc?',
+        a: 'Both are considered part of the same disc degeneration process, though the evidence for a bulge reliably progressing into a herniation over time is not conclusive. Either can also stay stable for years.',
+      },
+      {
+        q: 'Does the label on my scan report change my care plan?',
+        a: 'Not on its own. What matters more is what an assessment finds: how the level is behaving, whether any red flags are present, and how you are actually moving, not the specific word used in the report.',
+      },
+      {
+        q: 'Do I need an MRI to know which one I have?',
+        a: 'Not necessarily to begin care. We start with the Gonstead assessment and X-ray analysis where indicated, which is often enough to guide the first steps. An MRI is arranged where the presentation suggests it would change the plan.',
+      },
+      {
+        q: 'Are bulging discs or herniated discs more common?',
+        a: 'Bulges are generally more common, and a meaningful proportion of both are found incidentally on scans done for an unrelated reason, in people with no back pain at all.',
+      },
+    ],
+    citations: [
+      {
+        claim:
+          'A bulging disc occurs when the disc pushes outward while its outer layer stays intact; a herniated disc occurs when that outer layer tears and inner material escapes into the spinal canal.',
+        source: 'Baylor Scott & White Health',
+        url: 'https://www.bswhealth.com/blog/bulging-disc-vs-herniated-disc',
+      },
+      {
+        claim:
+          'Bulging discs and herniated discs are both considered manifestations of the same underlying disc degeneration process, caused by factors such as injury, ageing, and sustained physical load.',
+        source: 'NeurosurgeryOne',
+        url: 'https://www.neurosurgeryone.com/blog/bulging-disc-vs-herniated-disc/',
+      },
+      {
+        claim:
+          'Imaging findings such as disc bulges and protrusions are commonly present in people without any symptoms, and increase with age.',
+        source: 'Brinjikji et al. (2015), American Journal of Neuroradiology',
+        url: 'https://www.ajnr.org/content/36/4/811',
+      },
+    ],
+    lastReviewed: '2026-08-27',
     draft: false,
   },
   {

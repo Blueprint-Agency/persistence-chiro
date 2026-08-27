@@ -114,12 +114,55 @@ not a blocker on shipping a new one.
 - Answer-first: every H2 opens with the direct answer in the first sentence, then explains.
 - Key Takeaways and FAQ are structured data (see SEO above), not prose — that's what makes
   them extractable rather than just readable.
-- Modular H2s that read independently; primary keyword in H1, first paragraph, Key Takeaways,
-  and 2–3 times naturally in the body.
 - A comparison, a process, or a spec belongs in a **table** (GFM tables work — `remark-gfm` is
   configured) or a **structured step list** (see `GonsteadStepList` for the pattern: a
   component that reads real data, e.g. `lib/gonstead.ts`, rather than retyping it as prose) —
   not a wall of paragraphs.
+
+**Meta title, H1, H2, H3 — every heading level must carry the keyword, not just the H1.**
+An answer engine and a search crawler both work heading-by-heading; a heading that reads
+well but names nothing (`"The label"`, `"each"`, `"the terms"`) gives them nothing to match
+against the query, even if the paragraph underneath is on-topic. This applies at every
+level, not just H2 — the mistake caught 2026-08-27 (see below) was H2-only, but the same
+logic holds for the title tag, the H1, and any H3 a page uses:
+
+- **Meta title / `<title>` tag.** For a blog post, `Post.title` does double duty as *both*
+  the H1 *and* the `<title>` tag (`app/blog/[slug]/page.tsx` passes `post.title` to
+  `pageMetadata` and renders it as the H1 verbatim — there is no separate `metaTitle` field
+  the way conditions/services have). One string has to satisfy both jobs: under ~60 chars
+  so it doesn't truncate in a SERP, and it has to lead with the primary keyword or keyword
+  pair, not bury it. For a **condition or service**, `title` (H1) and `metaTitle` (`<title>`
+  tag) are separate fields — keep the primary keyword in both, not just one.
+- **H1.** Primary keyword (or, for a comparison post, both halves of the pair) at or near
+  the start. This is the one place keyword-first phrasing is unambiguously correct even if
+  it reads slightly less elegant — "Dry Needling vs Acupuncture: What's Actually Different"
+  beats a cleverer H1 that saves the terms for later in the sentence.
+- **H2.** Must name the actual terms, not refer to them abstractly. "Same disc, different
+  degree" or "What each mainly works on" reads well but gives an answer engine nothing to
+  match against the query — it can't tell from the heading alone what's being compared.
+  Caught 2026-08-27 across three posts (`bulging-disc-vs-herniated-disc`,
+  `chiropractic-vs-physiotherapy`, `dry-needling-vs-acupuncture`) after leaning too hard on
+  the copy-voice R (no repetition) rule and under-weighting this one — the two pull in
+  opposite directions, and the fix is keyword-present-but-not-verbatim-repeated, e.g. "Why
+  'bulging disc' and 'herniated disc' get used interchangeably," not "Why the terms get
+  used interchangeably" and not "Bulging disc vs herniated disc" on every single H2 either.
+  Vary the phrasing (a direct question, a restated pairing, a keyword plus a specific
+  qualifier) so the terms show up across most H2s without any single heading being a
+  verbatim repeat of another.
+- **H3.** New posts built via this skill have so far been flat H2-only — no H3 has been
+  needed yet. If a section genuinely earns a sub-breakdown (a long comparison split into
+  named cases, a multi-part process), the same rule applies: name the specific thing the
+  subsection covers, not a generic label like "Overview" or "Details." An H3 that could
+  belong under any topic on the internet is a sign the structure should be a table instead
+  (see the AEO table/step-list rule above), not a sign the H3 needs a better generic name.
+- **Modular headings, every level.** Each heading (H1/H2/H3 alike) should read as a
+  self-contained answer to "what is this section about" with no other context — that's what
+  makes it independently extractable rather than only meaningful mid-scroll.
+- **Don't keyword-stuff.** The goal is the term or term-pair present and identifiable in
+  most headings at each level, in natural variants (synonyms, question form, a specific
+  qualifier) — not the identical exact-match phrase copy-pasted into every single heading.
+  That reads as robotic, trips the copy-voice R (repetition) rule, and is a weaker SEO
+  signal than natural variation once past the first one or two occurrences.
 
 **GEO** (what a generative engine cites)
 - [ ] **Citations.** Populate `Post.citations` (`{ claim, source, url? }`, 2–4 typically) with
@@ -161,6 +204,33 @@ Ask for the primary keyword(s). Then **check `lib/conditions.ts`, `lib/services.
 `lib/posts.ts` for an existing page already targeting it** — if one exists, flag the
 cannibalisation and propose improving that page or picking a distinct long-tail instead.
 
+**Geo-variant "best chiropractor in X" posts cannibalise each other, not just the
+homepage.** Checking the new keyword against the homepage's own targets
+(`kpi-keyword-map.md`) is not sufficient — that only tells you the new post won't compete
+with `/`. `best-chiropractor-cheras.mdx` was built 2026-08-27 as a sibling to
+`best-chiropractor-kuala-lumpur.mdx` on that check alone, and it was wrong: this is a
+single-location clinic, so a Cheras-scoped buyer's guide and a KL-scoped one on the same
+reframe end up with the same title pattern, the same registration/first-visit/red-flag
+sections restated near-verbatim, and the same `linksTo` target — different geo-modifier on
+what Google reads as the same query intent. It was merged into the KL post the same day
+(the Cheras-only material, clinic density and Maluri transit specifics, is now a section
+there) rather than kept as a second URL. Before building a second "best chiropractor in
+\<neighbourhood>" post, check it against every OTHER post already using this reframe, not
+just the homepage — if the differentiating material is a section's worth, it belongs as a
+section of the existing post, not a new page.
+
+**A "vs" or comparison keyword may already be answered on a service/condition page, not
+just another post — check the DEPTH of what's there before deciding.** A single FAQ
+paragraph (e.g. `/services/dry-needling`'s "Is dry needling the same as acupuncture?") is
+shallow enough that a full blog post going into genuine additional depth coexists fine —
+`gonstead-technique` and `dry-needling-vs-acupuncture` both did this safely. A **dedicated
+comparison table or its own H2 section** (e.g. `/services/physiotherapy`'s `.comparison`
+block, built specifically to own "chiropractic vs physiotherapy") is a stronger signal —
+surface it to the user explicitly before building rather than deciding alone
+(`chiropractic-vs-physiotherapy` did this 2026-08-27). If told to proceed, the post must
+add genuinely new angles the existing asset doesn't cover and link to it rather than
+restate it — do not turn the blog post into a second copy of the same table in prose.
+
 ### Step 5: Competitor benchmarking (mandatory)
 Never present an outline without it.
 1. `WebSearch` the primary keyword(s). Prioritise Malaysia/KL results.
@@ -169,6 +239,16 @@ Never present an outline without it.
 4. Build a **gap analysis** — what they all miss that we can own.
 5. Present a competitor deep-dive before the outline.
 **Never cite or name a competitor in the final content.** Structural analysis only.
+
+**Fact-verification fetches are not competitor analysis.** A session can do several
+`WebFetch` calls to confirm individual claims (a stat, a definition, a regulation) and
+still not have done Step 5 — that only counts once 2-3 actual ranking pages have been
+fetched for their STRUCTURE (heading hierarchy, depth, CTAs, gaps), independent of whether
+any fact-checking happened along the way. `bulging-disc-vs-herniated-disc` did the
+fact-checking first, presented an outline without the structural pass, and only did it
+properly after the user asked directly "did you perform a thorough competitor analysis?"
+If in doubt whether Step 5 is actually done, it isn't — do the structural fetches before
+presenting 8a/8b, not after being asked.
 
 **If the primary keyword itself implies a ranking** ("best", "top", "#1"), do not build a
 ranked listicle. There is no honest way to crown Persistence Chiropractic "best" without
@@ -222,11 +302,14 @@ Present, in order:
   |---|---|---|---|---|
   | <content element> | ✅/❌/⚠️ | ... | ... | ✅ |
   ```
-- **8c. Proposed outline** — title tag (<60 chars, primary keyword), meta description (<160),
-  H1, answer-first intro, Key Takeaways (5 structured Q&A, `<KeyTakeawayList>`), 5–6 H2
-  sections, FAQ (5 structured Q&A, `<FaqList>`), conclusion, and the list of internal links
-  with their anchor text. Note where a mid-article `<InlineQualifier>` and any citations
-  will go.
+- **8c. Proposed outline** — title tag (<60 chars, primary keyword up front), meta
+  description (<160), H1 (keyword at or near the start), answer-first intro, Key Takeaways
+  (5 structured Q&A, `<KeyTakeawayList>`), 5–6 H2 sections, FAQ (5 structured Q&A,
+  `<FaqList>`), conclusion, and the list of internal links with their anchor text. Note
+  where a mid-article `<InlineQualifier>` and any citations will go. **Check every H2
+  against the meta title/H1/H2/H3 keyword rules above before presenting the outline** — a
+  heading like "What each mainly works on" should be caught and fixed at this stage, not
+  after the post ships.
 - **SEO summary table** — SEO Title · Meta Description · URL Slug (clean, lowercase, hyphen-separated) · Primary Keyword.
 Get explicit approval before building.
 
@@ -249,12 +332,13 @@ Then:
    fix the copy, do not weaken the guard.
 4. Do not commit or push unless asked; report what changed and the verification results.
 
-**Body structure** (see the SEO/CRO/AEO/GEO framework above for the full checklist):
+**Body structure** (see the SEO/CRO/AEO/GEO framework above for the full checklist,
+including the meta title/H1/H2/H3 keyword rules — check headings against that section
+before calling a draft finished, not just the body prose):
 - Answer-first: every H2 opens with the direct answer in the first sentence, then explains.
 - Key Takeaways (`<KeyTakeawayList>`) near the top, FAQ (`<FaqList>`) near the end — both
   5 items is a reasonable default, more is fine if the topic genuinely supports it.
-- Modular H2s that read independently.
-- Primary keyword in H1, first paragraph, Key Takeaways, and 2–3 times naturally in the body.
+- Primary keyword in the first paragraph and Key Takeaways too, not just the headings.
 
 **Hero image:** `Post.heroImage` is optional, and it is now the *only* field to set — the
 blog index thumbnail, the homepage's "latest posts" teaser, and the article page's own hero

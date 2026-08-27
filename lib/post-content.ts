@@ -9,6 +9,9 @@ import type { ComponentType } from 'react'
  */
 import GonsteadTechnique from '@/content/blog/gonstead-technique.mdx'
 import BestChiropractorKualaLumpur from '@/content/blog/best-chiropractor-kuala-lumpur.mdx'
+import DryNeedlingVsAcupuncture from '@/content/blog/dry-needling-vs-acupuncture.mdx'
+import ChiropracticVsPhysiotherapy from '@/content/blog/chiropractic-vs-physiotherapy.mdx'
+import BulgingDiscVsHerniatedDisc from '@/content/blog/bulging-disc-vs-herniated-disc.mdx'
 import MuscleKnots from '@/content/blog/muscle-knots.mdx'
 import ADeeperUnderstandingOfScoliosis from '@/content/blog/a-deeper-understanding-of-scoliosis.mdx'
 import AreHouseChores from '@/content/blog/are-house-chores-a-pain-in-the-back-here-s-what-chiropractors-say.mdx'
@@ -28,6 +31,9 @@ import FirstTimeVisit from '@/content/blog/what-to-expect-when-going-to-the-chir
 export const postBodies: Record<string, ComponentType> = {
   'gonstead-technique': GonsteadTechnique,
   'best-chiropractor-kuala-lumpur': BestChiropractorKualaLumpur,
+  'dry-needling-vs-acupuncture': DryNeedlingVsAcupuncture,
+  'chiropractic-vs-physiotherapy': ChiropracticVsPhysiotherapy,
+  'bulging-disc-vs-herniated-disc': BulgingDiscVsHerniatedDisc,
   'muscle-knots': MuscleKnots,
   'a-deeper-understanding-of-scoliosis': ADeeperUnderstandingOfScoliosis,
   'are-house-chores-a-pain-in-the-back-here-s-what-chiropractors-say': AreHouseChores,
