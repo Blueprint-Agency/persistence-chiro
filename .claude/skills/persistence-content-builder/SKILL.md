@@ -16,6 +16,32 @@ for the interview, `WebSearch` / `WebFetch` for competitors, and the normal file
 build. There is no `ask_user_input_v0`, no `web_fetch` allowlist workaround, and no
 `/mnt/skills` docx step — ignore all of those from the original skill.
 
+## Where things live, and where to record what you learn
+
+Three places carry different kinds of truth. Mixing them up is how a future session ends
+up trusting stale copy-paste instead of a real source.
+
+- **`AGENTS.md`** — durable, rarely-changing client rules (no "treat", no dashes, one page
+  one intent, NAP source of truth). A new hard rule from the client goes here, not in this
+  skill.
+- **This skill** — the repeatable *how*: the workflow steps below, the SEO/AEO/GEO
+  checklist, and any lesson learned from actually building a page that should change how
+  the next one gets built (a framing pattern, a schema gotcha, a tooling fix). If something
+  would have saved you time had you known it going in, add it to this file before the
+  session ends — don't let it live only in a commit message or a chat transcript.
+- **Claude's own memory** (outside this repo) — session-spanning context that isn't code:
+  what's been decided with the client, what's still blocked, what's already been built this
+  month. Useful across sessions, but it's a paraphrase layer, not a source of truth. If it
+  belongs in the repo (a rule, a roadmap, a keyword list), put it in the repo instead.
+
+Two repo-root files are the actual roadmap, and neither was referenced anywhere in this
+skill until 2026-08-27, which is its own lesson in letting the wrong layer hold the truth:
+**`content-schedule.html`** is the Month 1 plan — check it before proposing what to build
+next, and reconcile it against what's actually in `lib/posts.ts` / `lib/conditions.ts` /
+`lib/services.ts` rather than trusting it blindly (items get built, dropped or merged, and
+the schedule file itself is never updated to reflect that). **`kpi-keyword-map.md`** tracks
+which target keywords are still open.
+
 ## Non-negotiables (read `AGENTS.md` and the memory files first)
 
 These override anything in the generic workflow below. Breaking one fails review.
@@ -144,6 +170,16 @@ Never present an outline without it.
 5. Present a competitor deep-dive before the outline.
 **Never cite or name a competitor in the final content.** Structural analysis only.
 
+**If the primary keyword itself implies a ranking** ("best", "top", "#1"), do not build a
+ranked listicle. There is no honest way to crown Persistence Chiropractic "best" without
+either fabricating a claim or naming and ranking real competitors, both forbidden by the
+non-negotiables above. Reframe the angle as a buyer's guide instead: teach the reader what
+to actually verify in any clinic (registration, assessment process, red flags), so the piece
+is genuinely useful and the clinic passes its own criteria without the post ever asserting
+superiority. `content/blog/best-chiropractor-kuala-lumpur.mdx` is the worked example.
+Surface this reframing at the outline stage (Step 8c), not after a listicle outline has
+already been proposed or approved.
+
 ### Step 6: CTA (fixed for this client)
 No client table. Persistence uses two conversion paths, both from `lib/clinic.ts`:
 - **Booking:** `clinic.bookingUrl` (SweetPew).
@@ -220,13 +256,18 @@ Then:
 - Modular H2s that read independently.
 - Primary keyword in H1, first paragraph, Key Takeaways, and 2–3 times naturally in the body.
 
-**Hero image:** `Post.heroImage` is optional. Prefer reusing an existing real clinic photo
-(`public/img/*.webp`) over commissioning or sourcing new imagery. A licensed stock photo is
-acceptable only with the user's explicit sign-off *for that specific image* — this site's
-established convention is real clinic/practitioner photography only (see DESIGN.md's
-anti-reference), so treat stock as the exception, credit the photographer in a code comment
-next to the entry, and confirm the license explicitly (Unsplash License or equivalent, verify
-by fetching the actual photo page — don't assume).
+**Hero image:** `Post.heroImage` is optional, and it is now the *only* field to set — the
+blog index thumbnail, the homepage's "latest posts" teaser, and the article page's own hero
+all read `post.heroImage` directly (unified 2026-08-27). There used to be a second,
+easy-to-forget `postImages` map in `lib/home.ts` that fed only the index and homepage; it is
+why `gonstead-technique` carried a hero photo for weeks with no thumbnail anywhere else.
+Don't reintroduce a second place to declare a post's image. Prefer reusing an existing real
+clinic photo (`public/img/*.webp`) over commissioning or sourcing new imagery. A licensed
+stock photo is acceptable only with the user's explicit sign-off *for that specific image* —
+this site's established convention is real clinic/practitioner photography only (see
+DESIGN.md's anti-reference), so treat stock as the exception, credit the photographer in a
+code comment next to the entry, and confirm the license explicitly (Unsplash License or
+equivalent, verify by fetching the actual photo page — don't assume).
 
 **Citations (2–4 typical, only verifiable facts):** see the GEO section of the framework
 above — this now means populating `Post.citations`, not writing a References list into the
@@ -244,6 +285,7 @@ existing house voice in `lib/conditions.ts`.
 - Client: **Persistence Chiropractic** (single clinic, Cheras/Maluri, KL). NAP + CTAs: `lib/clinic.ts`.
 - Booking: SweetPew (`clinic.bookingUrl`). WhatsApp: `clinic.whatsappUrl`.
 - Blog target keywords still open (deferred cycle): tit tar, muscle knots, trigger points,
-  slipped disc remedy, best chiropractors KL, office workers' back pain — see `kpi-keyword-map.md`.
+  slipped disc remedy, office workers' back pain — see `kpi-keyword-map.md`. ("best
+  chiropractors KL" shipped 2026-08-26 as `best-chiropractor-kuala-lumpur`.)
 - Hard gates live in `lib/content.test.ts`. Read `AGENTS.md` and the two memory files
   (no-medical-outcome-promises, persistence-chiro-content-plan) before writing.
