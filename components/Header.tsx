@@ -42,6 +42,21 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   const nav = mainNav(locale, dict)
   const hoursSummary = hoursSummaryFor(locale)
 
+  /**
+   * Malay nav labels ("Simptom & Masalah", "Apa Yang Dijangka", ...) run noticeably longer
+   * than their English/Chinese equivalents, so the desktop nav needs a wider viewport before
+   * it has room to sit on one line without crowding the WhatsApp CTA. Bumping only `ms` from
+   * `lg` to `xl` keeps English/Chinese at their existing breakpoint — they already fit at `lg`
+   * — and falls back to the mobile drawer for Malay between `lg` and `xl` instead of letting
+   * the row overflow. Full literal class strings per branch, not a template-built prefix:
+   * Tailwind's build-time scanner needs "xl:flex"/"lg:flex" etc. to appear verbatim in source.
+   */
+  const desktopNavListClass =
+    locale === 'ms' ? 'ml-auto hidden items-center gap-6 xl:flex' : 'ml-auto hidden items-center gap-6 lg:flex'
+  const ctaGroupClass =
+    locale === 'ms' ? 'ml-auto flex shrink-0 items-center gap-3 xl:ml-0' : 'ml-auto flex shrink-0 items-center gap-3 lg:ml-0'
+  const mobileMenuClass = locale === 'ms' ? 'xl:hidden' : 'lg:hidden'
+
   return (
     <header className="sticky top-0 z-50">
       {/* Utility bar. Hidden on small screens, where it would push the nav off the fold. */}
@@ -58,11 +73,11 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
               WhatsApp link out of the bar at `md`, so the schedule itself appears from `lg`
               and narrower desktops keep "Open 7 days" alone. Every viewport still has the
               complete table in the footer. */}
-          <span className="text-brand-slate-soft">
+          <span className="min-w-0 text-brand-slate-soft">
             {dict.header.openSevenDays}
             <span className="hidden lg:inline"> &middot; {hoursSummary}</span>
           </span>
-          <div className="ml-auto flex items-center gap-5">
+          <div className="ml-auto flex shrink-0 items-center gap-5">
             <a href={`tel:${clinic.phoneE164}`} className="font-semibold hover:underline">
               {clinic.phone}
             </a>
@@ -93,14 +108,14 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
             />
           </Link>
 
-          <ul className="ml-auto hidden items-center gap-6 lg:flex">
+          <ul className={desktopNavListClass}>
             {nav.map((item) => (
               <li key={item.href} className="group relative">
                 {/* `NavLink` rather than `Link` throughout: "Book Now" points at SweetPew,
                     and a client-routed <Link> to an off-site URL loses target/rel. */}
                 <NavLink
                   item={item}
-                  className="flex items-center gap-1 py-2 text-sm font-medium text-ink-muted transition-colors hover:text-brand-slate"
+                  className="flex items-center gap-1 whitespace-nowrap py-2 text-sm font-medium text-ink-muted transition-colors hover:text-brand-slate"
                 >
                   {item.label}
                   {item.children && item.children.length > 0 && (
@@ -135,7 +150,7 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
             ))}
           </ul>
 
-          <div className="ml-auto flex items-center gap-3 lg:ml-0">
+          <div className={ctaGroupClass}>
             <div className="hidden sm:block">
               <WhatsAppButton message={waMessage.general(locale)}>{dict.header.enquireOnWhatsapp}</WhatsAppButton>
             </div>
@@ -145,7 +160,7 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
                 is tapped; without that, client-side navigation leaves the drawer open over
                 the page it just loaded. Label stays "Menu" in both states — <summary>
                 announces expanded/collapsed itself, so "Open menu" lies once it is open. */}
-            <details data-mobile-nav className="lg:hidden">
+            <details data-mobile-nav className={mobileMenuClass}>
               <summary
                 className="flex h-11 w-11 cursor-pointer list-none items-center justify-center rounded-full border border-line text-ink"
                 aria-label={dict.header.menu}

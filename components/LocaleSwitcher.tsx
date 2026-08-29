@@ -21,7 +21,7 @@ const LOCALE_LABEL: Record<Locale, string> = { en: 'EN', zh: '中文', ms: 'BM' 
  */
 export function LocaleSwitcher({ locale }: { locale: Locale }) {
   return (
-    <ul className="flex items-center gap-3 text-xs font-medium">
+    <ul className="flex shrink-0 items-center gap-3 whitespace-nowrap text-xs font-medium">
       {LOCALES.filter((l) => l === locale || pathExistsIn(l, '/')).map((l) => (
         <li key={l}>
           {l === locale ? (

@@ -80,7 +80,7 @@ export function Eyebrow({
 }
 
 const BUTTON_BASE =
-  'inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-colors'
+  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full px-6 py-3 text-sm font-semibold transition-colors'
 
 /**
  * The gold CTA. Every conversion on this site is a WhatsApp conversation, so this is always
