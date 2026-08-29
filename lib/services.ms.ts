@@ -335,7 +335,7 @@ export const servicesMs: Service[] = [
       },
       {
         heading: 'Fisioterapi atau kiropraktik, dan cara kami menggabungkannya',
-        body: 'Secara umum, jagaan kiropraktik menangani cara sendi yang tersekat bergerak, fisioterapi pula menangani kekuatan dan kawalan di sekelilingnya. Ramai yang mendapat manfaat daripada kedua-duanya, ditambah dry needling, di bawah satu bumbung di Cheras. Hantar mesej kepada kami tentang kebimbangan utama anda dan kami akan tunjukkan titik permulaan.',
+        body: 'Secara umum, jagaan kiropraktik menangani cara sendi yang tersekat bergerak, fisioterapi pula menangani kekuatan dan kawalan di sekelilingnya. Ramai yang mendapat manfaat daripada kedua-duanya, ditambah jarum kering, di bawah satu bumbung di Cheras. Hantar mesej kepada kami tentang kebimbangan utama anda dan kami akan tunjukkan titik permulaan.',
       },
     ],
     helpsWith: [
@@ -350,7 +350,7 @@ export const servicesMs: Service[] = [
     relatedLinks: [
       { href: '/services/chiropractic-care', label: 'Bandingkan dengan jagaan kiropraktik' },
       { href: '/services/sports-injury-rehabilitation', label: 'Kecederaan sukan dan pemulihan' },
-      { href: '/services/dry-needling', label: 'Dry needling untuk otot yang sentiasa tegang' },
+      { href: '/services/dry-needling', label: 'Jarum Kering untuk otot yang sentiasa tegang' },
       { href: '/services/posture-correction', label: 'Pembetulan postur untuk pekerja pejabat' },
       { href: '/what-to-expect', label: 'Apa yang dijangka pada lawatan pertama anda' },
     ],
@@ -384,8 +384,8 @@ export const servicesMs: Service[] = [
       },
       {
         q: 'Bolehkah saya menjalani fisioterapi dan jagaan kiropraktik bersama?',
-        a: 'Ya, dan ramai pesakit di sini melakukannya. Kedua-duanya menangani perkara yang berbeza, jadi menggabungkannya adalah lazim, bukan luar biasa: jagaan kiropraktik menangani cara sendi yang tersekat bergerak dan fisioterapi membina kekuatan serta kawalan di sekelilingnya, manakala dry needling turut digunakan bersama mana-mana satu apabila otot menjadi punca masalah. Penilaian menentukan titik permulaan dan sama ada kedua-duanya berbaloi digunakan sekali, dan kami akan memberitahu jika kami rasa satu sahaja sudah mencukupi.',
-        links: [{ phrase: 'dry needling', href: '/services/dry-needling' }],
+        a: 'Ya, dan ramai pesakit di sini melakukannya. Kedua-duanya menangani perkara yang berbeza, jadi menggabungkannya adalah lazim, bukan luar biasa: jagaan kiropraktik menangani cara sendi yang tersekat bergerak dan fisioterapi membina kekuatan serta kawalan di sekelilingnya, manakala jarum kering turut digunakan bersama mana-mana satu apabila otot menjadi punca masalah. Penilaian menentukan titik permulaan dan sama ada kedua-duanya berbaloi digunakan sekali, dan kami akan memberitahu jika kami rasa satu sahaja sudah mencukupi.',
+        links: [{ phrase: 'jarum kering', href: '/services/dry-needling' }],
       },
       {
         q: 'Di manakah anda berada di Cheras, dan adakah tempat letak kereta?',
@@ -403,19 +403,19 @@ export const servicesMs: Service[] = [
   },
   {
     slug: 'dry-needling',
-    title: 'Dry Needling di Cheras, Kuala Lumpur',
-    metaTitle: 'Dry Needling di Cheras, KL',
+    title: 'Jarum Kering di Cheras, Kuala Lumpur',
+    metaTitle: 'Jarum Kering di Cheras, KL',
     metaDescription:
-      'Dry needling di Cheras, Maluri untuk otot tegang, titik pencetus dan simpulan otot. Penilaian dahulu, jarum sekali guna, jangkaan yang jujur.',
+      'Jarum Kering di Cheras, Maluri untuk otot tegang, titik pencetus dan simpulan otot. Penilaian dahulu, jarum sekali guna, jangkaan yang jujur.',
     // "otot tegang" 110 carian/bulan, SD 12 (Ubersuggest, locId 2458) — istilah simptom
     // yang digunakan orang ramai, berbanding "jarum kering" (terjemahan literal dry
     // needling) yang mencatat 0 carian.
     targetKeyword: 'otot tegang',
     intro:
-      'Dry needling di Cheras. Satu teknik neuromuskular yang menggunakan jarum halus sekali guna untuk mencapai titik pencetus dan jalur otot tegang yang sukar dilepaskan dengan tangan sahaja. Kami menggunakannya sebagai sebahagian daripada pelan yang lebih luas, bukan bersendirian, dan hanya apabila penilaian menunjukkan otot adalah punca utama masalah anda.',
+      'Jarum Kering di Cheras. Satu teknik neuromuskular yang menggunakan jarum halus sekali guna untuk mencapai titik pencetus dan jalur otot tegang yang sukar dilepaskan dengan tangan sahaja. Kami menggunakannya sebagai sebahagian daripada pelan yang lebih luas, bukan bersendirian, dan hanya apabila penilaian menunjukkan otot adalah punca utama masalah anda.',
     heroImage: {
       src: '/img/dry-needling.webp',
-      alt: 'Pengamal bersarung tangan melakukan dry needling pada belakang atas dan bahu pesakit di Persistence Chiropractic Care, Cheras, Kuala Lumpur',
+      alt: 'Pengamal bersarung tangan melakukan jarum kering pada belakang atas dan bahu pesakit di Persistence Chiropractic Care, Cheras, Kuala Lumpur',
     },
     ogImage: '/og/dry-needling.jpg',
     midImage: {
@@ -458,7 +458,7 @@ export const servicesMs: Service[] = [
       { label: 'Urutan membantu sehari, kemudian ketegangan kembali', icon: 'recurring' },
       { label: 'Leher atau bahu saya sentiasa terasa tegang', icon: 'neck' },
       { label: 'Kecederaan lama meninggalkan otot yang tegang dan terlalu aktif', icon: 'injury' },
-      { label: 'Saya pernah menjalani dry needling dan ia membantu', icon: 'needle' },
+      { label: 'Saya pernah menjalani jarum kering dan ia membantu', icon: 'needle' },
       { label: 'Saya gementar dengan jarum dan mahu bertanya dahulu', icon: 'question' },
     ],
     citations: [
@@ -468,7 +468,7 @@ export const servicesMs: Service[] = [
         url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC9159711/',
       },
       {
-        claim: 'Kajian mengenai dry needling titik pencetus melaporkan kesan sampingan biasanya ringan dan sementara, seperti kesakitan atau lebam kecil.',
+        claim: 'Kajian mengenai jarum kering titik pencetus melaporkan kesan sampingan biasanya ringan dan sementara, seperti kesakitan atau lebam kecil.',
         source: 'Brady et al. (2014), Journal of Manual & Manipulative Therapy',
         url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC4101552/',
       },
@@ -481,25 +481,25 @@ export const servicesMs: Service[] = [
     fitCheck: {
       rightFor: [
         'Satu otot kekal tegang walaupun sudah diregang dan diurut, dan anda mahu tahu sebabnya.',
-        'Anda mahu dry needling menjadi sebahagian daripada pelan, bersama senaman atau pelarasan.',
+        'Anda mahu jarum kering menjadi sebahagian daripada pelan, bersama senaman atau pelarasan.',
         'Anda mementingkan jarum steril sekali guna dan pengamal yang menyemak sejarah kesihatan anda dahulu.',
         'Anda lebih suka diberitahu ia tidak sesuai berbanding terus dijarum.',
       ],
       notRightFor: [
         'Anda mahu terus dijarum tanpa penilaian mengapa otot itu tegang.',
         'Anda mempunyai ketakutan yang kuat terhadap jarum. Kami lebih suka menggunakan pendekatan lain berbanding memujuk anda menerima ini.',
-        'Anda mahu dry needling secara bersendirian, tanpa senaman atau susulan antara sesi.',
+        'Anda mahu jarum kering secara bersendirian, tanpa senaman atau susulan antara sesi.',
         'Anda sebenarnya mencari akupunktur. Ia menggunakan jarum yang serupa tetapi memilih titik secara berbeza, dan bukan perkhidmatan yang kami tawarkan.',
       ],
-      note: 'Jika mana-mana daripada itu berkenaan dengan anda, ia tidak bermakna kami tidak boleh membantu. Ia bermakna dry needling mungkin bukan tempat kami akan mulakan, dan lawatan pertama adalah tepat untuk menentukan itu. Kami lebih suka menunjukkan pendekatan yang sesuai berbanding menjual apa yang anda minta semasa masuk.',
+      note: 'Jika mana-mana daripada itu berkenaan dengan anda, ia tidak bermakna kami tidak boleh membantu. Ia bermakna jarum kering mungkin bukan tempat kami akan mulakan, dan lawatan pertama adalah tepat untuk menentukan itu. Kami lebih suka menunjukkan pendekatan yang sesuai berbanding menjual apa yang anda minta semasa masuk.',
     },
     sections: [
       {
-        heading: 'Dry needling di Cheras',
-        body: 'Dry needling adalah teknik neuromuskular yang menggunakan jarum halus sekali guna untuk mencapai titik pencetus dan jalur otot tegang yang sukar dilepaskan dengan tangan sahaja. Kami menggunakannya sebagai sebahagian daripada pelan yang lebih luas, bukan bersendirian, dan hanya apabila penilaian menunjukkan otot adalah punca utama masalah.',
+        heading: 'Jarum Kering di Cheras',
+        body: 'Jarum Kering adalah teknik neuromuskular yang menggunakan jarum halus sekali guna untuk mencapai titik pencetus dan jalur otot tegang yang sukar dilepaskan dengan tangan sahaja. Kami menggunakannya sebagai sebahagian daripada pelan yang lebih luas, bukan bersendirian, dan hanya apabila penilaian menunjukkan otot adalah punca utama masalah.',
       },
       {
-        heading: 'Apa sebenarnya dry needling lakukan',
+        heading: 'Apa sebenarnya jarum kering lakukan',
         body: 'Titik pencetus adalah simpulan ketat dan sensitif yang boleh merujuk sakit ke tempat lain. Jarum yang diletakkan padanya sering mencetuskan sentakan sekejap, tanda otot itu melepaskan. Berapa banyak ia membantu bergantung kepada apa yang mengekalkan otot itu tegang.',
       },
       {
@@ -508,7 +508,7 @@ export const servicesMs: Service[] = [
       },
       {
         heading: 'Selamatkah, dan apa yang perlu dijangka selepasnya',
-        body: 'Dry needling secara umumnya sangat selamat di tangan yang terlatih, dengan jarum steril digunakan sekali sahaja. Kesakitan ringan atau lebam kecil untuk sehari atau lebih adalah lazim dan reda dengan sendirinya. Beritahu kami jika anda hamil, mengambil ubat pengencer darah, atau tidak selesa dengan jarum.',
+        body: 'Jarum Kering secara umumnya sangat selamat di tangan yang terlatih, dengan jarum steril digunakan sekali sahaja. Kesakitan ringan atau lebam kecil untuk sehari atau lebih adalah lazim dan reda dengan sendirinya. Beritahu kami jika anda hamil, mengambil ubat pengencer darah, atau tidak selesa dengan jarum.',
       },
       {
         heading: 'Bagaimana ia sepadan dengan jagaan lain anda',
@@ -521,43 +521,43 @@ export const servicesMs: Service[] = [
     ],
     helpsWith: ['back-pain', 'neck-pain', 'shoulder-imbalance', 'sciatica'],
     relatedLinks: [
-      { href: '/services/physiotherapy', label: 'Bagaimana dry needling sepadan dengan fisioterapi' },
+      { href: '/services/physiotherapy', label: 'Bagaimana jarum kering sepadan dengan fisioterapi' },
       { href: '/services/chiropractic-care', label: 'Bandingkan dengan jagaan kiropraktik' },
       { href: '/what-to-expect', label: 'Apa yang dijangka pada lawatan pertama anda' },
     ],
     faqs: [
       {
-        q: 'Perlukah saya rujukan untuk dry needling?',
-        a: 'Tidak. Anda boleh terus membuat temu janji dengan kami di Cheras. Kami menilai dahulu sebelum sebarang jarum digunakan, dan jika dry needling bukan pendekatan yang sesuai untuk kes anda, kami akan memberitahu.',
+        q: 'Perlukah saya rujukan untuk jarum kering?',
+        a: 'Tidak. Anda boleh terus membuat temu janji dengan kami di Cheras. Kami menilai dahulu sebelum sebarang jarum digunakan, dan jika jarum kering bukan pendekatan yang sesuai untuk kes anda, kami akan memberitahu.',
       },
       {
         q: 'Berapa lama sesi pertama?',
         a: 'Sekitar empat puluh lima minit hingga satu jam, dan kebanyakannya adalah penilaian berbanding menjarum. Anda sepatutnya pulang dengan mengetahui apa yang kami rasa berlaku.',
       },
       {
-        q: 'Adakah dry needling sama dengan akupunktur?',
-        a: 'Tidak. Dry needling adalah teknik berasaskan anatomi dari Barat: jarum filamen halus diletakkan terus ke titik pencetus miofasial, satu simpulan kecil yang sangat sensitif dalam jalur otot tegang, dengan tujuan melepaskan ketegangan itu. Tiada apa-apa disuntik, itulah asal perkataan "dry" (kering). Akupunktur menggunakan jarum yang serupa tetapi berasal dari perubatan tradisional Cina dan memilih titik sepanjang meridian berbanding mengikut anatomi otot. Di sini, ia adalah satu alat dalam pelan berpandukan penilaian, bukan terapi bersendirian.',
+        q: 'Adakah jarum kering sama dengan akupunktur?',
+        a: 'Tidak. Jarum Kering adalah teknik berasaskan anatomi dari Barat: jarum filamen halus diletakkan terus ke titik pencetus miofasial, satu simpulan kecil yang sangat sensitif dalam jalur otot tegang, dengan tujuan melepaskan ketegangan itu. Tiada apa-apa disuntik, itulah asal perkataan "dry" (kering). Akupunktur menggunakan jarum yang serupa tetapi berasal dari perubatan tradisional Cina dan memilih titik sepanjang meridian berbanding mengikut anatomi otot. Di sini, ia adalah satu alat dalam pelan berpandukan penilaian, bukan terapi bersendirian.',
         links: [{ phrase: 'pelan berpandukan penilaian', href: '/what-to-expect' }],
       },
       {
-        q: 'Adakah dry needling menyakitkan?',
+        q: 'Adakah jarum kering menyakitkan?',
         a: 'Kebanyakan pesakit menggambarkannya sebagai sentakan sekejap atau rasa berdenyut tumpul berbanding sakit tajam. Kesakitan ringan selepas itu adalah lazim dan biasanya reda dalam sehari. Beritahu pengamal anda jika ia terasa lebih daripada tidak selesa, kerana teknik boleh diubah atau dihentikan.',
       },
       {
-        q: 'Berapa banyak sesi dry needling yang saya perlukan?',
+        q: 'Berapa banyak sesi jarum kering yang saya perlukan?',
         a: 'Ini bergantung kepada berapa lama otot itu telah tegang dan apa yang mengekalkannya sedemikian, jadi kami tidak akan mengesahkan satu angka pada lawatan pertama. Sesetengah orang perasan perubahan dengan cepat, yang lain memerlukan sokongan selama beberapa minggu bersama senaman. Kami mengkaji semula mengikut perkembangan, bukan menjual pakej tetap.',
       },
       {
         q: 'Adakah jarum selamat? Adakah ia digunakan semula?',
-        a: 'Jarum tidak pernah digunakan semula. Kami menggunakan jarum steril sekali guna yang dibuang selepas satu sesi. Dry needling secara umumnya sangat selamat di tangan yang terlatih, walaupun kesakitan ringan atau lebam kecil selepasnya adalah mungkin dan normal.',
+        a: 'Jarum tidak pernah digunakan semula. Kami menggunakan jarum steril sekali guna yang dibuang selepas satu sesi. Jarum Kering secara umumnya sangat selamat di tangan yang terlatih, walaupun kesakitan ringan atau lebam kecil selepasnya adalah mungkin dan normal.',
       },
       {
-        q: 'Adakah dry needling selamat? Ada kesan sampingan?',
+        q: 'Adakah jarum kering selamat? Ada kesan sampingan?',
         a: 'Ia secara umumnya dianggap selamat apabila dilakukan oleh pengamal terlatih menggunakan jarum steril sekali guna. Kesan selepas yang paling biasa adalah ringan dan singkat: kesakitan sementara di tempat jarum, dan kadangkala lebam kecil, biasanya reda dalam sehari dua. Anda boleh makan, minum, bekerja dan bersenam seperti biasa selepasnya. Kami menyemak sejarah kesihatan anda dahulu, kerana terdapat keadaan seperti kehamilan, ubat yang menjejaskan pembekuan darah, atau ketakutan kuat terhadap jarum, di mana kami akan memilih pendekatan lain. Kami biasanya menggabungkan satu sesi dengan senaman tertentu supaya otot mempunyai sebab untuk kekal lega.',
         links: [{ phrase: 'senaman tertentu', href: '/services/physiotherapy' }],
       },
       {
-        q: 'Apa yang dry needling boleh bantu?',
+        q: 'Apa yang jarum kering boleh bantu?',
         a: 'Orang paling kerap datang kepada kami apabila satu otot kekal tegang walaupun sudah diregang dan diurut, apabila titik pencetus terus merujuk sakit ke tempat yang sama, atau apabila kecederaan lama meninggalkan otot yang tegang dan terlalu aktif. Ia biasa digunakan di sekitar leher, bahu dan pinggang bawah, dan bersama jagaan untuk keadaan seperti sciatica dan ketidakseimbangan bahu. Menjarum dapat menenangkan otot yang sensitif, tetapi dengan sendirinya ia tidak mengubah tabiat, kelemahan atau sekatan sendi yang membiarkannya tegang, itulah sebabnya kami menggabungkannya dengan jagaan kiropraktik apabila dapatan menunjukkan ke arah itu.',
         links: [
           { phrase: 'sciatica', href: '/conditions/sciatica' },
@@ -566,7 +566,7 @@ export const servicesMs: Service[] = [
         ],
       },
       {
-        q: 'Patutkah saya dry needling atau pelarasan kiropraktik?',
+        q: 'Patutkah saya jarum kering atau pelarasan kiropraktik?',
         a: 'Ini bergantung kepada dapatan penilaian, dan kedua-duanya sering digunakan bersama berbanding sebagai alternatif. Secara umum, menjarum menangani otot yang tegang dan sensitif manakala pelarasan menangani cara sendi tulang belakang bergerak. Jika tidak pasti, mesej kami tentang kebimbangan utama anda dan kami akan tunjukkan titik permulaan yang betul.',
       },
     ],
@@ -692,7 +692,7 @@ export const servicesMs: Service[] = [
       },
       {
         heading: 'Sokongan pemulihan dan modaliti terapeutik',
-        body: 'Selain kerja aktif, kami menggunakan terapi tambahan untuk melegakan sakit dan menyokong pemulihan tisu pada peringkat awal. Ini menjadikan pemulihan mungkin dilakukan, bukan menggantikannya. Apabila dry needling atau jagaan secara tangan membantu, kami menggabungkannya di bawah satu bumbung.',
+        body: 'Selain kerja aktif, kami menggunakan terapi tambahan untuk melegakan sakit dan menyokong pemulihan tisu pada peringkat awal. Ini menjadikan pemulihan mungkin dilakukan, bukan menggantikannya. Apabila jarum kering atau jagaan secara tangan membantu, kami menggabungkannya di bawah satu bumbung.',
       },
       {
         heading: 'Kestabilan teras dan tulang belakang untuk ketahanan',
@@ -702,7 +702,7 @@ export const servicesMs: Service[] = [
     helpsWith: ['back-pain', 'shoulder-imbalance', 'hip-pain'],
     relatedLinks: [
       { href: '/services/physiotherapy', label: 'Pendekatan fisioterapi kami' },
-      { href: '/services/dry-needling', label: 'Dry needling untuk ketegangan otot' },
+      { href: '/services/dry-needling', label: 'Jarum Kering untuk ketegangan otot' },
       { href: '/what-to-expect', label: 'Apa yang dijangka pada lawatan pertama anda' },
     ],
     faqs: [
@@ -740,10 +740,10 @@ export const servicesMs: Service[] = [
       },
       {
         q: 'Bolehkah saya terus berlatih semasa menjalani pemulihan?',
-        a: 'Biasanya boleh, dengan apa yang anda lakukan dan berapa banyak diselaraskan berbanding dihentikan sepenuhnya. Rehat sepenuhnya jarang menjadi matlamat, kerana kehilangan keadaan fizikal mencipta masalahnya sendiri dan kebanyakan orang lebih baik apabila sesuatu terus membebankan bahagian lain badan. Apa yang berubah adalah pergerakan yang mencetuskan kecederaan, jumlahnya, dan kadangkala permukaan atau tempo. Menentukan apa yang boleh anda teruskan dengan selamat adalah sebahagian daripada penilaian berbanding renungan kemudian, dan apabila satu otot kekal berjaga-jaga, kami mungkin menggunakan dry needling bersama latihan kekuatan.',
+        a: 'Biasanya boleh, dengan apa yang anda lakukan dan berapa banyak diselaraskan berbanding dihentikan sepenuhnya. Rehat sepenuhnya jarang menjadi matlamat, kerana kehilangan keadaan fizikal mencipta masalahnya sendiri dan kebanyakan orang lebih baik apabila sesuatu terus membebankan bahagian lain badan. Apa yang berubah adalah pergerakan yang mencetuskan kecederaan, jumlahnya, dan kadangkala permukaan atau tempo. Menentukan apa yang boleh anda teruskan dengan selamat adalah sebahagian daripada penilaian berbanding renungan kemudian, dan apabila satu otot kekal berjaga-jaga, kami mungkin menggunakan jarum kering bersama latihan kekuatan.',
         links: [
           { phrase: 'penilaian', href: '/what-to-expect' },
-          { phrase: 'dry needling', href: '/services/dry-needling' },
+          { phrase: 'jarum kering', href: '/services/dry-needling' },
         ],
       },
       {
@@ -860,7 +860,7 @@ export const servicesMs: Service[] = [
     relatedLinks: [
       { href: '/what-to-expect', label: 'Apa yang dijangka pada lawatan pertama anda' },
       { href: '/services/physiotherapy', label: 'Bandingkan dengan fisioterapi' },
-      { href: '/services/dry-needling', label: 'Dry needling di Cheras' },
+      { href: '/services/dry-needling', label: 'Jarum Kering di Cheras' },
     ],
     faqs: [
       {
@@ -897,8 +897,8 @@ export const servicesMs: Service[] = [
       },
       {
         q: 'Bagaimana rasanya pelarasan, dan bagaimana jika saya gementar?',
-        a: 'Kebanyakan orang menggambarkan tekanan sebentar diikuti oleh rasa lega berbanding kesakitan, dan bunyi "krek" yang sering menyertainya adalah gas yang bergerak dalam sendi berbanding tulang bergesel dengan tulang, bukan penanda sama ada ia berkesan. Beritahu kiropraktor anda jika apa-apa terasa lebih daripada tidak selesa, kerana sentuhan dan kekuatan kedua-duanya boleh diubah dan terdapat pendekatan kekuatan rendah untuk pesakit yang tidak mahu dilaras dengan cara biasa. Apabila penilaian menunjukkan ketegangan otot berbanding sekatan sendi, kami mungkin mencadangkan dry needling bersama pelarasan atau menggantikannya.',
-        links: [{ phrase: 'dry needling', href: '/services/dry-needling' }],
+        a: 'Kebanyakan orang menggambarkan tekanan sebentar diikuti oleh rasa lega berbanding kesakitan, dan bunyi "krek" yang sering menyertainya adalah gas yang bergerak dalam sendi berbanding tulang bergesel dengan tulang, bukan penanda sama ada ia berkesan. Beritahu kiropraktor anda jika apa-apa terasa lebih daripada tidak selesa, kerana sentuhan dan kekuatan kedua-duanya boleh diubah dan terdapat pendekatan kekuatan rendah untuk pesakit yang tidak mahu dilaras dengan cara biasa. Apabila penilaian menunjukkan ketegangan otot berbanding sekatan sendi, kami mungkin mencadangkan jarum kering bersama pelarasan atau menggantikannya.',
+        links: [{ phrase: 'jarum kering', href: '/services/dry-needling' }],
       },
       {
         q: 'Adakah saya akan diminta membeli pakej atau komited kepada satu pelan?',

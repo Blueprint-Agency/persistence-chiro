@@ -163,7 +163,7 @@ export const servicesZh: Service[] = [
       },
       {
         heading: '物理治疗或脊椎矫正护理,以及我们如何结合两者',
-        body: '大致而言,脊椎矫正护理着重受限关节的活动方式,物理治疗则着重周围的力量与控制。许多人两者都受益,再加上 dry needling,同一屋檐下即可完成,地点就在 Cheras。欢迎透过 WhatsApp 告诉我们您的主要困扰,我们会为您指出起点。',
+        body: '大致而言,脊椎矫正护理着重受限关节的活动方式,物理治疗则着重周围的力量与控制。许多人两者都受益,再加上干针,同一屋檐下即可完成,地点就在 Cheras。欢迎透过 WhatsApp 告诉我们您的主要困扰,我们会为您指出起点。',
       },
     ],
     helpsWith: [
@@ -178,7 +178,7 @@ export const servicesZh: Service[] = [
     relatedLinks: [
       { href: '/services/chiropractic-care', label: '比较脊椎矫正护理' },
       { href: '/services/sports-injury-rehabilitation', label: '运动伤害与康复' },
-      { href: '/services/dry-needling', label: '针对持续紧绷肌肉的 Dry Needling' },
+      { href: '/services/dry-needling', label: '针对持续紧绷肌肉的干针' },
       { href: '/services/posture-correction', label: '为办公族设计的姿势调整' },
       { href: '/what-to-expect', label: '第一次会诊会经历什么' },
     ],
@@ -216,8 +216,8 @@ export const servicesZh: Service[] = [
       },
       {
         q: '可以同时进行物理治疗与脊椎矫正护理吗?',
-        a: '可以,这里不少病患都是如此。两者着重的方向不同,因此结合使用相当常见:脊椎矫正护理处理受限关节的活动方式,物理治疗则针对周围的力量与控制,而当肌肉是主要因素时,dry needling 也会一并使用。评估会决定从何处开始,以及两者是否都值得使用,若我们认为其中一种已经足够,也会如实告知。',
-        links: [{ phrase: 'dry needling', href: '/services/dry-needling' }],
+        a: '可以,这里不少病患都是如此。两者着重的方向不同,因此结合使用相当常见:脊椎矫正护理处理受限关节的活动方式,物理治疗则针对周围的力量与控制,而当肌肉是主要因素时,干针也会一并使用。评估会决定从何处开始,以及两者是否都值得使用,若我们认为其中一种已经足够,也会如实告知。',
+        links: [{ phrase: '干针', href: '/services/dry-needling' }],
       },
       {
         q: '诊所在 Cheras 哪里?有停车位吗?',
@@ -235,19 +235,19 @@ export const servicesZh: Service[] = [
   },
   {
     slug: 'dry-needling',
-    title: 'Cheras, Kuala Lumpur Dry Needling',
-    metaTitle: 'Cheras Dry Needling | Kuala Lumpur',
+    title: 'Cheras, Kuala Lumpur 干针',
+    metaTitle: 'Cheras 干针 | Kuala Lumpur',
     metaDescription:
-      'Cheras, Maluri 的 dry needling,针对深层肌肉紧绷与激痛点。先评估后施针,使用单次性无菌针具,不夸大效果。',
+      'Cheras, Maluri 的干针,针对深层肌肉紧绷与激痛点。先评估后施针,使用单次性无菌针具,不夸大效果。',
     // 针灸的好处和坏处 90/mo,SD 32(Ubersuggest,locId 2458)——马来西亚华人常将 dry
     // needling 与针灸混为一谈,这个词代表真实存在的困惑,而非直译。页面诚实说明两者的差异,
     // 而非借用「针灸」的名号招揽,详见下方常见问题。
     targetKeyword: '针灸的好处和坏处',
     intro:
-      'Cheras 的 dry needling,一种神经肌肉技术,以细针进入激痛点与紧绷的肌肉带,这些部位通常单靠徒手护理难以松开。我们把它当作整体方案的一环,而非单独使用,并且只有在评估结果指向肌肉是主要问题时才会采用。',
+      'Cheras 的干针,一种神经肌肉技术,以细针进入激痛点与紧绷的肌肉带,这些部位通常单靠徒手护理难以松开。我们把它当作整体方案的一环,而非单独使用,并且只有在评估结果指向肌肉是主要问题时才会采用。',
     heroImage: {
       src: '/img/dry-needling.webp',
-      alt: '在 Cheras, Kuala Lumpur 的 Persistence Chiropractic Care,戴手套的执行者为病患上背与肩膀进行 dry needling',
+      alt: '在 Cheras, Kuala Lumpur 的 Persistence Chiropractic Care,戴手套的执行者为病患上背与肩膀进行干针',
     },
     ogImage: '/og/dry-needling.jpg',
     midImage: {
@@ -290,7 +290,7 @@ export const servicesZh: Service[] = [
       { label: '按摩当下有效,隔天又紧绷起来', icon: 'recurring' },
       { label: '颈部或肩膀长期处于紧绷状态', icon: 'neck' },
       { label: '旧伤让某处肌肉一直感觉紧绷、过度反应', icon: 'injury' },
-      { label: '之前做过 dry needling,效果不错', icon: 'needle' },
+      { label: '之前做过干针,效果不错', icon: 'needle' },
       { label: '对针有点紧张,想先问清楚再说', icon: 'question' },
     ],
     citations: [
@@ -300,7 +300,7 @@ export const servicesZh: Service[] = [
         url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC9159711/',
       },
       {
-        claim: '激痛点 dry needling 的调查显示,不良反应通常轻微且短暂,例如酸痛或轻微瘀青。',
+        claim: '激痛点干针的调查显示,不良反应通常轻微且短暂,例如酸痛或轻微瘀青。',
         source: 'Brady et al. (2014), Journal of Manual & Manipulative Therapy',
         url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC4101552/',
       },
@@ -313,25 +313,25 @@ export const servicesZh: Service[] = [
     fitCheck: {
       rightFor: [
         '某处肌肉一直紧绷,拉伸与按摩都无法改善,想知道原因。',
-        '希望 dry needling 是整体方案的一部分,搭配运动或调整一起进行。',
+        '希望干针是整体方案的一部分,搭配运动或调整一起进行。',
         '重视单次性无菌针具,以及会先了解病史的执行者。',
         '比起被直接施针,更希望在不适合的情况下被诚实告知。',
       ],
       notRightFor: [
         '希望不经评估、直接指定施针部位。',
-        '对针具有强烈恐惧感——遇到这种情况,我们宁愿选择其他方式,也不会勉强说服您接受 dry needling。',
-        '只想单独做 dry needling,疗程之间不搭配运动或后续追踪。',
+        '对针具有强烈恐惧感——遇到这种情况,我们宁愿选择其他方式,也不会勉强说服您接受干针。',
+        '只想单独做干针,疗程之间不搭配运动或后续追踪。',
         '在找的其实是针灸。针灸使用的针具类似,但取穴方式不同,也不是我们提供的服务。',
       ],
-      note: '如果以上有任何一点符合您的情况,不代表我们帮不上忙,只是说明 dry needling 可能不是我们会优先建议的起点,而这正是第一次会诊要厘清的事。我们宁愿一开始就指出适合您的方式,而不是顺着您进门时提出的要求去做。',
+      note: '如果以上有任何一点符合您的情况,不代表我们帮不上忙,只是说明干针可能不是我们会优先建议的起点,而这正是第一次会诊要厘清的事。我们宁愿一开始就指出适合您的方式,而不是顺着您进门时提出的要求去做。',
     },
     sections: [
       {
-        heading: 'Cheras 的 dry needling',
-        body: 'Dry needling 是一种神经肌肉技术,以细小的单次性针具进入激痛点与紧绷的肌肉带,这些部位通常单靠徒手护理难以松开。我们把它当作整体方案的一环,而非单独使用,只有在评估结果指向肌肉是主要问题时才会采用。',
+        heading: 'Cheras 的干针',
+        body: '干针是一种神经肌肉技术,以细小的单次性针具进入激痛点与紧绷的肌肉带,这些部位通常单靠徒手护理难以松开。我们把它当作整体方案的一环,而非单独使用,只有在评估结果指向肌肉是主要问题时才会采用。',
       },
       {
-        heading: 'Dry needling 实际上在做什么',
+        heading: '干针实际上在做什么',
         body: '激痛点是肌肉内一个紧绷、敏感的结节,可能将疼痛牵引到其他部位。针具置入后,常会引发短暂的肌肉抽动反应,代表肌肉正在松开。效果如何,取决于是什么原因让这块肌肉持续紧绷。',
       },
       {
@@ -340,11 +340,11 @@ export const servicesZh: Service[] = [
       },
       {
         heading: '安全吗?之后要注意什么',
-        body: '在受过训练的执行者操作下,dry needling 相当安全,针具皆为单次性无菌针,用后即弃。施针处出现轻微酸痛或小瘀青属常见现象,通常一两天内会自行消退。若您怀孕、正在服用抗凝血药物,或对针具特别抗拒,请事先告知。',
+        body: '在受过训练的执行者操作下,干针相当安全,针具皆为单次性无菌针,用后即弃。施针处出现轻微酸痛或小瘀青属常见现象,通常一两天内会自行消退。若您怀孕、正在服用抗凝血药物,或对针具特别抗拒,请事先告知。',
       },
       {
         heading: '如何与其他护理项目搭配',
-        body: 'Dry needling 能舒缓肌肉紧绷,但无法改变让肌肉持续紧绷的习惯或无力状况。在 Cheras 同一屋檐下,我们会将它与脊椎矫正护理及物理治疗搭配使用,由评估决定从何处开始。',
+        body: '干针能舒缓肌肉紧绷,但无法改变让肌肉持续紧绷的习惯或无力状况。在 Cheras 同一屋檐下,我们会将它与脊椎矫正护理及物理治疗搭配使用,由评估决定从何处开始。',
       },
       {
         heading: '大概需要几次疗程',
@@ -353,43 +353,43 @@ export const servicesZh: Service[] = [
     ],
     helpsWith: ['back-pain', 'neck-pain', 'shoulder-imbalance', 'sciatica'],
     relatedLinks: [
-      { href: '/services/physiotherapy', label: 'Dry needling 如何与物理治疗搭配' },
+      { href: '/services/physiotherapy', label: '干针如何与物理治疗搭配' },
       { href: '/services/chiropractic-care', label: '与脊椎矫正护理比较' },
       { href: '/what-to-expect', label: '第一次会诊会经历什么' },
     ],
     faqs: [
       {
-        q: 'Dry needling 需要转介信吗?',
-        a: '不需要,您可以直接在 Cheras 预约。我们会先评估再决定是否施针,若发现 dry needling 不适合您的情况,会如实告知。',
+        q: '干针需要转介信吗?',
+        a: '不需要,您可以直接在 Cheras 预约。我们会先评估再决定是否施针,若发现干针不适合您的情况,会如实告知。',
       },
       {
         q: '第一次疗程要多久?',
         a: '大约四十五分钟到一小时,大部分时间用于评估,而非施针。会诊结束时,您应该已经了解我们对状况的判断。',
       },
       {
-        q: 'Dry needling 和针灸一样吗?',
-        a: '不一样。Dry needling 是源自西方、以解剖学为基础的技术:将细小的单丝针具直接置入肌筋膜激痛点——也就是紧绷肌带内一个高度敏感的小结节——目的是松开该处的紧绷,过程中不会注射任何药物,这也是「dry」这个字的由来。针灸则源自中医,使用类似的针具,但取穴方式是沿着经络,而非依据肌肉解剖位置。在这里,dry needling 是评估后方案中的其中一项工具,而不是单独存在的疗法。',
+        q: '干针和针灸一样吗?',
+        a: '不一样。干针(英文称 dry needling)是源自西方、以解剖学为基础的技术:将细小的单丝针具直接置入肌筋膜激痛点——也就是紧绷肌带内一个高度敏感的小结节——目的是松开该处的紧绷,过程中不会注射任何药物,这也是英文「dry」(不注射)这个字的由来。针灸则源自中医,使用类似的针具,但取穴方式是沿着经络,而非依据肌肉解剖位置。在这里,干针是评估后方案中的其中一项工具,而不是单独存在的疗法。',
         links: [{ phrase: '评估后方案', href: '/what-to-expect' }],
       },
       {
-        q: 'Dry needling 会痛吗?',
+        q: '干针会痛吗?',
         a: '多数病患形容是短暂的抽动感或闷胀感,而非锐痛。施针后出现轻微酸痛属常见现象,通常一天内会消退。若感觉超出不适的范围,请随时告知执行者,力道与手法都可以调整或立即停止。',
       },
       {
-        q: '需要做几次 dry needling?',
+        q: '需要做几次干针?',
         a: '这取决于肌肉紧绷存在多久,以及是什么原因让它持续紧绷,因此第一次会诊不会给出固定次数。有些人很快就感觉到变化,有些则需要数周搭配运动持续进行。我们会随着进度诚实检视状况,而不是一开始就推销固定套餐。',
       },
       {
         q: '针具安全吗?会重复使用吗?',
-        a: '针具绝不重复使用。我们采用单次性无菌针具,使用一次后即弃。在受过训练的执行者操作下,dry needling 相当安全,不过施针处出现轻微酸痛或小瘀青属正常现象。',
+        a: '针具绝不重复使用。我们采用单次性无菌针具,使用一次后即弃。在受过训练的执行者操作下,干针相当安全,不过施针处出现轻微酸痛或小瘀青属正常现象。',
       },
       {
-        q: 'Dry needling 安全吗?有副作用吗?',
+        q: '干针安全吗?有副作用吗?',
         a: '由受过训练的执行者使用单次性无菌针具操作,一般认为是安全的。常见的反应多半轻微且短暂:施针处暂时酸痛,偶尔出现小瘀青,通常一两天内会消退。之后可以正常饮食、工作与运动。我们会先了解您的病史,因为在怀孕、服用影响凝血功能的药物,或对针具有强烈恐惧等情况下,我们会选择其他方式。通常也会搭配特定的运动,让松开的肌肉有理由维持在这个状态。',
         links: [{ phrase: '特定的运动', href: '/services/physiotherapy' }],
       },
       {
-        q: 'Dry needling 能处理什么问题?',
+        q: '干针能处理什么问题?',
         a: '最常见的情况是:某处肌肉一直紧绷、拉伸按摩都无法改善;激痛点反复将疼痛牵引到同一个部位;或旧伤让某处肌肉持续处于紧绷、过度警戒的状态。常用于颈部、肩膀与下背部,也会搭配用于坐骨神经痛、肩膀不平衡等情况的护理。施针能舒缓紧绷的肌肉,但单靠它无法改变让肌肉持续紧绷的习惯、无力或关节活动受限,因此在评估结果指向这个方向时,我们会搭配脊椎矫正护理一起进行。',
         links: [
           { phrase: '坐骨神经痛', href: '/conditions/sciatica' },
@@ -398,8 +398,8 @@ export const servicesZh: Service[] = [
         ],
       },
       {
-        q: '应该做 dry needling 还是脊椎矫正调整?',
-        a: '这取决于评估的结果,而且两者经常是搭配使用,而非二选一。大致来说,dry needling 处理的是紧绷、敏感的肌肉,调整处理的是脊椎关节的活动方式。若不确定,欢迎透过 WhatsApp 告诉我们您主要的困扰,我们会为您指出正确的起点。',
+        q: '应该做干针还是脊椎矫正调整?',
+        a: '这取决于评估的结果,而且两者经常是搭配使用,而非二选一。大致来说,干针处理的是紧绷、敏感的肌肉,调整处理的是脊椎关节的活动方式。若不确定,欢迎透过 WhatsApp 告诉我们您主要的困扰,我们会为您指出正确的起点。',
       },
     ],
     // Client request 2026-08-09, menu only and deliberately so: the page stays live, indexed
@@ -673,7 +673,7 @@ export const servicesZh: Service[] = [
     relatedLinks: [
       { href: '/what-to-expect', label: '第一次会诊会经历什么' },
       { href: '/services/physiotherapy', label: '与物理治疗比较' },
-      { href: '/services/dry-needling', label: 'Cheras 的 dry needling' },
+      { href: '/services/dry-needling', label: 'Cheras 的干针' },
     ],
     faqs: [
       {
@@ -710,8 +710,8 @@ export const servicesZh: Service[] = [
       },
       {
         q: '调整的感觉是怎样的?我很紧张怎么办?',
-        a: '多数人形容是短暂的压力感,接着是一种放松感,而非疼痛,过程中常伴随的「啵」声是关节内气体移动的声音,而非骨头摩擦,也不代表调整是否有效。若感觉超出不适的范围,请告诉脊椎矫正师,力道与接触方式都可以调整,对不希望以常规方式被调整的病患,也有力道较轻的替代方式。当评估指向肌肉紧绷而非关节受限时,我们可能会建议搭配或改用 dry needling。',
-        links: [{ phrase: 'dry needling', href: '/services/dry-needling' }],
+        a: '多数人形容是短暂的压力感,接着是一种放松感,而非疼痛,过程中常伴随的「啵」声是关节内气体移动的声音,而非骨头摩擦,也不代表调整是否有效。若感觉超出不适的范围,请告诉脊椎矫正师,力道与接触方式都可以调整,对不希望以常规方式被调整的病患,也有力道较轻的替代方式。当评估指向肌肉紧绷而非关节受限时,我们可能会建议搭配或改用干针。',
+        links: [{ phrase: '干针', href: '/services/dry-needling' }],
       },
       {
         q: '会要求我购买套餐或承诺固定疗程吗?',
