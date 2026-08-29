@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { googleReviews, practitionerBySlug } from '@/lib/clinic'
 import { accreditations } from '@/lib/home'
 import type { Outcome } from '@/lib/services'
-import { type Locale, pathFor } from '@/lib/i18n'
+import { type Locale, pathFor, shortTitle } from '@/lib/i18n'
 import { pathExistsIn } from '@/lib/locale-availability'
 import type { Dictionary } from '@/dictionaries/types'
 import { ConcernIllustration } from '@/components/ConcernIllustration'
@@ -669,7 +669,9 @@ export function WhereToGoNext({
                 className="flex items-start gap-2.5 text-ink-muted hover:text-brand-slate"
               >
                 <Vertebrae className="mt-1.5 text-brand-gold" />
-                {c.title.split(' in ')[0]}
+                {/* NOT `c.title.split(' in ')[0]` — see the note in lib/nav.ts on why that
+                    breaks for zh's locality-first title shape. */}
+                {shortTitle(locale, c.title)}
               </Link>
             </li>
           ))}

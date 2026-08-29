@@ -5,7 +5,7 @@
 import { clinic } from './clinic'
 import { publishedConditionsFor } from './conditions'
 import { publishedServicesFor } from './services'
-import { type Locale, pathFor } from './i18n'
+import { type Locale, pathFor, shortTitle } from './i18n'
 import type { Dictionary } from '../dictionaries/types'
 
 export type NavItem = {
@@ -32,7 +32,12 @@ export const mainNav = (locale: Locale, dict: Dictionary): NavItem[] => [
     label: dict.nav.services,
     children: publishedServicesFor(locale).map((s) => ({
       href: pathFor(locale, `/services/${s.slug}`),
-      label: s.title.split(' in ')[0],
+      // NOT `s.title.split(' in ')[0]` — that only works for English's "X in Cheras,
+      // Kuala Lumpur" title shape. zh titles are locality-FIRST ("Cheras, Kuala Lumpur X"),
+      // so splitting on " in " found nothing and returned the whole string unchanged,
+      // showing "Cheras, Kuala Lumpur 腰酸背痛护理" instead of "腰酸背痛护理" in the nav
+      // dropdown. `shortTitle` already knows each locale's title shape — see lib/i18n.ts.
+      label: shortTitle(locale, s.title),
       badge: s.navBadge,
     })),
   },
@@ -41,7 +46,7 @@ export const mainNav = (locale: Locale, dict: Dictionary): NavItem[] => [
     label: dict.nav.conditions,
     children: publishedConditionsFor(locale).map((c) => ({
       href: pathFor(locale, `/conditions/${c.slug}`),
-      label: c.title.split(' in ')[0],
+      label: shortTitle(locale, c.title),
     })),
   },
   { href: pathFor(locale, '/what-to-expect'), label: dict.nav.whatToExpect },
