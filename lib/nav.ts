@@ -3,8 +3,10 @@
  * the nav — and so the nav and the sitemap can't disagree about what exists.
  */
 import { clinic } from './clinic'
-import { publishedConditions } from './conditions'
-import { publishedServices } from './services'
+import { publishedConditionsFor } from './conditions'
+import { publishedServicesFor } from './services'
+import { type Locale, pathFor } from './i18n'
+import type { Dictionary } from '../dictionaries/types'
 
 export type NavItem = {
   href: string
@@ -24,40 +26,42 @@ export type NavItem = {
   badge?: string
 }
 
-export const mainNav = (): NavItem[] => [
+export const mainNav = (locale: Locale, dict: Dictionary): NavItem[] => [
   {
-    href: '/services',
-    label: 'Services',
-    children: publishedServices().map((s) => ({
-      href: `/services/${s.slug}`,
+    href: pathFor(locale, '/services'),
+    label: dict.nav.services,
+    children: publishedServicesFor(locale).map((s) => ({
+      href: pathFor(locale, `/services/${s.slug}`),
       label: s.title.split(' in ')[0],
       badge: s.navBadge,
     })),
   },
   {
-    href: '/conditions',
-    label: 'Conditions',
-    children: publishedConditions().map((c) => ({
-      href: `/conditions/${c.slug}`,
+    href: pathFor(locale, '/conditions'),
+    label: dict.nav.conditions,
+    children: publishedConditionsFor(locale).map((c) => ({
+      href: pathFor(locale, `/conditions/${c.slug}`),
       label: c.title.split(' in ')[0],
     })),
   },
-  { href: '/what-to-expect', label: 'What to Expect' },
+  { href: pathFor(locale, '/what-to-expect'), label: dict.nav.whatToExpect },
   {
     // /press was reachable only from the sitemap — orphaned from the nav entirely. It
     // groups here rather than taking a top-level slot: both answer "who are these people".
     // Practitioners are deliberately not listed here. Their pages are reached by clicking
     // a card on /about, where the photo and role give the name context a bare dropdown
     // row cannot. Listing them twice made the menu long without making anything findable.
-    href: '/about',
-    label: 'About',
+    href: pathFor(locale, '/about'),
+    label: dict.nav.about,
     children: [
-      { href: '/about', label: 'Our team' },
-      { href: '/press', label: 'Press & publications' },
-      { href: '/partner-with-us', label: 'Partner with us' },
+      { href: pathFor(locale, '/about'), label: dict.nav.ourTeam },
+      { href: pathFor(locale, '/press'), label: dict.nav.press },
+      { href: pathFor(locale, '/partner-with-us'), label: dict.nav.partnerWithUs },
     ],
   },
-  { href: '/blog', label: 'Blog' },
+  // Blog stays English-only and unprefixed regardless of locale — it lives outside the
+  // `[locale]` tree entirely (see proxy.ts).
+  { href: '/blog', label: dict.nav.blog },
   /**
    * Points off-site to SweetPew, at the client's request (2026-08-01). It used to go to
    * /book-now.
@@ -69,5 +73,5 @@ export const mainNav = (): NavItem[] => [
    * page with history. If it starts slipping, the fix is a second internal link from
    * /what-to-expect or the footer, not reverting this.
    */
-  { href: clinic.bookingUrl, label: 'Book Now', external: true },
+  { href: clinic.bookingUrl, label: dict.nav.bookNow, external: true },
 ]

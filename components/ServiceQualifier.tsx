@@ -92,11 +92,31 @@ function ConcernGlyph({ name }: { name: ConcernIcon }) {
 const labelOf = (c: Concern) => (typeof c === 'string' ? c : c.label)
 const iconOf = (c: Concern) => (typeof c === 'string' ? null : c.icon)
 
+/**
+ * Every string here is already RESOLVED (any `(name) => ...` dictionary function already
+ * called) by the server-rendered caller — this component is `'use client'`, and a function
+ * value cannot cross the server/client boundary as a prop (React throws at prerender:
+ * "Functions cannot be passed directly to Client Components"). Passing the raw `Dictionary`
+ * object through was a real build-breaking bug the first time this shipped; don't repeat it
+ * on this or any other client component.
+ */
+export type ServiceQualifierCopy = {
+  isThisRightForYou: string
+  notSureIfIsRightForYou: string
+  tickAnythingBody: string
+  selectConcernsAriaLabel: string
+  askUsOnWhatsapp: string
+  opensWhatsappCaption: string
+  greeting: string
+  appliesToMe: string
+  closingQuestion: string
+}
+
 export function ServiceQualifier({
-  serviceName,
+  copy,
   concerns,
 }: {
-  serviceName: string
+  copy: ServiceQualifierCopy
   concerns: readonly Concern[]
 }) {
   const [checked, setChecked] = useState<string[]>([])
@@ -105,9 +125,9 @@ export function ServiceQualifier({
     setChecked((prev) => (prev.includes(c) ? prev.filter((x) => x !== c) : [...prev, c]))
 
   const lines = [
-    `Hi Persistence Chiropractic, I'm considering ${serviceName} in Cheras.`,
-    ...(checked.length ? ['This is what applies to me:', ...checked.map((c) => `• ${c}`)] : []),
-    'Could you advise whether it is a good fit and where to start?',
+    copy.greeting,
+    ...(checked.length ? [copy.appliesToMe, ...checked.map((c) => `• ${c}`)] : []),
+    copy.closingQuestion,
   ]
 
   const href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(lines.join('\n'))}`
@@ -119,18 +139,15 @@ export function ServiceQualifier({
           which made the highest-intent block on the page read as a form label rather than a
           section — the one place that should not be quiet. The fieldset keeps a legend for
           screen readers; it is just no longer doing the visual work. */}
-      <Eyebrow>Is this right for you?</Eyebrow>
+      <Eyebrow>{copy.isThisRightForYou}</Eyebrow>
       <h2 className="mt-5 text-3xl font-extrabold leading-tight sm:text-4xl">
-        Not sure if {serviceName} is right for you?
+        {copy.notSureIfIsRightForYou}
       </h2>
-      <p className="mt-5 text-lg leading-relaxed text-ink-muted">
-        Tick anything that sounds like you. We will read it back honestly and tell you where
-        to start, even if that is somewhere else.
-      </p>
+      <p className="mt-5 text-lg leading-relaxed text-ink-muted">{copy.tickAnythingBody}</p>
 
       <div className="mt-10 rounded-3xl border border-line bg-white p-8 shadow-ambient lg:p-10">
       <fieldset>
-        <legend className="sr-only">Select the concerns that apply to you</legend>
+        <legend className="sr-only">{copy.selectConcernsAriaLabel}</legend>
 
         {/* list-none pl-0: defends against `.post-body ul` (globals.css) re-adding bullet
             markers when this renders inside a blog post via InlineQualifier — Tailwind's
@@ -183,11 +200,9 @@ export function ServiceQualifier({
         className="mt-7 inline-flex items-center justify-center gap-2 rounded-full bg-brand-gold px-7 py-3.5 text-sm font-semibold text-ink no-underline transition-colors hover:bg-[#d4b00d]"
       >
         <WhatsAppIcon />
-        Ask us on WhatsApp
+        {copy.askUsOnWhatsapp}
       </a>
-      <p className="mt-3 text-sm text-ink-muted">
-        Opens WhatsApp with your answers filled in. Nothing is sent until you press send there.
-      </p>
+      <p className="mt-3 text-sm text-ink-muted">{copy.opensWhatsappCaption}</p>
       </div>
     </div>
   )

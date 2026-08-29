@@ -64,15 +64,24 @@ const SESSION_KEY = 'pc-preloaded'
  * only when ALL hold:
  *   - motion is allowed,
  *   - it hasn't already played this session,
- *   - the homepage was the *entry* page — a real document load of "/", not an in-app
- *     navigation to home from another page. The Navigation Timing entry's name is the URL
- *     the document loaded at; on a client-side route change it stays the original entry URL,
- *     so arriving at home via a link reads a non-"/" path here and is skipped.
+ *   - the homepage was the *entry* page — a real document load of the current locale's
+ *     homepage, not an in-app navigation to home from another page. The Navigation Timing
+ *     entry's name is the URL the document loaded at; on a client-side route change it
+ *     stays the original entry URL, so arriving at home via a link reads a different path
+ *     here and is skipped.
  *
  * Computed in the state initializer (not just an effect) so that on an internal navigation
  * to home the overlay is never rendered even for one frame.
+ *
+ * `homePath` MUST be the caller's own locale-aware home path (`pathFor(locale, '/')`), not
+ * a hardcoded `'/'`. FOUND BY A FINAL PRE-PREVIEW AUDIT, 2026-08-29: this used to compare
+ * against a hardcoded `'/'` unconditionally. On `/zh` or `/ms`, `entryPath` is `/zh`/`/ms`,
+ * so the client-side check returned `false` on first render while the server had already
+ * rendered the full overlay (server-side `shouldPlay()` always returns `true`) — a real
+ * hydration mismatch on every fresh load of the Chinese or Malay homepage, since English's
+ * homepage happens to sit at literally `'/'` where the old hardcoded check was never wrong.
  */
-function shouldPlay(): boolean {
+function shouldPlay(homePath: string): boolean {
   if (typeof window === 'undefined') return true
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return false
   if (sessionStorage.getItem(SESSION_KEY)) return false
@@ -80,11 +89,11 @@ function shouldPlay(): boolean {
     | PerformanceNavigationTiming
     | undefined
   const entryPath = nav ? new URL(nav.name).pathname : window.location.pathname
-  return entryPath === '/'
+  return entryPath === homePath
 }
 
-export function Preloader() {
-  const [done, setDone] = useState(() => !shouldPlay())
+export function Preloader({ homePath }: { homePath: string }) {
+  const [done, setDone] = useState(() => !shouldPlay(homePath))
 
   useEffect(() => {
     if (done) return

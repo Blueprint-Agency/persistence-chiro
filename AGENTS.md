@@ -74,6 +74,20 @@ These are the reason the project exists. Don't simplify them away.
 
   Search `treat` — not `treatment` — before shipping copy. It catches *treated*, *treating*
   and *treats*, which is how the first sweep missed several.
+
+  **The same rule applies in Chinese and Malay, with the same two carve-outs**, once that
+  copy is written (see Multilingual below):
+
+  - **Chinese:** avoid 治疗/治療 (and 治/療 as a verb) for what the clinic does to a
+    patient — use 帮助/护理/调理-style phrasing instead. "物理治疗" (physiotherapy) as the
+    *name of the discipline* is fine, the same way English "physiotherapy" is fine despite
+    containing no banned word by coincidence — the rule targets the verb, not a profession's
+    own name.
+  - **Malay:** avoid "rawatan"/"merawat" — use "bantu"/"jagaan" or name the action
+    (menilai, melaras, pemulihan) instead.
+
+  Neither list is client-confirmed yet the way the English rule is — treat it as a strong
+  draft, not a substitute for asking the client once real zh/ms copy is ready to ship.
 - **JSON-LD on every template**, per the schema table in `proposed-site-architecture.md`.
 - **Core Web Vitals pass.** Static render by default. `next/image` for every image, always
   with width/height. No client component unless it genuinely needs interactivity.
@@ -83,6 +97,72 @@ These are the reason the project exists. Don't simplify them away.
   the existing link equity would undo the whole exercise.
 - **Alt text with local modifiers** on clinic imagery.
 - Accessibility basics: semantic headings (one `h1`), labelled controls, visible focus.
+
+## Multilingual (English default, Chinese, Bahasa Malaysia)
+
+The site targets local SEO/GEO/AEO in three languages: English (default, unprefixed —
+`/conditions/back-pain`), Chinese (`/zh/...`), Bahasa Malaysia (`/ms/...`). This is **not**
+translation — each locale targets keywords with real, distinct search demand (confirmed via
+Ubersuggest, Malaysia locId 2458), which sometimes means a completely different keyword
+angle per language on the same page (e.g. Malay physiotherapy pages target symptom terms
+like "sakit belakang" rather than a literal "kiropraktor" translation, which measures ~0
+volume).
+
+- **Routing:** every route, including the blog, lives under `app/[locale]/...` — even blog
+  (English-only, gated with `if (locale !== 'en') notFound()`), because Next allows only one
+  root layout per route subtree and `app/[locale]/layout.tsx` is that root layout. `proxy.ts`
+  rewrites any unprefixed request to `/en/...` internally via `NextResponse.rewrite` so
+  English stays invisible in the URL bar; a direct hit on `/en/*` 308s back to the unprefixed
+  path. `lib/i18n.ts` is the single source of truth for the locale list (`LOCALES`, `Locale`,
+  `LOCALE_TAG`, `pathFor`).
+- **Never call `headers()`, `cookies()`, or any other Dynamic API in `app/[locale]/layout.tsx`
+  or anything it always renders (Header/Footer).** It opts the *entire site* out of static
+  generation — this actually happened once (a `headers()` call to build a per-page language
+  switcher) and was reverted specifically to keep "Static render by default" intact. The
+  language switcher (`components/LocaleSwitcher.tsx`) links to each locale's homepage for
+  exactly this reason, not the exact equivalent of the current page.
+- **Content model:** English data files (`lib/conditions.ts`, `lib/services.ts`, ...) are
+  untouched and stay the source of truth; each has `zh`/`ms` sibling files
+  (`lib/conditions.zh.ts`, `.ms.ts`, etc.) of the *same* type, keyed by the *same* `slug`.
+  Locale dispatch helpers live on the English file (`conditionsFor(locale)`,
+  `publishedConditionsFor(locale)`, `conditionBySlugFor(locale, slug)`, and the `services.ts`
+  equivalents). A locale's `draft: true` (or an absent slug) means "not live in *this*
+  locale" — the same gate English already uses, just per-locale now. Practitioner bios are
+  the one exception: `lib/clinic.ts` keeps the roster (name/role/credentials — facts, never
+  translated) and reads locale-specific prose via `bioFor(locale, slug)` /
+  `hasBioFor(locale, slug)`, backed by `lib/practitioner-bios.zh.ts` / `.ms.ts`.
+- **Slugs stay byte-identical across locales** (`/zh/conditions/back-pain`, never a
+  transliterated slug) — a deliberate phase-1 simplification, not a permanent rule. Revisit
+  only with real evidence a localized slug would outperform it.
+- **`pageMetadata()` (`lib/seo.ts`) now requires `locale` and `availableIn`.** `availableIn`
+  lists every locale this exact page exists in — compute it with
+  `LOCALES.filter((l) => pathExistsIn(l, path))` from `lib/locale-availability.ts`, never by
+  hand, or hreflang tags will point at a URL that 404s. The same `pathExistsIn` check gates
+  the language switcher, so the two can never disagree about what's live.
+- **One-off pages with no locale-dispatched content yet** (home, about hub, book-now, press,
+  partner-with-us, what-to-expect, the hand-built `/services/chiropractic-care`) gate with a
+  plain `if (locale !== 'en') notFound()` at the top of the route. Loosen that gate only once
+  real, reviewed copy exists for that locale — never ship a thin or duplicate page to prove
+  the plumbing works.
+- **UI chrome** (nav labels, footer, buttons, breadcrumb names) comes from
+  `dictionaries/{en,zh,ms}.ts` via `getDictionary(locale)` (`lib/dictionaries.ts`) — thread
+  the dictionary value into existing component props rather than hardcoding a string. The
+  zh/ms dictionaries are a first-pass draft, not client-reviewed; treat them like an
+  unreviewed `Service`/`Condition` record.
+- **Place names stay in English/Latin script in every locale — "Cheras", "Maluri", "Kuala
+  Lumpur", never 增江/马鲁里/吉隆坡.** Confirmed with the user, 2026-08-28. Same NAP-consistency
+  reasoning as the byte-identical address rule at the top of this file: a transliterated
+  Chinese place name doesn't match what the Google Business Profile, Maps, or an actual
+  searcher uses. Malaysian Chinese sites commonly mix English place names into Chinese
+  sentences this way ("位于 Cheras 的诊所") — it reads as normal, not as an error. Malay
+  copy already does this naturally; Chinese needs the reminder.
+- **物理治疗 (physiotherapy) / 治疗师 (therapist) / 徒手治疗 (manual therapy) are confirmed
+  correct terms, not a wording to avoid.** Confirmed with the user, 2026-08-28. These are the
+  approved profession/technique-name compounds `content.test.ts`'s banned-word sweep
+  whitelists — see `lib/services.zh.ts`.
+- Full rationale, the keyword-research findings behind the BM/ZH targeting decisions, and the
+  page-by-page rollout order live in the multilingual plan (ask the user for the current doc
+  if it's not obviously nearby — it isn't committed to the repo).
 
 ## Copy voice — sound human, not AI
 

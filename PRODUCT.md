@@ -180,7 +180,8 @@ titles because it is how the market searches.
   frame — never the service being sold.
 - Mobile-first is a hard requirement, not a breakpoint afterthought: the primary visitor is
   on a phone.
-- **Language:** the site is English-only and stays that way through launch. Chinese-language
-  pages are a planned post-launch phase once English content is complete, so structure and
-  content should not be written in a way that makes translation impossible — but no i18n
-  tooling is to be built ahead of that decision.
+- **Language:** the anticipated post-launch phase has begun. English is the default,
+  unprefixed locale; Chinese (`/zh/...`) and Bahasa Malaysia (`/ms/...`) routing
+  infrastructure is live, but neither has real page content yet — every zh/ms page 404s
+  until it does. See `AGENTS.md` § Multilingual for the architecture and the content
+  rollout's non-negotiables.

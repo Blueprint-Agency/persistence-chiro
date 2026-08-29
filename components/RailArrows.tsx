@@ -15,7 +15,18 @@
  * Hidden below `sm` on purpose. A phone user swipes, and two floating buttons over a card
  * that is 82% of the viewport wide would cover the review they are trying to read.
  */
-export function RailArrows({ targetId }: { targetId: string }) {
+export function RailArrows({
+  targetId,
+  previousLabel,
+  nextLabel,
+}: {
+  targetId: string
+  // No defaults: the sole caller always passes localized aria-labels, and a default here
+  // would silently ship English if a future caller forgot — see the multilingual memory
+  // for the KeyTakeaways incident this mirrors.
+  previousLabel: string
+  nextLabel: string
+}) {
   const nudge = (direction: 1 | -1) => {
     const rail = document.getElementById(targetId)
     if (!rail) return
@@ -31,7 +42,7 @@ export function RailArrows({ targetId }: { targetId: string }) {
     <>
       <button
         type="button"
-        aria-label="Previous reviews"
+        aria-label={previousLabel}
         onClick={() => nudge(-1)}
         className={`${base} -left-3 lg:-left-5`}
       >
@@ -41,7 +52,7 @@ export function RailArrows({ targetId }: { targetId: string }) {
       </button>
       <button
         type="button"
-        aria-label="More reviews"
+        aria-label={nextLabel}
         onClick={() => nudge(1)}
         className={`${base} -right-3 lg:-right-5`}
       >

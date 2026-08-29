@@ -1,16 +1,19 @@
 import Image from 'next/image'
 
-import { clinic, addressOneLine, hoursDisplay } from '@/lib/clinic'
+import { clinic, addressOneLine, hoursDisplayFor } from '@/lib/clinic'
 import { mainNav } from '@/lib/nav'
 import { NavLink, WhatsAppButton, Vertebrae } from '@/components/ui'
 import { waMessage } from '@/lib/whatsapp'
+import type { Locale } from '@/lib/i18n'
+import type { Dictionary } from '@/dictionaries/types'
 
 /**
  * NAP appears here on every page — this is the sitewide citation Google reads.
  * Every value comes from `clinic`; never hardcode an address or phone number here.
  */
-export function Footer() {
-  const nav = mainNav()
+export function Footer({ locale, dict }: { locale: Locale; dict: Dictionary }) {
+  const nav = mainNav(locale, dict)
+  const hoursDisplay = hoursDisplayFor(locale)
 
   return (
     <footer className="mt-auto bg-brand-slate-deep text-white">
@@ -37,10 +40,7 @@ export function Footer() {
               className="h-9 w-auto"
             />
 
-            <p className="mt-6 max-w-sm leading-relaxed text-white/70">
-              Gonstead-technique chiropractic and physiotherapy in Cheras, Maluri. Dedicated to
-              improving lives, one spine at a time.
-            </p>
+            <p className="mt-6 max-w-sm leading-relaxed text-white/70">{dict.footer.tagline}</p>
 
             {/* One conversion action, not two. This used to be a gold "Book" (SweetPew) beside
                 an outlined "WhatsApp"; now that both lead to the same chat, showing them twice
@@ -49,7 +49,7 @@ export function Footer() {
                 column below — removing the button does not remove the number, which local
                 SEO depends on appearing on every page. */}
             <div className="mt-7">
-              <WhatsAppButton message={waMessage.general}>Enquire on WhatsApp</WhatsAppButton>
+              <WhatsAppButton message={waMessage.general(locale)}>{dict.header.enquireOnWhatsapp}</WhatsAppButton>
             </div>
 
             <ul className="mt-8 flex gap-5 text-sm text-white/70">
@@ -79,7 +79,7 @@ export function Footer() {
           <div>
             <h2 className="flex items-center gap-3 label text-brand-slate-soft">
               <Vertebrae />
-              Visit
+              {dict.footer.visit}
             </h2>
             <address className="mt-5 not-italic leading-relaxed text-white/70">
               {addressOneLine}
@@ -101,13 +101,13 @@ export function Footer() {
                 rel="noopener"
                 className="text-sm text-brand-slate-soft underline underline-offset-4 hover:text-white"
               >
-                Open in Google Maps
+                {dict.footer.openInGoogleMaps}
               </a>
             </p>
 
             <h2 className="mt-9 flex items-center gap-3 label text-brand-slate-soft">
               <Vertebrae />
-              Opening hours
+              {dict.footer.openingHours}
             </h2>
             <dl className="mt-5 space-y-1.5 text-sm">
               {hoursDisplay.map((h) => (
@@ -122,7 +122,7 @@ export function Footer() {
           <div>
             <h2 className="flex items-center gap-3 label text-brand-slate-soft">
               <Vertebrae />
-              Explore
+              {dict.footer.explore}
             </h2>
             <ul className="mt-5 space-y-2.5 text-white/70">
               {nav.map((item) => (
@@ -140,10 +140,9 @@ export function Footer() {
             clears it at ~7:1 and still reads as the quietest line on the page. */}
         <div className="mt-14 flex flex-col gap-2 border-t border-white/15 pt-7 text-xs text-white/70 sm:flex-row sm:justify-between">
           <p>
-            &copy; {new Date().getFullYear()} {clinic.name}. Chiropractic and physiotherapy in
-            Cheras, Maluri, Kuala Lumpur.
+            &copy; {new Date().getFullYear()} {clinic.name}. {dict.footer.copyrightSuffix}
           </p>
-          <p>Registered chiropractors &middot; Association of Chiropractic Malaysia</p>
+          <p>{dict.footer.registeredChiropractors}</p>
         </div>
       </div>
     </footer>

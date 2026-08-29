@@ -11,8 +11,8 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
 
-import { conditions } from './conditions.ts'
-import { services } from './services.ts'
+import { conditions, conditionsFor } from './conditions.ts'
+import { services, servicesFor } from './services.ts'
 import { posts, publishedPosts } from './posts.ts'
 import {
   HELD_POST_SLUGS,
@@ -25,6 +25,7 @@ import { clinicFaqs, homeFaqs, aftercare, aftercareIntro } from './faqs.ts'
 import { homeIntro } from './home.ts'
 import { gonsteadIntro, gonsteadSteps } from './gonstead.ts'
 import { founderBio, practitioners, publishedRegistrations } from './clinic.ts'
+import { LOCALES } from './i18n.ts'
 
 const conditionSlugs = new Set(conditions.map((c) => c.slug))
 const serviceSlugs = new Set(services.map((m) => m.slug))
@@ -179,12 +180,14 @@ test('new blog posts carry no promissory claims or stray dashes', async () => {
  */
 test('every in-prose link phrase occurs exactly once in its body', () => {
   const hits: string[] = []
-  for (const s of services) {
-    for (const faq of s.faqs) {
-      for (const link of faq.links ?? []) {
-        const count = faq.a.split(link.phrase).length - 1
-        if (count !== 1) {
-          hits.push(`services/${s.slug} "${faq.q}": phrase "${link.phrase}" occurs ${count}x`)
+  for (const locale of LOCALES) {
+    for (const s of servicesFor(locale)) {
+      for (const faq of s.faqs) {
+        for (const link of faq.links ?? []) {
+          const count = faq.a.split(link.phrase).length - 1
+          if (count !== 1) {
+            hits.push(`[${locale}] services/${s.slug} "${faq.q}": phrase "${link.phrase}" occurs ${count}x`)
+          }
         }
       }
     }
@@ -198,27 +201,37 @@ test('every in-prose link phrase occurs exactly once in its body', () => {
  * strands the reader.
  */
 test('every in-prose link points at a published route', () => {
+  // The set a HREF STRING could ever validly name — English is the comprehensive source
+  // of truth for which slugs exist at all (see AGENTS.md § Multilingual), so this checks
+  // "is this a real route in some locale", not "does it exist in the CURRENT locale yet".
+  // The latter is a runtime concern the page templates already handle gracefully
+  // (`pathExistsIn` hides a link to a slug this locale hasn't published yet, rather than
+  // 404ing) — this test exists to catch a typo'd/nonexistent slug, not a mid-rollout gap.
   const published = new Set<string>([
     ...staticRoutes,
     ...conditions.map((c) => `/conditions/${c.slug}`),
     ...services.map((m) => `/services/${m.slug}`),
   ])
   const hits: string[] = []
-  for (const s of services) {
-    for (const faq of s.faqs) {
-      for (const link of faq.links ?? []) {
-        if (!published.has(link.href)) {
-          hits.push(`services/${s.slug} "${faq.q}" -> ${link.href}`)
+  for (const locale of LOCALES) {
+    for (const s of servicesFor(locale)) {
+      for (const faq of s.faqs) {
+        for (const link of faq.links ?? []) {
+          if (!published.has(link.href)) {
+            hits.push(`[${locale}] services/${s.slug} "${faq.q}" -> ${link.href}`)
+          }
+        }
+        if ((faq.links ?? []).some((l) => l.href === `/services/${s.slug}`)) {
+          hits.push(`[${locale}] services/${s.slug} "${faq.q}" links to itself`)
         }
       }
-      if ((faq.links ?? []).some((l) => l.href === `/services/${s.slug}`)) {
-        hits.push(`services/${s.slug} "${faq.q}" links to itself`)
-      }
-    }
-    for (const link of s.relatedLinks ?? []) {
-      if (!published.has(link.href)) hits.push(`services/${s.slug}.relatedLinks -> ${link.href}`)
-      if (link.href === `/services/${s.slug}`) {
-        hits.push(`services/${s.slug}.relatedLinks links to itself`)
+      for (const link of s.relatedLinks ?? []) {
+        if (!published.has(link.href)) {
+          hits.push(`[${locale}] services/${s.slug}.relatedLinks -> ${link.href}`)
+        }
+        if (link.href === `/services/${s.slug}`) {
+          hits.push(`[${locale}] services/${s.slug}.relatedLinks links to itself`)
+        }
       }
     }
   }
@@ -235,22 +248,27 @@ test('every in-prose link points at a published route', () => {
  * sales pitch with a disclaimer stapled to it, which is the shape this block exists to avoid.
  */
 test('every fit check is balanced and closes on a substantial note', () => {
-  for (const s of services) {
-    if (!s.fitCheck) continue
-    const { rightFor, notRightFor, note } = s.fitCheck
-    assert.ok(
-      notRightFor.length >= 3,
-      `services/${s.slug}.fitCheck has fewer than 3 crosses; a one-line refusal reads as a caveat`,
-    )
-    assert.equal(
-      rightFor.length,
-      notRightFor.length,
-      `services/${s.slug}.fitCheck columns are uneven (${rightFor.length} ticks vs ${notRightFor.length} crosses); they render side by side and are meant to be read across`,
-    )
-    assert.ok(
-      note.length > 120,
-      `services/${s.slug}.fitCheck.note is too short to say what to do instead`,
-    )
+  for (const locale of LOCALES) {
+    for (const s of servicesFor(locale)) {
+      if (!s.fitCheck) continue
+      const { rightFor, notRightFor, note } = s.fitCheck
+      assert.ok(
+        notRightFor.length >= 3,
+        `[${locale}] services/${s.slug}.fitCheck has fewer than 3 crosses; a one-line refusal reads as a caveat`,
+      )
+      assert.equal(
+        rightFor.length,
+        notRightFor.length,
+        `[${locale}] services/${s.slug}.fitCheck columns are uneven (${rightFor.length} ticks vs ${notRightFor.length} crosses); they render side by side and are meant to be read across`,
+      )
+      // Chinese conveys far more per character than an alphabetic script, so the same
+      // 120-character bar would be unreasonably long there — see AGENTS.md § Multilingual.
+      const minLength = locale === 'zh' ? 45 : 120
+      assert.ok(
+        note.length > minLength,
+        `[${locale}] services/${s.slug}.fitCheck.note is too short to say what to do instead`,
+      )
+    }
   }
 })
 
@@ -260,16 +278,22 @@ test('every fit check is balanced and closes on a substantial note', () => {
  * line is copied from either, one route publishes the same sentence three times.
  */
 test('no fit-check line is duplicated from outcomes or the qualifier', () => {
-  const norm = (t: string) => t.toLowerCase().replace(/[^a-z ]/g, '').replace(/\s+/g, ' ').trim()
+  // `\p{L}`/`\p{N}` (Unicode letter/number), NOT `a-z` — a Latin-only strip reduces every
+  // Chinese string to "", which would make every zh line look like a duplicate of every
+  // other zh line instead of only genuine repeats.
+  const norm = (t: string) =>
+    t.toLowerCase().replace(/[^\p{L}\p{N} ]/gu, '').replace(/\s+/g, ' ').trim()
   const hits: string[] = []
-  for (const s of services) {
-    if (!s.fitCheck) continue
-    const elsewhere = new Set([
-      ...(s.outcomes ?? []).map((o) => norm(typeof o === 'string' ? o : o.text)),
-      ...(s.qualifierConcerns ?? []).map((c) => norm(typeof c === 'string' ? c : c.label)),
-    ])
-    for (const line of [...s.fitCheck.rightFor, ...s.fitCheck.notRightFor]) {
-      if (elsewhere.has(norm(line))) hits.push(`services/${s.slug}: "${line}"`)
+  for (const locale of LOCALES) {
+    for (const s of servicesFor(locale)) {
+      if (!s.fitCheck) continue
+      const elsewhere = new Set([
+        ...(s.outcomes ?? []).map((o) => norm(typeof o === 'string' ? o : o.text)),
+        ...(s.qualifierConcerns ?? []).map((c) => norm(typeof c === 'string' ? c : c.label)),
+      ])
+      for (const line of [...s.fitCheck.rightFor, ...s.fitCheck.notRightFor]) {
+        if (elsewhere.has(norm(line))) hits.push(`[${locale}] services/${s.slug}: "${line}"`)
+      }
     }
   }
   assert.deepEqual(hits, [], `fit-check line(s) duplicated elsewhere on the page: ${hits.join('; ')}`)
@@ -286,13 +310,26 @@ test('no fit-check line is duplicated from outcomes or the qualifier', () => {
  * one answer is as duplicated as the same question asked twice.
  */
 test('no key takeaway repeats an FAQ on the same page', () => {
-  const norm = (t: string) => t.toLowerCase().replace(/[^a-z0-9 ]/g, '').replace(/\s+/g, ' ').trim()
+  // `\p{L}`/`\p{N}`, not `a-z0-9` — see the matching note on the fit-check test above.
+  const norm = (t: string) =>
+    t.toLowerCase().replace(/[^\p{L}\p{N} ]/gu, '').replace(/\s+/g, ' ').trim()
   const hits: string[] = []
   // Conditions and posts. The service pages carried `keyTakeaways` until 2026-08-23; with it
   // deleted there, `faqs` is the single Q&A array on a service and nothing can collide.
+  // Posts stay English-only (blog is out of multilingual scope); conditions loop every
+  // locale that has any.
   const pages: [string, { q: string; a: string }[] | undefined, readonly { q: string; a: string }[]][] =
     [
-      ...conditions.map((c) => [`conditions/${c.slug}`, c.keyTakeaways, c.faqs] as [string, { q: string; a: string }[] | undefined, readonly { q: string; a: string }[]]),
+      ...LOCALES.flatMap((locale) =>
+        conditionsFor(locale).map(
+          (c) =>
+            [`[${locale}] conditions/${c.slug}`, c.keyTakeaways, c.faqs] as [
+              string,
+              { q: string; a: string }[] | undefined,
+              readonly { q: string; a: string }[],
+            ],
+        ),
+      ),
       ...posts.map((p) => [`posts/${p.slug}`, p.keyTakeaways, p.faqs ?? []] as [string, { q: string; a: string }[] | undefined, readonly { q: string; a: string }[]]),
     ]
   for (const [where, takeaways, faqs] of pages) {
@@ -307,10 +344,112 @@ test('no key takeaway repeats an FAQ on the same page', () => {
   assert.deepEqual(hits, [], `duplicate Q&A inside one FAQPage: ${hits.join('; ')}`)
 })
 
+/**
+ * Recursively collects every string leaf value out of an arbitrarily nested object/array.
+ * Used by the zh/ms banned-word sweep below so it does not depend on a hand-maintained list
+ * of field names — a real "merawat" violation once shipped inside a `midImage.alt` that no
+ * field list had ever been told to check (see the multilingual memory for the incident).
+ * Non-prose values (slugs, URLs, image paths, icon names) are always plain ASCII/English, so
+ * scanning them too costs nothing and cannot produce a false positive for a 治疗/rawat check.
+ *
+ * `targetKeyword` is skipped deliberately: per AGENTS.md § Multilingual it is the one field
+ * allowed to carry the banned word ("the clinic still ranks for 'back pain treatment kl', it
+ * just doesn't say it in rendered copy"), so scanning it would wrongly flag a legitimate,
+ * never-rendered keyword.
+ */
+function collectStrings(value: unknown, out: string[] = [], key?: string): string[] {
+  if (key === 'targetKeyword') return out
+  if (typeof value === 'string') out.push(value)
+  else if (Array.isArray(value)) for (const v of value) collectStrings(v, out)
+  else if (value && typeof value === 'object')
+    for (const [k, v] of Object.entries(value)) collectStrings(v, out, k)
+  return out
+}
+
+/**
+ * The zh/ms equivalent of "no promissory medical claims", per AGENTS.md § Multilingual —
+ * 治疗/治療 describing what the clinic does to a patient (as a verb, or as a generic noun
+ * for "the care given"), and Malay "rawatan"/"merawat"/"dirawat"/etc., are banned the same
+ * way English "treat/treatment" is.
+ *
+ * A short, curated list of compounds is the approved exception — each one names a
+ * profession or technique (物理治疗 = physiotherapy, 徒手治疗 = manual therapy, 治疗师 =
+ * therapist), the same way English "physiotherapist" is allowed despite containing no
+ * banned word by coincidence. Add to this list only for a genuine discipline/technique/
+ * job-title name, never to wave through a new way of saying "we treat you".
+ */
+test('no verb-form banned word in zh/ms published copy', () => {
+  const APPROVED_ZH_COMPOUNDS = ['物理治疗', '物理治療', '徒手治疗', '徒手治療', '治疗师', '治療師']
+  const stripApprovedZhCompounds = (t: string) =>
+    APPROVED_ZH_COMPOUNDS.reduce((acc, phrase) => acc.replaceAll(phrase, ''), t)
+  const hits: string[] = []
+
+  const zhSources: [string, string][] = []
+  const msSources: [string, string][] = []
+  for (const locale of LOCALES) {
+    if (locale === 'en') continue
+    const bucket = locale === 'zh' ? zhSources : msSources
+    for (const c of conditionsFor(locale)) {
+      bucket.push([`conditions/${c.slug}`, collectStrings(c).join(' ')])
+    }
+    for (const s of servicesFor(locale)) {
+      bucket.push([`services/${s.slug}`, collectStrings(s).join(' ')])
+    }
+  }
+
+  for (const [where, text] of zhSources) {
+    if (/治疗|治療/.test(stripApprovedZhCompounds(text))) {
+      hits.push(`zh ${where}: contains 治疗/治療 as more than the "物理治疗" compound`)
+    }
+  }
+  for (const [where, text] of msSources) {
+    if (/\brawat\w*/i.test(text)) {
+      hits.push(`ms ${where}: contains a "rawat" root (rawatan/merawat/dirawat/...)`)
+    }
+  }
+  assert.deepEqual(hits, [], `banned word(s):\n  ${hits.join('\n  ')}`)
+})
+
+/**
+ * A zh/ms slug with no English counterpart is almost always a typo, not a deliberate
+ * locale-only page — the content model assumes English is the comprehensive source of
+ * truth for which slugs exist at all (see AGENTS.md § Multilingual). Catching it here is
+ * cheaper than discovering it as an orphaned page nothing links to.
+ */
+test('every non-draft zh/ms slug has an English counterpart', () => {
+  const enConditionSlugs = new Set(conditions.map((c) => c.slug))
+  const enServiceSlugs = new Set(services.map((s) => s.slug))
+  const hits: string[] = []
+  for (const locale of LOCALES) {
+    if (locale === 'en') continue
+    for (const c of conditionsFor(locale)) {
+      if (!c.draft && !enConditionSlugs.has(c.slug)) {
+        hits.push(`conditions.${locale}: "${c.slug}" has no English counterpart`)
+      }
+    }
+    for (const s of servicesFor(locale)) {
+      if (!s.draft && !enServiceSlugs.has(s.slug)) {
+        hits.push(`services.${locale}: "${s.slug}" has no English counterpart`)
+      }
+    }
+  }
+  assert.deepEqual(hits, [], hits.join('\n  '))
+})
+
 test('no two pages target the same keyword', () => {
-  const targets = [...conditions, ...services].map((p) => p.targetKeyword.toLowerCase())
-  const dupes = targets.filter((t, i) => targets.indexOf(t) !== i)
-  assert.deepEqual(dupes, [], `duplicate targetKeyword: ${dupes.join(', ')}`)
+  // Per locale, not pooled across locales — the English and Malay records for the same
+  // slug legitimately target different keywords (that is the whole point of localising
+  // rather than translating; see AGENTS.md § Multilingual), so cross-locale differences
+  // are not the collision this test exists to catch.
+  const hits: string[] = []
+  for (const locale of LOCALES) {
+    const targets = [...conditionsFor(locale), ...servicesFor(locale)].map((p) =>
+      p.targetKeyword.toLowerCase(),
+    )
+    const dupes = targets.filter((t, i) => targets.indexOf(t) !== i)
+    if (dupes.length) hits.push(`[${locale}] ${dupes.join(', ')}`)
+  }
+  assert.deepEqual(hits, [], `duplicate targetKeyword: ${hits.join('; ')}`)
 })
 
 test('slugs are unique within each collection', () => {

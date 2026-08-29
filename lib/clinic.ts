@@ -6,6 +6,9 @@
  * ranking, which is the whole point of this rebuild. Never retype these into a component;
  * import them.
  */
+import type { Locale } from './i18n.ts'
+import { practitionerBiosZh } from './practitioner-bios.zh.ts'
+import { practitionerBiosMs } from './practitioner-bios.ms.ts'
 
 export const clinic = {
   name: 'Persistence Chiropractic Care',
@@ -123,7 +126,13 @@ export const addressOneLine = [
   `${clinic.address.postalCode} ${clinic.address.region}`,
 ].join(', ')
 
-/** Display order for the hours table. Mirrors `clinic.hours` — kept adjacent so they can't drift. */
+/**
+ * Display order for the hours table. Mirrors `clinic.hours` — kept adjacent so they can't
+ * drift. English only; see `hoursDisplayFor(locale)` below for the localized version every
+ * page actually renders now. Kept as a named export (rather than folded away) because it
+ * is also the shape `hoursDisplayFor('en')` returns, and existing call sites that only ever
+ * needed English (none remain, but keeping the plain data available costs nothing).
+ */
 export const hoursDisplay = [
   { label: 'Monday to Thursday', value: '10:00am to 8:00pm' },
   { label: 'Friday', value: '10:00am to 5:00pm' },
@@ -131,36 +140,60 @@ export const hoursDisplay = [
   { label: 'Sunday', value: '10:00am to 3:00pm' },
 ]
 
-const DAY_SHORT: Record<string, string> = {
-  Monday: 'Mon',
-  Tuesday: 'Tue',
-  Wednesday: 'Wed',
-  Thursday: 'Thu',
-  Friday: 'Fri',
-  Saturday: 'Sat',
-  Sunday: 'Sun',
+/**
+ * Day-name translations. `clinic.hours` itself stays English (it also feeds the
+ * machine-readable `openingHoursSpecification` JSON-LD, where day tokens are not meant to
+ * be human-language localized) — only the display layer translates.
+ */
+const DAY_SHORT: Record<Locale, Record<string, string>> = {
+  en: { Monday: 'Mon', Tuesday: 'Tue', Wednesday: 'Wed', Thursday: 'Thu', Friday: 'Fri', Saturday: 'Sat', Sunday: 'Sun' },
+  zh: { Monday: '周一', Tuesday: '周二', Wednesday: '周三', Thursday: '周四', Friday: '周五', Saturday: '周六', Sunday: '周日' },
+  ms: { Monday: 'Isnin', Tuesday: 'Selasa', Wednesday: 'Rabu', Thursday: 'Khamis', Friday: 'Jumaat', Saturday: 'Sabtu', Sunday: 'Ahad' },
 }
 
-/** 24h "20:00" -> "8pm", "10:30" -> "10.30am". Minutes only appear when there are any. */
+/** "to" in a day/time range and "&" joining same-time blocks, per locale. */
+const RANGE_WORDS: Record<Locale, { to: string; and: string }> = {
+  en: { to: 'to', and: '&' },
+  zh: { to: '至', and: '、' },
+  ms: { to: 'hingga', and: '&' },
+}
+
+/** 24h "20:00" -> "8pm", "10:30" -> "10.30am". Universal across locales, like the clinic's own NAP times already are. */
 function clock(time: string) {
   const [h, m] = time.split(':').map(Number)
   return `${h % 12 || 12}${m ? `.${String(m).padStart(2, '0')}` : ''}${h < 12 ? 'am' : 'pm'}`
 }
 
 /** A run of three or more days collapses to a range; one or two are listed. */
-function daySpan(days: readonly string[]) {
+function daySpan(locale: Locale, days: readonly string[]) {
+  const short = DAY_SHORT[locale]
   return days.length >= 3
-    ? `${DAY_SHORT[days[0]]} to ${DAY_SHORT[days[days.length - 1]]}`
-    : days.map((d) => DAY_SHORT[d]).join(' & ')
+    ? `${short[days[0]]} ${RANGE_WORDS[locale].to} ${short[days[days.length - 1]]}`
+    : days.map((d) => short[d]).join(` ${RANGE_WORDS[locale].and} `)
+}
+
+/**
+ * Locale-aware hours table for the footer/homepage/book-now display. `hoursDisplay` above
+ * only ever produced English; every page that rendered it (the footer on every route,
+ * `/book-now`, the homepage) was showing "Monday to Thursday" etc. even on zh/ms pages
+ * until this was added — a sitewide gap of the same shape as `waMessage`'s, caught while
+ * localizing the homepage's own "Visit us" section.
+ */
+export function hoursDisplayFor(locale: Locale) {
+  return clinic.hours.map((block) => ({
+    label: daySpan(locale, block.days),
+    value: `${clock(block.opens)} ${RANGE_WORDS[locale].to} ${clock(block.closes)}`,
+  }))
 }
 
 /**
  * The whole week on one line: "Mon to Thu & Sat 10am to 8pm · Fri 10am to 5pm · Sun 10am to 3pm".
  *
- * Ranges read "to" rather than taking an en dash. That is the house no-dashes rule applied
- * to rendered copy (AGENTS.md), and this string renders in the header utility bar on every
- * route, so it is about nine characters longer than it used to be. If the strip ever runs
- * out of room, shorten it by dropping a block, not by reinstating the dash.
+ * Ranges read "to"/its locale equivalent rather than taking an en dash. That is the house
+ * no-dashes rule applied to rendered copy (AGENTS.md), and this string renders in the
+ * header utility bar on every route, so it is about nine characters longer than it used to
+ * be. If the strip ever runs out of room, shorten it by dropping a block, not by
+ * reinstating the dash.
  *
  * DERIVED from `clinic.hours`, never typed out. The header's utility bar used to carry a
  * hand-written "Mon to Thu, 10am to 8pm", which was both a second copy of the hours and an
@@ -170,21 +203,21 @@ function daySpan(days: readonly string[]) {
  * is exactly how they drift out of sync with the Google Business Profile.
  *
  * Blocks sharing an open/close pair are merged, so Monday–Thursday and Saturday state their
- * shared 8pm close once. Change `clinic.hours` and this follows.
+ * shared 8pm close once. Change `clinic.hours` and this follows, in every locale.
  */
-export const hoursSummary = (() => {
+export function hoursSummaryFor(locale: Locale) {
   const byTime = new Map<string, string[]>()
   for (const block of clinic.hours) {
     const key = `${block.opens}-${block.closes}`
-    byTime.set(key, [...(byTime.get(key) ?? []), daySpan(block.days)])
+    byTime.set(key, [...(byTime.get(key) ?? []), daySpan(locale, block.days)])
   }
   return [...byTime]
     .map(([key, spans]) => {
       const [opens, closes] = key.split('-')
-      return `${spans.join(' & ')} ${clock(opens)} to ${clock(closes)}`
+      return `${spans.join(` ${RANGE_WORDS[locale].and} `)} ${clock(opens)} ${RANGE_WORDS[locale].to} ${clock(closes)}`
     })
     .join(' · ')
-})()
+}
 
 /**
  * Professional registrations.
@@ -396,3 +429,21 @@ export const practitioners = [
 /** Practitioners whose page is substantial enough to submit for indexing. */
 export const indexablePractitioners = () => practitioners.filter(hasBio)
 export const practitionerBySlug = (slug: string) => practitioners.find((p) => p.slug === slug)
+
+/**
+ * Locale-aware bio lookup. English keeps reading `bio` straight off `practitioners` (zero
+ * change to the English path); `zh`/`ms` read a separate keyed map (`lib/practitioner-
+ * bios.zh.ts` / `.ms.ts`) so a locale's bio can be authored and reviewed independently of
+ * the roster facts (name/role/credentials/registrations) in `practitioners`, which never
+ * vary by language. Returns `undefined` — not an English fallback — when that locale's bio
+ * doesn't exist yet, so callers gate on it the same way English gates on `hasBio`.
+ */
+export const bioFor = (locale: Locale, slug: string): readonly string[] | undefined => {
+  if (locale === 'en') return practitionerBySlug(slug)?.bio
+  return { zh: practitionerBiosZh, ms: practitionerBiosMs }[locale]?.[slug]
+}
+
+export const hasBioFor = (locale: Locale, slug: string) => (bioFor(locale, slug)?.length ?? 0) > 0
+
+export const indexablePractitionersFor = (locale: Locale) =>
+  practitioners.filter((p) => hasBioFor(locale, p.slug))

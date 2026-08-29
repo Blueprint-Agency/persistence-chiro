@@ -2,6 +2,7 @@ import Image from 'next/image'
 
 import { clinic, googleReviews } from '@/lib/clinic'
 import { relativeDate, reviews } from '@/lib/reviews'
+import type { Dictionary } from '@/dictionaries/types'
 import { Eyebrow } from '@/components/ui'
 import { RailArrows } from '@/components/RailArrows'
 
@@ -105,7 +106,7 @@ function Avatar({ name, color }: { name: string; color: string }) {
   )
 }
 
-export function GoogleReviews() {
+export function GoogleReviews({ dict }: { dict: Dictionary }) {
   // Renders nothing rather than an empty widget with a zero count — same contract as the
   // rating badge and the registration lists: no data means no claim.
   if (!googleReviews.verified || reviews.length === 0) return null
@@ -114,11 +115,11 @@ export function GoogleReviews() {
   const now = new Date()
 
   return (
-    <section aria-label="Reviews" className="border-t border-line bg-brand-aqua/40">
+    <section aria-label={dict.page.reviewsAriaLabel} className="border-t border-line bg-brand-aqua/40">
       <div className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
-        <Eyebrow>From our patients in Cheras</Eyebrow>
+        <Eyebrow>{dict.page.fromOurPatientsInCheras}</Eyebrow>
         <h2 className="mt-5 mb-8 max-w-2xl text-3xl font-extrabold leading-tight sm:text-4xl">
-          What people say after being seen here
+          {dict.page.whatPeopleSayAfterBeingSeenHere}
         </h2>
 
         {/* Business panel beside the rail, the way an embedded Google widget arranges it:
@@ -139,7 +140,7 @@ export function GoogleReviews() {
               <p className="text-base font-bold leading-snug text-ink">{clinic.name}</p>
               <Stars className="mt-2 h-4 w-4" />
               <p className="mt-2 text-sm text-ink-muted">
-                {googleReviews.count} <GoogleWordmark /> reviews
+                {googleReviews.count} <GoogleWordmark /> {dict.page.googleReviewsSuffix}
               </p>
               <a
                 href={googleReviews.url}
@@ -147,7 +148,7 @@ export function GoogleReviews() {
                 rel="noopener"
                 className="mt-4 inline-flex items-center justify-center rounded-full border border-brand-slate/30 px-5 py-2.5 text-sm font-semibold text-brand-slate transition-colors hover:bg-brand-slate/5"
               >
-                Write a review
+                {dict.page.writeAReview}
               </a>
             </div>
           </div>
@@ -167,7 +168,7 @@ export function GoogleReviews() {
             <ul
               id="google-review-rail"
               tabIndex={0}
-              aria-label="Google reviews"
+              aria-label={dict.page.googleReviewsRailAriaLabel}
               className="rail -mx-4 flex snap-x snap-mandatory gap-6 overflow-x-auto px-4 pb-5 lg:mx-0 lg:px-0"
             >
               {reviews.map((r) => (
@@ -210,13 +211,17 @@ export function GoogleReviews() {
                       rel="noopener"
                       className="mt-4 inline-block text-sm font-semibold text-brand-slate underline underline-offset-4"
                     >
-                      Read more
+                      {dict.page.readMoreReviews}
                     </a>
                   </figure>
                 </li>
               ))}
             </ul>
-            <RailArrows targetId="google-review-rail" />
+            <RailArrows
+              targetId="google-review-rail"
+              previousLabel={dict.page.previousReviewsAriaLabel}
+              nextLabel={dict.page.moreReviewsAriaLabel}
+            />
           </div>
         </div>
       </div>

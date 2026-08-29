@@ -79,8 +79,9 @@ export const offers = [
 /**
  * Patient testimonials, migrated from the live homepage.
  *
- * These render on the homepage AND on all five service pages (`ServiceTestimonials` in
- * components/service.tsx), so anything in them is on six routes, not one.
+ * These render on the homepage. `ServiceTestimonials` in components/service.tsx used to
+ * reuse them on all five service pages too; it was dead code (superseded by the dict-driven
+ * `GoogleReviews` component) and was removed.
  *
  * TWO CLIENT DECISIONS, 2026-08-01, taken when "Dr" was dropped as a title for the clinic's
  * own practitioners:
@@ -124,3 +125,28 @@ export const accreditations = [
     height: 206,
   },
 ]
+
+/**
+ * Locale dispatch for `homeIntro`/`offers` — see the matching comment in `lib/conditions.ts`
+ * for the rationale. `offer.href` is shared across all three locales (see `lib/home.zh.ts`'s
+ * header comment); only `title`/`image`/`alt`/`body` vary, so each locale's array is zipped
+ * back onto the English `href`s here rather than repeating them in every sibling file.
+ */
+import type { Locale } from './i18n'
+import { homeIntroZh, offersZh } from './home.zh.ts'
+import { homeIntroMs, offersMs } from './home.ms.ts'
+
+const homeIntroByLocale: Record<Locale, typeof homeIntro> = {
+  en: homeIntro,
+  zh: homeIntroZh,
+  ms: homeIntroMs,
+}
+
+const offersByLocale: Record<Locale, typeof offers> = {
+  en: offers,
+  zh: offers.map((o, i) => ({ ...o, title: offersZh[i].title, image: offersZh[i].image, alt: offersZh[i].alt, body: offersZh[i].body })),
+  ms: offers.map((o, i) => ({ ...o, title: offersMs[i].title, image: offersMs[i].image, alt: offersMs[i].alt, body: offersMs[i].body })),
+}
+
+export const homeIntroFor = (locale: Locale) => homeIntroByLocale[locale]
+export const offersFor = (locale: Locale) => offersByLocale[locale]

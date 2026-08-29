@@ -115,3 +115,37 @@ export const aftercare = [
     body: 'Apply an ice pack wrapped in cloth for 3 rounds of 5 minutes, with 5 minute rests between. This helps settle pain and swelling. Avoid heat on a freshly irritated joint, and check with your chiropractor if you are unsure.',
   },
 ] as const
+
+/**
+ * Locale dispatch for the /what-to-expect and homepage content — see the matching comment
+ * in `lib/conditions.ts` for the rationale.
+ */
+import type { Locale } from './i18n'
+import { clinicFaqsZh, homeFaqsZh, aftercareIntroZh, aftercareZh } from './faqs.zh.ts'
+import { clinicFaqsMs, homeFaqsMs, aftercareIntroMs, aftercareMs } from './faqs.ms.ts'
+
+const clinicFaqsByLocale: Record<Locale, Faq[]> = {
+  en: clinicFaqs,
+  zh: clinicFaqsZh,
+  ms: clinicFaqsMs,
+}
+const homeFaqsByLocale: Record<Locale, Faq[]> = {
+  en: homeFaqs,
+  zh: homeFaqsZh,
+  ms: homeFaqsMs,
+}
+const aftercareIntroByLocale: Record<Locale, string> = {
+  en: aftercareIntro,
+  zh: aftercareIntroZh,
+  ms: aftercareIntroMs,
+}
+const aftercareByLocale: Record<Locale, readonly { heading: string; body: string }[]> = {
+  en: aftercare,
+  zh: aftercareZh,
+  ms: aftercareMs,
+}
+
+export const clinicFaqsFor = (locale: Locale) => clinicFaqsByLocale[locale]
+export const homeFaqsFor = (locale: Locale) => homeFaqsByLocale[locale]
+export const aftercareIntroFor = (locale: Locale) => aftercareIntroByLocale[locale]
+export const aftercareFor = (locale: Locale) => aftercareByLocale[locale]

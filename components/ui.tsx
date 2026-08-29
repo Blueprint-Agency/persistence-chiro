@@ -3,7 +3,8 @@ import type { ReactNode } from 'react'
 
 
 import type { NavItem } from '@/lib/nav'
-import { whatsappLink, waMessage } from '@/lib/whatsapp'
+import { whatsappLink } from '@/lib/whatsapp'
+import type { Dictionary } from '@/dictionaries/types'
 
 /**
  * Shared primitives. Only things used in three or more places live here — everything
@@ -153,11 +154,14 @@ export function GhostButton({
  */
 export function WhatsAppButton({
   message,
-  children = 'WhatsApp us to book',
+  children,
   attention = false,
 }: {
   message: string
-  children?: ReactNode
+  // No default: every call site passes localized text, and a default here would silently
+  // ship English if a future call site on a zh/ms page ever forgot to pass one — see the
+  // multilingual memory for the KeyTakeaways incident this mirrors.
+  children: ReactNode
   /**
    * Adds the periodic pulse-and-wobble (see `.cta-attention` in globals.css).
    *
@@ -230,22 +234,30 @@ export function PageHero({
  * only thing any of these pages is ultimately for.
  */
 export function CtaBand({
-  heading = 'Ready to stop working around the pain?',
-  body = 'Message our Gonstead chiropractors today. Open seven days, right next to Sunway Velocity.',
-  message = waMessage.general,
+  dict,
+  heading,
+  body,
+  message,
 }: {
+  dict: Dictionary
   heading?: string
   body?: string
+  // No default: a `waMessage.general` default here can't know the page's locale, and every
+  // call site already has `locale` in scope to build one explicitly — see the multilingual
+  // memory for the incident this mirrors (the WhatsApp message was English on every locale
+  // for the whole session because of exactly this kind of unlocalized default).
   /** Prefilled WhatsApp text. Pass a `waMessage.*` builder so the band knows its page. */
-  message?: string
+  message: string
 }) {
   return (
     <section className="bg-brand-gold">
       <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-12 md:flex-row md:items-center md:justify-between lg:py-14">
         <div>
-          <h2 className="text-2xl font-extrabold leading-tight sm:text-3xl">{heading}</h2>
+          <h2 className="text-2xl font-extrabold leading-tight sm:text-3xl">
+            {heading ?? dict.page.readyToStopWorkingAroundThePain}
+          </h2>
           {/* /70 on gold computes to ~4.5:1 — right on the AA line. /80 clears it at ~5.9:1. */}
-          <p className="mt-2 max-w-xl text-ink/80">{body}</p>
+          <p className="mt-2 max-w-xl text-ink/80">{body ?? dict.page.ctaBandDefaultBody}</p>
         </div>
         <div className="flex-none">
           {/* Ink rather than gold: this button sits ON the gold band, so a gold fill would
@@ -258,7 +270,7 @@ export function CtaBand({
             className="inline-flex items-center justify-center gap-2 rounded-full bg-ink px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-slate-deep"
           >
             <WhatsAppIcon />
-            WhatsApp us
+            {dict.page.whatsappUsShort}
           </a>
         </div>
       </div>

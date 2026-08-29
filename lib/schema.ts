@@ -2,9 +2,10 @@
  * JSON-LD builders. One per template, per the schema table in
  * `proposed-site-architecture.md`. All NAP flows from `clinic` — never inline it here.
  */
-import { clinic, practitioners, publishedRegistrations, type Registration } from './clinic'
-import { publishedServices } from './services'
+import { clinic, practitioners, publishedRegistrations, hasBioFor, type Registration } from './clinic'
+import { publishedServicesFor } from './services'
 import { whatsappLink, waMessage } from './whatsapp'
+import { type Locale, LOCALES, LOCALE_TAG, pathFor } from './i18n'
 
 export const SITE_URL = 'https://www.persistencechiropractic.com'
 
@@ -32,14 +33,14 @@ const openingHoursSpecification = clinic.hours.map((h) => ({
  * NO `SearchAction`. The Wix site declared one pointing at `/search?q=` and the rebuild has
  * no search route, so claiming a sitelinks searchbox would advertise a URL that 404s.
  */
-export function webSiteSchema() {
+export function webSiteSchema(locale: Locale) {
   return {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     '@id': `${SITE_URL}/#website`,
     url: SITE_URL,
     name: clinic.name,
-    inLanguage: 'en-MY',
+    inLanguage: LOCALE_TAG[locale],
     publisher: { '@id': `${SITE_URL}/#clinic` },
   }
 }
@@ -61,8 +62,14 @@ export function webSiteSchema() {
  * `employee` reads through `publishedRegistrations`, so an unconfirmed registration number
  * is absent from the business node exactly as it is from the practitioner's own page. The
  * gate is not bypassable by going through a different builder.
+ *
+ * ⚠️ RENDERED ONCE PER LOCALE, ON THE SAME `@id` NODE. Every locale's pages reference
+ * `${SITE_URL}/#clinic` by id rather than repeating this block, so `availableService` MUST
+ * read that locale's own service names (`publishedServicesFor(locale)`) rather than always
+ * English — otherwise whichever locale's static page happens to build last silently wins
+ * for every other locale's pages too.
  */
-export function localBusinessSchema() {
+export function localBusinessSchema(locale: Locale) {
   return {
     '@context': 'https://schema.org',
     '@type': 'Chiropractic',
@@ -85,19 +92,24 @@ export function localBusinessSchema() {
       { '@type': 'Place', name: 'Maluri' },
       { '@type': 'Place', name: 'Kuala Lumpur' },
     ],
+    availableLanguage: LOCALES.map((l) => LOCALE_TAG[l]),
     /** Derived, so a service added or unpublished in lib/services.ts follows automatically. */
-    availableService: publishedServices().map((s) => ({
+    availableService: publishedServicesFor(locale).map((s) => ({
       '@type': 'MedicalProcedure',
       name: s.title,
-      url: `${SITE_URL}/services/${s.slug}`,
+      url: `${SITE_URL}${pathFor(locale, `/services/${s.slug}`)}`,
     })),
     employee: practitioners.map((p) => {
       const registrations = publishedRegistrations(p)
+      // Only link to the practitioner's own page when it actually exists in this locale
+      // (gated by hasBioFor, same as the page's own generateStaticParams) — a Person node
+      // is still valid with no `url`, whereas a URL that 404s is not.
+      const url = hasBioFor(locale, p.slug) ? `${SITE_URL}${pathFor(locale, `/about/${p.slug}`)}` : undefined
       return {
         '@type': 'Person',
         name: p.name,
         jobTitle: p.role,
-        url: `${SITE_URL}/about/${p.slug}`,
+        ...(url ? { url } : {}),
         ...(p.credentials ? { description: p.credentials } : {}),
         ...(registrations.length
           ? {
@@ -115,7 +127,9 @@ export function localBusinessSchema() {
     founder: {
       '@type': 'Person',
       name: 'Valerie Na',
-      url: `${SITE_URL}/about/valerie-na`,
+      ...(hasBioFor(locale, 'valerie-na')
+        ? { url: `${SITE_URL}${pathFor(locale, '/about/valerie-na')}` }
+        : {}),
     },
     sameAs: [clinic.socials.instagram, clinic.socials.facebook],
     /**
@@ -128,7 +142,7 @@ export function localBusinessSchema() {
       '@type': 'ReserveAction',
       target: {
         '@type': 'EntryPoint',
-        urlTemplate: whatsappLink(waMessage.general),
+        urlTemplate: whatsappLink(waMessage.general(locale)),
         actionPlatform: ['http://schema.org/DesktopWebPlatform', 'http://schema.org/MobileWebPlatform'],
       },
       result: { '@type': 'Reservation', name: 'Chiropractic appointment' },

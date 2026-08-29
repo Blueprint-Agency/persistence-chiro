@@ -21,30 +21,46 @@ import { WhatsAppIcon } from '@/components/ui'
 
 const WHATSAPP_NUMBER = '60182014088'
 
-const INTERESTS = [
-  'Corporate wellness talk or workshop',
-  'Health screening or event booth',
-  'Product or brand collaboration',
-  'Referral partnership',
-  'Something else',
-] as const
+/**
+ * Resolved, locale-specific copy — see `lib/partner-enquiry-copy.ts`'s
+ * `partnerEnquiryCopyFrom(dict)`. `interests` and `sizes` are plain string arrays rather
+ * than a `Record`/enum, because the component only ever needs to display and echo them
+ * back verbatim into the WhatsApp message; it never branches on which one was picked.
+ */
+export type PartnerEnquiryCopy = {
+  greeting: string
+  yourName: string
+  organisationLabel: string
+  whatAreYouInterestedIn: string
+  interests: readonly [string, string, string, string, string]
+  roughlyHowManyPeople: string
+  optionalLabel: string
+  preferNotToSay: string
+  sizes: readonly [string, string, string, string]
+  anythingElseWeShouldKnow: string
+  sendThisOnWhatsapp: string
+  opensWhatsappCaption: string
+  nameFieldPrefix: string
+  organisationFieldPrefix: string
+  interestedInFieldPrefix: string
+  approxPeopleFieldPrefix: string
+  notesFieldPrefix: string
+}
 
-const SIZES = ['', 'Under 20', '20 to 50', '50 to 200', '200+'] as const
-
-export function PartnerEnquiry() {
+export function PartnerEnquiry({ copy }: { copy: PartnerEnquiryCopy }) {
   const [name, setName] = useState('')
   const [org, setOrg] = useState('')
-  const [interest, setInterest] = useState<string>(INTERESTS[0])
+  const [interest, setInterest] = useState<string>(copy.interests[0])
   const [size, setSize] = useState<string>('')
   const [notes, setNotes] = useState('')
 
   const lines = [
-    "Hi Persistence Chiropractic, I'd like to explore a partnership.",
-    name && `• Name: ${name}`,
-    org && `• Organisation: ${org}`,
-    interest && `• Interested in: ${interest}`,
-    size && `• Approx. people: ${size}`,
-    notes && `• Notes: ${notes}`,
+    copy.greeting,
+    name && `• ${copy.nameFieldPrefix}: ${name}`,
+    org && `• ${copy.organisationFieldPrefix}: ${org}`,
+    interest && `• ${copy.interestedInFieldPrefix}: ${interest}`,
+    size && `• ${copy.approxPeopleFieldPrefix}: ${size}`,
+    notes && `• ${copy.notesFieldPrefix}: ${notes}`,
   ].filter(Boolean)
 
   const href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(lines.join('\n'))}`
@@ -57,7 +73,7 @@ export function PartnerEnquiry() {
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <label htmlFor="pe-name" className={label}>
-            Your name
+            {copy.yourName}
           </label>
           <input
             id="pe-name"
@@ -71,7 +87,7 @@ export function PartnerEnquiry() {
 
         <div>
           <label htmlFor="pe-org" className={label}>
-            Organisation
+            {copy.organisationLabel}
           </label>
           <input
             id="pe-org"
@@ -85,7 +101,7 @@ export function PartnerEnquiry() {
 
         <div>
           <label htmlFor="pe-interest" className={label}>
-            What are you interested in?
+            {copy.whatAreYouInterestedIn}
           </label>
           <select
             id="pe-interest"
@@ -93,7 +109,7 @@ export function PartnerEnquiry() {
             onChange={(e) => setInterest(e.target.value)}
             className={field}
           >
-            {INTERESTS.map((i) => (
+            {copy.interests.map((i) => (
               <option key={i} value={i}>
                 {i}
               </option>
@@ -103,7 +119,8 @@ export function PartnerEnquiry() {
 
         <div>
           <label htmlFor="pe-size" className={label}>
-            Roughly how many people? <span className="font-normal text-ink-muted">(optional)</span>
+            {copy.roughlyHowManyPeople}{' '}
+            <span className="font-normal text-ink-muted">({copy.optionalLabel})</span>
           </label>
           <select
             id="pe-size"
@@ -111,9 +128,10 @@ export function PartnerEnquiry() {
             onChange={(e) => setSize(e.target.value)}
             className={field}
           >
-            {SIZES.map((s) => (
-              <option key={s || 'any'} value={s}>
-                {s || 'Prefer not to say'}
+            <option value="">{copy.preferNotToSay}</option>
+            {copy.sizes.map((s) => (
+              <option key={s} value={s}>
+                {s}
               </option>
             ))}
           </select>
@@ -122,7 +140,8 @@ export function PartnerEnquiry() {
 
       <div className="mt-5">
         <label htmlFor="pe-notes" className={label}>
-          Anything else we should know? <span className="font-normal text-ink-muted">(optional)</span>
+          {copy.anythingElseWeShouldKnow}{' '}
+          <span className="font-normal text-ink-muted">({copy.optionalLabel})</span>
         </label>
         <textarea
           id="pe-notes"
@@ -140,11 +159,9 @@ export function PartnerEnquiry() {
         className="mt-7 inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
       >
         <WhatsAppIcon />
-        Send this on WhatsApp
+        {copy.sendThisOnWhatsapp}
       </a>
-      <p className="mt-3 text-sm text-ink-muted">
-        Opens WhatsApp with your answers filled in. Nothing is sent until you press send there.
-      </p>
+      <p className="mt-3 text-sm text-ink-muted">{copy.opensWhatsappCaption}</p>
     </div>
   )
 }

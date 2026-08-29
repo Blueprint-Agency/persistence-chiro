@@ -2,6 +2,7 @@ import Image from 'next/image'
 
 import { Eyebrow, Vertebrae, WhatsAppButton } from '@/components/ui'
 import { RatingBadge } from '@/components/service'
+import type { Dictionary } from '@/dictionaries/types'
 
 /**
  * Centred hero for the condition pages, over a photograph with a parallax drift.
@@ -23,11 +24,13 @@ import { RatingBadge } from '@/components/service'
  * unreadable, which is the wrong trade on a page someone reads while in pain.
  */
 export function ConditionHero({
+  dict,
   title,
   intro,
   message,
   image,
 }: {
+  dict: Dictionary
   title: string
   intro?: string
   message: string
@@ -76,7 +79,7 @@ export function ConditionHero({
       <div className="mx-auto max-w-5xl px-4 py-20 text-center lg:py-28">
         {/* Eyebrow is a flex row by default, so it needs centring explicitly. */}
         <div className="flex justify-center">
-          <Eyebrow tone="light">Conditions</Eyebrow>
+          <Eyebrow tone="light">{dict.page.conditionsEyebrow}</Eyebrow>
         </div>
 
         <h1 className="mt-6 text-4xl font-extrabold leading-[1.1] text-white sm:text-5xl">
@@ -92,15 +95,15 @@ export function ConditionHero({
             service heroes. */}
         <div className="mt-8 flex justify-center">
           <WhatsAppButton attention message={message}>
-            Book an assessment
+            {dict.page.bookAnAssessment}
           </WhatsAppButton>
         </div>
 
         <div className="mt-7 flex flex-col items-center gap-3">
-          <RatingBadge tone="light" />
+          <RatingBadge dict={dict} tone="light" />
           <p className="flex items-center gap-2.5 text-sm text-white/70">
             <Vertebrae className="text-brand-gold" />
-            Open seven days · Cheras, Maluri
+            {dict.page.openSevenDaysLocation}
           </p>
         </div>
       </div>

@@ -3,7 +3,7 @@ import {
   addressOneLine,
   clinic,
   googleReviews,
-  hoursSummary,
+  hoursSummaryFor,
   indexablePractitioners,
   practitioners,
 } from '@/lib/clinic'
@@ -70,7 +70,7 @@ export async function GET() {
     `phone: ${clinic.phone}`,
     `phone_e164: ${clinic.phoneE164}`,
     `email: ${clinic.email}`,
-    `opening_hours: ${hoursSummary}`,
+    `opening_hours: ${hoursSummaryFor('en')}`,
     `single_clinic_location: true`,
     ...(rating ? [`google_rating: ${rating}`] : []),
     `booking_method: WhatsApp preferred; online booking available`,

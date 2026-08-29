@@ -3,8 +3,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import { googleReviews, practitionerBySlug } from '@/lib/clinic'
-import { accreditations, testimonials } from '@/lib/home'
+import { accreditations } from '@/lib/home'
 import type { Outcome } from '@/lib/services'
+import { type Locale, pathFor } from '@/lib/i18n'
+import { pathExistsIn } from '@/lib/locale-availability'
+import type { Dictionary } from '@/dictionaries/types'
 import { ConcernIllustration } from '@/components/ConcernIllustration'
 import {
   CheckIcon,
@@ -14,7 +17,7 @@ import {
   WhatsAppButton,
   WhatsAppIcon,
 } from '@/components/ui'
-import { whatsappLink, waMessage } from '@/lib/whatsapp'
+import { whatsappLink } from '@/lib/whatsapp'
 
 /** The founding chiropractor reviews the clinical content on the money pages. */
 const reviewer = practitionerBySlug('valerie-na')!
@@ -34,7 +37,13 @@ const reviewer = practitionerBySlug('valerie-na')!
  * fabricated or stale number can never ship — the number has to be read off the live
  * listing and the flag flipped by hand. See lib/clinic.ts.
  */
-export function RatingBadge({ tone = 'light' }: { tone?: 'light' | 'dark' }) {
+export function RatingBadge({
+  dict,
+  tone = 'light',
+}: {
+  dict: Dictionary
+  tone?: 'light' | 'dark'
+}) {
   if (!googleReviews.verified) return null
   const muted = tone === 'light' ? 'text-white/70' : 'text-ink-muted'
   const strong = tone === 'light' ? 'text-white' : 'text-ink'
@@ -51,8 +60,10 @@ export function RatingBadge({ tone = 'light' }: { tone?: 'light' | 'dark' }) {
       <span className={strong}>
         <b className="font-bold">{googleReviews.rating.toFixed(1)}</b>
       </span>
+      {/* Reuses the same "{count} Google {suffix}" pattern <GoogleReviews> already
+          established, rather than inventing a new dictionary key for a "from" prefix. */}
       <span className={muted}>
-        from {googleReviews.count} Google reviews
+        {googleReviews.count} Google {dict.page.googleReviewsSuffix}
       </span>
     </a>
   )
@@ -62,7 +73,13 @@ export function RatingBadge({ tone = 'light' }: { tone?: 'light' | 'dark' }) {
  * Trust bar: accreditation logos plus a one-line credential statement. The logos are the
  * same trimmed exports the homepage uses. No efficacy claim here, only who we are.
  */
-export function TrustBar({ tone = 'white' }: { tone?: 'white' | 'cream' }) {
+export function TrustBar({
+  dict,
+  tone = 'white',
+}: {
+  dict: Dictionary
+  tone?: 'white' | 'cream'
+}) {
   return (
     /* `tone` exists for the same reason <KeyTakeaways> has one: the condition pages run this
        directly under the hero where white is right, while the service pages moved it down
@@ -70,13 +87,12 @@ export function TrustBar({ tone = 'white' }: { tone?: 'white' | 'cream' }) {
        read as one slab however many hairlines sit between them. Deleting <KeyTakeaways/> from
        the service pages removed the cream band that used to break that run. */
     <section
-      aria-label="Accreditations"
+      aria-label={dict.page.accreditationsAriaLabel}
       className={`border-y border-line ${tone === 'white' ? 'bg-white' : ''}`}
     >
       <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-8 lg:flex-row lg:items-center lg:justify-between lg:gap-10">
         <p className="max-w-sm text-sm font-semibold leading-relaxed text-ink">
-          Registered chiropractors and physiotherapists in Cheras, Maluri. Open seven days,
-          right beside Sunway Velocity.
+          {dict.page.registeredPractitionersLine}
         </p>
         <ul className="flex flex-wrap items-center gap-x-8 gap-y-4">
           {accreditations.map((a) => (
@@ -98,81 +114,6 @@ export function TrustBar({ tone = 'white' }: { tone?: 'white' | 'cream' }) {
 }
 
 /**
- * Patient testimonials, reused verbatim from the homepage data (real, migrated reviews).
- * The "read more" link points at the real Google Business Profile listing.
- */
-export function ServiceTestimonials() {
-  return (
-    <section className="border-t border-line bg-brand-aqua/40">
-      <div className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
-        <Eyebrow>From our patients in Cheras</Eyebrow>
-        <h2 className="mt-5 max-w-2xl text-3xl font-extrabold leading-tight sm:text-4xl">
-          What people say after being seen here
-        </h2>
-        {/* Horizontal rail rather than a stacked grid. Reviews are the longest block on a
-            service page and pushed the FAQ and the ask a long way down; side-by-side they
-            cost one screen instead of three, and a partially visible next card is a clearer
-            "there are more" signal than a scrollbar.
-            `tabIndex` makes the rail keyboard-scrollable, which a plain overflow container
-            is not. Negative margin lets cards bleed to the viewport edge while the first one
-            still lines up with the heading.
-
-            With one review there is nothing to scroll, so the rail stops being a rail: no
-            focusable scroll container to tab into and no snap points, since offering a
-            keyboard user a scrollable region with one item wastes a tab stop. The card also
-            widens, because a 24rem card next to a lot of empty band looks like the rest
-            failed to load. All of it restores itself when a second review is approved. */}
-        {(() => {
-          const isRail = testimonials.length > 1
-          return (
-        <ul
-          tabIndex={isRail ? 0 : undefined}
-          aria-label="Patient reviews"
-          className={
-            isRail
-              ? 'rail -mx-4 mt-10 flex snap-x snap-mandatory gap-6 overflow-x-auto px-4 pb-5 lg:mx-0 lg:px-0'
-              : 'mt-10 flex gap-6'
-          }
-        >
-          {testimonials.map((t) => (
-            <li
-              key={t.name}
-              className={
-                isRail
-                  ? 'w-[82%] flex-none snap-start sm:w-[26rem] lg:w-[24rem]'
-                  : 'w-full max-w-2xl'
-              }
-            >
-              <figure className="flex h-full flex-col rounded-3xl border border-line bg-white p-8 shadow-ambient">
-                <Vertebrae className="text-brand-gold" />
-                <blockquote className="mt-5 flex-1 space-y-3 leading-relaxed text-ink-muted">
-                  <p>&ldquo;{t.quote}&rdquo;</p>
-                  {t.detail && <p>{t.detail}</p>}
-                </blockquote>
-                <figcaption className="mt-6 border-t border-line pt-4 text-sm font-semibold text-ink">
-                  {t.name}
-                  <span className="font-normal text-ink-muted"> · patient review, Cheras</span>
-                </figcaption>
-              </figure>
-            </li>
-          ))}
-        </ul>
-          )
-        })()}
-        <a
-          href={googleReviews.url}
-          target="_blank"
-          rel="noopener"
-          className="mt-8 inline-block text-sm font-semibold text-brand-slate underline underline-offset-4"
-        >
-          Read more reviews on Google
-        </a>
-      </div>
-    </section>
-  )
-}
-
-/**
  * The service page hero: text column, photograph beside it on desktop.
  *
  * SHARED SO THE TWO ROUTES CANNOT DRIFT. app/services/[slug] built this inline and
@@ -185,13 +126,15 @@ export function ServiceTestimonials() {
  * is one animated button per page and the hero is the page's decision about where that goes.
  */
 export function ServiceHero({
+  dict,
   title,
   intro,
   image,
   assurances,
   message,
-  cta = 'Enquire on WhatsApp',
+  cta,
 }: {
+  dict: Dictionary
   title: string
   intro?: string
   image?: { src: string; alt: string }
@@ -204,7 +147,7 @@ export function ServiceHero({
       <div className="mx-auto max-w-6xl px-4 py-14 lg:py-20">
         <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-16">
           <div>
-            <Eyebrow tone="light">Our services</Eyebrow>
+            <Eyebrow tone="light">{dict.page.ourServices}</Eyebrow>
             <h1 className="mt-6 max-w-2xl text-4xl font-extrabold leading-[1.1] text-white sm:text-5xl">
               {title}
             </h1>
@@ -216,7 +159,7 @@ export function ServiceHero({
                 wants it. */}
             <div className="mt-8">
               <WhatsAppButton attention message={message}>
-                {cta}
+                {cta ?? dict.header.enquireOnWhatsapp}
               </WhatsAppButton>
             </div>
             {/* Reassurance sits with the button, not nine paragraphs below it. These restate
@@ -233,12 +176,12 @@ export function ServiceHero({
               </ul>
             ) : (
               <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-white/70">
-                <span>Open seven days · Cheras, Maluri</span>
+                <span>{dict.page.openSevenDaysLocation}</span>
               </div>
             )}
 
             <div className="mt-6">
-              <RatingBadge tone="light" />
+              <RatingBadge dict={dict} tone="light" />
             </div>
           </div>
 
@@ -269,9 +212,11 @@ export function ServiceHero({
  * this block is scanned in about four seconds and anything more competes with the hero.
  */
 export function KeyTakeaways({
+  dict,
   items,
   tone = 'white',
 }: {
+  dict: Dictionary
   items?: { q: string; a: string }[]
   /**
    * Which ground the band sits on. `white` is the original and stays the default, because
@@ -287,9 +232,9 @@ export function KeyTakeaways({
   return (
     <section className={`border-b border-line ${tone === 'white' ? 'bg-white' : ''}`}>
       <div className="mx-auto max-w-6xl px-4 py-14 lg:py-16">
-        <Eyebrow>Key takeaways</Eyebrow>
+        <Eyebrow>{dict.page.keyTakeawaysEyebrow}</Eyebrow>
         <h2 className="mt-5 max-w-2xl text-3xl font-extrabold leading-tight sm:text-4xl">
-          The short answers
+          {dict.page.theShortAnswers}
         </h2>
         <dl className="mt-10 grid gap-x-12 gap-y-7 md:grid-cols-2">
           {items.map((t) => (
@@ -316,13 +261,21 @@ export function KeyTakeaways({
  * down while still making the mistake impossible to ship unnoticed.
  */
 function linkifyBody(
+  locale: Locale,
   body: string,
   links?: readonly { phrase: string; href: string }[],
 ): ReactNode {
   if (!links || links.length === 0) return body
 
+  // A target that doesn't exist yet in this locale is left as plain text rather than a
+  // link — same "skip rather than 404" contract the doc comment above already promises
+  // for a phrase that isn't found, extended to a phrase that's found but whose page isn't
+  // live in this locale yet (see the multilingual plan's Track A2 draft-gating).
+  const live = links.filter((l) => pathExistsIn(locale, l.href))
+  if (live.length === 0) return body
+
   // Longest phrase first, so a phrase containing another cannot be eaten by it.
-  const ordered = [...links].sort((a, b) => b.phrase.length - a.phrase.length)
+  const ordered = [...live].sort((a, b) => b.phrase.length - a.phrase.length)
   let parts: ReactNode[] = [body]
 
   for (const { phrase, href } of ordered) {
@@ -342,7 +295,7 @@ function linkifyBody(
         part.slice(0, at),
         <Link
           key={href}
-          href={href}
+          href={pathFor(locale, href)}
           className="font-medium text-brand-slate underline underline-offset-2 hover:text-ink"
         >
           {phrase}
@@ -370,8 +323,12 @@ function linkifyBody(
  * correct: one `h1`, section `h2`s, questions beneath the section that holds them.
  */
 export function Faqs({
+  locale,
+  dict,
   faqs,
 }: {
+  locale: Locale
+  dict: Dictionary
   faqs: readonly { q: string; a: string; links?: readonly { phrase: string; href: string }[] }[]
 }) {
   if (faqs.length === 0) return null
@@ -380,9 +337,9 @@ export function Faqs({
       <div className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
         <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
           <div>
-            <Eyebrow>Questions</Eyebrow>
+            <Eyebrow>{dict.page.questions}</Eyebrow>
             <h2 className="mt-5 text-3xl font-extrabold leading-tight sm:text-4xl">
-              Frequently asked questions
+              {dict.page.frequentlyAskedQuestions}
             </h2>
           </div>
 
@@ -399,7 +356,7 @@ export function Faqs({
                   </span>
                 </summary>
                 <p className="mt-4 leading-relaxed text-ink-muted">
-                  {linkifyBody(faq.a, faq.links)}
+                  {linkifyBody(locale, faq.a, faq.links)}
                 </p>
               </details>
             ))}
@@ -418,9 +375,11 @@ export function Faqs({
  * The `Outcome` union is only honoured if there is a single place that honours it.
  */
 export function OutcomeCards({
+  dict,
   outcomes,
   serviceName,
 }: {
+  dict: Dictionary
   outcomes?: readonly Outcome[]
   serviceName: string
 }) {
@@ -442,9 +401,9 @@ export function OutcomeCards({
 
   return (
     <section className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
-      <Eyebrow>What we help with</Eyebrow>
+      <Eyebrow>{dict.page.whatWeHelpWith}</Eyebrow>
       <h2 className="mt-5 max-w-2xl text-3xl font-extrabold leading-tight sm:text-4xl">
-        Reasons people come in for {serviceName}
+        {dict.page.reasonsPeopleComeInFor(serviceName)}
       </h2>
 
       {/* With pictures, the column count follows the content: four outcomes fill one row of
@@ -527,13 +486,15 @@ export function OutcomeCards({
  * route does for its "How it works" section.
  */
 export function InlineCta({
+  dict,
   heading,
   body,
   message,
   secondary,
 }: {
-  heading: string
-  body: string
+  dict: Dictionary
+  heading?: string
+  body?: string
   message: string
   secondary?: { href: string; label: string }
 }) {
@@ -541,14 +502,16 @@ export function InlineCta({
     <section className="mx-auto max-w-6xl px-4">
       <div className="rounded-3xl border border-line bg-white p-8 shadow-ambient lg:flex lg:items-center lg:justify-between lg:gap-10 lg:p-10">
         <div className="max-w-xl">
-          <h2 className="text-2xl font-extrabold leading-tight sm:text-3xl">{heading}</h2>
-          <p className="mt-3 leading-relaxed text-ink-muted">{body}</p>
-          <p className="mt-3 text-sm text-ink-muted/80">
-            Open seven days &middot; Cheras, Maluri &middot; no referral needed
+          <h2 className="text-2xl font-extrabold leading-tight sm:text-3xl">
+            {heading ?? dict.page.notSureWhatYouNeed}
+          </h2>
+          <p className="mt-3 leading-relaxed text-ink-muted">
+            {body ?? dict.page.notSureWhatYouNeedBody}
           </p>
+          <p className="mt-3 text-sm text-ink-muted/80">{dict.page.openSevenDaysNoReferral}</p>
         </div>
         <div className="mt-7 flex flex-wrap gap-3 lg:mt-0 lg:flex-none lg:flex-col">
-          <WhatsAppButton message={message}>Enquire on WhatsApp</WhatsAppButton>
+          <WhatsAppButton message={message}>{dict.header.enquireOnWhatsapp}</WhatsAppButton>
           {secondary && <GhostButton href={secondary.href}>{secondary.label}</GhostButton>}
         </div>
       </div>
@@ -578,9 +541,11 @@ export function InlineCta({
  * everywhere else on the site and this block asks for nothing.
  */
 export function FitCheck({
+  dict,
   data,
   serviceName,
 }: {
+  dict: Dictionary
   data?: { rightFor: readonly string[]; notRightFor: readonly string[]; note: string }
   serviceName: string
 }) {
@@ -596,13 +561,13 @@ export function FitCheck({
   const columns = [
     {
       key: 'fit',
-      heading: `This is likely a good fit if…`,
+      heading: dict.page.goodFitIf,
       items: data.rightFor,
       mark: <CheckIcon className="mt-0.5 h-6 w-6 flex-none text-brand-slate" />,
     },
     {
       key: 'not',
-      heading: `It is likely not the right fit if…`,
+      heading: dict.page.notRightFitIf,
       items: data.notRightFor,
       mark: (
         <span
@@ -617,12 +582,12 @@ export function FitCheck({
   return (
     <section className="border-y border-line">
       <div className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
-        <Eyebrow>Being straight with you</Eyebrow>
+        <Eyebrow>{dict.page.beingStraightWithYou}</Eyebrow>
         {/* Not "Is X right for you?" — <ServiceQualifier> already owns that question a few
             sections up, and two headings asking the same thing on one page is the collision
             the one-page-one-intent rule exists to prevent. */}
         <h2 className="mt-5 max-w-2xl text-3xl font-extrabold leading-tight sm:text-4xl">
-          Who {serviceName} is for, and who it is not
+          {dict.page.whoIsForAndWhoIsNot(serviceName)}
         </h2>
 
         <div className="mt-12 grid gap-6 lg:grid-cols-2 lg:gap-8">
@@ -673,19 +638,26 @@ function CrossIcon({ className = 'h-4 w-4' }: { className?: string }) {
  * the site and the only service that never linked back to /services.
  */
 export function WhereToGoNext({
+  locale,
+  dict,
   helpsWith,
   relatedLinks,
 }: {
+  locale: Locale
+  dict: Dictionary
   helpsWith: { slug: string; title: string }[]
+  /** Root-relative, UNPREFIXED hrefs (`/services/dry-needling`) — this component prefixes
+   * and locale-gates them itself, the same way `Faqs`' in-prose links do. */
   relatedLinks?: readonly { href: string; label: string }[]
 }) {
-  const hasLinks = relatedLinks && relatedLinks.length > 0
+  const liveLinks = (relatedLinks ?? []).filter((l) => pathExistsIn(locale, l.href))
+  const hasLinks = liveLinks.length > 0
   if (helpsWith.length === 0 && !hasLinks) return null
   return (
     <section className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
-      <Eyebrow>Where to go next</Eyebrow>
+      <Eyebrow>{dict.page.whereToGoNext}</Eyebrow>
       <h2 className="mt-5 max-w-2xl text-3xl font-extrabold leading-tight sm:text-4xl">
-        Related conditions and services
+        {dict.page.relatedConditionsAndServices}
       </h2>
 
       {helpsWith.length > 0 && (
@@ -693,7 +665,7 @@ export function WhereToGoNext({
           {helpsWith.map((c) => (
             <li key={c.slug}>
               <Link
-                href={`/conditions/${c.slug}`}
+                href={pathFor(locale, `/conditions/${c.slug}`)}
                 className="flex items-start gap-2.5 text-ink-muted hover:text-brand-slate"
               >
                 <Vertebrae className="mt-1.5 text-brand-gold" />
@@ -706,12 +678,12 @@ export function WhereToGoNext({
 
       <div className="mt-10 flex flex-wrap gap-3">
         {hasLinks &&
-          relatedLinks.map((link) => (
-            <GhostButton key={link.href} href={link.href}>
+          liveLinks.map((link) => (
+            <GhostButton key={link.href} href={pathFor(locale, link.href)}>
               {link.label}
             </GhostButton>
           ))}
-        <GhostButton href="/services">All our services in Cheras</GhostButton>
+        <GhostButton href={pathFor(locale, '/services')}>{dict.page.allOurServicesInCheras}</GhostButton>
       </div>
     </section>
   )
@@ -729,8 +701,10 @@ export function WhereToGoNext({
  * what an assessment led clinic can honestly tell them to do.
  */
 export function ComparisonTable({
+  dict,
   data,
 }: {
+  dict: Dictionary
   data?: {
     heading: string
     intro: string
@@ -743,7 +717,7 @@ export function ComparisonTable({
   return (
     <section className="border-t border-line bg-brand-aqua/40">
       <div className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
-        <Eyebrow>Choosing between them</Eyebrow>
+        <Eyebrow>{dict.page.choosingBetweenThem}</Eyebrow>
         <h2 className="mt-5 max-w-2xl text-3xl font-extrabold leading-tight sm:text-4xl">
           {data.heading}
         </h2>
@@ -801,13 +775,22 @@ export function ComparisonTable({
  * Google reads is the named person, their credentials, the link to their profile and the
  * `reviewedBy`/`lastReviewed` schema, none of which depends on the word "medically".
  */
-export function ReviewedBy({ date }: { date?: string }) {
+export function ReviewedBy({
+  locale,
+  dict,
+  date,
+}: {
+  locale: Locale
+  dict: Dictionary
+  date?: string
+}) {
   if (!date) return null
-  const formatted = new Date(date).toLocaleDateString('en-GB', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-  })
+  // `Intl`/`toLocaleDateString` locale, not the BCP-47 `<html lang>` tag — they happen to
+  // share values here (LOCALE_TAG), but this is a distinct concern (date formatting).
+  const formatted = new Date(date).toLocaleDateString(
+    { en: 'en-GB', zh: 'zh-MY', ms: 'ms-MY' }[locale],
+    { day: 'numeric', month: 'long', year: 'numeric' },
+  )
   return (
     <div className="border-b border-line bg-white">
       <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-4">
@@ -819,16 +802,16 @@ export function ReviewedBy({ date }: { date?: string }) {
           className="h-11 w-11 flex-none rounded-full object-cover"
         />
         <p className="text-sm leading-snug text-ink-muted">
-          Reviewed by{' '}
+          {dict.page.reviewedByLabel}{' '}
           <Link
-            href={`/about/${reviewer.slug}`}
+            href={pathFor(locale, `/about/${reviewer.slug}`)}
             className="font-semibold text-ink underline underline-offset-2 hover:text-brand-slate"
           >
             {reviewer.name}
           </Link>
           , {reviewer.role}
           <span className="block text-ink-muted/80">
-            {reviewer.credentials} · Last reviewed {formatted}
+            {reviewer.credentials} · {dict.page.lastReviewedLabel} {formatted}
           </span>
         </p>
       </div>
@@ -842,17 +825,19 @@ export function ReviewedBy({ date }: { date?: string }) {
  * efficacy promise. Renders nothing when a page has no citations.
  */
 export function References({
+  dict,
   items,
 }: {
+  dict: Dictionary
   items?: { claim: string; source: string; url?: string }[]
 }) {
   if (!items || items.length === 0) return null
   return (
     /* Cream ground: this now sits directly under the ReviewedBy byline, which is white, and
        two white bands in a row would read as one undifferentiated block. */
-    <section aria-label="References" className="border-t border-line">
+    <section aria-label={dict.page.referencesLabel} className="border-t border-line">
       <div className="mx-auto max-w-6xl px-4 py-12">
-        <Eyebrow>References</Eyebrow>
+        <Eyebrow>{dict.page.referencesLabel}</Eyebrow>
         <ol className="mt-5 list-decimal space-y-3 pl-5 text-sm leading-relaxed text-ink-muted">
           {items.map((c) => (
             <li key={c.source}>
@@ -887,7 +872,14 @@ export function References({
  * Gold, always. This is the primary booking action for the site's primary visitor, so it is
  * the last pill on the site allowed to go soft.
  */
-export function StickyCta({ message = waMessage.general }: { message?: string }) {
+export function StickyCta({
+  dict,
+  message,
+}: {
+  dict: Dictionary
+  // No default — see the matching note on <CtaBand> in components/ui.tsx.
+  message: string
+}) {
   return (
     <div className="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-white/95 shadow-overlay-up backdrop-blur lg:hidden">
       <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
@@ -900,7 +892,7 @@ export function StickyCta({ message = waMessage.general }: { message?: string })
           className="inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-brand-gold px-5 py-3 text-center text-sm font-semibold text-ink"
         >
           <WhatsAppIcon />
-          Enquire on WhatsApp
+          {dict.header.enquireOnWhatsapp}
         </a>
       </div>
     </div>

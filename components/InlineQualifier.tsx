@@ -1,6 +1,12 @@
 import { conditionBySlug } from '@/lib/conditions'
 import { serviceBySlug } from '@/lib/services'
 import { ServiceQualifier } from '@/components/ServiceQualifier'
+import { qualifierCopyFrom } from '@/lib/qualifier-copy'
+// Blog is English-only (see AGENTS.md § Multilingual) and MDX has no locale plumbing
+// running through it, so this reaches for the English dictionary directly rather than
+// threading `locale`/`getDictionary` through the whole MDX component registry for a
+// context that only ever renders one language.
+import enDict from '@/dictionaries/en'
 
 /**
  * Drops the sitewide "Is this right for you?" qualifier into the middle of a blog post,
@@ -17,9 +23,10 @@ export function InlineQualifier({ slug }: { slug: string }) {
   const target = conditionBySlug(slug) ?? serviceBySlug(slug)
   if (!target?.qualifierConcerns || target.qualifierConcerns.length === 0) return null
 
+  const serviceName = target.title.split(' in ')[0]
   return (
     <ServiceQualifier
-      serviceName={target.title.split(' in ')[0]}
+      copy={qualifierCopyFrom(enDict, serviceName)}
       concerns={target.qualifierConcerns}
     />
   )

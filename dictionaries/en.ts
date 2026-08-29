@@ -1,0 +1,310 @@
+import type { Dictionary } from './types'
+
+/** English UI chrome. Matches the copy that was hardcoded inline before locales existed. */
+const en: Dictionary = {
+  nav: {
+    services: 'Services',
+    conditions: 'Conditions',
+    whatToExpect: 'What to Expect',
+    about: 'About',
+    ourTeam: 'Our team',
+    press: 'Press & publications',
+    partnerWithUs: 'Partner with us',
+    blog: 'Blog',
+    bookNow: 'Book Now',
+  },
+  header: {
+    openSevenDays: 'Open 7 days',
+    whatsapp: 'WhatsApp',
+    enquireOnWhatsapp: 'Enquire on WhatsApp',
+    menu: 'Menu',
+    skipToContent: 'Skip to content',
+  },
+  footer: {
+    tagline:
+      'Gonstead-technique chiropractic and physiotherapy in Cheras, Maluri. Dedicated to improving lives, one spine at a time.',
+    visit: 'Visit',
+    openingHours: 'Opening hours',
+    explore: 'Explore',
+    openInGoogleMaps: 'Open in Google Maps',
+    copyrightSuffix: 'Chiropractic and physiotherapy in Cheras, Maluri, Kuala Lumpur.',
+    registeredChiropractors: 'Registered chiropractors · Association of Chiropractic Malaysia',
+  },
+  page: {
+    ourServices: 'Our services',
+    openSevenDaysLocation: 'Open seven days · Cheras, Maluri',
+    openSevenDaysNoReferral: 'Open seven days · Cheras, Maluri · no referral needed',
+    howItWorks: 'How it works',
+    whatInvolvesHere: (name) => `What ${name.toLowerCase()} involves here`,
+    weAssessBeforeWeBegin:
+      'We assess before we begin, then explain what we find in plain terms, including the parts your care is unlikely to change.',
+    notSureWhatYouNeed: "Not sure what you need? Tell us what's going on",
+    notSureWhatYouNeedBody:
+      'Start with the assessment. We will tell you what we find, what we would do about it, and whether this is the right approach for your case at all.',
+    firstVisitLabel: 'What happens on a first visit',
+    whatWeHelpWith: 'What we help with',
+    reasonsPeopleComeInFor: (name) => `Reasons people come in for ${name.toLowerCase()}`,
+    beingStraightWithYou: 'Being straight with you',
+    whoIsForAndWhoIsNot: (name) => `Who ${name.toLowerCase()} is for, and who it is not`,
+    goodFitIf: 'This is likely a good fit if…',
+    notRightFitIf: 'It is likely not the right fit if…',
+    choosingBetweenThem: 'Choosing between them',
+    whereToGoNext: 'Where to go next',
+    relatedConditionsAndServices: 'Related conditions and services',
+    allOurServicesInCheras: 'All our services in Cheras',
+    questions: 'Questions',
+    frequentlyAskedQuestions: 'Frequently asked questions',
+    reviewedByLabel: 'Reviewed by',
+    lastReviewedLabel: 'Last reviewed',
+    referencesLabel: 'References',
+    registeredPractitionersLine:
+      'Registered chiropractors and physiotherapists in Cheras, Maluri. Open seven days, right beside Sunway Velocity.',
+    bookYourConsultation: (name) => `Book your ${name.toLowerCase()} consultation`,
+    registeredOpenSevenDays:
+      'Registered chiropractors and physiotherapists in Cheras, Maluri. Open seven days, right next to Sunway Velocity.',
+    whatsappUsToBook: 'WhatsApp us to book',
+    whatsappUsShort: 'WhatsApp us',
+    readyToStopWorkingAroundThePain: 'Ready to stop working around the pain?',
+    ctaBandDefaultBody:
+      'Message our Gonstead chiropractors today. Open seven days, right next to Sunway Velocity.',
+    conditionsEyebrow: 'Conditions',
+    keyTakeawaysEyebrow: 'Key takeaways',
+    theShortAnswers: 'The short answers',
+    doesThisSoundLikeYou: 'Does this sound like you?',
+    commonSigns: 'Common signs',
+    symptomsDisclaimer:
+      'This list describes the condition in general. It is not a diagnosis. Only an in-person assessment can tell you what is causing your symptoms.',
+    whatContributesToIt: 'What contributes to it',
+    whyItHappens: 'Why it happens',
+    howWeHelp: 'How we help',
+    ourApproach: 'Our approach',
+    whenToSeekUrgentCare: 'When to seek urgent care',
+    seeADoctorFirst: 'See a doctor first if you have any of these',
+    urgentCareIntro:
+      'These need a medical assessment before you begin chiropractic care. If any apply to you, contact a doctor or go to the nearest emergency department.',
+    whatPatientsAskUs: 'What patients ask us',
+    bookAnAssessment: 'Book an assessment',
+    bookAnAssessmentBody: 'Registered chiropractors in Cheras, Maluri. Open seven days.',
+    relatedLabel: 'Related',
+    allConditionsWeHelpWith: 'All conditions we help with in Cheras',
+    meetYourChiropractors: 'Meet your chiropractors',
+    theChiropractorsWhoWouldLookAfterYou: 'The chiropractors who would look after you',
+    threeRegisteredChiropractorsLine:
+      'Three registered chiropractors, all trained in the Gonstead method and all members of the Gonstead Chiropractic Society Australia and the Association of Chiropractic Malaysia.',
+    readProfile: 'Read profile',
+    aboutUsEyebrow: 'About us',
+    registrationLabel: 'Registration',
+    membershipsLabel: 'Memberships',
+    credentialsLabel: 'Credentials',
+    bookWithName: (name) => `Book with ${name}`,
+    backToTheTeam: 'Back to the team',
+    seeNameInCheras: (name) => `See ${name} in Cheras.`,
+    ctaBandPractitionerBody: 'Gonstead chiropractic next to Sunway Velocity. Open seven days.',
+    aboutBreadcrumbLabel: 'About',
+    fromOurPatientsInCheras: 'From our patients in Cheras',
+    whatPeopleSayAfterBeingSeenHere: 'What people say after being seen here',
+    writeAReview: 'Write a review',
+    readMoreReviews: 'Read more',
+    googleReviewsSuffix: 'reviews',
+    isThisRightForYou: 'Is this right for you?',
+    notSureIfIsRightForYou: (name) => `Not sure if ${name.toLowerCase()} is right for you?`,
+    tickAnythingBody:
+      'Tick anything that sounds like you. We will read it back honestly and tell you where to start, even if that is somewhere else.',
+    selectConcernsAriaLabel: 'Select the concerns that apply to you',
+    askUsOnWhatsapp: 'Ask us on WhatsApp',
+    opensWhatsappCaption:
+      'Opens WhatsApp with your answers filled in. Nothing is sent until you press send there.',
+    qualifierGreeting: (name) => `Hi Persistence Chiropractic, I'm considering ${name} in Cheras.`,
+    qualifierAppliesToMe: 'This is what applies to me:',
+    qualifierClosingQuestion: 'Could you advise whether it is a good fit and where to start?',
+    readMore: 'Read more',
+    conditionsHubTitle: 'Conditions we help with',
+    conditionsHubIntro: 'Chiropractic and physiotherapy care in Cheras, Maluri, Kuala Lumpur.',
+    servicesHubTitle: 'Chiropractic and physiotherapy in Cheras, Kuala Lumpur',
+    servicesHubIntro:
+      'Chiropractic care, physiotherapy and targeted rehabilitation under one roof in Cheras. Which one suits you depends on what the assessment finds. A fair number of patients end up having both, and we will tell you where to start on your first visit.',
+    whatWeDo: 'What we do',
+    chiropracticPhysiotherapyRehab: 'Chiropractic, physiotherapy and rehabilitation',
+    chiropracticPhysioBody:
+      'Chiropractic works on how a joint moves. Physiotherapy builds the strength and control around it. That second part is usually what keeps the problem from coming back six months later. Which you need depends on what the assessment finds.',
+    notSureChiroOrPhysio: 'Not sure whether you need chiro or physio?',
+    tellUsWherePainIs:
+      "Tell us where the pain is, how long it's been there and what sets it off. We'll point you to the right one before you book.",
+    theMethodEyebrow: 'The method',
+    whatHappensDuringAssessment: 'What happens during assessment',
+    bookAGonsteadAssessment: 'Book a Gonstead assessment',
+    bookAGonsteadAssessmentBody:
+      'Registered chiropractors in Cheras, Maluri. Open seven days, right next to Sunway Velocity.',
+    patientPhotographsEyebrow: 'Patient photographs',
+    whatAChangeInPostureCanLookLike: 'What a change in posture can look like',
+    patientPhotographsCaption:
+      "Photographed from behind at our clinic in Cheras and shared with their permission. Two people's photographs, not a prediction of yours: each pair shows how someone stood in front of a camera on two different days, which is not the same thing as a measurement, and posture differs from person to person and from visit to visit. What we can tell you before we have assessed you is what we would look at, not what would change.",
+    beforeAfterPostureAlt:
+      'Back view of the same patient in two photographs at Persistence Chiropractic Care in Cheras, Kuala Lumpur, a vertical red line in each marking the position of the head and spine',
+    beforeAfterSpinalCurveAlt:
+      'Back view of the same patient in two photographs at Persistence Chiropractic Care in Cheras, Kuala Lumpur, a dashed line in each following the line of the spine from the neck downwards',
+    bookNowBreadcrumbLabel: 'Book Now',
+    contactEyebrow: 'Contact',
+    contactAndDirections: 'Contact & directions',
+    contactIntro:
+      'Right next to Sunway Velocity and Sunway Medical Centre, Cheras. Open seven days a week.',
+    phoneLabel: 'Phone',
+    emailLabel: 'Email',
+    whatsappAppointmentsNote:
+      'We take appointments over WhatsApp and by phone, seven days a week. Message us your main concern and we will confirm a time.',
+    notSureWhereToStartPrefix: 'Not sure where to start? Browse ',
+    orThe: ' or the ',
+    conditionsWeHelpWithLinkText: 'conditions we help with',
+    notSureWhereToStartSuffix:
+      ', or message us your main concern and we will point you to the right one.',
+    whatToExpectBreadcrumbLabel: 'What to Expect',
+    whatToExpectEyebrow: 'What to expect',
+    whatHappensOnYourFirstVisit: 'What happens on your first visit',
+    recoveryTakesTimeIntro:
+      'Recovery takes time. Knowing what happens before you walk in makes the first visit a lot easier.',
+    yourFirstVisitEyebrow: 'Your first visit',
+    theAssessmentComesFirst: 'The assessment comes first',
+    firstVisitAssessmentPrefix: 'Your first appointment follows the ',
+    gonsteadSixStepLinkText: 'Gonstead six-step assessment',
+    firstVisitAssessmentSuffix:
+      ': history, visualisation, instrumentation, palpation, X-ray analysis, and only then an adjustment.',
+    arriveEarlyNote:
+      'If this is your first time here, arrive 5 to 10 minutes early so there is time to complete any paperwork without rushing.',
+    afterYourAdjustmentEyebrow: 'After your adjustment',
+    lookingAfterYourBackAfterwards: 'Looking after your back afterwards',
+    readyToBook: 'Ready to book?',
+    readyToBookBody:
+      'Registered chiropractors in Cheras, Maluri. Open seven days, right next to Sunway Velocity.',
+    firstVisitConsultationAlt:
+      "Chiropractor assessing a patient's neck during a first consultation at Persistence Chiropractic Care, Cheras Kuala Lumpur",
+    nervoscopeAlt:
+      'The nervoscope used to measure skin temperature either side of the spine at Persistence Chiropractic Care, Cheras Kuala Lumpur',
+    pressBreadcrumbLabel: 'Press',
+    pressEyebrow: 'Press',
+    pressAndPublications: 'Press & publications',
+    pressIntro: "Some of the prints and newsletters we've been featured in recently.",
+    behindTheCoveragePrefix:
+      'Behind the coverage is a small team of registered chiropractors. Meet ',
+    thePractitionersLinkText: 'the practitioners',
+    orReadAbout: ' or read about ',
+    theCareWeOfferLinkText: 'the care we offer in Cheras',
+    partnerWithUsBreadcrumbLabel: 'Partner With Us',
+    partnershipsEyebrow: 'Partnerships',
+    partnerWithUs: 'Partner with us',
+    partnerWithUsIntro:
+      'We run corporate wellness sessions, health screenings and brand collaborations from our clinic in Cheras, Maluri. If your organisation wants to work together, tell us a little and we will pick it up on WhatsApp.',
+    whatWeDoTogether: 'What we do together',
+    partnerReason1Title: 'Corporate wellness that people remember',
+    partnerReason1Body:
+      'Talks and hands-on workshops on posture, ergonomics and desk-worker health, run at your office or ours. A practical session your team actually uses, not a slideshow.',
+    partnerReason2Title: 'Health screenings and event booths',
+    partnerReason2Body:
+      'Spinal screenings and postural assessments for company events, launches and community days across Kuala Lumpur.',
+    partnerReason3Title: 'Brand and product collaborations',
+    partnerReason3Body:
+      'We have worked with brands from Sunway Medical Centre Velocity to Shopee, Maxis and Panasonic on wellness activations and content.',
+    talksScreeningsEventsEyebrow: 'Talks, screenings and events we have run',
+    partnersEyebrow: 'Partners',
+    organisationsWeWorkAlongside: 'Organisations we work alongside.',
+    partnersIntro:
+      'From Sunway Medical Centre Velocity next door to the brands and events we have supported across Kuala Lumpur.',
+    weHaveAlsoWorkedWith: 'We have also worked with',
+    andManyMore: '…and many more.',
+    startAConversation: 'Start a conversation',
+    tellUsWhatYouHaveInMind: 'Tell us what you have in mind.',
+    startAConversationIntro:
+      'A few quick questions, then it opens WhatsApp with your answers ready to send. No forms to chase, no waiting on email.',
+    prefersToJustMessageUs: 'Prefer to just message us?',
+    prefersToJustMessageUsBody:
+      'Reach the clinic directly on WhatsApp or by phone. We are happy to talk through what a partnership could look like.',
+    partnerEnquiryGreeting: "Hi Persistence Chiropractic, I'd like to explore a partnership.",
+    yourName: 'Your name',
+    organisationLabel: 'Organisation',
+    whatAreYouInterestedIn: 'What are you interested in?',
+    interestTalkOrWorkshop: 'Corporate wellness talk or workshop',
+    interestScreeningOrBooth: 'Health screening or event booth',
+    interestCollaboration: 'Product or brand collaboration',
+    interestReferralPartnership: 'Referral partnership',
+    interestSomethingElse: 'Something else',
+    roughlyHowManyPeople: 'Roughly how many people?',
+    optionalLabel: 'optional',
+    preferNotToSay: 'Prefer not to say',
+    sizeUnder20: 'Under 20',
+    size20To50: '20 to 50',
+    size50To200: '50 to 200',
+    size200Plus: '200+',
+    anythingElseWeShouldKnow: 'Anything else we should know?',
+    sendThisOnWhatsapp: 'Send this on WhatsApp',
+    partnerEnquiryOpensWhatsappCaption:
+      'Opens WhatsApp with your answers filled in. Nothing is sent until you press send there.',
+    nameFieldPrefix: 'Name',
+    organisationFieldPrefix: 'Organisation',
+    interestedInFieldPrefix: 'Interested in',
+    approxPeopleFieldPrefix: 'Approx. people',
+    notesFieldPrefix: 'Notes',
+    aboutHubTitle: 'Our chiropractors in Cheras, Maluri',
+    aboutHubIntro:
+      'Three registered chiropractors practising the Gonstead method. All of us are trained to find the one segment causing your pain, rather than adjusting everything and hoping.',
+    aboutPartnersIntro:
+      'From Sunway Medical Centre Velocity next door to brands like Shopee, Maxis and Panasonic, we run wellness talks, screenings and collaborations across Kuala Lumpur.',
+    seeOurPartnersLinkText: 'See our partners & partner with us',
+    wantToKnowWhichOfUsToSee: 'Want to know which of us to see?',
+    wantToKnowWhichOfUsToSeeBody:
+      "Tell us your main concern and we'll match you to the right practitioner before you book.",
+    homeHeroEyebrow: 'Gonstead chiropractic & physiotherapy · Cheras, Maluri',
+    homeH1: 'Chiropractor and Physiotherapist in Cheras, under one roof.',
+    homeHeroLead:
+      'Drug-free, hands-on Chiropractic and Physiotherapy in Cheras. Personalised care built around what your assessment actually shows.',
+    homeAssessmentNote:
+      'Your first visit starts with an assessment. Nothing is adjusted until we have examined you.',
+    homeFactOpenSevenDays: 'Open 7 days a week',
+    homeFactRegistered: 'Registered Chiropractors & Physiotherapists',
+    homeFactWalkToHospital: '3-min walk to Sunway Medical Centre Velocity',
+    whyPersistenceEyebrow: 'Why Persistence',
+    meetTheTeamLinkText: 'Meet the team',
+    learnMore: 'Learn more',
+    whereToStartEyebrow: 'Where to start',
+    chiropracticOrPhysiotherapy: 'Chiropractic or Physiotherapy?',
+    carePathsIntro:
+      "Chiropractic works on how your joints move. Physiotherapy builds the strength around them. Most patients only need one of the two, and we'll tell you which on your first visit.",
+    chiropracticCardTitle: 'Chiropractic',
+    chiropracticCardBody:
+      'The Gonstead method is a segment-by-segment examination. It finds the specific joint causing your pain, rather than adjusting the whole spine and hoping.',
+    howGonsteadWorks: 'How Gonstead works',
+    physiotherapyCardTitle: 'Physiotherapy',
+    physiotherapyCardBody:
+      'Hands-on care plus the loading and rehab work that stops the same injury coming back. What we work on depends on what you need to get back to.',
+    explorePhysiotherapy: 'Explore Physiotherapy',
+    patientPhotographsHomeIntro:
+      'Two of our patients, photographed from behind on two different days. The lines mark what we look at when we assess posture: where the head sits over the shoulders, and how the spine runs from the neck down.',
+    howChiropracticCareWorksLinkText: 'How chiropractic care works',
+    stillUnsurePrefix: 'Still unsure? ',
+    messageUsOnWhatsappLinkText: 'Message us on WhatsApp',
+    stillUnsureSuffix:
+      " and tell us your main concern. We'll advise whether to start with chiropractic or physiotherapy.",
+    fromTheClinicEyebrow: 'From the clinic',
+    spineNotesHeading: 'Spine notes, written by our chiropractors.',
+    allArticlesLinkText: 'All articles',
+    rightNextToSunwayVelocity: 'Right next to Sunway Velocity, Cheras.',
+    directionsAndContact: 'Directions & contact',
+    receptionAlt: 'Reception at Persistence Chiropractic Care, Sunway Velocity, Cheras Kuala Lumpur',
+    beforeYouBookEyebrow: 'Before you book',
+    heroSlideSpineModelAlt:
+      'Chiropractor explaining spinal anatomy with a spine model to a patient at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
+    heroSlideXrayAlt:
+      'Chiropractor talking a patient through their spinal X-ray at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
+    heroSlideLightboxAlt:
+      'Chiropractor pointing out findings on a spinal X-ray lightbox in Cheras, Maluri, Kuala Lumpur',
+    heroSlideNervoscopeAlt:
+      'Gonstead chiropractor running a nervoscope along a patient spine during assessment in Cheras, Kuala Lumpur',
+    mainNavAriaLabel: 'Main',
+    reviewsAriaLabel: 'Reviews',
+    googleReviewsRailAriaLabel: 'Google reviews',
+    previousReviewsAriaLabel: 'Previous reviews',
+    moreReviewsAriaLabel: 'More reviews',
+    accreditationsAriaLabel: 'Accreditations',
+    relatedConditionsAriaLabel: 'Related conditions',
+  },
+}
+
+export default en

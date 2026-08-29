@@ -12,6 +12,7 @@
  */
 
 import type { Metadata } from 'next'
+import { type Locale, LOCALE_TAG, OG_LOCALE, DEFAULT_LOCALE, pathFor } from './i18n'
 
 /**
  * Sitewide social card. 1200x630 is the size Facebook, WhatsApp and LinkedIn all crop to;
@@ -38,8 +39,20 @@ type PageMetadataInput = {
    */
   title: string
   description: string
-  /** Root-relative, no trailing slash. Drives both the canonical and og:url. */
+  /**
+   * Root-relative, UNPREFIXED (`/conditions/back-pain`, never `/zh/conditions/back-pain`).
+   * The helper applies the locale prefix itself via `pathFor()` — pass the bare path here.
+   */
   path: string
+  /** The locale this exact call is building metadata for. */
+  locale: Locale
+  /**
+   * Every locale this exact page (same slug/path) exists in — drives `alternates.languages`
+   * (hreflang). Always include `locale` itself. Omit a locale whose version of this page
+   * doesn't exist yet (still `draft`, or absent from that locale's data file) — an
+   * alternate pointing at a URL that 404s is worse than no alternate at all.
+   */
+  availableIn: readonly Locale[]
   /** Overrides the default social card. Give width/height or the crop is left to the scraper. */
   image?: { url: string; width?: number; height?: number; alt: string }
   /** 'article' on blog posts, so they render as articles rather than generic pages. */
@@ -71,6 +84,8 @@ export function pageMetadata({
   title,
   description,
   path,
+  locale,
+  availableIn,
   image = OG_IMAGE,
   type = 'website',
   publishedTime,
@@ -79,6 +94,13 @@ export function pageMetadata({
 }: PageMetadataInput): Metadata {
   const fullTitle = brand ? `${title} | ${BRAND}` : title
 
+  // One entry per locale this page actually exists in, keyed by the BCP-47 tag hreflang
+  // expects. `x-default` always points at English — the site's unprefixed, canonical
+  // identity — regardless of which locale is rendering.
+  const languages: Record<string, string> = {}
+  for (const loc of availableIn) languages[LOCALE_TAG[loc]] = pathFor(loc, path)
+  languages['x-default'] = pathFor(DEFAULT_LOCALE, path)
+
   return {
     // `absolute` rather than leaning on the root layout's title template, because the
     // template does NOT apply to app/page.tsx — that file shares the root segment, so the
@@ -86,12 +108,12 @@ export function pageMetadata({
     // every route behave the same way and keeps og:title in step with <title>.
     title: { absolute: fullTitle },
     description,
-    alternates: { canonical: path },
+    alternates: { canonical: pathFor(locale, path), languages },
     openGraph: {
       type,
-      locale: 'en_MY',
+      locale: OG_LOCALE[locale],
       siteName: 'Persistence Chiropractic Care',
-      url: path,
+      url: pathFor(locale, path),
       title: fullTitle,
       description,
       images: [image],

@@ -1,10 +1,13 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { clinic, hoursSummary } from '@/lib/clinic'
+import { clinic, hoursSummaryFor } from '@/lib/clinic'
 import { mainNav } from '@/lib/nav'
 import { NavLink, WhatsAppButton, WhatsAppIcon } from '@/components/ui'
 import { waMessage } from '@/lib/whatsapp'
+import { type Locale, pathFor } from '@/lib/i18n'
+import type { Dictionary } from '@/dictionaries/types'
+import { LocaleSwitcher } from '@/components/LocaleSwitcher'
 
 /**
  * Sitewide header. Deliberately a server component: the only interactive parts are the
@@ -35,8 +38,9 @@ function NavBadge({ children }: { children?: string }) {
   return <span className="ml-1.5 whitespace-nowrap text-xs text-brand-gold-ink">{children}</span>
 }
 
-export function Header() {
-  const nav = mainNav()
+export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
+  const nav = mainNav(locale, dict)
+  const hoursSummary = hoursSummaryFor(locale)
 
   return (
     <header className="sticky top-0 z-50">
@@ -55,7 +59,7 @@ export function Header() {
               and narrower desktops keep "Open 7 days" alone. Every viewport still has the
               complete table in the footer. */}
           <span className="text-brand-slate-soft">
-            Open 7 days
+            {dict.header.openSevenDays}
             <span className="hidden lg:inline"> &middot; {hoursSummary}</span>
           </span>
           <div className="ml-auto flex items-center gap-5">
@@ -69,15 +73,16 @@ export function Header() {
               className="flex items-center gap-1.5 hover:underline"
             >
               <WhatsAppIcon className="h-3.5 w-3.5" />
-              WhatsApp
+              {dict.header.whatsapp}
             </a>
+            <LocaleSwitcher locale={locale} />
           </div>
         </div>
       </div>
 
       <div className="border-b border-line bg-background/95 backdrop-blur">
-        <nav aria-label="Main" className="mx-auto flex max-w-6xl items-center gap-8 px-4 py-3">
-          <Link href="/" className="flex-none">
+        <nav aria-label={dict.page.mainNavAriaLabel} className="mx-auto flex max-w-6xl items-center gap-8 px-4 py-3">
+          <Link href={pathFor(locale, '/')} className="flex-none">
             <Image
               src="/img/logo-persistence.png"
               alt="Persistence Chiropractic Care, Cheras Kuala Lumpur"
@@ -132,7 +137,7 @@ export function Header() {
 
           <div className="ml-auto flex items-center gap-3 lg:ml-0">
             <div className="hidden sm:block">
-              <WhatsAppButton message={waMessage.general}>Enquire on WhatsApp</WhatsAppButton>
+              <WhatsAppButton message={waMessage.general(locale)}>{dict.header.enquireOnWhatsapp}</WhatsAppButton>
             </div>
 
             {/* Mobile menu. <details> is the whole implementation — no state, no bundle.
@@ -143,7 +148,7 @@ export function Header() {
             <details data-mobile-nav className="lg:hidden">
               <summary
                 className="flex h-11 w-11 cursor-pointer list-none items-center justify-center rounded-full border border-line text-ink"
-                aria-label="Menu"
+                aria-label={dict.header.menu}
               >
                 <svg
                   viewBox="0 0 24 24"
@@ -186,7 +191,7 @@ export function Header() {
                 {/* One CTA here too. The number stays reachable from the utility bar above
                     and the footer, both of which are NAP citations rather than buttons. */}
                 <div className="mt-5 flex flex-col gap-2">
-                  <WhatsAppButton message={waMessage.general}>Enquire on WhatsApp</WhatsAppButton>
+                  <WhatsAppButton message={waMessage.general(locale)}>{dict.header.enquireOnWhatsapp}</WhatsAppButton>
                 </div>
               </div>
             </details>

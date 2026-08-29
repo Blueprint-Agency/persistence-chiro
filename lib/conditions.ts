@@ -10,6 +10,9 @@
  * excluded from the sitemap and nav until that copy lands, so we never ship a thin
  * indexed page.
  */
+import type { Locale } from './i18n.ts'
+import { conditionsZh } from './conditions.zh.ts'
+import { conditionsMs } from './conditions.ms.ts'
 
 export type Condition = {
   slug: string
@@ -1162,3 +1165,22 @@ export const conditions: Condition[] = [
 
 export const publishedConditions = () => conditions.filter((c) => !c.draft)
 export const conditionBySlug = (slug: string) => conditions.find((c) => c.slug === slug)
+
+/**
+ * Locale dispatch. English keeps the bare exports above untouched — nothing that already
+ * imports `conditions`/`publishedConditions`/`conditionBySlug` needs to change. `zh`/`ms`
+ * are separate full arrays of the same shape (see `lib/conditions.zh.ts`), not extra
+ * fields bolted onto this file's records, so a locale can be authored and reviewed
+ * independently and `draft` means "live in *this* locale" without any type change.
+ */
+const conditionsByLocale: Record<Locale, Condition[]> = {
+  en: conditions,
+  zh: conditionsZh,
+  ms: conditionsMs,
+}
+
+export const conditionsFor = (locale: Locale) => conditionsByLocale[locale]
+export const publishedConditionsFor = (locale: Locale) =>
+  conditionsFor(locale).filter((c) => !c.draft)
+export const conditionBySlugFor = (locale: Locale, slug: string) =>
+  conditionsFor(locale).find((c) => c.slug === slug)

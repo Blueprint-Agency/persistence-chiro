@@ -1,10 +1,12 @@
 import type { MetadataRoute } from 'next'
 import { staticRoutes } from '@/lib/routes'
-import { publishedConditions } from '@/lib/conditions'
-import { publishedServices } from '@/lib/services'
+import { publishedConditionsFor } from '@/lib/conditions'
+import { publishedServicesFor } from '@/lib/services'
 import { publishedPosts } from '@/lib/posts'
-import { indexablePractitioners } from '@/lib/clinic'
+import { indexablePractitionersFor } from '@/lib/clinic'
 import { SITE_URL } from '@/lib/schema'
+import { LOCALES, pathFor } from '@/lib/i18n'
+import { pathExistsIn } from '@/lib/locale-availability'
 
 /**
  * Draft pages are excluded by construction — `published*()` filters them — so an
@@ -30,33 +32,45 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // /services/chiropractic-care is in BOTH staticRoutes (it has a hand-built route
   // file) and publishedServices (it is a service). Listing a URL twice in a sitemap is
   // invalid, so the last-write-wins dedupe below is load-bearing, not defensive.
-  const entries: MetadataRoute.Sitemap = [
-    ...staticRoutes.map((path) => ({
-      url: `${SITE_URL}${path}`,
-      changeFrequency: 'monthly' as const,
-      priority: path === '/' ? 1 : 0.8,
-    })),
-    ...publishedConditions().map((c) => ({
-      url: `${SITE_URL}/conditions/${c.slug}`,
+  //
+  // MULTIPLIED PER LOCALE: `staticRoutes` are English-only pages today (gated in their own
+  // route files — see the multilingual plan's Track A), so `pathExistsIn` excludes them for
+  // zh/ms and this loop currently emits nothing beyond the existing English URLs. It falls
+  // out for free once a page's zh/ms equivalent exists, with no further change here.
+  const entries: MetadataRoute.Sitemap = LOCALES.flatMap((locale) => [
+    ...staticRoutes
+      .filter((path) => pathExistsIn(locale, path))
+      .map((path) => ({
+        url: `${SITE_URL}${pathFor(locale, path)}`,
+        changeFrequency: 'monthly' as const,
+        priority: path === '/' ? 1 : 0.8,
+      })),
+    ...publishedConditionsFor(locale).map((c) => ({
+      url: `${SITE_URL}${pathFor(locale, `/conditions/${c.slug}`)}`,
       // The date the clinical copy was last reviewed by a practitioner. Real, and exactly
       // what lastmod is for — it moves when the content moves and not otherwise.
       ...(c.lastReviewed ? { lastModified: new Date(c.lastReviewed) } : {}),
       changeFrequency: 'monthly' as const,
       priority: 0.9,
     })),
-    ...publishedServices().map((s) => ({
-      url: `${SITE_URL}/services/${s.slug}`,
+    ...publishedServicesFor(locale).map((s) => ({
+      url: `${SITE_URL}${pathFor(locale, `/services/${s.slug}`)}`,
       ...(s.lastReviewed ? { lastModified: new Date(s.lastReviewed) } : {}),
       changeFrequency: 'monthly' as const,
       priority: 0.7,
     })),
-    ...indexablePractitioners().map((p) => ({
-      url: `${SITE_URL}/about/${p.slug}`,
+    ...indexablePractitionersFor(locale).map((p) => ({
+      url: `${SITE_URL}${pathFor(locale, `/about/${p.slug}`)}`,
       // No date on the source data, so no claim. Bios change rarely and the yearly
       // changeFrequency already says so.
       changeFrequency: 'yearly' as const,
       priority: 0.6,
     })),
+  ])
+
+  // Blog is English-only and unprefixed regardless of locale (see proxy.ts) — listed once,
+  // not multiplied per locale.
+  entries.push(
     ...publishedPosts().map((p) => ({
       url: `${SITE_URL}/blog/${p.slug}`,
       // The original publish date, not the migration date — resetting these would tell
@@ -65,7 +79,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'yearly' as const,
       priority: 0.5,
     })),
-  ]
+  )
 
   // Keep the service entry (priority 0.7) over the generic static one (0.8): a service
   // page's priority should come from its own collection.

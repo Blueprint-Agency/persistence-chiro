@@ -27,6 +27,9 @@
  * CLAIM RULE: no page here may promise a cure, fix or guaranteed outcome. Enforced by
  * `content.test.ts`. See the hedging house style in `conditions.ts`.
  */
+import type { Locale } from './i18n.ts'
+import { servicesZh } from './services.zh.ts'
+import { servicesMs } from './services.ms.ts'
 
 /**
  * A "reason people come in" card. Three shapes, in order of preference:
@@ -1382,3 +1385,17 @@ export const publishedServices = () => services.filter((s) => !s.draft)
 export const serviceBySlug = (slug: string) => services.find((s) => s.slug === slug)
 /** Services rendered by app/services/[slug]/page.tsx — excludes hand-built routes. */
 export const templatedServices = () => publishedServices().filter((s) => !s.dedicatedRoute)
+
+/** Locale dispatch — see the matching comment in `lib/conditions.ts` for the rationale. */
+const servicesByLocale: Record<Locale, Service[]> = {
+  en: services,
+  zh: servicesZh,
+  ms: servicesMs,
+}
+
+export const servicesFor = (locale: Locale) => servicesByLocale[locale]
+export const publishedServicesFor = (locale: Locale) => servicesFor(locale).filter((s) => !s.draft)
+export const serviceBySlugFor = (locale: Locale, slug: string) =>
+  servicesFor(locale).find((s) => s.slug === slug)
+export const templatedServicesFor = (locale: Locale) =>
+  publishedServicesFor(locale).filter((s) => !s.dedicatedRoute)
