@@ -307,8 +307,15 @@ post, which is why `@tailwindcss/typography` isn't a dependency here.
 ### Named Rules
 
 **The Tightened Display Rule.** Every `h1`/`h2`/`h3` carries `letter-spacing: -0.02em` and
-`text-wrap: balance`. Both are set globally in `@layer base` — do not restate them
+`text-wrap: wrap`. Both are set globally in `@layer base` — do not restate them
 per-component, and do not let a heading ship without them.
+
+`wrap`, not `balance`, and not `pretty`. Balance ends the first line of a two-line heading
+early so both lines come out the same length, which leaves a wide gap of empty space to its
+right. Readers take that gap for a line break someone typed in rather than for wrapping.
+The client asked for lines to fill first, 2026-08-30. A heading that wraps badly is a
+heading that is too long for its container: shorten it, or raise the container's cap. Do
+not reach for balance again.
 
 **The Base-Layer Rule.** Heading colour lives inside `@layer base`. Unlayered CSS beats
 every layered Tailwind utility regardless of specificity, so an unlayered `color` on `h1`

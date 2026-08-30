@@ -116,8 +116,21 @@ body {
   h3 {
     font-family: var(--font-heading), system-ui, sans-serif;
     color: var(--ink);
-    text-wrap: balance;
     letter-spacing: -0.02em;
+    /**
+     * Headings wrap greedily: each line fills before the next one starts.
+     *
+     * This was `text-wrap: balance`, which evens the lines of a two-line heading by ending
+     * the first one early. On a 65-character heading that leaves a wide gap of empty space
+     * to the right of line one, and readers read that gap as a hardcoded break someone
+     * typed in rather than as wrapping. Client asked for the line to fill first,
+     * 2026-08-30. Balance is not coming back: if a wrapped heading looks wrong, shorten the
+     * heading or widen its container.
+     *
+     * `pretty` is deliberately not used here either. It also pulls words back off a full
+     * line, to avoid a short last line, which is the same gap in a milder form.
+     */
+    text-wrap: wrap;
   }
 
   /**

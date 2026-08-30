@@ -118,7 +118,7 @@ export function GoogleReviews({ dict }: { dict: Dictionary }) {
     <section aria-label={dict.page.reviewsAriaLabel} className="border-t border-line bg-brand-aqua/40">
       <div className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
         <Eyebrow>{dict.page.fromOurPatientsInCheras}</Eyebrow>
-        <h2 className="mt-5 mb-8 max-w-2xl text-3xl font-extrabold leading-tight sm:text-4xl">
+        <h2 className="mt-5 mb-8 max-w-4xl text-3xl font-extrabold leading-tight sm:text-4xl">
           {dict.page.whatPeopleSayAfterBeingSeenHere}
         </h2>
 

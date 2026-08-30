@@ -233,7 +233,7 @@ export function KeyTakeaways({
     <section className={`border-b border-line ${tone === 'white' ? 'bg-white' : ''}`}>
       <div className="mx-auto max-w-6xl px-4 py-14 lg:py-16">
         <Eyebrow>{dict.page.keyTakeawaysEyebrow}</Eyebrow>
-        <h2 className="mt-5 max-w-2xl text-3xl font-extrabold leading-tight sm:text-4xl">
+        <h2 className="mt-5 max-w-4xl text-3xl font-extrabold leading-tight sm:text-4xl">
           {dict.page.theShortAnswers}
         </h2>
         <dl className="mt-10 grid gap-x-12 gap-y-7 md:grid-cols-2">
@@ -402,7 +402,7 @@ export function OutcomeCards({
   return (
     <section className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
       <Eyebrow>{dict.page.whatWeHelpWith}</Eyebrow>
-      <h2 className="mt-5 max-w-2xl text-3xl font-extrabold leading-tight sm:text-4xl">
+      <h2 className="mt-5 max-w-4xl text-3xl font-extrabold leading-tight sm:text-4xl">
         {dict.page.reasonsPeopleComeInFor(serviceName)}
       </h2>
 
@@ -586,7 +586,7 @@ export function FitCheck({
         {/* Not "Is X right for you?" — <ServiceQualifier> already owns that question a few
             sections up, and two headings asking the same thing on one page is the collision
             the one-page-one-intent rule exists to prevent. */}
-        <h2 className="mt-5 max-w-2xl text-3xl font-extrabold leading-tight sm:text-4xl">
+        <h2 className="mt-5 max-w-4xl text-3xl font-extrabold leading-tight sm:text-4xl">
           {dict.page.whoIsForAndWhoIsNot(serviceName)}
         </h2>
 
@@ -656,7 +656,7 @@ export function WhereToGoNext({
   return (
     <section className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
       <Eyebrow>{dict.page.whereToGoNext}</Eyebrow>
-      <h2 className="mt-5 max-w-2xl text-3xl font-extrabold leading-tight sm:text-4xl">
+      <h2 className="mt-5 max-w-4xl text-3xl font-extrabold leading-tight sm:text-4xl">
         {dict.page.relatedConditionsAndServices}
       </h2>
 
@@ -720,7 +720,7 @@ export function ComparisonTable({
     <section className="border-t border-line bg-brand-aqua/40">
       <div className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
         <Eyebrow>{dict.page.choosingBetweenThem}</Eyebrow>
-        <h2 className="mt-5 max-w-2xl text-3xl font-extrabold leading-tight sm:text-4xl">
+        <h2 className="mt-5 max-w-4xl text-3xl font-extrabold leading-tight sm:text-4xl">
           {data.heading}
         </h2>
         <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink-muted">{data.intro}</p>

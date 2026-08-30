@@ -36,7 +36,7 @@ export function MeetDoctors({
     <section className="border-t border-line bg-white">
       <div className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
         <Eyebrow>{dict.page.meetYourChiropractors}</Eyebrow>
-        <h2 className="mt-5 max-w-2xl text-3xl font-extrabold leading-tight sm:text-4xl">
+        <h2 className="mt-5 max-w-4xl text-3xl font-extrabold leading-tight sm:text-4xl">
           {heading ?? dict.page.theChiropractorsWhoWouldLookAfterYou}
         </h2>
         <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink-muted">
