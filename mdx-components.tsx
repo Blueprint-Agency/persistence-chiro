@@ -1,5 +1,6 @@
 import type { MDXComponents } from 'mdx/types'
 
+import { DiscComparison } from '@/components/DiscComparison'
 import { FaqList } from '@/components/FaqList'
 import { GonsteadStepList } from '@/components/GonsteadStepList'
 import { InlineQualifier } from '@/components/InlineQualifier'
@@ -43,6 +44,7 @@ export function useMDXComponents(): MDXComponents {
     td: ({ children }) => (
       <td className="border-b border-line px-4 py-3 align-top text-ink-muted">{children}</td>
     ),
+    DiscComparison,
     GonsteadStepList,
     InlineQualifier,
     KeyTakeawayList,

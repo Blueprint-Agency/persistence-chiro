@@ -117,7 +117,7 @@ export const posts: Post[] = [
       },
       {
         q: 'Is Gonstead suitable for children?',
-        a: 'Yes, the assessment adapts to the person rather than following a fixed protocol, and the approach for a child differs from the approach for an adult accordingly.',
+        a: 'Yes. Our patients have ranged from a four month old baby to a 96 year old, because the assessment adapts to the person rather than following a fixed protocol, and the approach for a child differs from the approach for an adult accordingly.',
       },
       {
         q: 'How long does a Gonstead assessment take?',
