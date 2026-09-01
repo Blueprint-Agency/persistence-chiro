@@ -14,9 +14,9 @@ import { Eyebrow, RegistrationList, Vertebrae } from '@/components/ui'
  * WHAT THIS DOES NOT DO: invent biographies. Every card shows the same verifiable fields and
  * links to the full profile, where the depth differs honestly rather than being padded here.
  * All three now have a real bio — the clinic supplied Kee Shan's and Rynn's on 2026-08-09 —
- * but Rynn's `credentials` line is still blank because what we were given names no degree and
- * no university, and fabricating either for a registered healthcare practitioner is not an
- * option. The card simply omits the line; see lib/clinic.ts.
+ * and all three carry a credentials line, Rynn's since the clinic sent his degrees on
+ * 2026-09-01. The line stays conditional: a practitioner whose qualification we have not been
+ * told simply omits it rather than having one invented. See lib/clinic.ts.
  *
  * Registration numbers show only for practitioners the clinic has confirmed — all three, since
  * 2026-08-09. The gate stays for whoever arrives next, for the reason set out in lib/clinic.ts:

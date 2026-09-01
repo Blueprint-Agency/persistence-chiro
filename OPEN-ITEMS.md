@@ -88,19 +88,17 @@ move.** If it does not, the page stays as it is and earns its place through inte
 rather than search — low volume is not low value, since sprains still walk in via
 `physio cheras`, the Business Profile and the condition pages.
 
-## 6. Rynn Hoh's qualifications — needs two names from the clinic
+## 6. ~~Rynn Hoh's qualifications~~ — RESOLVED 2026-09-01
 
-The bio supplied 2026-08-09 unblocked his profile page, which now indexes. What it does not
-give is a qualification: it says his background "spans neuroscience and chiropractic, having
-studied at a renowned university in Melbourne and in Malaysia" — no degree, no institution.
+The clinic sent the two degrees: BSc (Neuroscience), Melbourne University, and BSc (Hons)
+Chiropractic, International Medical University (IMU), Malaysia. Both are now in `credentials`
+in `lib/clinic.ts`, so his card, his profile page and the `description` in his Person schema
+all carry a qualification where they previously carried nothing.
 
-So `credentials` in `lib/clinic.ts` stays empty for him alone, and his card and profile show
-no credentials line where the other two do. That field also feeds `description` in his Person
-schema, which is the one thing on a YMYL profile page a search engine reads as a qualification
-claim, so a guess there is worse than a gap.
-
-**Ask for the degree titles and both universities.** One line each, then it renders everywhere
-at once. His registrations are a separate gate — see item 7.
+Recorded as "University of Melbourne" rather than the client's "Melbourne University" —
+the institution's own name, on a field a search engine reads as a qualification claim. Worth a
+sentence to the client if his card should print it their way. His registrations were always a
+separate gate — see item 7.
 
 ## 7. Rynn Hoh's ACM membership — one yes or no
 

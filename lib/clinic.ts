@@ -388,16 +388,15 @@ export const practitioners = [
     slug: 'rynn-hoh',
     photo: '/img/rynn-hoh.webp',
     /**
-     * STILL EMPTY ON PURPOSE. The bio the clinic supplied 2026-08-09 says his background
-     * "spans neuroscience and chiropractic, having studied at a renowned university in
-     * Melbourne and in Malaysia" — no degree, no institution. This field holds a named
-     * qualification from a named university and feeds `description` in the Person schema, so
-     * filling it means guessing which degree and which Melbourne university, for a registered
-     * healthcare practitioner. The bio carries what we were actually told instead.
+     * Supplied by the clinic 2026-09-01, closing the gap his 2026-08-09 bio left ("a renowned
+     * university in Melbourne and in Malaysia" — no degree, no institution). Two degrees, so
+     * two clauses separated by a semicolon; Valerie and Kee Shan hold one each and need none.
      *
-     * ASK THE CLINIC for the degree titles and the two universities; then this is one line.
+     * The client wrote "Melbourne University"; recorded here under the institution's own name,
+     * the University of Melbourne. Degrees abbreviated to match the other two cards.
      */
-    credentials: '',
+    credentials:
+      'BSc (Neuroscience), University of Melbourne; BSc (Hons) Chiropractic, International Medical University (IMU), Malaysia',
     /**
      * CONFIRMED 2026-08-09 alongside Kee Shan's, from the same side-by-side.
      *
