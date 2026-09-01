@@ -8,7 +8,7 @@ import { postBodies } from '@/lib/post-content'
 import { conditionBySlug } from '@/lib/conditions'
 import { serviceBySlug } from '@/lib/services'
 import { readingTime } from '@/lib/reading-time'
-import { practitionerBySlug } from '@/lib/clinic'
+import { credentialsText, practitionerBySlug } from '@/lib/clinic'
 import { JsonLd } from '@/components/JsonLd'
 import { blogPostingSchema, breadcrumbSchema, pageFaqSchema, reviewedMedicalWebPage } from '@/lib/schema'
 import { pageMetadata } from '@/lib/seo'
@@ -115,7 +115,7 @@ export default async function PostPage({ params }: Props) {
             reviewer: {
               name: reviewer.name,
               role: reviewer.role,
-              credentials: reviewer.credentials,
+              credentials: credentialsText(reviewer),
               slug: reviewer.slug,
             },
           })}

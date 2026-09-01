@@ -2,6 +2,7 @@ import { SITE_URL } from '@/lib/schema'
 import {
   addressOneLine,
   clinic,
+  credentialsText,
   googleReviews,
   hoursSummaryFor,
   indexablePractitioners,
@@ -126,7 +127,7 @@ export async function GET() {
     block('Practitioners', [
       ...practitioners.map((p) => {
         const parts = [`- ${p.name} — ${p.role}`]
-        if (p.credentials) parts.push(p.credentials)
+        if (p.credentials.length) parts.push(credentialsText(p))
         if (p.registrationsVerified && p.registrations.length) {
           parts.push(p.registrations.map((r) => `${r.label} ${r.value}`).join('; '))
         }

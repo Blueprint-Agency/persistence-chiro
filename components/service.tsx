@@ -2,7 +2,7 @@ import { Fragment, type ReactNode } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { googleReviews, practitionerBySlug } from '@/lib/clinic'
+import { credentialsText, googleReviews, practitionerBySlug } from '@/lib/clinic'
 import { accreditations } from '@/lib/home'
 import type { Outcome } from '@/lib/services'
 import { type Locale, pathFor, shortTitle } from '@/lib/i18n'
@@ -813,7 +813,7 @@ export function ReviewedBy({
           </Link>
           , {reviewer.role}
           <span className="block text-ink-muted/80">
-            {reviewer.credentials} · {dict.page.lastReviewedLabel} {formatted}
+            {credentialsText(reviewer)} · {dict.page.lastReviewedLabel} {formatted}
           </span>
         </p>
       </div>

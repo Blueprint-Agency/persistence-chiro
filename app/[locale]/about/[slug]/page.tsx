@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation'
 
 import {
   bioFor,
+  credentialsText,
   hasBioFor,
   indexablePractitionersFor,
   practitionerBySlug,
@@ -49,7 +50,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const title = `${p.name}, Chiropractor in Cheras, KL`
   const description = `${p.name}, ${p.role} at Persistence Chiropractic Care in Cheras, Maluri. ${
-    p.credentials || 'Gonstead-technique chiropractic in Kuala Lumpur.'
+    credentialsText(p) || 'Gonstead-technique chiropractic in Kuala Lumpur.'
   }`
 
   return pageMetadata({
@@ -128,10 +129,16 @@ export default async function PractitionerPage({ params }: Props) {
           </div>
 
           <div>
-            {p.credentials && (
+            {p.credentials.length > 0 && (
               <>
                 <Eyebrow>{dict.page.credentialsLabel}</Eyebrow>
-                <p className="mt-5 text-lg leading-relaxed text-ink-muted">{p.credentials}</p>
+                <div className="mt-5 space-y-2">
+                  {p.credentials.map((c) => (
+                    <p key={c} className="text-lg leading-relaxed text-ink-muted">
+                      {c}
+                    </p>
+                  ))}
+                </div>
               </>
             )}
 

@@ -66,8 +66,14 @@ export function MeetDoctors({
                   <h3 className="text-lg font-bold group-hover:text-brand-slate">{p.name}</h3>
                   <p className="mt-1 text-sm text-brand-slate">{p.role}</p>
 
-                  {p.credentials && (
-                    <p className="mt-3 text-sm leading-relaxed text-ink-muted">{p.credentials}</p>
+                  {p.credentials.length > 0 && (
+                    <div className="mt-3 space-y-1.5">
+                      {p.credentials.map((c) => (
+                        <p key={c} className="text-sm leading-relaxed text-ink-muted">
+                          {c}
+                        </p>
+                      ))}
+                    </div>
                   )}
 
                   {p.memberships.length > 0 && (

@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
 
-import { practitionerBySlug } from '@/lib/clinic'
+import { credentialsText, practitionerBySlug } from '@/lib/clinic'
 import { conditionBySlugFor } from '@/lib/conditions'
 import { gonsteadIntroFor, gonsteadStepsFor, gonsteadClosingNoteFor } from '@/lib/gonstead'
 import { serviceBySlugFor } from '@/lib/services'
@@ -129,7 +129,7 @@ export default async function ChiropracticPage({ params }: Props) {
             reviewer: {
               name: reviewer.name,
               role: reviewer.role,
-              credentials: reviewer.credentials,
+              credentials: credentialsText(reviewer),
               slug: reviewer.slug,
             },
           })}

@@ -2,7 +2,14 @@
  * JSON-LD builders. One per template, per the schema table in
  * `proposed-site-architecture.md`. All NAP flows from `clinic` — never inline it here.
  */
-import { clinic, practitioners, publishedRegistrations, hasBioFor, type Registration } from './clinic'
+import {
+  clinic,
+  practitioners,
+  credentialsText,
+  publishedRegistrations,
+  hasBioFor,
+  type Registration,
+} from './clinic'
 import { publishedServicesFor } from './services'
 import { whatsappLink, waMessage } from './whatsapp'
 import { type Locale, LOCALES, LOCALE_TAG, pathFor } from './i18n'
@@ -110,7 +117,7 @@ export function localBusinessSchema(locale: Locale) {
         name: p.name,
         jobTitle: p.role,
         ...(url ? { url } : {}),
-        ...(p.credentials ? { description: p.credentials } : {}),
+        ...(p.credentials.length ? { description: credentialsText(p) } : {}),
         ...(registrations.length
           ? {
               hasCredential: registrations.map((r) => ({
@@ -365,7 +372,7 @@ export function contactPageSchema(o: { url: string }) {
 export function personSchema(p: {
   name: string
   role: string
-  credentials: string
+  credentials: readonly string[]
   memberships: readonly string[]
   registrations: readonly Registration[]
   registrationsVerified: boolean
@@ -377,7 +384,7 @@ export function personSchema(p: {
     '@type': 'Person',
     name: p.name,
     jobTitle: p.role,
-    description: p.credentials || undefined,
+    description: credentialsText(p) || undefined,
     memberOf: p.memberships.map((m) => ({ '@type': 'Organization', name: m })),
     hasCredential: registrations.length
       ? registrations.map((r) => ({

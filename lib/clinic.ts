@@ -353,7 +353,7 @@ export const practitioners = [
     role: 'Chiropractor',
     slug: 'valerie-na',
     photo: '/img/valerie-na.webp',
-    credentials: 'BAppSc (Chiropractic), BHSc, RMIT University, Melbourne',
+    credentials: ['BAppSc (Chiropractic), BHSc, RMIT University, Melbourne'],
     // Supplied by the clinic 2026-07-28 — the only pair confirmed against a named person.
     registrations: [acmNo('ACM-2021-384'), mohTcmNo('CP-PPB2024/10096')],
     registrationsVerified: true,
@@ -370,7 +370,7 @@ export const practitioners = [
     slug: 'kee-shan-lim',
     photo: '/img/kee-shan-lim.webp',
     // From the bio the clinic supplied 2026-08-09, abbreviated to match Valerie's format.
-    credentials: 'BSc (Hons) Chiropractic, International Medical University (IMU), Malaysia',
+    credentials: ['BSc (Hons) Chiropractic, International Medical University (IMU), Malaysia'],
     // CONFIRMED 2026-08-09: the client sent the two cards side by side and named which is
     // whose, which is the one thing the interleaved markup could not settle.
     registrations: [acmNo('ACM-2023-508'), mohTcmNo('CP-PPB2025/18923')],
@@ -390,13 +390,15 @@ export const practitioners = [
     /**
      * Supplied by the clinic 2026-09-01, closing the gap his 2026-08-09 bio left ("a renowned
      * university in Melbourne and in Malaysia" — no degree, no institution). Two degrees, so
-     * two clauses separated by a semicolon; Valerie and Kee Shan hold one each and need none.
+     * two entries — which is why this field is a list at all; the other two hold one each.
      *
      * The client wrote "Melbourne University"; recorded here under the institution's own name,
      * the University of Melbourne. Degrees abbreviated to match the other two cards.
      */
-    credentials:
-      'BSc (Neuroscience), University of Melbourne; BSc (Hons) Chiropractic, International Medical University (IMU), Malaysia',
+    credentials: [
+      'BSc (Neuroscience), University of Melbourne',
+      'BSc (Hons) Chiropractic, International Medical University (IMU), Malaysia',
+    ],
     /**
      * CONFIRMED 2026-08-09 alongside Kee Shan's, from the same side-by-side.
      *
@@ -424,6 +426,14 @@ export const practitioners = [
     bio: rynnBio,
   },
 ] as const
+
+/**
+ * `credentials` is a list because Rynn Hoh holds two degrees and the cards give each its own
+ * line. Everywhere a single string is wanted instead — a Person schema `description`, a meta
+ * description, the reviewer byline, llms.txt — join through here so the separator is decided
+ * once rather than per call site.
+ */
+export const credentialsText = (p: { credentials: readonly string[] }) => p.credentials.join('; ')
 
 /** Practitioners whose page is substantial enough to submit for indexing. */
 export const indexablePractitioners = () => practitioners.filter(hasBio)

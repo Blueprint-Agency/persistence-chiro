@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation'
 
 import { serviceBySlugFor, templatedServicesFor } from '@/lib/services'
 import { conditionBySlugFor } from '@/lib/conditions'
-import { practitionerBySlug } from '@/lib/clinic'
+import { credentialsText, practitionerBySlug } from '@/lib/clinic'
 import { LOCALES, isLocale, pathFor, shortTitle } from '@/lib/i18n'
 import { pathExistsIn } from '@/lib/locale-availability'
 import { getDictionary } from '@/lib/dictionaries'
@@ -106,7 +106,7 @@ export default async function ServicePage({ params }: Props) {
             reviewer: {
               name: reviewer.name,
               role: reviewer.role,
-              credentials: reviewer.credentials,
+              credentials: credentialsText(reviewer),
               slug: reviewer.slug,
             },
           })}
