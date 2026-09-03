@@ -812,4 +812,257 @@ export const conditionsMs: Condition[] = [
     // reviewer before this ships to production. Flip back to `true` if that hasn't happened.
     draft: false,
   },
+  {
+    slug: 'scoliosis',
+    title: 'Skoliosis di Cheras, Kuala Lumpur',
+    metaTitle: 'Penilaian Skoliosis di Cheras, KL',
+    metaDescription:
+      'Penilaian skoliosis di Cheras, Maluri. Kami menilai lengkungan dan pergerakan, dan merujuk kepada pakar apabila itu yang diperlukan. Buka tujuh hari.',
+    /**
+     * ⚠️ TIADA DATA, BUKAN TIADA PERMINTAAN. Ubersuggest (locId 2458, 2026-09-03) memulangkan 0
+     * untuk `skoliosis` dan juga untuk `tulang belakang bengkok`, kedua duanya dengan
+     * `monthly_searches` yang kosong. Itu lubang data yang sama seperti yang direkodkan dalam
+     * OPEN-ITEMS.md perkara 4, di mana `neck pain` memulangkan 0 sementara
+     * `stiffness neck pain` memulangkan 1,600. `skoliosis` ialah istilah klinikal yang memang
+     * digunakan orang, jadi 0 di sini tidak boleh dipercayai. Sahkan dengan GSC apabila data
+     * bahasa Malaysia mula terkumpul, dan jangan tukar istilah semata mata kerana angka itu.
+     */
+    targetKeyword: 'skoliosis',
+    related: ['back-pain', 'shoulder-imbalance'],
+    helpedBy: ['chiropractic-care', 'physiotherapy'],
+
+    intro:
+      'Skoliosis ialah lengkungan sisi pada tulang belakang, dan pada kebanyakan kes remaja tiada sebab yang dapat dikenal pasti. Kami perlu berterus terang tentang satu perkara dari awal: jagaan kiropraktik tidak meluruskan lengkungan itu. Apa yang boleh dinilai ialah bagaimana tulang belakang bergerak, dari mana rasa tidak selesa itu datang, dan sama ada lengkungan itu memerlukan pemantauan pakar. Bagi kanak kanak yang masih membesar, itulah soalan yang paling penting.',
+    symptoms: [
+      'Satu bahu kelihatan lebih tinggi daripada sebelah lagi',
+      'Pinggang atau garis pinggul yang tidak sama rata',
+      'Satu bahagian belakang menonjol lebih apabila membongkok ke depan',
+      'Rasa lenguh atau cepat lesu selepas duduk atau berdiri lama',
+      'Baju yang kelihatan senget walaupun ukurannya betul',
+    ],
+    causes: [
+      {
+        heading: 'Idiopatik, iaitu tiada sebab yang dikenal pasti',
+        body: 'Ini bentuk yang paling biasa pada remaja. Ia bukan disebabkan beg sekolah yang berat, postur yang buruk atau tidur pada satu sisi, walaupun ketiga tiga itu kerap dipersalahkan.',
+      },
+      {
+        heading: 'Lengkungan yang berkembang semasa pertumbuhan',
+        body: 'Lengkungan paling berkemungkinan berubah semasa pertumbuhan pesat. Itulah sebabnya usia dan tahap pertumbuhan lebih penting daripada darjah lengkungan itu sendiri apabila memutuskan langkah seterusnya.',
+      },
+      {
+        heading: 'Perubahan pada usia lanjut',
+        body: 'Pada orang dewasa yang lebih tua, perubahan pada sendi dan diskus boleh menghasilkan lengkungan yang terbentuk kemudian, dan keluhannya biasanya tentang keselesaan dan pergerakan, bukan tentang bentuk.',
+      },
+    ],
+    approach: [
+      {
+        heading: 'Menilai dahulu, dan berkata terus jika ia bukan bidang kami',
+        body: 'Kami memeriksa pergerakan tulang belakang, kesimetrian dan bagaimana lengkungan itu berkelakuan apabila anda bergerak. Jika penemuan itu menunjukkan lengkungan yang perlu dipantau oleh pakar, kami akan menyatakannya dan membantu anda ke sana.',
+      },
+      {
+        heading: 'Menangani keselesaan dan pergerakan, bukan bentuk',
+        body: 'Apa yang boleh kami bantu ialah sendi yang kaku, otot yang bekerja berlebihan dan rasa tidak selesa yang datang daripada keduanya. Itu perkara yang berbeza daripada mengubah lengkungan, dan kami tidak akan mencampurkan keduanya.',
+      },
+      {
+        heading: 'Kekuatan dan tabiat harian',
+        body: 'Kerja kekuatan pada teras dan pinggul, serta cara anda duduk dan mengangkat, boleh menjadikan hari hari lebih selesa. Ia tidak mengubah lengkungan itu dan kami tidak mendakwa sebaliknya.',
+      },
+    ],
+    redFlags: [
+      'Lengkungan yang jelas bertambah dalam beberapa bulan',
+      'Lengkungan pada kanak kanak yang masih membesar dan belum pernah dinilai oleh pakar',
+      'Sakit malam yang membangunkan anda dari tidur',
+      'Kelemahan, kebas atau perubahan pada kawalan kencing atau najis',
+      'Sesak nafas yang dikaitkan dengan bentuk tulang belakang',
+    ],
+    keyTakeaways: [
+      {
+        q: 'Bolehkah kiropraktik meluruskan skoliosis?',
+        a: 'Tidak. Tiada jagaan manual yang meluruskan lengkungan struktur. Apa yang boleh dinilai dan dibantu ialah pergerakan dan keselesaan, dan itu dua perkara yang berbeza.',
+      },
+      {
+        q: 'Bilakah pendapat pakar diperlukan?',
+        a: 'Apabila lengkungan muncul semasa pertumbuhan atau menunjukkan tanda bertambah. Dalam kes begitu pemantauan pakar ialah perkara yang betul, dan kami akan merujuk anda.',
+      },
+      {
+        q: 'Adakah beg sekolah berat menyebabkannya?',
+        a: 'Tidak. Pada kebanyakan skoliosis remaja tiada sebab yang dapat dikenal pasti, itulah maksud istilah idiopatik.',
+      },
+    ],
+    qualifierConcerns: [
+      'Satu bahu saya kelihatan lebih tinggi',
+      'Saya diberitahu tulang belakang saya bengkok',
+      'Anak saya baru dikenal pasti mempunyai lengkungan',
+      'Belakang saya cepat lenguh selepas duduk lama',
+    ],
+    faqs: [
+      {
+        q: 'Bolehkah pelarasan kiropraktik membetulkan lengkungan skoliosis saya?',
+        a: 'Tidak, dan sesiapa yang berkata boleh sedang menjanjikan sesuatu yang tidak dapat ditunaikan. Lengkungan itu struktur. Apa yang boleh dinilai dan dibantu ialah sendi yang kaku dan otot yang bekerja berlebihan di sekelilingnya, yang bagi sebahagian orang menjadikan hari harian lebih selesa. Bentuk tulang belakang bukan yang berubah.',
+      },
+      {
+        q: 'Anak saya mempunyai skoliosis. Patutkah kami datang ke sini dahulu?',
+        a: 'Bagi kanak kanak yang masih membesar, pemantauan pakar ialah keutamaan, kerana lengkungan paling berkemungkinan berubah dalam tempoh itu. Kami boleh menilai pergerakan dan keselesaan, tetapi kami tidak akan menggantikan penilaian ortopedik dan kami akan berkata begitu terus.',
+      },
+      {
+        q: 'Adakah saya perlu X-ray?',
+        a: 'Kadang kadang. Darjah lengkungan dan sama ada ia berubah hanya boleh dilihat pada imej, jadi jika soalan itu penting untuk keputusan anda, imej diperlukan. Jika penilaian klinikal sudah menjawab apa yang perlu dijawab, kami tidak akan menghantar anda pergi mengambilnya tanpa sebab.',
+      },
+      {
+        q: 'Adakah skoliosis bermakna saya akan sakit belakang sepanjang hayat?',
+        a: 'Tidak semestinya. Banyak orang dengan lengkungan ringan hidup tanpa keluhan yang bermakna, dan banyak orang tanpa lengkungan pula mengalami sakit belakang. Lengkungan itu satu penemuan, bukan ramalan.',
+      },
+      {
+        q: 'Apa yang berlaku pada lawatan pertama?',
+        a: 'Kami bertanya tentang sejarahnya, memeriksa pergerakan dan kesimetrian tulang belakang, dan menjalankan pemeriksaan saraf jika perlu. Anda akan pulang mengetahui sama ada ini sesuatu yang kami boleh bantu, sesuatu yang perlu dipantau oleh pakar, atau kedua duanya.',
+      },
+    ],
+    citations: [
+      {
+        claim:
+          'Pada kebanyakan skoliosis remaja tiada sebab asas yang dapat dikenal pasti, dan itulah sebabnya ia digambarkan sebagai idiopatik.',
+        source: 'Scoliosis Research Society',
+        url: 'https://www.srs.org/Patients/Conditions/Scoliosis/Idiopathic-Scoliosis',
+      },
+      {
+        claim:
+          'Penilaian pakar dinasihatkan bagi lengkungan yang muncul semasa pertumbuhan atau yang menunjukkan tanda bertambah.',
+        source: 'Janicki & Alman (2007), Paediatrics & Child Health',
+        url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC2532872/',
+      },
+    ],
+    draft: false,
+  },
+  {
+    /**
+     * ⚠️ TUGAS HALAMAN INI IALAH MENYATAKAN APA YANG KAMI TIDAK LAKUKAN.
+     *
+     * `migrain` ialah 27,100/mo, SD 41, CPC 1.18 (Ubersuggest, locId 2458, 2026-09-03), iaitu
+     * kata kunci TERBESAR dalam keseluruhan projek ini, dalam mana mana bahasa. Ia juga satu
+     * satunya keadaan yang klinik ini secara jelas tidak mendakwa boleh bantu. Kedua dua
+     * perkara itu benar pada masa yang sama, dan angka itu tidak mengubah jawapannya.
+     *
+     * Satu perkara jujur yang halaman ini boleh tawarkan ialah menilai sama ada sebahagian
+     * daripada sakit kepala itu datang daripada sendi dan otot leher atas, iaitu perkara yang
+     * berbeza dan agak biasa. Apabila penemuan menunjuk kepada doktor, halaman ini berkata
+     * begitu.
+     *
+     * Perkataan "rawatan" dielakkan sepenuhnya walaupun AGENTS.md membenarkannya dalam
+     * penafian, kerana sapuan bahasa Malaysia dalam `content.test.ts` tidak melaksanakan
+     * pengecualian itu dan meluaskan senarai itu perlu ditanya kepada klien dahulu. "Pengurusan
+     * perubatan" menyampaikan perkara yang sama tanpa perkataan itu.
+     */
+    slug: 'migraine',
+    title: 'Migrain dan Sakit Kepala Berpunca Leher di Cheras, Kuala Lumpur',
+    metaTitle: 'Migrain & Penilaian Leher di Cheras, KL',
+    metaDescription:
+      'Pengurusan perubatan migrain adalah bidang doktor. Kami menilai sama ada sebahagian sakit kepala anda datang daripada leher atas. Cheras, Maluri.',
+    /** `migrain` 27,100/mo, SD 41 (Ubersuggest, locId 2458, 2026-09-03). Terbesar dalam projek. */
+    targetKeyword: 'migrain',
+    related: ['neck-pain'],
+    helpedBy: ['chiropractic-care'],
+
+    intro:
+      'Bukan setiap sakit kepala yang berat itu migrain, dan bukan setiap migrain ada kaitan dengan leher. Membezakan yang mana satu anda hadapi memang itulah tujuan satu konsultasi. Migrain sendiri ialah keadaan neurologi, dan pengurusan perubatannya adalah bidang doktor, jadi kiropraktik bukan penyelesaian untuknya. Apa yang boleh kami nilai ialah sama ada sebahagian daripada apa yang anda rasa datang daripada sendi dan otot leher atas, iaitu punca sakit kepala yang berasingan dan agak biasa. Jika penilaian itu menunjuk kepada doktor anda dan bukan kepada kami, kami akan berkata begitu terus dan membantu anda ke sana.',
+    symptoms: [
+      'Sakit kepala yang mula di leher atau belakang kepala sebelum merebak ke depan',
+      'Bertambah selepas memusing kepala atau menunduk lama',
+      'Berulang pada sisi yang sama, pada kedudukan yang agak tetap',
+      'Disertai leher kaku atau ketegangan pada bahu dan leher',
+      'Tekanan pada leher atas membangkitkan rasa sakit kepala yang anda kenali',
+    ],
+    causes: [
+      {
+        heading: 'Sendi dan otot leher atas',
+        body: 'Apabila sendi leher atas dan otot di sekelilingnya terganggu, sakitnya boleh dirasai di kepala. Dalam pengelasan antarabangsa ia sejenis sakit kepala yang berasingan daripada migrain.',
+      },
+      {
+        heading: 'Migrain itu sendiri',
+        body: 'Migrain ialah penyakit sistem saraf, kerap dengan sensitif kepada cahaya, rasa mual dan pola serangan tertentu. Diagnosis dan ubatnya adalah bidang doktor, bukan bidang kami.',
+      },
+      {
+        heading: 'Kedua duanya sekali',
+        body: 'Seseorang boleh mempunyai migrain dan sakit kepala berpunca leher pada masa yang sama. Itulah sebabnya ia mudah bercampur apabila dinilai sendiri, dan tujuan penilaian ialah memisahkan keduanya.',
+      },
+    ],
+    approach: [
+      {
+        heading: 'Membezakan dahulu, kemudian memutuskan',
+        body: 'Kami melihat pola sakit kepala anda, pergerakan leher, dan sama ada leher atas boleh membangkitkan rasa sakit yang anda kenali. Kesimpulannya mungkin "ini bukan bidang kami", dan itu pun jawapan yang berguna.',
+      },
+      {
+        heading: 'Bahagian yang datang dari leher, kami bantu',
+        body: 'Jika penilaian menunjuk kepada leher atas, pelarasan tepat dan jagaan manual pada segmen yang terhad boleh dimasukkan. Kami akan terangkan apa yang dijangka dan apa yang tidak, dan kami tidak menjanjikan sakit kepala itu akan hilang.',
+      },
+      {
+        heading: 'Bahagian yang bukan milik kami, kami rujuk',
+        body: 'Ubat migrain, pelan pencegahan dan pemeriksaan lanjut adalah bidang doktor. Kami akan menulis penemuan kami supaya anda boleh membawanya, dan bukan menahan anda di sini untuk mencuba lagi.',
+      },
+    ],
+    redFlags: [
+      'Sakit kepala mendadak yang anda gambarkan sebagai paling teruk pernah dialami',
+      'Disertai demam dan leher kaku',
+      'Bermula selepas kecederaan pada kepala',
+      'Disertai kehilangan penglihatan, kesukaran bertutur atau kelemahan sebelah badan',
+      'Sakit kepala baharu yang muncul selepas usia 50 tahun',
+      'Jelas bertambah apabila batuk, meneran atau bertukar kedudukan',
+    ],
+    keyTakeaways: [
+      {
+        q: 'Bolehkah kiropraktik menghilangkan migrain?',
+        a: 'Tidak. Migrain ialah keadaan neurologi dan pengurusan perubatannya adalah bidang doktor. Apa yang boleh kami buat ialah menilai sama ada sebahagian sakit kepala anda datang daripada leher atas.',
+      },
+      {
+        q: 'Apa bezanya sakit kepala berpunca leher dengan migrain?',
+        a: 'Sakit kepala berpunca leher datang daripada struktur pada leher dan dikelaskan secara berasingan. Migrain ialah penyakit sistem saraf itu sendiri. Kedua duanya boleh wujud bersama, dan itulah sebabnya penilaian diperlukan.',
+      },
+      {
+        q: 'Jadi perlukah saya datang?',
+        a: 'Jika sakit kepala anda jelas berkait dengan pergerakan leher atau kedudukan menunduk, penilaian itu berguna. Jika penemuan menunjuk kepada doktor, kami akan berkata begitu dan membantu anda ke sana.',
+      },
+    ],
+    qualifierConcerns: [
+      'Sakit kepala saya mula di leher atau belakang kepala',
+      'Ia bertambah selepas menunduk atau memusing kepala',
+      'Saya juga ada ketegangan bahu dan leher',
+      'Saya tidak pasti sama ada ini migrain atau masalah leher',
+    ],
+    faqs: [
+      {
+        q: 'Bolehkah anda menghentikan migrain saya daripada berulang?',
+        a: 'Tidak, dan kami tidak akan berkata begitu. Diagnosis dan ubat migrain adalah bidang doktor. Apa yang kami nilai ialah berapa banyak daripada apa yang anda rasa datang daripada sendi dan otot leher atas. Bahagian itu bidang kami, yang lain bukan.',
+      },
+      {
+        q: 'Bagaimana saya tahu sakit kepala saya berkait dengan leher?',
+        a: 'Beberapa petunjuk: ia mula di leher atau belakang kepala, berubah dengan kedudukan kepala, berulang pada sisi yang sama, dan tekanan pada leher atas membangkitkan rasa yang anda kenali. Penilaian melihat semua itu bersama dan bukan satu petunjuk sahaja.',
+      },
+      {
+        q: 'Saya sudah berjumpa doktor. Perlukah saya datang juga?',
+        a: 'Kedua duanya tidak bertentangan. Doktor menguruskan migrain itu sendiri, kami melihat sama ada leher menyumbang sebahagian lagi. Bawa diagnosis dan senarai ubat anda, dan kami akan menilai dalam kerangka itu.',
+      },
+      {
+        q: 'Apa yang berlaku pada lawatan pertama?',
+        a: 'Kami bertanya tentang pola sakit kepala dan sejarah anda, memeriksa pergerakan leher dan leher atas, dan menjalankan pemeriksaan yang perlu untuk menolak keadaan yang memerlukan perhatian segera. Sebelum pulang anda akan tahu siapa yang patut menangani ini.',
+      },
+      {
+        q: 'Bila saya patut terus berjumpa doktor atau ke kecemasan?',
+        a: 'Sakit kepala mendadak yang paling teruk pernah anda alami, disertai demam dan leher kaku, bermula selepas kecederaan kepala, disertai masalah penglihatan atau pertuturan atau kelemahan sebelah badan, dan sakit kepala baharu selepas usia 50 tahun. Dalam keadaan itu dapatkan bantuan perubatan dahulu dan jangan datang kepada kami dahulu.',
+      },
+    ],
+    citations: [
+      {
+        claim:
+          'Sakit kepala berpunca leher dikelaskan sebagai gangguan sakit kepala yang berasingan dan dikaitkan dengan struktur pada leher.',
+        source: 'International Classification of Headache Disorders, ICHD-3',
+        url: 'https://ichd-3.org/11-headache-or-facial-pain-attributed-to-disorder-of-the-cranium-neck-eyes-ears-nose-sinuses-teeth-mouth-or-other-facial-or-cervical-structure/11-2-headache-attributed-to-disorder-of-the-neck/11-2-1-cervicogenic-headache/',
+      },
+      {
+        claim:
+          'Gangguan sakit kepala adalah antara gangguan sistem saraf yang paling biasa di seluruh dunia.',
+        source: 'World Health Organization',
+        url: 'https://www.who.int/news-room/fact-sheets/detail/headache-disorders',
+      },
+    ],
+    draft: false,
+  },
 ]
