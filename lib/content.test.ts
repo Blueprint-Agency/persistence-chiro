@@ -26,6 +26,7 @@ import { homeIntro } from './home.ts'
 import { gonsteadIntro, gonsteadSteps } from './gonstead.ts'
 import { founderBio, practitioners, publishedRegistrations } from './clinic.ts'
 import { LOCALES } from './i18n.ts'
+import { bundles, bundlesFor } from './pricing.ts'
 
 const conditionSlugs = new Set(conditions.map((c) => c.slug))
 const serviceSlugs = new Set(services.map((m) => m.slug))
@@ -372,6 +373,16 @@ function collectStrings(value: unknown, out: string[] = [], key?: string): strin
  * for "the care given"), and Malay "rawatan"/"merawat"/"dirawat"/etc., are banned the same
  * way English "treat/treatment" is.
  *
+ * ⚠️ THE DISCLAIMER CARVE-OUT IS NOT IMPLEMENTED HERE. AGENTS.md § Non-negotiables allows the
+ * banned word in a line that says what chiropractic does NOT do, because "does not help with
+ * migraine" is vaguer and less protective than "does not treat migraine". That carve-out is
+ * honoured in English by human judgement; this sweep has no way to tell a disclaimer from a
+ * claim, so in zh/ms it bans the word outright. The zh and ms migraine pages, whose whole job
+ * is that refusal, were therefore written around it (疗法 and "pengurusan perubatan" rather
+ * than 治疗 and "rawatan"), which reads fine and cost nothing. Prefer rewording to widening
+ * this list: AGENTS.md says the zh/ms lists are a draft pending client review, so extending
+ * them is a question for the client rather than a decision for whoever is mid-task.
+ *
  * A short, curated list of compounds is the approved exception — each one names a
  * profession or technique (物理治疗 = physiotherapy, 徒手治疗 = manual therapy, 治疗师 =
  * therapist), the same way English "physiotherapist" is allowed despite containing no
@@ -394,6 +405,11 @@ test('no verb-form banned word in zh/ms published copy', () => {
     }
     for (const s of servicesFor(locale)) {
       bucket.push([`services/${s.slug}`, collectStrings(s).join(' ')])
+    }
+    // Bundle copy is published prose like any other and was not covered until pricing
+    // shipped (2026-09-03). A price card is exactly where "rawatan" would slip back in.
+    for (const b of bundlesFor(locale)) {
+      bucket.push([`pricing/${b.slug}`, collectStrings(b).join(' ')])
     }
   }
 
@@ -663,5 +679,64 @@ test('no redirect points at a route that does not exist', () => {
   for (const r of redirects) {
     const dest = r.destination.split('#')[0]
     assert.ok(known.has(dest), `redirect ${r.source} -> ${dest}, which is not a known route`)
+  }
+})
+
+
+/**
+ * `compareAt` is the struck-through "total worth" on a bundle card — a price-reduction claim
+ * the clinic is the regulated party behind, not a headline someone chose because it looked
+ * like a saving. It must be the sum of the components at the prices they are sold for alone.
+ *
+ * This test exists because the client's own artwork shipped with "TOTAL WORTH RM650" printed
+ * over components adding to RM660. Nobody catches that by reading; everybody catches it on an
+ * invoice. The clinic confirmed RM660 on 2026-09-03.
+ */
+test('a bundle total is the sum of its components', () => {
+  const wrong: string[] = []
+  for (const locale of LOCALES) {
+    for (const b of bundlesFor(locale)) {
+      const sum = b.lines.reduce((total, line) => total + line.price, 0)
+      if (sum !== b.compareAt) wrong.push(`${locale} ${b.slug}: lines sum to ${sum}, compareAt says ${b.compareAt}`)
+      if (b.price > b.compareAt) wrong.push(`${locale} ${b.slug}: price ${b.price} exceeds compareAt ${b.compareAt}`)
+    }
+  }
+  assert.deepEqual(wrong, [], `bundle arithmetic: ${wrong.join('; ')}`)
+})
+
+/**
+ * Prices are facts. The wording around them is translated; the figures are not, and a bundle
+ * that costs RM588 in English and something else in Malay is a different price rather than a
+ * translation slip. Same reasoning as the byte-identical NAP rule.
+ */
+test('bundle prices are identical in every locale', () => {
+  const mismatched: string[] = []
+  for (const locale of LOCALES) {
+    if (locale === 'en') continue
+    for (const b of bundlesFor(locale)) {
+      const source = bundles.find((e) => e.slug === b.slug)
+      if (!source) {
+        mismatched.push(`${locale} ${b.slug}: no English record with this slug`)
+        continue
+      }
+      if (b.price !== source.price || b.compareAt !== source.compareAt) {
+        mismatched.push(`${locale} ${b.slug}: ${b.price}/${b.compareAt} vs en ${source.price}/${source.compareAt}`)
+      }
+      const prices = (x: typeof b) => x.lines.map((l) => l.price).join(',')
+      if (prices(b) !== prices(source)) {
+        mismatched.push(`${locale} ${b.slug}: line prices ${prices(b)} vs en ${prices(source)}`)
+      }
+    }
+  }
+  assert.deepEqual(mismatched, [], `bundle price drift: ${mismatched.join('; ')}`)
+})
+
+/** Same contract `draft` has with `holdReason` in lib/posts.ts: withheld means say why. */
+test('a withheld bundle records its reason', () => {
+  for (const b of bundles.filter((e) => e.draft)) {
+    assert.ok(
+      (b.holdReason ?? '').length > 40,
+      `${b.slug} is draft with no substantial holdReason`,
+    )
   }
 })

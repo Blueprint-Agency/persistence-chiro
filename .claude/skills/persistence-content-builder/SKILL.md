@@ -365,6 +365,29 @@ existing house voice in `lib/conditions.ts`.
 
 ---
 
+## Lessons from built pages
+
+**Read the SERP's composition, not just its rankings (learned 2026-09-03, `/services/sports-massage`).**
+Step 5 asks for the top 2-3 ranking pages. Also look at what KIND of business holds the rest
+of page one. For `sports massage kl`, positions 1, 4, 7 and 9 were spas, reflexology and a
+TripAdvisor listing, and only three were clinics. That mix is itself the gap: the searcher does
+not know whether they want a spa or a clinician, no page on the SERP tells them, and a
+`comparison` block answering it became the page's whole differentiator. A SERP split across two
+business types is an opportunity; a SERP full of near-identical competitors is a warning.
+
+**Name the competitor advantage you cannot match, out loud, at 8b (same page).**
+All three ranking clinics named their therapists with photos and credentials, and this clinic
+cannot while the physiotherapists are within probation. The honest move was a ❌ in the gap
+table plus an FAQ answering "who carries this out" with the profession and its registration
+instead of a name. Quietly omitting the row would have shipped a page with a hole in it that
+nobody had decided how to fill.
+
+**A service page is not a blog post.** Steps referencing `<KeyTakeawayList>`, `<FaqList>`,
+`<InlineQualifier>` and MDX bodies do not apply. The service template already renders outcomes,
+a qualifier, a comparison table, a fit check, an FAQ and the CTA band from the typed entry, so
+"the outline" is really a map of which template blocks get filled with what. Present it that
+way rather than as a list of freehand H2s that the template will never render.
+
 ## Quick reference
 - Client: **Persistence Chiropractic** (single clinic, Cheras/Maluri, KL). NAP + CTAs: `lib/clinic.ts`.
 - Booking: SweetPew (`clinic.bookingUrl`). WhatsApp: `clinic.whatsappUrl`.

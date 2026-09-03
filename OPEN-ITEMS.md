@@ -4,7 +4,8 @@ Work that is **blocked on a person, an asset or an access grant** — not on cod
 item below has its reasoning recorded in a comment next to the thing it governs; this file
 exists so the list can be found in one place instead of stumbled upon in four.
 
-Last updated **2026-08-09**, when the two associate bios landed.
+Last updated **2026-09-03**, when the client approved bundle pricing and confirmed
+sports massage is offered.
 
 > Keep this file honest. When an item is resolved, delete it here *and* remove the
 > corresponding gate or comment in the code. A stale blocker is worse than no list.
@@ -39,6 +40,15 @@ deliver any of those, the same misrepresentation as item 1 applies.
 **Ask which of the three are physio-delivered**, then set `practitionersWithheld` on those.
 One line per page now the field exists.
 
+⚠️ **`/services/sports-injury-rehabilitation` got more urgent on 2026-09-03, and now in three
+languages.** It carries the shockwave and sports massage bundle, and the clinic has confirmed
+either profession delivers those, while the page still renders "Meet your chiropractors"
+underneath. The page's own core service may well be chiropractor-delivered, which is why this was
+not changed unilaterally, but the page now advertises something it may be naming the wrong
+profession for. This is the one item on this list with copy already live that depends on the
+answer, and the answer must be applied to the **en, zh and ms records together**: locales
+disagreeing about who delivers a service is worse than either answer.
+
 ## 3. Per-condition photography — needs assets
 
 Conditions now have a hero slot (`<ConditionHero>`) and every page shares one honest fallback,
@@ -72,57 +82,140 @@ data:
 
 **Getting the clinic to grant GSC access unblocks all four retargeting decisions at once.**
 
-## 5. Sports massage — needs a yes or no from the clinic
+## 5. Sports massage and shockwave — pages BUILT 2026-09-03, assets and review outstanding
 
-`sports massage kl` runs **170/mo at difficulty 8 with commercial intent**, and competitors
-bid on it. It is the best untapped keyword found anywhere on this site.
+`/services/sports-massage` is live in **all three locales**, with shockwave as a section on it
+and the RM200 bundle on the page. Each locale targets its own measured keyword rather than a
+translation of the English one (Ubersuggest, Malaysia locId 2458, pulled 2026-09-03):
 
-`/services/sports-injury-rehabilitation` currently targets `sports injury treatment malaysia`
-at **10/mo**, kept deliberately (client, 2026-08-08) because every localised variant measured
-worse, not better: `sports injury treatment kl` 0, `sports rehab kl` 0,
-`sports physiotherapy kuala lumpur` 0, `sports injury clinic kuala lumpur` 10 (eleven of
-twelve months at zero).
+| Locale | Target | Volume | SD |
+|---|---|---|---|
+| en | `sports massage kl` | 170/mo | 8 |
+| zh | `运动按摩` | 50/mo | 42 |
+| ms | `urut sukan` | 50/mo | 19 |
 
-**If the clinic offers sports massage, retargeting that page is the single best remaining SEO
-move.** If it does not, the page stays as it is and earns its place through internal linking
-rather than search — low volume is not low value, since sprains still walk in via
-`physio cheras`, the Business Profile and the condition pages.
+`深层按摩` measured 0 and is used nowhere. `urutan sukan` returned an identical volume,
+difficulty and monthly series to `urut sukan`, so Ubersuggest clusters them and either captures
+the same demand. All three set `practitionersWithheld`, since either profession delivers this
+and the physiotherapists still cannot be named.
 
-## 6. ~~Rynn Hoh's qualifications~~ — RESOLVED 2026-09-01
+Outstanding:
 
-The clinic sent the two degrees: BSc (Neuroscience), Melbourne University, and BSc (Hons)
-Chiropractic, International Medical University (IMU), Malaysia. Both are now in `credentials`
-in `lib/clinic.ts`, so his card, his profile page and the `description` in his Person schema
-all carry a qualification where they previously carried nothing.
+- **A sports massage photograph.** There isn't one, in any locale, and the bundle card has now
+  run out of honest frames to reuse: it was moved off `rehab-ankle.webp` because that is the
+  sports rehabilitation hero and the card would have shown it twice on one screen, onto
+  `sports-post-surgical.webp`, which is still one of that page's own outcome cards. So that page
+  currently shows one photograph in two places. A real frame of shockwave or of sports massage
+  fixes the card on three pages at once. The hero reuses the soft
+  tissue frame from the physiotherapy page and the four concern cards reuse the shared symptom
+  illustrations. A real frame of this work in this room is the biggest single improvement
+  available to these three pages at once.
+- **An OG card.** No `ogImage`, so all three share the sitewide shopfront card.
+- **Two wording calls for the clinic to confirm**, both recorded in the code:
+  - **`冲击波疗法`, not `冲击波治疗`**, for shockwave. `疗法` names the technique without the
+    banned `治疗` string, so nothing had to be added to the whitelist in `content.test.ts`.
+    AGENTS.md says the Chinese banned-word list is a strong draft pending client review, so
+    widening its carve-outs was not ours to do unilaterally. Worth asking whether `疗法` reads
+    naturally to their Chinese-speaking patients.
+  - **`urut sukan` sits close to `urut sendi`**, which the Malay chiropractic page targets. The
+    strings differ so the duplicate-keyword test passes, but the two pages are one careless edit
+    away from the same intent. Keep this page on soft tissue and training load; leave joint work
+    to that one.
+- **Is shockwave worth its own page?** It exists only as a section. Worth measuring
+  `shockwave therapy kl` before assuming.
 
-Recorded as "University of Melbourne" rather than the client's "Melbourne University" —
-the institution's own name, on a field a search engine reads as a qualification claim. Worth a
-sentence to the client if his card should print it their way. His registrations were always a
-separate gate — see item 7.
+## 7b. Multilingual coverage is complete, and two pages need watching
 
-## 7. Rynn Hoh's ACM membership — one yes or no
+As of **2026-09-03** every condition and every service exists in all three locales: 8 conditions
+and 6 services, 42 pages, no gaps. The blog stays English only by design.
 
-Registrations are **resolved**: the client sent Kee Shan's and Rynn's cards side by side on
-2026-08-09 and named which was whose, so `registrationsVerified` is now `true` for all three
-and every number renders.
+**The two biggest keywords in this entire project are both migraine, and migraine is the one
+thing the clinic does not claim to help with.**
 
-What that confirmed is asymmetric. Kee Shan holds an ACM number and an MOH T&CM number; **Rynn
-holds MOH only**. Yet his `memberships` array still claims the Association of Chiropractic
-Malaysia. Both lines came off the same Wix read and only the numbers were confirmed, and unlike
-`registrations`, `memberships` has no verification gate — so nothing in the code catches this.
+| Keyword | Locale | Volume | SD |
+|---|---|---|---|
+| `migrain` | ms | **27,100/mo** | 41 |
+| `偏头痛` | zh | **1,300/mo** | 39 |
 
-Not impossible; a card need not print every number. But it is the last internal inconsistency
-on the about pages. **Ask whether Rynn holds ACM membership** — if yes, get the number; if no,
-delete the line.
+Both pages are built as the English one is: an honest refusal that says the medical management of
+migraine belongs with a doctor, plus the one thing the clinic can honestly assess, which is
+whether part of the head pain is coming from the upper neck. **Do not let anyone "optimise" these
+into conversion pages because of the volume.** If traffic arrives and bounces, that is the page
+working correctly. The number does not change the answer.
 
-## 8. Pricing — a client decision, not an SEO one
+**Three targets were chosen on judgement because Ubersuggest has no data for them**, all
+returning 0 with an empty `monthly_searches` array, which is the same reporting hole as item 4:
 
-Pricing stays off the site on volume grounds. Every pricing keyword measured between 0 and
-50/mo in Malaysia, and the only term clearing 50 was `home physiotherapy price`, which is a
-service the clinic does not offer.
+| Page | Target | Also measured at 0 |
+|---|---|---|
+| zh slipped-disc | `腰椎间盘突出` | `椎间盘突出`, `骨刺` |
+| zh sciatica | `坐骨神经痛` | `坐骨神经` |
+| ms scoliosis | `skoliosis` | `tulang belakang bengkok` |
 
-But both strong chiropractic competitors publish theirs (Ian The Chiro RM150 consultation /
-RM120 adjustment; Osso RM70 consultation / RM250 chiro-plus-physio), and no physiotherapy
-competitor does. So it remains a **conversion** question worth putting to the clinic, even
-though it is not a search one. If a figure is ever approved, the FAQ is where it belongs, not
-a dedicated section.
+These are the standard clinical terms in both languages, so a zero is not credible. **Validate
+them against GSC once Chinese and Malay impressions accumulate**, and do not swap the terminology
+to chase a number the tool cannot see.
+
+**All of it is unreviewed.** Every zh and ms record on the site is adapted from clinic-reviewed
+English copy and has never been read by a native speaker. `lastReviewed` is unset throughout,
+which is honest, but it means 28 non-English pages are live on a YMYL medical site with no
+second reader. The migraine and scoliosis pages are the ones to hand over first: both make
+refusals, and a refusal that translates badly is worse than no page.
+
+## 8. Pricing — SHIPPED 2026-09-03, one bundle still held
+
+The client reversed the earlier decision and approved publishing prices. The RM588 bundle is
+**live**; the RM200 one is built but held.
+
+**Chiro + Physio, RM588 (from RM660)** — a new-patient bundle:
+
+| Component | Listed at |
+|---|---|
+| Chiropractic initial consultation and first adjustment | RM310 |
+| X-ray | RM190 |
+| Physiotherapy initial assessment, first session, home exercise programme | RM160 |
+
+Renders on `/services/chiropractic-care` and `/services/physiotherapy` in all three locales,
+answers the "how much does a first visit cost" FAQ on `/what-to-expect`, and reaches JSON-LD as
+`makesOffer` on the clinic entity — which is the point, since the case for pricing was AEO, not
+ranking. Every figure comes from `lib/pricing.ts`; nothing is retyped into a component or an
+FAQ answer.
+
+Two faults in the client's artwork were caught on the way in and are worth remembering:
+
+1. **The poster's "TOTAL WORTH RM650" did not match its own breakdown** — 310 + 190 + 160 is
+   RM660. The clinic confirmed RM660. `content.test.ts` now asserts that a bundle's `compareAt`
+   equals the sum of its components, so the same error cannot ship twice.
+2. **The poster reads "Initial Consultation, Treatment"** — the banned word, on a graphic a
+   patient sees. The block is rebuilt as markup rather than dropped in as an image. Never
+   publish that artwork as-is.
+
+**Shockwave + Sports Massage, RM200 (from RM240), one session of each — LIVE 2026-09-03** on
+`/services/sports-massage`, badged "Website only". It is the more valuable of the two:
+website-exclusive by design, and GSC shows the site holding positions 4-11 on its money queries
+while taking near-zero clicks, because those are local-pack impressions where the tap goes to
+the Business Profile. An offer that exists nowhere else is a reason to tap the website.
+
+It renders on **`/services/sports-massage` and
+`/services/sports-injury-rehabilitation`** (client request, 2026-09-03), **in all three locales
+on both**, so six pages carry it. The Chinese sports rehabilitation record was written on
+2026-09-03 to close the last locale gap; it targets `复健` at 90/mo, which is nine times the
+English record's own `sports injury treatment malaysia` at 10/mo.
+
+The claim path is the CTA itself. The card's only button is a prefilled WhatsApp message naming
+the bundle and its price, which reaches the clinic before the patient does and is itself the
+evidence they came through the site. No code, voucher or counter process was invented.
+
+Terms per the client, 2026-09-03: **no expiry date, one per person.** Both are recorded in
+`lib/pricing.ts` and **deliberately not shown on the card**, at the client's direction the same
+day. Do not add them back as a helpful clarification; that has already been done and undone once.
+
+⚠️ **That makes briefing the front desk load-bearing rather than tidy.** The per-person cap is
+now enforced entirely at the counter, and nothing on the page hints at it, so reception has to
+know both that the offer exists and that it is once per patient.
+
+Also outstanding: **all zh/ms bundle and sports massage copy is unreviewed.**
+`lib/pricing.zh.ts`, `lib/pricing.ms.ts` and the two `sports-massage` records in
+`lib/services.zh.ts` / `.ms.ts` are adapted from the clinic-reviewed English records and have
+not been read by a native speaker. The pricing copy carries a commercial claim rather than
+general prose, so get that checked before any paid traffic points at those locales.
