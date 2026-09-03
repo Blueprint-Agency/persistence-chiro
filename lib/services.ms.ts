@@ -920,4 +920,213 @@ export const servicesMs: Service[] = [
     // reviewer before this ships to production. Flip back to `true` if that hasn't happened.
     draft: false,
   },
+  {
+    /**
+     * Urut sukan. Targets `urut sukan` at 50/mo, SD 19 (Ubersuggest, Malaysia locId 2458,
+     * pulled 2026-09-03, twelve months between 20 and 90 so the figure is real). NOT a
+     * translation of the English target: `sports massage kl` is its own Latin-script query at
+     * 170/mo and this page earns its own term. `urutan sukan` returned an identical volume,
+     * difficulty and month-by-month series, so Ubersuggest is clustering the two; picking
+     * either gets the same demand and `urut sukan` is the shorter, more spoken form.
+     *
+     * ⚠️ DISTINCT FROM `urut sendi`, which the Malay chiropractic record targets. Both contain
+     * "urut" and the two pages sit close together in meaning, so keep this one about soft
+     * tissue and training load, and leave joint work to that page. `content.test.ts` catches an
+     * identical string; it cannot catch two pages drifting onto one intent.
+     *
+     * No "rawatan" or "merawat" anywhere, per AGENTS.md § Multilingual. Menilai, melaras and
+     * pemulihan name the action instead. Same review contract as the rest of this file:
+     * adapted from the clinic-reviewed English record, `lastReviewed` unset, not yet read by a
+     * Malay-speaking reviewer.
+     */
+    slug: 'sports-massage',
+    title: 'Urut Sukan di Cheras, Kuala Lumpur',
+    metaTitle: 'Urut Sukan di Cheras, KL',
+    metaDescription:
+      'Urut sukan di Cheras, Maluri, dinilai sebelum bermula. Untuk ketegangan latihan, otot kaku di meja kerja dan kecederaan lama yang tidak reda. Buka tujuh hari.',
+    targetKeyword: 'urut sukan',
+    intro:
+      'Urut sukan di Cheras untuk mereka yang berlatih, mereka yang duduk di meja sepanjang minggu, dan mereka yang masih membawa kecederaan lama yang tidak pernah reda sepenuhnya. Kami menilai dahulu sebelum bermula, supaya sesi itu digunakan pada tisu yang menjadi punca keluhan.',
+    heroImage: {
+      src: '/img/therapy-neck.webp',
+      alt: 'Fisioterapis mengurut leher dan bahu pesakit yang sedang duduk di Persistence Chiropractic Care di Cheras, Kuala Lumpur',
+    },
+    midImage: {
+      src: '/img/cupping-therapy.webp',
+      alt: 'Terapi bekam dilakukan pada bahagian atas belakang pesakit di Persistence Chiropractic Care di Cheras, Kuala Lumpur',
+    },
+    assurances: [
+      'Dinilai sebelum sebarang urutan bermula',
+      'Sesi enam puluh minit',
+      'Buka tujuh hari · Cheras, Maluri',
+    ],
+    /**
+     * ⚠️ TEKS ALT TIDAK MEMBAWA NAMA TEMPAT: ini ilustrasi simptom yang dikongsi antara
+     * halaman, bukan gambar klinik ini, pengamal ini atau pesakit ini. Tiada gambar urut sukan
+     * yang sebenar buat masa ini, direkodkan dalam OPEN-ITEMS.md.
+     */
+    outcomes: [
+      {
+        text: 'Ketegangan otot yang berkumpul sepanjang minggu latihan',
+        image: {
+          src: '/img/physio-pain-stiffness.webp',
+          alt: 'Ilustrasi otot leher dan bahu menyala pada seorang lelaki yang memegang sisi lehernya',
+        },
+      },
+      {
+        text: 'Bahagian bawah belakang yang kaku selepas lama duduk atau mengangkat berat',
+        image: {
+          src: '/img/physio-recent-strain.webp',
+          alt: 'Ilustrasi sakit bawah belakang menyala pada seorang lelaki yang berdiri di kaunter dapur dengan tangan di belakangnya',
+        },
+      },
+      {
+        text: 'Kecederaan lama yang menjengah semula apabila beban latihan naik',
+        image: {
+          src: '/img/physio-weakness.webp',
+          alt: 'Ilustrasi sakit buku lali menyala pada seorang wanita yang duduk di meja dengan kaki di atas lantai',
+        },
+      },
+      {
+        text: 'Persiapan sebelum acara, atau melegakan selepasnya',
+        image: {
+          src: '/img/sports-staged-return.webp',
+          alt: 'Wanita mengimbangi diri dengan sebelah kaki di atas kusyen imbangan sambil ahli terapi memegang tangannya',
+        },
+      },
+    ],
+    qualifierConcerns: [
+      'Otot saya kekal sakit antara sesi latihan',
+      'Leher dan bahu saya kaku di meja kerja',
+      'Kecederaan lama menjengah semula apabila saya berlatih',
+      'Saya ada acara yang menjelang',
+      'Saya tidak pasti sama ada saya perlukan urutan atau pemulihan',
+      'Saya pernah buat urut spa dan ia tidak bertahan',
+    ],
+    citations: [
+      {
+        claim:
+          'Kajian sistematik terbesar mengenai urut sukan tidak menemui bukti bahawa ia meningkatkan kekuatan, pecutan, lonjakan atau ketahanan, tetapi menemui peningkatan kecil yang bermakna secara statistik pada kelenturan dan pada kesakitan otot yang tertunda.',
+        source:
+          'Davis, Alabed and Chico (2020), Effect of sports massage on performance and recovery: a systematic review and meta-analysis, BMJ Open Sport & Exercise Medicine',
+        url: 'https://bmjopensem.bmj.com/content/6/1/e000614',
+      },
+      {
+        claim:
+          'Satu meta analisis yang membandingkan kaedah pemulihan selepas senaman mendapati urutan paling berkesan antara kaedah yang dikaji untuk mengurangkan kesakitan otot tertunda dan rasa lesu.',
+        source:
+          'Dupuy et al. (2018), An Evidence-Based Approach for Choosing Post-exercise Recovery Techniques, Frontiers in Physiology',
+        url: 'https://www.frontiersin.org/articles/10.3389/fphys.2018.00403/full',
+      },
+    ],
+    comparison: {
+      heading: 'Urut sukan atau urut spa',
+      intro:
+        'Kedua duanya sejam kerja tangan dan namanya berbunyi serupa, jadi eloklah kami nyatakan di mana bezanya. Satu menumpukan pada bagaimana anda rasa sepanjang jam itu. Satu lagi menumpukan pada apa yang meletakkan anda di atas katil itu.',
+      columns: ['Urut sukan di sini', 'Urut spa'],
+      rows: [
+        {
+          label: 'Siapa yang melakukannya',
+          a: 'Kiropraktor atau fisioterapis, bergantung pada apa yang ditemui semasa penilaian.',
+          b: 'Ahli urut, biasanya tanpa penilaian klinikal terlebih dahulu.',
+        },
+        {
+          label: 'Apa yang berlaku dahulu',
+          a: 'Anda dinilai. Bagaimana bahagian itu bergerak, dan apa yang membebankannya, sebelum sesiapa meletakkan tangan pada anda.',
+          b: 'Anda memilih dari menu, biasanya mengikut tempoh dan tekanan.',
+        },
+        {
+          label: 'Apa yang disasarkan sejam itu',
+          a: 'Tisu yang benar menghadkan anda, dan sebab ia menjadi begitu.',
+          b: 'Kelegaan umum dan ketegangan otot keseluruhan.',
+        },
+        {
+          label: 'Apa yang anda bawa pulang',
+          a: 'Jawapan sama ada urutan sahaja sudah cukup, dan apa lagi yang bahagian itu perlukan jika tidak.',
+          b: 'Sejam yang lebih longgar dan tenang, dan anda tempah lagi bila terasa ingin.',
+        },
+      ],
+      note: 'Tiada satu yang lebih baik daripada yang lain, dan kalau yang anda mahu ialah sejam yang tenang, spa itulah pilihan yang betul. Bezanya ialah untuk apa jam itu. Jika bahagian yang sama kaku semula dalam beberapa hari, soalan yang berguna ialah apa yang terus membebankannya, dan itu dijawab oleh penilaian, bukan oleh urutan itu sendiri.',
+    },
+    fitCheck: {
+      rightFor: [
+        'Anda mahu bahagian yang kaku dinilai sebelum sesiapa mengerjakannya.',
+        'Anda mahu diberitahu terus sama ada urutan itu perkara yang betul untuk keadaan anda.',
+        'Anda mahu kerja itu disasarkan pada apa yang latihan atau meja kerja anda sedang lakukan kepada anda.',
+        'Anda sanggup mendengar bahawa bahagian itu lebih memerlukan kerja kekuatan daripada satu lagi sesi.',
+      ],
+      notRightFor: [
+        'Anda mahu sejam yang melegakan tanpa penilaian dan tanpa ditanya apa apa.',
+        'Anda mahu urutan menggantikan pemulihan yang sebenarnya diperlukan oleh kecederaan itu.',
+        'Anda mahu jumlah sesi disepakati sebelum sesiapa melihat keadaan anda.',
+        'Masalah itu mungkin memerlukan pendapat perubatan atau pengimejan dahulu. Kami akan merujuk anda dan bukan meneruskannya.',
+      ],
+      note: 'Tiada satu pun daripada itu menjadikan anda pesakit yang menyusahkan, dan yang pertama itu memang apa yang dimaksudkan oleh kebanyakan orang bila mereka kata mereka mahu urut. Maksudnya kami lebih rela menghantar anda ke tempat yang lebih sesuai daripada menjual sejam yang tidak akan bertahan. Kalau anda mahu ketegangan itu dilihat dengan betul, lawatan pertama tempat ia bermula.',
+    },
+    sections: [
+      {
+        heading: 'Urut sukan di Cheras, Kuala Lumpur',
+        body: 'Urut sukan di Cheras, Maluri, untuk otot yang sudah berhenti melonggar dengan sendiri. Anda tidak perlu bermain apa apa sukan untuk menempahnya. Kebanyakan ketegangan yang kami lihat datang daripada minggu latihan, minggu di meja dan perjalanan jauh, bukan daripada padang, dan pendekatannya sama juga: cari apa yang membebankan bahagian itu, kemudian kerjakannya.',
+      },
+      {
+        heading: 'Menilai sebelum sebarang urutan bermula',
+        body: 'Tiada apa yang bermula sebelum kami melihat bagaimana bahagian itu bergerak, kerana otot yang kaku selalunya sedang melindungi sesuatu dan bukan menjadi puncanya. Itu juga menjawab soalan yang lebih berguna, sama ada urut sukan sesuai untuk anda sama sekali.',
+      },
+      {
+        heading: 'Apa yang berlaku dalam satu sesi urut sukan',
+        body: 'Enam puluh minit kerja tangan pada otot dan tisu di sekelilingnya, pada tekanan yang masih membolehkan anda bernafas dengan selesa. Kami beritahu apa yang sedang dikerjakan dan sebabnya sambil kami bekerja.',
+      },
+      {
+        heading: 'Terapi gelombang kejutan bersama urut sukan',
+        body: 'Ada tisu yang tidak bertindak balas kepada tangan sahaja, terutamanya tendon yang sudah berbulan bulan mengeluh. Terapi gelombang kejutan menghantar gelombang tekanan terfokus ke titik itu, dan kerap disusun dalam lawatan yang sama apabila penilaian menunjukkan ia sesuai.',
+      },
+      {
+        heading: 'Apa yang urut sukan lakukan, dan apa yang tidak',
+        body: 'Kajian terbesar mengenainya tidak menemui bukti bahawa urutan menjadikan anda lebih kuat atau lebih pantas, di samping peningkatan kecil tetapi nyata pada kelenturan dan pada kesakitan selepas latihan berat. Jadi ia berguna untuk otot yang sakit, kaku atau sedang melindungi, dan ia bukan peningkatan prestasi.',
+      },
+      {
+        heading: 'Bila pemulihan lebih penting daripada satu lagi urutan',
+        body: 'Jika bahagian yang sama kaku semula dalam beberapa hari selepas setiap sesi, lebih banyak urutan jarang menjadi jawapannya. Sesuatu masih membebankannya, dan itu tidak berubah di atas katil, jadi kami akan berterus terang dan mengarahkan anda kepada pemulihan berperingkat.',
+      },
+    ],
+    helpsWith: ['back-pain', 'neck-pain', 'hip-pain', 'shoulder-imbalance'],
+    relatedLinks: [
+      { href: '/services/sports-injury-rehabilitation', label: 'Kecederaan sukan dan pemulihan' },
+      { href: '/services/physiotherapy', label: 'Fisioterapi di Cheras' },
+      { href: '/services/dry-needling', label: 'Jarum kering untuk otot yang kekal kaku' },
+    ],
+    faqs: [
+      {
+        q: 'Adakah urut sukan sama dengan urutan biasa?',
+        a: 'Tidak. Kerja tangannya mungkin kelihatan serupa, tetapi urut sukan di sini dilakukan selepas penilaian dan disasarkan pada satu bahagian dengan satu sebab, bukan pada kelegaan umum. Ia juga dilakukan oleh kiropraktor atau fisioterapis dan bukan oleh ahli urut spa. Apabila sesuatu otot kekal kaku berbulan dan tidak melonggar dengan tangan, kami mungkin mencadangkan jarum kering bersamanya.',
+        links: [{ phrase: 'jarum kering', href: '/services/dry-needling' }],
+      },
+      {
+        q: 'Adakah urut sukan sakit?',
+        a: 'Sebahagiannya boleh terasa tidak selesa, terutamanya pada tisu yang sudah lama melindungi, tetapi ia tidak sepatutnya melebihi apa yang anda mampu bernafas melaluinya. Tekanan ditetapkan mengikut tahap anda dan dilaraskan sambil kami bekerja, jadi beritahu bila ia terlalu kuat. Rasa lembut sehari selepasnya adalah biasa, seperti selepas sesi latihan yang berat, dan itu selalunya reda dengan sendiri.',
+      },
+      {
+        q: 'Berapa kerap saya patut menempah urut sukan?',
+        a: 'Ia bergantung pada apa yang ditemui semasa penilaian dan pada apa yang anda minta badan anda lakukan, jadi kami tidak akan meletakkan jadual di hadapan anda pada lawatan pertama. Seseorang dalam blok latihan berat mungkin mahukannya dengan tetap; seseorang yang ketegangannya datang daripada meja kerja selalunya lebih baik dengan sesi yang lebih sedikit serta perubahan pada cara dia duduk dan bergerak.',
+      },
+      {
+        q: 'Patutkah saya buat urut sukan sebelum atau selepas acara?',
+        a: 'Kedua duanya dilakukan, dan ia dua perkara berbeza. Kerja sebelum acara lebih singkat dan lebih ringan, bertujuan membuatkan anda bergerak dengan selesa dan bukan mengubah apa apa. Kerja selepas acara menyasarkan kesakitan dan kekakuan setelah usaha berat itu selesai. Yang tidak kami cadangkan ialah sesi yang berat sehari sebelum sesuatu yang penting bagi anda, kerana tisu boleh terasa lembut selepasnya.',
+      },
+      {
+        q: 'Perlukah saya bermain sukan untuk menempah urut sukan?',
+        a: 'Tidak, dan sebahagian besar mereka yang menempahnya tidak bermain apa apa sukan. Namanya menerangkan gaya kerja itu dan bukan untuk siapa ia. Ketegangan meja kerja pada leher dan bahu, bahagian bawah belakang yang kaku selepas perjalanan jauh, dan kekakuan umum daripada duduk sepanjang minggu semuanya sebab biasa untuk datang. Jika yang anda ada ialah kecederaan tertentu dan bukan ketegangan, kecederaan sukan dan pemulihan selalunya titik permulaan yang lebih baik.',
+        links: [
+          { phrase: 'kecederaan sukan dan pemulihan', href: '/services/sports-injury-rehabilitation' },
+        ],
+      },
+      {
+        q: 'Siapa yang akan melakukan urut sukan itu?',
+        a: 'Sama ada kiropraktor atau fisioterapis, bergantung pada apa yang ditemui semasa penilaian dan apa yang bahagian itu perlukan. Kedua duanya pengamal berdaftar dan bukan ahli urut spa, dan orang yang menilai anda ialah orang yang melakukan kerja itu. Fisioterapis kami belum dinamakan di laman web ini, iaitu keputusan mengenai tempoh percubaan mereka dan bukan mengenai kelayakan mereka, dan anda dipersilakan bertanya tentang pendaftaran sesiapa yang anda jumpa.',
+      },
+    ],
+    practitionersWithheld:
+      'Sports massage and shockwave are delivered by either a chiropractor or a physiotherapist depending on the presentation (client, 2026-09-03), and the physiotherapists cannot be named while they are within their probation period. Naming only the chiropractors here would imply they are the only people who deliver this.',
+    draft: false,
+  },
 ]

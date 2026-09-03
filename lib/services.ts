@@ -1185,6 +1185,244 @@ export const services: Service[] = [
     draft: false,
   },
   {
+    /**
+     * BUILT 2026-09-03, after the clinic confirmed it offers sports massage as a standalone
+     * service. Until then the only mention of the term on this site was the comment on
+     * `sports-injury-rehabilitation` explaining why we could not use it.
+     *
+     * `sports massage kl` runs 170/mo at difficulty 8 with commercial intent, which makes it
+     * the largest untapped keyword found anywhere in this project. It gets its own page rather
+     * than a retarget of sports injury rehabilitation because the two are different intents:
+     * one is somebody sore after a training week looking for hands on work, the other is
+     * somebody injured looking for a rehabilitation plan. Folding them together would have
+     * abandoned the clinical intent that page already owns, which is the cannibalisation the
+     * architecture exists to prevent.
+     *
+     * THE SERP IS HALF SPAS. Positions 1, 4, 7 and 9 for this query are spas, reflexology and
+     * a TripAdvisor listing; only three clinics rank on page one, and not one of them explains
+     * the difference between what they do and what a spa does. That gap is the `comparison`
+     * block below, and it is the main reason this page can compete without more authority than
+     * the clinics already there.
+     *
+     * WE CANNOT NAME THE PRACTITIONER AND ALL THREE COMPETITORS DO. Renew names its therapist,
+     * Benphysio names six, Your Physio names thirteen, and every one of them leans on that as
+     * the trust signal. The physiotherapists here are still within probation and cannot be
+     * named (see OPEN-ITEMS.md), so this page answers "who will be doing this" in the FAQ with
+     * the profession and its registration instead of a name. Revisit when the names are freed.
+     */
+    slug: 'sports-massage',
+    title: 'Sports Massage in Cheras, Kuala Lumpur',
+    metaTitle: 'Sports Massage in Cheras, KL',
+    metaDescription:
+      'Sports massage in Cheras, Maluri, assessed before it starts. For training loads, desk tension and injuries that never quite settled. Open seven days.',
+    targetKeyword: 'sports massage kl',
+    intro:
+      'Sports massage in Cheras for people who train, people who sit at a desk all week, and people carrying something that never quite settled. It begins with an assessment rather than a menu, so the session is spent on the tissue actually causing the complaint.',
+    heroImage: {
+      src: '/img/therapy-neck.webp',
+      alt: 'Physiotherapist working on a seated patient neck and shoulder at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
+    },
+    /**
+     * The templated route hardcodes width={1400} height={1000} for this slot, so a midImage of
+     * any other ratio trips Next's aspect-ratio warning in dev. Every image in public/img at
+     * exactly 1400x1000 is listed in that route's history; this one is also the closest thing
+     * the library holds to hands on soft tissue work.
+     */
+    midImage: {
+      src: '/img/cupping-therapy.webp',
+      alt: 'Cupping therapy applied across a patient upper back at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
+    },
+    assurances: [
+      'Assessed before any hands on work begins',
+      'Sixty minute sessions',
+      'Open seven days · Cheras, Maluri',
+    ],
+    /**
+     * ⚠️ ALT TEXT CARRIES NO LOCAL MODIFIER, for the same reason recorded on the physiotherapy
+     * and sports rehabilitation outcomes: these are the shared symptom illustrations, not
+     * photographs of this clinic, these practitioners or these patients. No sports massage
+     * photograph exists yet, which is why the hero reuses the soft tissue frame from the
+     * physiotherapy page and this row reuses illustrations. Logged in OPEN-ITEMS.md.
+     */
+    outcomes: [
+      {
+        text: 'Muscle tension that builds up across a training week',
+        image: {
+          src: '/img/physio-pain-stiffness.webp',
+          alt: 'Illustration of neck and shoulder muscles lit up on a man holding the side of his neck',
+        },
+      },
+      {
+        text: 'A lower back that tightens after long sitting or heavy lifting',
+        image: {
+          src: '/img/physio-recent-strain.webp',
+          alt: 'Illustration of lower back pain lit up on a man standing at a kitchen counter with a hand on his back',
+        },
+      },
+      {
+        text: 'An old injury that still grumbles when the training load goes up',
+        image: {
+          src: '/img/physio-weakness.webp',
+          alt: 'Illustration of ankle pain lit up on a woman seated at a desk with her feet on the floor',
+        },
+      },
+      {
+        text: 'Getting ready before an event, or settling down after one',
+        image: {
+          src: '/img/sports-staged-return.webp',
+          alt: 'Woman balancing on one leg on a wobble cushion while a therapist steadies her hands',
+        },
+      },
+    ],
+    qualifierConcerns: [
+      'My muscles stay sore between training sessions',
+      'My neck and shoulders tighten up at a desk',
+      'An old injury grumbles when I train',
+      'I have an event coming up',
+      'I am not sure whether I need massage or rehabilitation',
+      'I have had a spa massage and it did not hold',
+    ],
+    citations: [
+      {
+        claim:
+          'The largest review of sports massage to date found no evidence that it improves strength, sprint, jump or endurance performance, and small but statistically significant improvements in flexibility and delayed onset muscle soreness.',
+        source:
+          'Davis, Alabed and Chico (2020), Effect of sports massage on performance and recovery: a systematic review and meta-analysis, BMJ Open Sport & Exercise Medicine',
+        url: 'https://bmjopensem.bmj.com/content/6/1/e000614',
+      },
+      {
+        claim:
+          'A meta-analysis comparing post exercise recovery techniques found massage the most effective of those studied for reducing delayed onset muscle soreness and perceived fatigue.',
+        source:
+          'Dupuy et al. (2018), An Evidence-Based Approach for Choosing Post-exercise Recovery Techniques, Frontiers in Physiology',
+        url: 'https://www.frontiersin.org/articles/10.3389/fphys.2018.00403/full',
+      },
+    ],
+    /**
+     * The block this page was built around. Not one of the three clinics ranking for
+     * `sports massage kl` explains this, and half the results on that page are spas, so the
+     * reader arrives genuinely unsure which of the two they want. `note` keeps it from reading
+     * as a page running down the alternative, which would be both unpleasant and untrue:
+     * wanting a quiet hour is a perfectly good reason to book a spa.
+     */
+    comparison: {
+      heading: 'Sports massage or a spa massage',
+      intro:
+        'Both are an hour of hands on work and the names sound interchangeable, so it is worth being plain about where they differ. One is aimed at how you feel while you are on the table. The other is aimed at what put you there.',
+      columns: ['Sports massage here', 'A spa massage'],
+      rows: [
+        {
+          label: 'Who does it',
+          a: 'A chiropractor or a physiotherapist, depending on what the assessment finds.',
+          b: 'A massage therapist, usually with no clinical assessment beforehand.',
+        },
+        {
+          label: 'What happens first',
+          a: 'You are assessed. How the area moves, and what has been loading it, before anyone puts hands on you.',
+          b: 'You choose from a menu, usually by duration and pressure.',
+        },
+        {
+          label: 'What the hour is aimed at',
+          a: 'The tissue that is actually limiting you, and the reason it got that way.',
+          b: 'General relaxation and overall muscle tension.',
+        },
+        {
+          label: 'What you leave with',
+          a: 'An answer on whether massage alone is enough, and what else the area needs if it is not.',
+          b: 'A looser, calmer hour, and you book again when you feel like it.',
+        },
+      ],
+      note: 'Neither one is better than the other, and if what you want is a quiet hour then a spa is the right call. The difference is what the hour is for. If the same area tightens back up within a few days, the useful question is what keeps loading it, and that is the part an assessment answers rather than the massage itself.',
+    },
+    fitCheck: {
+      rightFor: [
+        'You want the tight area assessed before anyone works on it.',
+        'You want to be told plainly whether massage is the right thing for what you have.',
+        'You want the work aimed at what your training or your desk is actually doing to you.',
+        'You are willing to hear that the area needs strength work more than another session.',
+      ],
+      notRightFor: [
+        'You want a relaxing hour with no assessment and no questions asked.',
+        'You want massage to stand in for the rehabilitation an injury actually needs.',
+        'You want a number of sessions agreed before anyone has looked at you.',
+        'The problem may need a medical opinion or imaging first. We would refer you rather than work on it regardless.',
+      ],
+      note: 'None of that makes you a difficult patient, and the first one is simply what most people mean when they say they want a massage. It means we would rather send you somewhere better suited than sell you an hour that will not hold. If you want the tension looked at properly, a first visit is where that starts.',
+    },
+    sections: [
+      {
+        heading: 'Sports massage in Cheras, Kuala Lumpur',
+        body: 'Sports massage in Cheras, Maluri, for muscle that has stopped letting go on its own. You do not have to play a sport to book one. Most of the tension we see comes from training weeks, desk weeks and long drives rather than from a pitch, and the approach is the same either way: work out what is loading the area, then work on it.',
+      },
+      {
+        heading: 'Assessing before any hands on work begins',
+        body: 'Nothing starts until we have looked at how the area moves, because tight muscle is often guarding something rather than causing it. That also settles whether a sports massage is the right thing for you at all.',
+      },
+      {
+        heading: 'What a sports massage session involves',
+        body: 'Sixty minutes of hands on work through the muscle and the tissue around it, at a pressure you can breathe through. We tell you what we are working on and why as we go.',
+      },
+      {
+        heading: 'Shockwave therapy alongside sports massage',
+        body: 'Some tissue does not respond to hands alone, particularly a tendon that has grumbled for months. Shockwave adds focused pressure waves at that spot, often in the same visit, where the assessment calls for it.',
+      },
+      {
+        heading: 'What sports massage does, and what it does not',
+        body: 'The largest review of sports massage found no evidence it makes you stronger or faster, and small real gains in flexibility and soreness. Useful for tight muscle, not a performance upgrade.',
+      },
+      {
+        heading: 'When rehabilitation matters more than another massage',
+        body: 'If the same area tightens back up within days of every session, something is still loading it. That does not change on a table, so we would point you at staged rehabilitation instead.',
+      },
+    ],
+    helpsWith: ['back-pain', 'neck-pain', 'hip-pain', 'shoulder-imbalance'],
+    relatedLinks: [
+      { href: '/services/sports-injury-rehabilitation', label: 'Sports injury and rehabilitation' },
+      { href: '/services/physiotherapy', label: 'Physiotherapy in Cheras' },
+      { href: '/services/dry-needling', label: 'Dry needling for muscle that stays tight' },
+    ],
+    faqs: [
+      {
+        q: 'Is sports massage the same as a normal massage?',
+        a: 'No. The hands on work can look similar, but a sports massage here follows an assessment and is aimed at a specific area for a specific reason rather than at general relaxation. It is also carried out by a chiropractor or a physiotherapist rather than by a spa therapist. Where a muscle has stayed tight for months and will not release under hands, we may suggest dry needling alongside it.',
+        links: [{ phrase: 'dry needling', href: '/services/dry-needling' }],
+      },
+      {
+        q: 'Does sports massage hurt?',
+        a: 'Some of it can be uncomfortable, particularly over tissue that has been guarding for a long time, but it should never be more than you can breathe through. Pressure is set to your tolerance and adjusted as we go, so say when it is too much. It is common to feel a little tender for a day afterwards in the way you would after a hard session, and that usually settles on its own.',
+      },
+      {
+        q: 'How often should I book a sports massage?',
+        a: 'It depends on what the assessment finds and on what you are asking your body to do, so we will not put a schedule in front of you on the first visit. Someone in a heavy training block may want one regularly; someone whose tension comes from a desk often does better with fewer sessions and a change to how they sit and move. If the same area tightens back up within days every time, that is a sign the answer is not more frequent massage.',
+      },
+      {
+        q: 'Should I have a sports massage before or after an event?',
+        a: 'Both are done, and they are different things. Work before an event is shorter and lighter, aimed at getting you moving comfortably rather than at changing anything. Work after an event is aimed at the soreness and stiffness once the hard effort is over. What we would not suggest is a deep session the day before something you care about, because tissue can feel tender afterwards and that is not the state you want to start in.',
+      },
+      {
+        q: 'Do I need to play a sport to book a sports massage?',
+        a: 'No, and a good share of the people who book one do not. The name describes the style of work rather than who it is for. Desk tension through the neck and shoulders, a lower back that tightens after a long drive, and general stiffness from sitting all week are all common reasons to come in. If what you have is a specific injury rather than tension, sports injury rehabilitation is usually the better starting point.',
+        links: [
+          { phrase: 'sports injury rehabilitation', href: '/services/sports-injury-rehabilitation' },
+        ],
+      },
+      {
+        q: 'Who carries out the sports massage?',
+        a: 'Either a chiropractor or a physiotherapist, depending on what the assessment finds and what the area needs. Both are registered practitioners rather than spa therapists, and the person who assesses you is the person who does the work. Our physiotherapists are not named on the site yet, which is a decision about their probation period rather than anything about their qualifications, and you are welcome to ask about the registration of whoever you see.',
+      },
+    ],
+    /**
+     * Set because BOTH professions deliver this one (client, 2026-09-03), and `practitioners`
+     * in lib/clinic.ts holds chiropractors only. A block headed "Meet your chiropractors" on a
+     * page a physiotherapist may well deliver would name the wrong half of the answer, which is
+     * the same misrepresentation the physiotherapy page avoids. The FAQ answers the question
+     * this section would otherwise answer, honestly and without a name.
+     */
+    practitionersWithheld:
+      'Sports massage and shockwave are delivered by either a chiropractor or a physiotherapist depending on the presentation (client, 2026-09-03), and the physiotherapists cannot be named while they are within their probation period. Naming only the chiropractors here would imply they are the only people who deliver this.',
+    draft: false,
+  },
+  {
     slug: 'posture-correction',
     title: 'Posture Correction in Cheras, Kuala Lumpur',
     metaTitle: 'Posture Correction in Cheras, KL',

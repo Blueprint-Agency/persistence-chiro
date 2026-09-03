@@ -733,4 +733,398 @@ export const servicesZh: Service[] = [
     // reviewer before this ships to production. Flip back to `true` if that hasn't happened.
     draft: false,
   },
+  {
+    /**
+     * 运动按摩. Targets 运动按摩 at 50/mo, SD 42 (Ubersuggest, Malaysia locId 2458, pulled
+     * 2026-09-03, twelve months of data between 30 and 70 so the number is real rather than a
+     * reporting-floor artefact). NOT a translation of the English target: `sports massage kl`
+     * is a Latin-script query with its own 170/mo, and the Chinese page earns its own term.
+     * 深层按摩 was measured at the same time and returned 0, so it is not used anywhere here.
+     *
+     * ⚠️ NO `sports-injury-rehabilitation` LINK ANYWHERE ON THIS RECORD. That service has no
+     * Chinese entry, so `linkifyBody` and `WhereToGoNext` would both silently drop the link and
+     * leave prose pointing at a page a Chinese reader cannot reach. The copy sends those readers
+     * to 物理治疗 instead, which is live in this locale.
+     *
+     * 冲击波疗法, not 冲击波治疗. 疗法 says "method of therapy" and carries none of the banned
+     * 治疗 string, so the technique can be named without extending the whitelist in
+     * `content.test.ts`. AGENTS.md is explicit that the Chinese banned-word list is a strong
+     * draft pending client review, so widening its carve-outs unilaterally is not ours to do.
+     * Worth confirming 疗法 reads naturally to the clinic's Chinese-speaking patients.
+     *
+     * Same review contract as the rest of this file: adapted from the clinic-reviewed English
+     * record, `lastReviewed` unset, not yet read by a Chinese-speaking reviewer.
+     */
+    slug: 'sports-massage',
+    title: 'Cheras, Kuala Lumpur 运动按摩',
+    metaTitle: 'Cheras 运动按摩 | Kuala Lumpur',
+    metaDescription:
+      'Cheras, Maluri 的运动按摩,先评估再开始。适合训练累积的紧绷、久坐的颈肩,以及一直没好起来的旧伤。每周七天营业。',
+    targetKeyword: '运动按摩',
+    intro:
+      'Cheras 的运动按摩,适合有训练习惯的人、整周坐在办公桌前的人,以及带着一个一直没真正好起来的旧伤的人。我们会先评估再动手,让这一个小时用在真正引起问题的组织上。',
+    heroImage: {
+      src: '/img/therapy-neck.webp',
+      alt: '在 Cheras, Kuala Lumpur 的 Persistence Chiropractic Care,物理治疗师为坐着的病患处理颈部与肩膀',
+    },
+    midImage: {
+      src: '/img/cupping-therapy.webp',
+      alt: '在 Cheras, Kuala Lumpur 的 Persistence Chiropractic Care,为病患上背进行拔罐',
+    },
+    assurances: ['先评估,才开始动手', '每次六十分钟', '每周七天营业 · Cheras, Maluri'],
+    /**
+     * ⚠️ 替代图,ALT 不带地区修饰语: 这几张是共用的症状示意图,不是本诊所、本执行者或本病患
+     * 的照片。目前还没有运动按摩的实拍照,已记录在 OPEN-ITEMS.md。
+     */
+    outcomes: [
+      {
+        text: '一整周训练累积下来的肌肉紧绷',
+        image: {
+          src: '/img/physio-pain-stiffness.webp',
+          alt: '示意图:一名男子手扶颈侧,颈部与肩膀肌肉亮起',
+        },
+      },
+      {
+        text: '久坐或搬重物之后紧起来的下背',
+        image: {
+          src: '/img/physio-recent-strain.webp',
+          alt: '示意图:一名男子站在厨房台面前,一手扶着下背,下背亮起',
+        },
+      },
+      {
+        text: '训练量一加就开始抗议的旧伤',
+        image: {
+          src: '/img/physio-weakness.webp',
+          alt: '示意图:一名女子坐在办公桌前双脚踩地,脚踝疼痛处亮起',
+        },
+      },
+      {
+        text: '比赛前的准备,或比赛后的舒缓',
+        image: {
+          src: '/img/sports-staged-return.webp',
+          alt: '一名女子站在平衡垫上单脚站立,治疗师在旁扶着她的手',
+        },
+      },
+    ],
+    qualifierConcerns: [
+      '训练之间肌肉一直是酸的',
+      '在办公桌前颈肩会绷紧',
+      '旧伤在训练时会抗议',
+      '我快要比赛了',
+      '不确定自己需要按摩还是复健',
+      '做过 spa 按摩,但撑不了几天',
+    ],
+    citations: [
+      {
+        claim:
+          '目前规模最大的运动按摩综合分析没有找到证据显示按摩能提升力量、冲刺、跳跃或耐力表现,但在柔软度与训练后延迟性肌肉酸痛上有小幅但具统计意义的改善。',
+        source:
+          'Davis, Alabed and Chico (2020), Effect of sports massage on performance and recovery: a systematic review and meta-analysis, BMJ Open Sport & Exercise Medicine',
+        url: 'https://bmjopensem.bmj.com/content/6/1/e000614',
+      },
+      {
+        claim:
+          '一项比较运动后各种恢复方式的综合分析发现,在所研究的方式当中,按摩对减轻延迟性肌肉酸痛与主观疲劳感最为有效。',
+        source:
+          'Dupuy et al. (2018), An Evidence-Based Approach for Choosing Post-exercise Recovery Techniques, Frontiers in Physiology',
+        url: 'https://www.frontiersin.org/articles/10.3389/fphys.2018.00403/full',
+      },
+    ],
+    comparison: {
+      heading: '运动按摩和 spa 按摩的分别',
+      intro:
+        '两者都是一个小时的徒手工作,名字听起来也差不多,所以值得把分别说清楚。一个照顾的是你躺在床上那一个小时的感觉,另一个照顾的是你为什么会躺上来。',
+      columns: ['我们的运动按摩', 'spa 按摩'],
+      rows: [
+        {
+          label: '由谁进行',
+          a: '脊骨神经科医师或物理治疗师,看评估结果决定。',
+          b: '按摩师,通常事前没有临床评估。',
+        },
+        {
+          label: '先做什么',
+          a: '先评估。看这个部位怎么动、被什么牵着,才开始动手。',
+          b: '从菜单上选,通常按时间长短和力度。',
+        },
+        {
+          label: '这一个小时的目标',
+          a: '真正限制你的那一块组织,以及它变成这样的原因。',
+          b: '整体放松与全身的肌肉疲劳感。',
+        },
+        {
+          label: '结束后带走什么',
+          a: '知道按摩本身够不够,如果不够,这个部位还需要什么。',
+          b: '一个放松的小时,想去的时候再约。',
+        },
+      ],
+      note: '两者没有好坏。如果你想要的就是安静的一个小时,那 spa 是对的选择。分别在于这一个小时是为了什么。如果同一个部位过几天又紧回去,值得问的是什么一直在牵着它,而那是评估回答的问题,不是按摩本身。',
+    },
+    fitCheck: {
+      rightFor: [
+        '希望紧的地方先被评估,才有人动手。',
+        '希望有人直接告诉你,按摩是不是你现在需要的。',
+        '希望这一个小时针对你的训练或你的办公桌真正造成的问题。',
+        '愿意听到这个部位需要的是力量训练,而不是再来一次按摩。',
+      ],
+      notRightFor: [
+        '想要安静放松的一个小时,不需要评估,也不想被问问题。',
+        '想用按摩代替这个伤真正需要的复健。',
+        '想在还没有人看过之前,就先讲好要来几次。',
+        '这个问题可能需要先看医生或做影像检查。我们会转介,不会照做下去。',
+      ],
+      note: '这些都不代表你是难搞的病人,第一项其实就是大多数人说想去按摩时的意思。它的意思只是,我们宁可把你介绍到更合适的地方,也不愿卖你一个撑不住的小时。如果你想把这个紧绷好好看一次,那就从第一次会诊开始。',
+    },
+    sections: [
+      {
+        heading: 'Cheras, Kuala Lumpur 的运动按摩',
+        body: 'Cheras, Maluri 的运动按摩,处理的是自己不再松开的肌肉。你不需要有在打球才能来。我们看到的紧绷大多来自训练、办公桌和长途开车,而不是球场,做法两者一样:先找出什么在牵着这个部位,再动手。',
+      },
+      {
+        heading: '先评估,才开始动手',
+        body: '在看过这个部位怎么动之前不会开始,因为紧的肌肉常常是在保护别的东西,而不是问题本身。这一步也顺便回答了更有用的问题:运动按摩到底适不适合你。',
+      },
+      {
+        heading: '一次运动按摩的内容',
+        body: '六十分钟的徒手工作,处理肌肉与周围的组织,力度控制在你还能正常呼吸的范围。我们会边做边说明现在在处理哪里、为什么。',
+      },
+      {
+        heading: '冲击波疗法与运动按摩搭配',
+        body: '有些组织单靠双手不够,尤其是已经酸痛几个月的肌腱。冲击波疗法以聚焦的压力波作用在那一个点上,评估结果需要时会安排在同一次进行。',
+      },
+      {
+        heading: '运动按摩能做到什么,不能做到什么',
+        body: '规模最大的综合分析没有找到证据显示按摩会让人变强或变快,但在柔软度与训练后的酸痛上有小而真实的改善。所以它适合处理酸、紧、一直在保护的肌肉,不是表现提升的工具。',
+      },
+      {
+        heading: '什么时候复健比再来一次按摩重要',
+        body: '如果每次做完几天内同一个部位又紧回去,那再多按摩通常不是答案。这代表还有东西在持续牵着它,而这在按摩床上不会改变,我们会直接说,并转向分阶段的力量与复健安排。',
+      },
+    ],
+    helpsWith: ['back-pain', 'neck-pain', 'hip-pain', 'shoulder-imbalance'],
+    relatedLinks: [
+      { href: '/services/physiotherapy', label: 'Cheras 物理治疗' },
+      { href: '/services/dry-needling', label: '肌肉一直松不开时的干针' },
+      { href: '/services/chiropractic-care', label: '比较脊椎矫正护理' },
+    ],
+    faqs: [
+      {
+        q: '运动按摩和一般按摩一样吗?',
+        a: '不一样。徒手的动作看起来可能相似,但我们这里的运动按摩是在评估之后进行,针对某一个部位、某一个原因,而不是整体放松。执行的人是脊骨神经科医师或物理治疗师,不是 spa 的按摩师。如果一块肌肉紧了好几个月、徒手怎么弄都松不开,我们可能会建议搭配干针。',
+        links: [{ phrase: '干针', href: '/services/dry-needling' }],
+      },
+      {
+        q: '运动按摩会痛吗?',
+        a: '有些部位会不舒服,尤其是保护了很久的组织,但不应该超过你还能正常呼吸的程度。力度按你的耐受度设定,过程中随时可以说太重。做完隔天有点像练完的酸,通常会自己退。',
+      },
+      {
+        q: '运动按摩应该多久做一次?',
+        a: '看评估结果,也看你平常让身体做什么,所以第一次不会先讲好要来几次。训练量大的人可能会想固定来;紧绷来自办公桌的人,往往次数少一些、加上坐姿与活动的调整效果更好。如果每次做完几天内又紧回去,那就是次数不是答案的讯号。',
+      },
+      {
+        q: '比赛前还是比赛后做比较好?',
+        a: '两种都有,而且是不同的事。赛前的处理比较短、比较轻,目的是让身体活动起来舒服,而不是改变什么。赛后的处理针对的是用力过后的酸和紧。我们不建议在重要比赛前一天做重的处理,因为组织可能会有点敏感,那不是你想要的出发状态。',
+      },
+      {
+        q: '一定要有在运动才能做运动按摩吗?',
+        a: '不用,来做的人有不少并没有在打球。这个名字说的是处理的方式,不是限定给谁。颈肩在办公桌前紧起来、长途开车之后下背绷住、整周坐着造成的僵硬,都是常见的原因。如果你的问题是明确的伤而不是紧绷,先从物理治疗的评估开始通常比较合适。',
+        links: [{ phrase: '物理治疗', href: '/services/physiotherapy' }],
+      },
+      {
+        q: '会由谁来进行?',
+        a: '脊骨神经科医师或物理治疗师,看评估结果和这个部位需要什么。两者都是有注册的执业人员,不是 spa 按摩师,而且评估你的人就是动手的人。我们的物理治疗师目前还没有在网站上列名,那是关于试用期的决定,与他们的资历无关,你也可以直接询问当天为你处理的人的注册资料。',
+      },
+    ],
+    practitionersWithheld:
+      'Sports massage and shockwave are delivered by either a chiropractor or a physiotherapist depending on the presentation (client, 2026-09-03), and the physiotherapists cannot be named while they are within their probation period. Naming only the chiropractors here would imply they are the only people who deliver this.',
+    draft: false,
+  },
+  {
+    /**
+     * 运动复健. Built 2026-09-03 so the shockwave and sports massage bundle has a Chinese page
+     * to sit on, which was the one locale gap left after the bundle was added to the English
+     * and Malay sports rehabilitation pages.
+     *
+     * TARGETS 复健 AT 90/mo, SD 32 (Ubersuggest, Malaysia locId 2458, pulled 2026-09-03, twelve
+     * months between 70 and 140 so the figure is solid). That is NINE TIMES the English record's
+     * own target, `sports injury treatment malaysia` at 10/mo, which is the clearest example yet
+     * of why these pages are localised rather than translated: the Chinese demand for this
+     * service is real where the English demand barely registers. Measured at the same time and
+     * rejected: 运动伤害 10/mo, 运动损伤 10/mo (a mainland form), 扭伤 0.
+     *
+     * ⚠️ 复健 IS BROADER THAN THIS PAGE. It covers stroke and general medical rehabilitation as
+     * well as sport, so some of that traffic is not ours to serve. The copy therefore says what
+     * the clinic does work on and where it refers out, rather than implying the term's whole
+     * scope. Do not widen the copy to chase the rest of the keyword.
+     *
+     * NO `practitionersWithheld`, mirroring the English record deliberately rather than by
+     * omission. Whether physiotherapists deliver this service is OPEN-ITEMS.md item 2 and still
+     * unanswered; the two records should answer it the same way, because locales disagreeing
+     * about who delivers a service is worse than either answer. When item 2 is settled, set or
+     * leave the field on BOTH at once.
+     *
+     * Same review contract as the rest of this file: adapted from the clinic-reviewed English
+     * record, `lastReviewed` unset, not yet read by a Chinese-speaking reviewer.
+     */
+    slug: 'sports-injury-rehabilitation',
+    title: 'Cheras, Kuala Lumpur 运动伤害与复健',
+    metaTitle: 'Cheras 运动复健 | Kuala Lumpur',
+    metaDescription:
+      'Cheras, Maluri 的运动伤害评估与分阶段复健。拉伤、扭伤与使用过度的伤,以能力测试决定回场时机。每周七天营业。',
+    targetKeyword: '复健',
+    intro:
+      'Cheras 的运动伤害护理。我们先找出是什么失守、为什么会失守,再按阶段安排复健,目标是让你回到运动场上,而不是带着同一个弱点回去。拉伤、扭伤与使用过度的伤都包括在内,不管你是选手,还是只在周末动一动的人。',
+    heroImage: {
+      src: '/img/rehab-ankle.webp',
+      alt: '在 Cheras, Kuala Lumpur 的 Persistence Chiropractic Care,执行者为病患小腿贴上运动贴布',
+    },
+    midImage: {
+      src: '/img/adjustment-hip.webp',
+      alt: '在 Cheras, Kuala Lumpur 的 Persistence Chiropractic Care,脊骨神经科医师在诊疗床上处理病患髋部',
+    },
+    assurances: ['先评估,才给方案', '分阶段回到运动,而不是只叫你休息', '每周七天营业 · Cheras, Maluri'],
+    /**
+     * ⚠️ 替代图,ALT 不带地区修饰语: 前三张是共用的症状示意图,不是本诊所、本执行者或本病患的
+     * 照片。最后两张是本页自己的照片。与英文版同一组图。
+     */
+    outcomes: [
+      {
+        text: '想先弄清楚的拉伤、扭伤或使用过度的伤',
+        image: {
+          src: '/img/physio-weakness.webp',
+          alt: '示意图:一名女子坐在办公桌前双脚踩地,脚踝疼痛处亮起',
+        },
+      },
+      {
+        text: '运动中或运动后会发作的疼痛',
+        image: {
+          src: '/img/physio-recent-strain.webp',
+          alt: '示意图:一名男子站在厨房台面前,一手扶着下背,下背亮起',
+        },
+      },
+      {
+        text: '一回到训练就又回来的旧伤',
+        image: {
+          src: '/img/physio-pain-stiffness.webp',
+          alt: '示意图:一名男子手扶颈侧,颈部与肩膀肌肉亮起',
+        },
+      },
+      {
+        text: '一份分阶段回到运动的安排,而不是单纯休息',
+        image: {
+          src: '/img/sports-staged-return.webp',
+          alt: '一名女子站在平衡垫上单脚站立,治疗师在旁扶着她的手',
+        },
+      },
+      {
+        text: '手术后在外科医师设定的范围内继续的复健',
+        image: {
+          src: '/img/sports-post-surgical.webp',
+          alt: '在诊所房间内,执行者引导一名坐着的男子活动肩膀',
+        },
+      },
+    ],
+    qualifierConcerns: [
+      '我有拉伤、扭伤或使用过度的伤',
+      '运动中或运动后会痛',
+      '一回到训练,伤就又回来',
+      '我想要一份清楚的回场安排',
+      '我在手术后做复健',
+      '我周末受伤,但我不是选手',
+    ],
+    citations: [
+      {
+        claim:
+          '回到运动的决定,较适合依据力量与功能测试等条件来判断,而不是单看时间,这有助于降低再次受伤的风险。',
+        source:
+          'Ardern et al. (2016), Consensus statement on return to sport, British Journal of Sports Medicine',
+        url: 'https://bjsm.bmj.com/content/50/14/853',
+      },
+      {
+        claim:
+          '对大多数软组织伤害而言,在不引起疼痛的范围内及早开始有指导的活动,通常优于长时间完全固定不动。',
+        source: 'British Journal of Sports Medicine',
+        url: 'https://bjsm.bmj.com/content/54/2/72',
+      },
+    ],
+    fitCheck: {
+      rightFor: [
+        '希望回场时机由这个部位能做到什么决定,而不是由日历决定。',
+        '愿意按阶段做力量训练,而不是等疼痛自己过去。',
+        '希望在安全范围内继续训练,调整负荷而不是全面停下。',
+        '希望听到关于恢复程度的实话,即使那不是你想听的答案。',
+      ],
+      notRightFor: [
+        '想在这个部位还没做过负荷测试之前,就先要一个回场日期。',
+        '想让疼痛安静下来,但不想做让它保持安静的力量训练。',
+        '想完全照原来的方式继续训练,负荷和动作都不改。',
+        '这个伤可能需要先看外科医师或做影像检查。我们会转介,不会照做下去。',
+      ],
+      note: '这些都不代表你是难搞的病人,大部分其实就是急着想回去的样子。它的意思只是,我们会对恢复程度说实话,而不是签一个日期给你,而这一点决定了同一个伤三个月后会不会再回来。如果你想要的是这样的诊所,那就从第一次会诊开始。',
+    },
+    sections: [
+      {
+        heading: 'Cheras, Kuala Lumpur 的运动伤害与复健',
+        body: 'Cheras 的运动伤害护理。我们先弄清楚是什么失守、为什么失守,再按阶段安排复健,目标是让你回去时不带着同一个弱点。选手和周末才动的人都一样处理。',
+      },
+      {
+        heading: '找出失守的地方,以及原因',
+        body: '疼的位置常常不是问题的起点。评估会看这个部位在负荷下能做到什么、上下相连的环节怎么代偿,以及训练量最近是怎么变化的。',
+      },
+      {
+        heading: '分阶段的复健,不是一次到底',
+        body: '早期先保护受伤的部位,同时让它在不加重的范围内活动。稳定下来之后重建活动度、力量,再到你的运动需要的速度、控制与变向。每个阶段站得住,才进下一个。',
+      },
+      {
+        heading: '冲击波疗法与运动按摩的搭配',
+        body: '肌腱酸痛几个月不退时,冲击波疗法会以聚焦的压力波作用在那一点上;肌肉一直绷着放不开时,运动按摩或干针会和力量训练一起用。用不用,看评估结果。',
+      },
+      {
+        heading: '回场时机怎么决定',
+        body: '以这个部位在测试下能做到什么为准,而不是以症状或日历为准。太早回去是伤复发最常见的原因,所以第一次会诊我们不会给你日期。',
+      },
+      {
+        heading: '什么时候不是我们该处理的',
+        body: '如果评估结果指向需要影像检查、外科意见或其他专科,我们会直接说,并协助你安排,而不是照原计划做下去。知道什么不该自己处理,是这份工作的一部分。',
+      },
+    ],
+    helpsWith: ['back-pain', 'shoulder-imbalance', 'hip-pain'],
+    relatedLinks: [
+      { href: '/services/sports-massage', label: 'Cheras 运动按摩' },
+      { href: '/services/physiotherapy', label: '我们的物理治疗做法' },
+      { href: '/services/dry-needling', label: '处理肌肉紧绷的干针' },
+    ],
+    faqs: [
+      {
+        q: '需要转介信吗?',
+        a: '不需要。你可以直接预约,不必先经过医生。如果评估结果显示这个伤需要影像检查或外科意见,我们会告诉你,并协助你安排。',
+      },
+      {
+        q: '多久可以回到运动场上?',
+        a: '这要看伤的性质、你的运动,以及复健的进展,所以第一次会诊我们不会给日期。我们以这个部位在测试下能做到什么来判断,而不是只看症状,因为在组织还承受不了负荷之前回去,是伤复发最常见的原因。',
+      },
+      {
+        q: '复健期间还可以训练吗?',
+        a: '通常可以,做法是调整而不是全面停下。完全休息很少是目标,因为体能掉下来会带来另一批问题。会改的是引起疼痛的那个动作、总量,有时还有场地或节奏。哪些可以继续做,是评估的一部分。如果某块肌肉一直绷着,我们可能会在力量训练之外加上干针。',
+        links: [{ phrase: '干针', href: '/services/dry-needling' }],
+      },
+      {
+        q: '你们也看非选手,或者周末和办公桌造成的伤吗?',
+        a: '看。搬东西扭到的背、周末跑步后发作的膝盖、重复动作造成的使用过度伤,处理方式都一样,先弄清楚发生了什么,再把这个部位好好重建。你不需要在比赛,也可以来。',
+      },
+      {
+        q: '开始之前需要先做扫描或 X 光吗?',
+        a: '通常不需要。大多数拉伤和扭伤靠评估本身就能判断。如果有迹象指向更严重的伤、需要影像或医疗意见,我们会告诉你并协助安排,而不是照做下去。',
+      },
+      {
+        q: '手术后的复健可以在这里做吗?',
+        a: '多数情况可以,前提是你的外科医师同意开始复健,并且在他设定的限制范围内进行。我们会按你手术的方案安排,依组织的承受程度推进负荷。第一次来请带上外科团队给你的纪录或指示。',
+      },
+      {
+        q: '复健和运动按摩,我应该选哪一个?',
+        a: '如果你有的是明确的伤,从复健开始;如果是训练或久坐累积下来的紧绷,运动按摩通常更合适。不确定的话不用自己决定,评估会告诉你从哪里开始,有时两者会一起安排。',
+        links: [{ phrase: '运动按摩', href: '/services/sports-massage' }],
+      },
+    ],
+    draft: false,
+  },
 ]
