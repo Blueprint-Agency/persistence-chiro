@@ -35,6 +35,8 @@ import { GoogleReviews } from '@/components/GoogleReviews'
 import { MeetDoctors } from '@/components/MeetDoctors'
 import { ServiceQualifier } from '@/components/ServiceQualifier'
 import { waMessage } from '@/lib/whatsapp'
+import { bundleForService, ringgit } from '@/lib/pricing'
+import { BundleOffer } from '@/components/BundleOffer'
 
 const reviewer = practitionerBySlug('valerie-na')!
 
@@ -75,6 +77,9 @@ export default async function ServicePage({ params }: Props) {
   if (!service || service.draft) notFound()
 
   const dict = await getDictionary(locale)
+
+  // Undefined unless this service has a live bundle in this locale. See lib/pricing.ts.
+  const bundle = bundleForService(locale, service.slug)
 
   const helpsWith = service.helpsWith
     .map((s) => conditionBySlugFor(locale, s))
@@ -218,6 +223,22 @@ export default async function ServicePage({ params }: Props) {
         </section>
       )}
 
+
+      {/* -------------------------------------------------------------- Pricing */}
+      {/* After the method, before the qualifier. A price read before the reader knows what
+          happens in the room is a number with nothing attached to it; here it answers a
+          question they have started asking. Absent in a locale means no reviewed copy exists
+          for it yet — `bundleForService` returns undefined and the section simply does not
+          render, same gate every other content module uses. */}
+      {bundle && (
+        <div className="my-16 lg:my-24">
+          <BundleOffer
+            dict={dict}
+            bundle={bundle}
+            message={waMessage.bundle(locale, bundle.name, ringgit(bundle.price))}
+          />
+        </div>
+      )}
 
       {/* ----------------------------------------------------------- Qualifier */}
       {/* AFTER the method, not before it, which is where the hand-built chiropractic route

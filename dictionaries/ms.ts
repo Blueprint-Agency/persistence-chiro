@@ -48,6 +48,9 @@ const ms: Dictionary = {
     notSureWhatYouNeedBody:
       'Mulakan dengan penilaian. Kami akan beritahu apa yang kami jumpai, apa yang akan kami lakukan, dan sama ada ini pendekatan yang betul untuk kes anda.',
     firstVisitLabel: 'Apa yang berlaku pada lawatan pertama',
+    bundleIncluded: 'Apa yang termasuk',
+    bundleWorth: 'Nilai penuh',
+    bundleSave: (amount, percent) => `Jimat ${amount} (${percent})`,
     whatWeHelpWith: 'Apa yang kami bantu',
     reasonsPeopleComeInFor: (name) => `Sebab orang datang untuk ${name.toLowerCase()}`,
     beingStraightWithYou: 'Berterus terang dengan anda',

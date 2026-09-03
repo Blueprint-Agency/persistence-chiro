@@ -18,7 +18,12 @@
  * phrasing creeping back in.
  */
 
+import { bundles, ringgit } from './pricing.ts'
+
 export type Faq = { q: string; a: string }
+
+/** The FAQ price answer is built from the pricing module so the two can never disagree. */
+const newPatientBundle = bundles.find((b) => b.slug === 'chiro-physio')!
 
 export const clinicFaqs: Faq[] = [
   {
@@ -52,6 +57,18 @@ export const clinicFaqs: Faq[] = [
   {
     q: 'Can I continue gym or sports during my care?',
     a: 'In many cases, yes. However, modifications may be required. Our practitioners guide patients on safe loading, exercise progression, and return-to-sport strategies.',
+  },
+  {
+    /**
+     * The one price question on the site, and the reason pricing went up at all: assistants
+     * are asked what a chiropractor costs in KL constantly and had nothing of ours to quote,
+     * while a competitor carries "from RM150" in their title tag. It lives here rather than
+     * on a page of its own because this answer reaches FAQPage schema, which is what an
+     * assistant actually reads. Figures are NOT retyped — they come from lib/pricing.ts, so
+     * a price change cannot leave a stale number sitting in an FAQ answer.
+     */
+    q: 'How much does a first visit cost?',
+    a: `Our new patient bundle is ${ringgit(newPatientBundle.price)}, and it covers the chiropractic initial consultation and first adjustment, an X-ray, and a physiotherapy initial assessment with a home exercise programme to take away. Paid for separately those come to ${ringgit(newPatientBundle.compareAt)}. What you need after that depends on what the assessment finds, which is why we will not quote you a course of care before we have seen you. If you would rather book just one part of it, message us and we will tell you what that costs.`,
   },
   {
     q: 'What should I wear for my sessions?',

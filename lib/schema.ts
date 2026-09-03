@@ -11,6 +11,7 @@ import {
   type Registration,
 } from './clinic'
 import { publishedServicesFor } from './services'
+import { publishedBundlesFor } from './pricing'
 import { whatsappLink, waMessage } from './whatsapp'
 import { type Locale, LOCALES, LOCALE_TAG, pathFor } from './i18n'
 
@@ -106,6 +107,29 @@ export function localBusinessSchema(locale: Locale) {
       name: s.title,
       url: `${SITE_URL}${pathFor(locale, `/services/${s.slug}`)}`,
     })),
+    /**
+     * The published bundles, and the only prices this site states anywhere.
+     *
+     * `makesOffer` rather than a page-level Product node: these are offers the BUSINESS makes,
+     * not products a page sells, and hanging them off the clinic entity means an assistant
+     * that has already resolved "Persistence Chiropractic" gets the price with the rest of the
+     * NAP instead of having to land on the right service page first. That is the whole point
+     * of publishing pricing — see lib/pricing.ts on why it was never a ranking play.
+     *
+     * Derived, so a bundle taken down in lib/pricing.ts leaves the structured data with it.
+     */
+    ...(publishedBundlesFor(locale).length
+      ? {
+          makesOffer: publishedBundlesFor(locale).map((b) => ({
+            '@type': 'Offer',
+            name: b.name,
+            price: b.price,
+            priceCurrency: 'MYR',
+            availability: 'https://schema.org/InStock',
+            url: `${SITE_URL}${pathFor(locale, `/services/${b.services[0]}`)}`,
+          })),
+        }
+      : {}),
     employee: practitioners.map((p) => {
       const registrations = publishedRegistrations(p)
       // Only link to the practitioner's own page when it actually exists in this locale

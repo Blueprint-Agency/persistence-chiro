@@ -56,6 +56,9 @@ const zh: Dictionary = {
     notSureWhatYouNeedBody:
       '从评估开始。我们会告诉您检查结果、我们建议的处理方式,以及这是否适合您的情况。',
     firstVisitLabel: '第一次会诊会经历什么',
+    bundleIncluded: '配套内容',
+    bundleWorth: '原价',
+    bundleSave: (amount, percent) => `省 ${amount}(${percent})`,
     whatWeHelpWith: '我们能帮上忙的地方',
     reasonsPeopleComeInFor: (name) => `病患前来进行${name}的常见原因`,
     beingStraightWithYou: '坦白说',

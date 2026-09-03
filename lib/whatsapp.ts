@@ -97,6 +97,20 @@ export const waMessage = {
     return `${hello}, I'd like to ask about ${service.toLowerCase()} and book an appointment.`
   },
 
+  /**
+   * A bundle card. Names the bundle and its price, so the front desk can see which offer the
+   * enquiry came from without asking — which matters more than usual here: one of the two
+   * bundles is website-exclusive, and the message is the only proof the visitor came through
+   * the site rather than walking past the door. Price is passed pre-formatted by the caller.
+   */
+  bundle: (locale: Locale, name: string, price: string) => {
+    const hello = HELLO[locale]
+    if (locale === 'zh') return `${hello},我想了解${name}(${price})并预约看诊。`
+    if (locale === 'ms')
+      return `${hello}, saya ingin bertanya tentang ${name.toLowerCase()} (${price}) dan menempah temu janji.`
+    return `${hello}, I'd like to ask about the ${name.toLowerCase()} bundle (${price}) and book an appointment.`
+  },
+
   /** A practitioner page. Name is passed through as written — it is a fact, never translated. */
   practitioner: (locale: Locale, name: string) => {
     const hello = HELLO[locale]

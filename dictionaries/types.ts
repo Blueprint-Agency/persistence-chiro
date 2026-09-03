@@ -46,6 +46,15 @@ export type Dictionary = {
     notSureWhatYouNeed: string
     notSureWhatYouNeedBody: string
     firstVisitLabel: string
+    /** Bundle card chrome — see lib/pricing.ts. */
+    bundleIncluded: string
+    /** Precedes the struck-through total, e.g. "Total worth ~~RM660~~". */
+    bundleWorth: string
+    /**
+     * The saving, as a figure AND a percentage: "Save RM40 (17% off)". Both are derived from
+     * `price` and `compareAt` in the card, never typed into the data, so neither can drift.
+     */
+    bundleSave: (amount: string, percent: string) => string
     whatWeHelpWith: string
     /** "Reasons people come in for {name}". */
     reasonsPeopleComeInFor: (name: string) => string

@@ -42,6 +42,9 @@ const en: Dictionary = {
     notSureWhatYouNeedBody:
       'Start with the assessment. We will tell you what we find, what we would do about it, and whether this is the right approach for your case at all.',
     firstVisitLabel: 'What happens on a first visit',
+    bundleIncluded: "What's included",
+    bundleWorth: 'Total worth',
+    bundleSave: (amount, percent) => `Save ${amount} (${percent} off)`,
     whatWeHelpWith: 'What we help with',
     reasonsPeopleComeInFor: (name) => `Reasons people come in for ${name.toLowerCase()}`,
     beingStraightWithYou: 'Being straight with you',
