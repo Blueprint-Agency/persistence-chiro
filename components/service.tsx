@@ -133,6 +133,7 @@ export function ServiceHero({
   assurances,
   message,
   cta,
+  secondary,
 }: {
   dict: Dictionary
   title: string
@@ -141,6 +142,11 @@ export function ServiceHero({
   assurances?: readonly string[]
   message: string
   cta?: string
+  /**
+   * Optional second button. ONLY for sending the reader somewhere else on this page, never a
+   * second way to do the same thing. See the note at the render site.
+   */
+  secondary?: { href: string; label: string }
 }) {
   return (
     <section className="bg-brand-slate-deep text-white">
@@ -154,13 +160,22 @@ export function ServiceHero({
             {intro && (
               <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/75">{intro}</p>
             )}
-            {/* One CTA. A second button beside it splits the decision without adding a path —
-                the phone number is still in the header bar and the footer for anyone who
-                wants it. */}
-            <div className="mt-8">
+            {/* One CONVERSION path. The rule this used to state, that a second button splits
+                the decision without adding anything, still holds for a second way to message
+                the clinic: the phone number is in the header and the footer for anyone wanting
+                it. `secondary` is different in kind. It does not compete for the same action,
+                it points down the page at an offer the reader cannot see yet, so it adds a
+                path rather than duplicating one. Ghost, never gold, so the ask stays singular.
+                Do not use this slot for another WhatsApp or call button. */}
+            <div className="mt-8 flex flex-wrap gap-3">
               <WhatsAppButton attention message={message}>
                 {cta ?? dict.header.enquireOnWhatsapp}
               </WhatsAppButton>
+              {secondary && (
+                <GhostButton href={secondary.href} tone="light">
+                  {secondary.label}
+                </GhostButton>
+              )}
             </div>
             {/* Reassurance sits with the button, not nine paragraphs below it. These restate
                 facts the page substantiates further down — the visitor should not have to

@@ -1,7 +1,7 @@
 import Image from 'next/image'
 
 import type { Dictionary } from '@/dictionaries/types'
-import { ringgit, type Bundle } from '@/lib/pricing'
+import { ringgit, savingPercent, type Bundle } from '@/lib/pricing'
 import { Eyebrow, WhatsAppButton } from '@/components/ui'
 
 /**
@@ -40,6 +40,12 @@ import { Eyebrow, WhatsAppButton } from '@/components/ui'
  * Static by design. No motion, no client boundary: this renders inside statically generated
  * service pages and a client island to animate a price would cost Core Web Vitals for nothing.
  */
+/**
+ * The anchor the hero button jumps to. Exported so the routes cannot hardcode a string that
+ * silently stops matching this section's id.
+ */
+export const BUNDLE_ANCHOR = 'bundle'
+
 export function BundleOffer({
   dict,
   bundle,
@@ -50,14 +56,29 @@ export function BundleOffer({
   message: string
 }) {
   const saving = bundle.compareAt - bundle.price
-  // Derived, never typed. 40 off 240 reads as 17%, and the figure moves if a price does.
-  const percent = Math.round((saving / bundle.compareAt) * 100)
+  // Derived, never typed, and shared with the hero button that points down at this card, so
+  // the two can never advertise different percentages.
+  const percent = savingPercent(bundle)
 
   return (
-    <section className="mx-auto max-w-6xl px-4">
+    /* `id` is the hero button's target. `scroll-mt-28` keeps the card clear of the sticky
+       header when the jump lands. */
+    <section id={BUNDLE_ANCHOR} className="mx-auto max-w-6xl px-4 scroll-mt-28">
       <div className="overflow-hidden rounded-3xl border border-line bg-white shadow-ambient lg:grid lg:grid-cols-[1.1fr_0.9fr]">
         <div className="flex flex-col p-8 lg:p-10">
-          <Eyebrow>{bundle.eyebrow}</Eyebrow>
+          {/* Two facts, side by side, because they are not the same fact. The eyebrow says what
+              kind of bundle this is, which for the new patient one is an eligibility rule a
+              returning patient must not miss. The badge says where it is available. Aqua rather
+              than gold or slate: gold means "the action being asked for" and slate is already
+              carrying the saving, so a third weight here would flatten the price block. */}
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+            <Eyebrow>{bundle.eyebrow}</Eyebrow>
+            {bundle.websiteExclusive && (
+              <span className="label rounded-full bg-brand-aqua px-3 py-1 text-brand-slate">
+                {dict.page.bundleWebsiteOnly}
+              </span>
+            )}
+          </div>
           <h2 className="mt-5 text-3xl font-extrabold leading-tight sm:text-4xl">
             {bundle.name}
           </h2>
@@ -106,7 +127,10 @@ export function BundleOffer({
               </span>
             </div>
             <div className="mt-7">
-              <WhatsAppButton message={message}>{dict.header.enquireOnWhatsapp}</WhatsAppButton>
+              {/* Its own label, not the sitewide "Enquire on WhatsApp". Everywhere else on the
+                  site the ask is a conversation; here the visitor is claiming a specific priced
+                  offer, and the button should say the thing they are about to do. */}
+              <WhatsAppButton message={message}>{dict.page.bundleClaim}</WhatsAppButton>
             </div>
           </div>
         </div>

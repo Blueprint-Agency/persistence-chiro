@@ -198,6 +198,13 @@ answers the "how much does a first visit cost" FAQ on `/what-to-expect`, and rea
 ranking. Every figure comes from `lib/pricing.ts`; nothing is retyped into a component or an
 FAQ answer.
 
+⚠️ **Each card shows two facts and they are not interchangeable.** The eyebrow names the kind of
+bundle ("New patient bundle", "Sports recovery bundle"); a separate aqua badge says "Website-only
+promo". They were briefly collapsed into one line, while only the shockwave bundle was thought to
+be exclusive. Do not collapse them again: dropping "new patient" invites a returning patient to
+claim a first-visit price, and dropping the badge hides the exclusivity that is the commercial
+point of both offers.
+
 Two faults in the client's artwork were caught on the way in and are worth remembering:
 
 1. **The poster's "TOTAL WORTH RM650" did not match its own breakdown** — 310 + 190 + 160 is
@@ -208,8 +215,9 @@ Two faults in the client's artwork were caught on the way in and are worth remem
    publish that artwork as-is.
 
 **Shockwave + Sports Massage, RM200 (from RM240), one session of each — LIVE 2026-09-03** on
-`/services/sports-massage`, badged "Website only". It is the more valuable of the two:
-website-exclusive by design, and GSC shows the site holding positions 4-11 on its money queries
+`/services/sports-massage`. **BOTH bundles are website-only** (client, 2026-09-03, correcting an
+earlier note here that had the RM588 available at the counter too), and GSC shows the site holding
+positions 4-11 on its money queries
 while taking near-zero clicks, because those are local-pack impressions where the tap goes to
 the Business Profile. An offer that exists nowhere else is a reason to tap the website.
 

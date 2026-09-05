@@ -57,19 +57,25 @@ export type Bundle = {
   /** Service slugs whose page renders this bundle. */
   services: readonly string[]
   /**
-   * NO `websiteExclusive` FLAG. The exclusivity lives in `eyebrow` copy and nowhere else.
+   * True when the offer exists only for people who arrive through the website. BOTH bundles
+   * are (client, 2026-09-03).
    *
-   * There was a boolean here until 2026-09-03, and its only consumer was a gold "Website only"
-   * badge beside the price. Since the eyebrow above the heading already read "Website only", the
-   * card printed the same two words twice, which is what the rewrite removed. One offer, one
-   * statement of where it exists.
+   * This flag was removed earlier the same day and is deliberately back. The objection then was
+   * duplication: the eyebrow already read "Website only", so a badge saying it again printed the
+   * same two words twice. That objection died when the second bundle turned out to be
+   * website-only as well, because the two facts a reader needs are no longer the same fact.
+   * `eyebrow` now says WHAT KIND of bundle it is, which for the RM588 is an eligibility rule a
+   * returning patient must not miss, and the badge says WHERE it is available. Different facts,
+   * different slots, no duplication.
    *
-   * The exclusivity is still the commercially interesting part of the shockwave bundle and the
-   * reason it was worth building: GSC shows the site sitting at positions 4-11 on its money
-   * queries and taking near-zero clicks from them, because those are local-pack impressions
-   * where the tap goes to the Business Profile. An offer that exists nowhere else is a reason to
-   * tap the website. It is not a discount; it is a click. Say it in the eyebrow, once.
+   * Do not collapse them back into one line. Dropping "new patient" would invite a returning
+   * patient to claim a first-visit price, and dropping the badge would hide the exclusivity that
+   * is the whole commercial point: GSC shows the site holding positions 4-11 on its money
+   * queries while taking near-zero clicks, because those are local-pack impressions where the
+   * tap goes to the Business Profile. An offer that exists nowhere else is a reason to tap the
+   * website. It is not a discount; it is a click.
    */
+  websiteExclusive: boolean
   /** Same contract `draft` has in lib/posts.ts — withheld pages must say why. */
   draft: boolean
   holdReason?: string
@@ -80,6 +86,13 @@ export type Bundle = {
  * one function rather than formatting at each call site.
  */
 export const ringgit = (amount: number) => `RM${amount}`
+
+/**
+ * The saving as a whole percentage. Derived, never typed, and exported so the bundle card and
+ * the hero button that points at it cannot end up advertising two different numbers.
+ */
+export const savingPercent = (bundle: Bundle) =>
+  Math.round(((bundle.compareAt - bundle.price) / bundle.compareAt) * 100)
 
 export const bundles: Bundle[] = [
   {
@@ -100,12 +113,13 @@ export const bundles: Bundle[] = [
       src: '/img/first-visit-consultation.webp',
       alt: 'A practitioner supporting a patient’s neck during an assessment at Persistence Chiropractic in Cheras, Kuala Lumpur',
     },
+    websiteExclusive: true,
     services: ['chiropractic-care', 'physiotherapy'],
     draft: false,
   },
   {
     slug: 'shockwave-sports-massage',
-    eyebrow: 'Website only',
+    eyebrow: 'Sports recovery bundle',
     name: 'Shockwave therapy and sports massage',
     price: 200,
     compareAt: 240,
@@ -130,6 +144,7 @@ export const bundles: Bundle[] = [
       src: '/img/shockwave-session.webp',
       alt: 'Gloved clinician holding a shockwave applicator against a patient lower leg',
     },
+    websiteExclusive: true,
     services: ['sports-massage', 'sports-injury-rehabilitation'],
     /**
      * LIVE from 2026-09-03, and the claim path is the WhatsApp message itself.

@@ -35,8 +35,8 @@ import { GoogleReviews } from '@/components/GoogleReviews'
 import { MeetDoctors } from '@/components/MeetDoctors'
 import { ServiceQualifier } from '@/components/ServiceQualifier'
 import { waMessage } from '@/lib/whatsapp'
-import { bundleForService, ringgit } from '@/lib/pricing'
-import { BundleOffer } from '@/components/BundleOffer'
+import { bundleForService, ringgit, savingPercent } from '@/lib/pricing'
+import { BUNDLE_ANCHOR, BundleOffer } from '@/components/BundleOffer'
 
 const reviewer = practitionerBySlug('valerie-na')!
 
@@ -138,6 +138,17 @@ export default async function ServicePage({ params }: Props) {
         image={service.heroImage}
         assurances={service.assurances}
         message={waMessage.service(locale, shortName)}
+        // Only where a bundle actually renders further down, and the percentage comes off the
+        // same helper the card uses, so the button cannot advertise a discount the card
+        // contradicts. No bundle in this locale means no button rather than a dead anchor.
+        secondary={
+          bundle
+            ? {
+                href: `#${BUNDLE_ANCHOR}`,
+                label: dict.page.bundleHeroCta(`${savingPercent(bundle)}%`),
+              }
+            : undefined
+        }
       />
 
       {/* --------------------------------------------------- What we help with */}

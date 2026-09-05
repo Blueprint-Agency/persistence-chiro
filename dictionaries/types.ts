@@ -62,6 +62,12 @@ export type Dictionary = {
      * `price` and `compareAt` in the card, never typed into the data, so neither can drift.
      */
     bundleSave: (amount: string, percent: string) => string
+    /** Badge for an offer available only to visitors who arrive through the site. */
+    bundleWebsiteOnly: string
+    /** The bundle card's own CTA. Deliberately not the sitewide WhatsApp label. */
+    bundleClaim: string
+    /** Hero button pointing down at the bundle: "Get 17% off bundle deal". */
+    bundleHeroCta: (percent: string) => string
     whatWeHelpWith: string
     /** "Reasons people come in for {name}". */
     reasonsPeopleComeInFor: (name: string) => string
