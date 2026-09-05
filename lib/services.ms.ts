@@ -948,8 +948,8 @@ export const servicesMs: Service[] = [
     intro:
       'Urut sukan di Cheras untuk mereka yang berlatih, mereka yang duduk di meja sepanjang minggu, dan mereka yang masih membawa kecederaan lama yang tidak pernah reda sepenuhnya. Kami menilai dahulu sebelum bermula, supaya sesi itu digunakan pada tisu yang menjadi punca keluhan.',
     heroImage: {
-      src: '/img/therapy-neck.webp',
-      alt: 'Fisioterapis mengurut leher dan bahu pesakit yang sedang duduk di Persistence Chiropractic Care di Cheras, Kuala Lumpur',
+      src: '/img/sports-massage-hero.webp',
+      alt: 'Ahli terapi menekan betis pesakit dengan kedua tangan di atas katil semasa urut sukan',
     },
     midImage: {
       src: '/img/sports-massage-session.webp',

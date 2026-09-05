@@ -1218,9 +1218,24 @@ export const services: Service[] = [
     targetKeyword: 'sports massage kl',
     intro:
       'Sports massage in Cheras for people who train, people who sit at a desk all week, and people carrying something that never quite settled. It begins with an assessment rather than a menu, so the session is spent on the tissue actually causing the complaint.',
+    /**
+     * Replaced `therapy-neck.webp` on 2026-09-03. That frame is a real photograph of this
+     * clinic, but it shows a cervical hold, which on a sports massage page reads as an
+     * adjustment rather than as massage. It remains the physiotherapy page's mid image, where
+     * it is accurate.
+     *
+     * ⚠️ AI GENERATED, SO THE ALT CLAIMS NO LOCATION, and this is the most prominent instance
+     * of that on the site: the hero is what an OG card would be cropped from, so the image
+     * representing this page on WhatsApp or Facebook is not a photograph of this clinic. Do not
+     * add the Cheras modifier here, and do not set `ogImage` from it without deciding that
+     * question deliberately. Swap in real photography when the clinic can shoot it.
+     *
+     * Portrait 1080x1350, which is the `aspect-[4/5]` the hero uses from `lg` up. Mobile crops
+     * it to 4/3 around the centre, where the hands and the calf sit.
+     */
     heroImage: {
-      src: '/img/therapy-neck.webp',
-      alt: 'Physiotherapist working on a seated patient neck and shoulder at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
+      src: '/img/sports-massage-hero.webp',
+      alt: 'Therapist working with both hands along a patient calf on a padded table during a sports massage',
     },
     /**
      * The first image on this site that actually shows the service it sits next to. It replaced

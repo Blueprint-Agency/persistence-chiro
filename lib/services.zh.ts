@@ -764,8 +764,8 @@ export const servicesZh: Service[] = [
     intro:
       'Cheras 的运动按摩,适合有训练习惯的人、整周坐在办公桌前的人,以及带着一个一直没真正好起来的旧伤的人。我们会先评估再动手,让这一个小时用在真正引起问题的组织上。',
     heroImage: {
-      src: '/img/therapy-neck.webp',
-      alt: '在 Cheras, Kuala Lumpur 的 Persistence Chiropractic Care,物理治疗师为坐着的病患处理颈部与肩膀',
+      src: '/img/sports-massage-hero.webp',
+      alt: '治疗师站在诊疗床旁,双手沿着病患小腿进行运动按摩',
     },
     midImage: {
       src: '/img/sports-massage-session.webp',

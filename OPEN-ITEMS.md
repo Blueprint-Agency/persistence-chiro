@@ -106,13 +106,23 @@ Outstanding:
   all three sports massage pages, and `shockwave-session.webp` on the bundle card wherever it
   renders. They are the first images on the site that actually show the services they sit beside.
 
-  ⚠️ **BOTH ARE AI GENERATED, AND THEIR ALT TEXT DELIBERATELY NAMES NO LOCATION.** Every real
+  A third followed on the same day: `sports-massage-hero.webp` replaced `therapy-neck.webp` as
+  the hero of all three sports massage pages. The old frame is a real clinic photograph but shows
+  a cervical hold, which on a sports massage page reads as an adjustment; it stays on the
+  physiotherapy page, where it is accurate.
+
+  ⚠️ **ALL THREE ARE AI GENERATED, AND THEIR ALT TEXT DELIBERATELY NAMES NO LOCATION.** Every real
   clinic frame on this site carries the Cheras or Kuala Lumpur modifier; these two must not,
   because they are not photographs of this clinic, these practitioners or these patients. Do not
   "fix" the inconsistency by adding the modifier. The bundle card matters most here: it sells
   something for money, which is the worst place on the site to imply provenance it does not have.
-  Replace both with real photography when the clinic can shoot it, and add the modifier back at
+  Replace them with real photography when the clinic can shoot it, and add the modifier back at
   that point.
+
+  The hero is the sharpest edge of this. It is what an OG card gets cropped from, so if one is
+  ever generated for these routes, the image representing the page on WhatsApp and Facebook will
+  not be a photograph of the clinic. `ogImage` is currently unset, which is why it has not
+  happened yet; decide that deliberately rather than by adding the field.
 
   Still reusing borrowed frames: the four concern cards on each sports massage page are the
   shared symptom illustrations, and the sports rehabilitation pages still have no images of
