@@ -6,7 +6,7 @@ import type { Dictionary } from '@/dictionaries/types'
 import { Eyebrow } from '@/components/ui'
 
 /**
- * The "Locate Us" walkthroughs on /book-now — three photo routes into the clinic.
+ * The "Locate Us" walkthroughs on /locate-us — three photo routes into the clinic.
  *
  * A server component with no interactivity anywhere in it. The route picker is a row of
  * plain `#anchor` links and the images are ordinary lazy `next/image`s, so the whole thing

@@ -735,7 +735,7 @@ export default async function Home({ params }: Props) {
               <GhostButton href={clinic.mapsUrl} external>
                 {dict.footer.openInGoogleMaps}
               </GhostButton>
-              <GhostButton href={pathFor(locale, '/book-now')}>{dict.page.directionsAndContact}</GhostButton>
+              <GhostButton href={pathFor(locale, '/locate-us')}>{dict.page.directionsAndContact}</GhostButton>
             </div>
           </div>
         </div>

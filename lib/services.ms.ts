@@ -394,7 +394,7 @@ export const servicesMs: Service[] = [
       {
         q: 'Adakah anda dibuka pada hujung minggu?',
         a: 'Ya, kami dibuka tujuh hari termasuk hari Ahad. Sabtu sehingga 8 malam dan Ahad sehingga 3 petang, yang biasanya waktu paling mudah untuk ditempah jika hari bekerja sukar. Isnin hingga Khamis kami dibuka sehingga 8 malam dan Jumaat sehingga 5 petang.',
-        links: [{ phrase: 'dibuka tujuh hari', href: '/book-now' }],
+        links: [{ phrase: 'dibuka tujuh hari', href: '/locate-us' }],
       },
     ],
     // Flipped for local preview only, at the user's request — still needs a Malay-speaking
@@ -908,7 +908,7 @@ export const servicesMs: Service[] = [
       {
         q: 'Di manakah lokasi tepat anda, dan bagaimana saya sampai ke sana?',
         a: 'Klinik terletak di Signature 2 dalam pembangunan Sunway Velocity di Maluri, di sebelah Cheras, Kuala Lumpur, dengan tempat letak kereta pusat membeli-belah jika anda memandu dan stesen Maluri serta Cochrane kedua-duanya dalam jarak berjalan kaki jika tidak. Maluri adalah stesen pertukaran, jadi laluan Ampang, Sri Petaling dan Kajang semuanya sampai ke sini. Kami dibuka tujuh hari: Isnin hingga Khamis dan Sabtu sehingga 8 malam, Jumaat sehingga 5 petang, dan Ahad sehingga 3 petang.',
-        links: [{ phrase: 'dibuka tujuh hari', href: '/book-now' }],
+        links: [{ phrase: 'dibuka tujuh hari', href: '/locate-us' }],
       },
       {
         q: 'Apa yang berlaku jika jagaan kiropraktik bukan pendekatan yang sesuai untuk saya?',

@@ -17,6 +17,6 @@ export const staticRoutes = [
   '/about',
   '/press',
   '/blog',
-  '/book-now',
+  '/locate-us',
   '/partner-with-us',
 ]

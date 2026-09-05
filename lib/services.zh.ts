@@ -226,7 +226,7 @@ export const servicesZh: Service[] = [
       {
         q: '周末有营业吗?',
         a: '有,我们每周七天营业,包括星期日。星期六营业至晚上八点,星期日至下午三点,通常是平日难以安排时段者的最佳选择。星期一至星期四营业至晚上八点,星期五至下午五点。',
-        links: [{ phrase: '每周七天营业', href: '/book-now' }],
+        links: [{ phrase: '每周七天营业', href: '/locate-us' }],
       },
     ],
     // Flipped for local preview only, at the user's request — still needs a Chinese-speaking
@@ -721,7 +721,7 @@ export const servicesZh: Service[] = [
       {
         q: '诊所确切地点在哪里?怎么过去?',
         a: '诊所位于 Maluri 的 Sunway Velocity 发展区内的 Signature 2,属于 Cheras, Kuala Lumpur 一带。开车前来可停在商场停车场,搭乘轻快铁的话,Maluri 站与 Cochrane 站皆在步行范围内。Maluri 是转乘站,安邦线、斯里白沙罗线与加影线皆可抵达。我们每周七天营业:星期一至星期四及星期六营业至晚上八点,星期五至下午五点,星期日至下午三点。',
-        links: [{ phrase: '每周七天营业', href: '/book-now' }],
+        links: [{ phrase: '每周七天营业', href: '/locate-us' }],
       },
       {
         q: '如果脊椎矫正护理不适合我,会怎样?',

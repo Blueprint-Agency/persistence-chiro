@@ -216,7 +216,7 @@ export const signage: readonly DirectionStep[] = [
 ]
 
 /**
- * Which glyph the route card on /book-now draws. Keyed by slug and kept HERE rather than as a
+ * Which glyph the route card on /locate-us draws. Keyed by slug and kept HERE rather than as a
  * field on each `DirectionRoute`, because the icon is a property of the route itself, not of
  * the language it is written in — as a field it would have to be typed identically into three
  * locale files that must never disagree about it.

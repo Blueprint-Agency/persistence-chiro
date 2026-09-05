@@ -58,10 +58,14 @@ const PAGE_REDIRECTS: Redirect[] = [
    * returns 200, so it is public, crawlable and indexed. Do not remove this rule on the
    * strength of that assumption returning.
    *
-   * /book-now is the right destination rather than /: it absorbed the NAP, map, hours and
-   * booking content /contact-us held, so the intent is preserved rather than diluted.
+   * The Locate Us page is the right destination rather than /: it absorbed the NAP, map, hours
+   * and booking content /contact-us held, so the intent is preserved rather than diluted.
+   *
+   * Repointed from /book-now to /locate-us on 2026-09-06 when that page was renamed. It must
+   * name the FINAL path: chaining /contact-us -> /book-now -> /locate-us would still resolve,
+   * and is exactly how a redirect map decays into hops nobody dares delete.
    */
-  { source: '/contact-us', destination: '/book-now', statusCode: 301 },
+  { source: '/contact-us', destination: '/locate-us', statusCode: 301 },
   { source: '/press-and-publications', destination: '/press', statusCode: 301 },
   { source: '/going-places-magazine-september-feature', destination: '/press', statusCode: 301 },
   // NOT in the Wix sitemap — found only by following a "Read More" link off
@@ -90,18 +94,35 @@ const PAGE_REDIRECTS: Redirect[] = [
     destination: '/services/chiropractic-care',
     statusCode: 301,
   },
+  /**
+   * Renamed 2026-09-06. The path said "book" while the page showed the address, hours, map and
+   * the three photo walkthroughs, and the nav item above it had already been relabelled "Locate
+   * Us" — so the URL was the last thing still claiming the page did something it does not.
+   *
+   * THIS REVERSES A DECISION MADE THE DAY BEFORE, and the reason is that its evidence had
+   * expired. That note said the Wix /book-now ranked #13 for "chiro cheras" and renaming would
+   * throw the ranking away. GSC over the 90 days to 2026-09-05 says the page sits at position
+   * 15.5 for that query on 35 impressions and ZERO clicks, while the homepage holds 4.4 and
+   * takes the clicks. All six clicks this URL earned in 90 days were brand queries at position
+   * 1.8, and brand queries follow a 301 without difficulty.
+   *
+   * `/locate-us` rather than the keyword-loaded slug that was also considered: the homepage is
+   * this site's Cheras page, and a second URL carrying "cheras" in its path invites exactly the
+   * cannibalisation the architecture forbids. This page already competes weakly with the
+   * homepage on that query; there was no reason to arm it further.
+   */
+  { source: '/book-now', destination: '/locate-us', statusCode: 301 },
 ]
 
 /**
- * `/book-now` is NOT redirected any more — it is a real page again.
+ * `/book-now` IS redirected again, as of 2026-09-06. See the rule above for the evidence.
  *
- * The Wix site had /book-now ranking #13 for "chiro cheras", and the earlier architecture
- * 301'd it to /contact-us. The proposal restores it as one of the seven main pages, so the
- * legacy URL now resolves to a live page of the same intent and keeps whatever equity that
- * ranking carries. It absorbs the NAP, map, hours and booking content that /contact-us
- * held, which is why /contact-us now 301s HERE — see the rule above. (This note previously
- * said /contact-us "never launched publicly, so no redirect is owed to it". The live Wix
- * sitemap says otherwise; the claim was retracted 2026-08-10.)
+ * History, because this path has now flipped three times and the next session deserves the
+ * whole arc: the earlier Wix architecture 301'd /book-now to /contact-us; the rebuild restored
+ * it as a real page to keep the equity behind its "chiro cheras" ranking; and it is now a
+ * redirect once more, because that ranking turned out to be position 15.5 with no clicks. The
+ * page itself did not go anywhere. It lives at /locate-us with the same content, and
+ * /contact-us points straight there rather than through here.
  */
 
 /**

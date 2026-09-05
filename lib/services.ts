@@ -497,7 +497,7 @@ export const services: Service[] = [
       {
         q: 'Where exactly are you, and how do I get there?',
         a: 'The clinic is at Signature 2 in the Sunway Velocity development in Maluri, on the Cheras side of Kuala Lumpur, with mall parking if you drive and Maluri and Cochrane stations both within walking distance if you do not. Maluri is an interchange, so the Ampang, Sri Petaling and Kajang lines all reach us. We are open seven days: Monday to Thursday and Saturday until 8pm, Friday until 5pm, and Sunday until 3pm. You can check the opening hours and directions before you come.',
-        links: [{ phrase: 'the opening hours and directions', href: '/book-now' }],
+        links: [{ phrase: 'the opening hours and directions', href: '/locate-us' }],
       },
       {
         q: 'What happens if chiropractic is not the right approach for me?',
@@ -960,7 +960,7 @@ export const services: Service[] = [
       {
         q: 'Are you open at weekends?',
         a: 'Yes, we are open seven days including Sunday. Saturday runs to 8pm and Sunday to 3pm, which is usually the easiest slot to get if weekdays are difficult. Monday to Thursday we are open until 8pm and Friday until 5pm.',
-        links: [{ phrase: 'open seven days', href: '/book-now' }],
+        links: [{ phrase: 'open seven days', href: '/locate-us' }],
       },
     ],
     draft: false,

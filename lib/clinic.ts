@@ -204,9 +204,9 @@ function daySpan(locale: Locale, days: readonly string[]) {
 }
 
 /**
- * Locale-aware hours table for the footer/homepage/book-now display. `hoursDisplay` above
+ * Locale-aware hours table for the footer/homepage/locate-us display. `hoursDisplay` above
  * only ever produced English; every page that rendered it (the footer on every route,
- * `/book-now`, the homepage) was showing "Monday to Thursday" etc. even on zh/ms pages
+ * `/locate-us`, the homepage) was showing "Monday to Thursday" etc. even on zh/ms pages
  * until this was added — a sitewide gap of the same shape as `waMessage`'s, caught while
  * localizing the homepage's own "Visit us" section.
  */

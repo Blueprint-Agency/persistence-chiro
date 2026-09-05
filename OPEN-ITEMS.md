@@ -248,7 +248,7 @@ general prose, so get that checked before any paid traffic points at those local
 ## Locate Us — the How to Find Us walkthroughs (added 2026-09-05)
 
 The client sent 21 Instagram slides ("Persistence - How to Find us") in three sets. They are now
-the three photo routes at the foot of `/book-now` (`lib/directions.ts` + `.zh.ts` / `.ms.ts`),
+the three photo routes at the foot of `/locate-us` (`lib/directions.ts` + `.zh.ts` / `.ms.ts`),
 which the nav finally links to again as **"Locate Us"** — between 2026-08-01 and now, "Book Now"
 went straight off-site to SweetPew, so a visitor could tap the one nav item that sounded like
 "where are you" and never see the address at all.

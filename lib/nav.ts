@@ -71,22 +71,28 @@ export const mainNav = (locale: Locale, dict: Dictionary): NavItem[] => [
    * THE FIX THE NOTE BELOW ASKED FOR, done 2026-09-05 at the client's prompting: "book now
    * directly leads to sweetpew, there's no NAP, hours, map link etc".
    *
-   * "Book Now" leaves the site, so between 2026-08-01 and now a visitor could tap the only
-   * nav item that sounded like "where are you" and land on a third-party booking form having
-   * never seen the address. /book-now was down to ONE internal link sitewide (the homepage
-   * "Directions & contact" button) despite carrying the NAP, the hours, the map and now the
-   * three photo walkthroughs.
+   * "Book Now" leaves the site, so between 2026-08-01 and 2026-09-05 a visitor could tap the
+   * only nav item that sounded like "where are you" and land on a third-party booking form
+   * having never seen the address. This page was down to ONE internal link sitewide (the
+   * homepage "Directions & contact" button) despite carrying the NAP, the hours, the map and
+   * the three photo walkthroughs.
    *
-   * ⚠️ THE LABEL AND THE PATH DELIBERATELY DISAGREE. "Locate Us" is what the page does;
-   * `/book-now` is where it has to live, because the Wix /book-now ranked #13 for "chiro
-   * cheras", /contact-us already 301s here, and every in-prose "opening hours and directions"
-   * link in lib/services*.ts points at it. Renaming the route would throw all of that away to
-   * fix a cosmetic mismatch. Do not "tidy" this into /locate-us.
+   * The label and the path finally agree, as of 2026-09-06. Until then this lived at
+   * /book-now, and the note here argued for keeping that path because the Wix URL ranked #13
+   * for "chiro cheras". GSC retired that argument: 90 days to 2026-09-05 put it at position
+   * 15.5 on 35 impressions and no clicks, with the homepage at 4.4 taking the traffic. Every
+   * click the old URL earned was a brand query at position 1.8, which a 301 carries.
+   *
+   * `/locate-us` and not a slug carrying "cheras" or "maluri": the homepage is this site's
+   * Cheras page, and a second URL with those words in its path invites the cannibalisation the
+   * architecture forbids. /book-now now 301s here, /contact-us points straight here rather than
+   * hopping through it, and every in-prose "opening hours and directions" link in
+   * lib/services*.ts was repointed in the same change.
    */
-  { href: pathFor(locale, '/book-now'), label: dict.nav.locateUs },
+  { href: pathFor(locale, '/locate-us'), label: dict.nav.locateUs },
   /**
    * Points off-site to SweetPew, at the client's request (2026-08-01). It used to go to
-   * /book-now.
+   * /locate-us.
    */
   { href: clinic.bookingUrl, label: dict.nav.bookNow, external: true },
 ]

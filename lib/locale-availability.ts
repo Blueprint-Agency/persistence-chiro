@@ -14,7 +14,7 @@
  * top. ⚠️ Whenever a page like that gets un-gated, it MUST be added here too, or its
  * `generateMetadata` will keep computing `availableIn: ['en']` and the switcher will keep
  * hiding the zh/ms version that now actually exists — this happened for real: `/about`,
- * `/book-now`, `/press`, `/partner-with-us`, `/what-to-expect` and `/` were all localized
+ * `/locate-us`, `/press`, `/partner-with-us`, `/what-to-expect` and `/` were all localized
  * in the same session this list was last updated, and every one of them would have shipped
  * with wrong hreflang/switcher behaviour if this file had not been updated alongside them.
  */
@@ -26,7 +26,7 @@ import { hasBioFor } from './clinic'
 const STATIC_LOCALIZED_PATHS = new Set([
   '/',
   '/about',
-  '/book-now',
+  '/locate-us',
   '/press',
   '/partner-with-us',
   '/what-to-expect',

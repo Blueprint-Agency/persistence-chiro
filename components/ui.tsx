@@ -219,7 +219,7 @@ export function PageHero({
    * OPT-IN, and it should stay rare. Every inner page shares this hero, and the reason it
    * reads as one site is that the slate field is the same flat colour on all of them — a
    * photo behind every h1 would be noise rather than identity. Use it where the photo IS the
-   * message: /book-now, where the shopfront is the thing the visitor is trying to recognise.
+   * message: /locate-us, where the shopfront is the thing the visitor is trying to recognise.
    *
    * A CSS background rather than `next/image`, which is the one place on this site that
    * exception is taken. `background-attachment: fixed` cannot be applied to an <img>, and the

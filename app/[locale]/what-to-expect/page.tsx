@@ -60,7 +60,7 @@ export default async function WhatToExpectPage({ params }: Props) {
     <>
       {/* Every answer below renders on the page, so the schema is legitimate. */}
       <JsonLd data={faqSchema(clinicFaqs)} />
-      {/* Single-item trail, matching /blog, /press and /book-now: this is a top-level page,
+      {/* Single-item trail, matching /blog, /press and /locate-us: this is a top-level page,
           and the convention here is that every non-home route states where it sits. */}
       <JsonLd
         data={breadcrumbSchema([

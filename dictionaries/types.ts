@@ -11,7 +11,7 @@ export type Dictionary = {
     blog: string
     bookNow: string
     /**
-     * Points at /book-now, which is the NAP/hours/map/directions page. `bookNow` above points
+     * Points at /locate-us, which is the NAP/hours/map/directions page. `bookNow` above points
      * OFF-SITE to SweetPew, so without this row the page carrying the address had no nav link
      * at all — a visitor tapping "Book Now" left the site before ever seeing where the clinic
      * is. See the note on `mainNav` in lib/nav.ts.
@@ -173,7 +173,7 @@ export type Dictionary = {
     patientPhotographsCaption: string
     beforeAfterPostureAlt: string
     beforeAfterSpinalCurveAlt: string
-    // /book-now (app/[locale]/book-now/page.tsx):
+    // /locate-us (app/[locale]/locate-us/page.tsx):
     bookNowBreadcrumbLabel: string
     contactEyebrow: string
     contactAndDirections: string

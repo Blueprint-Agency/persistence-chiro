@@ -47,9 +47,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return pageMetadata({
     title: copy.title,
     description: copy.description,
-    path: '/book-now',
+    path: '/locate-us',
     locale,
-    availableIn: LOCALES.filter((l) => pathExistsIn(l, '/book-now')),
+    availableIn: LOCALES.filter((l) => pathExistsIn(l, '/locate-us')),
   })
 }
 
@@ -62,10 +62,10 @@ export default async function ContactPage({ params }: Props) {
 
   return (
     <>
-      <JsonLd data={contactPageSchema({ url: pathFor(locale, '/book-now') })} />
+      <JsonLd data={contactPageSchema({ url: pathFor(locale, '/locate-us') })} />
       <JsonLd
         data={breadcrumbSchema([
-          { name: dict.page.bookNowBreadcrumbLabel, url: pathFor(locale, '/book-now') },
+          { name: dict.page.bookNowBreadcrumbLabel, url: pathFor(locale, '/locate-us') },
         ])}
       />
 

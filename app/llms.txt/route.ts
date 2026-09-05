@@ -86,7 +86,7 @@ export async function GET() {
       `- [Our Chiropractors](${url('/about')})`,
       `- [Press and Publications](${url('/press')})`,
       `- [Articles](${url('/blog')})`,
-      `- [Book an Appointment](${url('/book-now')})`,
+      `- [Book an Appointment](${url('/locate-us')})`,
     ]),
     '',
 

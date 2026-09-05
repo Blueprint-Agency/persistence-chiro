@@ -412,7 +412,7 @@ test('no verb-form banned word in zh/ms published copy', () => {
     for (const b of bundlesFor(locale)) {
       bucket.push([`pricing/${b.slug}`, collectStrings(b).join(' ')])
     }
-    // The Locate Us walkthroughs on /book-now (2026-09-05). Directions copy looks harmless,
+    // The Locate Us walkthroughs on /locate-us (2026-09-05). Directions copy looks harmless,
     // but one of the three routes is the walk to the hospital's radiology counter, and
     // "rawatan pengimejan" / 影像治疗 is precisely how that step wants to be written. The
     // sweep reaches the `alt` strings too, which is where the last real violation hid.
@@ -546,8 +546,10 @@ test('every legacy page URL is either redirected or still published', () => {
 /**
  * The mirror of the test above. A redirect whose source the rebuild ALSO publishes as a
  * route can never fire — Next matches redirects before routes, so the rule would silently
- * shadow a live page. /book-now and /what-to-expect keep their Wix paths deliberately, so
- * this is a real hazard rather than a hypothetical one.
+ * shadow a live page. /what-to-expect keeps its Wix path deliberately, so this is a real
+ * hazard rather than a hypothetical one, and it nearly fired on 2026-09-06: /book-now was a
+ * published route until that day and became a redirect source, which is precisely the
+ * collision this test exists to catch had the route not moved in the same change.
  */
 test('no redirect shadows a route the site publishes', () => {
   const published = new Set(staticRoutes)
@@ -750,7 +752,7 @@ test('a withheld bundle records its reason', () => {
 })
 
 /**
- * The Locate Us walkthroughs on /book-now.
+ * The Locate Us walkthroughs on /locate-us.
  *
  * Both halves of this matter for the same reason: a visitor reading these steps is lost, on
  * mobile data, standing in a mall. A step whose photo 404s is worse than no photo, and a
@@ -840,7 +842,7 @@ test('the unit number is a letter O everywhere, or nowhere', async () => {
 })
 
 /**
- * The route cards on /book-now draw their glyph from a slug->icon map in components/FindUs.tsx
+ * The route cards on /locate-us draw their glyph from a slug->icon map in components/FindUs.tsx
  * rather than from the data files, so a route added later renders a card with an empty space
  * where the icon should be. That is the kind of gap nobody files a bug for — the card still
  * works, it just looks broken. Fail the build instead.
