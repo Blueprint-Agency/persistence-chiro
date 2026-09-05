@@ -233,6 +233,11 @@ restate it — do not turn the blog post into a second copy of the same table in
 
 ### Step 5: Competitor benchmarking (mandatory)
 Never present an outline without it.
+
+**Method reference:** the generic version of this now lives in the `competitor-gap-analysis`
+skill (extracted from here 2026-09-03, so the table shapes and guards stop being one client's
+private property). What follows is the same method plus this project's specifics; load that skill
+when the analysis needs to go deeper or when you want the rules restated.
 1. `WebSearch` the primary keyword(s). Prioritise Malaysia/KL results.
 2. `WebFetch` the top 2–3 ranking pages.
 3. For each: heading hierarchy (every H2), topics covered, depth/length, unique angles, CTAs.
