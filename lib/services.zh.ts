@@ -768,8 +768,8 @@ export const servicesZh: Service[] = [
       alt: '在 Cheras, Kuala Lumpur 的 Persistence Chiropractic Care,物理治疗师为坐着的病患处理颈部与肩膀',
     },
     midImage: {
-      src: '/img/cupping-therapy.webp',
-      alt: '在 Cheras, Kuala Lumpur 的 Persistence Chiropractic Care,为病患上背进行拔罐',
+      src: '/img/sports-massage-session.webp',
+      alt: '治疗师双手沿着病患小腿进行运动按摩',
     },
     assurances: ['先评估,才开始动手', '每次六十分钟', '每周七天营业 · Cheras, Maluri'],
     /**

@@ -101,15 +101,22 @@ and the physiotherapists still cannot be named.
 
 Outstanding:
 
-- **A sports massage photograph.** There isn't one, in any locale, and the bundle card has now
-  run out of honest frames to reuse: it was moved off `rehab-ankle.webp` because that is the
-  sports rehabilitation hero and the card would have shown it twice on one screen, onto
-  `sports-post-surgical.webp`, which is still one of that page's own outcome cards. So that page
-  currently shows one photograph in two places. A real frame of shockwave or of sports massage
-  fixes the card on three pages at once. The hero reuses the soft
-  tissue frame from the physiotherapy page and the four concern cards reuse the shared symptom
-  illustrations. A real frame of this work in this room is the biggest single improvement
-  available to these three pages at once.
+- ~~A sports massage photograph~~ **PARTLY SOLVED 2026-09-03, with a caveat.** Two images were
+  generated in Canva and wired in: `sports-massage-session.webp` in the "how it works" column of
+  all three sports massage pages, and `shockwave-session.webp` on the bundle card wherever it
+  renders. They are the first images on the site that actually show the services they sit beside.
+
+  ⚠️ **BOTH ARE AI GENERATED, AND THEIR ALT TEXT DELIBERATELY NAMES NO LOCATION.** Every real
+  clinic frame on this site carries the Cheras or Kuala Lumpur modifier; these two must not,
+  because they are not photographs of this clinic, these practitioners or these patients. Do not
+  "fix" the inconsistency by adding the modifier. The bundle card matters most here: it sells
+  something for money, which is the worst place on the site to imply provenance it does not have.
+  Replace both with real photography when the clinic can shoot it, and add the modifier back at
+  that point.
+
+  Still reusing borrowed frames: the four concern cards on each sports massage page are the
+  shared symptom illustrations, and the sports rehabilitation pages still have no images of
+  their own beyond the hero.
 - **An OG card.** No `ogImage`, so all three share the sitewide shopfront card.
 - **Two wording calls for the clinic to confirm**, both recorded in the code:
   - **`冲击波疗法`, not `冲击波治疗`**, for shockwave. `疗法` names the technique without the

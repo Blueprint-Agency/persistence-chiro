@@ -952,8 +952,8 @@ export const servicesMs: Service[] = [
       alt: 'Fisioterapis mengurut leher dan bahu pesakit yang sedang duduk di Persistence Chiropractic Care di Cheras, Kuala Lumpur',
     },
     midImage: {
-      src: '/img/cupping-therapy.webp',
-      alt: 'Terapi bekam dilakukan pada bahagian atas belakang pesakit di Persistence Chiropractic Care di Cheras, Kuala Lumpur',
+      src: '/img/sports-massage-session.webp',
+      alt: 'Ahli terapi menekan betis pesakit dengan kedua tangan semasa urut sukan',
     },
     assurances: [
       'Dinilai sebelum sebarang urutan bermula',

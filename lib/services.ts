@@ -1223,14 +1223,23 @@ export const services: Service[] = [
       alt: 'Physiotherapist working on a seated patient neck and shoulder at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
     },
     /**
-     * The templated route hardcodes width={1400} height={1000} for this slot, so a midImage of
-     * any other ratio trips Next's aspect-ratio warning in dev. Every image in public/img at
-     * exactly 1400x1000 is listed in that route's history; this one is also the closest thing
-     * the library holds to hands on soft tissue work.
+     * The first image on this site that actually shows the service it sits next to. It replaced
+     * a cupping photograph on 2026-09-03, which was the closest thing the library held until
+     * this was commissioned.
+     *
+     * ⚠️ AI GENERATED, SO THE ALT CLAIMS NO LOCATION. It is not a photograph of this clinic,
+     * these practitioners or these patients, and alt text that named Cheras would be a claim
+     * about a room that does not exist. Every other real-clinic frame on the site carries the
+     * local modifier; this one must not, and neither must its zh/ms counterparts. Replace it
+     * with a real photograph when the clinic can shoot one, and add the modifier back then.
+     *
+     * The file is 1008x720, which is the same 1.4 ratio as the width={1400} height={1000} the
+     * templated route hardcodes for this slot. Matching the RATIO is what avoids Next's
+     * aspect-ratio warning, so there was no reason to upscale the frame to 1400 wide.
      */
     midImage: {
-      src: '/img/cupping-therapy.webp',
-      alt: 'Cupping therapy applied across a patient upper back at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
+      src: '/img/sports-massage-session.webp',
+      alt: 'Therapist working with both hands along a patient calf during a sports massage',
     },
     assurances: [
       'Assessed before any hands on work begins',

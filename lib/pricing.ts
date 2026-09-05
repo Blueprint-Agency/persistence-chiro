@@ -114,18 +114,21 @@ export const bundles: Bundle[] = [
       { label: 'Sports massage, 60 minutes', price: 120 },
     ],
     /**
-     * NOT `rehab-ankle.webp`, which this bundle used until it started appearing on
-     * `/services/sports-injury-rehabilitation` as well: that photograph is the hero of that
-     * page, so the card would have shown the same frame twice on one screen.
+     * Shows the actual thing being sold, as of 2026-09-03. It replaced a shoulder-mobility
+     * frame, which in turn replaced this page's own hero; neither depicted shockwave.
      *
-     * ⚠️ NO LOCAL MODIFIER IN THE ALT. Unlike the chiro and physio bundle's frame, this one is
-     * not confirmed to be a photograph of this clinic, so the alt describes what is in the
-     * frame and claims nothing about where it was taken. It is also still not a photograph of
-     * shockwave or of sports massage, because none exists. See OPEN-ITEMS.md.
+     * ⚠️ AI GENERATED, SO THE ALT CLAIMS NO LOCATION. Not a photograph of this clinic, these
+     * practitioners or these patients. Naming Cheras here would be a claim about a room that
+     * does not exist, and this card sells something for money, which is the worst place on the
+     * site to imply provenance it does not have. Swap in a real photograph when one exists.
+     *
+     * Portrait on purpose. The card crops with object-cover, so the tall frame fills the
+     * desktop column and centre-crops to a wide strip on mobile, where the applicator and the
+     * leg sit in the middle band.
      */
     image: {
-      src: '/img/sports-post-surgical.webp',
-      alt: 'Clinician guiding a seated man through shoulder range of movement in a clinic room',
+      src: '/img/shockwave-session.webp',
+      alt: 'Gloved clinician holding a shockwave applicator against a patient lower leg',
     },
     services: ['sports-massage', 'sports-injury-rehabilitation'],
     /**
