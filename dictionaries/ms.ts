@@ -18,6 +18,7 @@ const ms: Dictionary = {
     partnerWithUs: 'Bekerjasama Dengan Kami',
     blog: 'Info Kesihatan',
     bookNow: 'Tempah Sekarang',
+    locateUs: 'Lokasi Kami',
   },
   header: {
     openSevenDays: 'Buka 7 hari seminggu',
@@ -162,6 +163,17 @@ const ms: Dictionary = {
     emailLabel: 'E-mel',
     whatsappAppointmentsNote:
       'Kami menerima temu janji melalui WhatsApp dan telefon, tujuh hari seminggu. Mesej kami kebimbangan utama anda dan kami akan sahkan masa yang sesuai.',
+    findUsEyebrow: 'Lokasi kami',
+    findUsHeading: 'Cara mencari kami',
+    findUsIntro:
+      'Kami di tingkat bawah Signature 2, di belakang Sunway Velocity Mall. Senang selepas kali pertama, jadi ini laluannya berserta gambar.',
+    findUsPickRoute: 'Anda datang dari arah mana?',
+    findUsPickRouteHint: 'Pilih satu dan kami bawa anda langkah demi langkah, berserta gambar.',
+    stepCount: (n) => `${n} langkah`,
+    seeTheSteps: 'Lihat langkah',
+    stepLabel: (n) => `Langkah ${n}`,
+    openInWaze: 'Buka dalam Waze',
+    signageHeading: 'Rupa papan tanda kami',
     notSureWhereToStartPrefix: 'Tidak pasti nak mula dari mana? Lihat ',
     orThe: ' atau ',
     conditionsWeHelpWithLinkText: 'simptom yang kami bantu',

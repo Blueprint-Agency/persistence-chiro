@@ -10,6 +10,13 @@ export type Dictionary = {
     partnerWithUs: string
     blog: string
     bookNow: string
+    /**
+     * Points at /book-now, which is the NAP/hours/map/directions page. `bookNow` above points
+     * OFF-SITE to SweetPew, so without this row the page carrying the address had no nav link
+     * at all — a visitor tapping "Book Now" left the site before ever seeing where the clinic
+     * is. See the note on `mainNav` in lib/nav.ts.
+     */
+    locateUs: string
   }
   header: {
     openSevenDays: string
@@ -168,6 +175,24 @@ export type Dictionary = {
     phoneLabel: string
     emailLabel: string
     whatsappAppointmentsNote: string
+    /** Chrome around the "Locate Us" walkthroughs. The steps themselves live in lib/directions*.ts. */
+    findUsEyebrow: string
+    findUsHeading: string
+    findUsIntro: string
+    /**
+     * The route picker above the walkthroughs. Three routes is a choice, and a choice has to
+     * announce itself — the first build showed them as bare pills and read as decoration.
+     */
+    findUsPickRoute: string
+    findUsPickRouteHint: string
+    /** "6 steps" on a route card. Takes the step count. */
+    stepCount: (n: number) => string
+    seeTheSteps: string
+    /** "Step 3" above each instruction. Takes the 1-based number. */
+    stepLabel: (n: number) => string
+    openInWaze: string
+    /** Heading over the two shopfront photos at the foot of the walkthroughs. */
+    signageHeading: string
     /** "Not sure where to start? Browse " — followed by a link to /services. */
     notSureWhereToStartPrefix: string
     /** " or the " — between the two in-prose links to /services and /conditions. */

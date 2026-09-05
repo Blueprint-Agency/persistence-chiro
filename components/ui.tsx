@@ -207,14 +207,50 @@ export function PageHero({
   title,
   intro,
   children,
+  backgroundImage,
 }: {
   eyebrow: string
   title: string
   intro?: string
   children?: ReactNode
+  /**
+   * Optional photo behind the slate field, drifting on scroll. Path under /public.
+   *
+   * OPT-IN, and it should stay rare. Every inner page shares this hero, and the reason it
+   * reads as one site is that the slate field is the same flat colour on all of them — a
+   * photo behind every h1 would be noise rather than identity. Use it where the photo IS the
+   * message: /book-now, where the shopfront is the thing the visitor is trying to recognise.
+   *
+   * A CSS background rather than `next/image`, which is the one place on this site that
+   * exception is taken. `background-attachment: fixed` cannot be applied to an <img>, and the
+   * alternative is a scroll listener, i.e. a client component on a fully static route. It is
+   * decorative and never the LCP element (the h1 above it is), so the srcset `next/image`
+   * would add buys nothing. Point it at an already-optimised .webp and keep it under ~200KB.
+   */
+  backgroundImage?: string
 }) {
   return (
-    <section className="bg-brand-slate-deep text-white">
+    <section className="relative isolate overflow-hidden bg-brand-slate-deep text-white">
+      {backgroundImage && (
+        <>
+          <div
+            aria-hidden
+            className="hero-parallax absolute inset-0 -z-10 opacity-50"
+            style={{ backgroundImage: `url(${backgroundImage})` }}
+          />
+          {/*
+            Contrast scrim, and it is load-bearing rather than styling. A bright photo at 50%
+            over the slate lands around #647581, where white body text is ~3:1 and fails AA.
+            The gradient keeps the left column — where the eyebrow, h1 and intro sit — close to
+            solid slate, and lets the photo through on the right where nothing has to be read.
+            If the copy ever moves right, this gradient has to be re-aimed with it.
+          */}
+          <div
+            aria-hidden
+            className="absolute inset-0 -z-10 bg-gradient-to-r from-brand-slate-deep via-brand-slate-deep/85 to-brand-slate-deep/30"
+          />
+        </>
+      )}
       <div className="mx-auto max-w-6xl px-4 py-14 lg:py-20">
         <Eyebrow tone="light">{eyebrow}</Eyebrow>
         <h1 className="mt-6 max-w-3xl text-4xl font-extrabold leading-[1.1] text-white sm:text-5xl">

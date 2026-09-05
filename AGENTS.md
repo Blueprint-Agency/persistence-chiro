@@ -16,7 +16,7 @@ targets in `seo-strategy.md`. If a change doesn't help rank for "chiropractor ne
 Persistence Chiropractic Care — single clinic, Gonstead-technique chiropractic +
 physiotherapy.
 
-- **Address:** V06-G-02, Signature 2, Lingkaran SV, Sunway Velocity, 55100 Kuala Lumpur
+- **Address:** VO6-G-02, Signature 2, Lingkaran SV, Sunway Velocity, 55100 Kuala Lumpur
 - **Geo:** 3.129237, 101.721961 (Maluri / Cheras)
 - **Phone / WhatsApp:** 018-2014088 · `wa.link/b0541h`
 - **Email:** info@persistencechiropractic.com

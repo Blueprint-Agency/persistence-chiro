@@ -24,9 +24,10 @@ import { staticRoutes } from './routes.ts'
 import { clinicFaqs, homeFaqs, aftercare, aftercareIntro } from './faqs.ts'
 import { homeIntro } from './home.ts'
 import { gonsteadIntro, gonsteadSteps } from './gonstead.ts'
-import { founderBio, practitioners, publishedRegistrations } from './clinic.ts'
-import { LOCALES } from './i18n.ts'
+import { clinic, founderBio, practitioners, publishedRegistrations } from './clinic.ts'
+import { LOCALES, type Locale } from './i18n.ts'
 import { bundles, bundlesFor } from './pricing.ts'
+import { directionsFor, routeIcons } from './directions.ts'
 
 const conditionSlugs = new Set(conditions.map((c) => c.slug))
 const serviceSlugs = new Set(services.map((m) => m.slug))
@@ -411,6 +412,13 @@ test('no verb-form banned word in zh/ms published copy', () => {
     for (const b of bundlesFor(locale)) {
       bucket.push([`pricing/${b.slug}`, collectStrings(b).join(' ')])
     }
+    // The Locate Us walkthroughs on /book-now (2026-09-05). Directions copy looks harmless,
+    // but one of the three routes is the walk to the hospital's radiology counter, and
+    // "rawatan pengimejan" / 影像治疗 is precisely how that step wants to be written. The
+    // sweep reaches the `alt` strings too, which is where the last real violation hid.
+    for (const r of directionsFor(locale)) {
+      bucket.push([`directions/${r.slug}`, collectStrings(r).join(' ')])
+    }
   }
 
   for (const [where, text] of zhSources) {
@@ -738,5 +746,107 @@ test('a withheld bundle records its reason', () => {
       (b.holdReason ?? '').length > 40,
       `${b.slug} is draft with no substantial holdReason`,
     )
+  }
+})
+
+/**
+ * The Locate Us walkthroughs on /book-now.
+ *
+ * Both halves of this matter for the same reason: a visitor reading these steps is lost, on
+ * mobile data, standing in a mall. A step whose photo 404s is worse than no photo, and a
+ * locale whose route stops three steps early strands them mid-walk.
+ */
+test('every direction step points at an image that exists', async () => {
+  const { readdirSync } = await import('node:fs')
+  const files = new Set(readdirSync(new URL('../public/img/find-us', import.meta.url)))
+  for (const locale of LOCALES) {
+    for (const route of directionsFor(locale)) {
+      for (const step of route.steps) {
+        assert.ok(
+          files.has(step.image),
+          `${locale} directions/${route.slug}: no public/img/find-us/${step.image}`,
+        )
+        assert.ok(step.alt.length > 20, `${locale} directions/${route.slug}: thin alt for ${step.image}`)
+      }
+    }
+  }
+})
+
+test('every locale walks the same routes, step for step', () => {
+  const shape = (locale: Locale) =>
+    directionsFor(locale).map((r) => `${r.slug}:${r.steps.length}`)
+  for (const locale of LOCALES) {
+    if (locale === 'en') continue
+    assert.deepEqual(
+      shape(locale),
+      shape('en'),
+      `${locale} directions diverge from English — a route or a step is missing`,
+    )
+  }
+})
+
+/**
+ * The unit number is a LETTER O: "VO6-G-02". This has flipped between letter and digit twice
+ * (2026-08-01 to the digit, 2026-09-05 back to the letter) because the two glyphs are
+ * indistinguishable in most UI faces, and each flip touched five files that had to move
+ * together. The address is the single string every page's LocalBusiness schema and every
+ * external citation is built from, so a half-applied flip is a NAP inconsistency across the
+ * whole site — the exact failure lib/clinic.ts's header warns costs local-pack ranking.
+ *
+ * This asserts the spelling in one place and then bans the other one everywhere, which is the
+ * part a find-and-replace gets wrong: it is the file someone forgets that does the damage.
+ * If the client ever confirms the digit, change `clinic.address.street` and the `DIGIT` regex
+ * below together, and re-read the history note in lib/clinic.ts first.
+ */
+test('the unit number is a letter O everywhere, or nowhere', async () => {
+  assert.match(
+    clinic.address.street,
+    /^VO6-G-02\b/,
+    'clinic.address.street no longer starts with the letter-O unit number',
+  )
+
+  const { readdirSync, readFileSync, statSync } = await import('node:fs')
+  const DIGIT = /V06/
+  const root = new URL('..', import.meta.url)
+  const skip = new Set(['node_modules', '.next', '.git', 'assets', 'public', 'out'])
+
+  const offenders: string[] = []
+  const walk = (dir: URL, prefix = '') => {
+    for (const entry of readdirSync(dir)) {
+      if (skip.has(entry) || entry.startsWith('.')) continue
+      const child = new URL(`${entry}${statSync(new URL(entry, dir)).isDirectory() ? '/' : ''}`, dir)
+      if (statSync(child).isDirectory()) walk(child, `${prefix}${entry}/`)
+      // Prose and source only. JSON is excluded because lockfile integrity hashes throw
+      // random "V06" substrings, and the address is never written into one anyway.
+      else if (/\.(ts|tsx|md|mdx)$/.test(entry)) {
+        // This file names the banned spelling on purpose, to ban it.
+        if (`${prefix}${entry}` === 'lib/content.test.ts') continue
+        for (const [i, line] of readFileSync(child, 'utf8').split('\n').entries()) {
+          // lib/clinic.ts's history note quotes the old spelling deliberately.
+          if (DIGIT.test(line) && !/Changed to `V06`/.test(line)) {
+            offenders.push(`${prefix}${entry}:${i + 1}`)
+          }
+        }
+      }
+    }
+  }
+  walk(root)
+
+  assert.deepEqual(
+    offenders,
+    [],
+    `digit-zero "V06" found — the unit number is a letter O:\n  ${offenders.join('\n  ')}`,
+  )
+})
+
+/**
+ * The route cards on /book-now draw their glyph from a slug->icon map in components/FindUs.tsx
+ * rather than from the data files, so a route added later renders a card with an empty space
+ * where the icon should be. That is the kind of gap nobody files a bug for — the card still
+ * works, it just looks broken. Fail the build instead.
+ */
+test('every direction route has a card icon', () => {
+  for (const route of directionsFor('en')) {
+    assert.ok(routeIcons[route.slug], `route "${route.slug}" has no entry in routeIcons`)
   }
 })

@@ -989,3 +989,32 @@ body {
     opacity: 1;
   }
 }
+
+/**
+ * Parallax field behind an inner-page hero (`<PageHero backgroundImage=...>`).
+ *
+ * `background-attachment: fixed` rather than a scroll listener, because a scroll listener
+ * means a client component on a route that is otherwise fully static, and this is decoration
+ * — it is not worth shipping JavaScript to someone standing outside Sunway Velocity on mobile
+ * data trying to find the door.
+ *
+ * ⚠️ IT DEGRADES TO A STATIC BACKGROUND ON MOBILE and that is fine, not a bug to chase. iOS
+ * Safari and Chrome on Android both ignore `fixed` here (they would have to repaint the layer
+ * every frame of a scroll), so phones get a still image and desktops get the drift. Do not
+ * "fix" this with a JS fallback; the still image is the correct mobile experience.
+ *
+ * `background-size: cover` sizes against the VIEWPORT, not the element, which is what makes
+ * the drift work — expect the photo to be cropped harder than it would be in an <img>.
+ */
+.hero-parallax {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-parallax {
+    background-attachment: scroll;
+  }
+}

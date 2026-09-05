@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
-import { clinic, addressOneLine, hoursDisplayFor } from '@/lib/clinic'
+import { clinic, addressOneLine, hoursDisplayFor, wazeUrl } from '@/lib/clinic'
 import { JsonLd } from '@/components/JsonLd'
 import { breadcrumbSchema, contactPageSchema } from '@/lib/schema'
 import { pageMetadata } from '@/lib/seo'
@@ -11,6 +11,7 @@ import { LOCALES, isLocale, pathFor } from '@/lib/i18n'
 import { pathExistsIn } from '@/lib/locale-availability'
 import { getDictionary } from '@/lib/dictionaries'
 import { CtaBand, Eyebrow, GhostButton, WhatsAppButton, PageHero } from '@/components/ui'
+import { FindUs } from '@/components/FindUs'
 import { waMessage } from '@/lib/whatsapp'
 
 type Props = { params: Promise<{ locale: string }> }
@@ -29,17 +30,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     en: {
       title: 'Book a Chiropractor in Cheras, Maluri',
       description:
-        'Book Persistence Chiropractic Care at Sunway Velocity, Cheras. Opening hours, parking, walking directions from Maluri LRT, phone and WhatsApp. Open seven days.',
+        'Find Persistence Chiropractic Care at Sunway Velocity, Cheras. Parking, the walk from Sunway Velocity Mall step by step, opening hours, phone and WhatsApp. Open seven days.',
     },
     zh: {
       title: 'Cheras, Maluri 预约脊椎矫正护理',
       description:
-        'Cheras, Sunway Velocity 的 Persistence Chiropractic Care 预约资讯。营业时间、停车、Maluri 轻快铁步行路线、电话与 WhatsApp。每周七天营业。',
+        'Cheras, Sunway Velocity 的 Persistence Chiropractic Care 怎么走。停车、从 Sunway Velocity Mall 步行路线、营业时间、电话与 WhatsApp。每周七天营业。',
     },
     ms: {
       title: 'Tempah Kiropraktor di Cheras, Maluri',
       description:
-        'Tempah Persistence Chiropractic Care di Sunway Velocity, Cheras. Waktu operasi, tempat letak kereta, arah berjalan dari LRT Maluri, telefon dan WhatsApp. Buka tujuh hari.',
+        'Cari Persistence Chiropractic Care di Sunway Velocity, Cheras. Tempat letak kereta, laluan berjalan dari Sunway Velocity Mall, waktu operasi, telefon dan WhatsApp. Buka tujuh hari.',
     },
   }[locale]
 
@@ -68,13 +69,21 @@ export default async function ContactPage({ params }: Props) {
         ])}
       />
 
+      {/* The shopfront, not a stock interior: this page's whole job is helping someone
+          recognise the door, so the hero shows them the door. */}
       <PageHero
         eyebrow={dict.page.contactEyebrow}
         title={dict.page.contactAndDirections}
         intro={dict.page.contactIntro}
+        backgroundImage="/img/clinic-exterior.webp"
       >
-        <div>
+        <div className="flex flex-wrap gap-3">
           <WhatsAppButton message={waMessage.general(locale)}>{dict.header.enquireOnWhatsapp}</WhatsAppButton>
+          {/* Same-page jump, not a route change — the walkthroughs are further down this
+              page. Ghost rather than gold so it never competes with the one conversion. */}
+          <GhostButton href="#find-us" tone="light">
+            {dict.nav.locateUs}
+          </GhostButton>
         </div>
       </PageHero>
 
@@ -134,9 +143,15 @@ export default async function ContactPage({ params }: Props) {
               ))}
             </dl>
 
+            {/* Both, not just Google. The clinic's own how-to-find-us slides lead with
+                "we're on Waze", and a large share of Malaysian drivers navigate with it —
+                a Maps-only page sends them back out to search for the clinic a second time. */}
             <div className="mt-8 flex flex-wrap gap-3">
               <GhostButton href={clinic.mapsUrl} external>
                 {dict.footer.openInGoogleMaps}
+              </GhostButton>
+              <GhostButton href={wazeUrl} external>
+                {dict.page.openInWaze}
               </GhostButton>
             </div>
 
@@ -166,6 +181,8 @@ export default async function ContactPage({ params }: Props) {
           </div>
         </div>
       </section>
+
+      <FindUs locale={locale} dict={dict} />
 
       <CtaBand dict={dict} message={waMessage.general(locale)} />
     </>

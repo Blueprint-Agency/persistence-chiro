@@ -60,7 +60,7 @@ the clinic and may appear as such, but it is not a claim the site leads with.
 
 ## Operating Context
 
-- **Single clinic, no service area beyond it.** V06-G-02, Signature 2, Lingkaran SV, Sunway
+- **Single clinic, no service area beyond it.** VO6-G-02, Signature 2, Lingkaran SV, Sunway
   Velocity, 55100 Kuala Lumpur. Geo 3.129237, 101.721961.
 - **Open seven days:** Mon–Thu & Sat 10:00–20:00 · Fri 10:00–17:00 · Sun 10:00–15:00.
 - **Booking is external.** SweetPew handles scheduling; the site links out and holds no

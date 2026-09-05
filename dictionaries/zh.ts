@@ -27,6 +27,7 @@ const zh: Dictionary = {
     partnerWithUs: '商业合作',
     blog: '健康资讯',
     bookNow: '立即预约',
+    locateUs: '位置与路线',
   },
   header: {
     openSevenDays: '每周七天营业',
@@ -163,6 +164,17 @@ const zh: Dictionary = {
     emailLabel: '电邮',
     whatsappAppointmentsNote:
       '我们透过 WhatsApp 与电话接受预约,每周七天营业。传讯息告诉我们您的主要困扰,我们会为您确认时间。',
+    findUsEyebrow: '位置与路线',
+    findUsHeading: '怎么找到我们',
+    findUsIntro:
+      '我们在 Sunway Velocity Mall 后方 Signature 2 的地面层。来过一次就熟了，这里附上照片一步步带你走。',
+    findUsPickRoute: '你从哪个方向过来?',
+    findUsPickRouteHint: '选一个，我们用照片一步步带你走。',
+    stepCount: (n) => `${n} 个步骤`,
+    seeTheSteps: '查看步骤',
+    stepLabel: (n) => `第 ${n} 步`,
+    openInWaze: '用 Waze 导航',
+    signageHeading: '我们的招牌长这样',
     notSureWhereToStartPrefix: '不确定从哪里开始?浏览',
     orThe: '或',
     conditionsWeHelpWithLinkText: '我们能协助的症状',

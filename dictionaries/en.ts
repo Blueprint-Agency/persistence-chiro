@@ -12,6 +12,7 @@ const en: Dictionary = {
     partnerWithUs: 'Partner with us',
     blog: 'Blog',
     bookNow: 'Book Now',
+    locateUs: 'Locate Us',
   },
   header: {
     openSevenDays: 'Open 7 days',
@@ -155,6 +156,17 @@ const en: Dictionary = {
     emailLabel: 'Email',
     whatsappAppointmentsNote:
       'We take appointments over WhatsApp and by phone, seven days a week. Message us your main concern and we will confirm a time.',
+    findUsEyebrow: 'Locate us',
+    findUsHeading: 'How to find us',
+    findUsIntro:
+      'We are on the ground floor of Signature 2, behind Sunway Velocity Mall. It is easy once you have done it once, so here is the walk with photos.',
+    findUsPickRoute: 'Which way are you coming?',
+    findUsPickRouteHint: 'Pick one and we will walk you through it, photo by photo.',
+    stepCount: (n) => `${n} steps`,
+    seeTheSteps: 'See the steps',
+    stepLabel: (n) => `Step ${n}`,
+    openInWaze: 'Open in Waze',
+    signageHeading: 'What our signage looks like',
     notSureWhereToStartPrefix: 'Not sure where to start? Browse ',
     orThe: ' or the ',
     conditionsWeHelpWithLinkText: 'conditions we help with',

@@ -236,3 +236,37 @@ Also outstanding: **all zh/ms bundle and sports massage copy is unreviewed.**
 `lib/services.zh.ts` / `.ms.ts` are adapted from the clinic-reviewed English records and have
 not been read by a native speaker. The pricing copy carries a commercial claim rather than
 general prose, so get that checked before any paid traffic points at those locales.
+
+## Locate Us — the How to Find Us walkthroughs (added 2026-09-05)
+
+The client sent 21 Instagram slides ("Persistence - How to Find us") in three sets. They are now
+the three photo routes at the foot of `/book-now` (`lib/directions.ts` + `.zh.ts` / `.ms.ts`),
+which the nav finally links to again as **"Locate Us"** — between 2026-08-01 and now, "Book Now"
+went straight off-site to SweetPew, so a visitor could tap the one nav item that sounded like
+"where are you" and never see the address at all.
+
+Four things need the client:
+
+1. **There is no slide 5.** The mall set runs 01, 02, 03, 04, 6, 7. A step may be missing
+   between "turn left at Peng Chu" and "walk towards VO6" — the two published steps do join up
+   plausibly, but nobody has walked it to check. **Ask whether a slide was dropped.**
+2. ~~The slides print the unit with a letter O and the address is a digit zero.~~ **RESOLVED
+   2026-09-05, THE OTHER WAY ROUND: the slides were right.** The client confirmed the unit is
+   `VO6-G-02` with a LETTER O, and the repo had carried a digit zero since 2026-08-01. Every
+   file now says letter O and `content.test.ts` fails on a stray digit-zero spelling.
+   **⚠️ Still worth one check: what does the Google Business Profile itself say?** It is the
+   anchor every other citation must match and it could not be read from here (Maps needs JS,
+   and the live domain now serves this build, so reading it back is circular). The citations
+   are genuinely split — the clinic's own Facebook and ClassPass say letter O, its own
+   Instagram caption and three scraper directories say digit zero. If the GBP says digit zero,
+   the GBP or the citations need changing, not just this repo.
+3. **The Waze / Google Maps slide shows "5.0 (12)" reviews.** The profile is at 224. That slide
+   is deliberately not used; the page renders live Maps and Waze links instead. **The slide
+   should be re-exported or retired** before it goes out again.
+4. **The zh/ms walkthrough copy is a first-pass draft, unreviewed.** Same standing as the zh/ms
+   dictionaries. The route facts came off the client's own slides and are not in question; the
+   wording has not been read by a native speaker.
+
+The three title-card slides carry no information and are not used. The Waze link in
+`lib/clinic.ts` is derived from `clinic.geo` rather than saved from a Waze place, so the pin
+cannot drift from the address.

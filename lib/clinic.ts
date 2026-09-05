@@ -17,19 +17,36 @@ export const clinic = {
   /**
    * Byte-identical to the Google Business Profile. Do not reformat.
    *
-   * ⚠️ "V06" IS A DIGIT ZERO, NOT A LETTER O. It read `VO6` here and in AGENTS.md, PRODUCT.md
-   * and proposed-site-architecture.md until 2026-08-01, when a character-level comparison
-   * against the live listing caught it and the client confirmed the digit is correct. All
-   * four were fixed together.
+   * ⚠️ "VO6" IS A LETTER O, NOT A DIGIT ZERO. ⚠️ THIS HAS NOW FLIPPED TWICE. Read the whole
+   * note before you change it, and do not change it on the strength of a directory listing.
+   *
+   *   - Originally `VO6` here and in AGENTS.md, PRODUCT.md and proposed-site-architecture.md.
+   *   - Changed to `V06` (digit) on 2026-08-01, recorded at the time as a character-level
+   *     comparison against the live listing that the client confirmed.
+   *   - Changed BACK to `VO6` (letter) on 2026-09-05, at the client's direction.
+   *
+   * The 2026-09-05 change was not taken on the instruction alone — the citations were swept
+   * first, and they are genuinely split. Letter O: the clinic's own Facebook page, its
+   * ClassPass listing, and the How-to-Find-Us slides it supplied the same day, all of which
+   * the client controls. Digit zero: one of its own Instagram captions, plus cybo,
+   * kliniknearme and SafetyWing, which are scraper directories that copy each other. The
+   * sources the client actually maintains say letter O, so letter O it is.
+   *
+   * The Google Business Profile is the anchor every other citation has to match, and it could
+   * not be read directly (Maps needs JS, and www.persistencechiropractic.com now serves THIS
+   * build, so reading it back is circular). ⚠️ IF THE GBP IS EVER CONFIRMED TO SAY DIGIT ZERO,
+   * the fix is to change the GBP or to change this line AND every citation together — never
+   * this line on its own.
    *
    * It is one character and it looks like nothing, which is exactly the problem: the two
    * glyphs are near-identical in most UI faces, this string is the single source every page's
    * LocalBusiness schema and every external citation is built from, and a mismatched address
-   * is the NAP inconsistency this file's own header warns costs local-pack ranking. If you
-   * find yourself "correcting" it back to a letter, check the listing first.
+   * is the NAP inconsistency this file's own header warns costs local-pack ranking.
+   * `content.test.ts` now fails on a stray digit-zero spelling anywhere in the repo, so a
+   * silent third flip is not possible.
    */
   address: {
-    street: 'V06-G-02, Signature 2, Lingkaran SV',
+    street: 'VO6-G-02, Signature 2, Lingkaran SV',
     locality: 'Sunway Velocity',
     region: 'Kuala Lumpur',
     postalCode: '55100',
@@ -118,6 +135,20 @@ export const googleReviews = {
   count: 224,
   url: clinic.mapsUrl,
 } as const
+
+/**
+ * Waze deep link, DERIVED from `clinic.geo` rather than pasted from a saved Waze place.
+ *
+ * The clinic advertises "we're on Waze" on its own How-to-Find-Us slides, and Waze is what a
+ * large share of Malaysian drivers actually navigate with — a Google-Maps-only page sends them
+ * back out to a second search. Coordinates rather than a name query because Signature 2 has
+ * several tenants Waze will happily match instead, and the pin is the thing that has to land
+ * in the right place.
+ *
+ * ⚠️ Keep it derived. If the coordinates ever move this follows; a second hardcoded URL here
+ * is one more copy of the location that can drift, which is the whole point of this file.
+ */
+export const wazeUrl = `https://waze.com/ul?ll=${clinic.geo.lat},${clinic.geo.lng}&navigate=yes`
 
 /** Human-readable one-line address. Used in footer + citations. */
 export const addressOneLine = [

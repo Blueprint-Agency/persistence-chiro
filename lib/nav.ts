@@ -68,15 +68,25 @@ export const mainNav = (locale: Locale, dict: Dictionary): NavItem[] => [
   // `[locale]` tree entirely (see proxy.ts).
   { href: '/blog', label: dict.nav.blog },
   /**
+   * THE FIX THE NOTE BELOW ASKED FOR, done 2026-09-05 at the client's prompting: "book now
+   * directly leads to sweetpew, there's no NAP, hours, map link etc".
+   *
+   * "Book Now" leaves the site, so between 2026-08-01 and now a visitor could tap the only
+   * nav item that sounded like "where are you" and land on a third-party booking form having
+   * never seen the address. /book-now was down to ONE internal link sitewide (the homepage
+   * "Directions & contact" button) despite carrying the NAP, the hours, the map and now the
+   * three photo walkthroughs.
+   *
+   * ⚠️ THE LABEL AND THE PATH DELIBERATELY DISAGREE. "Locate Us" is what the page does;
+   * `/book-now` is where it has to live, because the Wix /book-now ranked #13 for "chiro
+   * cheras", /contact-us already 301s here, and every in-prose "opening hours and directions"
+   * link in lib/services*.ts points at it. Renaming the route would throw all of that away to
+   * fix a cosmetic mismatch. Do not "tidy" this into /locate-us.
+   */
+  { href: pathFor(locale, '/book-now'), label: dict.nav.locateUs },
+  /**
    * Points off-site to SweetPew, at the client's request (2026-08-01). It used to go to
    * /book-now.
-   *
-   * ⚠️ /book-now is still a real, indexed page and still in the sitemap — it carries the
-   * NAP, the map and the directions, and the Wix version of it ranked #13 for "chiro
-   * cheras" (see the note in redirects.ts). Losing its nav link drops it to ONE internal
-   * link sitewide, the "Directions & contact" button on the homepage. That is thin for a
-   * page with history. If it starts slipping, the fix is a second internal link from
-   * /what-to-expect or the footer, not reverting this.
    */
   { href: clinic.bookingUrl, label: dict.nav.bookNow, external: true },
 ]
