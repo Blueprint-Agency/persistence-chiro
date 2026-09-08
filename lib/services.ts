@@ -508,207 +508,6 @@ export const services: Service[] = [
     draft: false,
   },
   {
-    slug: 'dry-needling',
-    title: 'Integrative Dry Needling in Cheras, Kuala Lumpur',
-    metaTitle: 'Dry Needling in Cheras, KL',
-    metaDescription:
-      'Integrative dry needling in Cheras, Maluri for deep muscle tension, trigger points and muscle knots. Assessment first, single-use needles, honest expectations.',
-    targetKeyword: 'dry needling near me',
-    intro:
-      'Dry needling in Cheras. A neuromuscular technique that uses fine needles to reach trigger points and bands of muscular tension which are difficult to release by hand alone.',
-    /**
-     * The clinic's own dry needling photograph, not a stand-in. Someone searching
-     * "dry needling near me" already knows what a needle is — hiding the technique behind a
-     * generic consultation shot reads as evasive, and the gloves and single-use needles
-     * visible here are the exact trust signal the page's safety copy is making in words.
-     */
-    heroImage: {
-      src: '/img/dry-needling.webp',
-      alt: 'Gloved practitioner performing dry needling on a patient upper back and shoulder at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
-    },
-    ogImage: '/og/dry-needling.jpg',
-    midImage: {
-      src: '/img/dry-needling-session.webp',
-      alt: 'Gloved practitioner placing a single-use needle into a trigger point in a patient shoulder at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
-    },
-    /**
-     * The three things someone hesitating over needles actually wants to know. Each is
-     * already stated and justified in the sections below — this only moves them into the
-     * first viewport, where the hesitation happens.
-     */
-    assurances: [
-      'Sterile, single use needles, never reused',
-      'We assess before we needle',
-      'Open seven days · Cheras, Maluri',
-    ],
-    /**
-     * Supplied pain-visualisation images: a person with the affected muscle group overlaid
-     * and the painful area lit. They do the same job the SVG diagrams did — showing a
-     * symptom rather than a service — with more immediacy.
-     *
-     * ⚠️ ALT TEXT CARRIES NO LOCAL MODIFIER, unlike every other image on the site. These are
-     * illustrative composites, not photographs of this clinic, these practitioners or these
-     * patients. Writing "at Persistence Chiropractic Care in Cheras" under one would be a
-     * false claim about a real place — the same rule that keeps the fabricated reviews out
-     * of production. Describe the illustration, and nothing more.
-     */
-    outcomes: [
-      {
-        text: 'Tight, knotted muscles that do not release with stretching or massage',
-        image: {
-          src: '/img/dn-tight-knot.webp',
-          alt: 'Illustration of knotted muscle highlighted across a person neck and upper back',
-        },
-      },
-      {
-        text: 'Deep muscular tension linked to neck, shoulder or lower back trouble',
-        image: {
-          src: '/img/dn-deep-tension.webp',
-          alt: 'Illustration of deep muscular tension highlighted in a person lower back',
-        },
-      },
-      {
-        text: 'Trigger points that keep referring pain to the same spot',
-        image: {
-          src: '/img/dn-trigger-points.webp',
-          alt: 'Illustration of trigger points in a person shoulder referring pain down the arm',
-        },
-      },
-      {
-        text: 'Muscles that stay guarded and overactive after an old injury',
-        image: {
-          src: '/img/dn-old-injury.webp',
-          alt: 'Illustration of the muscles around a knee highlighted after an old injury',
-        },
-      },
-    ],
-    qualifierConcerns: [
-      { label: 'I have a muscle knot that will not release', icon: 'knot' },
-      { label: 'Massage helps for a day, then the tightness comes back', icon: 'recurring' },
-      { label: 'My neck or shoulders feel constantly tense', icon: 'neck' },
-      { label: 'An old injury left a muscle feeling tight and overactive', icon: 'injury' },
-      { label: 'I have had dry needling before and it helped', icon: 'needle' },
-      { label: 'I am nervous about needles and want to ask first', icon: 'question' },
-    ],
-    lastReviewed: '2026-07-26',
-    citations: [
-      {
-        claim:
-          'Myofascial trigger points are described as hyperirritable spots within a taut band of skeletal muscle.',
-        source: 'McAphee et al. (2022), International Journal of Sports Physical Therapy',
-        url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC9159711/',
-      },
-      {
-        claim:
-          'Surveys of trigger point dry needling report that adverse events are usually minor and transient, such as soreness or minor bruising.',
-        source: 'Brady et al. (2014), Journal of Manual & Manipulative Therapy',
-        url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC4101552/',
-      },
-      {
-        claim:
-          'In Malaysia, chiropractic and physiotherapy are regulated healthcare practices, and practitioners are expected to hold recognised qualifications.',
-        source: 'Ministry of Health Malaysia',
-        url: 'https://www.moh.gov.my/en/corporate-info/division-information/traditional-and-complementary-medicine-division',
-      },
-    ],
-    fitCheck: {
-      rightFor: [
-        'A muscle stays tight despite stretching and massage, and you want to know why.',
-        'You want the needling to sit inside a plan, with exercise or adjustment alongside it.',
-        'You want sterile single use needles and a practitioner who checks your history first.',
-        'You would rather be told needling is not the answer than have it done anyway.',
-      ],
-      notRightFor: [
-        'You want needling on request, without an assessment of why the muscle is tight in the first place.',
-        'You have a strong fear of needles. We would rather use another approach than talk you into this one.',
-        'You want the needling on its own, with no exercise or follow-up work between sessions.',
-        'You are looking for acupuncture. It uses similar needles but selects points differently, and it is not what we offer.',
-      ],
-      note: 'If any of that is you, it does not mean we cannot help. It means dry needling is probably not where we would start, and a first visit is exactly where that gets decided. We would rather point you at the approach that suits than sell you the one you walked in asking for.',
-    },
-    sections: [
-      {
-        heading: 'Integrative dry needling',
-        body: 'Dry needling is a neuromuscular technique that uses fine, single use needles to reach trigger points and tight bands of muscle that are difficult to release by hand alone. We use it as part of a wider plan rather than on its own, and only where the assessment points to muscle as the thing driving your problem.',
-      },
-      {
-        heading: 'What dry needling actually does',
-        body: 'A trigger point is a tight, irritable knot that can refer pain elsewhere. A needle placed into it often triggers a brief twitch, the muscle letting go. How much that helps depends on what is keeping the muscle tight.',
-      },
-      {
-        heading: 'What a session involves',
-        body: 'We assess first, then place fine needles into the points found. Expect a brief twitch or dull ache, not sharp pain. Sessions run fifteen to thirty minutes and shape the exercise or hands on work paired with it.',
-      },
-      {
-        heading: 'Is it safe, and what to expect afterwards',
-        body: 'Dry needling is generally very safe in trained hands, with sterile needles used once. Mild soreness or a small bruise for a day or so is common and settles on its own. Tell us if you are pregnant, on blood thinners, or needle-averse.',
-      },
-      {
-        heading: 'How it works with the rest of your care',
-        body: 'Needling eases tension but does not fix the habit or weakness that tightened the muscle. Under one roof in Cheras we pair it with chiropractic care and physiotherapy. The assessment decides where to start.',
-      },
-      {
-        heading: 'How many sessions you might need',
-        body: 'This depends on how long the problem has been there, so we will not quote a fixed number upfront. Some notice a change quickly, others need weeks of support. We review honestly as we go rather than sell a package.',
-      },
-    ],
-    helpsWith: ['back-pain', 'neck-pain', 'shoulder-imbalance', 'sciatica', 'tension-headache'],
-    relatedLinks: [
-      { href: '/services/physiotherapy', label: 'How dry needling fits with physiotherapy' },
-      { href: '/services/chiropractic-care', label: 'Compare with chiropractic care' },
-      { href: '/what-to-expect', label: 'What to expect on your first visit' },
-    ],
-    faqs: [
-      {
-        q: 'Do I need a referral for dry needling?',
-        a: 'No. You can book directly with us in Cheras. We assess before any needle is used, and if needling is not the right approach for your case we will tell you.',
-      },
-      {
-        q: 'How long is a first session?',
-        a: 'Around forty five minutes to an hour, and most of that is assessment rather than needling. You should leave knowing what we think is going on.',
-      },
-      {
-        q: 'Is dry needling the same as acupuncture?',
-        a: 'No. Dry needling is a Western, anatomy based technique: a fine filament needle is placed directly into a myofascial trigger point, a small hyperirritable knot within a taut band of muscle, with the aim of releasing that tension. Nothing is injected, which is where the word "dry" comes from. Acupuncture uses similar needles but comes from traditional Chinese medicine and selects points along meridians rather than by muscle anatomy. Here it is one tool within an assessment led plan, not a standalone therapy.',
-        links: [{ phrase: 'an assessment led plan', href: '/what-to-expect' }],
-      },
-      {
-        q: 'Does dry needling hurt?',
-        a: 'Most patients report a brief twitch response or a dull ache rather than sharp pain. Mild soreness afterwards is common and usually settles within a day. Tell your practitioner if anything feels worse than uncomfortable, because the technique can be adjusted or stopped.',
-      },
-      {
-        q: 'How many sessions of dry needling will I need?',
-        a: 'It depends on how long the muscle has been tight and what is keeping it that way, so we will not commit to a number on your first visit. Some people notice a change quickly, while others need the work supported over several weeks alongside exercise. We review as we go rather than sell a fixed package.',
-      },
-      {
-        q: 'Are the needles safe, and are they reused?',
-        a: 'Needles are never reused. We use sterile, single use needles that are disposed of after one session. Dry needling is generally very safe in trained hands, though mild soreness or a small bruise afterwards is possible and normal.',
-      },
-      {
-        q: 'Is dry needling safe, and are there side effects?',
-        a: 'It is generally considered safe when carried out by a trained practitioner using sterile, single use needles. The most common after effects are mild and short lived: temporary soreness at the site, and occasionally a small bruise, usually settling within a day or two. You can eat, drink, work and train normally afterwards. We check your history first, because there are situations, such as pregnancy, medications that affect bleeding, or a strong fear of needles, where we would choose a different approach. We usually pair a session with specific exercises so the muscle has a reason to stay released.',
-        links: [{ phrase: 'specific exercises', href: '/services/physiotherapy' }],
-      },
-      {
-        q: 'What does dry needling help with?',
-        a: 'People most often come to us when a muscle stays tight despite stretching and massage, when trigger points keep referring pain to the same spot, or when an old injury has left a muscle guarded and overactive. It is commonly used around the neck, shoulders and lower back, and alongside care for problems such as sciatica and shoulder imbalance. Needling can calm an irritable muscle, but on its own it does not change the habit, weakness or joint restriction that let it tighten, which is why we combine it with chiropractic care where the findings point that way.',
-        links: [
-          { phrase: 'sciatica', href: '/conditions/sciatica' },
-          { phrase: 'shoulder imbalance', href: '/conditions/shoulder-imbalance' },
-          { phrase: 'chiropractic care', href: '/services/chiropractic-care' },
-        ],
-      },
-      {
-        q: 'Should I have dry needling or a chiropractic adjustment?',
-        a: 'It depends on what the assessment finds, and the two are often used together rather than as alternatives. Broadly, needling addresses tight, irritable muscle while an adjustment addresses how a spinal joint moves. If you are unsure, message us your main concern and we will point you to the right starting point.',
-      },
-    ],
-    // Client request 2026-08-09, menu only and deliberately so: the page stays live, indexed
-    // and bookable, and "(Coming Soon)" is a title for now. See `navBadge` on the type.
-    navBadge: '(Coming Soon)',
-    draft: false,
-  },
-  {
     slug: 'physiotherapy',
     title: 'Physiotherapy in Cheras, Kuala Lumpur',
     metaTitle: 'Physio & Physiotherapy in Cheras, KL',
@@ -1644,6 +1443,207 @@ export const services: Service[] = [
     ],
     draft: false,
   },
+  {
+    slug: 'dry-needling',
+    title: 'Integrative Dry Needling in Cheras, Kuala Lumpur',
+    metaTitle: 'Dry Needling in Cheras, KL',
+    metaDescription:
+      'Integrative dry needling in Cheras, Maluri for deep muscle tension, trigger points and muscle knots. Assessment first, single-use needles, honest expectations.',
+    targetKeyword: 'dry needling near me',
+    intro:
+      'Dry needling in Cheras. A neuromuscular technique that uses fine needles to reach trigger points and bands of muscular tension which are difficult to release by hand alone.',
+    /**
+     * The clinic's own dry needling photograph, not a stand-in. Someone searching
+     * "dry needling near me" already knows what a needle is — hiding the technique behind a
+     * generic consultation shot reads as evasive, and the gloves and single-use needles
+     * visible here are the exact trust signal the page's safety copy is making in words.
+     */
+    heroImage: {
+      src: '/img/dry-needling.webp',
+      alt: 'Gloved practitioner performing dry needling on a patient upper back and shoulder at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
+    },
+    ogImage: '/og/dry-needling.jpg',
+    midImage: {
+      src: '/img/dry-needling-session.webp',
+      alt: 'Gloved practitioner placing a single-use needle into a trigger point in a patient shoulder at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
+    },
+    /**
+     * The three things someone hesitating over needles actually wants to know. Each is
+     * already stated and justified in the sections below — this only moves them into the
+     * first viewport, where the hesitation happens.
+     */
+    assurances: [
+      'Sterile, single use needles, never reused',
+      'We assess before we needle',
+      'Open seven days · Cheras, Maluri',
+    ],
+    /**
+     * Supplied pain-visualisation images: a person with the affected muscle group overlaid
+     * and the painful area lit. They do the same job the SVG diagrams did — showing a
+     * symptom rather than a service — with more immediacy.
+     *
+     * ⚠️ ALT TEXT CARRIES NO LOCAL MODIFIER, unlike every other image on the site. These are
+     * illustrative composites, not photographs of this clinic, these practitioners or these
+     * patients. Writing "at Persistence Chiropractic Care in Cheras" under one would be a
+     * false claim about a real place — the same rule that keeps the fabricated reviews out
+     * of production. Describe the illustration, and nothing more.
+     */
+    outcomes: [
+      {
+        text: 'Tight, knotted muscles that do not release with stretching or massage',
+        image: {
+          src: '/img/dn-tight-knot.webp',
+          alt: 'Illustration of knotted muscle highlighted across a person neck and upper back',
+        },
+      },
+      {
+        text: 'Deep muscular tension linked to neck, shoulder or lower back trouble',
+        image: {
+          src: '/img/dn-deep-tension.webp',
+          alt: 'Illustration of deep muscular tension highlighted in a person lower back',
+        },
+      },
+      {
+        text: 'Trigger points that keep referring pain to the same spot',
+        image: {
+          src: '/img/dn-trigger-points.webp',
+          alt: 'Illustration of trigger points in a person shoulder referring pain down the arm',
+        },
+      },
+      {
+        text: 'Muscles that stay guarded and overactive after an old injury',
+        image: {
+          src: '/img/dn-old-injury.webp',
+          alt: 'Illustration of the muscles around a knee highlighted after an old injury',
+        },
+      },
+    ],
+    qualifierConcerns: [
+      { label: 'I have a muscle knot that will not release', icon: 'knot' },
+      { label: 'Massage helps for a day, then the tightness comes back', icon: 'recurring' },
+      { label: 'My neck or shoulders feel constantly tense', icon: 'neck' },
+      { label: 'An old injury left a muscle feeling tight and overactive', icon: 'injury' },
+      { label: 'I have had dry needling before and it helped', icon: 'needle' },
+      { label: 'I am nervous about needles and want to ask first', icon: 'question' },
+    ],
+    lastReviewed: '2026-07-26',
+    citations: [
+      {
+        claim:
+          'Myofascial trigger points are described as hyperirritable spots within a taut band of skeletal muscle.',
+        source: 'McAphee et al. (2022), International Journal of Sports Physical Therapy',
+        url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC9159711/',
+      },
+      {
+        claim:
+          'Surveys of trigger point dry needling report that adverse events are usually minor and transient, such as soreness or minor bruising.',
+        source: 'Brady et al. (2014), Journal of Manual & Manipulative Therapy',
+        url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC4101552/',
+      },
+      {
+        claim:
+          'In Malaysia, chiropractic and physiotherapy are regulated healthcare practices, and practitioners are expected to hold recognised qualifications.',
+        source: 'Ministry of Health Malaysia',
+        url: 'https://www.moh.gov.my/en/corporate-info/division-information/traditional-and-complementary-medicine-division',
+      },
+    ],
+    fitCheck: {
+      rightFor: [
+        'A muscle stays tight despite stretching and massage, and you want to know why.',
+        'You want the needling to sit inside a plan, with exercise or adjustment alongside it.',
+        'You want sterile single use needles and a practitioner who checks your history first.',
+        'You would rather be told needling is not the answer than have it done anyway.',
+      ],
+      notRightFor: [
+        'You want needling on request, without an assessment of why the muscle is tight in the first place.',
+        'You have a strong fear of needles. We would rather use another approach than talk you into this one.',
+        'You want the needling on its own, with no exercise or follow-up work between sessions.',
+        'You are looking for acupuncture. It uses similar needles but selects points differently, and it is not what we offer.',
+      ],
+      note: 'If any of that is you, it does not mean we cannot help. It means dry needling is probably not where we would start, and a first visit is exactly where that gets decided. We would rather point you at the approach that suits than sell you the one you walked in asking for.',
+    },
+    sections: [
+      {
+        heading: 'Integrative dry needling',
+        body: 'Dry needling is a neuromuscular technique that uses fine, single use needles to reach trigger points and tight bands of muscle that are difficult to release by hand alone. We use it as part of a wider plan rather than on its own, and only where the assessment points to muscle as the thing driving your problem.',
+      },
+      {
+        heading: 'What dry needling actually does',
+        body: 'A trigger point is a tight, irritable knot that can refer pain elsewhere. A needle placed into it often triggers a brief twitch, the muscle letting go. How much that helps depends on what is keeping the muscle tight.',
+      },
+      {
+        heading: 'What a session involves',
+        body: 'We assess first, then place fine needles into the points found. Expect a brief twitch or dull ache, not sharp pain. Sessions run fifteen to thirty minutes and shape the exercise or hands on work paired with it.',
+      },
+      {
+        heading: 'Is it safe, and what to expect afterwards',
+        body: 'Dry needling is generally very safe in trained hands, with sterile needles used once. Mild soreness or a small bruise for a day or so is common and settles on its own. Tell us if you are pregnant, on blood thinners, or needle-averse.',
+      },
+      {
+        heading: 'How it works with the rest of your care',
+        body: 'Needling eases tension but does not fix the habit or weakness that tightened the muscle. Under one roof in Cheras we pair it with chiropractic care and physiotherapy. The assessment decides where to start.',
+      },
+      {
+        heading: 'How many sessions you might need',
+        body: 'This depends on how long the problem has been there, so we will not quote a fixed number upfront. Some notice a change quickly, others need weeks of support. We review honestly as we go rather than sell a package.',
+      },
+    ],
+    helpsWith: ['back-pain', 'neck-pain', 'shoulder-imbalance', 'sciatica', 'tension-headache'],
+    relatedLinks: [
+      { href: '/services/physiotherapy', label: 'How dry needling fits with physiotherapy' },
+      { href: '/services/chiropractic-care', label: 'Compare with chiropractic care' },
+      { href: '/what-to-expect', label: 'What to expect on your first visit' },
+    ],
+    faqs: [
+      {
+        q: 'Do I need a referral for dry needling?',
+        a: 'No. You can book directly with us in Cheras. We assess before any needle is used, and if needling is not the right approach for your case we will tell you.',
+      },
+      {
+        q: 'How long is a first session?',
+        a: 'Around forty five minutes to an hour, and most of that is assessment rather than needling. You should leave knowing what we think is going on.',
+      },
+      {
+        q: 'Is dry needling the same as acupuncture?',
+        a: 'No. Dry needling is a Western, anatomy based technique: a fine filament needle is placed directly into a myofascial trigger point, a small hyperirritable knot within a taut band of muscle, with the aim of releasing that tension. Nothing is injected, which is where the word "dry" comes from. Acupuncture uses similar needles but comes from traditional Chinese medicine and selects points along meridians rather than by muscle anatomy. Here it is one tool within an assessment led plan, not a standalone therapy.',
+        links: [{ phrase: 'an assessment led plan', href: '/what-to-expect' }],
+      },
+      {
+        q: 'Does dry needling hurt?',
+        a: 'Most patients report a brief twitch response or a dull ache rather than sharp pain. Mild soreness afterwards is common and usually settles within a day. Tell your practitioner if anything feels worse than uncomfortable, because the technique can be adjusted or stopped.',
+      },
+      {
+        q: 'How many sessions of dry needling will I need?',
+        a: 'It depends on how long the muscle has been tight and what is keeping it that way, so we will not commit to a number on your first visit. Some people notice a change quickly, while others need the work supported over several weeks alongside exercise. We review as we go rather than sell a fixed package.',
+      },
+      {
+        q: 'Are the needles safe, and are they reused?',
+        a: 'Needles are never reused. We use sterile, single use needles that are disposed of after one session. Dry needling is generally very safe in trained hands, though mild soreness or a small bruise afterwards is possible and normal.',
+      },
+      {
+        q: 'Is dry needling safe, and are there side effects?',
+        a: 'It is generally considered safe when carried out by a trained practitioner using sterile, single use needles. The most common after effects are mild and short lived: temporary soreness at the site, and occasionally a small bruise, usually settling within a day or two. You can eat, drink, work and train normally afterwards. We check your history first, because there are situations, such as pregnancy, medications that affect bleeding, or a strong fear of needles, where we would choose a different approach. We usually pair a session with specific exercises so the muscle has a reason to stay released.',
+        links: [{ phrase: 'specific exercises', href: '/services/physiotherapy' }],
+      },
+      {
+        q: 'What does dry needling help with?',
+        a: 'People most often come to us when a muscle stays tight despite stretching and massage, when trigger points keep referring pain to the same spot, or when an old injury has left a muscle guarded and overactive. It is commonly used around the neck, shoulders and lower back, and alongside care for problems such as sciatica and shoulder imbalance. Needling can calm an irritable muscle, but on its own it does not change the habit, weakness or joint restriction that let it tighten, which is why we combine it with chiropractic care where the findings point that way.',
+        links: [
+          { phrase: 'sciatica', href: '/conditions/sciatica' },
+          { phrase: 'shoulder imbalance', href: '/conditions/shoulder-imbalance' },
+          { phrase: 'chiropractic care', href: '/services/chiropractic-care' },
+        ],
+      },
+      {
+        q: 'Should I have dry needling or a chiropractic adjustment?',
+        a: 'It depends on what the assessment finds, and the two are often used together rather than as alternatives. Broadly, needling addresses tight, irritable muscle while an adjustment addresses how a spinal joint moves. If you are unsure, message us your main concern and we will point you to the right starting point.',
+      },
+    ],
+    // Client request 2026-08-09, menu only and deliberately so: the page stays live, indexed
+    // and bookable, and "(Coming Soon)" is a title for now. See `navBadge` on the type.
+    navBadge: '(Coming Soon)',
+    draft: false,
+  },
 ]
 
 export const publishedServices = () => services.filter((s) => !s.draft)
@@ -1651,11 +1651,26 @@ export const serviceBySlug = (slug: string) => services.find((s) => s.slug === s
 /** Services rendered by app/services/[slug]/page.tsx — excludes hand-built routes. */
 export const templatedServices = () => publishedServices().filter((s) => !s.dedicatedRoute)
 
+/**
+ * The order services appear in the nav dropdown and on /services. Taken from the English
+ * array, then applied to every locale — the zh and ms files were each written in their own
+ * arbitrary order, so without this the same menu came out shuffled differently per language.
+ * Slugs are byte-identical across locales (see AGENTS.md), which is what makes the lookup work.
+ */
+const serviceOrder = services.map((s) => s.slug)
+const inServiceOrder = (list: Service[]) =>
+  [...list].sort((a, b) => {
+    const ai = serviceOrder.indexOf(a.slug)
+    const bi = serviceOrder.indexOf(b.slug)
+    // A slug English does not have sorts to the end rather than to the front.
+    return (ai === -1 ? Infinity : ai) - (bi === -1 ? Infinity : bi)
+  })
+
 /** Locale dispatch — see the matching comment in `lib/conditions.ts` for the rationale. */
 const servicesByLocale: Record<Locale, Service[]> = {
   en: services,
-  zh: servicesZh,
-  ms: servicesMs,
+  zh: inServiceOrder(servicesZh),
+  ms: inServiceOrder(servicesMs),
 }
 
 export const servicesFor = (locale: Locale) => servicesByLocale[locale]
