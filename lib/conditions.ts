@@ -1161,6 +1161,421 @@ export const conditions: Condition[] = [
     lastReviewed: '2026-08-08',
     draft: false,
   },
+  {
+    slug: 'pinched-nerve',
+    title: 'Pinched Nerve in the Neck, Cheras, Kuala Lumpur',
+    metaTitle: 'Pinched Nerve in the Neck Care, Cheras KL',
+    metaDescription:
+      'Pinched nerve in the neck assessed in Cheras, Maluri. Tingling, numbness or weakness into the arm and hand, examined before anything is adjusted.',
+    targetKeyword: 'pinched nerve in neck',
+    related: ['neck-pain', 'slipped-disc'],
+    helpedBy: ['chiropractic-care', 'physiotherapy'],
+
+    intro:
+      'A pinched nerve in the neck is what most people call it when a nerve root is compressed or irritated as it leaves the spine. The clinical name is cervical radiculopathy. What makes it confusing is that the symptom usually turns up somewhere other than the problem: the nerve is pinched in the neck, but the burning, tingling or weakness is felt in the shoulder, arm or hand, and sometimes the neck itself barely hurts at all. Most people improve without surgery. The job of the assessment is to work out which nerve, at which level, and what is pressing on it.',
+    symptoms: [
+      'Burning, shooting or electric pain running from the neck into the shoulder, arm or hand',
+      'Pins and needles or numbness in particular fingers rather than the whole hand',
+      'Weakness in the arm, or a grip that gives way when you carry something',
+      'Symptoms on one side only',
+      'Pain that eases when you rest the affected hand on top of your head',
+      'Symptoms set off by turning or tilting your head towards the painful side',
+      'Neck ache that is milder than the arm symptoms it arrives with',
+      'Sleep broken by the arm rather than by the neck',
+    ],
+    causes: [
+      {
+        heading: 'Disc material pressing on a nerve root',
+        body: 'A bulging or herniated disc in the neck can press on a nerve root, or irritate it chemically, at the point where it leaves the spine. This is the more common picture in younger adults, and it is why the neck is examined carefully even when the hand is the part that bothers you.',
+      },
+      {
+        heading: 'Narrowing of the opening the nerve passes through',
+        body: 'Age-related changes to the small joints and discs of the neck gradually reduce the space each nerve root travels through. Symptoms in this pattern tend to build slowly rather than arrive overnight, and they are often provoked by holding the head in one position for a long stretch.',
+      },
+      {
+        heading: 'Sustained neck position and loading',
+        body: 'Long hours with the head held forward of the shoulders load the lower neck continuously. That rarely pinches a nerve on its own, but it is a common background finding, and it is usually the part of the picture a patient has most control over.',
+      },
+      {
+        heading: 'A nerve irritated further along its path',
+        body: 'Not every arm symptom starts at the neck. The same nerve can be compressed further along its route, at the shoulder, the elbow or the wrist, and that produces a different pattern. Which fingers are involved, and which movements provoke it, is a large part of how the two are told apart during the examination.',
+      },
+    ],
+    approach: [
+      {
+        heading: 'Finding which nerve, and where it is being pinched',
+        body: 'Your first visit follows the Gonstead six-step assessment: history, visualisation, instrumentation with the nervoscope, palpation, and X-ray analysis where indicated. On this presentation your chiropractor adds neurological testing, checking reflexes, muscle strength and sensation across the areas each nerve root supplies. That part matters more here than on most pages, because a nerve problem leaves a pattern that a general neck examination on its own would miss.',
+      },
+      {
+        heading: 'Adjustment where the assessment supports it',
+        body: 'If the examination points to a restricted segment contributing to the picture, the adjustment is specific to that level and delivered by hand, and your chiropractor will explain what they found before anything happens. Some presentations are not suitable for adjustment, and the assessment exists to catch that. If another healthcare provider would serve you better, you will be referred appropriately.',
+      },
+      {
+        heading: 'Rebuilding what the arm has lost',
+        body: 'Where strength or endurance has dropped in the arm or the deep neck muscles, our physiotherapy side adds a graded programme to rebuild it, along with nerve mobility work where the assessment supports it. This is generally the slower half of the process, and the half that depends most on what you do between visits.',
+      },
+      {
+        heading: 'Changing what keeps loading it',
+        body: 'Restoring movement to a stiff segment does not hold for long if the neck goes back to the position that irritated it for another eight hours a day. Desk and screen height, phone habits, how you sleep and how often you get up all get covered, because they are what decides whether an improvement lasts.',
+      },
+    ],
+    redFlags: [
+      'Weakness that is getting worse, or an arm or hand you cannot use properly',
+      'Symptoms in both arms at the same time',
+      'Clumsiness in the hands, difficulty with buttons or handwriting, or unsteadiness on your feet',
+      'Loss of bladder or bowel control',
+      'Neck or arm symptoms following a fall, a road accident, or a blow to the head or neck',
+      'Fever, unexplained weight loss, or pain that wakes you every night',
+      'Sudden severe neck pain with dizziness, visual disturbance, or difficulty speaking or swallowing',
+    ],
+    faqs: [
+      {
+        q: 'Is a pinched nerve the same thing as a slipped disc?',
+        a: 'They are related but not the same. A slipped disc describes the disc itself bulging or herniating. A pinched nerve describes what can happen next, if that disc material or a narrowed opening presses on a nerve root. You can have a disc change on a scan with no nerve symptoms at all, and you can have nerve symptoms from a cause other than a disc. Which one you are dealing with is what the examination sorts out.',
+      },
+      {
+        q: 'How do I know whether my arm symptoms come from my neck or my wrist?',
+        a: 'The pattern usually gives it away. A nerve compressed at the neck tends to produce symptoms that follow one strip down the arm and involve particular fingers, and it is often provoked by neck movement. A nerve compressed at the wrist tends to stay in the hand, and is often worse at night or when gripping. There is genuine overlap, and some people have both at once, so we test for both rather than assuming.',
+      },
+      {
+        q: 'Will an adjustment make a pinched nerve worse?',
+        a: 'It depends entirely on the presentation, which is why the assessment comes first and why not every neck gets adjusted. Where there are signs that the spinal cord rather than a single nerve root is involved, or where weakness is progressing, hands-on care is not the right first step and you will be sent for medical review instead. Tell us about any weakness, clumsiness or recent trauma when you book, so we can screen for it properly.',
+      },
+      {
+        q: 'Do I need an MRI before I come in?',
+        a: 'No. Bring one if you already have it, along with any report, because it saves repeating work. Most people do not need advanced imaging to begin with, and a scan on its own tells us less than you would expect without the examination alongside it. Disc changes show up on scans of plenty of people who have no symptoms whatsoever, so the findings only mean something in context.',
+      },
+      {
+        q: 'How long does it usually take to settle?',
+        a: 'It varies with the cause, how long it has been there, and how much the nerve is loaded day to day, so we will not quote you a number before examining you. Symptoms present for a few weeks generally behave differently from symptoms present for a year. Your chiropractor will give you a realistic picture based on your own findings rather than a general figure.',
+      },
+    ],
+    keyTakeaways: [
+      {
+        q: 'What is a pinched nerve in the neck?',
+        a: 'A nerve root compressed or irritated as it leaves the spine in the neck. The clinical name for it is cervical radiculopathy.',
+      },
+      {
+        q: 'Why do I feel it in my hand and not my neck?',
+        a: 'Because a nerve carries signals away from the place it is pinched. The neck is where the problem sits, the arm and hand are where it is felt, and the neck itself may hardly hurt.',
+      },
+      {
+        q: 'Does a pinched nerve always mean surgery?',
+        a: 'No. Most people improve over time without it, and non-surgical care is the usual starting point. Weakness that is getting worse is the finding that changes that, which is why it is screened for.',
+      },
+      {
+        q: 'Does it matter which fingers go numb?',
+        a: 'It matters a great deal. Each nerve root supplies a particular strip of skin and particular muscles, so the fingers involved help point to the level rather than being an incidental detail.',
+      },
+      {
+        q: 'When are you open?',
+        a: 'Seven days a week, at Sunway Velocity in Maluri. Monday to Thursday and Saturday until 8pm, Friday until 5pm, Sunday until 3pm.',
+      },
+    ],
+    qualifierConcerns: [
+      'I have tingling or numbness in my arm or hand',
+      'My grip feels weaker than it used to be',
+      'The pain is worse in my arm than in my neck',
+      'Turning my head sets off symptoms down my arm',
+      'I want to know whether this is coming from my neck',
+    ],
+    citations: [
+      {
+        claim:
+          'Most people with a pinched nerve in the neck improve over time, and the first approach is generally non-surgical.',
+        source: 'OrthoInfo, American Academy of Orthopaedic Surgeons',
+        url: 'https://www.orthoinfo.org/en/diseases--conditions/cervical-radiculopathy-pinched-nerve/',
+      },
+      {
+        claim:
+          'The C7 nerve root is the level most often involved in cervical radiculopathy, accounting for more than half of cases, with C6 accounting for roughly a quarter.',
+        source: 'Cervical Radiculopathy, StatPearls, National Library of Medicine',
+        url: 'https://www.ncbi.nlm.nih.gov/books/NBK441828/',
+      },
+    ],
+    draft: false,
+  },
+  {
+    slug: 'tension-headache',
+    title: 'Tension Headache Care in Cheras, Kuala Lumpur',
+    metaTitle: 'Tension Headache Care in Cheras, KL',
+    metaDescription:
+      'Tension headache assessment in Cheras, Maluri. The band-like pressure kind, how it differs from migraine, and what a neck examination can tell you.',
+    targetKeyword: 'tension headache treatment',
+    related: ['neck-pain', 'migraine'],
+    helpedBy: ['dry-needling', 'physiotherapy'],
+
+    intro:
+      'A tension headache is the common one: a dull, pressing tightness on both sides of the head, often described as a band or a tight hat, without the throbbing and the nausea that mark out a migraine. It is the most widely experienced headache there is, which is exactly why it gets dismissed. Most people manage it with a painkiller and carry on, and for an occasional headache that is a reasonable thing to do. It is worth a closer look when the headaches arrive most weeks, when they track your working day, or when the painkillers have quietly become a daily habit. What we can assess is whether the muscles and joints of the neck and upper back are part of what keeps setting them off.',
+    symptoms: [
+      'Pressing or tightening pain on both sides of the head rather than one',
+      'A band-like tightness around the forehead, temples or the back of the head',
+      'Mild to moderate pain that is dull rather than throbbing',
+      'Pain that does not get worse when you walk up stairs or move about',
+      'No nausea or vomiting with it',
+      'Tenderness in the muscles at the base of the skull, the neck and the shoulders',
+      'Headaches that build through the working day and ease at the weekend',
+      'Difficulty concentrating, and a sense of pressure rather than sharp pain',
+    ],
+    causes: [
+      {
+        heading: 'Sustained loading of the neck and shoulder muscles',
+        body: 'Muscles held at a low level of contraction for hours become tender and refer pain into the head. A screen set too low, a laptop used without a stand, long stretches on a phone and driving in traffic all ask the muscles at the base of the skull to work continuously without ever fully letting go.',
+      },
+      {
+        heading: 'Restricted movement in the upper neck',
+        body: 'When a segment of the upper neck stops moving well, the muscles around it work harder to compensate and stay loaded. This is a frequent finding in people whose headaches begin at the back of the skull, though it is not the whole story on its own.',
+      },
+      {
+        heading: 'Stress, sleep and jaw clenching',
+        body: 'Poor sleep, an unsupportive pillow and low-grade clenching keep the muscles around the skull and jaw under tension overnight, so the area never gets a genuine rest period. These rarely explain a headache entirely, but they very often sit alongside whatever else is going on.',
+      },
+      {
+        heading: 'Painkillers taken too often',
+        body: 'This one surprises people. Taking headache medication on more days than not can, over months, make headaches more frequent rather than less. It is a recognised pattern with its own name, medication-overuse headache. We are not the right people to adjust your medication, but if the pattern fits, it is worth raising with your doctor or pharmacist rather than leaving unexamined.',
+      },
+    ],
+    approach: [
+      {
+        heading: 'Working out which headache this actually is',
+        body: 'Your first visit is largely history taking: where the pain sits, what it feels like, what brings it on, what it arrives with, and what you have already tried. Tension headache, migraine and headache coming from the neck can overlap, and plenty of people have more than one at a time. Arriving at a headache diagnosis is a job for your doctor. What we are establishing is whether there is a mechanical contribution worth addressing.',
+      },
+      {
+        heading: 'Examining the neck and upper back',
+        body: 'That is followed by the rest of the Gonstead six-step assessment: visualisation, nervoscope instrumentation, palpation with a full-motion assessment of the neck and upper back, and X-ray analysis where indicated. Your chiropractor is looking for restricted segments and for the tender, overworked muscle that so often accompanies them.',
+      },
+      {
+        heading: 'What care involves where the neck is contributing',
+        body: 'Where the assessment points to restricted segments, the adjustment is specific to them and delivered by hand, and your chiropractor will explain what they found first. Where the surrounding muscle is a significant part of it, our physiotherapy side may add manual therapy or dry needling for the tender points at the base of the skull and across the shoulders, alongside a programme to build endurance in the deep neck muscles. We are aiming at better movement and less sustained load on that tissue. What that changes about the headaches themselves varies from person to person.',
+      },
+      {
+        heading: 'The part that happens outside the clinic',
+        body: 'Desk and screen height, how often you get up, your pillow, and how much caffeine and water go through a working day all feed into this. You will usually be asked to keep a simple record of when the headaches happen and what came before them, because headache patterns are very hard to judge from memory and it is often the most useful thing a patient brings to a second visit.',
+      },
+    ],
+    redFlags: [
+      'A sudden, severe headache that reaches full intensity within seconds or minutes',
+      'The worst headache of your life, or one clearly unlike any you have had before',
+      'Headache with fever, neck stiffness, or a rash',
+      'Headache with weakness, numbness, confusion, difficulty speaking, or loss of vision',
+      'Any headache following a blow to the head, a fall, or a road accident',
+      'A new headache beginning after the age of 50, or one steadily worsening over days and weeks',
+      'Headache that is worse on lying down, coughing or straining, or that wakes you from sleep',
+      'Headache alongside a history of cancer, a compromised immune system, or unexplained weight loss',
+    ],
+    faqs: [
+      {
+        q: 'How is a tension headache different from a migraine?',
+        a: 'A tension headache is usually felt on both sides as a steady pressing tightness, is mild to moderate, and does not get worse when you move about. A migraine is more often one sided and throbbing, tends to be worse with activity, and commonly brings nausea or sensitivity to light and sound. That is the textbook split, and real life is messier, since some people get both. Migraine is a neurological condition and its medical management belongs with a doctor.',
+      },
+      {
+        q: 'Can a tight neck really cause a headache?',
+        a: 'Muscles and joints in the neck and upper back can refer pain into the head, and that is well recognised. Whether it is what is driving your headaches specifically is a question for the examination rather than something to assume. Some features point that way, such as pain starting at the base of the skull, tenderness in those muscles, and headaches that track your working day, but none of them is conclusive on its own.',
+      },
+      {
+        q: 'Will chiropractic stop my headaches?',
+        a: 'We cannot tell you that, and you should be wary of anyone who does. Where restricted neck segments and overloaded muscle are contributing, restoring movement and reducing that load often changes how much head pain people get. It depends on the presentation, and some people notice little difference. Your chiropractor will tell you honestly what they expect and what they do not.',
+      },
+      {
+        q: 'I take painkillers most days. Is that a problem?',
+        a: 'It is worth looking at. Headache medication taken on more days than not can, over months, feed a cycle where headaches become more frequent. It has a recognised name, medication-overuse headache. Changing or stopping medication is not our decision to make and should not be done abruptly on our say-so. Bring a list of what you take and how often to your first visit, and raise the pattern with the doctor or pharmacist who supplies it.',
+      },
+      {
+        q: 'What should I bring to a first visit?',
+        a: 'A list of any medication you take, including anything over the counter, and if you can manage it, a rough record of the last few weeks: when the headaches came, how long they lasted, and what you were doing beforehand. If you have had imaging or seen a doctor about the headaches, bring the report.',
+      },
+    ],
+    keyTakeaways: [
+      {
+        q: 'What does a tension headache feel like?',
+        a: 'A dull, pressing tightness on both sides of the head, often described as a band. It is mild to moderate, it does not throb, and it does not usually come with nausea.',
+      },
+      {
+        q: 'What brings tension headaches on?',
+        a: 'Most often sustained loading: hours with the head forward of the shoulders, a screen set too low, poor sleep and clenching. Stress rarely acts alone but very often sits alongside.',
+      },
+      {
+        q: 'Should I see someone about a headache I get most weeks?',
+        a: 'It is worth a look. An occasional headache managed with a painkiller is reasonable. Headaches most weeks, or ones that track your working day, are worth examining properly.',
+      },
+      {
+        q: 'Is chiropractic the right place to start for a headache?',
+        a: 'It depends what kind it is. We can assess whether the neck and upper back are contributing. Diagnosing a headache disorder is your doctor’s job, and we will say so if that is the right next step.',
+      },
+      {
+        q: 'When are you open?',
+        a: 'Seven days a week, at Sunway Velocity in Maluri. Monday to Thursday and Saturday until 8pm, Friday until 5pm, Sunday until 3pm.',
+      },
+    ],
+    qualifierConcerns: [
+      'I get a band-like pressure around my head most weeks',
+      'My headaches get worse as the working day goes on',
+      'The muscles at the base of my skull are tender',
+      'I am taking painkillers for headaches most days',
+      'I want to know whether my neck is part of the problem',
+    ],
+    citations: [
+      {
+        claim:
+          'Tension-type headache is classified as a headache disorder in its own right, separate from migraine.',
+        source: 'International Classification of Headache Disorders, ICHD-3',
+        url: 'https://ichd-3.org/2-tension-type-headache/',
+      },
+      {
+        claim:
+          'Tension-type headaches are described as pressure or tightness, often like a band around the head, and episodic tension-type headache is reported by more than 70 per cent of some populations.',
+        source: 'World Health Organization, Headache disorders',
+        url: 'https://www.who.int/news-room/fact-sheets/detail/headache-disorders',
+      },
+      {
+        claim:
+          'Medication-overuse headache is caused by chronic and excessive use of medication taken for headache, and may affect up to 5 per cent of some populations.',
+        source: 'World Health Organization, Headache disorders',
+        url: 'https://www.who.int/news-room/fact-sheets/detail/headache-disorders',
+      },
+    ],
+    draft: false,
+  },
+  {
+    slug: 'whiplash',
+    title: 'Whiplash and Neck Injury Care in Cheras, Kuala Lumpur',
+    metaTitle: 'Whiplash & Neck Injury Care, Cheras KL',
+    metaDescription:
+      'Whiplash assessed in Cheras, Maluri. Get checked medically first, then graded assessment and rehabilitation for the neck once serious injury is ruled out.',
+    targetKeyword: 'whiplash injury',
+    related: ['neck-pain', 'pinched-nerve'],
+    helpedBy: ['physiotherapy', 'sports-injury-rehabilitation'],
+
+    intro:
+      'Whiplash is the neck injury that follows the head being thrown quickly forwards and back, most often in a rear-end collision, though a fall or a heavy tackle does the same thing. Read one line before the rest of this page: if you have just been in an accident, get assessed medically first. A fracture or an injury to the spinal cord is not something a chiropractor treats, and it has to be ruled out before anyone puts hands on your neck. Once that has been done, most whiplash is a soft tissue and joint problem that settles over weeks to a few months, and that is the stage where assessment and rehabilitation here are worth having.',
+    symptoms: [
+      'Neck pain and stiffness that often begins hours after the accident rather than immediately',
+      'Reduced ability to turn or tilt the head',
+      'Headache, most commonly starting at the base of the skull',
+      'Pain across the shoulders and into the upper back',
+      'Tenderness through the neck muscles when pressed',
+      'Tingling or numbness into an arm or hand',
+      'Dizziness, fatigue, or difficulty concentrating in the days afterwards',
+      'Disturbed sleep, and anxiety about driving or being a passenger',
+    ],
+    causes: [
+      {
+        heading: 'The mechanism itself',
+        body: 'The body is restrained by the seatbelt while the head keeps moving, so the neck is taken rapidly beyond its normal range and back again. That can strain the muscles and ligaments, irritate the small joints at the back of the neck, and in more forceful collisions involve the discs or the nerve roots. Speed matters less than people assume, and low-speed collisions can still produce genuine symptoms.',
+      },
+      {
+        heading: 'Delayed onset',
+        body: 'It commonly takes several hours for symptoms to appear, and sometimes a day or two. Adrenaline at the scene masks a great deal. This is why feeling fine at the roadside is not evidence that nothing happened, and why a follow-up assessment a few days later is sensible even when the initial check was clear.',
+      },
+      {
+        heading: 'Guarding and disuse',
+        body: 'A painful neck gets held still, and a neck held still stiffens and loses strength. Over a few weeks this becomes part of the problem in its own right, separate from the original injury. It is one of the reasons that gently returning to normal movement, rather than resting completely, is what current guidance advises.',
+      },
+      {
+        heading: 'The parts that are not just tissue',
+        body: 'Poor sleep, worry about the neck, and anxiety about driving are common after a collision and they genuinely affect how recovery goes. They are not a sign that the pain is imaginary. They are a normal response to being in an accident, and worth naming rather than ignoring.',
+      },
+    ],
+    approach: [
+      {
+        heading: 'Medical assessment comes first, and we will say so',
+        body: 'If you have not yet been checked after an accident, that is the first step, not an appointment here. Fracture, dislocation and spinal cord injury need imaging and a medical opinion, and no responsible assessment of a recent whiplash begins without that having been dealt with. If you arrive here and anything in the history or examination raises those concerns, you will be sent on rather than adjusted, and we would rather refer you than treat something that is not ours to manage.',
+      },
+      {
+        heading: 'Grading what actually happened',
+        body: 'Whiplash is commonly described in grades, from no complaint at all through neck pain with no physical signs, to neck pain with reduced movement and tenderness, to neck pain with neurological signs such as altered reflexes or weakness, and finally to fracture or dislocation. Where you sit changes what is appropriate, so the examination establishes that before anything else is decided.',
+      },
+      {
+        heading: 'Restoring movement, gradually',
+        body: 'For the grades that suit conservative care, the work is to get the neck moving again without provoking it. Depending on what the examination finds, that can involve gentle hands-on care, soft tissue work and dry needling for muscle that has locked down, and a graded programme through our physiotherapy side. Adjustment is used where the assessment supports it, and your chiropractor will explain what they found and what they intend before anything happens.',
+      },
+      {
+        heading: 'Getting back to normal activity',
+        body: 'Current guidance for whiplash favours keeping up everyday activities rather than resting the neck, and advises against relying on a collar, which tends to leave the neck stiffer. Your programme builds tolerance back up in stages, including the things people quietly avoid afterwards, such as shoulder checks when driving. Most people recover over weeks to a few months, and some take longer.',
+      },
+    ],
+    redFlags: [
+      'Any neck injury not yet assessed medically, especially after a high-speed collision',
+      'Loss of consciousness at any point, or confusion, vomiting or worsening drowsiness',
+      'Severe pain or tenderness over the midline of the spine itself',
+      'Weakness, numbness or pins and needles in the arms or legs',
+      'Clumsiness in the hands, unsteadiness on your feet, or loss of bladder or bowel control',
+      'Dizziness, visual disturbance, difficulty speaking or swallowing, or slurred speech',
+      'A severe headache that is worsening rather than settling in the days after the accident',
+    ],
+    faqs: [
+      {
+        q: 'Should I go to hospital after a car accident, or straight to a chiropractor?',
+        a: 'Get medically assessed first. Fracture, dislocation and spinal cord injury are not things conservative care is for, and they need imaging and a doctor to rule out. Once that has been done and you have been cleared, an assessment here for the joint and muscle side of the injury is a reasonable next step. If you come to us first and anything concerning turns up, we will send you on.',
+      },
+      {
+        q: 'I felt fine at the scene and sore two days later. Is that normal?',
+        a: 'Very. It commonly takes several hours for symptoms to appear, sometimes a day or two, because adrenaline at the time masks a lot. Feeling fine at the roadside is not evidence that nothing happened. If new symptoms turn up in the days afterwards, particularly anything neurological, get reviewed rather than waiting it out.',
+      },
+      {
+        q: 'Should I wear a neck collar?',
+        a: 'Current guidance advises against relying on one. A collar holds the neck still at exactly the point when gentle movement is what helps, and necks that are kept still tend to stiffen and lose strength. If a doctor has specifically told you to wear one, follow that, since they will have a reason. Otherwise the aim is to keep moving within comfort.',
+      },
+      {
+        q: 'How long does whiplash take to recover from?',
+        a: 'It usually improves over a period of weeks to a few months, though some people have symptoms for longer, and how the neck was loaded before the accident makes a difference. We will not put a number on your recovery before examining you. What we can tell you after an assessment is what stage you are at and what the sensible next few weeks look like.',
+      },
+      {
+        q: 'Can you provide a report for an insurance or legal claim?',
+        a: 'Ask us directly rather than assuming either way, because what we can provide depends on what is being requested and by whom. Whatever we do write reflects only what was found on examination here. Keep your own records too: the date of the accident, when symptoms started, and any medical assessment you have had.',
+      },
+    ],
+    keyTakeaways: [
+      {
+        q: 'What is whiplash?',
+        a: 'A neck injury from the head being thrown rapidly forwards and back, most often in a rear-end collision. It strains muscles and ligaments and can irritate the joints of the neck.',
+      },
+      {
+        q: 'What is the first thing to do after an accident?',
+        a: 'Get assessed medically, before any hands-on care. Fracture and spinal cord injury need imaging and a doctor to exclude, and that has to happen first.',
+      },
+      {
+        q: 'Why did my neck only start hurting the next day?',
+        a: 'Because symptoms commonly take several hours, sometimes a day or two, to appear. Adrenaline masks a great deal at the scene, so feeling fine at the time proves little.',
+      },
+      {
+        q: 'Is resting the neck the right thing to do?',
+        a: 'Generally no. Guidance favours keeping up everyday activity within comfort over resting, and advises against leaning on a collar, because a neck held still stiffens and weakens.',
+      },
+      {
+        q: 'When are you open?',
+        a: 'Seven days a week, at Sunway Velocity in Maluri. Monday to Thursday and Saturday until 8pm, Friday until 5pm, Sunday until 3pm.',
+      },
+    ],
+    qualifierConcerns: [
+      'I was in an accident and my neck is stiff and sore',
+      'My symptoms started a day or two after the accident',
+      'I cannot turn my head properly to check my blind spot',
+      'I have headaches that began after the collision',
+      'I have been cleared medically and want the neck assessed',
+    ],
+    citations: [
+      {
+        claim:
+          'Symptoms of whiplash can take several hours to begin, and it usually improves within two to three months, though some people have symptoms for longer.',
+        source: 'NHS, Whiplash',
+        url: 'https://www.nhs.uk/conditions/whiplash/',
+      },
+      {
+        claim:
+          'NHS guidance for whiplash advises continuing everyday activities and advises against using a neck brace or collar for support.',
+        source: 'NHS, Whiplash',
+        url: 'https://www.nhs.uk/conditions/whiplash/',
+      },
+      {
+        claim:
+          'The grading of whiplash-associated disorders from grade 0 to grade IV comes from the Quebec Task Force monograph published in Spine in 1995.',
+        source: 'Spitzer WO and others, Spine, 1995',
+        url: 'https://pubmed.ncbi.nlm.nih.gov/7604354/',
+      },
+    ],
+    draft: false,
+  },
 ]
 
 export const publishedConditions = () => conditions.filter((c) => !c.draft)

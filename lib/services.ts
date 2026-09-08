@@ -439,7 +439,7 @@ export const services: Service[] = [
       ],
       note: 'None of that makes you a difficult patient. It means a first visit here would not give you what you came for, and we would rather say so now than at the end of an appointment you have paid for. If what you want is the assessment first and an honest answer about whether adjusting is the right call, that is exactly what a first visit is.',
     },
-    helpsWith: ['back-pain', 'slipped-disc', 'sciatica', 'neck-pain', 'scoliosis'],
+    helpsWith: ['back-pain', 'slipped-disc', 'sciatica', 'neck-pain', 'scoliosis', 'pinched-nerve'],
     /**
      * Were hardcoded as two <GhostButton>s inside the six-step section of the route file,
      * which meant the flagship page was the only service with no "Where to go next" block
@@ -652,7 +652,7 @@ export const services: Service[] = [
         body: 'This depends on how long the problem has been there, so we will not quote a fixed number upfront. Some notice a change quickly, others need weeks of support. We review honestly as we go rather than sell a package.',
       },
     ],
-    helpsWith: ['back-pain', 'neck-pain', 'shoulder-imbalance', 'sciatica'],
+    helpsWith: ['back-pain', 'neck-pain', 'shoulder-imbalance', 'sciatica', 'tension-headache'],
     relatedLinks: [
       { href: '/services/physiotherapy', label: 'How dry needling fits with physiotherapy' },
       { href: '/services/chiropractic-care', label: 'Compare with chiropractic care' },
@@ -905,6 +905,9 @@ export const services: Service[] = [
       'scoliosis',
       'hip-pain',
       'shoulder-imbalance',
+      'pinched-nerve',
+      'tension-headache',
+      'whiplash',
     ],
     relatedLinks: [
       { href: '/services/chiropractic-care', label: 'Compare with chiropractic care' },
@@ -1122,7 +1125,7 @@ export const services: Service[] = [
         body: 'Targeted work for the deep stabilising muscles that support the spine and control the trunk under load. Good stability through the middle makes the limbs more efficient and the whole system more durable, lowering the chance of the injury coming back.',
       },
     ],
-    helpsWith: ['back-pain', 'shoulder-imbalance', 'hip-pain'],
+    helpsWith: ['back-pain', 'shoulder-imbalance', 'hip-pain', 'whiplash'],
     relatedLinks: [
       { href: '/services/physiotherapy', label: 'Our physiotherapy approach' },
       { href: '/services/dry-needling', label: 'Dry needling for muscle tension' },
