@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 import { indexablePractitioners, practitioners } from '@/lib/clinic'
@@ -95,6 +96,38 @@ export default async function AboutPage({ params }: Props) {
           rather than a hand-duplicated copy of its markup — the duplicate had drifted to a
           smaller photo size (800x1000 vs 900x1125) and a different heading before this fix. */}
       <MeetDoctors locale={locale} dict={dict} />
+
+      {/*
+        The one inbound link to /female-chiropractor, and the reason that page is not
+        orphaned. It sits here rather than in the nav deliberately: this is the moment a
+        visitor is looking at three cards, two of which are men, so the question the page
+        answers is the question they are already holding.
+
+        ⚠️ ENGLISH ONLY, AND THE GUARD IS LOAD-BEARING. /about renders in all three locales
+        but /female-chiropractor 404s outside English (see its route file), so an ungated
+        link would send every zh and ms visitor to a dead page. If that page is ever
+        localized, drop the guard and move the copy into the dictionaries in the same change.
+
+        A literal rather than a `dict.page.*` key on purpose: a dictionary entry implies a
+        zh/ms translation exists, and for a string that can only ever render in English that
+        would be a lie the next person has to work out. Same reasoning as /blog's literals.
+      */}
+      {locale === 'en' && (
+        <section className="border-t border-line">
+          <div className="mx-auto max-w-6xl px-4 py-10">
+            <p className="text-lg leading-relaxed text-ink-muted">
+              Would you rather be seen by a woman?{' '}
+              <Link
+                href={pathFor(locale, '/female-chiropractor')}
+                className="font-semibold text-brand-gold-ink underline underline-offset-4"
+              >
+                Valerie is our female chiropractor
+              </Link>
+              , and it helps to say so when you book rather than on the day.
+            </p>
+          </div>
+        </section>
+      )}
 
       {/* ------------------------------------------------------------ Partners */}
       {/* The logo wall lives on /partner-with-us now; this is a teaser + link. /our-partners
