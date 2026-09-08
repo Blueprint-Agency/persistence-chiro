@@ -42,6 +42,14 @@ export const clinicFaqsMs: Faq[] = [
     q: 'Apa yang perlu saya pakai untuk sesi saya?',
     a: 'Kami menggalakkan pesakit memakai pakaian yang tidak menyekat, selesa dan mudah untuk bergerak. Contohnya pakaian longgar, seluar pendek, seluar yoga, atau legging adalah pilihan yang paling sesuai.',
   },
+  {
+    q: 'Bolehkah saya meminta kiropraktor tertentu?',
+    a: 'Boleh, dan lebih mudah diaturkan jika anda menyatakannya semasa menempah berbanding pada hari tersebut. Sesetengah pesakit mempunyai pilihan tentang siapa yang melihat mereka, dan meminta seorang wanita adalah antara yang paling kerap. Hantarkan mesej kepada kami dengan hari yang sesuai untuk anda dan kami akan memberitahu dengan jujur siapa yang ada ruang. Jika orang yang anda minta tiada masa yang anda boleh hadir, kami akan memberitahu anda dan bukannya menukar anda kepada orang lain secara senyap.',
+  },
+  {
+    q: 'Bolehkah saya membawa seseorang masuk ke bilik bersama saya?',
+    a: 'Boleh. Pasangan, ibu bapa atau rakan, sesiapa sahaja yang membuatkan anda berasa lebih tenang. Anda tidak perlu memberikan sebarang sebab, dan ia tidak mengubah cara penilaian dijalankan. Beritahu kami semasa anda tiba supaya kami boleh menyediakan kerusi tambahan di dalam bilik.',
+  },
 ]
 
 export const homeFaqsMs: Faq[] = [

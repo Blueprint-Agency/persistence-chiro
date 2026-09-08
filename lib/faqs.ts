@@ -74,6 +74,53 @@ export const clinicFaqs: Faq[] = [
     q: 'What should I wear for my sessions?',
     a: 'We encourage our patients to wear non-restrictive clothing that is comfortable and easy to move in. Some examples such as loose-fitting clothing, shorts, yoga pants, or leggings would be best suited.',
   },
+  {
+    q: 'Can I ask for a particular chiropractor?',
+    a: 'Yes, and it is easier to arrange if you say so when you book rather than on the day. Some patients have a preference about who they see, and asking for a woman is one of the more common ones. Message us with the days that suit you and we will tell you honestly who has room. If the person you asked for has nothing free at a time you can make, we will say so rather than quietly put you with someone else.',
+  },
+  {
+    q: 'Can I bring someone into the room with me?',
+    a: 'Yes. A partner, a parent or a friend, whoever you would feel easier having there. You do not need to give a reason, and it changes nothing about how the assessment runs. Mention it when you arrive so we can put an extra chair in the room.',
+  },
+]
+
+/**
+ * FAQs for /female-chiropractor. A separate array rather than more `clinicFaqs` entries
+ * because they publish on a different route, and two routes emitting the same FAQPage
+ * answer is the duplicate-markup case `content.test.ts` guards against.
+ *
+ * ⚠️ EVERY ANSWER HERE IS AVAILABILITY-HONEST BY DESIGN. Valerie Na is one female
+ * chiropractor on a roster of three (see `practitioners` in lib/clinic.ts), so nothing on
+ * this page may imply she can be booked on demand. A competitor with four women on staff
+ * can promise that; this clinic cannot, and a page that implies otherwise turns into a
+ * complaint at the front desk. Keep the framing "ask when you book, subject to her diary".
+ *
+ * ⚠️ NO "DR" TITLE. `lib/clinic.ts` uses none, deliberately: whether Malaysian
+ * chiropractors may use it is contested, and the claim was dropped rather than cited when
+ * `best-chiropractor-kuala-lumpur` was researched. The only "Dr Valerie" strings in this
+ * repo are verbatim patient reviews in lib/reviews.ts, which are quotations, not our voice.
+ */
+export const femaleChiropractorFaqs: Faq[] = [
+  {
+    q: 'Is Valerie the only female chiropractor at the clinic?',
+    a: 'She is. Persistence has three chiropractors and Valerie Na is the woman among them, so a request to see a female chiropractor means a request to see her specifically. We would rather tell you that plainly than let you arrive expecting a choice of several.',
+  },
+  {
+    q: 'Is Valerie always available?',
+    a: 'No, and that is worth knowing before you plan around it. She runs the clinic as well as seeing patients, so her diary fills further ahead than her colleagues do. Tell us when you message which days and times work for you, and we will come back with what she genuinely has open rather than the soonest slot on the books.',
+  },
+  {
+    q: 'Do I need to undress for a chiropractic assessment?',
+    a: 'Usually not. Most assessments happen in loose clothing you can move in, and a gown is offered when a region needs to be seen directly, most often the back. You are told what is being looked at and why before it happens, you change privately, and anything not being assessed stays covered.',
+  },
+  {
+    q: 'Why do people ask for a female chiropractor?',
+    a: 'The reasons we hear most are modesty, faith or family expectations about being examined by a man, and sometimes an earlier appointment somewhere else that felt rushed or uncomfortable. Some people simply feel easier explaining their body to a woman. None of these needs justifying to us, and you will not be asked to explain it when you book.',
+  },
+  {
+    q: 'Do you have a female physiotherapist?',
+    a: 'The clinic does employ physiotherapists, and we are not naming them on the site yet while they are within their probation period, so we cannot answer this properly here. Message us and we will tell you who is available. Chiropractors are not licensed to deliver physiotherapy, so Valerie cannot stand in for a physiotherapist if physiotherapy is what you need.',
+  },
 ]
 
 /**

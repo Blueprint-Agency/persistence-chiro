@@ -393,6 +393,30 @@ a qualifier, a comparison table, a fit check, an FAQ and the CTA band from the t
 "the outline" is really a map of which template blocks get filled with what. Present it that
 way rather than as a list of freehand H2s that the template will never render.
 
+**A modifier keyword pair is rarely two pages. Check whether the modifier is MARKED (learned 2026-09-08, `/female-chiropractor`).**
+Asked to build both a female and a male chiropractor page as a cheap bet on future demand.
+Volume was 0 on both in Ubersuggest MY, which proves nothing here (see OPEN-ITEMS item 4), so the
+zeros were not the argument. The argument was linguistic: "female chiropractor" is a **marked**
+term, meaning people add the modifier to signal a departure from an assumed default, while "male
+chiropractor" is **unmarked**, so nobody types it. The SERP confirmed it, and reading it was what
+settled the decision: the Malaysian results for `male chiropractor` carried no clinic page at all,
+just Shutterstock, Adobe Stock, a Lahore doctor directory and a Canadian trade association. A
+competitor's single *female* page already ranked position 13 for the *male* query, which is direct
+evidence one page absorbs both strings. Ranking first for a string nobody types is not a cheap
+bet, it is a page that stays worth nothing when the demand it was betting on arrives, because that
+demand has no mirror on the unmarked side.
+Before proposing a page per side of any modifier pair (gender, age, language, "near me" vs
+plain), search the unmarked side and look at what business type holds the SERP. If it is stock
+photography and foreign directories, there is one page to build, not two.
+
+**When the gap you can own is a constraint you cannot fix, say the constraint out loud in the copy (same page).**
+The roster is one female chiropractor to two male, against a competitor fielding four women. The
+page could not out-promise them, so it does the opposite and states the ratio in the second
+paragraph. That sentence is the page: it is the only thing on that SERP a visitor cannot get
+elsewhere, and it converts the weakness into the reason to trust the rest. Naming a limitation
+plainly is usually stronger copy than routing around it, and it is the only version that survives
+contact with the front desk.
+
 ## Quick reference
 - Client: **Persistence Chiropractic** (single clinic, Cheras/Maluri, KL). NAP + CTAs: `lib/clinic.ts`.
 - Booking: SweetPew (`clinic.bookingUrl`). WhatsApp: `clinic.whatsappUrl`.

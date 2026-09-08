@@ -278,3 +278,36 @@ Four things need the client:
 The three title-card slides carry no information and are not used. The Waze link in
 `lib/clinic.ts` is derived from `clinic.geo` rather than saved from a Waze place, so the pin
 cannot drift from the address.
+
+---
+
+## 9. Female chiropractor page — BUILT 2026-09-08, needs a rostering answer
+
+`/female-chiropractor` is live in English only, targeting `female chiropractor`. The one
+variant with real data is `female chiropractor near me` (10/mo, SD 26, CPC $1.21, paid
+difficulty 68, Ubersuggest Malaysia locId 2458, pulled 2026-09-08); every other variant,
+including the Malay and Chinese ones, measured 0 with an empty `monthly_searches` array,
+which is the same reporting hole as item 4. Full reasoning, and why there is deliberately
+no `/male-chiropractor` sibling, is in the route file's header comment.
+
+**The blocker: nobody has asked Valerie whether she agrees to be requested by name.**
+
+The page tells a visitor to ask for her when booking. That is a rostering commitment, not a
+copy decision, and it was made on the clinic's behalf without being confirmed. Every line was
+written availability-honest so it is defensible either way (the ask is framed as subject to her
+diary, never as on-demand booking), but it should still be put to the clinic before this is
+promoted anywhere.
+
+Two questions, both cheap to answer:
+
+1. **Does Valerie agree to be requested by name?** If no, the page still stands as an honest
+   answer to "do you have a female chiropractor", but section 4 ("How to ask for a female
+   chiropractor when you book") and the CTA both need rewording away from asking for her.
+2. **Are any of the physiotherapists women?** The FAQ "Do you have a female physiotherapist?"
+   currently says we cannot answer on the site because of item 1's probation gate, and points
+   the visitor to WhatsApp. That is honest but weak. The moment item 1 clears, this answer gets
+   materially better and should be rewritten alongside it.
+
+⚠️ **`content.test.ts`'s "no answer is published on two routes" guard now iterates a registry
+of every published FAQ array, not a hardcoded pair.** If a fourth route ever renders FAQs, add
+its array to that list or the guard silently stops covering what it exists to cover.

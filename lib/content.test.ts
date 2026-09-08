@@ -21,7 +21,13 @@ import {
   redirects,
 } from '../redirects.ts'
 import { staticRoutes } from './routes.ts'
-import { clinicFaqs, homeFaqs, aftercare, aftercareIntro } from './faqs.ts'
+import {
+  clinicFaqs,
+  homeFaqs,
+  femaleChiropractorFaqs,
+  aftercare,
+  aftercareIntro,
+} from './faqs.ts'
 import { homeIntro } from './home.ts'
 import { gonsteadIntro, gonsteadSteps } from './gonstead.ts'
 import { clinic, founderBio, practitioners, publishedRegistrations } from './clinic.ts'
@@ -51,16 +57,38 @@ const BANNED_CLAIMS: [RegExp, string][] = [
 
 /**
  * FAQPage schema is emitted on whichever route renders the answers — homeFaqs on `/`,
- * clinicFaqs on /what-to-expect. If the same Q&A appears in both, two routes publish
- * identical FAQPage markup, which is the duplicate-content case Google penalises.
- * Compare answers, not questions: the two arrays already carry near-identical wordings
- * of "what should I wear" that differ only in phrasing.
+ * clinicFaqs on /what-to-expect, femaleChiropractorFaqs on /female-chiropractor. If the
+ * same Q&A appears in two of them, two routes publish identical FAQPage markup, which is
+ * the duplicate-content case Google penalises.
+ *
+ * Compare answers, not questions: the arrays already carry near-identical wordings of
+ * "what should I wear" that differ only in phrasing.
+ *
+ * Generalised from a homeFaqs/clinicFaqs pair to every pair on 2026-09-08, when
+ * /female-chiropractor added a third published array. A hardcoded pair silently stops
+ * covering the thing it exists to cover the moment a fourth route renders FAQs, so this
+ * iterates the registry below instead. ⚠️ ADD ANY NEW PUBLISHED FAQ ARRAY HERE.
  */
 test('no answer is published on two routes', () => {
   const normalise = (s: string) => s.toLowerCase().replace(/\s+/g, ' ').trim()
-  const homeAnswers = new Set(homeFaqs.map((f) => normalise(f.a)))
-  const collisions = clinicFaqs.filter((f) => homeAnswers.has(normalise(f.a))).map((f) => f.q)
-  assert.deepEqual(collisions, [], `answer duplicated across routes: ${collisions.join(', ')}`)
+  const published: [string, typeof homeFaqs][] = [
+    ['homeFaqs', homeFaqs],
+    ['clinicFaqs', clinicFaqs],
+    ['femaleChiropractorFaqs', femaleChiropractorFaqs],
+  ]
+
+  const collisions: string[] = []
+  for (let i = 0; i < published.length; i++) {
+    for (let j = i + 1; j < published.length; j++) {
+      const [nameA, a] = published[i]
+      const [nameB, b] = published[j]
+      const answersB = new Set(b.map((f) => normalise(f.a)))
+      for (const f of a) {
+        if (answersB.has(normalise(f.a))) collisions.push(`${nameA} vs ${nameB}: "${f.q}"`)
+      }
+    }
+  }
+  assert.deepEqual(collisions, [], `answer duplicated across routes:\n  ${collisions.join('\n  ')}`)
 })
 
 /**
@@ -152,6 +180,9 @@ test('no promissory medical claims in published copy', () => {
     ]),
     ...clinicFaqs.map((f) => [`clinicFaqs`, `${f.q} ${f.a}`] as [string, string]),
     ...homeFaqs.map((f) => [`homeFaqs`, `${f.q} ${f.a}`] as [string, string]),
+    ...femaleChiropractorFaqs.map(
+      (f) => [`femaleChiropractorFaqs`, `${f.q} ${f.a}`] as [string, string],
+    ),
     ['homeIntro', [homeIntro.heading, ...homeIntro.body].join(' ')],
     ['gonsteadIntro', gonsteadIntro],
     ...gonsteadSteps.map((s) => [`gonstead/${s.name}`, s.body] as [string, string]),
