@@ -82,11 +82,31 @@ test('no promissory medical claims in published copy', () => {
 
   const sources: [string, string][] = [
     ...conditions.flatMap((c) => [
-      [`conditions/${c.slug}`, [c.title, c.metaDescription, c.intro, c.approach].join(' ')] as [
-        string,
-        string,
-      ],
+      // `approach` and `causes` are arrays of {heading, body}, so joining them raw
+      // stringified to "[object Object]" and every condition's approach and causes prose
+      // was silently exempt from this guard — the same fault as the `outcomes` union
+      // documented on the services branch below, found 2026-09-08. Normalise to the text.
+      // The other rendered prose fields are listed explicitly for the same reason: a field
+      // that is not named here is not checked, and the fix is to name it, not to hope.
+      [
+        `conditions/${c.slug}`,
+        [
+          c.title,
+          c.metaTitle,
+          c.metaDescription,
+          c.intro,
+          ...c.symptoms,
+          ...c.causes.flatMap((x) => [x.heading, x.body]),
+          ...c.approach.flatMap((x) => [x.heading, x.body]),
+          ...c.redFlags,
+          ...(c.qualifierConcerns ?? []),
+          ...(c.citations ?? []).map((x) => x.claim),
+        ].join(' '),
+      ] as [string, string],
       ...c.faqs.map((f) => [`conditions/${c.slug} faq`, `${f.q} ${f.a}`] as [string, string]),
+      ...(c.keyTakeaways ?? []).map(
+        (t) => [`conditions/${c.slug} keyTakeaway`, `${t.q} ${t.a}`] as [string, string],
+      ),
     ]),
     ...services.map(
       (m) =>
