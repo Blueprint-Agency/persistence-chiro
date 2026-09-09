@@ -1,35 +1,60 @@
+'use client'
+
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 import { LOCALES, type Locale, pathFor } from '@/lib/i18n'
-import { pathExistsIn } from '@/lib/locale-availability'
+import type { LocalizedPaths } from '@/lib/locale-availability'
 
 const LOCALE_LABEL: Record<Locale, string> = { en: 'EN', zh: '中文', ms: 'BM' }
 
 /**
- * Links to each locale's homepage — deliberately NOT the exact equivalent of the current
- * page. Knowing the current page's own unprefixed path here would need either a client
- * component (a real, if small, JS cost sitewide) or reading the incoming request via
- * `next/headers` in the server-rendered layout that hosts this — and calling any Dynamic
- * API there opts the ENTIRE site out of static generation, which is exactly the tradeoff
- * this rebuild exists to avoid (see AGENTS.md: "Static render by default"). A same-page
- * switch can be revisited per-page once real zh/ms content exists and each page can pass
- * its own known path down explicitly.
+ * Strips the locale segment off whatever `usePathname` returns, giving the unprefixed
+ * path every other helper in this codebase reasons about.
  *
- * Only ever links to a locale whose homepage actually exists (`pathExistsIn`) — the same
- * check `generateMetadata` uses for `alternates.languages`, so the switcher and hreflang
- * can never disagree about what's live.
+ * English pages are prerendered at their internal `/en/...` path but reached through
+ * `proxy.ts`'s rewrite at the unprefixed URL, so on those pages the server sees
+ * `/en/conditions/back-pain` and the browser sees `/conditions/back-pain`. Normalising
+ * both to the same string is what keeps the rendered links byte-identical on either side,
+ * which is the whole hydration-mismatch mitigation — nothing here needs a post-mount
+ * `useEffect` swap.
  */
-export function LocaleSwitcher({ locale }: { locale: Locale }) {
+const LOCALE_PREFIX = new RegExp(`^/(${LOCALES.join('|')})(?=/|$)`)
+const unprefixed = (pathname: string) => pathname.replace(LOCALE_PREFIX, '') || '/'
+
+/**
+ * Links to the *same page* in each other locale when that page exists there, and to that
+ * locale's homepage when it does not (a zh/ms page still in `draft`, the English-only blog).
+ *
+ * A client component on purpose. The alternative that keeps this a server component is
+ * reading the request URL via `next/headers` from the layout that hosts the Header, and
+ * calling any Dynamic API there opts the ENTIRE site out of static generation (AGENTS.md:
+ * "Static render by default" — it happened once and was reverted). `usePathname` costs a
+ * few hundred bytes of client JS, and `MobileNavClose` already pays for the hook.
+ *
+ * `paths` comes from `localizedPaths()` in `lib/locale-availability.ts`, computed by the
+ * server-rendered Header and passed down, so the content data files never enter the
+ * browser bundle and the switcher can never point at a locale that would 404 — it is the
+ * same `pathExistsIn` check `generateMetadata` uses for hreflang.
+ */
+export function LocaleSwitcher({ locale, paths }: { locale: Locale; paths: LocalizedPaths }) {
+  const path = unprefixed(usePathname())
+
+  const targetFor = (l: Locale) => {
+    if (l === 'en') return pathFor(l, path)
+    return paths[l].includes(path) ? pathFor(l, path) : pathFor(l, '/')
+  }
+
   return (
     <ul className="flex shrink-0 items-center gap-3 whitespace-nowrap text-xs font-medium">
-      {LOCALES.filter((l) => l === locale || pathExistsIn(l, '/')).map((l) => (
+      {LOCALES.filter((l) => l === locale || l === 'en' || paths[l].includes('/')).map((l) => (
         <li key={l}>
           {l === locale ? (
             <span aria-current="true" className="text-white">
               {LOCALE_LABEL[l]}
             </span>
           ) : (
-            <Link href={pathFor(l, '/')} hrefLang={l} className="text-white/60 hover:text-white">
+            <Link href={targetFor(l)} hrefLang={l} className="text-white/60 hover:text-white">
               {LOCALE_LABEL[l]}
             </Link>
           )}

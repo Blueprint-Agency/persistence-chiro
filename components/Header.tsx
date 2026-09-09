@@ -8,12 +8,14 @@ import { waMessage } from '@/lib/whatsapp'
 import { type Locale, pathFor } from '@/lib/i18n'
 import type { Dictionary } from '@/dictionaries/types'
 import { LocaleSwitcher } from '@/components/LocaleSwitcher'
+import { localizedPaths } from '@/lib/locale-availability'
 
 /**
- * Sitewide header. Deliberately a server component: the only interactive parts are the
- * submenus and the mobile drawer, and both are done with CSS focus-within and a native
- * <details>. Shipping a client bundle for a navigation menu would spend the Core Web
- * Vitals budget the whole rebuild depends on.
+ * Sitewide header. Deliberately a server component: the submenus and the mobile drawer are
+ * done with CSS focus-within and a native <details>. Shipping a client bundle for a
+ * navigation menu would spend the Core Web Vitals budget the whole rebuild depends on. The
+ * one client island is `LocaleSwitcher`, which needs `usePathname` to keep you on the same
+ * page when you change language — see that file for why that is the cheapest way to do it.
  *
  * The utility bar is here for local SEO as much as for users — phone, hours and location
  * are the first three things a "chiropractor near me" visitor checks, so they sit above
@@ -90,7 +92,7 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
               <WhatsAppIcon className="h-3.5 w-3.5" />
               {dict.header.whatsapp}
             </a>
-            <LocaleSwitcher locale={locale} />
+            <LocaleSwitcher locale={locale} paths={localizedPaths()} />
           </div>
         </div>
       </div>

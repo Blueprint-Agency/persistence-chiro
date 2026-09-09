@@ -18,10 +18,10 @@
  * in the same session this list was last updated, and every one of them would have shipped
  * with wrong hreflang/switcher behaviour if this file had not been updated alongside them.
  */
-import type { Locale } from './i18n'
-import { conditionBySlugFor, publishedConditionsFor } from './conditions'
-import { serviceBySlugFor, publishedServicesFor } from './services'
-import { hasBioFor } from './clinic'
+import { LOCALES, type Locale } from './i18n'
+import { conditionBySlugFor, conditionsFor, publishedConditionsFor } from './conditions'
+import { serviceBySlugFor, servicesFor, publishedServicesFor } from './services'
+import { hasBioFor, practitioners } from './clinic'
 
 const STATIC_LOCALIZED_PATHS = new Set([
   '/',
@@ -49,4 +49,34 @@ export function pathExistsIn(locale: Locale, path: string): boolean {
   if (STATIC_LOCALIZED_PATHS.has(path)) return true
 
   return false
+}
+
+/**
+ * Every unprefixed path that exists in a non-English locale, as a plain string array. This
+ * is what the language switcher (a client component, see `components/LocaleSwitcher.tsx`)
+ * receives from the server-rendered Header so it can link to the *same page* in another
+ * language without importing the content data files into the browser bundle.
+ *
+ * Derived by running every candidate route through `pathExistsIn` rather than by a second
+ * hand-written rule set, so it can never disagree with hreflang about what is live. The
+ * candidate list is every route family `pathExistsIn` knows how to answer for — add a new
+ * family there and here together.
+ */
+export type LocalizedPaths = Record<Exclude<Locale, 'en'>, readonly string[]>
+
+export function localizedPaths(): LocalizedPaths {
+  const candidates = [
+    ...STATIC_LOCALIZED_PATHS,
+    '/conditions',
+    '/services',
+    ...conditionsFor('en').map((c) => `/conditions/${c.slug}`),
+    ...servicesFor('en').map((s) => `/services/${s.slug}`),
+    ...practitioners.map((p) => `/about/${p.slug}`),
+  ]
+  const out = {} as Record<Exclude<Locale, 'en'>, string[]>
+  for (const locale of LOCALES) {
+    if (locale === 'en') continue
+    out[locale] = candidates.filter((path) => pathExistsIn(locale, path))
+  }
+  return out
 }

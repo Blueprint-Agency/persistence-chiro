@@ -33,9 +33,9 @@ export function proxy(request: NextRequest) {
 
   // Plain NextResponse.rewrite with no extra headers — reading the request (via
   // next/headers) anywhere downstream would opt the whole route into dynamic rendering,
-  // which conflicts with this site's static-by-default requirement. See
-  // `components/LocaleSwitcher.tsx` for why the switcher deliberately doesn't need to know
-  // the current page's exact path.
+  // which conflicts with this site's static-by-default requirement. The language switcher
+  // (`components/LocaleSwitcher.tsx`) learns the current path from `usePathname` on the
+  // client instead, and normalises away the `/en` this rewrite introduces.
   const url = request.nextUrl.clone()
   url.pathname = pathname === '/' ? '/en' : `/en${pathname}`
   return NextResponse.rewrite(url)

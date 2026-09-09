@@ -119,8 +119,11 @@ volume).
   or anything it always renders (Header/Footer).** It opts the *entire site* out of static
   generation — this actually happened once (a `headers()` call to build a per-page language
   switcher) and was reverted specifically to keep "Static render by default" intact. The
-  language switcher (`components/LocaleSwitcher.tsx`) links to each locale's homepage for
-  exactly this reason, not the exact equivalent of the current page.
+  language switcher (`components/LocaleSwitcher.tsx`) is instead a small client component
+  that reads the current path with `usePathname`, strips the locale prefix (English pages
+  prerender at `/en/...` but are served unprefixed, so the strip is what avoids a hydration
+  mismatch), and links to the same page in the other locale when `localizedPaths()` from
+  `lib/locale-availability.ts` says it exists there, else that locale's homepage.
 - **Content model:** English data files (`lib/conditions.ts`, `lib/services.ts`, ...) are
   untouched and stay the source of truth; each has `zh`/`ms` sibling files
   (`lib/conditions.zh.ts`, `.ms.ts`, etc.) of the *same* type, keyed by the *same* `slug`.
