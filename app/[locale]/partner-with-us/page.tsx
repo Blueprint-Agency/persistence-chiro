@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation'
 
 import { keyPartners, partners } from '@/lib/partners'
 import { events } from '@/lib/events'
+import { EventGallery } from '@/components/EventGallery'
 import { JsonLd } from '@/components/JsonLd'
 import { breadcrumbSchema } from '@/lib/schema'
 import { pageMetadata } from '@/lib/seo'
@@ -100,17 +101,8 @@ export default async function PartnerWithUsPage({ params }: Props) {
           <Eyebrow>{dict.page.talksScreeningsEventsEyebrow}</Eyebrow>
           <ul className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {events.map((e) => (
-              <li key={e.file} className="flex flex-col">
-                <div className="overflow-hidden rounded-3xl">
-                  <Image
-                    src={e.file}
-                    alt={e.alt}
-                    width={1100}
-                    height={825}
-                    sizes="(max-width: 640px) 100vw, 360px"
-                    className="aspect-[4/3] w-full object-cover"
-                  />
-                </div>
+              <li key={e.title} className="flex flex-col">
+                <EventGallery images={e.images} />
                 <h3 className="mt-4 font-bold leading-snug">{e.title}</h3>
                 <p className="mt-1.5 text-sm leading-relaxed text-ink-muted">{e.blurb}</p>
               </li>

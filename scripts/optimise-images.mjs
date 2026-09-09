@@ -49,9 +49,48 @@ const LOGOS = [
   ['home-07-best-services.png', 'accred-best-services-2023', 240],
 ]
 
+/**
+ * Event photos for /partner-with-us. The gallery cards are 4:3 landscape but phone photos
+ * arrive portrait, so each row names the exact crop window (in source pixels) rather than
+ * trusting an automatic position — a talk photo cropped by "attention" tends to pick the
+ * projector screen and lose the speaker. Output keeps the source width (no upscaling; the
+ * cards render at 360px) and goes to public/img/events/.
+ *
+ * [source, output, { left, top, width, height }]
+ */
+const EVENTS = [
+  ['event-popular-audience.jpg', 'event-popular-audience', { left: 0, top: 380, width: 810, height: 608 }],
+  ['event-popular-spine-model.jpg', 'event-popular-spine-model', { left: 0, top: 330, width: 608, height: 456 }],
+  ['event-exform-fall-risk.jpg', 'event-exform-fall-risk', { left: 0, top: 300, width: 810, height: 608 }],
+  ['event-exform-nervous-system.jpg', 'event-exform-nervous-system', { left: 0, top: 330, width: 810, height: 608 }],
+]
+
 await mkdir(OUT, { recursive: true })
+await mkdir(`${OUT}/events`, { recursive: true })
+
+/**
+ * `node scripts/optimise-images.mjs events` runs only the events section and stops. With no
+ * argument every section runs, which re-encodes every committed image — fine when nothing
+ * upstream changed, but check `git status` afterwards.
+ */
+const eventsOnly = process.argv[2] === 'events'
 
 const results = []
+
+for (const [src, name, region] of EVENTS) {
+  const file = `${OUT}/events/${name}.webp`
+  const info = await sharp(`${SRC}/${src}`)
+    .rotate() // honour EXIF orientation before extracting, or the window lands sideways
+    .extract(region)
+    .webp({ quality: 78 })
+    .toFile(file)
+  results.push(`${file}  ${info.width}x${info.height}  ${Math.round(info.size / 1024)}KB`)
+}
+
+if (eventsOnly) {
+  console.log(results.join('\n'))
+  process.exit(0)
+}
 
 // Favicon: the lockup's wordmark is illegible at 32px, so crop the circular spine mark
 // off the left of the trimmed logo (it's as tall as the lockup, hence the square = height).

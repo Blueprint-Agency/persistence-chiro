@@ -991,6 +991,45 @@ body {
 }
 
 /**
+ * Two-photo crossfade on a /partner-with-us event card. See components/EventGallery.tsx.
+ * Same mechanism as `.hero-slide` above, cut into two 5s slots on a 10s loop: held for 4s,
+ * 1s fade out, hidden for 4s, 1s fade back in. The second slide runs the same keyframe
+ * offset by half a loop, so one is always fading in while the other fades out.
+ */
+.event-slide {
+  animation: pc-event-fade 10s linear infinite;
+}
+
+@keyframes pc-event-fade {
+  0% {
+    opacity: 1;
+  }
+  40% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  90% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Same reasoning as the hero block above: cancel rather than shorten, keep the first photo. */
+@media (prefers-reduced-motion: reduce) {
+  .event-slide {
+    animation: none !important;
+    opacity: 0;
+  }
+  .event-slide:first-child {
+    opacity: 1;
+  }
+}
+
+/**
  * Parallax field behind an inner-page hero (`<PageHero backgroundImage=...>`).
  *
  * `background-attachment: fixed` rather than a scroll listener, because a scroll listener
