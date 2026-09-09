@@ -4,8 +4,7 @@ Work that is **blocked on a person, an asset or an access grant** — not on cod
 item below has its reasoning recorded in a comment next to the thing it governs; this file
 exists so the list can be found in one place instead of stumbled upon in four.
 
-Last updated **2026-09-03**, when the client approved bundle pricing and confirmed
-sports massage is offered.
+Last updated **2026-09-09**, when `/offers` was built and "Locate Us" moved under About.
 
 > Keep this file honest. When an item is resolved, delete it here *and* remove the
 > corresponding gate or comment in the code. A stale blocker is worse than no list.
@@ -238,6 +237,20 @@ day. Do not add them back as a helpful clarification; that has already been done
 ⚠️ **That makes briefing the front desk load-bearing rather than tidy.** The per-person cap is
 now enforced entirely at the counter, and nothing on the page hints at it, so reception has to
 know both that the offer exists and that it is once per patient.
+
+**`/offers` BUILT 2026-09-09, all three locales.** The client asked for "another section
+where the bundle and packages will be in", with a menu label that avoids pricing / promotion /
+packages / bundle. The label is **"Offers"** (优惠 / tawaran); the cards keep their original
+"bundle" wording at the client's explicit request. The page gathers
+every published offer from `lib/pricing.ts`, adds a "who it suits" line per offer (new `who`
+field, in all three pricing files) and links to the service pages, and carries a three-step
+"how to claim" section that describes only the WhatsApp claim path already recorded above. The
+terms (no expiry, one per person) are still not rendered. In the same change **"Locate Us" moved
+from the top-level nav into the About dropdown** to free the slot, at the client's request; the
+address stays in the utility bar and footer.
+
+Still for the client: **the zh/ms `/offers` chrome and the six `who` lines are unreviewed**,
+same standing as the rest of the zh/ms bundle copy below.
 
 Also outstanding: **all zh/ms bundle and sports massage copy is unreviewed.**
 `lib/pricing.zh.ts`, `lib/pricing.ms.ts` and the two `sports-massage` records in

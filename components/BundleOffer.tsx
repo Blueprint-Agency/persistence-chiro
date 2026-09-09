@@ -50,10 +50,18 @@ export function BundleOffer({
   dict,
   bundle,
   message,
+  id = BUNDLE_ANCHOR,
 }: {
   dict: Dictionary
   bundle: Bundle
   message: string
+  /**
+   * The section's anchor. Defaults to `BUNDLE_ANCHOR` for the service pages, which each carry
+   * one card and a hero button pointing at it. /offers renders every published card on one
+   * page, so it passes the bundle's slug instead: two sections with the same id would leave
+   * the hero jump links landing on whichever the browser found first.
+   */
+  id?: string
 }) {
   const saving = bundle.compareAt - bundle.price
   // Derived, never typed, and shared with the hero button that points down at this card, so
@@ -63,7 +71,7 @@ export function BundleOffer({
   return (
     /* `id` is the hero button's target. `scroll-mt-28` keeps the card clear of the sticky
        header when the jump lands. */
-    <section id={BUNDLE_ANCHOR} className="mx-auto max-w-6xl px-4 scroll-mt-28">
+    <section id={id} className="mx-auto max-w-6xl px-4 scroll-mt-28">
       <div className="overflow-hidden rounded-3xl border border-line bg-white shadow-ambient lg:grid lg:grid-cols-[1.1fr_0.9fr]">
         <div className="flex flex-col p-8 lg:p-10">
           {/* Two facts, side by side, because they are not the same fact. The eyebrow says what

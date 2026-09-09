@@ -11,7 +11,7 @@ import {
   type Registration,
 } from './clinic'
 import { publishedServicesFor } from './services'
-import { publishedBundlesFor } from './pricing'
+import { publishedBundlesFor, type Bundle } from './pricing'
 import { whatsappLink, waMessage } from './whatsapp'
 import { type Locale, LOCALES, LOCALE_TAG, pathFor } from './i18n'
 
@@ -119,16 +119,7 @@ export function localBusinessSchema(locale: Locale) {
      * Derived, so a bundle taken down in lib/pricing.ts leaves the structured data with it.
      */
     ...(publishedBundlesFor(locale).length
-      ? {
-          makesOffer: publishedBundlesFor(locale).map((b) => ({
-            '@type': 'Offer',
-            name: b.name,
-            price: b.price,
-            priceCurrency: 'MYR',
-            availability: 'https://schema.org/InStock',
-            url: `${SITE_URL}${pathFor(locale, `/services/${b.services[0]}`)}`,
-          })),
-        }
+      ? { makesOffer: publishedBundlesFor(locale).map((b) => offerNode(locale, b)) }
       : {}),
     employee: practitioners.map((p) => {
       const registrations = publishedRegistrations(p)
@@ -182,6 +173,49 @@ export function localBusinessSchema(locale: Locale) {
 }
 
 /** Condition pages. */
+/**
+ * One published offer as a schema.org Offer. Shared by the clinic entity's `makesOffer` and
+ * the /offers page's own list, so the two can never describe the same offer differently.
+ *
+ * `url` points at the offer's own anchor on /offers rather than at a service page. Until
+ * 2026-09-09 it pointed at the first service that rendered the card; now there is a page whose
+ * whole job is the offer, that is where an assistant should send someone.
+ */
+function offerNode(locale: Locale, b: Bundle) {
+  return {
+    '@type': 'Offer',
+    name: b.name,
+    price: b.price,
+    priceCurrency: 'MYR',
+    availability: 'https://schema.org/InStock',
+    url: `${SITE_URL}${pathFor(locale, '/offers')}#${b.slug}`,
+  }
+}
+
+/**
+ * /offers. A CollectionPage whose list items are the Offer nodes themselves, not bare
+ * name/url pairs: the price is the fact the page exists to state, so it travels with the
+ * list rather than living only on the clinic entity in the layout.
+ */
+export function offersPageSchema(o: { locale: Locale; name: string; description: string }) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: o.name,
+    description: o.description,
+    url: `${SITE_URL}${pathFor(o.locale, '/offers')}`,
+    about: { '@id': `${SITE_URL}/#clinic` },
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: publishedBundlesFor(o.locale).map((b, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        item: offerNode(o.locale, b),
+      })),
+    },
+  }
+}
+
 export function medicalWebPageSchema(o: { name: string; description: string; url: string }) {
   return {
     '@context': 'https://schema.org',

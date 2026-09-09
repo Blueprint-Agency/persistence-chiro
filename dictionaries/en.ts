@@ -13,6 +13,7 @@ const en: Dictionary = {
     blog: 'Blog',
     bookNow: 'Book Now',
     locateUs: 'Locate Us',
+    offers: 'Offers',
   },
   header: {
     openSevenDays: 'Open 7 days',
@@ -49,6 +50,25 @@ const en: Dictionary = {
     bundleWebsiteOnly: 'Website-only promo',
     bundleClaim: 'Claim this deal now!',
     bundleHeroCta: (percent) => `Get ${percent} off bundle deal`,
+    offersEyebrow: 'Offers',
+    offersTitle: 'Website-only offers',
+    offersIntro:
+      'Two offers you can only get by booking through this website. Each one shows what is included and what those parts cost on their own, so you can see the saving for yourself.',
+    offersHowHeading: 'Claiming one takes a single message',
+    offersStep1Title: 'Pick your offer',
+    offersStep1Body:
+      'Read what is included and check the label above it. One is for new patients on their first visit; the other is open to anyone.',
+    offersStep2Title: 'Tap the WhatsApp button',
+    offersStep2Body:
+      'The message already names the offer and its price, so there is nothing to explain. Add the day and time you would like and send it.',
+    offersStep3Title: 'We confirm on WhatsApp',
+    offersStep3Body:
+      'You get a reply with your appointment, and the offer is noted on it before you walk in. Nothing to print, no code to remember.',
+    offersWhoSuits: 'Who it suits',
+    offersLearnMore: 'Read more about',
+    offersCtaHeading: 'Not sure which one fits?',
+    offersCtaBody:
+      'Message us with your main concern and we will tell you which offer makes sense, or whether an assessment on its own is the better start.',
     whatWeHelpWith: 'What we help with',
     reasonsPeopleComeInFor: (name) => `Reasons people come in for ${name.toLowerCase()}`,
     beingStraightWithYou: 'Being straight with you',

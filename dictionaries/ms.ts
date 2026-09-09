@@ -19,6 +19,7 @@ const ms: Dictionary = {
     blog: 'Info Kesihatan',
     bookNow: 'Tempah Sekarang',
     locateUs: 'Lokasi Kami',
+    offers: 'Tawaran',
   },
   header: {
     openSevenDays: 'Buka 7 hari seminggu',
@@ -55,6 +56,25 @@ const ms: Dictionary = {
     bundleWebsiteOnly: 'Promosi laman web sahaja',
     bundleClaim: 'Tuntut tawaran ini sekarang!',
     bundleHeroCta: (percent) => `Dapatkan pakej jimat ${percent}`,
+    offersEyebrow: 'Tawaran',
+    offersTitle: 'Tawaran khas laman web',
+    offersIntro:
+      'Dua tawaran yang hanya boleh didapati bila anda menempah melalui laman web ini. Setiap satu menyenaraikan apa yang termasuk dan harga setiap bahagian jika diambil berasingan, jadi anda boleh kira sendiri jimatannya.',
+    offersHowHeading: 'Satu mesej sahaja untuk menuntutnya',
+    offersStep1Title: 'Pilih tawaran anda',
+    offersStep1Body:
+      'Baca apa yang termasuk dan lihat label di atasnya. Satu untuk pesakit baharu pada lawatan pertama, satu lagi terbuka kepada sesiapa sahaja.',
+    offersStep2Title: 'Tekan butang WhatsApp',
+    offersStep2Body:
+      'Mesej itu sudah menamakan tawaran dan harganya, jadi tiada apa yang perlu dijelaskan. Tambah hari dan masa yang anda mahu, kemudian hantar.',
+    offersStep3Title: 'Kami sahkan di WhatsApp',
+    offersStep3Body:
+      'Anda akan terima balasan dengan temu janji anda, dan tawaran itu dicatat sebelum anda tiba. Tiada apa yang perlu dicetak, tiada kod untuk diingat.',
+    offersWhoSuits: 'Sesuai untuk siapa',
+    offersLearnMore: 'Baca lagi tentang',
+    offersCtaHeading: 'Tak pasti yang mana satu?',
+    offersCtaBody:
+      'Mesej kami tentang masalah utama anda dan kami akan beritahu tawaran mana yang sesuai, atau sama ada penilaian sahaja lebih baik untuk permulaan.',
     whatWeHelpWith: 'Apa yang kami bantu',
     reasonsPeopleComeInFor: (name) => `Sebab orang datang untuk ${name.toLowerCase()}`,
     beingStraightWithYou: 'Berterus terang dengan anda',

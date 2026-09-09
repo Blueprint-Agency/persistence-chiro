@@ -30,6 +30,9 @@ const STATIC_LOCALIZED_PATHS = new Set([
   '/press',
   '/partner-with-us',
   '/what-to-expect',
+  // Every published offer has zh/ms copy (lib/pricing.*.ts), and the page chrome is in all
+  // three dictionaries, so the page is live in all three from the day it was built.
+  '/offers',
 ])
 
 export function pathExistsIn(locale: Locale, path: string): boolean {

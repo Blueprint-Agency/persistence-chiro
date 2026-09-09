@@ -30,6 +30,7 @@ export const bundlesMs: Bundle[] = [
         price: 160,
       },
     ],
+    who: 'Pesakit baharu yang sakitnya sudah lama dan belum pernah dinilai. Kiropraktor menilai dan melaras dahulu, kemudian fisioterapis mengambil alih bahagian kekuatan dan pergerakan.',
     image: {
       src: '/img/first-visit-consultation.webp',
       alt: 'Seorang pengamal menyokong leher pesakit semasa penilaian di Persistence Chiropractic di Cheras, Kuala Lumpur',
@@ -48,6 +49,7 @@ export const bundlesMs: Bundle[] = [
       { label: 'Terapi gelombang kejutan, satu sesi', price: 120 },
       { label: 'Urut sukan, 60 minit', price: 120 },
     ],
+    who: 'Mereka yang berlatih keras, atau ada kecederaan lama yang asyik berulang. Untuk tendon yang sakit dan tisu lembut yang tegang, dan tidak perlu jadi pesakit baharu.',
     /**
      * Shows the actual thing being sold, as of 2026-09-03. It replaced a shoulder-mobility
      * frame, which in turn replaced this page's own hero; neither depicted shockwave.

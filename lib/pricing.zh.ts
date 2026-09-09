@@ -27,6 +27,7 @@ export const bundlesZh: Bundle[] = [
       { label: 'X光检查', price: 190 },
       { label: '物理治疗初步评估、首次疗程与居家运动指导', price: 160 },
     ],
+    who: '疼痛已经拖了一段时间、还没做过评估的新患者。先由脊椎矫正师评估和调整,再由物理治疗师接手肌力和活动度的部分。',
     image: {
       src: '/img/first-visit-consultation.webp',
       alt: 'Persistence Chiropractic 位于 Cheras, Kuala Lumpur 的诊所内,治疗师在评估过程中托住患者的颈部',
@@ -45,6 +46,7 @@ export const bundlesZh: Bundle[] = [
       { label: '冲击波疗法,单次', price: 120 },
       { label: '运动按摩,六十分钟', price: 120 },
     ],
+    who: '训练量大,或旧伤反反复复的人。针对酸痛的肌腱和紧绷的软组织,不需要是新患者。',
     /**
      * Shows the actual thing being sold, as of 2026-09-03. It replaced a shoulder-mobility
      * frame, which in turn replaced this page's own hero; neither depicted shockwave.

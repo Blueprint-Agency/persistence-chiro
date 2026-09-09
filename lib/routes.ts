@@ -14,6 +14,7 @@ export const staticRoutes = [
   '/services/chiropractic-care',
   '/conditions',
   '/what-to-expect',
+  '/offers',
   // English-only: not in STATIC_LOCALIZED_PATHS, so `pathExistsIn` keeps it out of the
   // zh/ms sitemap and out of the language switcher. See the note in its route file.
   '/female-chiropractor',

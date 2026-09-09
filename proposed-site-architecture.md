@@ -68,7 +68,7 @@ seven thin near-duplicates.
 | **No location page** | Single clinic. Location pages exist to reach cities you have no premises in. `/` already ranks #16 for "chiro cheras" and holds most of the 40 referring domains — a second page competes with it from zero. `/contact-us` covers "where are you". |
 | **No `/services/tit-tar`** | Clinic does not offer tit tar; the live site never mentions it. Captured instead by `/blog/tit-tar-vs-chiropractic`, which makes no service claim. |
 | **`/press` flat, no `[slug]`** | One press feature exists. Cards link out to the publication — better for the backlink story than hosting a copy. |
-| **No `/pricing`** | No pricing exists anywhere on the live site; nothing to publish. |
+| ~~**No `/pricing`**~~ **`/offers` exists since 2026-09-09** | Originally: no pricing existed on the live site. The client reversed that on 2026-09-03 (two priced offers, see OPEN-ITEMS.md § 8) and on 2026-09-09 asked for a nav section to hold them. It is `/offers`, not `/pricing`: the client asked to avoid "pricing", "promotion", "packages" and "bundle" as the menu label (the cards still say "bundle"). Still not a ranking play; the 0-50/mo volume finding stands. |
 | **Booking stays on SweetPew** | Preserves staff workflow. Embedded on `/contact-us`, lazy-loaded so it doesn't cost LCP. |
 | **MDX in repo, no CMS** | Agency edits content. Zero CMS cost, static export. |
 | **Portable redirects** | `redirects.ts` consumed by `next.config.mjs` — not host-specific. |

@@ -46,6 +46,12 @@ export type Bundle = {
   compareAt: number
   lines: readonly BundleLine[]
   /**
+   * One or two sentences on who the offer is for, rendered under the card on /offers only.
+   * It says who, never what will happen to them: no outcome, no promise, the same claim rule
+   * every other published field follows.
+   */
+  who: string
+  /**
    * The photograph filling the card's second column.
    *
    * ALT TEXT DESCRIBES THE FRAME, NEVER THE OFFER — same rule the service heroes follow. A
@@ -109,6 +115,7 @@ export const bundles: Bundle[] = [
         price: 160,
       },
     ],
+    who: 'New patients whose pain has been around a while and has never been assessed. The chiropractor assesses and adjusts first, then the physiotherapist takes over the strength and movement side.',
     image: {
       src: '/img/first-visit-consultation.webp',
       alt: 'A practitioner supporting a patient’s neck during an assessment at Persistence Chiropractic in Cheras, Kuala Lumpur',
@@ -127,6 +134,7 @@ export const bundles: Bundle[] = [
       { label: 'Shockwave therapy, one session', price: 120 },
       { label: 'Sports massage, 60 minutes', price: 120 },
     ],
+    who: 'People who train hard, or carry an old niggle that keeps coming back. It is for sore tendons and tight soft tissue, and you do not need to be a new patient.',
     /**
      * Shows the actual thing being sold, as of 2026-09-03. It replaced a shoulder-mobility
      * frame, which in turn replaced this page's own hero; neither depicted shockwave.

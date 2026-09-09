@@ -17,6 +17,12 @@ export type Dictionary = {
      * is. See the note on `mainNav` in lib/nav.ts.
      */
     locateUs: string
+    /**
+     * Points at /offers. The MENU LABEL avoids "pricing" / "promotion" / "packages" / "bundle"
+     * at the client's request (2026-09-09); the cards themselves keep saying "bundle", also at
+     * the client's request. See the note on `mainNav` in lib/nav.ts.
+     */
+    offers: string
   }
   header: {
     openSevenDays: string
@@ -68,6 +74,25 @@ export type Dictionary = {
     bundleClaim: string
     /** Hero button pointing down at the bundle: "Get 17% off bundle deal". */
     bundleHeroCta: (percent: string) => string
+    // /offers (app/[locale]/offers/page.tsx). The cards themselves reuse the bundle* keys
+    // above; these are the page's own chrome.
+    offersEyebrow: string
+    offersTitle: string
+    offersIntro: string
+    /** Heading over the three claim steps; the eyebrow reuses `howItWorks`. */
+    offersHowHeading: string
+    offersStep1Title: string
+    offersStep1Body: string
+    offersStep2Title: string
+    offersStep2Body: string
+    offersStep3Title: string
+    offersStep3Body: string
+    /** Label over `Bundle.who`. */
+    offersWhoSuits: string
+    /** "Read more about" — followed by links to the service pages the offer belongs to. */
+    offersLearnMore: string
+    offersCtaHeading: string
+    offersCtaBody: string
     whatWeHelpWith: string
     /** "Reasons people come in for {name}". */
     reasonsPeopleComeInFor: (name: string) => string

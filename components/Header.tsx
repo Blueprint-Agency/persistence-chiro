@@ -40,6 +40,26 @@ function NavBadge({ children }: { children?: string }) {
   return <span className="ml-1.5 whitespace-nowrap text-xs text-brand-gold-ink">{children}</span>
 }
 
+/**
+ * The tag beside a highlighted nav item (see `NavItem.highlight`). Gold-ink for the same
+ * reason `NavBadge` is: it is the site's colour for gold used at text size, and raw #E8C111
+ * is illegible on the bone ground. Decorative, so hidden from assistive tech; the label
+ * already says "Offers".
+ */
+function NavTag({ show }: { show?: boolean }) {
+  if (!show) return null
+  return (
+    <svg
+      viewBox="0 0 20 20"
+      fill="currentColor"
+      className="h-3.5 w-3.5 flex-none text-brand-gold-ink"
+      aria-hidden="true"
+    >
+      <path d="M2.5 3.5A1 1 0 0 1 3.5 2.5h5.1a1 1 0 0 1 .7.3l7.4 7.4a1 1 0 0 1 0 1.4l-5.1 5.1a1 1 0 0 1-1.4 0L2.8 9.3a1 1 0 0 1-.3-.7zm4 2.2a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4z" />
+    </svg>
+  )
+}
+
 export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   const nav = mainNav(locale, dict)
   const hoursSummary = hoursSummaryFor(locale)
@@ -119,6 +139,7 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
                   item={item}
                   className="flex items-center gap-1 whitespace-nowrap py-2 text-sm font-medium text-ink-muted transition-colors hover:text-brand-slate"
                 >
+                  <NavTag show={item.highlight} />
                   {item.label}
                   {item.children && item.children.length > 0 && (
                     <svg
@@ -183,7 +204,8 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
                 <ul className="divide-y divide-line">
                   {nav.map((item) => (
                     <li key={item.href} className="py-1">
-                      <NavLink item={item} className="block py-2.5 font-medium text-ink">
+                      <NavLink item={item} className="flex items-center gap-1.5 py-2.5 font-medium text-ink">
+                        <NavTag show={item.highlight} />
                         {item.label}
                       </NavLink>
                       {item.children && item.children.length > 0 && (

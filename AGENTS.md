@@ -88,6 +88,10 @@ These are the reason the project exists. Don't simplify them away.
 
   Neither list is client-confirmed yet the way the English rule is — treat it as a strong
   draft, not a substitute for asking the client once real zh/ms copy is ready to ship.
+- **The nav label for the priced offers is "Offers"** (zh 优惠, ms tawaran), not "Pricing",
+  "Promotions", "Packages" or "Bundles" (client, 2026-09-09). That rule is for the menu bar
+  only: the cards, hero buttons and WhatsApp messages keep saying "bundle", which the client
+  confirmed the same day. Don't unify the two words either way.
 - **JSON-LD on every template**, per the schema table in `proposed-site-architecture.md`.
 - **Core Web Vitals pass.** Static render by default. `next/image` for every image, always
   with width/height. No client component unless it genuinely needs interactivity.
