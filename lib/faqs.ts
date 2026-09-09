@@ -119,7 +119,7 @@ export const femaleChiropractorFaqs: Faq[] = [
   },
   {
     q: 'Do you have a female physiotherapist?',
-    a: 'The clinic does employ physiotherapists, and we are not naming them on the site yet while they are within their probation period, so we cannot answer this properly here. Message us and we will tell you who is available. Chiropractors are not licensed to deliver physiotherapy, so Valerie cannot stand in for a physiotherapist if physiotherapy is what you need.',
+    a: 'Yes, we do have a physiotherapist. Message us and we will book you in.',
   },
 ]
 

@@ -304,9 +304,10 @@ Two questions, both cheap to answer:
    answer to "do you have a female chiropractor", but section 4 ("How to ask for a female
    chiropractor when you book") and the CTA both need rewording away from asking for her.
 2. **Are any of the physiotherapists women?** The FAQ "Do you have a female physiotherapist?"
-   currently says we cannot answer on the site because of item 1's probation gate, and points
-   the visitor to WhatsApp. That is honest but weak. The moment item 1 clears, this answer gets
-   materially better and should be rewritten alongside it.
+   currently says only "Yes, we do have a physiotherapist. Message us and we will book you in."
+   Client instruction, 2026-09-09: do not mention the probation period or disclose anything
+   about the physiotherapists on the page; the client expects to put the physiotherapist up
+   next month. The moment item 1 clears, this answer should name her and be rewritten alongside it.
 
 ⚠️ **`content.test.ts`'s "no answer is published on two routes" guard now iterates a registry
 of every published FAQ array, not a hardcoded pair.** If a fourth route ever renders FAQs, add
