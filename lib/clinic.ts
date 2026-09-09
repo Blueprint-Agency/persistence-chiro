@@ -124,6 +124,7 @@ export const clinic = {
 export const googleReviews = {
   /**
    * CONFIRMED 2026-08-01 against the live Business Profile: 5.0 from 224 reviews.
+   * UPDATED 2026-09-09 to 230 on the client's instruction (the profile has moved on).
    *
    * ⚠️ `count` IS A SNAPSHOT AND WILL DRIFT. It only moves when someone updates this line, so
    * treat it as "at least this many" and refresh it whenever the reviews themselves are
@@ -132,7 +133,7 @@ export const googleReviews = {
    */
   verified: true,
   rating: 5.0,
-  count: 224,
+  count: 230,
   url: clinic.mapsUrl,
 } as const
 

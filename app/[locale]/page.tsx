@@ -112,7 +112,7 @@ function heroSlidesFor(dict: Dictionary) {
  *
  * Gated on `verified` for the same reason the component is: no data means no claim, and a
  * meta description is the worst place to ship an unbacked number because Google may render
- * it verbatim. `count` is a drifting snapshot, so it is written as "224+" — the file that
+ * it verbatim. `count` is a drifting snapshot, so it is written as "230+" — the file that
  * owns it says to treat it as "at least this many".
  */
 type Props = { params: Promise<{ locale: string }> }
@@ -146,7 +146,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
    *
    * Gated on `verified` for the same reason the component is: no data means no claim, and a
    * meta description is the worst place to ship an unbacked number because Google may render
-   * it verbatim. `count` is a drifting snapshot, so it is written as "224+" — the file that
+   * it verbatim. `count` is a drifting snapshot, so it is written as "230+" — the file that
    * owns it says to treat it as "at least this many".
    */
   const socialProof = googleReviews.verified
