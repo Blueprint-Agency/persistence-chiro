@@ -26,6 +26,7 @@ import { GoogleReviews } from '@/components/GoogleReviews'
 import { MeetDoctors } from '@/components/MeetDoctors'
 import { Preloader } from '@/components/Preloader'
 import { HeroGallery } from '@/components/HeroGallery'
+import { FirstTimeDealPopup } from '@/components/FirstTimeDealPopup'
 import { waMessage } from '@/lib/whatsapp'
 import { getDictionary } from '@/lib/dictionaries'
 import type { Dictionary } from '@/dictionaries/types'
@@ -231,6 +232,22 @@ export default async function Home({ params }: Props) {
       {/* Backbone reveal — homepage only. Fixed overlay, so it covers the header too
           despite living inside <main>. Plays once per session, then unmounts. */}
       <Preloader homePath={pathFor(locale, '/')} />
+
+      {/* "First time deal!" pop-up, homepage only (client request, 2026-09-10). No price, no
+          bundle in the box: it is a call to action that sends the visitor to /offers. Opens
+          a few seconds after the preloader, once per session; renders nothing until then. */}
+      <FirstTimeDealPopup
+        href={pathFor(locale, '/offers')}
+        copy={{
+          badge: dict.page.offerPopupBadge,
+          heading: dict.page.offerPopupHeading,
+          body: dict.page.offerPopupBody,
+          cta: dict.page.offerPopupCta,
+          later: dict.page.offerPopupLater,
+          close: dict.page.offerPopupClose,
+          imageAlt: dict.page.heroSlideSpineModelAlt,
+        }}
+      />
 
       <JsonLd data={faqSchema(homeFaqs)} />
 

@@ -93,6 +93,20 @@ export type Dictionary = {
     offersLearnMore: string
     offersCtaHeading: string
     offersCtaBody: string
+    /**
+     * Homepage "First time deal!" pop-up (components/FirstTimeDealPopup.tsx). A call to
+     * action pointing at /offers; it carries NO price and names NO bundle, at the client's
+     * request (2026-09-10). "First time deal!" is their wording for the badge.
+     */
+    offerPopupBadge: string
+    offerPopupHeading: string
+    offerPopupBody: string
+    /** The one button: goes to /offers. */
+    offerPopupCta: string
+    /** Text-only dismiss under the button. */
+    offerPopupLater: string
+    /** aria-label on the X. */
+    offerPopupClose: string
     whatWeHelpWith: string
     /** "Reasons people come in for {name}". */
     reasonsPeopleComeInFor: (name: string) => string

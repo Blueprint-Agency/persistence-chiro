@@ -79,6 +79,13 @@ const zh: Dictionary = {
     offersLearnMore: '了解更多',
     offersCtaHeading: '不确定哪一项适合你?',
     offersCtaBody: '把你的主要问题告诉我们,我们会建议哪项优惠合适,或者先单独做评估会更好。',
+    offerPopupBadge: '首次看诊优惠!',
+    offerPopupHeading: '第一次来?首次看诊更优惠。',
+    offerPopupBody:
+      '脊椎矫正加物理治疗,只有官网才有的价格。一则 WhatsApp 信息就能领取。',
+    offerPopupCta: '看看优惠',
+    offerPopupLater: '暂时不用',
+    offerPopupClose: '关闭',
     whatWeHelpWith: '我们能帮上忙的地方',
     reasonsPeopleComeInFor: (name) => `病患前来进行${name}的常见原因`,
     beingStraightWithYou: '坦白说',

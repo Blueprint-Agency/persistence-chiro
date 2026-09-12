@@ -42,6 +42,9 @@ export const CTA_EVENTS = {
   whatsapp: 'whatsapp_click',
   phone: 'phone_click',
   maps: 'maps_click',
+  // Internal link, so it is NOT classified by ctaEventFor below; the homepage pop-up
+  // (components/FirstTimeDealPopup.tsx) sends it itself. Added 2026-09-10.
+  offerPopup: 'offer_popup_click',
 } as const
 
 export type CtaEvent = (typeof CTA_EVENTS)[keyof typeof CTA_EVENTS]

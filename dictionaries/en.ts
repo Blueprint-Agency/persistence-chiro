@@ -69,6 +69,13 @@ const en: Dictionary = {
     offersCtaHeading: 'Not sure which one fits?',
     offersCtaBody:
       'Message us with your main concern and we will tell you which offer makes sense, or whether an assessment on its own is the better start.',
+    offerPopupBadge: 'First time deal!',
+    offerPopupHeading: 'New here? Pay less for your first visit.',
+    offerPopupBody:
+      'Chiro and physio together, at a price you will only find on this website. One WhatsApp message to claim it.',
+    offerPopupCta: 'Show me the deal',
+    offerPopupLater: 'Not now',
+    offerPopupClose: 'Close',
     whatWeHelpWith: 'What we help with',
     reasonsPeopleComeInFor: (name) => `Reasons people come in for ${name.toLowerCase()}`,
     beingStraightWithYou: 'Being straight with you',

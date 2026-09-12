@@ -75,6 +75,13 @@ const ms: Dictionary = {
     offersCtaHeading: 'Tak pasti yang mana satu?',
     offersCtaBody:
       'Mesej kami tentang masalah utama anda dan kami akan beritahu tawaran mana yang sesuai, atau sama ada penilaian sahaja lebih baik untuk permulaan.',
+    offerPopupBadge: 'Tawaran kali pertama!',
+    offerPopupHeading: 'Kali pertama? Bayar kurang untuk lawatan pertama anda.',
+    offerPopupBody:
+      'Kiropraktik dan fisioterapi sekali gus, pada harga yang hanya ada di laman web ini. Satu mesej WhatsApp sahaja untuk menuntutnya.',
+    offerPopupCta: 'Tunjukkan tawaran',
+    offerPopupLater: 'Bukan sekarang',
+    offerPopupClose: 'Tutup',
     whatWeHelpWith: 'Apa yang kami bantu',
     reasonsPeopleComeInFor: (name) => `Sebab orang datang untuk ${name.toLowerCase()}`,
     beingStraightWithYou: 'Berterus terang dengan anda',
