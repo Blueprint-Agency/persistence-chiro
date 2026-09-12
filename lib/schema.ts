@@ -236,6 +236,14 @@ export function medicalProcedureSchema(o: {
   howPerformed?: string
   /** e.g. 'Chiropractic', 'Physiotherapy' — the relevant medical specialty. */
   relevantSpecialty?: string
+  /**
+   * Per-visit prices from a service's `priceList` (lib/services.ts), as Offer nodes on the
+   * procedure itself rather than on the clinic entity: these are prices for THIS service,
+   * where `makesOffer` on the clinic carries the bundles that span several. `url` is the
+   * page anchor the figures render at, so an assistant citing a price can send someone to
+   * the block that states it.
+   */
+  offers?: { name: string; price: number; url: string }[]
 }) {
   return {
     '@context': 'https://schema.org',
@@ -246,6 +254,18 @@ export function medicalProcedureSchema(o: {
     procedureType: 'https://schema.org/NoninvasiveProcedure',
     ...(o.howPerformed ? { howPerformed: o.howPerformed } : {}),
     ...(o.relevantSpecialty ? { relevantSpecialty: o.relevantSpecialty } : {}),
+    ...(o.offers && o.offers.length
+      ? {
+          offers: o.offers.map((x) => ({
+            '@type': 'Offer',
+            name: x.name,
+            price: x.price,
+            priceCurrency: 'MYR',
+            availability: 'https://schema.org/InStock',
+            url: `${SITE_URL}${x.url}`,
+          })),
+        }
+      : {}),
     provider: { '@id': `${SITE_URL}/#clinic` },
   }
 }

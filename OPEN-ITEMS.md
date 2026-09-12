@@ -4,7 +4,7 @@ Work that is **blocked on a person, an asset or an access grant** — not on cod
 item below has its reasoning recorded in a comment next to the thing it governs; this file
 exists so the list can be found in one place instead of stumbled upon in four.
 
-Last updated **2026-09-09**, when `/offers` was built and "Locate Us" moved under About.
+Last updated **2026-09-12**, when the physiotherapy house call page was built (item 10).
 
 > Keep this file honest. When an item is resolved, delete it here *and* remove the
 > corresponding gate or comment in the code. A stale blocker is worse than no list.
@@ -325,3 +325,49 @@ Two questions, both cheap to answer:
 ⚠️ **`content.test.ts`'s "no answer is published on two routes" guard now iterates a registry
 of every published FAQ array, not a hardcoded pair.** If a fourth route ever renders FAQs, add
 its array to that list or the guard silently stops covering what it exists to cover.
+
+---
+
+## 10. Physiotherapy house call page — BUILT 2026-09-12, photography and two confirmations outstanding
+
+`/services/physiotherapy-house-call` is live in English only, in the Services menu directly
+after Physiotherapy, at the client's request (brief received 2026-09-10, facts confirmed
+2026-09-12). It carries a per-visit price list, the first on the site that is not a bundle
+(new `priceList` field on `Service`, rendered by `components/PriceList.tsx`, republished as
+Offer nodes on the page's MedicalProcedure schema, and linked from `/offers` under "Also
+priced on this site"). The client's poster is not used anywhere: its photograph is unlicensed
+stock of a male patient and the service is for women.
+
+**Client-confirmed facts, all on the page:** female patients only; initial assessment RM190,
+which includes the first hands-on session; follow-up RM180; package of 3 RM510 and package of
+5 RM840, both including the initial assessment and both valid six weeks; no travel charge
+within 10 km, quoted beyond; WhatsApp booking only; no physiotherapist named.
+
+**Deliberately NOT on the page, at the client's direction (2026-09-12):** the poster's weekday
+schedule (earliest 10:30 AM, last appointment Mon 6:30 PM, Tue/Thu/Fri 4:00 PM, no Wednesday).
+Do not add hours to this page; availability is settled on WhatsApp.
+
+**Not a ranking play.** Every house-call phrasing measured 0/mo in Malaysia in all three
+languages (Ubersuggest, locId 2458, 2026-09-10). The one term with data is `home physiotherapy
+price` at 50/mo, which is the target and why the fees lead the page.
+
+Outstanding:
+
+1. **Two wording calls to confirm with the clinic.** (a) The 10 km radius is assumed to be
+   measured from the clinic at Sunway Velocity; the poster does not say. (b) The coverage FAQ
+   gives "most of Cheras, Maluri and Ampang and the city centre" as a rough guide to what 10 km
+   reaches; that is a map estimate, not a clinic statement.
+2. **A real house-call photograph.** The hero and three of the four concern cards are stock composites,
+   so none carries the Cheras alt modifier (same rule as the dry needling and sports massage
+   images). Every real clinic frame shows a male patient, which is the wrong picture for this
+   service. One photograph of a physiotherapist with a female patient at home would replace the
+   hero and the OG card (`/og/physio-recurring.jpg`, generated from the current hero).
+3. **Does the client want the packages as cards on `/offers`?** They are linked from there,
+   not carded, because the cards on that page make a saving claim and carry a "website-only"
+   badge, and this rate card does neither. If the client wants cards, the two packages fit the
+   `Bundle` shape honestly (3 visits RM510 against RM550 separately; 5 visits RM840 against
+   RM910) and would need the service route to render more than one bundle per page.
+4. **zh/ms.** No record exists, so the page is absent in those locales and the language
+   switcher falls back to the homepage. Add one only with a measured keyword; none was found.
+5. Physiotherapist naming follows item 1; this page sets `practitionersWithheld` like the
+   physiotherapy page and should be un-gated with it.

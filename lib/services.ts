@@ -264,6 +264,46 @@ export type Service = {
    * would be the first thing to rot when a slug changes.
    */
   navBadge?: string
+  /**
+   * A per-visit price list, for a service sold by the visit rather than as a bundle.
+   *
+   * Built 2026-09-12 for the physiotherapy house call, whose fees came from the client as a
+   * poster: two per-visit prices, two packages and a travel rule. That is not the shape of a
+   * `Bundle` in lib/pricing.ts (one price, one struck-through total, one saving), and forcing
+   * it into one would have meant either inventing a compare-at figure the poster does not
+   * carry or splitting one service across two bundle cards. So it is its own block.
+   *
+   * SAME RULES AS lib/pricing.ts. Every figure is typed here, once, and rendered from here by
+   * <PriceList>; nothing is retyped into an FAQ answer or a section body except the headline
+   * number the hero lead needs. Numeric rows reach JSON-LD as Offer nodes on the page's
+   * MedicalProcedure, which is the AEO reason prices are published at all. The client's poster
+   * is never dropped onto the page as an image: the stock photograph on it is unlicensed and
+   * shows a male patient, and the service is for female patients.
+   *
+   * A row is either a fixed price (`price`, whole ringgit, formatted by `ringgit()`) or a
+   * `value` string for the one case that cannot be a number, travel beyond the free radius.
+   */
+  priceList?: {
+    /** Small caps label above the heading. */
+    eyebrow: string
+    /** The <h2>. */
+    heading: string
+    /** One or two sentences under it, on what the figures do and do not cover. */
+    intro: string
+    groups: readonly {
+      heading: string
+      rows: readonly (
+        | { label: string; price: number; note?: string; value?: never }
+        | { label: string; value: string; note?: string; price?: never }
+      )[]
+    }[]
+    /** The closer under the table: how the one unfixed figure gets settled. */
+    note: string
+    /** Label of the hero ghost button that jumps to this block. */
+    ctaLabel: string
+    /** One sentence for the "also priced" list on /offers. Figures only, no outcome. */
+    summary: string
+  }
   draft: boolean
 }
 
@@ -713,6 +753,7 @@ export const services: Service[] = [
       { href: '/services/sports-injury-rehabilitation', label: 'Sports injury and rehabilitation' },
       { href: '/services/dry-needling', label: 'Dry needling for muscle that stays tight' },
       { href: '/services/posture-correction', label: 'Posture correction for desk workers' },
+      { href: '/services/physiotherapy-house-call', label: 'Physiotherapy at home for female patients' },
       { href: '/what-to-expect', label: 'What to expect on your first visit' },
     ],
     practitionersWithheld:
@@ -763,6 +804,248 @@ export const services: Service[] = [
         q: 'Are you open at weekends?',
         a: 'Yes, we are open seven days including Sunday. Saturday runs to 8pm and Sunday to 3pm, which is usually the easiest slot to get if weekdays are difficult. Monday to Thursday we are open until 8pm and Friday until 5pm.',
         links: [{ phrase: 'open seven days', href: '/locate-us' }],
+      },
+    ],
+    draft: false,
+  },
+  {
+    /**
+     * Physiotherapy house call. Built 2026-09-12 from the client's poster and their answers
+     * the same day. The facts, all client-confirmed:
+     *
+     *   - FEMALE PATIENTS ONLY. The poster's stock photograph shows a male patient; the
+     *     client said to ignore it. It is not used anywhere, and the alt text and copy on
+     *     this page say "female patients" plainly, with no reason given because none was.
+     *   - Initial assessment RM190, and it INCLUDES the first hands-on session. Follow-up
+     *     rehab RM180. Package of 3 RM510, package of 5 RM840, both valid six weeks and both
+     *     INCLUDING the initial assessment (so 1 + 2 visits and 1 + 4 visits).
+     *   - Travel: no charge within 10 km, "upon quotation" beyond. The poster does not say
+     *     what the 10 km is measured from; the clinic is assumed and the copy says so.
+     *   - The poster carries a weekday schedule (earliest 10:30, last appointment Mon 6:30
+     *     PM, Tue/Thu/Fri 4:00 PM, no Wednesday). THE CLIENT SAID NOT TO MENTION IT. Nothing
+     *     on this page states hours for house calls; availability is settled on WhatsApp.
+     *   - No physiotherapist is named (client, and item 1 in OPEN-ITEMS.md anyway).
+     *   - Booking is WhatsApp only. SweetPew does not take house calls.
+     *
+     * NOT A RANKING PLAY. Every house-call phrasing measured 0/mo in Malaysia (Ubersuggest,
+     * locId 2458, pulled 2026-09-10) in all three languages; the only term with data is
+     * "home physiotherapy price" at 50/mo, which is why that is the target and why the fees
+     * are the most prominent thing on the page. It exists to convert and to give assistants a
+     * URL that answers "does Persistence do home visits". Its intent (someone who cannot get to
+     * a clinic) is distinct from "physio cheras" (someone choosing a clinic to walk into), so
+     * it does not split the physiotherapy page's query.
+     *
+     * ENGLISH ONLY. No zh/ms record, because there is no zh/ms keyword to target and no
+     * reviewed copy; the page is simply absent in those locales, the same gate everything
+     * else uses.
+     *
+     * THE HERO AND THREE OF THE FOUR CONCERN CARDS ARE STOCK COMPOSITES, NOT THIS CLINIC, so
+     * their alt text carries no location, per the rule recorded on the dry needling outcomes.
+     * The taping card is a real clinic frame and keeps the modifier. Every real frame with a
+     * visible patient shows a man, which is the wrong picture for a female-only service, and
+     * the OG card is cropped from the stock hero for the same reason: the alternative was the
+     * shopfront card, a building, for a service that happens at the patient's home. A real
+     * house-call photograph would replace both; see OPEN-ITEMS.md item 10.
+     */
+    slug: 'physiotherapy-house-call',
+    title: 'Physiotherapy House Call in Cheras, Kuala Lumpur',
+    metaTitle: 'Home Physio House Call in Cheras, KL',
+    metaDescription:
+      'Physiotherapy at home for female patients around Cheras and Kuala Lumpur. Initial assessment RM190, follow-up RM180, no travel fee within 10 km of the clinic.',
+    targetKeyword: 'home physiotherapy price',
+    intro:
+      'A physiotherapist comes to you. For female patients around Cheras and Kuala Lumpur who cannot easily get to the clinic, the assessment, the hands-on care and the rehab all happen at home.',
+    heroImage: {
+      src: '/img/physio-recurring.webp',
+      alt: 'Clinician resting a hand on the shoulder of a seated older woman during an assessment',
+    },
+    ogImage: '/og/physio-recurring.jpg',
+    midImage: {
+      src: '/img/physio-tailored-exercise.webp',
+      alt: 'Woman working through a resistance band exercise while a therapist holds the other end of the band',
+    },
+    /** All three are stated and priced further down; this only moves them into the fold. */
+    assurances: [
+      'For female patients, in your own home',
+      'No travel charge within 10 km of the clinic',
+      'First visit RM190, assessment and hands-on care together',
+    ],
+    outcomes: [
+      {
+        text: 'Getting to a clinic has become the hardest part of the problem',
+        image: {
+          src: '/img/physio-weakness.webp',
+          alt: 'Illustration of ankle pain lit up on a woman seated at a desk with her feet on the floor',
+        },
+      },
+      {
+        text: 'Everyday tasks at home have turned painful or unsteady',
+        image: {
+          src: '/img/post-house-chores.webp',
+          alt: 'Woman kneeling on the floor with her head resting on a full laundry basket',
+        },
+      },
+      {
+        text: 'The early weeks after surgery or a fall, when rehab matters most',
+        // The one real clinic frame on this page, so this alt keeps the local modifier.
+        image: {
+          src: '/img/rehab-ankle.webp',
+          alt: 'Practitioner applying kinesiology tape to a patient lower leg at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
+        },
+      },
+      {
+        text: 'Exercises you would rather learn in your own space, with your own furniture',
+        image: {
+          src: '/img/physio-tailored-exercise.webp',
+          alt: 'Woman working through a resistance band exercise while a therapist holds the other end of the band',
+        },
+      },
+    ],
+    qualifierConcerns: [
+      'Getting to a clinic is difficult for me right now',
+      'I am recovering at home after surgery or a hospital stay',
+      'I am booking for my mother or another older relative',
+      'Everyday tasks at home have become painful or unsteady',
+      'I would like to know if my address is within the 10 km area',
+      { label: 'I have a question before I book', icon: 'question' },
+    ],
+    fitCheck: {
+      rightFor: [
+        'You are a female patient, or booking for one, and getting to the clinic is the obstacle.',
+        'You want the first visit to be an assessment of how you actually move at home.',
+        'You are willing to do a small exercise programme between visits, using what you have at home.',
+        'You would rather be told a clinic visit or a doctor is the better next step than have us press on regardless.',
+      ],
+      notRightFor: [
+        'You are booking for a male patient. House calls are for female patients; the same physiotherapy is available to everyone at the clinic in Cheras.',
+        'You are well beyond 10 km from the clinic and want a fixed travel fee before talking to us. Beyond 10 km we quote per address.',
+        'You want a chiropractic adjustment or an X-ray at home. Both need the clinic.',
+        'You are looking for a relaxation massage rather than clinical rehabilitation.',
+      ],
+      note: 'None of that closes the door. It usually means the clinic is the better place to start, or that one message will settle the travel question before you commit to anything. Send us your area and your main concern and we will tell you which it is.',
+    },
+    sections: [
+      {
+        heading: 'Physiotherapy house call in Cheras',
+        /**
+         * ANSWER FIRST, same as the physiotherapy lead: this is the hero paragraph and the
+         * first thing a visitor and an answer engine both read, so it settles who it is for,
+         * where it reaches and what the first visit costs before describing anything.
+         */
+        body: 'Physiotherapy at home, for female patients, from our clinic in Cheras beside Sunway Velocity. If getting to us is the hard part right now, whether after surgery, after a fall, or because travel is simply too much at the moment, a physiotherapist comes to you instead. The first visit is an assessment and a hands-on session in the same appointment, RM190, with no travel charge within 10 km of the clinic. Book on WhatsApp and we confirm the rest.',
+      },
+      {
+        heading: 'Message us on WhatsApp',
+        body: 'Tell us roughly where you are, what the problem is and which days suit. We confirm whether your address is within the 10 km no-charge radius from the clinic, or quote the travel fee first, so there is no surprise on the day.',
+      },
+      {
+        heading: 'The first visit is an assessment',
+        body: 'The physiotherapist takes a history, asks what makes things better or worse and what you need to get back to, then looks at how you move in your own space: the chair you sit in, the bed you get out of, the stairs you use. That is often more useful than a clinic room, because the problem is usually happening at home.',
+      },
+      {
+        heading: 'Hands-on care in the same visit',
+        body: 'Once we know what is driving the problem, the first hands-on work happens in the same appointment rather than at a second one. Expect joint mobilisation, soft tissue work and the first one or two exercises, explained so you can repeat them when we are not there.',
+      },
+      {
+        heading: 'Follow-up rehab visits',
+        body: 'Follow-ups build the strength and control around the problem, using what you already have at home. The physiotherapist brings any small equipment a session needs. Progress is reviewed each visit and the plan adjusts as you improve, rather than running to a fixed count.',
+      },
+      {
+        heading: 'When a clinic visit makes more sense',
+        body: 'Some things cannot be done at home, such as an X-ray or a chiropractic assessment. If the physiotherapist thinks you would do better in the clinic, or with a doctor first, they will say so and help arrange it. You can move to clinic visits at any point once travelling becomes manageable.',
+      },
+    ],
+    priceList: {
+      eyebrow: 'House call fees',
+      heading: 'What a physiotherapy house call costs',
+      intro:
+        'Every figure here is the full price for that visit. The only thing not fixed is travel beyond 10 km, which we quote before anything is booked.',
+      groups: [
+        {
+          heading: 'Per visit',
+          rows: [
+            {
+              label: 'Initial assessment',
+              price: 190,
+              note: 'Assessment and the first hands-on session in the same visit',
+            },
+            { label: 'Follow-up rehab visit', price: 180 },
+          ],
+        },
+        {
+          heading: 'Packages',
+          rows: [
+            {
+              label: 'Package of 3',
+              price: 510,
+              note: 'Initial assessment plus two follow-up visits. Valid for six weeks.',
+            },
+            {
+              label: 'Package of 5',
+              price: 840,
+              note: 'Initial assessment plus four follow-up visits. Valid for six weeks.',
+            },
+          ],
+        },
+        {
+          heading: 'Travel',
+          rows: [
+            { label: 'Within 10 km of the clinic', value: 'No charge' },
+            { label: '10 km onwards', value: 'Quoted per address' },
+          ],
+        },
+      ],
+      note: 'Distance is measured from the clinic at Sunway Velocity, Cheras. Message us your area on WhatsApp and we confirm the travel fee, if any, before the visit is booked.',
+      ctaLabel: 'See house call fees',
+      summary:
+        'Initial assessment RM190, follow-up RM180, and packages of three (RM510) or five (RM840) that include the assessment. For female patients, with no travel charge within 10 km of the clinic.',
+    },
+    helpsWith: ['back-pain', 'sciatica', 'slipped-disc', 'neck-pain', 'hip-pain'],
+    relatedLinks: [
+      { href: '/services/physiotherapy', label: 'Physiotherapy at the clinic in Cheras' },
+      { href: '/offers', label: 'Website-only offers' },
+      { href: '/what-to-expect', label: 'What to expect on a first visit' },
+    ],
+    practitionersWithheld:
+      'Same instruction as the physiotherapy page (client, 2026-08-08): the physiotherapists are within probation and are not to be named yet, and the client repeated on 2026-09-12 that this page should not say which physio makes the house calls. Chiropractors are not licensed to deliver physiotherapy, so a section headed "Meet your chiropractors" here would name the wrong profession. Remove this field together with the one on the physiotherapy record once the roster can be published.',
+    faqs: [
+      {
+        q: 'Who can book a physiotherapy house call?',
+        a: 'House calls are for female patients. You can book for yourself or on behalf of someone else, such as a parent, as long as the patient herself is happy to be seen at home. Male patients are welcome at the clinic in Cheras, where the same physiotherapists work.',
+        links: [{ phrase: 'the clinic in Cheras', href: '/services/physiotherapy' }],
+      },
+      {
+        q: 'Which areas do you cover?',
+        a: 'Anywhere within 10 km of the clinic at Sunway Velocity is covered with no travel charge. As a rough guide that reaches most of Cheras, Maluri and Ampang and the city centre. Beyond 10 km we still come, but the travel fee is quoted per address before the visit is confirmed, so send us your area first and we will check.',
+      },
+      {
+        q: 'How much does a physiotherapy house call cost?',
+        a: 'The initial assessment is RM190 and includes the first hands-on session in the same visit. Follow-up rehab visits are RM180 each. If you know you will need a run of visits, a package of three is RM510 and a package of five is RM840, both including the initial assessment and both valid for six weeks. Travel within 10 km of the clinic is free; beyond that it is quoted before you book.',
+      },
+      {
+        q: 'What happens on the first visit?',
+        a: 'Mostly assessment. The physiotherapist takes a history, asks what makes the problem better or worse and what you need to get back to, then watches how you move in your own space: getting out of the chair you actually sit in, walking the corridor you actually use. Hands-on care follows in the same visit, along with the first one or two exercises. Allow about an hour.',
+      },
+      {
+        q: 'Do I need any equipment at home?',
+        a: 'No. The physiotherapist brings what a session needs. It helps to have a firm chair and a bit of clear floor space, and to wear something you can move in. If a simple item such as a resistance band would help your exercises between visits, we will tell you exactly what to get.',
+      },
+      {
+        q: 'How do the packages work?',
+        a: 'A package of three covers the initial assessment and two follow-up visits. A package of five covers the assessment and four follow-ups. Both are valid for six weeks from the first visit, which is enough for weekly visits with room for a reschedule. If you are not sure how many you will need, start with the initial assessment on its own and decide after it.',
+      },
+      {
+        q: 'Can I switch to clinic visits later?',
+        a: 'Yes, at any point. Some people start at home because the first weeks after surgery or a fall are the hard part, then come to the clinic once travelling is manageable. Anything that needs the clinic, such as an X-ray or a chiropractic assessment, is arranged there.',
+        links: [{ phrase: 'chiropractic assessment', href: '/services/chiropractic-care' }],
+      },
+      {
+        q: 'Do I need a doctor referral?',
+        a: 'No referral is needed. If the physiotherapist thinks you need imaging or a medical opinion first, they will say so at the assessment and help you arrange it rather than carry on regardless.',
+      },
+      {
+        q: 'How do I book a house call?',
+        a: 'On WhatsApp. Tell us the area, roughly what the problem is and which days suit, and we reply with availability and confirm whether any travel fee applies. There is no online form for house calls, because the address and the timing need a quick conversation.',
       },
     ],
     draft: false,

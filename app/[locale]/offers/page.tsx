@@ -9,8 +9,9 @@ import { LOCALES, isLocale, pathFor, shortTitle, type Locale } from '@/lib/i18n'
 import { pathExistsIn } from '@/lib/locale-availability'
 import { getDictionary } from '@/lib/dictionaries'
 import { publishedBundlesFor, ringgit } from '@/lib/pricing'
-import { serviceBySlugFor } from '@/lib/services'
+import { publishedServicesFor, serviceBySlugFor } from '@/lib/services'
 import { BundleOffer } from '@/components/BundleOffer'
+import { PRICE_LIST_ANCHOR } from '@/components/PriceList'
 import { CtaBand, Eyebrow, GhostButton, PageHero } from '@/components/ui'
 import { waMessage } from '@/lib/whatsapp'
 
@@ -50,16 +51,27 @@ const copyFor = (locale: Locale) =>
       title: 'Website-Only Offers, Cheras KL',
       lead: 'Two offers you can only get by booking through the Persistence Chiropractic Care website in Cheras, Maluri.',
       close: 'Message us on WhatsApp to claim one.',
+      alsoPriced: 'Also priced on this site',
+      alsoPricedBody:
+        'Not an offer, and not website-only: a service sold by the visit, with its fees published in full on its own page.',
+      seeFees: 'See the fees',
     },
     zh: {
       title: 'Cheras, KL 官网专属优惠',
       lead: '两项只在 Cheras, Maluri 的 Persistence Chiropractic Care 官网预约才享有的优惠。',
       close: '通过 WhatsApp 联系我们即可领取。',
+      alsoPriced: '本站其他已公布的收费',
+      alsoPricedBody: '这不是优惠,也不限官网:按次收费的服务,收费在其页面上完整公布。',
+      seeFees: '查看收费',
     },
     ms: {
       title: 'Tawaran Khas Laman Web, Cheras KL',
       lead: 'Dua tawaran yang hanya boleh didapati bila anda menempah melalui laman web Persistence Chiropractic Care di Cheras, Maluri.',
       close: 'Mesej kami di WhatsApp untuk menuntutnya.',
+      alsoPriced: 'Yuran lain yang diterbitkan di laman ini',
+      alsoPricedBody:
+        'Bukan tawaran dan bukan khas laman web: perkhidmatan yang dicaj mengikut lawatan, dengan yurannya diterbitkan penuh di halamannya sendiri.',
+      seeFees: 'Lihat yuran',
     },
   })[locale]
 
@@ -91,6 +103,12 @@ export default async function OffersPage({ params }: Props) {
   const locale = rawLocale
   const dict = await getDictionary(locale)
   const bundles = publishedBundlesFor(locale)
+  // Services priced by the visit (`priceList` on lib/services.ts). Not offers, so they are
+  // not cards here and not in the CollectionPage list; they get a link so this page stays the
+  // one place every published price can be reached from. Empty in a locale where no such
+  // service exists, and the section then does not render.
+  const pricedServices = publishedServicesFor(locale).filter((s) => s.priceList)
+  const copy = copyFor(locale)
 
   const steps = [
     { title: dict.page.offersStep1Title, body: dict.page.offersStep1Body },
@@ -175,6 +193,34 @@ export default async function OffersPage({ params }: Props) {
           </div>
         )
       })}
+
+      {/* ------------------------------------------------------- Also priced */}
+      {/* Added 2026-09-12 with the physiotherapy house call, the first service with a
+          per-visit price list. A link rather than a card, deliberately: the cards on this page
+          make a saving claim and carry a "website-only" badge, and a rate card that does
+          neither would read as a third offer it is not. */}
+      {pricedServices.length > 0 && (
+        <section className="mx-auto mt-16 max-w-6xl px-4 lg:mt-24">
+          <Eyebrow>{copy.alsoPriced}</Eyebrow>
+          <p className="mt-5 max-w-2xl leading-relaxed text-ink-muted">{copy.alsoPricedBody}</p>
+          <ul className="mt-8 grid gap-6 md:grid-cols-2">
+            {pricedServices.map((s) => (
+              <li
+                key={s.slug}
+                className="flex flex-col rounded-3xl border border-line bg-white p-8 shadow-ambient"
+              >
+                <h2 className="text-xl font-bold">{shortTitle(locale, s.title)}</h2>
+                <p className="mt-3 flex-1 leading-relaxed text-ink-muted">{s.priceList!.summary}</p>
+                <div className="mt-6">
+                  <GhostButton href={`${pathFor(locale, `/services/${s.slug}`)}#${PRICE_LIST_ANCHOR}`}>
+                    {copy.seeFees}
+                  </GhostButton>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       {/* ---------------------------------------------------------- How to claim */}
       {/* Three steps, and the third is the only one that says anything about the counter: the

@@ -165,6 +165,20 @@ test('no promissory medical claims in published copy', () => {
             ...(m.fitCheck
               ? [...m.fitCheck.rightFor, ...m.fitCheck.notRightFor, m.fitCheck.note]
               : []),
+            // The per-visit price list renders prose around its figures, and its `summary`
+            // is republished on /offers, so both clear the same guard.
+            ...(m.priceList
+              ? [
+                  m.priceList.heading,
+                  m.priceList.intro,
+                  m.priceList.note,
+                  m.priceList.summary,
+                  ...m.priceList.groups.flatMap((g) => [
+                    g.heading,
+                    ...g.rows.flatMap((r) => [r.label, r.note ?? '']),
+                  ]),
+                ]
+              : []),
           ].join(' '),
         ] as [string, string],
     ),

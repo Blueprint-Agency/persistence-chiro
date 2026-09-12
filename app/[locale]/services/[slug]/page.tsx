@@ -37,6 +37,7 @@ import { ServiceQualifier } from '@/components/ServiceQualifier'
 import { waMessage } from '@/lib/whatsapp'
 import { bundleForService, ringgit, savingPercent } from '@/lib/pricing'
 import { BUNDLE_ANCHOR, BundleOffer } from '@/components/BundleOffer'
+import { PRICE_LIST_ANCHOR, PriceList } from '@/components/PriceList'
 
 const reviewer = practitionerBySlug('valerie-na')!
 
@@ -80,6 +81,9 @@ export default async function ServicePage({ params }: Props) {
 
   // Undefined unless this service has a live bundle in this locale. See lib/pricing.ts.
   const bundle = bundleForService(locale, service.slug)
+  // A per-visit price list, the other shape a price takes here. See `priceList` on the type.
+  const priceList = service.priceList
+  const pagePath = `/services/${service.slug}`
 
   const helpsWith = service.helpsWith
     .map((s) => conditionBySlugFor(locale, s))
@@ -96,8 +100,22 @@ export default async function ServicePage({ params }: Props) {
         data={medicalProcedureSchema({
           name: service.title,
           description: service.metaDescription,
-          url: pathFor(locale, `/services/${service.slug}`),
+          url: pathFor(locale, pagePath),
           howPerformed: lead?.body,
+          // Fixed-price rows only; a "quoted per address" travel row has no price to state.
+          offers: priceList?.groups.flatMap((g) =>
+            g.rows.flatMap((r) =>
+              r.price !== undefined
+                ? [
+                    {
+                      name: `${shortTitle(locale, service.title)}: ${r.label}`,
+                      price: r.price,
+                      url: `${pathFor(locale, pagePath)}#${PRICE_LIST_ANCHOR}`,
+                    },
+                  ]
+                : [],
+            ),
+          ),
         })}
       />
       {/* reviewedBy + lastReviewed — the E-E-A-T signals for a YMYL page. */}
@@ -147,7 +165,9 @@ export default async function ServicePage({ params }: Props) {
                 href: `#${BUNDLE_ANCHOR}`,
                 label: dict.page.bundleHeroCta(`${savingPercent(bundle)}%`),
               }
-            : undefined
+            : priceList
+              ? { href: `#${PRICE_LIST_ANCHOR}`, label: priceList.ctaLabel }
+              : undefined
         }
       />
 
@@ -248,6 +268,13 @@ export default async function ServicePage({ params }: Props) {
             bundle={bundle}
             message={waMessage.bundle(locale, bundle.name, ringgit(bundle.price))}
           />
+        </div>
+      )}
+      {/* Same slot, same reasoning, for a service priced by the visit. Data lives on the
+          service record rather than in lib/pricing.ts; see `priceList` on the type. */}
+      {priceList && (
+        <div className="my-16 lg:my-24">
+          <PriceList dict={dict} data={priceList} message={waMessage.service(locale, shortName)} />
         </div>
       )}
 
