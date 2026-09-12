@@ -6,6 +6,14 @@ const nextConfig: NextConfig = {
   // .mdx so blog posts can live at app/blog/<slug>/page.mdx and get routing for free.
   pageExtensions: ["ts", "tsx", "mdx"],
 
+  images: {
+    // Next 16 allows only the qualities listed here and silently coerces any other
+    // `quality` prop to the nearest one (default: 75 alone). 85 is the service hero
+    // (components/service.tsx), the one image on those pages a visitor looks at rather
+    // than past. Add a value here before using it in a component, or it will not apply.
+    qualities: [75, 85],
+  },
+
   turbopack: {
     // Pin the workspace root. There is an unrelated package-lock.json in the user's home
     // directory, and Turbopack's multi-lockfile heuristic walks up and picks that one —
