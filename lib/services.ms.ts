@@ -1129,4 +1129,214 @@ export const servicesMs: Service[] = [
       'Sports massage and shockwave are delivered by either a chiropractor or a physiotherapist depending on the presentation (client, 2026-09-03), and the physiotherapists cannot be named while they are within their probation period. Naming only the chiropractors here would imply they are the only people who deliver this.',
     draft: false,
   },
+  {
+    /**
+     * Direct translation of the English record, per the client's rule of 2026-09-12: every
+     * house-call phrasing measured 0 in Malay (fisioterapi di rumah, fisioterapi ke rumah,
+     * physio ke rumah; Ubersuggest, locId 2458, 2026-09-10), so there is no better keyword to
+     * prefer. Facts, prices and the female-only scope are the English record's; see its comment
+     * for their provenance. The poster's weekday schedule is deliberately not rendered here.
+     *
+     * TITLE SHAPE: `shortTitle('ms', ...)` splits on the first " di ", so the title must not
+     * read "Fisioterapi di Rumah di Cheras..." or the nav row would collapse to "Fisioterapi",
+     * the same label as the physiotherapy page.
+     */
+    slug: 'physiotherapy-house-call',
+    title: 'Fisioterapi Panggilan ke Rumah di Cheras, Kuala Lumpur',
+    metaTitle: 'Fisioterapi di Rumah, Cheras KL',
+    metaDescription:
+      'Fisioterapi di rumah untuk pesakit wanita sekitar Cheras dan Kuala Lumpur. Penilaian awal RM190, lawatan susulan RM180, tiada caj perjalanan dalam 10 km dari klinik.',
+    targetKeyword: 'fisioterapi di rumah',
+    intro:
+      'Ahli fisioterapi datang kepada anda. Untuk pesakit wanita sekitar Cheras dan Kuala Lumpur yang sukar untuk ke klinik, penilaian, jagaan secara tangan dan pemulihan semuanya berlaku di rumah.',
+    heroImage: {
+      src: '/img/physio-house-call-hero.webp',
+      alt: 'Ahli fisioterapi berdiri di belakang seorang wanita yang duduk di rumah, tangan di bahunya, sementara wanita itu memegang jalur rintangan di hadapannya',
+    },
+    ogImage: '/og/physio-house-call.jpg',
+    midImage: {
+      src: '/img/physio-house-call-rehab.webp',
+      alt: 'Ahli fisioterapi melutut di sebelah seorang wanita di atas tikar senaman di ruang tamu, membimbingnya melakukan senaman bridge',
+    },
+    assurances: [
+      'Untuk pesakit wanita, di rumah anda sendiri',
+      'Tiada caj perjalanan dalam 10 km dari klinik',
+      'Lawatan pertama RM190, penilaian dan jagaan secara tangan sekali gus',
+    ],
+    outcomes: [
+      {
+        text: 'Pergi ke klinik telah menjadi bahagian paling sukar dalam masalah ini',
+        image: {
+          src: '/img/physio-weakness.webp',
+          alt: 'Ilustrasi sakit pergelangan kaki yang menyala pada seorang wanita duduk di meja dengan kaki di lantai',
+        },
+      },
+      {
+        text: 'Kerja harian di rumah telah menjadi menyakitkan atau tidak stabil',
+        image: {
+          src: '/img/post-house-chores.webp',
+          alt: 'Seorang wanita melutut di lantai dengan kepala bersandar pada bakul dobi yang penuh',
+        },
+      },
+      {
+        text: 'Minggu-minggu awal selepas pembedahan atau terjatuh, ketika pemulihan paling penting',
+        image: {
+          src: '/img/rehab-ankle.webp',
+          alt: 'Pengamal melekatkan pita kinesiologi pada bahagian bawah kaki pesakit di Persistence Chiropractic Care, Cheras, Kuala Lumpur',
+        },
+      },
+      {
+        text: 'Senaman yang anda lebih suka pelajari di ruang sendiri, dengan perabot sendiri',
+        image: {
+          src: '/img/physio-house-call-rehab.webp',
+          alt: 'Ahli fisioterapi melutut di sebelah seorang wanita di atas tikar senaman di ruang tamu, membimbingnya melakukan senaman bridge',
+        },
+      },
+    ],
+    qualifierConcerns: [
+      'Sukar untuk saya ke klinik sekarang',
+      'Saya sedang pulih di rumah selepas pembedahan atau dimasukkan ke hospital',
+      'Saya menempah untuk ibu saya atau saudara yang lebih tua',
+      'Kerja harian di rumah telah menjadi menyakitkan atau tidak stabil',
+      'Saya ingin tahu sama ada alamat saya dalam kawasan 10 km',
+      { label: 'Saya ada soalan sebelum menempah', icon: 'question' },
+    ],
+    fitCheck: {
+      rightFor: [
+        'Anda pesakit wanita, atau menempah untuk seorang, dan pergi ke klinik ialah halangannya.',
+        'Anda mahu lawatan pertama menjadi penilaian cara anda sebenarnya bergerak di rumah.',
+        'Anda sanggup melakukan program senaman kecil antara lawatan, menggunakan apa yang ada di rumah.',
+        'Anda lebih suka diberitahu bahawa lawatan klinik atau doktor ialah langkah seterusnya yang lebih baik, daripada kami meneruskan begitu sahaja.',
+      ],
+      notRightFor: [
+        'Anda menempah untuk pesakit lelaki. Panggilan ke rumah adalah untuk pesakit wanita; fisioterapi yang sama tersedia untuk semua orang di klinik di Cheras.',
+        'Anda jauh melebihi 10 km dari klinik dan mahukan caj perjalanan tetap sebelum bercakap dengan kami. Melebihi 10 km kami memberi sebut harga mengikut alamat.',
+        'Anda mahukan pelarasan kiropraktik atau X-ray di rumah. Kedua-duanya memerlukan klinik.',
+        'Anda mencari urutan santai dan bukan pemulihan klinikal.',
+      ],
+      note: 'Tiada satu pun daripada itu menutup pintu. Ia biasanya bermakna klinik ialah tempat yang lebih baik untuk bermula, atau satu mesej sahaja akan menyelesaikan soal perjalanan sebelum anda membuat sebarang keputusan. Hantar kawasan anda dan kebimbangan utama anda kepada kami dan kami akan beritahu yang mana satu.',
+    },
+    sections: [
+      {
+        heading: 'Fisioterapi panggilan ke rumah di Cheras',
+        body: 'Fisioterapi di rumah, untuk pesakit wanita, dari klinik kami di Cheras bersebelahan Sunway Velocity. Jika datang kepada kami ialah bahagian yang sukar sekarang, sama ada selepas pembedahan, selepas terjatuh, atau kerana perjalanan terlalu membebankan buat masa ini, ahli fisioterapi datang kepada anda. Lawatan pertama ialah penilaian dan sesi secara tangan dalam temu janji yang sama, RM190, tanpa caj perjalanan dalam 10 km dari klinik. Tempah di WhatsApp dan kami sahkan selebihnya.',
+      },
+      {
+        heading: 'Mesej kami di WhatsApp',
+        body: 'Beritahu kami di mana anda berada secara kasar, apa masalahnya dan hari mana yang sesuai. Kami sahkan sama ada alamat anda dalam radius 10 km tanpa caj dari klinik, atau memberi sebut harga perjalanan dahulu, supaya tiada kejutan pada hari tersebut.',
+      },
+      {
+        heading: 'Lawatan pertama ialah penilaian',
+        body: 'Ahli fisioterapi mengambil sejarah kesihatan, bertanya apa yang memburukkan atau meredakan keadaan dan apa yang anda perlu kembali lakukan, kemudian melihat cara anda bergerak di ruang anda sendiri: kerusi yang anda duduki, katil yang anda bangun daripadanya, tangga yang anda gunakan. Itu selalunya lebih berguna daripada bilik klinik, kerana masalah itu biasanya berlaku di rumah.',
+      },
+      {
+        heading: 'Jagaan secara tangan dalam lawatan yang sama',
+        body: 'Sebaik sahaja kami tahu apa yang mendorong masalah itu, kerja secara tangan yang pertama berlaku dalam temu janji yang sama dan bukan pada temu janji kedua. Jangkakan mobilisasi sendi, kerja tisu lembut dan satu atau dua senaman pertama, diterangkan supaya anda boleh mengulanginya apabila kami tiada di situ.',
+      },
+      {
+        heading: 'Lawatan susulan pemulihan',
+        body: 'Susulan membina kekuatan dan kawalan di sekeliling masalah itu, menggunakan apa yang sudah ada di rumah. Ahli fisioterapi membawa apa-apa peralatan kecil yang diperlukan sesi itu. Kemajuan disemak setiap lawatan dan pelan disesuaikan apabila anda bertambah baik, bukan mengikut bilangan yang tetap.',
+      },
+      {
+        heading: 'Bila lawatan klinik lebih masuk akal',
+        body: 'Sesetengah perkara tidak boleh dilakukan di rumah, seperti X-ray atau penilaian kiropraktik. Jika ahli fisioterapi berpendapat anda akan lebih baik di klinik, atau berjumpa doktor dahulu, mereka akan berkata begitu dan membantu mengaturkannya. Anda boleh bertukar kepada lawatan klinik pada bila-bila masa sebaik sahaja perjalanan menjadi mudah.',
+      },
+    ],
+    priceList: {
+      eyebrow: 'Yuran panggilan ke rumah',
+      heading: 'Kos fisioterapi panggilan ke rumah',
+      intro:
+        'Setiap angka di sini ialah harga penuh untuk lawatan itu. Satu-satunya perkara yang tidak tetap ialah perjalanan melebihi 10 km, yang kami beri sebut harga sebelum apa-apa ditempah.',
+      groups: [
+        {
+          heading: 'Setiap lawatan',
+          rows: [
+            {
+              label: 'Penilaian awal',
+              price: 190,
+              note: 'Penilaian dan sesi secara tangan yang pertama dalam lawatan yang sama',
+            },
+            { label: 'Lawatan susulan pemulihan', price: 180 },
+          ],
+        },
+        {
+          heading: 'Pakej',
+          rows: [
+            {
+              label: 'Pakej 3 lawatan',
+              price: 510,
+              note: 'Penilaian awal dan dua lawatan susulan. Sah selama enam minggu.',
+            },
+            {
+              label: 'Pakej 5 lawatan',
+              price: 840,
+              note: 'Penilaian awal dan empat lawatan susulan. Sah selama enam minggu.',
+            },
+          ],
+        },
+        {
+          heading: 'Perjalanan',
+          rows: [
+            { label: 'Dalam 10 km dari klinik', value: 'Tiada caj' },
+            { label: '10 km ke atas', value: 'Sebut harga mengikut alamat' },
+          ],
+        },
+      ],
+      note: 'Jarak diukur dari klinik di Sunway Velocity, Cheras. Mesej kawasan anda kepada kami di WhatsApp dan kami sahkan caj perjalanan, jika ada, sebelum lawatan ditempah.',
+      ctaLabel: 'Lihat yuran panggilan ke rumah',
+      summary:
+        'Penilaian awal RM190, susulan RM180, dan pakej tiga (RM510) atau lima (RM840) lawatan yang merangkumi penilaian. Untuk pesakit wanita, tanpa caj perjalanan dalam 10 km dari klinik.',
+    },
+    helpsWith: ['back-pain', 'sciatica', 'slipped-disc', 'neck-pain', 'hip-pain'],
+    relatedLinks: [
+      { href: '/services/physiotherapy', label: 'Fisioterapi di klinik di Cheras' },
+      { href: '/offers', label: 'Tawaran khas laman web' },
+      { href: '/what-to-expect', label: 'Apa yang dijangka pada lawatan pertama' },
+    ],
+    practitionersWithheld:
+      'Same gate as the English record: the physiotherapists are within probation and are not to be named (client, 2026-08-08 and 2026-09-12), and chiropractors are not licensed to deliver physiotherapy. Remove together with the English and physiotherapy records once the roster can be published.',
+    faqs: [
+      {
+        q: 'Siapa boleh menempah fisioterapi panggilan ke rumah?',
+        a: 'Panggilan ke rumah adalah untuk pesakit wanita. Anda boleh menempah untuk diri sendiri atau bagi pihak orang lain, seperti ibu bapa, selagi pesakit itu sendiri selesa untuk dikunjungi di rumah. Pesakit lelaki dialu-alukan di klinik di Cheras, tempat ahli fisioterapi yang sama bekerja.',
+        links: [{ phrase: 'klinik di Cheras', href: '/services/physiotherapy' }],
+      },
+      {
+        q: 'Kawasan mana yang anda liputi?',
+        a: 'Mana-mana tempat dalam 10 km dari klinik di Sunway Velocity diliputi tanpa caj perjalanan. Sebagai panduan kasar itu merangkumi kebanyakan Cheras, Maluri dan Ampang serta pusat bandar. Melebihi 10 km kami tetap datang, tetapi caj perjalanan diberi sebut harga mengikut alamat sebelum lawatan disahkan, jadi hantar kawasan anda dahulu dan kami akan semak.',
+      },
+      {
+        q: 'Berapakah kos fisioterapi panggilan ke rumah?',
+        a: 'Penilaian awal ialah RM190 dan merangkumi sesi secara tangan yang pertama dalam lawatan yang sama. Lawatan susulan pemulihan RM180 setiap satu. Jika anda tahu anda akan memerlukan beberapa lawatan berturut-turut, pakej tiga lawatan ialah RM510 dan pakej lima lawatan ialah RM840, kedua-duanya merangkumi penilaian awal dan kedua-duanya sah selama enam minggu. Perjalanan dalam 10 km dari klinik adalah percuma; melebihi itu diberi sebut harga sebelum anda menempah.',
+      },
+      {
+        q: 'Apa yang berlaku pada lawatan pertama?',
+        a: 'Kebanyakannya penilaian. Ahli fisioterapi mengambil sejarah kesihatan, bertanya apa yang memburukkan atau meredakan masalah dan apa yang anda perlu kembali lakukan, kemudian memerhatikan cara anda bergerak di ruang anda sendiri: bangun dari kerusi yang anda sebenarnya duduki, berjalan di koridor yang anda sebenarnya gunakan. Jagaan secara tangan menyusul dalam lawatan yang sama, bersama satu atau dua senaman pertama. Peruntukkan kira-kira sejam.',
+      },
+      {
+        q: 'Perlukah saya ada peralatan di rumah?',
+        a: 'Tidak. Ahli fisioterapi membawa apa yang diperlukan sesi itu. Ia membantu jika ada kerusi yang kukuh dan sedikit ruang lantai yang kosong, dan memakai pakaian yang selesa untuk bergerak. Jika barang mudah seperti jalur rintangan akan membantu senaman anda antara lawatan, kami akan beritahu dengan tepat apa yang perlu dibeli.',
+      },
+      {
+        q: 'Bagaimana pakej berfungsi?',
+        a: 'Pakej tiga lawatan merangkumi penilaian awal dan dua lawatan susulan. Pakej lima lawatan merangkumi penilaian dan empat susulan. Kedua-duanya sah selama enam minggu dari lawatan pertama, yang mencukupi untuk lawatan mingguan dengan ruang untuk penjadualan semula. Jika anda tidak pasti berapa banyak yang anda perlukan, mulakan dengan penilaian awal sahaja dan putuskan selepas itu.',
+      },
+      {
+        q: 'Bolehkah saya bertukar kepada lawatan klinik kemudian?',
+        a: 'Ya, pada bila-bila masa. Sesetengah orang bermula di rumah kerana minggu-minggu pertama selepas pembedahan atau terjatuh ialah bahagian yang sukar, kemudian datang ke klinik sebaik sahaja perjalanan menjadi mudah. Apa-apa yang memerlukan klinik, seperti X-ray atau penilaian kiropraktik, diatur di sana.',
+        links: [{ phrase: 'penilaian kiropraktik', href: '/services/chiropractic-care' }],
+      },
+      {
+        q: 'Perlukah saya rujukan doktor?',
+        a: 'Tiada rujukan diperlukan. Jika ahli fisioterapi berpendapat anda memerlukan pengimejan atau pendapat perubatan dahulu, mereka akan berkata begitu semasa penilaian dan membantu anda mengaturkannya dan bukan meneruskan begitu sahaja.',
+      },
+      {
+        q: 'Bagaimana saya menempah panggilan ke rumah?',
+        a: 'Di WhatsApp. Beritahu kami kawasan, secara kasar apa masalahnya dan hari mana yang sesuai, dan kami membalas dengan ketersediaan dan mengesahkan sama ada sebarang caj perjalanan terpakai. Tiada borang dalam talian untuk panggilan ke rumah, kerana alamat dan masa memerlukan perbualan ringkas.',
+      },
+    ],
+    // Same standing as every other ms record: adapted from the English copy, not yet read by a
+    // Malay-speaking reviewer. Flip to `true` if that review is required first.
+    draft: false,
+  },
 ]

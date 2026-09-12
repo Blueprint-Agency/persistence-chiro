@@ -806,6 +806,37 @@ test('bundle prices are identical in every locale', () => {
   assert.deepEqual(mismatched, [], `bundle price drift: ${mismatched.join('; ')}`)
 })
 
+/**
+ * Same rule for the per-visit price list on a service record: the wording is translated, the
+ * figures are not. A house call that costs RM190 in English and something else in Malay is a
+ * different price, not a translation slip.
+ */
+test('price-list figures are identical in every locale', () => {
+  const figures = (s: (typeof services)[number]) =>
+    (s.priceList?.groups ?? [])
+      .flatMap((g) => g.rows.map((r) => (r.price !== undefined ? String(r.price) : `"${r.value}"`)))
+      .join(',')
+  const mismatched: string[] = []
+  for (const locale of LOCALES) {
+    if (locale === 'en') continue
+    for (const s of servicesFor(locale)) {
+      const source = services.find((e) => e.slug === s.slug)
+      if (!source) continue
+      if (Boolean(s.priceList) !== Boolean(source.priceList)) {
+        mismatched.push(`${locale} ${s.slug}: priceList present in one locale but not the other`)
+        continue
+      }
+      if (!s.priceList) continue
+      const a = figures(s)
+      const b = figures(source)
+      // Only the numeric rows must match; a `value` row is prose and is allowed to differ.
+      const numeric = (x: string) => x.split(',').filter((v) => !v.startsWith('"')).join(',')
+      if (numeric(a) !== numeric(b)) mismatched.push(`${locale} ${s.slug}: ${numeric(a)} vs en ${numeric(b)}`)
+    }
+  }
+  assert.deepEqual(mismatched, [], `price-list drift: ${mismatched.join('; ')}`)
+})
+
 /** Same contract `draft` has with `holdReason` in lib/posts.ts: withheld means say why. */
 test('a withheld bundle records its reason', () => {
   for (const b of bundles.filter((e) => e.draft)) {

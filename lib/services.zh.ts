@@ -1127,4 +1127,193 @@ export const servicesZh: Service[] = [
     ],
     draft: false,
   },
+  {
+    /**
+     * Direct translation of the English record, per the client's rule of 2026-09-12: every
+     * house-call phrasing measured 0 in Chinese (上门物理治疗, 上门复健, 居家物理治疗; Ubersuggest,
+     * locId 2458, 2026-09-10), so there is no better keyword to prefer. Facts, prices and
+     * the female-only scope are the English record's; see its comment for their provenance.
+     * The poster's weekday schedule is deliberately not rendered here either.
+     */
+    slug: 'physiotherapy-house-call',
+    title: 'Cheras, Kuala Lumpur 上门物理治疗',
+    metaTitle: 'Cheras 上门物理治疗 | Kuala Lumpur',
+    metaDescription:
+      'Cheras 与 Kuala Lumpur 一带的女性患者上门物理治疗。初次评估 RM190,复诊 RM180,诊所 10 公里内免车马费。',
+    targetKeyword: '上门物理治疗',
+    intro:
+      '治疗师到您家来。Cheras 与 Kuala Lumpur 一带、不方便前来诊所的女性患者,评估、徒手护理与康复训练都在家中完成。',
+    heroImage: {
+      src: '/img/physio-house-call-hero.webp',
+      alt: '治疗师站在一位坐着的女性身后,双手放在她的肩膀上,她在家中双手向前拉着弹力带',
+    },
+    ogImage: '/og/physio-house-call.jpg',
+    midImage: {
+      src: '/img/physio-house-call-rehab.webp',
+      alt: '治疗师跪在客厅运动垫旁,指导一位女性做臀桥运动',
+    },
+    assurances: ['限女性患者,在您自己的家中', '诊所 10 公里内免车马费', '首次到访 RM190,评估与徒手护理一次完成'],
+    outcomes: [
+      {
+        text: '去一趟诊所,已经成了问题里最困难的部分',
+        image: {
+          src: '/img/physio-weakness.webp',
+          alt: '插图:一名女性坐在书桌前,双脚着地,脚踝部位标示发亮',
+        },
+      },
+      {
+        text: '家中的日常家务变得疼痛或不稳',
+        image: {
+          src: '/img/post-house-chores.webp',
+          alt: '一名女性跪在地上,头靠在装满衣物的洗衣篮上',
+        },
+      },
+      {
+        text: '手术或跌倒后的最初几周,正是康复最重要的时候',
+        image: {
+          src: '/img/rehab-ankle.webp',
+          alt: '在 Cheras, Kuala Lumpur 的 Persistence Chiropractic Care,执行者为病患小腿贴上运动贴布',
+        },
+      },
+      {
+        text: '您更想在自己的空间、用自己的家具学会的运动',
+        image: {
+          src: '/img/physio-house-call-rehab.webp',
+          alt: '治疗师跪在客厅运动垫旁,指导一位女性做臀桥运动',
+        },
+      },
+    ],
+    qualifierConcerns: [
+      '我目前很难去到诊所',
+      '我正在手术或住院后于家中休养',
+      '我想为母亲或其他年长亲人预约',
+      '家中的日常活动变得疼痛或不稳',
+      '想知道我的住址是否在 10 公里范围内',
+      { label: '预约前我有问题想先问', icon: 'question' },
+    ],
+    fitCheck: {
+      rightFor: [
+        '您是女性患者,或为女性患者预约,而前来诊所是主要的障碍。',
+        '您希望第一次到访是评估您在家中实际的活动方式。',
+        '您愿意在到访之间,用家里现有的东西完成一套简单的运动。',
+        '您宁愿被告知诊所或医生才是更合适的下一步,而不是让我们硬撑下去。',
+      ],
+      notRightFor: [
+        '您为男性患者预约。上门服务限女性患者;同样的物理治疗,任何人都可以在 Cheras 的诊所接受。',
+        '您离诊所远超过 10 公里,并希望在联系我们之前就先拿到固定的车马费。10 公里以外我们按地址报价。',
+        '您想在家中接受脊椎矫正调整或 X-ray。两者都需要到诊所。',
+        '您想要的是放松性质的按摩,而非临床康复。',
+      ],
+      note: '以上任何一点都不代表大门关上了。它通常表示诊所是更好的起点,或者一则讯息就能在您做任何决定之前把车马费的问题弄清楚。把您的地区和主要困扰传给我们,我们会告诉您是哪一种。',
+    },
+    sections: [
+      {
+        heading: 'Cheras 上门物理治疗',
+        body: '由我们位于 Cheras、毗邻 Sunway Velocity 的诊所出发,为女性患者提供居家物理治疗。如果目前来诊所是最困难的一步,无论是手术后、跌倒后,或只是现阶段出行实在太吃力,治疗师会到您家来。第一次到访是评估与徒手护理在同一次完成,RM190,诊所 10 公里内免车马费。透过 WhatsApp 预约,其余由我们确认。',
+      },
+      {
+        heading: '透过 WhatsApp 联系我们',
+        body: '告诉我们您大概在哪里、问题是什么、哪几天方便。我们会先确认您的地址是否在诊所 10 公里免费范围内,或先报上车马费,当天不会有意外。',
+      },
+      {
+        heading: '第一次到访是评估',
+        body: '治疗师会询问病史、什么会让情况好转或加重、您希望恢复到什么程度,然后观察您在自己空间里的活动方式:您坐的椅子、您起身的床、您走的楼梯。这往往比诊所房间更有用,因为问题通常就发生在家里。',
+      },
+      {
+        heading: '同一次到访完成徒手护理',
+        body: '弄清楚问题的根源之后,第一次徒手处理就在同一次到访进行,而不是等第二次。会有关节松动、软组织处理,以及最初的一两个运动,并说明清楚,让您在我们不在时也能自己重复。',
+      },
+      {
+        heading: '复诊康复',
+        body: '复诊着重在问题周围重建力量与控制,用您家里已有的东西。治疗师会带来一次到访所需的小型器材。每次到访都会检视进展,方案随着您的进步调整,而不是照固定次数走完。',
+      },
+      {
+        heading: '什么时候到诊所更合适',
+        body: '有些事无法在家中完成,例如 X-ray 或脊椎矫正评估。若治疗师认为您在诊所、或先看医生会更好,会直接告诉您并协助安排。一旦出行变得可行,您随时可以改为到诊所。',
+      },
+    ],
+    priceList: {
+      eyebrow: '上门服务收费',
+      heading: '上门物理治疗的收费',
+      intro: '以下每一项都是该次到访的全额收费。唯一不固定的是 10 公里以外的车马费,我们会在预约前先报价。',
+      groups: [
+        {
+          heading: '单次到访',
+          rows: [
+            { label: '初次评估', price: 190, note: '评估与第一次徒手护理在同一次到访完成' },
+            { label: '复诊康复', price: 180 },
+          ],
+        },
+        {
+          heading: '配套',
+          rows: [
+            { label: '3 次配套', price: 510, note: '含初次评估加两次复诊。六周内有效。' },
+            { label: '5 次配套', price: 840, note: '含初次评估加四次复诊。六周内有效。' },
+          ],
+        },
+        {
+          heading: '车马费',
+          rows: [
+            { label: '诊所 10 公里内', value: '免费' },
+            { label: '10 公里以外', value: '按地址报价' },
+          ],
+        },
+      ],
+      note: '距离以 Cheras 的 Sunway Velocity 诊所为起点计算。透过 WhatsApp 告诉我们您的地区,我们会在预约确认前告知是否有车马费。',
+      ctaLabel: '查看上门服务收费',
+      summary:
+        '初次评估 RM190,复诊 RM180,另有含评估的 3 次(RM510)或 5 次(RM840)配套。限女性患者,诊所 10 公里内免车马费。',
+    },
+    helpsWith: ['back-pain', 'sciatica', 'slipped-disc', 'neck-pain', 'hip-pain'],
+    relatedLinks: [
+      { href: '/services/physiotherapy', label: 'Cheras 诊所内的物理治疗' },
+      { href: '/offers', label: '官网专属优惠' },
+      { href: '/what-to-expect', label: '第一次会诊会经历什么' },
+    ],
+    practitionersWithheld:
+      'Same gate as the English record: the physiotherapists are within probation and are not to be named (client, 2026-08-08 and 2026-09-12), and chiropractors are not licensed to deliver physiotherapy. Remove together with the English and physiotherapy records once the roster can be published.',
+    faqs: [
+      {
+        q: '谁可以预约上门物理治疗?',
+        a: '上门服务限女性患者。您可以为自己预约,也可以替他人预约,例如父母,只要患者本人愿意在家中接受服务。男性患者欢迎前来 Cheras 的诊所,同一批治疗师在那里服务。',
+        links: [{ phrase: 'Cheras 的诊所', href: '/services/physiotherapy' }],
+      },
+      {
+        q: '服务范围涵盖哪些地区?',
+        a: 'Sunway Velocity 诊所 10 公里内的任何地址都免车马费。大致上涵盖 Cheras、Maluri、Ampang 大部分地区以及市中心。10 公里以外我们仍然会去,但车马费会在确认到访前按地址报价,所以请先把您的地区传给我们,我们会帮您查。',
+      },
+      {
+        q: '上门物理治疗怎么收费?',
+        a: '初次评估 RM190,包含同一次到访的第一次徒手护理。复诊康复每次 RM180。如果您知道需要连续几次到访,3 次配套 RM510,5 次配套 RM840,两者都包含初次评估,并且都在六周内有效。诊所 10 公里内免车马费,以外的部分会在预约前报价。',
+      },
+      {
+        q: '第一次到访会发生什么?',
+        a: '主要是评估。治疗师会询问病史、什么会让问题好转或加重、您需要恢复到什么程度,然后观察您在自己空间里的活动方式:从您实际坐的椅子起身、走您实际会走的走廊。同一次到访接着进行徒手护理,并带上最初的一两个运动。请预留约一小时。',
+      },
+      {
+        q: '家里需要准备器材吗?',
+        a: '不需要。治疗师会带来一次到访所需的东西。有一张稳固的椅子、一小块清空的地面,并穿着方便活动的衣服会有帮助。如果像弹力带这类简单物品有助于您在到访之间练习,我们会明确告诉您要买什么。',
+      },
+      {
+        q: '配套是怎么运作的?',
+        a: '3 次配套涵盖初次评估与两次复诊;5 次配套涵盖评估与四次复诊。两者都从第一次到访起六周内有效,足够每周一次并留有改期的空间。如果不确定需要几次,可以先单独预约初次评估,之后再决定。',
+      },
+      {
+        q: '之后可以改为到诊所吗?',
+        a: '可以,随时都可以。有些人从居家开始,是因为手术或跌倒后的最初几周最难出门,等到出行可行了再到诊所。需要到诊所才能完成的事,例如 X-ray 或脊椎矫正评估,会安排在诊所进行。',
+        links: [{ phrase: '脊椎矫正评估', href: '/services/chiropractic-care' }],
+      },
+      {
+        q: '需要医生的转介信吗?',
+        a: '不需要。如果治疗师认为您需要先做影像检查或看医生,会在评估时直接告诉您并协助安排,而不是照样继续。',
+      },
+      {
+        q: '如何预约上门服务?',
+        a: '透过 WhatsApp。告诉我们地区、大概是什么问题、哪几天方便,我们会回复可预约的时段,并确认是否有车马费。上门服务没有线上表格,因为地址和时间需要简单聊一下才能确定。',
+      },
+    ],
+    // Same standing as every other zh record: adapted from the English copy, not yet read by a
+    // Chinese-speaking reviewer. Flip to `true` if that review is required first.
+    draft: false,
+  },
 ]

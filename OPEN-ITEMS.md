@@ -4,7 +4,7 @@ Work that is **blocked on a person, an asset or an access grant** — not on cod
 item below has its reasoning recorded in a comment next to the thing it governs; this file
 exists so the list can be found in one place instead of stumbled upon in four.
 
-Last updated **2026-09-12**, when the physiotherapy house call page was built (item 10).
+Last updated **2026-09-12**, when the last zh/ms gaps were closed (item 7b) after the house call page was built (item 10).
 
 > Keep this file honest. When an item is resolved, delete it here *and* remove the
 > corresponding gate or comment in the code. A stale blocker is worse than no list.
@@ -142,8 +142,25 @@ Outstanding:
 
 ## 7b. Multilingual coverage is complete, and two pages need watching
 
-As of **2026-09-03** every condition and every service exists in all three locales: 8 conditions
-and 6 services, 42 pages, no gaps. The blog stays English only by design.
+As of **2026-09-12** every condition, every service and every practitioner bio exists in all
+three locales: 11 conditions, 7 services and 3 bios, 63 pages, no gaps. The blog and
+`/female-chiropractor` stay English only by design.
+
+The 2026-09-12 batch (pinched-nerve, tension-headache, whiplash, physiotherapy-house-call, the
+three bios) followed the client's rule stated that day: **target the keyword with measured
+volume, and translate directly only when nothing better exists.** What each page landed on
+(Ubersuggest, locId 2458, 2026-09-12):
+
+| Page | zh | ms |
+|---|---|---|
+| pinched-nerve | `颈椎病` 480/mo, SD 58 (`手麻` 170 in the title) | `sakit saraf tangan` 260/mo, SD 35 |
+| tension-headache | `后脑勺痛` 480/mo, SD 31 (`头痛` 1,000 is every headache, and the migraine page owns the biggest slice) | `sakit kepala belakang` 1,000/mo, SD 19 |
+| whiplash | direct translation, `挥鞭式损伤` (every phrasing 0) | direct translation, `kecederaan whiplash` (`whiplash` alone is the film) |
+| physiotherapy-house-call | direct translation, `上门物理治疗` (0) | direct translation, `fisioterapi di rumah` (0) |
+
+One finding worth a separate decision: **`sakit tengkuk` measures 880/mo at SD 8**, a neck term,
+while the Malay neck-pain page targets `sakit leher`. Nobody has compared the two; check
+before assuming the current target is the better one.
 
 **The two biggest keywords in this entire project are both migraine, and migraine is the one
 thing the clinic does not claim to help with.**
@@ -370,7 +387,7 @@ Outstanding:
    badge, and this rate card does neither. If the client wants cards, the two packages fit the
    `Bundle` shape honestly (3 visits RM510 against RM550 separately; 5 visits RM840 against
    RM910) and would need the service route to render more than one bundle per page.
-4. **zh/ms.** No record exists, so the page is absent in those locales and the language
-   switcher falls back to the homepage. Add one only with a measured keyword; none was found.
+4. ~~zh/ms.~~ **BUILT 2026-09-12** as direct translations (no keyword measured any volume in
+   either language), per the client's rule of the same day. Unreviewed, like every zh/ms record.
 5. Physiotherapist naming follows item 1; this page sets `practitionersWithheld` like the
    physiotherapy page and should be un-gated with it.

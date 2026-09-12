@@ -1065,4 +1065,442 @@ export const conditionsMs: Condition[] = [
     ],
     draft: false,
   },
+  {
+    slug: 'pinched-nerve',
+    title: 'Sakit Saraf Tangan & Kebas Tangan di Cheras, Kuala Lumpur',
+    metaTitle: 'Jagaan Sakit Saraf Tangan di Cheras, KL',
+    metaDescription:
+      'Sakit saraf tangan dan kebas tangan yang berpunca dari leher, dinilai di Cheras, Maluri. Kesemutan, kebas atau lemah ke lengan dan tangan diperiksa sebelum sebarang pelarasan.',
+    // sakit saraf tangan 260/mo, SD 35 (Ubersuggest, locId 2458, 2026-09-12), the same shape as
+    // the sciatica page's "sakit saraf kaki". The literal translations, "saraf tersepit" and
+    // "saraf terjepit", both measure 0, and so does "kebas tangan" as a head term; its long
+    // tails ("petua tradisional hilangkan kebas tangan" 590/mo) are remedy searches, not people
+    // looking for an assessment, so "kebas tangan" sits in the title rather than as the target.
+    targetKeyword: 'sakit saraf tangan',
+    related: ['neck-pain', 'slipped-disc'],
+    helpedBy: ['chiropractic-care', 'physiotherapy'],
+
+    intro:
+      'Sakit saraf tangan dan kebas tangan selalunya bermula di leher: akar saraf tertekan atau teriritasi ketika ia keluar dari tulang belakang, dan nama klinikalnya ialah radikulopati servikal. Apa yang mengelirukan ialah gejala biasanya muncul di tempat lain daripada masalahnya. Saraf tersepit di leher, tetapi rasa terbakar, kesemutan atau lemah dirasai di bahu, lengan atau tangan, dan kadangkala leher itu sendiri hampir tidak sakit langsung. Kebanyakan orang pulih tanpa pembedahan. Tugas penilaian ialah menentukan saraf yang mana, di paras mana, dan apa yang menekannya.',
+    symptoms: [
+      'Sakit terbakar, menjalar atau seperti renjatan elektrik dari leher ke bahu, lengan atau tangan',
+      'Kesemutan atau kebas pada jari tertentu, bukan seluruh tangan',
+      'Lemah pada lengan, atau genggaman yang terlepas ketika mengangkat sesuatu',
+      'Gejala pada satu sisi sahaja',
+      'Sakit yang berkurang apabila tangan yang terjejas diletakkan di atas kepala',
+      'Gejala tercetus apabila kepala dipusing atau dicondongkan ke sisi yang sakit',
+      'Sakit leher yang lebih ringan berbanding gejala pada lengan',
+      'Tidur terganggu oleh lengan, bukan oleh leher',
+    ],
+    causes: [
+      {
+        heading: 'Bahan cakera menekan akar saraf',
+        body: 'Cakera yang membonjol atau terkeluar di leher boleh menekan akar saraf, atau mengiritasinya secara kimia, pada titik ia keluar dari tulang belakang. Ini gambaran yang lebih lazim pada orang dewasa muda, dan sebab itulah leher diperiksa dengan teliti walaupun tangan yang mengganggu anda.',
+      },
+      {
+        heading: 'Laluan saraf yang menyempit',
+        body: 'Perubahan berkaitan usia pada sendi kecil dan cakera leher beransur-ansur mengurangkan ruang yang dilalui setiap akar saraf. Gejala corak ini cenderung terbina perlahan-lahan dan bukan muncul semalaman, dan selalunya tercetus apabila kepala ditahan dalam satu kedudukan untuk tempoh yang lama.',
+      },
+      {
+        heading: 'Kedudukan dan bebanan leher yang berpanjangan',
+        body: 'Berjam-jam dengan kepala di hadapan bahu membebankan leher bawah secara berterusan. Ini jarang menyepit saraf dengan sendirinya, tetapi ia penemuan latar yang lazim, dan biasanya bahagian yang paling boleh dikawal oleh pesakit sendiri.',
+      },
+      {
+        heading: 'Saraf yang teriritasi lebih jauh di sepanjang laluannya',
+        body: 'Bukan setiap gejala lengan bermula di leher. Saraf yang sama boleh tertekan lebih jauh di laluannya, di bahu, siku atau pergelangan tangan, dan itu menghasilkan corak yang berbeza. Jari yang mana terlibat, dan pergerakan mana yang mencetuskannya, adalah sebahagian besar cara kedua-duanya dibezakan semasa pemeriksaan.',
+      },
+    ],
+    approach: [
+      {
+        heading: 'Mencari saraf yang mana, dan di mana ia tersepit',
+        body: 'Lawatan pertama anda mengikut penilaian enam langkah Gonstead: sejarah kesihatan, visualisasi, penggunaan nervoscope, palpasi, dan analisis X-ray jika perlu. Bagi keadaan ini kiropraktor anda menambah ujian neurologi, memeriksa refleks, kekuatan otot dan deria di kawasan yang dibekalkan oleh setiap akar saraf. Bahagian itu lebih penting di sini berbanding kebanyakan keadaan lain, kerana masalah saraf meninggalkan corak yang akan terlepas dalam pemeriksaan leher biasa.',
+      },
+      {
+        heading: 'Pelarasan apabila penilaian menyokongnya',
+        body: 'Jika pemeriksaan menunjukkan segmen yang tersekat menyumbang kepada gambaran itu, pelarasan dibuat khusus pada paras tersebut dan dengan tangan, dan kiropraktor anda akan menerangkan apa yang dijumpai sebelum sebarang tindakan. Sesetengah keadaan tidak sesuai untuk pelarasan, dan penilaian wujud untuk mengesan perkara itu. Jika penyedia kesihatan lain lebih sesuai membantu anda, anda akan dirujuk dengan sewajarnya.',
+      },
+      {
+        heading: 'Membina semula apa yang hilang pada lengan',
+        body: 'Apabila kekuatan atau daya tahan telah berkurang pada lengan atau otot leher dalam, bahagian fisioterapi kami menambah program berperingkat untuk membinanya semula, bersama kerja mobiliti saraf apabila penilaian menyokongnya. Ini biasanya separuh yang lebih perlahan, dan separuh yang paling bergantung kepada apa yang anda lakukan antara lawatan.',
+      },
+      {
+        heading: 'Mengubah apa yang terus membebankannya',
+        body: 'Mengembalikan pergerakan kepada segmen yang kaku tidak bertahan lama jika leher kembali kepada kedudukan yang mengiritasinya selama lapan jam lagi sehari. Ketinggian meja dan skrin, tabiat telefon, cara anda tidur dan berapa kerap anda bangun semuanya dibincangkan, kerana itulah yang menentukan sama ada penambahbaikan itu kekal.',
+      },
+    ],
+    redFlags: [
+      'Kelemahan yang semakin teruk, atau lengan atau tangan yang tidak dapat digunakan dengan betul',
+      'Gejala pada kedua-dua lengan pada masa yang sama',
+      'Kekok pada tangan, kesukaran dengan butang atau tulisan tangan, atau tidak stabil semasa berjalan',
+      'Kehilangan kawalan pundi kencing atau usus',
+      'Gejala leher atau lengan selepas terjatuh, kemalangan jalan raya, atau hentaman pada kepala atau leher',
+      'Demam, penurunan berat badan tanpa sebab, atau sakit yang mengejutkan anda setiap malam',
+      'Sakit leher teruk secara tiba-tiba dengan pening, gangguan penglihatan, atau kesukaran bercakap atau menelan',
+    ],
+    faqs: [
+      {
+        q: 'Adakah saraf tersepit sama dengan slip disc?',
+        a: 'Kedua-duanya berkaitan tetapi tidak sama. Slip disc menggambarkan cakera itu sendiri yang membonjol atau terkeluar. Saraf tersepit menggambarkan apa yang boleh berlaku seterusnya, jika bahan cakera itu atau laluan yang menyempit menekan akar saraf. Anda boleh mempunyai perubahan cakera pada imbasan tanpa sebarang gejala saraf, dan anda boleh mempunyai gejala saraf daripada punca selain cakera. Yang mana satu anda hadapi ialah apa yang pemeriksaan selesaikan.',
+      },
+      {
+        q: 'Bagaimana saya tahu sama ada kebas tangan saya datang dari leher atau pergelangan tangan?',
+        a: 'Coraknya biasanya memberitahu. Saraf yang tertekan di leher cenderung menghasilkan gejala yang mengikut satu jalur menuruni lengan dan melibatkan jari tertentu, dan selalunya tercetus oleh pergerakan leher. Saraf yang tertekan di pergelangan tangan cenderung kekal di tangan, dan selalunya lebih teruk pada waktu malam atau ketika menggenggam. Ada pertindihan yang sebenar, dan sesetengah orang mempunyai kedua-duanya sekali gus, jadi kami menguji kedua-duanya dan bukan mengandaikan.',
+      },
+      {
+        q: 'Adakah pelarasan akan memburukkan saraf yang tersepit?',
+        a: 'Ia bergantung sepenuhnya kepada gambaran yang ada, sebab itulah penilaian datang dahulu dan sebab itulah bukan setiap leher dilaras. Apabila ada tanda bahawa saraf tunjang dan bukan satu akar saraf yang terlibat, atau apabila kelemahan semakin teruk, jagaan secara tangan bukan langkah pertama yang betul dan anda akan dihantar untuk semakan perubatan. Beritahu kami tentang sebarang kelemahan, kekok atau trauma baru-baru ini semasa menempah, supaya kami dapat menyaringnya dengan betul.',
+      },
+      {
+        q: 'Perlukah saya buat MRI sebelum datang?',
+        a: 'Tidak. Bawa jika anda sudah ada, bersama sebarang laporan, kerana ia menjimatkan kerja berulang. Kebanyakan orang tidak memerlukan pengimejan lanjutan pada permulaan, dan imbasan semata-mata memberitahu kami kurang daripada yang anda jangka tanpa pemeriksaan di sebelahnya. Perubahan cakera muncul pada imbasan ramai orang yang tiada sebarang gejala, jadi penemuan itu hanya bermakna dalam konteks.',
+      },
+      {
+        q: 'Berapa lama biasanya ia mengambil masa untuk reda?',
+        a: 'Ia berbeza mengikut punca, berapa lama ia telah berlaku, dan sebanyak mana saraf itu dibebankan dari hari ke hari, jadi kami tidak akan memberikan angka sebelum memeriksa anda. Gejala yang ada selama beberapa minggu biasanya berkelakuan berbeza daripada gejala yang ada selama setahun. Kiropraktor anda akan memberikan gambaran realistik berdasarkan penemuan anda sendiri dan bukan angka umum.',
+      },
+    ],
+    keyTakeaways: [
+      {
+        q: 'Apakah itu saraf tersepit di leher?',
+        a: 'Akar saraf yang tertekan atau teriritasi ketika keluar dari tulang belakang di leher. Nama klinikalnya ialah radikulopati servikal.',
+      },
+      {
+        q: 'Mengapa saya rasa di tangan dan bukan di leher?',
+        a: 'Kerana saraf membawa isyarat keluar dari tempat ia tersepit. Leher ialah tempat masalahnya, lengan dan tangan ialah tempat ia dirasai, dan leher itu sendiri mungkin hampir tidak sakit.',
+      },
+      {
+        q: 'Adakah saraf tersepit sentiasa bermakna pembedahan?',
+        a: 'Tidak. Kebanyakan orang bertambah baik dari masa ke masa tanpanya, dan jagaan bukan pembedahan ialah titik permulaan yang biasa. Kelemahan yang semakin teruk ialah penemuan yang mengubah perkara itu, sebab itulah ia disaring.',
+      },
+      {
+        q: 'Adakah penting jari yang mana menjadi kebas?',
+        a: 'Sangat penting. Setiap akar saraf membekalkan satu jalur kulit tertentu dan otot tertentu, jadi jari yang terlibat membantu menunjukkan parasnya dan bukan sekadar perincian sampingan.',
+      },
+      {
+        q: 'Bilakah anda dibuka?',
+        a: 'Tujuh hari seminggu, di Sunway Velocity, Maluri. Isnin hingga Khamis dan Sabtu sehingga 8 malam, Jumaat sehingga 5 petang, Ahad sehingga 3 petang.',
+      },
+    ],
+    qualifierConcerns: [
+      'Saya rasa kesemutan atau kebas pada lengan atau tangan',
+      'Genggaman saya terasa lebih lemah daripada dahulu',
+      'Sakitnya lebih teruk di lengan berbanding di leher',
+      'Memusingkan kepala mencetuskan gejala menuruni lengan',
+      'Saya mahu tahu sama ada ini datang dari leher saya',
+    ],
+    citations: [
+      {
+        claim:
+          'Kebanyakan orang dengan saraf tersepit di leher bertambah baik dari masa ke masa, dan pendekatan pertama secara umumnya bukan pembedahan.',
+        source: 'OrthoInfo, American Academy of Orthopaedic Surgeons',
+        url: 'https://www.orthoinfo.org/en/diseases--conditions/cervical-radiculopathy-pinched-nerve/',
+      },
+      {
+        claim:
+          'Akar saraf C7 ialah paras yang paling kerap terlibat dalam radikulopati servikal, merangkumi lebih separuh kes, dengan C6 kira-kira satu perempat.',
+        source: 'Cervical Radiculopathy, StatPearls, National Library of Medicine',
+        url: 'https://www.ncbi.nlm.nih.gov/books/NBK441828/',
+      },
+    ],
+    // Same standing as every other ms record: adapted from clinic-reviewed English copy, not
+    // yet read by a Malay-speaking reviewer. Flip to `true` if that review is required first.
+    draft: false,
+  },
+  {
+    slug: 'tension-headache',
+    title: 'Sakit Kepala Belakang & Tegang di Cheras, Kuala Lumpur',
+    metaTitle: 'Jagaan Sakit Kepala Belakang di Cheras, KL',
+    metaDescription:
+      'Sakit kepala belakang dan sakit kepala tegang dinilai di Cheras, Maluri. Tekanan seperti diikat, bezanya dengan migrain, dan apa yang pemeriksaan leher boleh beritahu anda.',
+    // sakit kepala belakang 1,000/mo, SD 19 (Ubersuggest, locId 2458, 2026-09-12): the headache
+    // this page describes, starting at the base of the skull. "sakit kepala" (8,100/mo) is every
+    // headache there is, and the migraine page already owns the biggest slice of that intent
+    // ("migrain", 27,100/mo). The literal translations measure 90 each ("sakit kepala tegang",
+    // "sakit kepala tension"); "kerap sakit kepala dan tengkuk" 140 and "sakit kepala bagian
+    // belakang bawah dekat leher" 320 confirm the back-of-head, near-the-neck angle is the one
+    // people actually type. "sakit tengkuk" (880/mo, SD 8) is a NECK term and belongs to the
+    // neck-pain record if anyone revisits that target; it is not used here.
+    targetKeyword: 'sakit kepala belakang',
+    related: ['neck-pain', 'migraine'],
+    helpedBy: ['dry-needling', 'physiotherapy'],
+
+    intro:
+      'Sakit kepala belakang yang tegang, seperti diikat, ialah sakit kepala yang paling lazim: rasa tertekan dan ketat di kedua-dua belah kepala, sering digambarkan seperti memakai topi yang terlalu ketat, tanpa denyutan dan loya yang menandakan migrain. Ia sakit kepala yang paling ramai alami, dan sebab itulah ia sering dipandang ringan. Kebanyakan orang mengambil ubat tahan sakit dan meneruskan hari, dan untuk sakit kepala sekali-sekala itu perkara yang munasabah. Ia patut diperiksa lebih dekat apabila sakit kepala datang hampir setiap minggu, apabila ia mengikut hari bekerja anda, atau apabila ubat tahan sakit telah diam-diam menjadi tabiat harian. Apa yang kami boleh nilai ialah sama ada otot dan sendi leher serta belakang atas adalah sebahagian daripada apa yang terus mencetuskannya.',
+    symptoms: [
+      'Sakit menekan atau mengetatkan di kedua-dua belah kepala, bukan satu sisi',
+      'Rasa ketat seperti diikat di sekeliling dahi, pelipis atau belakang kepala',
+      'Sakit ringan hingga sederhana yang tumpul, bukan berdenyut',
+      'Sakit yang tidak bertambah teruk apabila anda menaiki tangga atau bergerak',
+      'Tiada loya atau muntah bersamanya',
+      'Rasa sakit apabila ditekan pada otot di pangkal tengkorak, leher dan bahu',
+      'Sakit kepala yang terbina sepanjang hari bekerja dan reda pada hujung minggu',
+      'Sukar menumpukan perhatian, dan rasa tertekan dan bukan sakit yang tajam',
+    ],
+    causes: [
+      {
+        heading: 'Bebanan berterusan pada otot leher dan bahu',
+        body: 'Otot yang ditahan pada tahap pengecutan rendah selama berjam-jam menjadi sakit dan memindahkan sakit ke kepala. Skrin yang terlalu rendah, laptop tanpa penyangga, tempoh panjang di telefon dan memandu dalam kesesakan semuanya meminta otot di pangkal tengkorak bekerja berterusan tanpa pernah benar-benar melepaskan.',
+      },
+      {
+        heading: 'Pergerakan terhad di bahagian atas leher',
+        body: 'Apabila satu segmen di bahagian atas leher berhenti bergerak dengan baik, otot di sekelilingnya bekerja lebih keras untuk mengimbangi dan kekal terbeban. Ini penemuan yang kerap pada orang yang sakit kepalanya bermula di belakang tengkorak, walaupun ia bukan keseluruhan cerita dengan sendirinya.',
+      },
+      {
+        heading: 'Tekanan, tidur dan mengetap gigi',
+        body: 'Tidur yang tidak lena, bantal yang tidak menyokong dan tabiat mengetap gigi secara ringan mengekalkan otot di sekeliling tengkorak dan rahang dalam ketegangan sepanjang malam, jadi kawasan itu tidak pernah mendapat tempoh rehat yang sebenar. Ini jarang menjelaskan sakit kepala sepenuhnya, tetapi sangat kerap wujud bersama apa sahaja yang lain berlaku.',
+      },
+      {
+        heading: 'Ubat tahan sakit yang diambil terlalu kerap',
+        body: 'Yang ini mengejutkan ramai orang. Mengambil ubat sakit kepala pada lebih banyak hari daripada tidak boleh, dalam tempoh berbulan-bulan, menjadikan sakit kepala lebih kerap dan bukan kurang. Ia corak yang diiktiraf dengan namanya sendiri, sakit kepala akibat penggunaan ubat berlebihan. Kami bukan orang yang tepat untuk melaraskan ubat anda, tetapi jika coraknya sepadan, ia patut dibangkitkan dengan doktor atau ahli farmasi anda dan bukan dibiarkan tanpa diperiksa.',
+      },
+    ],
+    approach: [
+      {
+        heading: 'Menentukan sakit kepala jenis apa sebenarnya ini',
+        body: 'Lawatan pertama anda sebahagian besarnya ialah pengambilan sejarah: di mana sakitnya, bagaimana rasanya, apa yang mencetuskannya, apa yang datang bersamanya, dan apa yang anda telah cuba. Sakit kepala tegang, migrain dan sakit kepala yang datang dari leher boleh bertindih, dan ramai orang mempunyai lebih daripada satu pada satu masa. Menetapkan diagnosis sakit kepala ialah tugas doktor anda. Apa yang kami tentukan ialah sama ada ada sumbangan mekanikal yang berbaloi ditangani.',
+      },
+      {
+        heading: 'Memeriksa leher dan belakang atas',
+        body: 'Itu diikuti dengan baki penilaian enam langkah Gonstead: visualisasi, penggunaan nervoscope, palpasi dengan penilaian pergerakan penuh leher dan belakang atas, dan analisis X-ray jika perlu. Kiropraktor anda mencari segmen yang tersekat dan otot yang sakit dan terlebih bekerja yang begitu kerap menyertainya.',
+      },
+      {
+        heading: 'Apa yang jagaan libatkan apabila leher menyumbang',
+        body: 'Apabila penilaian menunjukkan segmen yang tersekat, pelarasan dibuat khusus padanya dan dengan tangan, dan kiropraktor anda akan menerangkan apa yang dijumpai dahulu. Apabila otot di sekeliling adalah sebahagian besar daripadanya, bahagian fisioterapi kami mungkin menambah terapi manual atau dry needling untuk titik sakit di pangkal tengkorak dan merentasi bahu, bersama program membina daya tahan otot leher dalam. Kami menyasarkan pergerakan yang lebih baik dan kurang bebanan berterusan pada tisu itu. Apa yang ia ubah tentang sakit kepala itu sendiri berbeza dari seorang ke seorang.',
+      },
+      {
+        heading: 'Bahagian yang berlaku di luar klinik',
+        body: 'Ketinggian meja dan skrin, berapa kerap anda bangun, bantal anda, dan berapa banyak kafein dan air yang diambil sepanjang hari bekerja semuanya menyumbang. Anda biasanya akan diminta menyimpan rekod ringkas bila sakit kepala berlaku dan apa yang berlaku sebelumnya, kerana corak sakit kepala sangat sukar dinilai daripada ingatan dan ia selalunya perkara paling berguna yang dibawa pesakit ke lawatan kedua.',
+      },
+    ],
+    redFlags: [
+      'Sakit kepala yang tiba-tiba dan teruk yang mencapai kemuncak dalam beberapa saat atau minit',
+      'Sakit kepala paling teruk dalam hidup anda, atau yang jelas berbeza daripada mana-mana yang pernah anda alami',
+      'Sakit kepala dengan demam, leher kaku, atau ruam',
+      'Sakit kepala dengan kelemahan, kebas, keliru, kesukaran bercakap, atau kehilangan penglihatan',
+      'Sebarang sakit kepala selepas hentaman pada kepala, terjatuh, atau kemalangan jalan raya',
+      'Sakit kepala baharu yang bermula selepas usia 50 tahun, atau yang semakin teruk dalam tempoh beberapa hari dan minggu',
+      'Sakit kepala yang lebih teruk ketika berbaring, batuk atau meneran, atau yang mengejutkan anda daripada tidur',
+      'Sakit kepala bersama sejarah kanser, sistem imun yang lemah, atau penurunan berat badan tanpa sebab',
+    ],
+    faqs: [
+      {
+        q: 'Apa bezanya sakit kepala tegang dengan migrain?',
+        a: 'Sakit kepala tegang biasanya dirasai di kedua-dua belah sebagai tekanan ketat yang berterusan, ringan hingga sederhana, dan tidak bertambah teruk apabila anda bergerak. Migrain lebih kerap satu sisi dan berdenyut, cenderung lebih teruk dengan aktiviti, dan biasanya membawa loya atau sensitif kepada cahaya dan bunyi. Itu pembahagian buku teks, dan kehidupan sebenar lebih bercelaru, kerana sesetengah orang mengalami kedua-duanya. Migrain ialah keadaan neurologi dan pengurusan perubatannya terletak pada doktor.',
+      },
+      {
+        q: 'Bolehkah leher yang tegang benar-benar menyebabkan sakit kepala?',
+        a: 'Otot dan sendi di leher dan belakang atas boleh memindahkan sakit ke kepala, dan itu diiktiraf dengan baik. Sama ada itulah yang mendorong sakit kepala anda secara khusus ialah soalan untuk pemeriksaan dan bukan sesuatu untuk diandaikan. Sesetengah ciri menunjuk ke arah itu, seperti sakit yang bermula di pangkal tengkorak, rasa sakit pada otot-otot itu apabila ditekan, dan sakit kepala yang mengikut hari bekerja anda, tetapi tiada satu pun daripadanya muktamad dengan sendirinya.',
+      },
+      {
+        q: 'Adakah kiropraktik akan menghentikan sakit kepala saya?',
+        a: 'Kami tidak boleh memberitahu anda begitu, dan anda patut berhati-hati dengan sesiapa yang berkata begitu. Apabila segmen leher yang tersekat dan otot yang terbeban menyumbang, mengembalikan pergerakan dan mengurangkan bebanan itu selalunya mengubah berapa banyak sakit kepala yang orang alami. Ia bergantung kepada gambaran yang ada, dan sesetengah orang tidak perasan banyak perbezaan. Kiropraktor anda akan memberitahu dengan jujur apa yang mereka jangka dan apa yang tidak.',
+      },
+      {
+        q: 'Saya ambil ubat tahan sakit hampir setiap hari. Adakah itu masalah?',
+        a: 'Ia patut diperiksa. Ubat sakit kepala yang diambil pada lebih banyak hari daripada tidak boleh, dalam tempoh berbulan-bulan, menyuburkan kitaran di mana sakit kepala menjadi lebih kerap. Ia mempunyai nama yang diiktiraf, sakit kepala akibat penggunaan ubat berlebihan. Menukar atau menghentikan ubat bukan keputusan kami dan tidak patut dilakukan secara mendadak atas kata-kata kami. Bawa senarai apa yang anda ambil dan berapa kerap ke lawatan pertama anda, dan bangkitkan corak itu dengan doktor atau ahli farmasi yang membekalkannya.',
+      },
+      {
+        q: 'Apa yang patut saya bawa ke lawatan pertama?',
+        a: 'Senarai sebarang ubat yang anda ambil, termasuk apa-apa yang dibeli tanpa preskripsi, dan jika anda mampu, rekod kasar beberapa minggu lepas: bila sakit kepala datang, berapa lama ia bertahan, dan apa yang anda lakukan sebelumnya. Jika anda pernah menjalani pengimejan atau berjumpa doktor tentang sakit kepala itu, bawa laporannya.',
+      },
+    ],
+    keyTakeaways: [
+      {
+        q: 'Bagaimana rasanya sakit kepala tegang?',
+        a: 'Rasa tertekan dan ketat yang tumpul di kedua-dua belah kepala, sering digambarkan seperti diikat. Ia ringan hingga sederhana, tidak berdenyut, dan biasanya tidak datang dengan loya.',
+      },
+      {
+        q: 'Apa yang mencetuskan sakit kepala tegang?',
+        a: 'Paling kerap bebanan berterusan: berjam-jam dengan kepala di hadapan bahu, skrin yang terlalu rendah, tidur yang tidak lena dan mengetap gigi. Tekanan jarang bertindak sendirian tetapi sangat kerap wujud bersama.',
+      },
+      {
+        q: 'Patutkah saya berjumpa seseorang tentang sakit kepala yang saya alami hampir setiap minggu?',
+        a: 'Ia berbaloi diperiksa. Sakit kepala sekali-sekala yang diuruskan dengan ubat tahan sakit adalah munasabah. Sakit kepala hampir setiap minggu, atau yang mengikut hari bekerja anda, berbaloi diperiksa dengan betul.',
+      },
+      {
+        q: 'Adakah kiropraktik tempat yang betul untuk bermula bagi sakit kepala?',
+        a: 'Bergantung kepada jenisnya. Kami boleh menilai sama ada leher dan belakang atas menyumbang. Mendiagnosis gangguan sakit kepala ialah tugas doktor anda, dan kami akan berkata begitu jika itu langkah seterusnya yang betul.',
+      },
+      {
+        q: 'Bilakah anda dibuka?',
+        a: 'Tujuh hari seminggu, di Sunway Velocity, Maluri. Isnin hingga Khamis dan Sabtu sehingga 8 malam, Jumaat sehingga 5 petang, Ahad sehingga 3 petang.',
+      },
+    ],
+    qualifierConcerns: [
+      'Saya rasa tekanan seperti diikat di sekeliling kepala hampir setiap minggu',
+      'Sakit kepala saya bertambah teruk sepanjang hari bekerja',
+      'Otot di pangkal tengkorak saya sakit apabila ditekan',
+      'Saya mengambil ubat tahan sakit untuk sakit kepala hampir setiap hari',
+      'Saya mahu tahu sama ada leher saya sebahagian daripada masalah',
+    ],
+    citations: [
+      {
+        claim:
+          'Sakit kepala jenis tegang diklasifikasikan sebagai gangguan sakit kepala tersendiri, berasingan daripada migrain.',
+        source: 'International Classification of Headache Disorders, ICHD-3',
+        url: 'https://ichd-3.org/2-tension-type-headache/',
+      },
+      {
+        claim:
+          'Sakit kepala jenis tegang digambarkan sebagai tekanan atau ketat, sering seperti diikat di sekeliling kepala, dan sakit kepala jenis tegang episodik dilaporkan oleh lebih 70 peratus sesetengah populasi.',
+        source: 'World Health Organization, Headache disorders',
+        url: 'https://www.who.int/news-room/fact-sheets/detail/headache-disorders',
+      },
+      {
+        claim:
+          'Sakit kepala akibat penggunaan ubat berlebihan disebabkan oleh penggunaan ubat sakit kepala yang kronik dan berlebihan, dan mungkin menjejaskan sehingga 5 peratus sesetengah populasi.',
+        source: 'World Health Organization, Headache disorders',
+        url: 'https://www.who.int/news-room/fact-sheets/detail/headache-disorders',
+      },
+    ],
+    // Same standing as every other ms record: adapted from clinic-reviewed English copy, not
+    // yet read by a Malay-speaking reviewer. Flip to `true` if that review is required first.
+    draft: false,
+  },
+  {
+    slug: 'whiplash',
+    title: 'Kecederaan Whiplash Selepas Kemalangan di Cheras, Kuala Lumpur',
+    metaTitle: 'Jagaan Kecederaan Whiplash di Cheras, KL',
+    metaDescription:
+      'Whiplash dinilai di Cheras, Maluri. Dapatkan pemeriksaan perubatan dahulu, kemudian penilaian berperingkat dan pemulihan leher setelah kecederaan serius diketepikan.',
+    // Direct translation, per the client's rule of 2026-09-12. "whiplash" on its own (720/mo)
+    // is the film and the aespa song in Malaysia; "sakit leher selepas kemalangan" and
+    // "kecederaan leher" measure 0 (Ubersuggest, locId 2458, 2026-09-12). No better keyword
+    // exists, so the target keeps the English word Malaysians use for the injury.
+    targetKeyword: 'kecederaan whiplash',
+    related: ['neck-pain', 'pinched-nerve'],
+    helpedBy: ['physiotherapy', 'sports-injury-rehabilitation'],
+
+    intro:
+      'Whiplash ialah kecederaan leher yang berlaku selepas kepala dihumban dengan pantas ke hadapan dan ke belakang, paling kerap dalam perlanggaran dari belakang, walaupun terjatuh atau rempuhan kuat melakukan perkara yang sama. Baca satu baris ini sebelum yang lain di halaman ini: jika anda baru sahaja terlibat dalam kemalangan, dapatkan penilaian perubatan dahulu. Patah tulang atau kecederaan saraf tunjang bukan sesuatu yang ditangani oleh kiropraktor, dan ia perlu diketepikan sebelum sesiapa meletakkan tangan pada leher anda. Setelah itu dilakukan, kebanyakan whiplash ialah masalah tisu lembut dan sendi yang reda dalam tempoh beberapa minggu hingga beberapa bulan, dan itulah peringkat di mana penilaian dan pemulihan di sini berbaloi.',
+    symptoms: [
+      'Sakit dan kekakuan leher yang sering bermula beberapa jam selepas kemalangan dan bukan serta-merta',
+      'Keupayaan yang berkurang untuk memusing atau mencondongkan kepala',
+      'Sakit kepala, paling kerap bermula di pangkal tengkorak',
+      'Sakit merentasi bahu dan ke belakang atas',
+      'Rasa sakit pada otot leher apabila ditekan',
+      'Kesemutan atau kebas ke lengan atau tangan',
+      'Pening, keletihan, atau sukar menumpukan perhatian pada hari-hari selepasnya',
+      'Tidur terganggu, dan kebimbangan tentang memandu atau menjadi penumpang',
+    ],
+    causes: [
+      {
+        heading: 'Mekanisme itu sendiri',
+        body: 'Badan ditahan oleh tali pinggang keledar manakala kepala terus bergerak, jadi leher dibawa dengan pantas melangkaui julat normalnya dan kembali semula. Itu boleh meregangkan otot dan ligamen, mengiritasi sendi kecil di belakang leher, dan dalam perlanggaran yang lebih kuat melibatkan cakera atau akar saraf. Kelajuan kurang penting daripada yang orang sangka, dan perlanggaran kelajuan rendah masih boleh menghasilkan gejala sebenar.',
+      },
+      {
+        heading: 'Permulaan yang tertangguh',
+        body: 'Lazimnya mengambil masa beberapa jam untuk gejala muncul, dan kadangkala sehari dua. Adrenalin di tempat kejadian menutup banyak perkara. Sebab itulah berasa sihat di tepi jalan bukan bukti bahawa tiada apa yang berlaku, dan sebab itulah penilaian susulan beberapa hari kemudian adalah wajar walaupun pemeriksaan awal tiada masalah.',
+      },
+      {
+        heading: 'Menahan dan tidak menggunakan',
+        body: 'Leher yang sakit ditahan tidak bergerak, dan leher yang ditahan tidak bergerak menjadi kaku dan hilang kekuatan. Dalam beberapa minggu ini menjadi sebahagian daripada masalah dengan sendirinya, berasingan daripada kecederaan asal. Ia salah satu sebab mengapa kembali kepada pergerakan normal secara perlahan-lahan, dan bukan berehat sepenuhnya, adalah apa yang dinasihatkan oleh panduan semasa.',
+      },
+      {
+        heading: 'Bahagian yang bukan sekadar tisu',
+        body: 'Tidur yang tidak lena, kebimbangan tentang leher, dan keresahan tentang memandu adalah lazim selepas perlanggaran dan ia benar-benar mempengaruhi cara pemulihan berjalan. Ia bukan tanda bahawa sakit itu khayalan. Ia tindak balas normal terhadap terlibat dalam kemalangan, dan berbaloi dinamakan dan bukan diabaikan.',
+      },
+    ],
+    approach: [
+      {
+        heading: 'Penilaian perubatan datang dahulu, dan kami akan berkata begitu',
+        body: 'Jika anda belum diperiksa selepas kemalangan, itulah langkah pertama, bukan temu janji di sini. Patah tulang, terkehel dan kecederaan saraf tunjang memerlukan pengimejan dan pendapat perubatan, dan tiada penilaian whiplash baru-baru ini yang bertanggungjawab bermula tanpa perkara itu ditangani. Jika anda tiba di sini dan apa-apa dalam sejarah atau pemeriksaan menimbulkan kebimbangan itu, anda akan dihantar ke tempat lain dan bukan dilaras, dan kami lebih rela merujuk anda daripada menangani sesuatu yang bukan urusan kami untuk diuruskan.',
+      },
+      {
+        heading: 'Menggredkan apa yang sebenarnya berlaku',
+        body: 'Whiplash lazimnya digambarkan dalam gred, daripada tiada aduan langsung, kepada sakit leher tanpa tanda fizikal, kepada sakit leher dengan pergerakan berkurang dan rasa sakit apabila ditekan, kepada sakit leher dengan tanda neurologi seperti refleks berubah atau kelemahan, dan akhirnya kepada patah tulang atau terkehel. Di mana anda berada mengubah apa yang sesuai, jadi pemeriksaan menentukan itu sebelum apa-apa lagi diputuskan.',
+      },
+      {
+        heading: 'Mengembalikan pergerakan, secara beransur-ansur',
+        body: 'Bagi gred yang sesuai dengan jagaan konservatif, kerjanya ialah membuat leher bergerak semula tanpa mencetuskannya. Bergantung kepada apa yang pemeriksaan jumpai, itu boleh melibatkan jagaan secara tangan yang lembut, kerja tisu lembut dan dry needling untuk otot yang telah terkunci, dan program berperingkat melalui bahagian fisioterapi kami. Pelarasan digunakan apabila penilaian menyokongnya, dan kiropraktor anda akan menerangkan apa yang dijumpai dan apa yang mereka bercadang lakukan sebelum sebarang tindakan.',
+      },
+      {
+        heading: 'Kembali kepada aktiviti normal',
+        body: 'Panduan semasa untuk whiplash lebih menggalakkan meneruskan aktiviti harian berbanding merehatkan leher, dan menasihatkan supaya tidak bergantung pada kolar, yang cenderung meninggalkan leher lebih kaku. Program anda membina semula toleransi secara berperingkat, termasuk perkara yang orang diam-diam elakkan selepas itu, seperti memeriksa bahu ketika memandu. Kebanyakan orang pulih dalam tempoh beberapa minggu hingga beberapa bulan, dan sesetengahnya mengambil masa lebih lama.',
+      },
+    ],
+    redFlags: [
+      'Sebarang kecederaan leher yang belum dinilai secara perubatan, terutamanya selepas perlanggaran kelajuan tinggi',
+      'Hilang kesedaran pada bila-bila masa, atau keliru, muntah atau mengantuk yang semakin teruk',
+      'Sakit atau rasa sakit yang teruk apabila ditekan di garis tengah tulang belakang itu sendiri',
+      'Kelemahan, kebas atau kesemutan pada lengan atau kaki',
+      'Kekok pada tangan, tidak stabil semasa berjalan, atau kehilangan kawalan pundi kencing atau usus',
+      'Pening, gangguan penglihatan, kesukaran bercakap atau menelan, atau pertuturan tidak jelas',
+      'Sakit kepala teruk yang semakin buruk dan bukan reda pada hari-hari selepas kemalangan',
+    ],
+    faqs: [
+      {
+        q: 'Patutkah saya ke hospital selepas kemalangan kereta, atau terus berjumpa kiropraktor?',
+        a: 'Dapatkan penilaian perubatan dahulu. Patah tulang, terkehel dan kecederaan saraf tunjang bukan perkara yang jagaan konservatif tujukan, dan ia memerlukan pengimejan dan doktor untuk mengetepikannya. Setelah itu dilakukan dan anda telah dibenarkan, penilaian di sini untuk bahagian sendi dan otot kecederaan itu ialah langkah seterusnya yang munasabah. Jika anda datang kepada kami dahulu dan apa-apa yang membimbangkan muncul, kami akan menghantar anda ke tempat yang sepatutnya.',
+      },
+      {
+        q: 'Saya rasa sihat di tempat kejadian dan sakit dua hari kemudian. Adakah itu normal?',
+        a: 'Sangat normal. Lazimnya mengambil masa beberapa jam untuk gejala muncul, kadangkala sehari dua, kerana adrenalin pada masa itu menutup banyak perkara. Berasa sihat di tepi jalan bukan bukti bahawa tiada apa yang berlaku. Jika gejala baharu muncul pada hari-hari selepasnya, terutamanya apa-apa yang berkaitan saraf, dapatkan semakan dan bukan menunggu sahaja.',
+      },
+      {
+        q: 'Patutkah saya memakai kolar leher?',
+        a: 'Panduan semasa menasihatkan supaya tidak bergantung padanya. Kolar menahan leher tidak bergerak tepat pada ketika pergerakan lembut adalah apa yang membantu, dan leher yang ditahan tidak bergerak cenderung menjadi kaku dan hilang kekuatan. Jika doktor telah secara khusus menyuruh anda memakainya, ikut itu, kerana mereka ada sebabnya. Jika tidak, matlamatnya ialah terus bergerak dalam had keselesaan.',
+      },
+      {
+        q: 'Berapa lama masa yang diambil untuk pulih daripada whiplash?',
+        a: 'Ia biasanya bertambah baik dalam tempoh beberapa minggu hingga beberapa bulan, walaupun sesetengah orang mengalami gejala lebih lama, dan cara leher dibebankan sebelum kemalangan membuat perbezaan. Kami tidak akan meletakkan angka pada pemulihan anda sebelum memeriksa anda. Apa yang kami boleh beritahu selepas penilaian ialah peringkat mana anda berada dan bagaimana rupa beberapa minggu seterusnya yang wajar.',
+      },
+      {
+        q: 'Bolehkah anda menyediakan laporan untuk tuntutan insurans atau undang-undang?',
+        a: 'Tanya kami secara langsung dan bukan mengandaikan sama ada boleh atau tidak, kerana apa yang kami boleh sediakan bergantung kepada apa yang diminta dan oleh siapa. Apa sahaja yang kami tulis hanya mencerminkan apa yang dijumpai semasa pemeriksaan di sini. Simpan rekod anda sendiri juga: tarikh kemalangan, bila gejala bermula, dan sebarang penilaian perubatan yang anda telah jalani.',
+      },
+    ],
+    keyTakeaways: [
+      {
+        q: 'Apakah itu whiplash?',
+        a: 'Kecederaan leher akibat kepala dihumban dengan pantas ke hadapan dan ke belakang, paling kerap dalam perlanggaran dari belakang. Ia meregangkan otot dan ligamen dan boleh mengiritasi sendi leher.',
+      },
+      {
+        q: 'Apa perkara pertama yang perlu dilakukan selepas kemalangan?',
+        a: 'Dapatkan penilaian perubatan, sebelum sebarang jagaan secara tangan. Patah tulang dan kecederaan saraf tunjang memerlukan pengimejan dan doktor untuk diketepikan, dan itu perlu berlaku dahulu.',
+      },
+      {
+        q: 'Mengapa leher saya hanya mula sakit keesokan harinya?',
+        a: 'Kerana gejala lazimnya mengambil masa beberapa jam, kadangkala sehari dua, untuk muncul. Adrenalin menutup banyak perkara di tempat kejadian, jadi berasa sihat pada masa itu tidak membuktikan apa-apa.',
+      },
+      {
+        q: 'Adakah merehatkan leher perkara yang betul untuk dilakukan?',
+        a: 'Secara amnya tidak. Panduan lebih menggalakkan meneruskan aktiviti harian dalam had keselesaan berbanding berehat, dan menasihatkan supaya tidak bergantung pada kolar, kerana leher yang ditahan tidak bergerak menjadi kaku dan lemah.',
+      },
+      {
+        q: 'Bilakah anda dibuka?',
+        a: 'Tujuh hari seminggu, di Sunway Velocity, Maluri. Isnin hingga Khamis dan Sabtu sehingga 8 malam, Jumaat sehingga 5 petang, Ahad sehingga 3 petang.',
+      },
+    ],
+    qualifierConcerns: [
+      'Saya terlibat dalam kemalangan dan leher saya kaku dan sakit',
+      'Gejala saya bermula sehari dua selepas kemalangan',
+      'Saya tidak boleh memusingkan kepala dengan betul untuk memeriksa blind spot',
+      'Saya mengalami sakit kepala yang bermula selepas perlanggaran',
+      'Saya telah dibenarkan secara perubatan dan mahu leher dinilai',
+    ],
+    citations: [
+      {
+        claim:
+          'Gejala whiplash boleh mengambil masa beberapa jam untuk bermula, dan ia biasanya bertambah baik dalam tempoh dua hingga tiga bulan, walaupun sesetengah orang mengalami gejala lebih lama.',
+        source: 'NHS, Whiplash',
+        url: 'https://www.nhs.uk/conditions/whiplash/',
+      },
+      {
+        claim:
+          'Panduan NHS untuk whiplash menasihatkan supaya meneruskan aktiviti harian dan menasihatkan supaya tidak menggunakan pendakap atau kolar leher sebagai sokongan.',
+        source: 'NHS, Whiplash',
+        url: 'https://www.nhs.uk/conditions/whiplash/',
+      },
+      {
+        claim:
+          'Penggredan gangguan berkaitan whiplash daripada gred 0 hingga gred IV berasal daripada monograf Quebec Task Force yang diterbitkan dalam Spine pada 1995.',
+        source: 'Spitzer WO and others, Spine, 1995',
+        url: 'https://pubmed.ncbi.nlm.nih.gov/7604354/',
+      },
+    ],
+    // Same standing as every other ms record: adapted from clinic-reviewed English copy, not
+    // yet read by a Malay-speaking reviewer. Flip to `true` if that review is required first.
+    draft: false,
+  },
 ]
