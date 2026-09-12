@@ -839,13 +839,14 @@ export const services: Service[] = [
      * reviewed copy; the page is simply absent in those locales, the same gate everything
      * else uses.
      *
-     * THE HERO AND THREE OF THE FOUR CONCERN CARDS ARE STOCK COMPOSITES, NOT THIS CLINIC, so
-     * their alt text carries no location, per the rule recorded on the dry needling outcomes.
-     * The taping card is a real clinic frame and keeps the modifier. Every real frame with a
-     * visible patient shows a man, which is the wrong picture for a female-only service, and
-     * the OG card is cropped from the stock hero for the same reason: the alternative was the
-     * shopfront card, a building, for a service that happens at the patient's home. A real
-     * house-call photograph would replace both; see OPEN-ITEMS.md item 10.
+     * THE HERO AND MID IMAGE ARE AI GENERATED AND THREE OF THE FOUR CONCERN CARDS ARE STOCK
+     * COMPOSITES, none of them this clinic, so their alt text carries no location, per the
+     * rule recorded on the dry needling outcomes. The taping card is a real clinic frame and
+     * keeps the modifier. Every real frame with a visible patient shows a man, which is the
+     * wrong picture for a female-only service, and the OG card is cropped from the generated
+     * hero for the same reason: the alternative was the shopfront card, a building, for a
+     * service that happens at the patient's home. A real house-call photograph would replace
+     * all of it; see OPEN-ITEMS.md item 10.
      */
     slug: 'physiotherapy-house-call',
     title: 'Physiotherapy House Call in Cheras, Kuala Lumpur',
@@ -855,14 +856,26 @@ export const services: Service[] = [
     targetKeyword: 'home physiotherapy price',
     intro:
       'A physiotherapist comes to you. For female patients around Cheras and Kuala Lumpur who cannot easily get to the clinic, the assessment, the hands-on care and the rehab all happen at home.',
+    /**
+     * Hero and mid image are AI GENERATED in Canva (2026-09-12, from prompts written for
+     * this page: a female physiotherapist in the clinic's navy polo with a female patient in
+     * a Malaysian home). Originals in assets/images/*-canva.png, gitignored. Same rule as the
+     * sports massage images: NOT this clinic, these practitioners or these patients, so the
+     * alt text names no location. Do not add the modifier. Replace with a real house-call
+     * photograph when the clinic has one, and add it back then.
+     *
+     * The hero is exported 4:3 rather than portrait on purpose: the slot is 4:3 on phones and
+     * 4:5 on desktop, and a 4:3 source keeps both heads in the phone crop while only trimming
+     * the sides on desktop. The mid image is 1400x1000 because the route hardcodes that size.
+     */
     heroImage: {
-      src: '/img/physio-recurring.webp',
-      alt: 'Clinician resting a hand on the shoulder of a seated older woman during an assessment',
+      src: '/img/physio-house-call-hero.webp',
+      alt: 'Physiotherapist standing behind a seated woman at home, hands on her shoulders, as she holds a resistance band out in front of her',
     },
-    ogImage: '/og/physio-recurring.jpg',
+    ogImage: '/og/physio-house-call.jpg',
     midImage: {
-      src: '/img/physio-tailored-exercise.webp',
-      alt: 'Woman working through a resistance band exercise while a therapist holds the other end of the band',
+      src: '/img/physio-house-call-rehab.webp',
+      alt: 'Physiotherapist kneeling beside a woman on an exercise mat in a living room, guiding her through a bridge exercise',
     },
     /** All three are stated and priced further down; this only moves them into the fold. */
     assurances: [

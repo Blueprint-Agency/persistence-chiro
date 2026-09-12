@@ -357,11 +357,14 @@ Outstanding:
    measured from the clinic at Sunway Velocity; the poster does not say. (b) The coverage FAQ
    gives "most of Cheras, Maluri and Ampang and the city centre" as a rough guide to what 10 km
    reaches; that is a map estimate, not a clinic statement.
-2. **A real house-call photograph.** The hero and three of the four concern cards are stock composites,
-   so none carries the Cheras alt modifier (same rule as the dry needling and sports massage
-   images). Every real clinic frame shows a male patient, which is the wrong picture for this
-   service. One photograph of a physiotherapist with a female patient at home would replace the
-   hero and the OG card (`/og/physio-recurring.jpg`, generated from the current hero).
+2. ~~A real house-call photograph.~~ **PARTLY SOLVED 2026-09-12, same caveat as item 5.** The
+   hero (`physio-house-call-hero.webp`), the "how it works" image (`physio-house-call-rehab.webp`)
+   and the OG card (`/og/physio-house-call.jpg`) are AI generated in Canva from prompts written
+   for this page: a female physiotherapist in the clinic's navy polo with a female patient in a
+   Malaysian home. Originals sit in `assets/images/*-canva.png`, gitignored. **They are not this
+   clinic, so their alt text names no location; do not add the modifier.** Three of the four
+   concern cards are still borrowed stock composites. A real photograph of a physiotherapist on
+   an actual house call would replace all of it.
 3. **Does the client want the packages as cards on `/offers`?** They are linked from there,
    not carded, because the cards on that page make a saving claim and carry a "website-only"
    badge, and this rate card does neither. If the client wants cards, the two packages fit the
