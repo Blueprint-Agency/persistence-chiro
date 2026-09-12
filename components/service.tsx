@@ -202,11 +202,20 @@ export function ServiceHero({
 
           {image && (
             <div className="relative aspect-[4/3] overflow-hidden rounded-3xl lg:aspect-[4/5]">
+              {/* `sizes` is 840px on desktop, not the slot's ~480px CSS width, on purpose. The
+                  slot is PORTRAIT (4:5) from `lg` up and every hero source is LANDSCAPE, so
+                  object-cover fills the slot by HEIGHT and the width the browser actually
+                  needs is height x the source aspect: ~594px x 1.33 = ~800px CSS, ~1600px at
+                  2x. With 480px the browser picked the 1080w candidate, which is only 810px
+                  tall, and upscaled it 1.5x; the house call hero shipped visibly soft that way
+                  (2026-09-12). `quality` 85 rather than the default 75 for the same reason:
+                  this is the one image on the page a visitor looks at rather than past. */}
               <Image
                 src={image.src}
                 alt={image.alt}
                 fill
-                sizes="(max-width: 1024px) 100vw, 480px"
+                sizes="(max-width: 1024px) 100vw, 840px"
+                quality={85}
                 className="object-cover"
                 priority
               />
