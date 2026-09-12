@@ -83,8 +83,9 @@ data:
 
 ## 5. Sports massage and shockwave — pages BUILT 2026-09-03, assets and review outstanding
 
-`/services/sports-massage` is live in **all three locales**, with shockwave as a section on it
-and the RM200 bundle on the page. Each locale targets its own measured keyword rather than a
+`/services/sports-massage` is live in **all three locales**, with an electromodalities section on
+it (broadened from shockwave-only on 2026-09-12, alongside the bundle rename below) and the RM200
+bundle on the page. Each locale targets its own measured keyword rather than a
 translation of the English one (Ubersuggest, Malaysia locId 2458, pulled 2026-09-03):
 
 | Locale | Target | Volume | SD |
@@ -230,8 +231,13 @@ Two faults in the client's artwork were caught on the way in and are worth remem
    patient sees. The block is rebuilt as markup rather than dropped in as an image. Never
    publish that artwork as-is.
 
-**Shockwave + Sports Massage, RM200 (from RM240), one session of each — LIVE 2026-09-03** on
-`/services/sports-massage`. **BOTH bundles are website-only** (client, 2026-09-03, correcting an
+**Electromodalities + Sports Massage, RM200 (from RM240), one session of each — LIVE 2026-09-03** on
+`/services/sports-massage`. **Renamed from "Shockwave + Sports Massage" on 2026-09-12** at the
+client's request: the RM120 line is now "electromodalities", and the card carries a line under the
+heading saying it can include cupping, heat pack, ultrasound, shockwave or taping. Same price,
+same total. The slug moved with it (`/offers#electromodalities-sports-massage`). The zh/ms names
+(理疗仪器 / modaliti fisioterapi) are drafts, not literal "electro" renderings, because cupping
+and taping are on the list; they need the same client read as the rest of the zh/ms copy. **BOTH bundles are website-only** (client, 2026-09-03, correcting an
 earlier note here that had the RM588 available at the counter too), and GSC shows the site holding
 positions 4-11 on its money queries
 while taking near-zero clicks, because those are local-pack impressions where the tap goes to

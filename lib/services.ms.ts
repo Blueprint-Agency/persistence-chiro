@@ -692,7 +692,8 @@ export const servicesMs: Service[] = [
       },
       {
         heading: 'Sokongan pemulihan dan modaliti terapeutik',
-        body: 'Selain kerja aktif, kami menggunakan terapi tambahan untuk melegakan sakit dan menyokong pemulihan tisu pada peringkat awal. Ini menjadikan pemulihan mungkin dilakukan, bukan menggantikannya. Apabila jarum kering atau jagaan secara tangan membantu, kami menggabungkannya di bawah satu bumbung.',
+        // Names the five modalities since 2026-09-12, matching the bundle rename in lib/pricing.ms.ts.
+        body: 'Selain kerja aktif, kami menggunakan modaliti tambahan untuk melegakan sakit dan menyokong pemulihan tisu pada peringkat awal: bekam, pek haba, ultrasound, gelombang kejutan atau taping, mengikut apa yang ditunjukkan penilaian. Ini menjadikan pemulihan mungkin dilakukan, bukan menggantikannya. Apabila jarum kering atau jagaan secara tangan membantu, kami menggabungkannya di bawah satu bumbung.',
       },
       {
         heading: 'Kestabilan teras dan tulang belakang untuk ketahanan',
@@ -1077,8 +1078,9 @@ export const servicesMs: Service[] = [
         body: 'Enam puluh minit kerja tangan pada otot dan tisu di sekelilingnya, pada tekanan yang masih membolehkan anda bernafas dengan selesa. Kami beritahu apa yang sedang dikerjakan dan sebabnya sambil kami bekerja.',
       },
       {
-        heading: 'Terapi gelombang kejutan bersama urut sukan',
-        body: 'Ada tisu yang tidak bertindak balas kepada tangan sahaja, terutamanya tendon yang sudah berbulan bulan mengeluh. Terapi gelombang kejutan menghantar gelombang tekanan terfokus ke titik itu, dan kerap disusun dalam lawatan yang sama apabila penilaian menunjukkan ia sesuai.',
+        // Broadened from shockwave-only on 2026-09-12, with the bundle rename in lib/pricing.ms.ts.
+        heading: 'Modaliti fisioterapi bersama urut sukan',
+        body: 'Ada tisu yang tidak bertindak balas kepada tangan sahaja, terutamanya tendon yang sudah berbulan bulan mengeluh. Apabila penilaian menunjukkan ia sesuai, kami tambah satu modaliti dalam lawatan yang sama: bekam, pek haba, ultrasound, gelombang kejutan atau taping, mengikut mana yang padan dengan bahagian itu.',
       },
       {
         heading: 'Apa yang urut sukan lakukan, dan apa yang tidak',

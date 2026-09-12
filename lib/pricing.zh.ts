@@ -37,19 +37,26 @@ export const bundlesZh: Bundle[] = [
     draft: false,
   },
   {
-    slug: 'shockwave-sports-massage',
+    slug: 'electromodalities-sports-massage',
     eyebrow: '运动恢复配套',
-    name: '冲击波疗法与运动按摩',
+    /**
+     * Renamed 2026-09-12 with the English record ("electromodalities"). 理疗仪器 rather than a
+     * literal 电疗: the list includes cupping and taping, which are not electrical, and 理疗 is
+     * the everyday Malaysian Chinese word for this category. Draft, unreviewed, like the rest.
+     */
+    name: '理疗仪器与运动按摩',
+    description: '理疗仪器是这次疗程中借助工具的部分。视评估结果而定,可包括拔罐、热敷、超声波、冲击波或贴扎。',
     price: 200,
     compareAt: 240,
     lines: [
-      { label: '冲击波疗法,单次', price: 120 },
+      { label: '理疗仪器,单次', price: 120 },
       { label: '运动按摩,六十分钟', price: 120 },
     ],
     who: '训练量大,或旧伤反反复复的人。针对酸痛的肌腱和紧绷的软组织,不需要是新患者。',
     /**
-     * Shows the actual thing being sold, as of 2026-09-03. It replaced a shoulder-mobility
-     * frame, which in turn replaced this page's own hero; neither depicted shockwave.
+     * Shows one of the modalities being sold (shockwave), as of 2026-09-03. It replaced a
+     * shoulder-mobility frame, which in turn replaced this page's own hero; neither depicted any
+     * of them. Still the right frame after the 2026-09-12 rename: shockwave is on the list.
      *
      * ⚠️ AI GENERATED, SO THE ALT CLAIMS NO LOCATION. Not a photograph of this clinic, these
      * practitioners or these patients. Naming Cheras here would be a claim about a room that

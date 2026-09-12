@@ -1213,7 +1213,8 @@ export const services: Service[] = [
       },
       {
         heading: 'Recovery support and therapeutic modalities',
-        body: 'Alongside the active work, we use adjunct therapies to ease pain and support tissue recovery early on. These make the rehabilitation possible, not replace it. Where dry needling or hands on care helps, we combine them under the same roof.',
+        // Names the five modalities since 2026-09-12, matching the bundle rename in lib/pricing.ts.
+        body: 'Alongside the active work, we use adjunct modalities to ease pain and support tissue recovery early on: cupping, a heat pack, ultrasound, shockwave or taping, whichever the assessment calls for. These make the rehabilitation possible, not replace it. Where dry needling or hands on care helps, we combine them under the same roof.',
       },
       {
         heading: 'Core and spinal stability for durability',
@@ -1485,8 +1486,12 @@ export const services: Service[] = [
         body: 'Sixty minutes of hands on work through the muscle and the tissue around it, at a pressure you can breathe through. We tell you what we are working on and why as we go.',
       },
       {
-        heading: 'Shockwave therapy alongside sports massage',
-        body: 'Some tissue does not respond to hands alone, particularly a tendon that has grumbled for months. Shockwave adds focused pressure waves at that spot, often in the same visit, where the assessment calls for it.',
+        /**
+         * Broadened from a shockwave-only section on 2026-09-12, with the bundle rename in
+         * lib/pricing.ts: shockwave is one of five modalities, not the only one on offer.
+         */
+        heading: 'Electromodalities alongside sports massage',
+        body: 'Some tissue does not respond to hands alone, particularly a tendon that has grumbled for months. Where the assessment calls for it, we add a modality in the same visit: cupping, a heat pack, ultrasound, shockwave or taping, whichever suits that spot.',
       },
       {
         heading: 'What sports massage does, and what it does not',

@@ -40,19 +40,27 @@ export const bundlesMs: Bundle[] = [
     draft: false,
   },
   {
-    slug: 'shockwave-sports-massage',
+    slug: 'electromodalities-sports-massage',
     eyebrow: 'Pakej pemulihan sukan',
-    name: 'Terapi gelombang kejutan dan urut sukan',
+    /**
+     * Renamed 2026-09-12 with the English record ("electromodalities"). "Modaliti fisioterapi"
+     * rather than a coined "elektromodaliti": bekam and taping are on the list and neither is
+     * electrical, and "modaliti" alone means nothing to a patient. Draft, unreviewed.
+     */
+    name: 'Modaliti fisioterapi dan urut sukan',
+    description:
+      'Modaliti fisioterapi ialah bahagian sesi yang menggunakan alat. Bergantung pada apa yang ditemui semasa penilaian, ia boleh merangkumi bekam, pek haba, ultrasound, gelombang kejutan atau taping.',
     price: 200,
     compareAt: 240,
     lines: [
-      { label: 'Terapi gelombang kejutan, satu sesi', price: 120 },
+      { label: 'Modaliti fisioterapi, satu sesi', price: 120 },
       { label: 'Urut sukan, 60 minit', price: 120 },
     ],
     who: 'Mereka yang berlatih keras, atau ada kecederaan lama yang asyik berulang. Untuk tendon yang sakit dan tisu lembut yang tegang, dan tidak perlu jadi pesakit baharu.',
     /**
-     * Shows the actual thing being sold, as of 2026-09-03. It replaced a shoulder-mobility
-     * frame, which in turn replaced this page's own hero; neither depicted shockwave.
+     * Shows one of the modalities being sold (shockwave), as of 2026-09-03. It replaced a
+     * shoulder-mobility frame, which in turn replaced this page's own hero; neither depicted any
+     * of them. Still the right frame after the 2026-09-12 rename: shockwave is on the list.
      *
      * ⚠️ AI GENERATED, SO THE ALT CLAIMS NO LOCATION. Not a photograph of this clinic, these
      * practitioners or these patients. Naming Cheras here would be a claim about a room that

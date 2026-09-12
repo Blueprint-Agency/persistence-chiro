@@ -90,6 +90,12 @@ export function BundleOffer({
           <h2 className="mt-5 text-3xl font-extrabold leading-tight sm:text-4xl">
             {bundle.name}
           </h2>
+          {/* Only for a bundle whose name is a category rather than a thing. Sits directly
+              under the heading, before the receipt, because it explains the first line item
+              and the reader should not have to reach the list to learn what the word means. */}
+          {bundle.description && (
+            <p className="mt-3 leading-relaxed text-ink-muted">{bundle.description}</p>
+          )}
 
           {/* Not an eyebrow. The card already has one above the heading, and a second run of
               small caps here gave the column two competing labels instead of a hierarchy. */}

@@ -31,11 +31,19 @@ import { bundlesMs } from './pricing.ms.ts'
 export type BundleLine = { label: string; price: number }
 
 export type Bundle = {
-  slug: 'chiro-physio' | 'shockwave-sports-massage'
+  slug: 'chiro-physio' | 'electromodalities-sports-massage'
   /** Small caps label above the heading — what kind of offer this is. */
   eyebrow: string
   /** The <h2>. */
   name: string
+  /**
+   * One or two sentences under the heading, for a bundle whose name does not say what is in
+   * it. "Electromodalities" names a category, not a thing, so the card lists what the category
+   * can include (client, 2026-09-12). "Can include", never "includes": which modality is used
+   * is decided at the assessment, and a list read as a promise of all five would be a claim the
+   * clinic is not making. Omit it when the name and the line items already say everything.
+   */
+  description?: string
   /** What the visitor pays. */
   price: number
   /**
@@ -125,19 +133,27 @@ export const bundles: Bundle[] = [
     draft: false,
   },
   {
-    slug: 'shockwave-sports-massage',
+    slug: 'electromodalities-sports-massage',
     eyebrow: 'Sports recovery bundle',
-    name: 'Shockwave therapy and sports massage',
+    /**
+     * Renamed from "Shockwave therapy and sports massage" on 2026-09-12 at the client's request.
+     * The session is no longer shockwave by definition: it is whichever modality the assessment
+     * calls for, and shockwave is one of five. The price and the line total did not move.
+     */
+    name: 'Electromodalities and sports massage',
+    description:
+      'Electromodalities is the tool-assisted part of the session. Depending on what the assessment finds, it can include cupping, a heat pack, ultrasound, shockwave or taping.',
     price: 200,
     compareAt: 240,
     lines: [
-      { label: 'Shockwave therapy, one session', price: 120 },
+      { label: 'Electromodalities, one session', price: 120 },
       { label: 'Sports massage, 60 minutes', price: 120 },
     ],
     who: 'People who train hard, or carry an old niggle that keeps coming back. It is for sore tendons and tight soft tissue, and you do not need to be a new patient.',
     /**
-     * Shows the actual thing being sold, as of 2026-09-03. It replaced a shoulder-mobility
-     * frame, which in turn replaced this page's own hero; neither depicted shockwave.
+     * Shows one of the modalities being sold (shockwave), as of 2026-09-03. It replaced a
+     * shoulder-mobility frame, which in turn replaced this page's own hero; neither depicted any
+     * of them. Still the right frame after the 2026-09-12 rename: shockwave is on the list.
      *
      * ⚠️ AI GENERATED, SO THE ALT CLAIMS NO LOCATION. Not a photograph of this clinic, these
      * practitioners or these patients. Naming Cheras here would be a claim about a room that
