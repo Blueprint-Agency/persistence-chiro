@@ -169,16 +169,18 @@ export type Service = {
    * reader is wasting our time. Pair each one with its mirror in `rightFor` where you can:
    * read across the two columns and the same decision should be visible from both sides.
    *
-   * `note` is required so the block cannot end on the refusal, exactly as `comparison.note`
-   * stops that table ending on a winner. It is the sentence that says what to do instead.
+   * NO CLOSING NOTE. Until 2026-09-13 a required `note` sat under the two columns ("None of
+   * that makes you a difficult patient. It means... If..., a first visit is where that starts")
+   * so the block could not end on the refusal. The client read it on the yoga page, found it
+   * padded and machine-sounding, and asked for it to go from every page that carried the same
+   * shape, which was all of them. The block now ends on the two columns, and the CTA band and
+   * FAQ below it carry the "what to do instead". Do not bring the field back as an optional.
    */
   fitCheck?: {
     /** Left column, ticked. What someone who suits this service wants from a clinic. */
     rightFor: readonly string[]
     /** Right column, crossed. Expectations a first visit here would not meet. */
     notRightFor: readonly string[]
-    /** The closer. Required, so the block never ends on what we will not do. */
-    note: string
   }
   /**
    * Service blocks, rendered by /services/[slug] as the hero intro (the first) and the
@@ -477,7 +479,6 @@ export const services: Service[] = [
         'You want a number of visits quoted, or an outcome promised, before we have seen you.',
         'Your problem is not mechanical. Chiropractic does not treat infection, fracture or disease of the organs, and we would refer you rather than adjust you.',
       ],
-      note: 'None of that makes you a difficult patient. It means a first visit here would not give you what you came for, and we would rather say so now than at the end of an appointment you have paid for. If what you want is the assessment first and an honest answer about whether adjusting is the right call, that is exactly what a first visit is.',
     },
     helpsWith: ['back-pain', 'slipped-disc', 'sciatica', 'neck-pain', 'scoliosis', 'pinched-nerve'],
     /**
@@ -701,7 +702,6 @@ export const services: Service[] = [
         'You are looking for a relaxation massage or a spa session rather than clinical rehabilitation.',
         'Your problem needs imaging or a medical opinion first. Physiotherapy does not treat fracture, infection or disease of the organs, and we would refer you rather than press on.',
       ],
-      note: 'None of that makes you a difficult patient. It means a first visit here would not give you what you came for, and we would rather say so at the start than at the end. If what you want is an honest assessment and a plan you understand well enough to follow, that is exactly what a first visit is.',
     },
     sections: [
       {
@@ -935,7 +935,6 @@ export const services: Service[] = [
         'You want a chiropractic adjustment or an X-ray at home. Both need the clinic.',
         'You are looking for a relaxation massage rather than clinical rehabilitation.',
       ],
-      note: 'None of that closes the door. It usually means the clinic is the better place to start, or that one message will settle the travel question before you commit to anything. Send us your area and your main concern and we will tell you which it is.',
     },
     sections: [
       {
@@ -1192,7 +1191,6 @@ export const services: Service[] = [
         'You want to keep training exactly as before, with nothing about the load or the movement changed.',
         'The injury may need a surgeon or imaging first. We would refer you rather than start rehabilitation regardless.',
       ],
-      note: 'None of that makes you a difficult patient, and most of it is simply what being in a hurry to get back sounds like. It means we would give you an honest answer about readiness rather than sign off a date, which is the part that decides whether the same injury returns in three months. If that is what you want from a clinic, a first visit is where it starts.',
     },
     sections: [
       {
@@ -1470,7 +1468,6 @@ export const services: Service[] = [
         'You want a number of sessions agreed before anyone has looked at you.',
         'The problem may need a medical opinion or imaging first. We would refer you rather than work on it regardless.',
       ],
-      note: 'None of that makes you a difficult patient, and the first one is simply what most people mean when they say they want a massage. It means we would rather send you somewhere better suited than sell you an hour that will not hold. If you want the tension looked at properly, a first visit is where that starts.',
     },
     sections: [
       {
@@ -1668,7 +1665,6 @@ export const services: Service[] = [
         'You want a brace or a gadget instead of the strength and habit work that holds a position.',
         'You have a structural curve such as scoliosis and want it reversed. Care can help with comfort and movement; the curve itself stays as it is.',
       ],
-      note: 'None of that makes you a difficult patient. It means what you are hoping for and what posture work can honestly do are two different things, and we would rather be plain about that before you pay for anything. What does tend to respond is comfort, endurance and how long you can hold a better position before it takes effort, and a first visit is where we work out which of those applies to you.',
     },
     sections: [
       {
@@ -1909,7 +1905,6 @@ export const services: Service[] = [
         'You want yoga to stand in for the assessment a new or worsening pain needs.',
         'You need a fixed price for private sessions before messaging. Private yoga is quoted on request.',
       ],
-      note: 'None of that is a criticism, and the first two describe most yoga studios in Kuala Lumpur, which is exactly what some people want. It means this is a quieter, smaller thing that sits inside a clinic. If that sounds right, drop in for one class at RM55 before deciding on a pack.',
     },
     sections: [
       {
@@ -2147,7 +2142,6 @@ export const services: Service[] = [
         'You want the needling on its own, with no exercise or follow-up work between sessions.',
         'You are looking for acupuncture. It uses similar needles but selects points differently, and it is not what we offer.',
       ],
-      note: 'If any of that is you, it does not mean we cannot help. It means dry needling is probably not where we would start, and a first visit is exactly where that gets decided. We would rather point you at the approach that suits than sell you the one you walked in asking for.',
     },
     sections: [
       {

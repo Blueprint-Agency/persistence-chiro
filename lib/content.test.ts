@@ -163,7 +163,7 @@ test('no promissory medical claims in published copy', () => {
             // Its left column is the block most likely to reach for "we guarantee we will
             // always..." phrasing, which the banned list catches.
             ...(m.fitCheck
-              ? [...m.fitCheck.rightFor, ...m.fitCheck.notRightFor, m.fitCheck.note]
+              ? [...m.fitCheck.rightFor, ...m.fitCheck.notRightFor]
               : []),
             // The per-visit price list renders prose around its figures, and its `summary`
             // is republished on /offers, so both clear the same guard.
@@ -306,19 +306,18 @@ test('every in-prose link points at a published route', () => {
 })
 
 /**
- * The fit check exists to be honest about a mismatch, not to tell a reader off, so the
- * closing note is required by the type and has to be substantial rather than a token
- * sentence — same contract `practitionersWithheld` has with its reason string.
- *
  * The columns must BALANCE. They render side by side and are written to be read across, so
  * a page with five ticks against two crosses stops being an honest fit check and becomes a
  * sales pitch with a disclaimer stapled to it, which is the shape this block exists to avoid.
+ *
+ * This used to also require a substantial closing `note`. The field was removed on
+ * 2026-09-13 at the client's request; see `fitCheck` on the Service type.
  */
-test('every fit check is balanced and closes on a substantial note', () => {
+test('every fit check is balanced', () => {
   for (const locale of LOCALES) {
     for (const s of servicesFor(locale)) {
       if (!s.fitCheck) continue
-      const { rightFor, notRightFor, note } = s.fitCheck
+      const { rightFor, notRightFor } = s.fitCheck
       assert.ok(
         notRightFor.length >= 3,
         `[${locale}] services/${s.slug}.fitCheck has fewer than 3 crosses; a one-line refusal reads as a caveat`,
@@ -327,13 +326,6 @@ test('every fit check is balanced and closes on a substantial note', () => {
         rightFor.length,
         notRightFor.length,
         `[${locale}] services/${s.slug}.fitCheck columns are uneven (${rightFor.length} ticks vs ${notRightFor.length} crosses); they render side by side and are meant to be read across`,
-      )
-      // Chinese conveys far more per character than an alphabetic script, so the same
-      // 120-character bar would be unreasonably long there — see AGENTS.md § Multilingual.
-      const minLength = locale === 'zh' ? 45 : 120
-      assert.ok(
-        note.length > minLength,
-        `[${locale}] services/${s.slug}.fitCheck.note is too short to say what to do instead`,
       )
     }
   }

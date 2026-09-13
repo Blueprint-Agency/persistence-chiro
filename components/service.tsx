@@ -556,8 +556,9 @@ export function InlineCta({
  * side by side, each cross has a tick opposite it and the reader picks a side instead of
  * being warned off. The pairs are written to read across, so keep them in matching order.
  *
- * `note` is not optional in the type and renders under both columns, so the block can never
- * end on the refusal. Same contract `ComparisonTable` has with its own `note`.
+ * No closing note under the columns since 2026-09-13; see `fitCheck` on the Service type for
+ * why the client had it removed. `ComparisonTable` keeps its own `note`, which does a different
+ * job (it stops a table ending on a winner).
  *
  * NO RED, and no green. The cross is the muted slate this site uses for secondary marks,
  * because the right-hand column is honesty rather than error, and a red column would read as
@@ -570,7 +571,7 @@ export function FitCheck({
   serviceName,
 }: {
   dict: Dictionary
-  data?: { rightFor: readonly string[]; notRightFor: readonly string[]; note: string }
+  data?: { rightFor: readonly string[]; notRightFor: readonly string[] }
   serviceName: string
 }) {
   if (!data) return null
@@ -632,10 +633,6 @@ export function FitCheck({
             </div>
           ))}
         </div>
-
-        <p className="mt-10 max-w-3xl border-l-2 border-brand-gold pl-5 leading-relaxed text-ink">
-          {data.note}
-        </p>
       </div>
     </section>
   )

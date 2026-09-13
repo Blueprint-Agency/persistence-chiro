@@ -104,7 +104,6 @@ export const servicesMs: Service[] = [
         'Anda mahukan penyokong atau alat berbanding kerja kekuatan dan tabiat yang menahan kedudukan.',
         'Anda mempunyai lengkung struktur seperti skoliosis dan mahu ia dibalikkan. Jagaan boleh membantu keselesaan dan pergerakan; lengkung itu sendiri kekal seperti sedia ada.',
       ],
-      note: 'Tiada satu pun daripada itu menjadikan anda pesakit yang sukar. Ia bermakna apa yang anda harapkan dan apa yang kerja postur boleh lakukan secara jujur adalah dua perkara berbeza, dan kami lebih suka memberitahu dengan jelas sebelum anda membayar apa-apa. Apa yang biasanya bertindak balas adalah keselesaan, daya tahan dan berapa lama anda boleh menahan kedudukan yang lebih baik sebelum ia terasa seperti usaha, dan lawatan pertama adalah untuk kami tentukan yang mana berkenaan dengan anda.',
     },
     sections: [
       {
@@ -311,7 +310,6 @@ export const servicesMs: Service[] = [
         'Anda mencari urutan santai atau sesi spa, bukan pemulihan klinikal.',
         'Masalah anda memerlukan imbasan atau pendapat perubatan dahulu. Fisioterapi tidak menangani patah tulang, jangkitan atau penyakit organ, dan kami akan merujuk anda keluar berbanding meneruskan.',
       ],
-      note: 'Tiada satu pun daripada itu menjadikan anda pesakit yang sukar. Ia bermakna lawatan pertama di sini tidak akan memberikan apa yang anda cari, dan kami lebih suka memberitahu di awal berbanding di akhir. Jika apa yang anda mahukan adalah penilaian yang jujur dan pelan yang anda faham cukup untuk diikuti, itulah tepatnya lawatan pertama.',
     },
     sections: [
       {
@@ -492,7 +490,6 @@ export const servicesMs: Service[] = [
         'Anda mahu jarum kering secara bersendirian, tanpa senaman atau susulan antara sesi.',
         'Anda sebenarnya mencari akupunktur. Ia menggunakan jarum yang serupa tetapi memilih titik secara berbeza, dan bukan perkhidmatan yang kami tawarkan.',
       ],
-      note: 'Jika mana-mana daripada itu berkenaan dengan anda, ia tidak bermakna kami tidak boleh membantu. Ia bermakna jarum kering mungkin bukan tempat kami akan mulakan, dan lawatan pertama adalah tepat untuk menentukan itu. Kami lebih suka menunjukkan pendekatan yang sesuai berbanding menjual apa yang anda minta semasa masuk.',
     },
     sections: [
       {
@@ -672,7 +669,6 @@ export const servicesMs: Service[] = [
         'Anda mahu terus berlatih tepat seperti sebelumnya, tanpa sebarang perubahan bebanan atau pergerakan.',
         'Kecederaan mungkin memerlukan pakar bedah atau imbasan dahulu. Kami akan merujuk anda berbanding memulakan pemulihan begitu sahaja.',
       ],
-      note: 'Tiada satu pun daripada itu menjadikan anda pesakit yang sukar, dan kebanyakannya hanyalah bunyi tergesa-gesa untuk kembali. Ia bermakna kami akan memberikan jawapan jujur tentang kesediaan berbanding mengesahkan satu tarikh, dan itulah bahagian yang menentukan sama ada kecederaan yang sama akan berulang dalam tiga bulan. Jika itu yang anda mahukan daripada sebuah klinik, lawatan pertama adalah permulaannya.',
     },
     sections: [
       {
@@ -856,7 +852,6 @@ export const servicesMs: Service[] = [
         'Anda mahu bilangan lawatan atau hasil dijanjikan sebelum kami melihat keadaan anda.',
         'Masalah anda bukan bersifat mekanikal. Kiropraktik tidak menangani jangkitan, patah tulang atau penyakit organ, dan kami akan merujuk anda berbanding melaras anda.',
       ],
-      note: 'Tiada satu pun daripada itu menjadikan anda pesakit yang sukar. Ia bermakna lawatan pertama di sini tidak akan memberikan apa yang anda cari, dan kami lebih suka memberitahu sekarang berbanding di penghujung temu janji yang telah anda bayar. Jika apa yang anda mahukan ialah penilaian dahulu dan jawapan jujur tentang sama ada pelarasan adalah langkah yang sesuai, itulah tepat yang disediakan pada lawatan pertama.',
     },
     helpsWith: ['back-pain', 'slipped-disc', 'sciatica', 'neck-pain', 'scoliosis'],
     relatedLinks: [
@@ -1063,7 +1058,6 @@ export const servicesMs: Service[] = [
         'Anda mahu jumlah sesi disepakati sebelum sesiapa melihat keadaan anda.',
         'Masalah itu mungkin memerlukan pendapat perubatan atau pengimejan dahulu. Kami akan merujuk anda dan bukan meneruskannya.',
       ],
-      note: 'Tiada satu pun daripada itu menjadikan anda pesakit yang menyusahkan, dan yang pertama itu memang apa yang dimaksudkan oleh kebanyakan orang bila mereka kata mereka mahu urut. Maksudnya kami lebih rela menghantar anda ke tempat yang lebih sesuai daripada menjual sejam yang tidak akan bertahan. Kalau anda mahu ketegangan itu dilihat dengan betul, lawatan pertama tempat ia bermula.',
     },
     sections: [
       {
@@ -1217,7 +1211,6 @@ export const servicesMs: Service[] = [
         'Anda mahukan pelarasan kiropraktik atau X-ray di rumah. Kedua-duanya memerlukan klinik.',
         'Anda mencari urutan santai dan bukan pemulihan klinikal.',
       ],
-      note: 'Tiada satu pun daripada itu menutup pintu. Ia biasanya bermakna klinik ialah tempat yang lebih baik untuk bermula, atau satu mesej sahaja akan menyelesaikan soal perjalanan sebelum anda membuat sebarang keputusan. Hantar kawasan anda dan kebimbangan utama anda kepada kami dan kami akan beritahu yang mana satu.',
     },
     sections: [
       {
@@ -1475,7 +1468,6 @@ export const servicesMs: Service[] = [
         'Anda mahu yoga menggantikan penilaian yang diperlukan oleh sakit yang baru atau semakin teruk.',
         'Anda perlukan harga tetap untuk sesi peribadi sebelum menghantar mesej. Yoga peribadi diberi sebut harga atas permintaan.',
       ],
-      note: 'Tiada satu pun daripada itu satu kritikan, dan dua yang pertama menggambarkan kebanyakan studio yoga di Kuala Lumpur, yang memang dikehendaki sesetengah orang. Ia bermakna ini sesuatu yang lebih tenang dan kecil yang berada di dalam sebuah klinik. Jika itu kedengaran sesuai, cuba satu kelas pada RM55 sebelum memutuskan pakej.',
     },
     sections: [
       {
