@@ -1936,10 +1936,6 @@ export const services: Service[] = [
         heading: 'Booking a class or a pack',
         body: 'Message us on WhatsApp with which Saturday you want and whether you are new. We confirm which of the two classes runs that week. Pay for a single class on the day, or buy a pack of three or six and use it across either class.',
       },
-      {
-        heading: 'When an assessment comes before the yoga',
-        body: 'If you are in pain right now, or something has recently got worse, a class is the wrong first step. We would rather assess it, with a chiropractor or a physiotherapist in the same building, and then tell you which class fits, or whether to wait. Being in a clinic is the point of running the classes here.',
-      },
     ],
     priceList: {
       eyebrow: 'Class fees and schedule',

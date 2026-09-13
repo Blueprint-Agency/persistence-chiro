@@ -1498,10 +1498,6 @@ export const servicesMs: Service[] = [
         heading: 'Menempah kelas atau pakej',
         body: 'Mesej kami di WhatsApp dengan Sabtu mana yang anda mahu dan sama ada anda baru. Kami sahkan kelas mana antara dua ini yang berjalan pada minggu itu. Bayar untuk satu kelas pada hari tersebut, atau beli pakej tiga atau enam dan gunakannya untuk mana-mana kelas.',
       },
-      {
-        heading: 'Bila penilaian datang sebelum yoga',
-        body: 'Jika anda sedang sakit sekarang, atau sesuatu baru-baru ini bertambah teruk, kelas ialah langkah pertama yang salah. Kami lebih suka menilainya, dengan kiropraktor atau ahli fisioterapi di bangunan yang sama, dan kemudian beritahu anda kelas mana yang sesuai, atau sama ada perlu menunggu. Berada di dalam klinik ialah sebab kelas ini dijalankan di sini.',
-      },
     ],
     priceList: {
       eyebrow: 'Yuran kelas dan jadual',
