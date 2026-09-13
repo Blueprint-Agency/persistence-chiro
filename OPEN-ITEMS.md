@@ -4,7 +4,7 @@ Work that is **blocked on a person, an asset or an access grant** — not on cod
 item below has its reasoning recorded in a comment next to the thing it governs; this file
 exists so the list can be found in one place instead of stumbled upon in four.
 
-Last updated **2026-09-12**, when the last zh/ms gaps were closed (item 7b) after the house call page was built (item 10).
+Last updated **2026-09-12**, when the yoga classes page was built (item 11), after the last zh/ms gaps were closed (item 7b) and the house call page was built (item 10).
 
 > Keep this file honest. When an item is resolved, delete it here *and* remove the
 > corresponding gate or comment in the code. A stale blocker is worse than no list.
@@ -397,3 +397,56 @@ Outstanding:
    either language), per the client's rule of the same day. Unreviewed, like every zh/ms record.
 5. Physiotherapist naming follows item 1; this page sets `practitionersWithheld` like the
    physiotherapy page and should be un-gated with it.
+
+## 11. Yoga classes page — BUILT 2026-09-12, instructor and two prices outstanding
+
+`/services/yoga-classes` is live in all three locales, built from two client flyers received the
+same day ("Class Schedule" and "Price List", scanned PDFs). What the flyers say is on the page:
+Posture Core Yoga and Chair Yoga on Saturdays at 4:00pm alternating weekly, private one to one
+yoga by appointment, drop in RM55, 3 class pack RM138 (one person, two months), 6 class pack RM248
+(shareable by two, three months), both packs valid for either class. The schedule and the fees
+render through the existing `priceList` block, with the timetable as `value` rows, so no new
+component was built. **Every image on the page is a real photograph of a real class in the
+clinic's yoga room** (nine phone photos supplied by the client on 2026-09-13, in
+`assets/images/yoga/`, gitignored): hero, OG card, mid image and all four concern cards. They
+replaced the empty-room frames the page launched with, and the unused `public/img/yoga-room.webp`
+that was the same frame as the room photo went with them.
+
+Keyword (Ubersuggest, locId 2458, 2026-09-12): en `yoga cheras` 170/mo SD 14 with local intent
+(`yoga class kl` is the same numbers; `chair yoga` 260/mo is informational: books, apps, videos);
+zh `瑜伽` 880/mo SD 36 is the only measured Chinese term, every class phrasing returns nothing; ms
+`kelas yoga` returns nothing and is the direct translation fallback. The SERP for the local query
+is studios, ClassPass, Yelp and Facebook groups, no clinic, and none of the three pages read in
+full publishes a price or a timetable.
+
+Needs the client:
+
+1. **Who teaches the classes, and their training.** The flyers name nobody. All three records
+   set `practitionersWithheld` because it is not even known whether a chiropractor teaches them,
+   and the "Who teaches" FAQ says the profile is not published yet. Two of the three ranking
+   competitors name their instructor with credentials; this is the one gap on the page that
+   only the client can close. When the name arrives, decide whether it is a `practitioners`
+   entry (it is not a chiropractor role) or a new instructor block on the service template.
+2. **Private one to one yoga price.** The price list covers the two group classes only. The page
+   says "quoted on request" in all three locales; replace with the figure once given.
+3. **Which class runs which Saturday.** "Alternating weekly" has no anchor date, so the page
+   tells visitors to message and check. A start date, or a rule ("first Saturday of the month is
+   Chair Yoga"), would let the page say it. Also confirm the class length; the page never states
+   one.
+4. **What the "Scan QR to Book" code on the flyer points at.** The page routes bookings to
+   WhatsApp like every other service. If the QR is a separate booking form, decide whether the
+   page should link it instead.
+5. **Mats.** The page says chairs are provided (they are in the photographs) and tells people to
+   ask about mats, because nobody has said whether the room has them. The class photographs
+   show students on their own mats, which suggests bring your own, but that is a guess.
+7. **Consent for the class photographs.** The students in them are identifiable, and three of
+   the nine are group selfies. The client supplied the photos for the site, so consent is
+   presumed; worth one line back confirming the people in them agreed to appear on the
+   website. Nobody is named on the page, including the person who appears to be teaching.
+6. **zh/ms copy is unreviewed**, like every other zh/ms record. The Chinese class names are the
+   flyer's own (体态核心瑜伽, 椅子瑜伽); the Malay keeps the English class names.
+
+Claims deliberately not carried over from the flyer: "prevents common injuries", "restore
+health", "safe and effective for all ages", "faster progress". The back pain FAQ cites the
+Cochrane review honestly (small, clinically unimportant improvement versus no exercise) rather
+than selling the class as pain relief.

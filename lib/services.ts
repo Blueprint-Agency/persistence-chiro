@@ -1700,6 +1700,7 @@ export const services: Service[] = [
     relatedLinks: [
       { href: '/services/physiotherapy', label: 'Our physiotherapy approach' },
       { href: '/services/chiropractic-care', label: 'How chiropractic care can help' },
+      { href: '/services/yoga-classes', label: 'Yoga classes for posture and core strength' },
       { href: '/what-to-expect', label: 'What to expect on your first visit' },
     ],
     faqs: [
@@ -1740,6 +1741,295 @@ export const services: Service[] = [
       {
         q: 'I work from home on a laptop. Can you help with that?',
         a: 'Yes, and laptops are one of the most common setups we see. The usual starting points are simple: the top of the screen near eye level so the neck is not held in flexion all day, elbows at about a right angle with the shoulders down rather than shrugged, feet on the floor or a footrest, and the screen about an arm length away. A laptop makes that combination impossible on its own, because the screen and the keyboard want to be in two different places, so the fix is usually a stand plus a separate keyboard, or an external monitor. Tell us what you actually work on and where you sit, because advice built around a desk you do not have is not much use.',
+      },
+    ],
+    draft: false,
+  },
+  {
+    /**
+     * Added 2026-09-12 from two client flyers, "Class Schedule" and "Price List" (both scanned
+     * PDFs). Facts on this record come from them and nowhere else: two group classes on
+     * Saturdays at 4:00pm alternating weekly, a private one to one option by appointment, and
+     * a price list that covers the two group classes only. The flyers name no instructor and
+     * no private session price, which is why both are absent here rather than guessed. See
+     * OPEN-ITEMS.md.
+     *
+     * KEYWORD (Ubersuggest, Malaysia locId 2458, pulled 2026-09-12): `yoga cheras` 170/mo at
+     * SD 14 with local intent, `yoga class kl` 170/mo at SD 14, `chair yoga` 260/mo but
+     * informational (books, videos, apps). `yoga class cheras` and `yoga for posture` return no
+     * data. The page targets the local term and carries "class", "chair" and "posture core" in
+     * the title so the other three are covered without a second page.
+     *
+     * SERP: every ranking result for the local query is a studio, a directory (Yelp, ClassPass)
+     * or a Facebook group. No clinic. Not one of the three pages read in full publishes a price
+     * or a timetable on the page, and only the private instructor names credentials. So this
+     * page leads with the fee and the time, and says plainly that the instructor is not named
+     * yet rather than hiding it.
+     *
+     * CLAIMS: the flyers say "prevents common injuries", "restore health" and "safe and
+     * effective for all ages". None of that is repeated. The copy says what each class does in
+     * the room and hedges anything about how a body responds, per the claim rule in
+     * content.test.ts.
+     */
+    slug: 'yoga-classes',
+    title: 'Yoga Classes in Cheras, Kuala Lumpur',
+    metaTitle: 'Yoga Classes in Cheras, KL: Chair & Posture Core',
+    metaDescription:
+      'Chair Yoga and Posture Core Yoga on Saturday afternoons at a chiropractic clinic in Cheras, Maluri. Drop in RM55, packs from RM138. Private yoga on request.',
+    targetKeyword: 'yoga cheras',
+    intro:
+      'Small yoga classes inside our chiropractic clinic at Sunway Velocity, Cheras. Posture Core Yoga for people who sit all week, Chair Yoga for seniors, beginners and anyone easing back into movement, and private one to one sessions by appointment.',
+    /**
+     * Real photographs of real classes in the clinic's yoga room, supplied by the client on
+     * 2026-09-13 (nine phone photos, 810x1080, in assets/images/yoga/, gitignored). They
+     * replaced the empty-room frames the page launched with the day before. Every image on this
+     * page is one of them: the hero is a 4:5 crop (the slot's desktop ratio, the phone shows
+     * its 4:3 centre), the mid image a 1.4 landscape band because the route hardcodes that
+     * ratio, the four concern cards 4:3, and the OG card the one upscale, 810 wide to 1200x630.
+     *
+     * Real clinic frames, so the alt text carries the local modifier, and it describes what is
+     * in the frame: which pose, on what, how many people. The students are identifiable; the
+     * client supplied the photos for the site, and OPEN-ITEMS.md asks them to confirm consent.
+     * Nobody in the photographs is named, including the person who appears to be teaching.
+     */
+    heroImage: {
+      src: '/img/yoga-class-hero.webp',
+      alt: 'Five students seated on folding chairs on yoga mats, each reaching one arm overhead in a side stretch, during a chair yoga class at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
+    },
+    ogImage: '/og/yoga-classes.jpg',
+    midImage: {
+      src: '/img/yoga-class-group.webp',
+      alt: 'Seven smiling students posing for a group photo after a yoga class at Persistence Chiropractic Care in Cheras, Kuala Lumpur, with a silver yoga figurine and shelves of props behind them',
+    },
+    /** All three are stated and priced further down; this only moves them into the fold. */
+    assurances: [
+      'Saturdays at 4:00pm, inside the clinic at Sunway Velocity',
+      'Drop in RM55, class packs from RM138',
+      'Chair Yoga for seniors and beginners, Posture Core Yoga for desk workers',
+    ],
+    outcomes: [
+      {
+        text: 'A back and neck that stiffen up after a week at a desk',
+        image: {
+          src: '/img/yoga-class-forward-fold.webp',
+          alt: 'Students folding forward from standing with their hands resting on the seats of folding chairs during a yoga class at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
+        },
+      },
+      {
+        text: 'Wanting a stronger core and a posture that holds without being reminded',
+        image: {
+          src: '/img/yoga-class-side-angle.webp',
+          alt: 'Students in a wide standing lunge with one arm reaching overhead, each beside a folding chair, during a yoga class at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
+        },
+      },
+      {
+        text: 'Getting older, or getting back to moving, and wanting something that starts from a chair',
+        image: {
+          src: '/img/yoga-chair-side-stretch.webp',
+          alt: 'A smiling woman seated on a folding chair with her feet on yoga blocks, reaching one arm overhead in a side stretch, during a chair yoga class at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
+        },
+      },
+      {
+        text: 'Stress that settles in the shoulders and shortens the breath',
+        image: {
+          src: '/img/yoga-class-seated-stretch.webp',
+          alt: 'A row of students seated on mats reaching forward over their outstretched legs during a yoga class at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
+        },
+      },
+    ],
+    qualifierConcerns: [
+      'My back and neck stiffen up after a week at a desk',
+      'I want better posture and a stronger core',
+      'I am a senior, or booking for a parent, and want something gentle',
+      'I am pregnant or new to exercise and want a class that starts slow',
+      'I would rather have one to one sessions than a group class',
+      { label: 'I am not sure which class suits me', icon: 'question' },
+    ],
+    citations: [
+      {
+        claim:
+          'A Cochrane review of yoga for chronic non-specific low back pain found low to moderate certainty evidence that, compared with no exercise, yoga produces small improvements in back-related function and pain which the authors judged clinically unimportant, and probably little or no difference from other back-related exercise at three months.',
+        source:
+          'Wieland et al. (2022), Yoga for chronic non-specific low back pain, Cochrane Database of Systematic Reviews',
+        url: 'https://doi.org/10.1002/14651858.CD010671.pub3',
+      },
+      {
+        claim:
+          'The World Health Organization recommends that adults aged 65 and over include multicomponent physical activity that emphasises functional balance and strength training on three or more days a week.',
+        source:
+          'Bull et al. (2020), World Health Organization 2020 guidelines on physical activity and sedentary behaviour, British Journal of Sports Medicine',
+        url: 'https://doi.org/10.1136/bjsports-2020-102955',
+      },
+    ],
+    /**
+     * The page's differentiator. Nobody on the SERP tells a first-timer which class to walk
+     * into, and here the two Saturday classes could not be more different in pace. `note`
+     * keeps it from ending on a winner: the right class is the one the reader will actually
+     * turn up to.
+     */
+    comparison: {
+      heading: 'Posture Core Yoga or Chair Yoga',
+      intro:
+        'Both run on Saturday at 4:00pm, on alternating weeks, and a class pack covers either. The difference is pace, and where you start from.',
+      columns: ['Posture Core Yoga', 'Chair Yoga'],
+      rows: [
+        {
+          label: 'Who it suits',
+          a: 'Office workers with a stiff back or neck, and anyone who wants a stronger core and better posture.',
+          b: 'Seniors, beginners, pregnant women, and anyone with limited mobility or coming back from time off.',
+        },
+        {
+          label: 'Pace',
+          a: 'Dynamic but supported. You will work, and the instructor scales each pose.',
+          b: 'Gentle. Most of the class is seated or uses the chair for balance.',
+        },
+        {
+          label: 'What the hour is aimed at',
+          a: 'Core strength, spinal stability and releasing the tension that builds up from sitting.',
+          b: 'Flexibility, circulation and balance, with the breath slowed down along the way.',
+        },
+        {
+          label: 'Starting from the floor',
+          a: 'Yes, on a mat, standing and lying down.',
+          b: 'No. Everything is done from or beside a chair, so getting down to the floor is not required.',
+        },
+      ],
+      note: 'Neither is the better class, and plenty of people try both across a six class pack. If you are unsure, tell us your age, what you do all day and anything that hurts, and we will say which Saturday to come.',
+    },
+    fitCheck: {
+      rightFor: [
+        'You want a small class in a clinic, run alongside chiropractors and physiotherapists, rather than a large studio floor.',
+        'You want to be told which of the two classes suits you before you buy a pack.',
+        'You are happy with one class a week, on a Saturday afternoon.',
+        'You want a chiropractic or physiotherapy assessment available in the same building if something starts to hurt.',
+      ],
+      notRightFor: [
+        'You want a full timetable of daily classes across many styles. We run one class each Saturday.',
+        'You want hot yoga, aerial yoga or a fast flow. Both classes are posture and mobility work, and one is done from a chair.',
+        'You want yoga to stand in for the assessment a new or worsening pain needs.',
+        'You need a fixed price for private sessions before messaging. Private yoga is quoted on request.',
+      ],
+      note: 'None of that is a criticism, and the first two describe most yoga studios in Kuala Lumpur, which is exactly what some people want. It means this is a quieter, smaller thing that sits inside a clinic. If that sounds right, drop in for one class at RM55 before deciding on a pack.',
+    },
+    sections: [
+      {
+        heading: 'Yoga classes in Cheras, Kuala Lumpur',
+        /**
+         * ANSWER FIRST, same as every other service lead: what runs, when, where and what it
+         * costs, before anything is described.
+         */
+        body: 'Yoga classes at our chiropractic clinic in Cheras, beside Sunway Velocity. Two group classes run on Saturdays at 4:00pm, alternating week by week: Posture Core Yoga, a stronger class built around the core and the spine, and Chair Yoga, a gentle class done from a chair for seniors, beginners and anyone with limited mobility. A drop in class is RM55, and packs of three or six cover either class. Private one to one yoga is available by appointment.',
+      },
+      {
+        heading: 'Posture Core Yoga, for people who sit all week',
+        body: 'A dynamic but supported class. The work goes into the core, the hips and the muscles that hold the spine upright, and into letting go of the tension that builds through a week at a desk. Poses are scaled to the person in front of the instructor, so a first timer and a regular can share the same room.',
+      },
+      {
+        heading: 'Chair Yoga, for seniors, beginners and anyone recovering',
+        body: 'The same principles at a gentler pace, with a chair for support. Most of the class is seated or standing beside the chair, so nobody has to get down to the floor. It is built for older adults, for people new to exercise, for pregnant women, and for anyone with limited mobility or coming back from a break.',
+      },
+      {
+        heading: 'Private one to one yoga, by appointment',
+        body: 'A session built around you rather than a class plan: posture, stress, balance, breathwork and relaxation in whatever mix suits what you bring. It suits people with a specific concern, people whose week does not fit a Saturday slot, and anyone who simply prefers individual attention. Message us and we will find a time and quote the fee.',
+      },
+      {
+        heading: 'Booking a class or a pack',
+        body: 'Message us on WhatsApp with which Saturday you want and whether you are new. We confirm which of the two classes runs that week. Pay for a single class on the day, or buy a pack of three or six and use it across either class.',
+      },
+      {
+        heading: 'When an assessment comes before the yoga',
+        body: 'If you are in pain right now, or something has recently got worse, a class is the wrong first step. We would rather assess it, with a chiropractor or a physiotherapist in the same building, and then tell you which class fits, or whether to wait. Being in a clinic is the point of running the classes here.',
+      },
+    ],
+    priceList: {
+      eyebrow: 'Class fees and schedule',
+      heading: 'What a yoga class in Cheras costs, and when it runs',
+      intro:
+        'Drop in, or buy a pack. Both packs cover Chair Yoga and Posture Core Yoga, so you can mix the two. Private sessions are quoted separately.',
+      groups: [
+        {
+          heading: 'Chair Yoga and Posture Core Yoga',
+          rows: [
+            { label: 'Drop in class', price: 55, note: 'One class, paid on the day' },
+            { label: 'Pack of 3 classes', price: 138, note: 'For one person. Valid for two months.' },
+            {
+              label: 'Pack of 6 classes',
+              price: 248,
+              note: 'Can be shared between two people. Valid for three months.',
+            },
+          ],
+        },
+        {
+          heading: 'Private one to one yoga',
+          rows: [{ label: 'Per session', value: 'Quoted on request', note: 'By appointment' }],
+        },
+        {
+          heading: 'When',
+          rows: [
+            { label: 'Posture Core Yoga', value: 'Saturday, 4:00pm', note: 'Alternates weekly with Chair Yoga' },
+            { label: 'Chair Yoga', value: 'Saturday, 4:00pm', note: 'Alternates weekly with Posture Core Yoga' },
+            { label: 'Private yoga', value: 'By appointment' },
+          ],
+        },
+      ],
+      note: 'The two Saturday classes alternate week by week, so message us to check which one is on before you come. Private session fees depend on what you want from it, and we quote before anything is booked.',
+      ctaLabel: 'See class fees and times',
+      summary:
+        'Drop in RM55 a class, a pack of three RM138, or a pack of six RM248 that two people can share, covering Chair Yoga and Posture Core Yoga on Saturday afternoons. Private one to one yoga is quoted on request.',
+    },
+    helpsWith: ['back-pain', 'neck-pain', 'shoulder-imbalance', 'hip-pain'],
+    relatedLinks: [
+      { href: '/services/posture-correction', label: 'Posture correction for desk workers' },
+      { href: '/services/physiotherapy', label: 'Physiotherapy in Cheras' },
+      { href: '/what-to-expect', label: 'What to expect on a first visit' },
+    ],
+    /**
+     * The flyers name no instructor, and nobody has confirmed whether a chiropractor teaches
+     * these classes. Until that is known, a block headed "Meet your chiropractors" on a page
+     * selling a yoga class would assert that they do. The FAQ answers the question honestly
+     * instead. Replace this with a named instructor block once the client supplies a name and
+     * training; see OPEN-ITEMS.md.
+     */
+    practitionersWithheld:
+      'The class schedule and price list the client supplied on 2026-09-12 name no instructor, so it is not known whether a chiropractor teaches these classes. A "Meet your chiropractors" block here would assert that they do. Remove once the instructor can be named.',
+    faqs: [
+      {
+        q: 'Which yoga class should I start with?',
+        a: 'If you sit all week and want to get stronger, start with Posture Core Yoga. If you are older, new to exercise, pregnant, or getting down to the floor is a problem, start with Chair Yoga. The two alternate on Saturdays, so whichever is on first is a fair place to begin, and a pack of six covers both. If you are still unsure, message us with your age, what you do all day and anything that hurts, and we will say which week to come.',
+      },
+      {
+        q: 'Do I need to be a patient of the clinic to join a yoga class?',
+        a: 'No. The classes are open to anyone. Being inside a clinic means a chiropractor or a physiotherapist is available if something hurts, but you do not need an appointment with either to book a class.',
+      },
+      {
+        q: 'How much does a yoga class cost?',
+        a: 'A drop in class is RM55. A pack of three classes is RM138 and is for one person, valid for two months. A pack of six is RM248, can be shared between two people, and is valid for three months. Either pack can be used for Chair Yoga or Posture Core Yoga in any mix. Private one to one sessions are quoted on request.',
+      },
+      {
+        q: 'Which class is on this Saturday?',
+        a: 'They alternate: Posture Core Yoga one week, Chair Yoga the next, both at 4:00pm. Message us on WhatsApp and we will tell you which one runs on the Saturday you have in mind.',
+      },
+      {
+        q: 'Is Chair Yoga suitable for seniors and during pregnancy?',
+        a: 'It is built with both in mind. Everything is done seated or with the chair for support, and the pace is gentle. If you are pregnant, or have a heart, blood pressure or joint condition, check with your doctor first and tell the instructor before the class starts so poses can be adapted for you.',
+      },
+      {
+        q: 'Can yoga help my back pain?',
+        a: 'Honestly, only a little. The best review of yoga for long standing low back pain found small improvements in function and pain compared with doing nothing, small enough that the authors called them clinically unimportant, and no clear difference from other exercise. So think of a class as a way to keep moving and get stronger, not as a fix for the pain itself. If your back pain is new, getting worse, or spreading into a leg, we would rather assess it first than put you in a class. Read more about how we approach back pain at the clinic.',
+        links: [{ phrase: 'how we approach back pain', href: '/conditions/back-pain' }],
+      },
+      {
+        q: 'What should I wear and bring?',
+        a: 'Something you can move in. Chairs are provided for Chair Yoga. If you have a mat, bring it for Posture Core Yoga; if you do not, ask us on WhatsApp what the room has before you come.',
+      },
+      {
+        q: 'Who teaches the yoga classes?',
+        a: 'We have not published the instructor profile on the site yet. Ask us on WhatsApp who is teaching the class you plan to join and about their training, and we will tell you. The chiropractors and physiotherapists at the clinic are a separate team from the yoga instruction, and you can read about them on the about page.',
+        links: [{ phrase: 'the about page', href: '/about' }],
+      },
+      {
+        q: 'How do I book a yoga class?',
+        a: 'On WhatsApp. Tell us which Saturday, whether you are new, and whether you want a single class or a pack. We confirm the class that week and hold a place. Private sessions are arranged the same way, at a time that suits you.',
       },
     ],
     draft: false,

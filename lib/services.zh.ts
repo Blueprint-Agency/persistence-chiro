@@ -532,6 +532,7 @@ export const servicesZh: Service[] = [
     relatedLinks: [
       { href: '/services/physiotherapy', label: '我们的物理治疗方式' },
       { href: '/services/chiropractic-care', label: '脊椎矫正护理如何帮助' },
+      { href: '/services/yoga-classes', label: '改善体态与核心力量的瑜伽课程' },
       { href: '/what-to-expect', label: '第一次会诊会经历什么' },
     ],
     faqs: [
@@ -1316,6 +1317,241 @@ export const servicesZh: Service[] = [
     ],
     // Same standing as every other zh record: adapted from the English copy, not yet read by a
     // Chinese-speaking reviewer. Flip to `true` if that review is required first.
+    draft: false,
+  },
+  {
+    /**
+     * Chinese yoga classes page, written 2026-09-12 alongside the English record. The class
+     * names, the "perfect for" lists and the schedule come from the client's own bilingual
+     * flyer, which already carries Chinese (体态核心瑜伽, 椅子瑜伽, 私教疗愈瑜伽, 隔周轮换); prices and
+     * the missing instructor are the English record's, see its comment.
+     *
+     * KEYWORD: `瑜伽` measures 880/mo at SD 36 (Ubersuggest, locId 2458, 2026-09-12) and is the
+     * only measured term; `瑜伽课程`, `椅子瑜伽`, `瑜伽班` and `瑜伽 kl` all return no data. Per the
+     * client's rule (measured volume first, direct translation only as fallback) the record
+     * targets the head term and the title carries 课程 for the class intent. Unreviewed by a
+     * native speaker, same standing as every other zh record.
+     */
+    slug: 'yoga-classes',
+    title: 'Cheras, Kuala Lumpur 瑜伽课程',
+    metaTitle: 'Cheras 瑜伽课程 | 椅子瑜伽与体态核心瑜伽',
+    metaDescription:
+      '位于 Cheras, Maluri 脊椎矫正诊所内的椅子瑜伽与体态核心瑜伽,每周六下午开课。单堂 RM55,配套 RM138 起。私教瑜伽可预约。',
+    targetKeyword: '瑜伽',
+    intro:
+      '在我们位于 Sunway Velocity, Cheras 的脊椎矫正诊所内开设的小班瑜伽课。体态核心瑜伽适合久坐的上班族;椅子瑜伽适合长辈、初学者与正在慢慢恢复活动的人;另有一对一私教课,采预约制。',
+    heroImage: {
+      src: '/img/yoga-class-hero.webp',
+      alt: '在 Cheras, Kuala Lumpur 的 Persistence Chiropractic Care 椅子瑜伽课上,五名学员坐在瑜伽垫上的折叠椅,各自单手举过头顶做侧伸展',
+    },
+    ogImage: '/og/yoga-classes.jpg',
+    midImage: {
+      src: '/img/yoga-class-group.webp',
+      alt: '在 Cheras, Kuala Lumpur 的 Persistence Chiropractic Care 瑜伽课后,七名学员微笑合照,身后是一尊银色瑜伽人偶与放辅具的架子',
+    },
+    assurances: ['每周六下午 4:00,在 Sunway Velocity 的诊所内', '单堂 RM55,课程配套 RM138 起', '椅子瑜伽适合长辈与初学者,体态核心瑜伽适合上班族'],
+    outcomes: [
+      {
+        text: '上了一周班,腰背与肩颈变得僵硬',
+        image: {
+          src: '/img/yoga-class-forward-fold.webp',
+          alt: '在 Cheras, Kuala Lumpur 的 Persistence Chiropractic Care 瑜伽课上,学员们站立前弯,双手撑在折叠椅的椅面上',
+        },
+      },
+      {
+        text: '想要更强的核心,以及不必时时提醒自己也能维持的体态',
+        image: {
+          src: '/img/yoga-class-side-angle.webp',
+          alt: '在 Cheras, Kuala Lumpur 的 Persistence Chiropractic Care 瑜伽课上,学员们各自在折叠椅旁做宽步弓箭步,单手向上伸展',
+        },
+      },
+      {
+        text: '年纪渐长,或正要重新开始活动,想从椅子上开始',
+        image: {
+          src: '/img/yoga-chair-side-stretch.webp',
+          alt: '在 Cheras, Kuala Lumpur 的 Persistence Chiropractic Care 椅子瑜伽课上,一名微笑的女士坐在折叠椅上,双脚踩着瑜伽砖,单手举过头顶做侧伸展',
+        },
+      },
+      {
+        text: '压力积在肩膀上,连呼吸都变浅',
+        image: {
+          src: '/img/yoga-class-seated-stretch.webp',
+          alt: '在 Cheras, Kuala Lumpur 的 Persistence Chiropractic Care 瑜伽课上,一排学员坐在垫上,双腿伸直向前弯身伸展',
+        },
+      },
+    ],
+    qualifierConcerns: [
+      '上了一周班,腰背与肩颈都很僵硬',
+      '我想改善体态、加强核心力量',
+      '我是长辈,或想替父母报名,想要温和一点的课',
+      '我怀孕了,或刚开始运动,想要从慢一点的课开始',
+      '我比较想上一对一的课,而不是团体班',
+      { label: '我不确定哪一堂课适合我', icon: 'question' },
+    ],
+    citations: [
+      {
+        claim:
+          'Cochrane 一项关于瑜伽与慢性非特异性腰痛的系统综述发现,低至中等确定性的证据显示,与不运动相比,瑜伽对腰部功能与疼痛只有作者认为临床上并不显著的小幅改善;与其他腰部运动相比,三个月时可能没有差别或差别很小。',
+        source:
+          'Wieland 等 (2022), Yoga for chronic non-specific low back pain, Cochrane Database of Systematic Reviews',
+        url: 'https://doi.org/10.1002/14651858.CD010671.pub3',
+      },
+      {
+        claim:
+          '世界卫生组织建议 65 岁及以上的成年人,每周至少三天进行以功能性平衡与肌力训练为重点的多元体能活动。',
+        source:
+          'Bull 等 (2020), World Health Organization 2020 guidelines on physical activity and sedentary behaviour, British Journal of Sports Medicine',
+        url: 'https://doi.org/10.1136/bjsports-2020-102955',
+      },
+    ],
+    comparison: {
+      heading: '体态核心瑜伽,还是椅子瑜伽?',
+      intro: '两堂课都在周六下午 4:00,隔周轮换,课程配套两者通用。差别在于节奏,以及您从哪里开始。',
+      columns: ['体态核心瑜伽', '椅子瑜伽'],
+      rows: [
+        {
+          label: '适合谁',
+          a: '腰背或肩颈僵硬的上班族,以及想加强核心、改善体态的人。',
+          b: '长辈、初学者、孕妇,以及行动受限或刚恢复活动的人。',
+        },
+        {
+          label: '节奏',
+          a: '动态但有支撑。会出力,老师会按每个人的程度调整动作。',
+          b: '温和。大部分时间坐着,或借助椅子保持平衡。',
+        },
+        {
+          label: '这一小时练什么',
+          a: '核心力量、脊椎稳定,以及释放久坐累积的紧绷。',
+          b: '柔韧度、循环与平衡,同时把呼吸放慢。',
+        },
+        {
+          label: '需要下到地板吗',
+          a: '需要,会在垫上、站着和躺着进行。',
+          b: '不需要。所有动作都在椅子上或椅子旁完成。',
+        },
+      ],
+      note: '两堂课没有哪一堂更好,不少人在六堂配套里两种都试。若拿不定主意,把您的年龄、平日做什么、哪里不舒服告诉我们,我们会说哪个周六来。',
+    },
+    fitCheck: {
+      rightFor: [
+        '您想要诊所里的小班课,与脊椎矫正师和物理治疗师在同一个空间,而不是大型瑜伽馆。',
+        '您希望在买配套之前,先有人告诉您哪一堂课适合您。',
+        '您接受每周一堂、周六下午的安排。',
+        '您希望万一哪里开始痛,同一栋楼里就能安排脊椎矫正或物理治疗评估。',
+      ],
+      notRightFor: [
+        '您想要每天多种流派的完整课表。我们每周六只开一堂。',
+        '您想要热瑜伽、空中瑜伽或快节奏的流瑜伽。这两堂课都是体态与活动度练习,其中一堂在椅子上进行。',
+        '您想用瑜伽代替新发或加重的疼痛所需要的评估。',
+        '您需要先知道私教课的固定价格才肯联系。私教瑜伽按需求报价。',
+      ],
+      note: '以上都不是批评,前两点正是 Kuala Lumpur 大多数瑜伽馆的样子,也正是有些人想要的。这只是说明这里是一个安静、小型、设在诊所里的课。如果听起来合适,先以 RM55 来上一堂,再决定要不要买配套。',
+    },
+    sections: [
+      {
+        heading: 'Cheras, Kuala Lumpur 瑜伽课程',
+        body: '在我们位于 Cheras、毗邻 Sunway Velocity 的脊椎矫正诊所内开设的瑜伽课。两堂团体课在每周六下午 4:00 隔周轮换:体态核心瑜伽,以核心与脊椎为中心、强度较高的一堂;椅子瑜伽,借助椅子进行的温和课程,适合长辈、初学者与行动受限的人。单堂 RM55,三堂或六堂配套两种课都能用。一对一私教瑜伽采预约制。',
+      },
+      {
+        heading: '体态核心瑜伽,给整周久坐的人',
+        body: '动态但有支撑的一堂课。练的是核心、髋部以及撑起脊椎的肌肉,同时放掉一周伏案累积的紧绷。动作会按照眼前这个人的程度调整,所以初学者和常来的学员可以在同一个教室里上课。',
+      },
+      {
+        heading: '椅子瑜伽,给长辈、初学者与恢复中的人',
+        body: '同样的原则,放慢节奏,并以椅子作为支撑。大部分时间坐着或站在椅子旁,没有人需要下到地板。这堂课是为年长者、刚开始运动的人、孕妇,以及行动受限或休息一段时间后重新开始的人设计的。',
+      },
+      {
+        heading: '一对一私教瑜伽,采预约制',
+        body: '围绕您本人而不是课程计划来安排的一堂课:体态、压力、平衡、呼吸练习与放松,按您的需要组合。适合有特定困扰的人、周六时段不方便的人,以及单纯偏好个别指导的人。联系我们,我们会安排时间并报价。',
+      },
+      {
+        heading: '预约一堂课或配套',
+        body: '透过 WhatsApp 告诉我们您想来哪个周六、是不是第一次来。我们会确认那一周上的是哪一堂课。单堂当天付费,或购买三堂或六堂配套,两种课都能使用。',
+      },
+      {
+        heading: '什么时候应先评估再上瑜伽',
+        body: '如果您现在正在痛,或最近有加重,上课不是正确的第一步。我们宁愿先由同一栋楼里的脊椎矫正师或物理治疗师评估,再告诉您哪一堂适合,或者是否该先等一等。把课开在诊所里,正是为了这一点。',
+      },
+    ],
+    priceList: {
+      eyebrow: '课程收费与时间表',
+      heading: 'Cheras 瑜伽课程的收费与上课时间',
+      intro: '可以单堂上,也可以买配套。两种配套都通用于椅子瑜伽与体态核心瑜伽,可以混着上。私教课另行报价。',
+      groups: [
+        {
+          heading: '椅子瑜伽与体态核心瑜伽',
+          rows: [
+            { label: '单堂', price: 55, note: '一堂课,当天付费' },
+            { label: '3 堂配套', price: 138, note: '限一人使用。两个月内有效。' },
+            { label: '6 堂配套', price: 248, note: '最多两人共享。三个月内有效。' },
+          ],
+        },
+        {
+          heading: '一对一私教瑜伽',
+          rows: [{ label: '每堂', value: '按需求报价', note: '预约制' }],
+        },
+        {
+          heading: '上课时间',
+          rows: [
+            { label: '体态核心瑜伽', value: '周六下午 4:00', note: '与椅子瑜伽隔周轮换' },
+            { label: '椅子瑜伽', value: '周六下午 4:00', note: '与体态核心瑜伽隔周轮换' },
+            { label: '私教瑜伽', value: '预约制' },
+          ],
+        },
+      ],
+      note: '两堂周六的课隔周轮换,来之前请先联系我们确认这周上的是哪一堂。私教课的收费视您的需求而定,预约前我们会先报价。',
+      ctaLabel: '查看课程收费与时间',
+      summary:
+        '单堂 RM55,3 堂配套 RM138,6 堂配套 RM248 可两人共享,通用于每周六下午的椅子瑜伽与体态核心瑜伽。一对一私教瑜伽按需求报价。',
+    },
+    helpsWith: ['back-pain', 'neck-pain', 'shoulder-imbalance', 'hip-pain'],
+    relatedLinks: [
+      { href: '/services/posture-correction', label: '给上班族的姿势调整' },
+      { href: '/services/physiotherapy', label: 'Cheras 的物理治疗' },
+      { href: '/what-to-expect', label: '第一次会诊会经历什么' },
+    ],
+    practitionersWithheld:
+      'Same gate as the English record: the client flyers (2026-09-12) name no instructor, so it is not known whether a chiropractor teaches these classes, and a "Meet your chiropractors" block would assert that they do. Remove together with the English and Malay records once the instructor can be named.',
+    faqs: [
+      {
+        q: '我应该从哪一堂瑜伽课开始?',
+        a: '如果您整周久坐、想变得更有力,从体态核心瑜伽开始。如果您年纪较长、刚开始运动、怀孕,或下到地板有困难,从椅子瑜伽开始。两堂课在周六隔周轮换,先遇到哪一堂就从哪一堂开始也无妨,六堂配套两种都能用。还是拿不定主意的话,把您的年龄、平日做什么、哪里不舒服传给我们,我们会告诉您哪一周来。',
+      },
+      {
+        q: '需要是诊所的病患才能上瑜伽课吗?',
+        a: '不需要。课程对任何人开放。设在诊所里的好处是,万一哪里不舒服,现场就有脊椎矫正师或物理治疗师,但您不需要先预约看诊才能报名上课。',
+      },
+      {
+        q: '瑜伽课怎么收费?',
+        a: '单堂 RM55。3 堂配套 RM138,限一人使用,两个月内有效。6 堂配套 RM248,最多两人共享,三个月内有效。两种配套都可以任意搭配椅子瑜伽与体态核心瑜伽。一对一私教课按需求报价。',
+      },
+      {
+        q: '这个周六上的是哪一堂?',
+        a: '两堂课隔周轮换:这周体态核心瑜伽,下周椅子瑜伽,都在下午 4:00。透过 WhatsApp 联系我们,我们会告诉您您想来的那个周六上的是哪一堂。',
+      },
+      {
+        q: '椅子瑜伽适合长辈和孕妇吗?',
+        a: '这堂课设计时就把两者考虑在内。所有动作都坐着或借助椅子支撑完成,节奏温和。如果您怀孕,或有心脏、血压或关节方面的状况,请先咨询医生,并在开课前告诉老师,动作可以为您调整。',
+      },
+      {
+        q: '瑜伽能帮助我的腰痛吗?',
+        a: '老实说,帮助有限。关于瑜伽与长期腰痛最完整的综述发现,与什么都不做相比,瑜伽对功能与疼痛只有小幅改善,小到作者认为临床上并不显著,而且与其他运动相比也没有明显差别。所以请把课程当作保持活动、变得更有力的方式,而不是解决疼痛本身的办法。如果您的腰痛是新发的、正在加重,或延伸到腿部,我们宁愿先评估,而不是让您直接上课。了解我们如何处理腰痛。',
+        links: [{ phrase: '我们如何处理腰痛', href: '/conditions/back-pain' }],
+      },
+      {
+        q: '上课要穿什么、带什么?',
+        a: '穿方便活动的衣服就好。椅子瑜伽的椅子由我们提供。体态核心瑜伽如果您有自己的垫子,请带来;没有的话,来之前先透过 WhatsApp 问我们教室有什么。',
+      },
+      {
+        q: '瑜伽课由谁授课?',
+        a: '我们还没有在网站上刊登老师的简介。透过 WhatsApp 问我们您想上的那堂课由谁授课、老师的培训背景,我们会告诉您。诊所的脊椎矫正师与物理治疗师是另一个团队,不负责瑜伽教学,您可以在关于我们页面了解他们。',
+        links: [{ phrase: '关于我们页面', href: '/about' }],
+      },
+      {
+        q: '怎么预约瑜伽课?',
+        a: '透过 WhatsApp。告诉我们哪个周六、是不是第一次来,以及要单堂还是配套。我们会确认那一周的课并为您保留位置。私教课也用同样的方式安排,时间配合您。',
+      },
+    ],
     draft: false,
   },
 ]

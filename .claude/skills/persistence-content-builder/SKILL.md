@@ -417,6 +417,28 @@ elsewhere, and it converts the weakness into the reason to trust the rest. Namin
 plainly is usually stronger copy than routing around it, and it is the only version that survives
 contact with the front desk.
 
+**A timetable is a price-list shape, not a new component (learned 2026-09-12, `/services/yoga-classes`).**
+Two flyers arrived: a class schedule and a price list. The instinct was a schedule component.
+The existing `priceList` block already takes `value` rows for the one figure that is not a
+number, so "Saturday, 4:00pm" with a note "Alternates weekly with Chair Yoga" sits as a third
+group under the fees, the hero button jumps to it, and `/offers` picks the page up in "also
+priced" with no edit. Before building a block for a new content shape, check whether an existing
+typed block has a string-valued row that carries it honestly.
+
+**Cite the finding the source actually makes, not the one the page would like (same page).**
+The first draft of the Cochrane citation read "small improvements at three and six months". The
+abstract, once fetched, says "small and clinically unimportant". The corrected FAQ opens "Honestly,
+only a little" and that sentence is now the most trustworthy thing on the page. Publisher pages
+(Cochrane, BJSM, PubMed) block plain fetches; Europe PMC's REST endpoint returns the abstract and
+the full text as JSON or XML and is the reliable way to verify a citation from here.
+
+**Do not name the practitioner section's profession by default (same page).**
+A yoga class is the first service where the delivering practitioner is neither a chiropractor
+nor a physiotherapist and is not named on the client's material at all. `practitionersWithheld`
+covered it, but the page had to answer "who teaches this" somewhere, so the FAQ says plainly that
+the profile is not published yet and to ask on WhatsApp. When a service arrives with no named
+deliverer, the honest FAQ answer is the placeholder, not a guessed role.
+
 ## Quick reference
 - Client: **Persistence Chiropractic** (single clinic, Cheras/Maluri, KL). NAP + CTAs: `lib/clinic.ts`.
 - Booking: SweetPew (`clinic.bookingUrl`). WhatsApp: `clinic.whatsappUrl`.

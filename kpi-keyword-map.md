@@ -65,6 +65,7 @@ surface area against Ian The Chiro, who has no condition pages at all:
 | `/conditions/shoulder-imbalance` | shoulder and neck pain |
 | `/services/sports-injury-rehabilitation` | sports injury treatment malaysia |
 | `/services/posture-correction` | sit posture correction |
+| `/services/yoga-classes` | yoga cheras |
 
 `content.test.ts` asserts no two pages share a `targetKeyword`, so this table cannot drift
 into cannibalisation without failing the build.

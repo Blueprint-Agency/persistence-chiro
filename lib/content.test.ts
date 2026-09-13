@@ -812,9 +812,13 @@ test('bundle prices are identical in every locale', () => {
  * different price, not a translation slip.
  */
 test('price-list figures are identical in every locale', () => {
+  // Only the numeric rows must match; a `value` row is prose and is allowed to differ. The
+  // filter happens on the rows, not on a joined string: a `value` such as "Saturday, 4:00pm"
+  // carries a comma, and splitting the joined string on commas once made half of it look like
+  // a figure (caught 2026-09-12 by the yoga classes timetable).
   const figures = (s: (typeof services)[number]) =>
     (s.priceList?.groups ?? [])
-      .flatMap((g) => g.rows.map((r) => (r.price !== undefined ? String(r.price) : `"${r.value}"`)))
+      .flatMap((g) => g.rows.flatMap((r) => (r.price !== undefined ? [String(r.price)] : [])))
       .join(',')
   const mismatched: string[] = []
   for (const locale of LOCALES) {
@@ -829,9 +833,7 @@ test('price-list figures are identical in every locale', () => {
       if (!s.priceList) continue
       const a = figures(s)
       const b = figures(source)
-      // Only the numeric rows must match; a `value` row is prose and is allowed to differ.
-      const numeric = (x: string) => x.split(',').filter((v) => !v.startsWith('"')).join(',')
-      if (numeric(a) !== numeric(b)) mismatched.push(`${locale} ${s.slug}: ${numeric(a)} vs en ${numeric(b)}`)
+      if (a !== b) mismatched.push(`${locale} ${s.slug}: ${a} vs en ${b}`)
     }
   }
   assert.deepEqual(mismatched, [], `price-list drift: ${mismatched.join('; ')}`)

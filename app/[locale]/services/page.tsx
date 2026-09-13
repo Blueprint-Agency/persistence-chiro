@@ -34,16 +34,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     en: {
       title: 'Chiropractic & Physiotherapy Services, Cheras',
       description:
-        'Chiropractic care, dry needling, physiotherapy, sports injury rehabilitation and posture correction under one roof in Cheras, Maluri, Kuala Lumpur.',
+        'Chiropractic care, dry needling, physiotherapy, sports injury rehabilitation, posture correction and yoga classes under one roof in Cheras, Maluri, Kuala Lumpur.',
     },
     zh: {
       title: 'Cheras 脊椎矫正与物理治疗服务',
-      description: '脊椎矫正护理、dry needling、物理治疗、运动伤害康复与姿势调整,同一屋檐下即可完成,地点在 Cheras, Maluri, Kuala Lumpur。',
+      description: '脊椎矫正护理、dry needling、物理治疗、运动伤害康复、姿势调整与瑜伽课程,同一屋檐下即可完成,地点在 Cheras, Maluri, Kuala Lumpur。',
     },
     ms: {
       title: 'Perkhidmatan Kiropraktik & Fisioterapi, Cheras',
       description:
-        'Jagaan kiropraktik, dry needling, fisioterapi, pemulihan kecederaan sukan dan pembetulan postur di bawah satu bumbung di Cheras, Maluri, Kuala Lumpur.',
+        'Jagaan kiropraktik, dry needling, fisioterapi, pemulihan kecederaan sukan, pembetulan postur dan kelas yoga di bawah satu bumbung di Cheras, Maluri, Kuala Lumpur.',
     },
   }[locale]
 

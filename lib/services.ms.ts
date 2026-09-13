@@ -136,6 +136,7 @@ export const servicesMs: Service[] = [
     relatedLinks: [
       { href: '/services/physiotherapy', label: 'Pendekatan fisioterapi kami' },
       { href: '/services/chiropractic-care', label: 'Bagaimana jagaan kiropraktik boleh membantu' },
+      { href: '/services/yoga-classes', label: 'Kelas yoga untuk postur dan kekuatan teras' },
       { href: '/what-to-expect', label: 'Apa yang dijangka pada lawatan pertama anda' },
     ],
     faqs: [
@@ -1339,6 +1340,253 @@ export const servicesMs: Service[] = [
     ],
     // Same standing as every other ms record: adapted from the English copy, not yet read by a
     // Malay-speaking reviewer. Flip to `true` if that review is required first.
+    draft: false,
+  },
+  {
+    /**
+     * Malay yoga classes page, written 2026-09-12 alongside the English record. Facts, prices
+     * and the missing instructor are the English record's, see its comment. The class names
+     * stay in English ("Chair Yoga", "Posture Core Yoga") because they are the names on the
+     * client's flyer and what a Malaysian searcher would type; the same call dry needling made.
+     *
+     * KEYWORD: `kelas yoga`, `kelas yoga cheras`, `yoga kerusi` and `yoga untuk warga emas` all
+     * return no data (Ubersuggest, locId 2458, 2026-09-12); only the bare English `yoga` measures,
+     * at 9,900/mo, which is every laptop, mat and film with the word in it. So this is the direct
+     * translation fallback the client's rule allows. Unreviewed by a native speaker.
+     *
+     * TITLE SHAPE: `shortTitle('ms', ...)` splits on the first " di ", so the title reads
+     * "Kelas Yoga di Cheras" and the nav row collapses to "Kelas Yoga".
+     */
+    slug: 'yoga-classes',
+    title: 'Kelas Yoga di Cheras, Kuala Lumpur',
+    metaTitle: 'Kelas Yoga di Cheras, KL: Chair & Posture Core',
+    metaDescription:
+      'Chair Yoga dan Posture Core Yoga pada petang Sabtu di sebuah klinik kiropraktik di Cheras, Maluri. Kelas drop in RM55, pakej dari RM138. Yoga peribadi atas permintaan.',
+    targetKeyword: 'kelas yoga',
+    intro:
+      'Kelas yoga kecil di dalam klinik kiropraktik kami di Sunway Velocity, Cheras. Posture Core Yoga untuk mereka yang duduk sepanjang minggu, Chair Yoga untuk warga emas, pemula dan sesiapa yang baru kembali bergerak, dan sesi peribadi satu dengan satu secara temu janji.',
+    heroImage: {
+      src: '/img/yoga-class-hero.webp',
+      alt: 'Lima pelajar duduk di atas kerusi lipat di atas tikar yoga, masing-masing mengangkat satu tangan ke atas kepala dalam regangan sisi, semasa kelas chair yoga di Persistence Chiropractic Care, Cheras, Kuala Lumpur',
+    },
+    ogImage: '/og/yoga-classes.jpg',
+    midImage: {
+      src: '/img/yoga-class-group.webp',
+      alt: 'Tujuh pelajar tersenyum bergambar berkumpulan selepas kelas yoga di Persistence Chiropractic Care, Cheras, Kuala Lumpur, dengan patung yoga berwarna perak dan rak peralatan di belakang mereka',
+    },
+    assurances: [
+      'Sabtu jam 4:00 petang, di dalam klinik di Sunway Velocity',
+      'Drop in RM55, pakej kelas dari RM138',
+      'Chair Yoga untuk warga emas dan pemula, Posture Core Yoga untuk pekerja pejabat',
+    ],
+    outcomes: [
+      {
+        text: 'Belakang dan leher yang kaku selepas seminggu di meja',
+        image: {
+          src: '/img/yoga-class-forward-fold.webp',
+          alt: 'Pelajar membongkok ke hadapan dari kedudukan berdiri dengan tangan bertumpu pada tempat duduk kerusi lipat semasa kelas yoga di Persistence Chiropractic Care, Cheras, Kuala Lumpur',
+        },
+      },
+      {
+        text: 'Mahukan teras yang lebih kuat dan postur yang kekal tanpa perlu diingatkan',
+        image: {
+          src: '/img/yoga-class-side-angle.webp',
+          alt: 'Pelajar dalam kedudukan lunge lebar dengan satu tangan mencapai ke atas kepala, masing-masing di sebelah kerusi lipat, semasa kelas yoga di Persistence Chiropractic Care, Cheras, Kuala Lumpur',
+        },
+      },
+      {
+        text: 'Semakin berusia, atau baru kembali bergerak, dan mahukan sesuatu yang bermula dari kerusi',
+        image: {
+          src: '/img/yoga-chair-side-stretch.webp',
+          alt: 'Seorang wanita tersenyum duduk di atas kerusi lipat dengan kaki di atas blok yoga, mengangkat satu tangan ke atas kepala dalam regangan sisi, semasa kelas chair yoga di Persistence Chiropractic Care, Cheras, Kuala Lumpur',
+        },
+      },
+      {
+        text: 'Tekanan yang mengumpul di bahu dan memendekkan nafas',
+        image: {
+          src: '/img/yoga-class-seated-stretch.webp',
+          alt: 'Sebaris pelajar duduk di atas tikar mencapai ke hadapan melepasi kaki yang diluruskan semasa kelas yoga di Persistence Chiropractic Care, Cheras, Kuala Lumpur',
+        },
+      },
+    ],
+    qualifierConcerns: [
+      'Belakang dan leher saya kaku selepas seminggu di meja',
+      'Saya mahu postur yang lebih baik dan teras yang lebih kuat',
+      'Saya warga emas, atau menempah untuk ibu bapa, dan mahukan sesuatu yang lembut',
+      'Saya mengandung atau baru mula bersenam dan mahukan kelas yang bermula perlahan',
+      'Saya lebih suka sesi satu dengan satu daripada kelas berkumpulan',
+      { label: 'Saya tidak pasti kelas mana yang sesuai untuk saya', icon: 'question' },
+    ],
+    citations: [
+      {
+        claim:
+          'Satu ulasan Cochrane tentang yoga untuk sakit belakang bawah kronik bukan spesifik mendapati bukti kepastian rendah hingga sederhana bahawa, berbanding tiada senaman, yoga memberi peningkatan kecil pada fungsi belakang dan kesakitan yang dinilai penulis sebagai tidak penting secara klinikal, dan mungkin tiada atau sedikit perbezaan berbanding senaman belakang yang lain pada tiga bulan.',
+        source:
+          'Wieland et al. (2022), Yoga for chronic non-specific low back pain, Cochrane Database of Systematic Reviews',
+        url: 'https://doi.org/10.1002/14651858.CD010671.pub3',
+      },
+      {
+        claim:
+          'Pertubuhan Kesihatan Sedunia mengesyorkan orang dewasa berumur 65 tahun ke atas melakukan aktiviti fizikal pelbagai komponen yang menekankan keseimbangan berfungsi dan latihan kekuatan pada tiga hari atau lebih seminggu.',
+        source:
+          'Bull et al. (2020), World Health Organization 2020 guidelines on physical activity and sedentary behaviour, British Journal of Sports Medicine',
+        url: 'https://doi.org/10.1136/bjsports-2020-102955',
+      },
+    ],
+    comparison: {
+      heading: 'Posture Core Yoga atau Chair Yoga',
+      intro:
+        'Kedua-duanya berjalan pada Sabtu jam 4:00 petang, berselang minggu, dan satu pakej kelas meliputi mana-mana satu. Bezanya ialah rentak, dan dari mana anda bermula.',
+      columns: ['Posture Core Yoga', 'Chair Yoga'],
+      rows: [
+        {
+          label: 'Sesuai untuk siapa',
+          a: 'Pekerja pejabat dengan belakang atau leher yang kaku, dan sesiapa yang mahukan teras yang lebih kuat dan postur yang lebih baik.',
+          b: 'Warga emas, pemula, wanita mengandung, dan sesiapa dengan mobiliti terhad atau baru kembali selepas berehat.',
+        },
+        {
+          label: 'Rentak',
+          a: 'Dinamik tetapi disokong. Anda akan berusaha, dan pengajar menyesuaikan setiap posisi.',
+          b: 'Lembut. Kebanyakan kelas dilakukan sambil duduk atau menggunakan kerusi untuk keseimbangan.',
+        },
+        {
+          label: 'Apa yang dituju dalam sejam itu',
+          a: 'Kekuatan teras, kestabilan tulang belakang dan melepaskan ketegangan yang terkumpul daripada duduk.',
+          b: 'Kelenturan, peredaran darah dan keseimbangan, dengan nafas diperlahankan sepanjang jalan.',
+        },
+        {
+          label: 'Bermula dari lantai',
+          a: 'Ya, di atas tikar, berdiri dan berbaring.',
+          b: 'Tidak. Semuanya dilakukan dari atau di sebelah kerusi, jadi turun ke lantai tidak diperlukan.',
+        },
+      ],
+      note: 'Tiada satu pun yang lebih baik, dan ramai yang mencuba kedua-duanya dalam pakej enam kelas. Jika tidak pasti, beritahu kami umur anda, apa yang anda buat sepanjang hari dan apa yang sakit, dan kami akan beritahu Sabtu mana untuk datang.',
+    },
+    fitCheck: {
+      rightFor: [
+        'Anda mahukan kelas kecil di dalam klinik, berjalan seiring dengan kiropraktor dan ahli fisioterapi, bukan lantai studio yang besar.',
+        'Anda mahu diberitahu kelas mana antara dua ini yang sesuai untuk anda sebelum membeli pakej.',
+        'Anda selesa dengan satu kelas seminggu, pada petang Sabtu.',
+        'Anda mahukan penilaian kiropraktik atau fisioterapi tersedia di bangunan yang sama jika sesuatu mula sakit.',
+      ],
+      notRightFor: [
+        'Anda mahukan jadual penuh kelas harian pelbagai gaya. Kami menjalankan satu kelas setiap Sabtu.',
+        'Anda mahukan hot yoga, aerial yoga atau aliran yang pantas. Kedua-dua kelas ialah kerja postur dan mobiliti, dan satu daripadanya dilakukan dari kerusi.',
+        'Anda mahu yoga menggantikan penilaian yang diperlukan oleh sakit yang baru atau semakin teruk.',
+        'Anda perlukan harga tetap untuk sesi peribadi sebelum menghantar mesej. Yoga peribadi diberi sebut harga atas permintaan.',
+      ],
+      note: 'Tiada satu pun daripada itu satu kritikan, dan dua yang pertama menggambarkan kebanyakan studio yoga di Kuala Lumpur, yang memang dikehendaki sesetengah orang. Ia bermakna ini sesuatu yang lebih tenang dan kecil yang berada di dalam sebuah klinik. Jika itu kedengaran sesuai, cuba satu kelas pada RM55 sebelum memutuskan pakej.',
+    },
+    sections: [
+      {
+        heading: 'Kelas yoga di Cheras, Kuala Lumpur',
+        body: 'Kelas yoga di klinik kiropraktik kami di Cheras, bersebelahan Sunway Velocity. Dua kelas berkumpulan berjalan pada Sabtu jam 4:00 petang, berselang minggu: Posture Core Yoga, kelas yang lebih mencabar dibina di sekitar teras dan tulang belakang, dan Chair Yoga, kelas lembut yang dilakukan dari kerusi untuk warga emas, pemula dan sesiapa dengan mobiliti terhad. Kelas drop in RM55, dan pakej tiga atau enam kelas meliputi mana-mana kelas. Yoga peribadi satu dengan satu tersedia secara temu janji.',
+      },
+      {
+        heading: 'Posture Core Yoga, untuk mereka yang duduk sepanjang minggu',
+        body: 'Kelas yang dinamik tetapi disokong. Kerjanya tertumpu pada teras, pinggul dan otot yang menegakkan tulang belakang, dan pada melepaskan ketegangan yang terkumpul sepanjang seminggu di meja. Posisi disesuaikan dengan orang di hadapan pengajar, jadi pemula dan pelajar tetap boleh berkongsi bilik yang sama.',
+      },
+      {
+        heading: 'Chair Yoga, untuk warga emas, pemula dan sesiapa yang sedang pulih',
+        body: 'Prinsip yang sama pada rentak yang lebih lembut, dengan kerusi sebagai sokongan. Kebanyakan kelas dilakukan sambil duduk atau berdiri di sebelah kerusi, jadi tiada siapa perlu turun ke lantai. Ia dibina untuk orang yang lebih berusia, orang yang baru bersenam, wanita mengandung, dan sesiapa dengan mobiliti terhad atau baru kembali selepas berehat.',
+      },
+      {
+        heading: 'Yoga peribadi satu dengan satu, secara temu janji',
+        body: 'Sesi yang dibina di sekitar anda dan bukan pelan kelas: postur, tekanan, keseimbangan, latihan pernafasan dan relaksasi dalam apa jua gabungan yang sesuai dengan apa yang anda bawa. Ia sesuai untuk mereka yang ada kebimbangan tertentu, mereka yang mingguannya tidak sesuai dengan slot Sabtu, dan sesiapa yang lebih suka perhatian individu. Mesej kami dan kami akan cari masa dan beri sebut harga.',
+      },
+      {
+        heading: 'Menempah kelas atau pakej',
+        body: 'Mesej kami di WhatsApp dengan Sabtu mana yang anda mahu dan sama ada anda baru. Kami sahkan kelas mana antara dua ini yang berjalan pada minggu itu. Bayar untuk satu kelas pada hari tersebut, atau beli pakej tiga atau enam dan gunakannya untuk mana-mana kelas.',
+      },
+      {
+        heading: 'Bila penilaian datang sebelum yoga',
+        body: 'Jika anda sedang sakit sekarang, atau sesuatu baru-baru ini bertambah teruk, kelas ialah langkah pertama yang salah. Kami lebih suka menilainya, dengan kiropraktor atau ahli fisioterapi di bangunan yang sama, dan kemudian beritahu anda kelas mana yang sesuai, atau sama ada perlu menunggu. Berada di dalam klinik ialah sebab kelas ini dijalankan di sini.',
+      },
+    ],
+    priceList: {
+      eyebrow: 'Yuran kelas dan jadual',
+      heading: 'Kos kelas yoga di Cheras, dan bila ia berjalan',
+      intro:
+        'Drop in, atau beli pakej. Kedua-dua pakej meliputi Chair Yoga dan Posture Core Yoga, jadi anda boleh mencampurkan kedua-duanya. Sesi peribadi diberi sebut harga secara berasingan.',
+      groups: [
+        {
+          heading: 'Chair Yoga dan Posture Core Yoga',
+          rows: [
+            { label: 'Kelas drop in', price: 55, note: 'Satu kelas, dibayar pada hari tersebut' },
+            { label: 'Pakej 3 kelas', price: 138, note: 'Untuk seorang. Sah selama dua bulan.' },
+            {
+              label: 'Pakej 6 kelas',
+              price: 248,
+              note: 'Boleh dikongsi antara dua orang. Sah selama tiga bulan.',
+            },
+          ],
+        },
+        {
+          heading: 'Yoga peribadi satu dengan satu',
+          rows: [{ label: 'Setiap sesi', value: 'Sebut harga atas permintaan', note: 'Secara temu janji' }],
+        },
+        {
+          heading: 'Bila',
+          rows: [
+            { label: 'Posture Core Yoga', value: 'Sabtu, 4:00 petang', note: 'Berselang minggu dengan Chair Yoga' },
+            { label: 'Chair Yoga', value: 'Sabtu, 4:00 petang', note: 'Berselang minggu dengan Posture Core Yoga' },
+            { label: 'Yoga peribadi', value: 'Secara temu janji' },
+          ],
+        },
+      ],
+      note: 'Dua kelas Sabtu itu berselang minggu demi minggu, jadi mesej kami untuk menyemak yang mana berjalan sebelum anda datang. Yuran sesi peribadi bergantung pada apa yang anda mahu daripadanya, dan kami beri sebut harga sebelum apa-apa ditempah.',
+      ctaLabel: 'Lihat yuran dan masa kelas',
+      summary:
+        'Drop in RM55 sekelas, pakej tiga kelas RM138, atau pakej enam kelas RM248 yang boleh dikongsi dua orang, meliputi Chair Yoga dan Posture Core Yoga pada petang Sabtu. Yoga peribadi satu dengan satu diberi sebut harga atas permintaan.',
+    },
+    helpsWith: ['back-pain', 'neck-pain', 'shoulder-imbalance', 'hip-pain'],
+    relatedLinks: [
+      { href: '/services/posture-correction', label: 'Pembetulan postur untuk pekerja pejabat' },
+      { href: '/services/physiotherapy', label: 'Fisioterapi di Cheras' },
+      { href: '/what-to-expect', label: 'Apa yang dijangka pada lawatan pertama' },
+    ],
+    practitionersWithheld:
+      'Same gate as the English record: the client flyers (2026-09-12) name no instructor, so it is not known whether a chiropractor teaches these classes, and a "Meet your chiropractors" block would assert that they do. Remove together with the English and Chinese records once the instructor can be named.',
+    faqs: [
+      {
+        q: 'Kelas yoga mana yang patut saya mulakan?',
+        a: 'Jika anda duduk sepanjang minggu dan mahu jadi lebih kuat, mulakan dengan Posture Core Yoga. Jika anda lebih berusia, baru bersenam, mengandung, atau turun ke lantai menjadi masalah, mulakan dengan Chair Yoga. Kedua-duanya berselang pada hari Sabtu, jadi mana-mana yang berjalan dahulu ialah tempat yang wajar untuk bermula, dan pakej enam meliputi kedua-duanya. Jika masih tidak pasti, mesej kami dengan umur anda, apa yang anda buat sepanjang hari dan apa yang sakit, dan kami akan beritahu minggu mana untuk datang.',
+      },
+      {
+        q: 'Adakah saya perlu menjadi pesakit klinik untuk menyertai kelas yoga?',
+        a: 'Tidak. Kelas terbuka kepada sesiapa sahaja. Berada di dalam klinik bermakna kiropraktor atau ahli fisioterapi ada jika sesuatu sakit, tetapi anda tidak perlukan temu janji dengan mana-mana satu untuk menempah kelas.',
+      },
+      {
+        q: 'Berapakah kos kelas yoga?',
+        a: 'Kelas drop in RM55. Pakej tiga kelas RM138 dan untuk seorang, sah selama dua bulan. Pakej enam RM248, boleh dikongsi antara dua orang, dan sah selama tiga bulan. Mana-mana pakej boleh digunakan untuk Chair Yoga atau Posture Core Yoga dalam apa jua campuran. Sesi peribadi satu dengan satu diberi sebut harga atas permintaan.',
+      },
+      {
+        q: 'Kelas mana yang berjalan Sabtu ini?',
+        a: 'Ia berselang: Posture Core Yoga satu minggu, Chair Yoga minggu berikutnya, kedua-duanya jam 4:00 petang. Mesej kami di WhatsApp dan kami akan beritahu yang mana berjalan pada Sabtu yang anda fikirkan.',
+      },
+      {
+        q: 'Adakah Chair Yoga sesuai untuk warga emas dan semasa mengandung?',
+        a: 'Ia dibina dengan kedua-duanya dalam fikiran. Semuanya dilakukan sambil duduk atau dengan kerusi sebagai sokongan, dan rentaknya lembut. Jika anda mengandung, atau mempunyai keadaan jantung, tekanan darah atau sendi, semak dengan doktor anda dahulu dan beritahu pengajar sebelum kelas bermula supaya posisi boleh disesuaikan untuk anda.',
+      },
+      {
+        q: 'Bolehkah yoga membantu sakit belakang saya?',
+        a: 'Sejujurnya, sedikit sahaja. Ulasan terbaik tentang yoga untuk sakit belakang bawah yang berpanjangan mendapati peningkatan kecil pada fungsi dan kesakitan berbanding tidak berbuat apa-apa, cukup kecil sehingga penulisnya menyebutnya tidak penting secara klinikal, dan tiada perbezaan jelas berbanding senaman lain. Jadi anggap kelas sebagai cara untuk terus bergerak dan jadi lebih kuat, bukan penyelesaian untuk sakit itu sendiri. Jika sakit belakang anda baru, semakin teruk, atau merebak ke kaki, kami lebih suka menilainya dahulu daripada meletakkan anda dalam kelas. Baca lebih lanjut tentang pendekatan kami terhadap sakit belakang di klinik.',
+        links: [{ phrase: 'pendekatan kami terhadap sakit belakang', href: '/conditions/back-pain' }],
+      },
+      {
+        q: 'Apa yang patut saya pakai dan bawa?',
+        a: 'Sesuatu yang anda boleh bergerak dengannya. Kerusi disediakan untuk Chair Yoga. Jika anda ada tikar, bawa untuk Posture Core Yoga; jika tiada, tanya kami di WhatsApp apa yang ada di bilik itu sebelum anda datang.',
+      },
+      {
+        q: 'Siapa yang mengajar kelas yoga?',
+        a: 'Kami belum menerbitkan profil pengajar di laman ini. Tanya kami di WhatsApp siapa yang mengajar kelas yang anda rancang untuk sertai dan tentang latihan mereka, dan kami akan beritahu. Kiropraktor dan ahli fisioterapi di klinik ialah pasukan yang berasingan daripada pengajaran yoga, dan anda boleh membaca tentang mereka di halaman tentang kami.',
+        links: [{ phrase: 'halaman tentang kami', href: '/about' }],
+      },
+      {
+        q: 'Bagaimana saya menempah kelas yoga?',
+        a: 'Di WhatsApp. Beritahu kami Sabtu mana, sama ada anda baru, dan sama ada anda mahu satu kelas atau pakej. Kami sahkan kelas minggu itu dan simpan tempat. Sesi peribadi diatur dengan cara yang sama, pada masa yang sesuai untuk anda.',
+      },
+    ],
     draft: false,
   },
 ]
