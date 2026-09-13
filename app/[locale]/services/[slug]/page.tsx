@@ -186,13 +186,19 @@ export default async function ServicePage({ params }: Props) {
           with only the mobile sticky bar in between, so a desktop reader who decided halfway
           down had nothing to click. This is the break between recognising the problem and
           being asked to fill in the qualifier. */}
+      {/* `midCta` on the record overrides the clinical default wording; see the type. */}
       <InlineCta
         dict={dict}
+        heading={service.midCta?.heading}
+        body={service.midCta?.body}
+        meta={service.midCta?.meta}
         message={waMessage.service(locale, shortName)}
         secondary={
-          pathExistsIn(locale, '/what-to-expect')
-            ? { href: pathFor(locale, '/what-to-expect'), label: dict.page.firstVisitLabel }
-            : undefined
+          service.midCta?.secondary === 'priceList' && priceList
+            ? { href: `#${PRICE_LIST_ANCHOR}`, label: priceList.ctaLabel }
+            : pathExistsIn(locale, '/what-to-expect')
+              ? { href: pathFor(locale, '/what-to-expect'), label: dict.page.firstVisitLabel }
+              : undefined
         }
       />
 
@@ -211,7 +217,7 @@ export default async function ServicePage({ params }: Props) {
                   {dict.page.whatInvolvesHere(shortName)}
                 </h2>
                 <p className="mt-5 leading-relaxed text-ink-muted">
-                  {dict.page.weAssessBeforeWeBegin}
+                  {service.howItWorksIntro ?? dict.page.weAssessBeforeWeBegin}
                 </p>
                 <div className="mt-8">
                   <WhatsAppButton message={waMessage.service(locale, shortName)}>

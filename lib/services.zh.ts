@@ -1492,6 +1492,13 @@ export const servicesZh: Service[] = [
       summary:
         '单堂 RM55,3 堂配套 RM138,6 堂配套 RM248 可两人共享,通用于每周六下午的椅子瑜伽与体态核心瑜伽。一对一私教瑜伽按需求报价。',
     },
+    midCta: {
+      heading: '不确定该来哪一堂?简单说说您的情况',
+      body: '告诉我们您的年龄、平日做什么、哪里不舒服就够了。我们会说椅子瑜伽还是体态核心瑜伽更适合作为您的第一堂,以及它在哪个周六上课。',
+      meta: '每周六下午 4:00 · Cheras, Maluri · 无需经验',
+      secondary: 'priceList',
+    },
+    howItWorksIntro: '两堂周六团体课与一个私教选项。以下说明每一堂是什么、配套怎么用,以及如何预约。',
     helpsWith: ['back-pain', 'neck-pain', 'shoulder-imbalance', 'hip-pain'],
     relatedLinks: [
       { href: '/services/posture-correction', label: '给上班族的姿势调整' },

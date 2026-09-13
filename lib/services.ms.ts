@@ -1527,6 +1527,14 @@ export const servicesMs: Service[] = [
       summary:
         'Drop in RM55 sekelas, pakej tiga kelas RM138, atau pakej enam kelas RM248 yang boleh dikongsi dua orang, meliputi Chair Yoga dan Posture Core Yoga pada petang Sabtu. Yoga peribadi satu dengan satu diberi sebut harga atas permintaan.',
     },
+    midCta: {
+      heading: 'Tidak pasti kelas mana untuk datang? Ceritakan sedikit tentang diri anda',
+      body: 'Umur anda, apa yang anda buat sepanjang hari dan apa yang sakit sudah memadai. Kami akan beritahu sama ada Chair Yoga atau Posture Core Yoga kelas pertama yang lebih sesuai untuk anda, dan Sabtu mana ia berjalan.',
+      meta: 'Sabtu jam 4:00 petang · Cheras, Maluri · tiada pengalaman diperlukan',
+      secondary: 'priceList',
+    },
+    howItWorksIntro:
+      'Dua kelas berkumpulan pada hari Sabtu dan satu pilihan peribadi. Ini apa setiap satunya, cara pakej berfungsi, dan cara menempah.',
     helpsWith: ['back-pain', 'neck-pain', 'shoulder-imbalance', 'hip-pain'],
     relatedLinks: [
       { href: '/services/posture-correction', label: 'Pembetulan postur untuk pekerja pejabat' },

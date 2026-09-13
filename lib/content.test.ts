@@ -159,6 +159,9 @@ test('no promissory medical claims in published copy', () => {
                   ...m.comparison.rows.flatMap((r) => [r.label, r.a, r.b]),
                 ]
               : []),
+            // Page-specific mid-page card and step-column intro, where set.
+            ...(m.midCta ? [m.midCta.heading, m.midCta.body, m.midCta.meta ?? ''] : []),
+            m.howItWorksIntro ?? '',
             // The fit check is rendered prose like any other and has to clear the same guard.
             // Its left column is the block most likely to reach for "we guarantee we will
             // always..." phrasing, which the banned list catches.

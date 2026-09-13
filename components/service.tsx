@@ -513,12 +513,15 @@ export function InlineCta({
   dict,
   heading,
   body,
+  meta,
   message,
   secondary,
 }: {
   dict: Dictionary
   heading?: string
   body?: string
+  /** The small line under the body. Defaults to the hours-and-referral line. */
+  meta?: string
   message: string
   secondary?: { href: string; label: string }
 }) {
@@ -532,7 +535,7 @@ export function InlineCta({
           <p className="mt-3 leading-relaxed text-ink-muted">
             {body ?? dict.page.notSureWhatYouNeedBody}
           </p>
-          <p className="mt-3 text-sm text-ink-muted/80">{dict.page.openSevenDaysNoReferral}</p>
+          <p className="mt-3 text-sm text-ink-muted/80">{meta ?? dict.page.openSevenDaysNoReferral}</p>
         </div>
         <div className="mt-7 flex flex-wrap gap-3 lg:mt-0 lg:flex-none lg:flex-col">
           <WhatsAppButton message={message}>{dict.header.enquireOnWhatsapp}</WhatsAppButton>

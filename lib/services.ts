@@ -197,6 +197,27 @@ export type Service = {
    * broken page — so leave it out only on a route that renders something else in its place.
    */
   sections?: { heading: string; body: string }[]
+  /**
+   * Page-specific copy for the mid-page conversion card and the "How it works" column intro.
+   *
+   * Both default to dictionary strings written for clinical care ("Start with the assessment.
+   * We will tell you what we find...", "We assess before we begin..."). On a page that sells a
+   * class rather than an appointment those read as the wrong service, which the client flagged
+   * on the yoga page (2026-09-13). A service whose first step is not an assessment sets these;
+   * everything clinical leaves them unset and keeps the shared wording.
+   *
+   * `secondary: 'priceList'` swaps the card's ghost button from the first-visit page to this
+   * page's own fee block, using `priceList.ctaLabel`, so the label is typed once.
+   */
+  midCta?: {
+    heading: string
+    body: string
+    /** The small line under the body. Defaults to the hours-and-referral line. */
+    meta?: string
+    secondary?: 'priceList'
+  }
+  /** Replaces the "we assess before we begin" sentence beside the numbered steps. */
+  howItWorksIntro?: string
   /** Condition slugs this service is used for — the cross-link back into /conditions. */
   helpsWith: string[]
   /**
@@ -1968,6 +1989,14 @@ export const services: Service[] = [
       summary:
         'Drop in RM55 a class, a pack of three RM138, or a pack of six RM248 that two people can share, covering Chair Yoga and Posture Core Yoga on Saturday afternoons. Private one to one yoga is quoted on request.',
     },
+    midCta: {
+      heading: 'Not sure which class to come to? Tell us a little about yourself',
+      body: 'Your age, what you do all day and anything that hurts is enough. We will say whether Chair Yoga or Posture Core Yoga is the better first class for you, and which Saturday it runs.',
+      meta: 'Saturdays at 4:00pm · Cheras, Maluri · no experience needed',
+      secondary: 'priceList',
+    },
+    howItWorksIntro:
+      'Two Saturday classes and a private option. Here is what each one is, how the packs work, and how to book.',
     helpsWith: ['back-pain', 'neck-pain', 'shoulder-imbalance', 'hip-pain'],
     relatedLinks: [
       { href: '/services/posture-correction', label: 'Posture correction for desk workers' },
