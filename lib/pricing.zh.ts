@@ -86,7 +86,7 @@ export const bundlesZh: Bundle[] = [
    */
   {
     slug: 'yoga-drop-in',
-    eyebrow: '瑜伽,单堂课',
+    eyebrow: '单堂课',
     name: '瑜伽单堂课',
     description:
       '单堂计费,当天付款。椅子瑜伽与体态核心瑜伽每逢星期六下午四点轮流开课,来之前先问一声这周是哪一堂。',
@@ -101,11 +101,12 @@ export const bundlesZh: Bundle[] = [
     websiteExclusive: false,
     services: ['yoga-classes'],
     offersPageOnly: true,
+    group: 'yoga',
     draft: false,
   },
   {
     slug: 'yoga-pack-3',
-    eyebrow: '瑜伽,三堂配套',
+    eyebrow: '三堂配套',
     name: '瑜伽三堂配套',
     description: '限一人使用,从第一堂算起有效两个月。椅子瑜伽、体态核心瑜伽都能用,混着上也行。',
     price: 138,
@@ -119,11 +120,12 @@ export const bundlesZh: Bundle[] = [
     websiteExclusive: false,
     services: ['yoga-classes'],
     offersPageOnly: true,
+    group: 'yoga',
     draft: false,
   },
   {
     slug: 'yoga-pack-6',
-    eyebrow: '瑜伽,六堂配套',
+    eyebrow: '六堂配套',
     name: '瑜伽六堂配套',
     description: '可以两个人共用,有效三个月。椅子瑜伽、体态核心瑜伽都能用,混着上也行。',
     price: 248,
@@ -137,6 +139,7 @@ export const bundlesZh: Bundle[] = [
     websiteExclusive: false,
     services: ['yoga-classes'],
     offersPageOnly: true,
+    group: 'yoga',
     draft: false,
   },
 ]

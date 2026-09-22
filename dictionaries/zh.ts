@@ -76,11 +76,15 @@ const zh: Dictionary = {
     offersStep3Title: '我们在 WhatsApp 上确认',
     offersStep3Body: '你会收到预约确认,优惠会在你到诊前记录在预约上。无需打印,也不用记任何代码。',
     offersWhoSuits: '适合谁',
+    offersGroupYogaTitle: '瑜伽课程与配套',
+    offersGroupYogaIntro:
+      '椅子瑜伽与体态核心瑜伽每逢星期六下午四点开课,两堂隔周轮换。可以单堂来上,也可以买配套,平均每堂就便宜下来。',
+    offersFrom: (price) => `${price} 起`,
     offersLearnMore: '了解更多',
     offersCtaHeading: '不确定哪一项适合你?',
     offersCtaBody: '把你的主要问题告诉我们,我们会建议哪项优惠合适,或者先单独做评估会更好。',
     offerPopupBadge: '首次看诊优惠!',
-    offerPopupHeading: '第一次接触脊椎矫正与物理治疗?和 PCC 一起开始。',
+    offerPopupHeading: '第一次接触脊椎矫正与物理治疗?和 Persistence Chiropractic Care 一起开始。',
     offerPopupBody:
       '脊椎矫正与物理治疗一起进行,优惠价格只在官网才有。',
     offerPopupAsk:

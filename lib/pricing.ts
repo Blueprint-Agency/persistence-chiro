@@ -30,6 +30,13 @@ import { bundlesMs } from './pricing.ms.ts'
 /** One component of a bundle, at the price it is sold for on its own. */
 export type BundleLine = { label: string; price: number }
 
+/**
+ * Offers rendered as one row rather than one card each. The key doubles as the row's anchor
+ * and as the dictionary suffix for its heading (`offersGroupYoga*`), so adding a group means
+ * adding the key here, the three dictionary strings, and nothing else.
+ */
+export type BundleGroup = 'yoga'
+
 export type Bundle = {
   slug:
     | 'chiro-physio'
@@ -84,6 +91,17 @@ export type Bundle = {
    * `offersPageOnly`), and /offers links each card to those pages under "Read more about".
    */
   services: readonly string[]
+  /**
+   * Offers that belong together on /offers. A group renders as one heading over a row of
+   * compact cards instead of one full-width card each — the client asked for that on
+   * 2026-09-22, once the three yoga prices made five full-width cards out of what a reader
+   * reads as a single choice ("which yoga option?"). Ungrouped bundles keep the wide card.
+   *
+   * A group is a set of prices for ONE thing that a visitor picks between. Do not reach for
+   * it to tidy a long page: the chiro and the sports bundles are separate decisions and each
+   * still earns its own card and its own photograph.
+   */
+  group?: BundleGroup
   /**
    * True when the card belongs on /offers but NOT on its service page, because that page
    * already publishes the same figures another way. The yoga cards set it: the yoga page
@@ -231,7 +249,7 @@ export const bundles: Bundle[] = [
    */
   {
     slug: 'yoga-drop-in',
-    eyebrow: 'Yoga, single class',
+    eyebrow: 'Single class',
     name: 'Yoga drop in class',
     description:
       'One class, paid on the day. Chair Yoga and Posture Core Yoga alternate on Saturdays at 4:00pm, so message us to check which one is on before you come.',
@@ -246,11 +264,12 @@ export const bundles: Bundle[] = [
     websiteExclusive: false,
     services: ['yoga-classes'],
     offersPageOnly: true,
+    group: 'yoga',
     draft: false,
   },
   {
     slug: 'yoga-pack-3',
-    eyebrow: 'Yoga, pack of 3',
+    eyebrow: 'Pack of 3 classes',
     name: 'Yoga pack of three classes',
     description:
       'For one person, valid two months from the first class. Use it on Chair Yoga, Posture Core Yoga, or a mix of the two.',
@@ -265,11 +284,12 @@ export const bundles: Bundle[] = [
     websiteExclusive: false,
     services: ['yoga-classes'],
     offersPageOnly: true,
+    group: 'yoga',
     draft: false,
   },
   {
     slug: 'yoga-pack-6',
-    eyebrow: 'Yoga, pack of 6',
+    eyebrow: 'Pack of 6 classes',
     name: 'Yoga pack of six classes',
     description:
       'Can be shared between two people, valid three months. Use it on Chair Yoga, Posture Core Yoga, or a mix of the two.',
@@ -284,6 +304,7 @@ export const bundles: Bundle[] = [
     websiteExclusive: false,
     services: ['yoga-classes'],
     offersPageOnly: true,
+    group: 'yoga',
     draft: false,
   },
 ]
@@ -312,3 +333,37 @@ export const bundleForService = (locale: Locale, serviceSlug: string) =>
 /** Every service slug carded on /offers, so that page does not link the same service twice. */
 export const servicesWithBundleCard = (locale: Locale) =>
   new Set(publishedBundlesFor(locale).flatMap((b) => b.services))
+
+/** What /offers lays out, in order: a wide card, or a row of them under one heading. */
+export type OffersRow =
+  | { kind: 'single'; bundle: Bundle }
+  | { kind: 'group'; group: BundleGroup; bundles: Bundle[] }
+
+/**
+ * `publishedBundlesFor` folded into rows. A group takes the position of its FIRST member, so
+ * where a row appears on the page is decided by the order of lib/pricing.ts and nowhere else.
+ * Members do not have to be adjacent in the array, though keeping them together reads better.
+ */
+export const offersRowsFor = (locale: Locale): OffersRow[] => {
+  const rows: OffersRow[] = []
+  const groups = new Map<BundleGroup, Extract<OffersRow, { kind: 'group' }>>()
+  for (const bundle of publishedBundlesFor(locale)) {
+    if (!bundle.group) {
+      rows.push({ kind: 'single', bundle })
+      continue
+    }
+    const existing = groups.get(bundle.group)
+    if (existing) {
+      existing.bundles.push(bundle)
+      continue
+    }
+    const row: Extract<OffersRow, { kind: 'group' }> = {
+      kind: 'group',
+      group: bundle.group,
+      bundles: [bundle],
+    }
+    groups.set(bundle.group, row)
+    rows.push(row)
+  }
+  return rows
+}

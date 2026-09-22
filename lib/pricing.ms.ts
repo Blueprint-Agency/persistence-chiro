@@ -91,7 +91,7 @@ export const bundlesMs: Bundle[] = [
    */
   {
     slug: 'yoga-drop-in',
-    eyebrow: 'Yoga, kelas tunggal',
+    eyebrow: 'Kelas tunggal',
     name: 'Kelas yoga satu sesi',
     description:
       'Satu kelas, dibayar pada hari itu. Chair Yoga dan Posture Core Yoga berselang-seli setiap Sabtu jam 4:00 petang, jadi mesej kami untuk semak kelas mana yang berjalan sebelum anda datang.',
@@ -106,11 +106,12 @@ export const bundlesMs: Bundle[] = [
     websiteExclusive: false,
     services: ['yoga-classes'],
     offersPageOnly: true,
+    group: 'yoga',
     draft: false,
   },
   {
     slug: 'yoga-pack-3',
-    eyebrow: 'Yoga, pakej 3 kelas',
+    eyebrow: 'Pakej 3 kelas',
     name: 'Pakej yoga tiga kelas',
     description:
       'Untuk satu orang, sah dua bulan dari kelas pertama. Boleh digunakan untuk Chair Yoga, Posture Core Yoga atau campuran kedua-duanya.',
@@ -125,11 +126,12 @@ export const bundlesMs: Bundle[] = [
     websiteExclusive: false,
     services: ['yoga-classes'],
     offersPageOnly: true,
+    group: 'yoga',
     draft: false,
   },
   {
     slug: 'yoga-pack-6',
-    eyebrow: 'Yoga, pakej 6 kelas',
+    eyebrow: 'Pakej 6 kelas',
     name: 'Pakej yoga enam kelas',
     description:
       'Boleh dikongsi antara dua orang, sah tiga bulan. Boleh digunakan untuk Chair Yoga, Posture Core Yoga atau campuran kedua-duanya.',
@@ -144,6 +146,7 @@ export const bundlesMs: Bundle[] = [
     websiteExclusive: false,
     services: ['yoga-classes'],
     offersPageOnly: true,
+    group: 'yoga',
     draft: false,
   },
 ]

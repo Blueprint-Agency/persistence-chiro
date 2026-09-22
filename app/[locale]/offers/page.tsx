@@ -8,9 +8,16 @@ import { pageMetadata } from '@/lib/seo'
 import { LOCALES, isLocale, pathFor, shortTitle, type Locale } from '@/lib/i18n'
 import { pathExistsIn } from '@/lib/locale-availability'
 import { getDictionary } from '@/lib/dictionaries'
-import { publishedBundlesFor, ringgit, servicesWithBundleCard } from '@/lib/pricing'
+import {
+  offersRowsFor,
+  publishedBundlesFor,
+  ringgit,
+  servicesWithBundleCard,
+  type Bundle,
+} from '@/lib/pricing'
 import { publishedServicesFor, serviceBySlugFor } from '@/lib/services'
 import { BundleOffer } from '@/components/BundleOffer'
+import { BundleGroup } from '@/components/BundleGroup'
 import { PRICE_LIST_ANCHOR } from '@/components/PriceList'
 import { CtaBand, Eyebrow, GhostButton, PageHero } from '@/components/ui'
 import { waMessage } from '@/lib/whatsapp'
@@ -121,7 +128,37 @@ export default async function OffersPage({ params }: Props) {
   if (!isLocale(rawLocale)) notFound()
   const locale = rawLocale
   const dict = await getDictionary(locale)
-  const bundles = publishedBundlesFor(locale)
+  // Wide cards and grouped rows, in the order lib/pricing.ts lists them. See `offersRowsFor`.
+  const rows = offersRowsFor(locale)
+
+  /** "Read more about X · Y", from a set of service slugs. Shared by both row shapes. */
+  const relatedLinks = (slugs: string[]) => {
+    const related = [...new Set(slugs)]
+      .map((slug) => {
+        const s = serviceBySlugFor(locale, slug)
+        return s ? { slug, label: shortTitle(locale, s.title) } : null
+      })
+      .filter((s): s is { slug: string; label: string } => s !== null)
+    if (related.length === 0) return null
+    return (
+      <>
+        {dict.page.offersLearnMore}{' '}
+        {related.map((s, i) => (
+          <span key={s.slug}>
+            {i > 0 && (locale === 'zh' ? '、' : ' · ')}
+            <Link
+              href={pathFor(locale, `/services/${s.slug}`)}
+              className="font-semibold text-brand-gold-ink underline underline-offset-4"
+            >
+              {s.label}
+            </Link>
+          </span>
+        ))}
+      </>
+    )
+  }
+
+  const claimMessage = (b: Bundle) => waMessage.bundle(locale, b.name, ringgit(b.price))
   // Services priced by the visit (`priceList` on lib/services.ts). Not offers, so they are
   // not cards here and not in the CollectionPage list; they get a link so this page stays the
   // one place every published price can be reached from. Empty in a locale where no such
@@ -162,60 +199,74 @@ export default async function OffersPage({ params }: Props) {
         title={dict.page.offersTitle}
         intro={dict.page.offersIntro}
       >
-        {/* One jump link per offer, labelled with the eyebrow and the price. Ghost rather than
-            gold: the gold ask on this page is the WhatsApp button on each card, and a gold
-            button up here would be a second ask before the reader has seen what it is for. */}
+        {/* One jump link per ROW, not per card. A grouped row gets a single chip carrying its
+            heading and its lowest price, because three chips reading "Single class RM55",
+            "Pack of 3 RM138", "Pack of 6 RM248" made a reader choose before they had seen
+            what they were choosing between, and the row itself is where that comparison
+            belongs. Ghost rather than gold: the gold ask on this page is the WhatsApp button
+            on each card, and a gold button up here would be a second ask before the reader
+            has seen what it is for. */}
         <div className="flex flex-wrap gap-3">
-          {bundles.map((b) => (
-            <GhostButton key={b.slug} href={`#${b.slug}`} tone="light">
-              {b.eyebrow} &middot; {ringgit(b.price)}
-            </GhostButton>
-          ))}
+          {rows.map((row) =>
+            row.kind === 'single' ? (
+              <GhostButton key={row.bundle.slug} href={`#${row.bundle.slug}`} tone="light">
+                {row.bundle.eyebrow} &middot; {ringgit(row.bundle.price)}
+              </GhostButton>
+            ) : (
+              <GhostButton key={row.group} href={`#${row.group}`} tone="light">
+                {dict.page.offersGroupYogaTitle} &middot;{' '}
+                {dict.page.offersFrom(ringgit(Math.min(...row.bundles.map((b) => b.price))))}
+              </GhostButton>
+            ),
+          )}
         </div>
       </PageHero>
 
       {/* ---------------------------------------------------------------- Offers */}
       {/* The cards come first: the visitor tapped "Offers" and this is what they came for. The
-          claim steps follow, once there is something to claim. Each card is followed by who
-          it suits and links to the service pages that explain the parts in depth, which is
-          also how this page joins the internal-linking model rather than being a dead end. */}
-      {bundles.map((bundle) => {
-        const related = bundle.services
-          .map((slug) => {
-            const s = serviceBySlugFor(locale, slug)
-            return s ? { slug, label: shortTitle(locale, s.title) } : null
-          })
-          .filter((s): s is { slug: string; label: string } => s !== null)
+          claim steps follow, once there is something to claim. Every row ends with links to
+          the service pages that explain the parts in depth, which is also how this page joins
+          the internal-linking model rather than being a dead end.
 
+          TWO SHAPES, one list. A standalone offer keeps the full-width card with its own
+          photograph and its "who it suits" paragraph alongside. A group renders as one heading
+          over a row of compact cards, because its members are one decision priced several ways
+          rather than several offers — see components/BundleGroup.tsx. */}
+      {rows.map((row) => {
+        if (row.kind === 'group') {
+          const links = relatedLinks(row.bundles.flatMap((b) => [...b.services]))
+          return (
+            <div key={row.group} className="pt-16 lg:pt-24">
+              <BundleGroup
+                dict={dict}
+                id={row.group}
+                heading={dict.page.offersGroupYogaTitle}
+                intro={dict.page.offersGroupYogaIntro}
+                bundles={row.bundles}
+                messageFor={claimMessage}
+              >
+                {links && <p className="mt-8 leading-relaxed text-ink-muted">{links}</p>}
+              </BundleGroup>
+            </div>
+          )
+        }
+
+        const { bundle } = row
+        const links = relatedLinks([...bundle.services])
         return (
           <div key={bundle.slug} className="pt-16 lg:pt-24">
             <BundleOffer
               id={bundle.slug}
               dict={dict}
               bundle={bundle}
-              message={waMessage.bundle(locale, bundle.name, ringgit(bundle.price))}
+              message={claimMessage(bundle)}
             />
             <div className="mx-auto mt-6 grid max-w-6xl gap-6 px-4 lg:grid-cols-[1.1fr_0.9fr] lg:gap-10">
               <div>
                 <p className="label text-brand-slate">{dict.page.offersWhoSuits}</p>
                 <p className="mt-2 leading-relaxed text-ink-muted">{bundle.who}</p>
               </div>
-              {related.length > 0 && (
-                <p className="leading-relaxed text-ink-muted lg:text-right">
-                  {dict.page.offersLearnMore}{' '}
-                  {related.map((s, i) => (
-                    <span key={s.slug}>
-                      {i > 0 && (locale === 'zh' ? '、' : ' · ')}
-                      <Link
-                        href={pathFor(locale, `/services/${s.slug}`)}
-                        className="font-semibold text-brand-gold-ink underline underline-offset-4"
-                      >
-                        {s.label}
-                      </Link>
-                    </span>
-                  ))}
-                </p>
-              )}
+              {links && <p className="leading-relaxed text-ink-muted lg:text-right">{links}</p>}
             </div>
           </div>
         )

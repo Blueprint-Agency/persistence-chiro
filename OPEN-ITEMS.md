@@ -405,7 +405,10 @@ Outstanding:
 
 **Update 2026-09-22:** the three class prices are now also cards on `/offers` (drop in RM55,
 pack of 3 RM138, pack of 6 RM248), at the client's request, one card per price at their
-direction. They are **not** website-only — confirmed with the client the same day, since the
+direction, laid out as **one row of three columns under the heading "Yoga classes and
+packages"** (their wording was "yoga packages"; the heading names classes too because one of
+the three is a single drop in, not a package). That row is `components/BundleGroup.tsx`, driven
+by `Bundle.group`. They are **not** website-only — confirmed with the client the same day, since the
 packs come off a printed price list at the counter — which is why `/offers` stopped calling
 itself "website-only offers" in its h1, intro and meta title. The cards set `offersPageOnly`,
 so this page still shows its own `priceList` and nothing else. Points 1 to 5 below are

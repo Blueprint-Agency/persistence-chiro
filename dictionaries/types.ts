@@ -89,6 +89,14 @@ export type Dictionary = {
     offersStep3Body: string
     /** Label over `Bundle.who`. */
     offersWhoSuits: string
+    /**
+     * Heading and standfirst over a grouped row of offers (`BundleGroup`). One pair per
+     * `BundleGroup` key in lib/pricing.ts; `yoga` is the only one so far.
+     */
+    offersGroupYogaTitle: string
+    offersGroupYogaIntro: string
+    /** Hero jump chip for a group, where one price cannot stand for the row: "from RM55". */
+    offersFrom: (price: string) => string
     /** "Read more about" — followed by links to the service pages the offer belongs to. */
     offersLearnMore: string
     offersCtaHeading: string

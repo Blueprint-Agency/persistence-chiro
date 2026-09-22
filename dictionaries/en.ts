@@ -65,12 +65,16 @@ const en: Dictionary = {
     offersStep3Body:
       'You get a reply with your appointment, and the offer is noted on it before you walk in. Nothing to print, no code to remember.',
     offersWhoSuits: 'Who it suits',
+    offersGroupYogaTitle: 'Yoga classes and packages',
+    offersGroupYogaIntro:
+      'Chair Yoga and Posture Core Yoga run on Saturdays at 4:00pm, one or the other week by week. Come for a single class, or buy a pack and bring the price per class down.',
+    offersFrom: (price) => `from ${price}`,
     offersLearnMore: 'Read more about',
     offersCtaHeading: 'Not sure which one fits?',
     offersCtaBody:
       'Message us with your main concern and we will tell you which offer makes sense, or whether an assessment on its own is the better start.',
     offerPopupBadge: 'First time deal!',
-    offerPopupHeading: 'New to Chiro & Physio? Start your journey with PCC.',
+    offerPopupHeading: 'New to Chiro & Physio? Start your journey with Persistence Chiropractic Care.',
     offerPopupBody:
       'Experience chiropractic and physiotherapy together at a special rate only available through our website.',
     offerPopupAsk:

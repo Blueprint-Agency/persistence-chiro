@@ -71,12 +71,16 @@ const ms: Dictionary = {
     offersStep3Body:
       'Anda akan terima balasan dengan temu janji anda, dan tawaran itu dicatat sebelum anda tiba. Tiada apa yang perlu dicetak, tiada kod untuk diingat.',
     offersWhoSuits: 'Sesuai untuk siapa',
+    offersGroupYogaTitle: 'Kelas dan pakej yoga',
+    offersGroupYogaIntro:
+      'Chair Yoga dan Posture Core Yoga berjalan setiap Sabtu jam 4:00 petang, satu demi satu minggu demi minggu. Datang untuk satu kelas, atau beli pakej dan turunkan harga sekelas.',
+    offersFrom: (price) => `dari ${price}`,
     offersLearnMore: 'Baca lagi tentang',
     offersCtaHeading: 'Tak pasti yang mana satu?',
     offersCtaBody:
       'Mesej kami tentang masalah utama anda dan kami akan beritahu tawaran mana yang sesuai, atau sama ada penilaian sahaja lebih baik untuk permulaan.',
     offerPopupBadge: 'Tawaran kali pertama!',
-    offerPopupHeading: 'Baru dengan kiropraktik & fisioterapi? Mulakan perjalanan anda dengan PCC.',
+    offerPopupHeading: 'Baru dengan kiropraktik & fisioterapi? Mulakan perjalanan anda dengan Persistence Chiropractic Care.',
     offerPopupBody:
       'Rasai kiropraktik dan fisioterapi sekali gus, pada harga istimewa yang hanya ada melalui laman web kami.',
     offerPopupAsk:
