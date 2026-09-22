@@ -57,13 +57,13 @@ const ms: Dictionary = {
     bundleClaim: 'Tuntut tawaran ini sekarang!',
     bundleHeroCta: (percent) => `Dapatkan pakej jimat ${percent}`,
     offersEyebrow: 'Tawaran',
-    offersTitle: 'Tawaran khas laman web',
+    offersTitle: 'Tawaran dan pakej kelas',
     offersIntro:
-      'Dua tawaran yang hanya boleh didapati bila anda menempah melalui laman web ini. Setiap satu menyenaraikan apa yang termasuk dan harga setiap bahagian jika diambil berasingan, jadi anda boleh kira sendiri jimatannya.',
+      'Semua yang kami hargakan sebagai satu pakej, di satu halaman. Setiap kad menyenaraikan apa yang termasuk dan harga setiap bahagian jika diambil berasingan, jadi anda boleh kira sendiri jimatannya. Yang bertanda promosi laman web sahaja tidak boleh didapati di tempat lain.',
     offersHowHeading: 'Satu mesej sahaja untuk menuntutnya',
     offersStep1Title: 'Pilih tawaran anda',
     offersStep1Body:
-      'Baca apa yang termasuk dan lihat label di atasnya. Satu untuk pesakit baharu pada lawatan pertama, satu lagi terbuka kepada sesiapa sahaja.',
+      'Baca apa yang termasuk dan lihat label di atasnya. Satu untuk pesakit baharu pada lawatan pertama, selebihnya terbuka kepada sesiapa sahaja.',
     offersStep2Title: 'Tekan butang WhatsApp',
     offersStep2Body:
       'Mesej itu sudah menamakan tawaran dan harganya, jadi tiada apa yang perlu dijelaskan. Tambah hari dan masa yang anda mahu, kemudian hantar.',
@@ -76,9 +76,11 @@ const ms: Dictionary = {
     offersCtaBody:
       'Mesej kami tentang masalah utama anda dan kami akan beritahu tawaran mana yang sesuai, atau sama ada penilaian sahaja lebih baik untuk permulaan.',
     offerPopupBadge: 'Tawaran kali pertama!',
-    offerPopupHeading: 'Kali pertama? Bayar kurang untuk lawatan pertama anda.',
+    offerPopupHeading: 'Baru dengan kiropraktik & fisioterapi? Mulakan perjalanan anda dengan PCC.',
     offerPopupBody:
-      'Kiropraktik dan fisioterapi sekali gus, pada harga yang hanya ada di laman web ini. Satu mesej WhatsApp sahaja untuk menuntutnya.',
+      'Rasai kiropraktik dan fisioterapi sekali gus, pada harga istimewa yang hanya ada melalui laman web kami.',
+    offerPopupAsk:
+      'Sedia untuk bermula? Hantar mesej WhatsApp kepada kami atau buat tempahan melalui laman web kami untuk menuntut tawaran ini dan menempah lawatan pertama anda.',
     offerPopupCta: 'Tunjukkan tawaran',
     offerPopupLater: 'Bukan sekarang',
     offerPopupClose: 'Tutup',

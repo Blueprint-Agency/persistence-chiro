@@ -100,7 +100,15 @@ export type Dictionary = {
      */
     offerPopupBadge: string
     offerPopupHeading: string
+    /** First paragraph: what the offer is. */
     offerPopupBody: string
+    /**
+     * Second paragraph: how to claim it. Split from `offerPopupBody` on 2026-09-22 with the
+     * client's rewritten wording, which they sent as two blocks — "what it is" and "what to
+     * do next". Both ids are named in the dialog's aria-describedby, so a screen reader still
+     * hears the whole description.
+     */
+    offerPopupAsk: string
     /** The one button: goes to /offers. */
     offerPopupCta: string
     /** Text-only dismiss under the button. */

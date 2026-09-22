@@ -56,19 +56,6 @@ export const mainNav = (locale: Locale, dict: Dictionary): NavItem[] => [
     })),
   },
   { href: pathFor(locale, '/what-to-expect'), label: dict.nav.whatToExpect },
-  /**
-   * /offers, added 2026-09-09 at the client's request: one page gathering every published
-   * offer in lib/pricing.ts, so a price is one tap away rather than reachable only from
-   * whichever service page happens to carry it. `highlight` puts a small tag icon beside the
-   * label, which is what the client's brief ("add bundle icon") asked for.
-   *
-   * WORDING: the MENU LABEL is "Offers" (优惠 / Tawaran), not "Pricing", "Promotions",
-   * "Packages" or "Bundles", because the client asked to avoid those four words in the nav
-   * (2026-09-09). The cards, hero buttons and WhatsApp messages keep saying "bundle": the
-   * client asked for that explicitly the same day ("remain the word bundle for original
-   * positions, only use offer at the menu bar"). Do not "tidy" the two into one word.
-   */
-  { href: pathFor(locale, '/offers'), label: dict.nav.offers, highlight: true },
   {
     // /press was reachable only from the sitemap — orphaned from the nav entirely. It
     // groups here rather than taking a top-level slot: both answer "who are these people".
@@ -110,4 +97,24 @@ export const mainNav = (locale: Locale, dict: Dictionary): NavItem[] => [
    * /locate-us, which now sits under About.
    */
   { href: clinic.bookingUrl, label: dict.nav.bookNow, external: true },
+  /**
+   * /offers, added 2026-09-09 at the client's request: one page gathering every published
+   * offer in lib/pricing.ts, so a price is one tap away rather than reachable only from
+   * whichever service page happens to carry it. `highlight` puts a small tag icon beside the
+   * label, which is what the client's brief ("add bundle icon") asked for.
+   *
+   * POSITION: last, after "Book Now", at the client's request (2026-09-22). It sat between
+   * "What to Expect" and "About" until then. Last is where the eye finishes the row, and the
+   * gold tag is the only mark in the bar, so the item still reads before the menu is scanned
+   * — it is the one nav row that does not need position to be noticed. Nothing depends on
+   * the order except the rendered bar and the footer's short link list, which both map this
+   * array as written.
+   *
+   * WORDING: the MENU LABEL is "Offers" (优惠 / Tawaran), not "Pricing", "Promotions",
+   * "Packages" or "Bundles", because the client asked to avoid those four words in the nav
+   * (2026-09-09). The cards, hero buttons and WhatsApp messages keep saying "bundle": the
+   * client asked for that explicitly the same day ("remain the word bundle for original
+   * positions, only use offer at the menu bar"). Do not "tidy" the two into one word.
+   */
+  { href: pathFor(locale, '/offers'), label: dict.nav.offers, highlight: true },
 ]

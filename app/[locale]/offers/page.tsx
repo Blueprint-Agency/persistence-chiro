@@ -8,7 +8,7 @@ import { pageMetadata } from '@/lib/seo'
 import { LOCALES, isLocale, pathFor, shortTitle, type Locale } from '@/lib/i18n'
 import { pathExistsIn } from '@/lib/locale-availability'
 import { getDictionary } from '@/lib/dictionaries'
-import { publishedBundlesFor, ringgit } from '@/lib/pricing'
+import { publishedBundlesFor, ringgit, servicesWithBundleCard } from '@/lib/pricing'
 import { publishedServicesFor, serviceBySlugFor } from '@/lib/services'
 import { BundleOffer } from '@/components/BundleOffer'
 import { PRICE_LIST_ANCHOR } from '@/components/PriceList'
@@ -26,6 +26,13 @@ import { waMessage } from '@/lib/whatsapp'
  * WORDING. The nav label and this page's own chrome say "offer", because the client asked to
  * avoid "pricing", "promotion", "packages" and "bundle" in the menu bar. The cards keep their
  * original "bundle" wording, also at the client's request (2026-09-09). See lib/nav.ts.
+ *
+ * NOT ALL OF IT IS WEBSITE ONLY, since 2026-09-22. The page opened with two website-exclusive
+ * bundles and said so in its h1, its intro and its meta title. The three yoga cards added that
+ * day are sold at the counter too (client, same day), so all three of those lines were
+ * rewritten to describe what the page holds rather than to promise exclusivity it no longer
+ * has across the board. The two that ARE exclusive still say so, once, on their own badge.
+ * Do not restore "website-only" to the page furniture while a non-exclusive card is on it.
  *
  * NOTHING HERE IS TYPED TWICE. The cards, the hero jump links, the "who it suits" line, the
  * service links under each card, the meta description's price list and the JSON-LD all read
@@ -48,39 +55,51 @@ type Props = { params: Promise<{ locale: string }> }
 const copyFor = (locale: Locale) =>
   ({
     en: {
-      title: 'Website-Only Offers, Cheras KL',
-      lead: 'Two offers you can only get by booking through the Persistence Chiropractic Care website in Cheras, Maluri.',
+      title: 'Offers and Prices, Cheras KL: Chiro, Physio, Yoga',
+      lead: 'Every offer and published price at Persistence Chiropractic Care in Cheras, Maluri, across chiropractic, physiotherapy and yoga classes.',
       close: 'Message us on WhatsApp to claim one.',
       alsoPriced: 'Also priced on this site',
       alsoPricedBody:
-        'Not an offer, and not website-only: a service sold by the visit, with its fees published in full on its own page.',
+        'Not a set price: a service sold by the visit, with its fees published in full on its own page.',
       seeFees: 'See the fees',
     },
     zh: {
-      title: 'Cheras, KL 官网专属优惠',
-      lead: '两项只在 Cheras, Maluri 的 Persistence Chiropractic Care 官网预约才享有的优惠。',
+      title: 'Cheras, KL 优惠与收费:脊椎矫正、物理治疗、瑜伽',
+      lead: 'Cheras, Maluri 的 Persistence Chiropractic Care 所有优惠与已公布的收费,涵盖脊椎矫正、物理治疗和瑜伽课程。',
       close: '通过 WhatsApp 联系我们即可领取。',
       alsoPriced: '本站其他已公布的收费',
-      alsoPricedBody: '这不是优惠,也不限官网:按次收费的服务,收费在其页面上完整公布。',
+      alsoPricedBody: '这不是配套价:按次收费的服务,收费在它自己的页面上完整公布。',
       seeFees: '查看收费',
     },
     ms: {
-      title: 'Tawaran Khas Laman Web, Cheras KL',
-      lead: 'Dua tawaran yang hanya boleh didapati bila anda menempah melalui laman web Persistence Chiropractic Care di Cheras, Maluri.',
+      title: 'Tawaran dan Harga, Cheras KL: Kiropraktik, Fisio, Yoga',
+      lead: 'Setiap tawaran dan harga yang diterbitkan di Persistence Chiropractic Care, Cheras, Maluri, merangkumi kiropraktik, fisioterapi dan kelas yoga.',
       close: 'Mesej kami di WhatsApp untuk menuntutnya.',
       alsoPriced: 'Yuran lain yang diterbitkan di laman ini',
       alsoPricedBody:
-        'Bukan tawaran dan bukan khas laman web: perkhidmatan yang dicaj mengikut lawatan, dengan yurannya diterbitkan penuh di halamannya sendiri.',
+        'Bukan harga pakej: perkhidmatan yang dicaj mengikut lawatan, dengan yurannya diterbitkan penuh di halamannya sendiri.',
       seeFees: 'Lihat yuran',
     },
   })[locale]
 
+/**
+ * The price span, derived rather than typed, so it cannot drift from the cards.
+ *
+ * It used to enumerate every offer by name and price. That read well over two cards and ran to
+ * roughly three hundred characters over five, which is a description no engine will show and
+ * no assistant needs — the CollectionPage JSON-LD below carries every Offer node with its own
+ * price, which is the surface that actually answers "how much does a chiropractor in KL cost".
+ * The description now gives the span and leaves the itemisation to the markup.
+ */
 const describe = (locale: Locale) => {
   const copy = copyFor(locale)
-  const list = publishedBundlesFor(locale)
-    .map((b) => `${b.name} ${ringgit(b.price)}`)
-    .join(locale === 'zh' ? ',' : ', ')
-  return locale === 'zh' ? `${copy.lead}${list}。${copy.close}` : `${copy.lead} ${list}. ${copy.close}`
+  const prices = publishedBundlesFor(locale).map((b) => b.price)
+  const span = {
+    en: `From ${ringgit(Math.min(...prices))} to ${ringgit(Math.max(...prices))}.`,
+    zh: `收费从 ${ringgit(Math.min(...prices))} 到 ${ringgit(Math.max(...prices))}。`,
+    ms: `Dari ${ringgit(Math.min(...prices))} hingga ${ringgit(Math.max(...prices))}.`,
+  }[locale]
+  return locale === 'zh' ? `${copy.lead}${span}${copy.close}` : `${copy.lead} ${span} ${copy.close}`
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -107,7 +126,15 @@ export default async function OffersPage({ params }: Props) {
   // not cards here and not in the CollectionPage list; they get a link so this page stays the
   // one place every published price can be reached from. Empty in a locale where no such
   // service exists, and the section then does not render.
-  const pricedServices = publishedServicesFor(locale).filter((s) => s.priceList)
+  //
+  // A service that already has a card up the page is excluded: yoga classes has both a
+  // `priceList` (the fee table and the Saturday timetable, on its own page) and three cards
+  // here, and listing it in both places would put the same RM55 on this page twice under two
+  // different headings. The card's "Read more about" link still reaches the full table.
+  const carded = servicesWithBundleCard(locale)
+  const pricedServices = publishedServicesFor(locale).filter(
+    (s) => s.priceList && !carded.has(s.slug),
+  )
   const copy = copyFor(locale)
 
   const steps = [
@@ -196,9 +223,11 @@ export default async function OffersPage({ params }: Props) {
 
       {/* ------------------------------------------------------- Also priced */}
       {/* Added 2026-09-12 with the physiotherapy house call, the first service with a
-          per-visit price list. A link rather than a card, deliberately: the cards on this page
-          make a saving claim and carry a "website-only" badge, and a rate card that does
-          neither would read as a third offer it is not. */}
+          per-visit price list. A link rather than a card, deliberately: every card above is a
+          set sold for one figure, and a per-visit rate card sitting among them would read as
+          another one. The contrast used to be drawn as "not website-only" too; that stopped
+          being the difference on 2026-09-22, when the yoga cards arrived and were not
+          website-only either. */}
       {pricedServices.length > 0 && (
         <section className="mx-auto mt-16 max-w-6xl px-4 lg:mt-24">
           <Eyebrow>{copy.alsoPriced}</Eyebrow>

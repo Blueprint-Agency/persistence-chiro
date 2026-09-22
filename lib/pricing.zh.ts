@@ -75,4 +75,68 @@ export const bundlesZh: Bundle[] = [
     services: ['sports-massage', 'sports-injury-rehabilitation'],
     draft: false,
   },
+  /**
+   * The three yoga cards, added 2026-09-22 with the English records — see their comment in
+   * lib/pricing.ts for why there are three, why none of them is website only and why the drop
+   * in card carries no saving.
+   *
+   * Class names follow the client's own bilingual flyer (椅子瑜伽, 体态核心瑜伽), the same wording
+   * the zh yoga page uses. No 治疗 anywhere in these records: a yoga class is not something done
+   * to a patient. Unreviewed, like every other zh record.
+   */
+  {
+    slug: 'yoga-drop-in',
+    eyebrow: '瑜伽,单堂课',
+    name: '瑜伽单堂课',
+    description:
+      '单堂计费,当天付款。椅子瑜伽与体态核心瑜伽每逢星期六下午四点轮流开课,来之前先问一声这周是哪一堂。',
+    price: 55,
+    compareAt: 55,
+    lines: [{ label: '瑜伽单堂课,椅子瑜伽或体态核心瑜伽', price: 55 }],
+    who: '想先上一堂看看、还不急着买配套的人,或者只能偶尔挪出一个星期六的人。没有经验也可以来,也不必是诊所的患者。',
+    image: {
+      src: '/img/yoga-chair-side-stretch.webp',
+      alt: '在 Cheras, Kuala Lumpur 的 Persistence Chiropractic Care 椅子瑜伽课上,一名微笑的女士坐在折叠椅上,双脚踩着瑜伽砖,单手举过头顶做侧伸展',
+    },
+    websiteExclusive: false,
+    services: ['yoga-classes'],
+    offersPageOnly: true,
+    draft: false,
+  },
+  {
+    slug: 'yoga-pack-3',
+    eyebrow: '瑜伽,三堂配套',
+    name: '瑜伽三堂配套',
+    description: '限一人使用,从第一堂算起有效两个月。椅子瑜伽、体态核心瑜伽都能用,混着上也行。',
+    price: 138,
+    compareAt: 165,
+    lines: [{ label: '三堂单堂课,每堂 RM55', price: 165 }],
+    who: '想开始上课,但还不想一次排到三个月之后的人。仅限一人使用,不能分给朋友。',
+    image: {
+      src: '/img/yoga-class-side-angle.webp',
+      alt: '在 Cheras, Kuala Lumpur 的 Persistence Chiropractic Care 瑜伽课上,学员们各自在折叠椅旁做宽步弓箭步,单手向上伸展',
+    },
+    websiteExclusive: false,
+    services: ['yoga-classes'],
+    offersPageOnly: true,
+    draft: false,
+  },
+  {
+    slug: 'yoga-pack-6',
+    eyebrow: '瑜伽,六堂配套',
+    name: '瑜伽六堂配套',
+    description: '可以两个人共用,有效三个月。椅子瑜伽、体态核心瑜伽都能用,混着上也行。',
+    price: 248,
+    compareAt: 330,
+    lines: [{ label: '六堂单堂课,每堂 RM55', price: 330 }],
+    who: '固定来上课的人,或想结伴同行的两个人,因为一份配套两个人可以一起用。三种之中,平均每堂最划算。',
+    image: {
+      src: '/img/yoga-class-group.webp',
+      alt: '在 Cheras, Kuala Lumpur 的 Persistence Chiropractic Care,七名学员在瑜伽课后微笑合影,身后是一尊银色瑜伽人像和一排放着教具的架子',
+    },
+    websiteExclusive: false,
+    services: ['yoga-classes'],
+    offersPageOnly: true,
+    draft: false,
+  },
 ]

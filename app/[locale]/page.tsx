@@ -242,6 +242,7 @@ export default async function Home({ params }: Props) {
           badge: dict.page.offerPopupBadge,
           heading: dict.page.offerPopupHeading,
           body: dict.page.offerPopupBody,
+          ask: dict.page.offerPopupAsk,
           cta: dict.page.offerPopupCta,
           later: dict.page.offerPopupLater,
           close: dict.page.offerPopupClose,

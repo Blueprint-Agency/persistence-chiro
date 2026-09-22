@@ -4,7 +4,8 @@ Work that is **blocked on a person, an asset or an access grant** — not on cod
 item below has its reasoning recorded in a comment next to the thing it governs; this file
 exists so the list can be found in one place instead of stumbled upon in four.
 
-Last updated **2026-09-12**, when the yoga classes page was built (item 11), after the last zh/ms gaps were closed (item 7b) and the house call page was built (item 10).
+Last updated **2026-09-22**, when the yoga class prices were carded on `/offers` (item 11), the
+pop-up copy was replaced with the client's own wording and "Offers" moved to the end of the nav.
 
 > Keep this file honest. When an item is resolved, delete it here *and* remove the
 > corresponding gate or comment in the code. A stale blocker is worse than no list.
@@ -388,17 +389,28 @@ Outstanding:
    clinic, so their alt text names no location; do not add the modifier.** Three of the four
    concern cards are still borrowed stock composites. A real photograph of a physiotherapist on
    an actual house call would replace all of it.
-3. **Does the client want the packages as cards on `/offers`?** They are linked from there,
-   not carded, because the cards on that page make a saving claim and carry a "website-only"
-   badge, and this rate card does neither. If the client wants cards, the two packages fit the
-   `Bundle` shape honestly (3 visits RM510 against RM550 separately; 5 visits RM840 against
-   RM910) and would need the service route to render more than one bundle per page.
+3. **Does the client want the packages as cards on `/offers`?** Still a link, not a card. The
+   original objection (the cards make a saving claim and carry a "website-only" badge, and this
+   rate card does neither) half dissolved on 2026-09-22, when the yoga cards landed without the
+   badge and `offersPageOnly` let a service keep its own price list while being carded on
+   `/offers`. So the plumbing now exists and the only open question is editorial: the two
+   packages fit the `Bundle` shape honestly (3 visits RM510 against RM550 separately; 5 visits
+   RM840 against RM910), and `/offers` would go from five cards to seven. Ask before building.
 4. ~~zh/ms.~~ **BUILT 2026-09-12** as direct translations (no keyword measured any volume in
    either language), per the client's rule of the same day. Unreviewed, like every zh/ms record.
 5. Physiotherapist naming follows item 1; this page sets `practitionersWithheld` like the
    physiotherapy page and should be un-gated with it.
 
 ## 11. Yoga classes page — BUILT 2026-09-12, instructor and two prices outstanding
+
+**Update 2026-09-22:** the three class prices are now also cards on `/offers` (drop in RM55,
+pack of 3 RM138, pack of 6 RM248), at the client's request, one card per price at their
+direction. They are **not** website-only — confirmed with the client the same day, since the
+packs come off a printed price list at the counter — which is why `/offers` stopped calling
+itself "website-only offers" in its h1, intro and meta title. The cards set `offersPageOnly`,
+so this page still shows its own `priceList` and nothing else. Points 1 to 5 below are
+unchanged, and point 2 now matters slightly more: `/offers` is a page about prices and private
+yoga is the one line on it that has none.
 
 `/services/yoga-classes` is live in all three locales, built from two client flyers received the
 same day ("Class Schedule" and "Price List", scanned PDFs). What the flyers say is on the page:

@@ -67,6 +67,14 @@ export function BundleOffer({
   // Derived, never typed, and shared with the hero button that points down at this card, so
   // the two can never advertise different percentages.
   const percent = savingPercent(bundle)
+  /**
+   * A card can be a single item at its own rate rather than a set sold under the sum of its
+   * parts — the yoga drop in class is one, and `compareAt` equals `price` there by design.
+   * Both the struck total and the savings badge come off, because "total worth RM55" over
+   * "RM55" and a badge reading "Save RM0 (0% off)" are worse than saying nothing. Everything
+   * above them still renders, so the card keeps the same receipt shape as its neighbours.
+   */
+  const hasSaving = saving > 0
 
   return (
     /* `id` is the hero button's target. `scroll-mt-28` keeps the card clear of the sticky
@@ -114,12 +122,14 @@ export function BundleOffer({
 
           {/* The sum, in the same column as the parts it is the sum of. The heavier rule is what
               makes the block read as a total rather than as one more line item. */}
-          <div className="flex items-baseline justify-between gap-6 border-t-2 border-ink/15 py-4">
-            <span className="label text-ink-muted">{dict.page.bundleWorth}</span>
-            <s className="flex-none text-sm font-semibold tabular-nums text-ink-muted">
-              {ringgit(bundle.compareAt)}
-            </s>
-          </div>
+          {hasSaving && (
+            <div className="flex items-baseline justify-between gap-6 border-t-2 border-ink/15 py-4">
+              <span className="label text-ink-muted">{dict.page.bundleWorth}</span>
+              <s className="flex-none text-sm font-semibold tabular-nums text-ink-muted">
+                {ringgit(bundle.compareAt)}
+              </s>
+            </div>
+          )}
 
           {/* `mt-auto` pins the ask to the foot of the column, so the card does not look cut
               short on whichever page has the shorter list. */}
@@ -136,9 +146,11 @@ export function BundleOffer({
                   in the card. Do not put a second accent hue in here either: a red or green
                   SALE flag would break the one-accent palette and read as retail pressure on a
                   page about someone's back. */}
-              <span className="label rounded-full bg-brand-slate px-4 py-2 text-white">
-                {dict.page.bundleSave(ringgit(saving), `${percent}%`)}
-              </span>
+              {hasSaving && (
+                <span className="label rounded-full bg-brand-slate px-4 py-2 text-white">
+                  {dict.page.bundleSave(ringgit(saving), `${percent}%`)}
+                </span>
+              )}
             </div>
             <div className="mt-7">
               {/* Its own label, not the sitewide "Enquire on WhatsApp". Everywhere else on the

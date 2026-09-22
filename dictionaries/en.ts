@@ -51,13 +51,13 @@ const en: Dictionary = {
     bundleClaim: 'Claim this deal now!',
     bundleHeroCta: (percent) => `Get ${percent} off bundle deal`,
     offersEyebrow: 'Offers',
-    offersTitle: 'Website-only offers',
+    offersTitle: 'Offers and class packs',
     offersIntro:
-      'Two offers you can only get by booking through this website. Each one shows what is included and what those parts cost on their own, so you can see the saving for yourself.',
+      'Everything we price as a set, on one page. Each card lists what is included and what those parts cost on their own, so you can check the saving yourself. The ones marked website only are not available any other way.',
     offersHowHeading: 'Claiming one takes a single message',
     offersStep1Title: 'Pick your offer',
     offersStep1Body:
-      'Read what is included and check the label above it. One is for new patients on their first visit; the other is open to anyone.',
+      'Read what is included and check the label above it. One is for new patients on their first visit, the rest are open to anyone.',
     offersStep2Title: 'Tap the WhatsApp button',
     offersStep2Body:
       'The message already names the offer and its price, so there is nothing to explain. Add the day and time you would like and send it.',
@@ -70,9 +70,11 @@ const en: Dictionary = {
     offersCtaBody:
       'Message us with your main concern and we will tell you which offer makes sense, or whether an assessment on its own is the better start.',
     offerPopupBadge: 'First time deal!',
-    offerPopupHeading: 'New here? Pay less for your first visit.',
+    offerPopupHeading: 'New to Chiro & Physio? Start your journey with PCC.',
     offerPopupBody:
-      'Chiro and physio together, at a price you will only find on this website. One WhatsApp message to claim it.',
+      'Experience chiropractic and physiotherapy together at a special rate only available through our website.',
+    offerPopupAsk:
+      'Ready to get started? Send us a WhatsApp message or make a booking through our website to claim the offer and book your first visit.',
     offerPopupCta: 'Show me the deal',
     offerPopupLater: 'Not now',
     offerPopupClose: 'Close',

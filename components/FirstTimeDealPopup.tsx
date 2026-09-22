@@ -40,7 +40,10 @@ const OPEN_DELAY_MS = 5000
 export type FirstTimeDealCopy = {
   badge: string
   heading: string
+  /** What the offer is. */
   body: string
+  /** How to claim it. The client's 2026-09-22 rewrite came as two blocks; both render. */
+  ask: string
   cta: string
   later: string
   close: string
@@ -53,6 +56,7 @@ export function FirstTimeDealPopup({ href, copy }: { href: string; copy: FirstTi
   const returnFocusRef = useRef<HTMLElement | null>(null)
   const headingId = useId()
   const bodyId = useId()
+  const askId = useId()
 
   // Arm once per session. sessionStorage can throw in private modes, so every touch is
   // guarded and the popup simply shows if it cannot remember.
@@ -137,7 +141,7 @@ export function FirstTimeDealPopup({ href, copy }: { href: string; copy: FirstTi
         role="dialog"
         aria-modal="true"
         aria-labelledby={headingId}
-        aria-describedby={bodyId}
+        aria-describedby={`${bodyId} ${askId}`}
         tabIndex={-1}
         className="offer-popup relative max-h-[calc(100dvh-2rem)] w-full max-w-md overflow-y-auto rounded-3xl bg-white shadow-overlay outline-none sm:grid sm:max-w-2xl sm:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]"
       >
@@ -179,6 +183,9 @@ export function FirstTimeDealPopup({ href, copy }: { href: string; copy: FirstTi
           </h2>
           <p id={bodyId} className="mt-3 leading-relaxed text-ink-muted">
             {copy.body}
+          </p>
+          <p id={askId} className="mt-3 leading-relaxed text-ink-muted">
+            {copy.ask}
           </p>
 
           <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-5">

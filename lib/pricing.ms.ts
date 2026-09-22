@@ -79,4 +79,71 @@ export const bundlesMs: Bundle[] = [
     services: ['sports-massage', 'sports-injury-rehabilitation'],
     draft: false,
   },
+  /**
+   * The three yoga cards, added 2026-09-22 with the English records — see their comment in
+   * lib/pricing.ts for why there are three, why none of them is website only and why the drop
+   * in card carries no saving.
+   *
+   * Class names stay in English ("Chair Yoga", "Posture Core Yoga"), the same call the ms yoga
+   * page made: they are the names on the client's flyer and what a Malaysian searcher types.
+   * No "rawatan"/"merawat" here; a yoga class is not something done to a patient. Unreviewed,
+   * like every other ms record.
+   */
+  {
+    slug: 'yoga-drop-in',
+    eyebrow: 'Yoga, kelas tunggal',
+    name: 'Kelas yoga satu sesi',
+    description:
+      'Satu kelas, dibayar pada hari itu. Chair Yoga dan Posture Core Yoga berselang-seli setiap Sabtu jam 4:00 petang, jadi mesej kami untuk semak kelas mana yang berjalan sebelum anda datang.',
+    price: 55,
+    compareAt: 55,
+    lines: [{ label: 'Satu kelas yoga, Chair Yoga atau Posture Core Yoga', price: 55 }],
+    who: 'Sesiapa yang mahu cuba satu kelas dahulu sebelum membeli pakej, atau yang hanya lapang pada Sabtu tertentu. Tidak perlu pengalaman, dan anda tidak perlu menjadi pesakit klinik.',
+    image: {
+      src: '/img/yoga-chair-side-stretch.webp',
+      alt: 'Seorang wanita tersenyum duduk di atas kerusi lipat dengan kaki di atas blok yoga, mengangkat satu tangan ke atas kepala dalam regangan sisi, semasa kelas chair yoga di Persistence Chiropractic Care, Cheras, Kuala Lumpur',
+    },
+    websiteExclusive: false,
+    services: ['yoga-classes'],
+    offersPageOnly: true,
+    draft: false,
+  },
+  {
+    slug: 'yoga-pack-3',
+    eyebrow: 'Yoga, pakej 3 kelas',
+    name: 'Pakej yoga tiga kelas',
+    description:
+      'Untuk satu orang, sah dua bulan dari kelas pertama. Boleh digunakan untuk Chair Yoga, Posture Core Yoga atau campuran kedua-duanya.',
+    price: 138,
+    compareAt: 165,
+    lines: [{ label: 'Tiga kelas tunggal pada RM55 sekelas', price: 165 }],
+    who: 'Sesiapa yang sudah sedia untuk bermula tetapi belum mahu menempah tiga bulan ke hadapan. Untuk satu orang sahaja, jadi ia tidak boleh dikongsi dengan rakan.',
+    image: {
+      src: '/img/yoga-class-side-angle.webp',
+      alt: 'Pelajar dalam kedudukan lunge lebar dengan satu tangan mencapai ke atas kepala, masing-masing di sebelah kerusi lipat, semasa kelas yoga di Persistence Chiropractic Care, Cheras, Kuala Lumpur',
+    },
+    websiteExclusive: false,
+    services: ['yoga-classes'],
+    offersPageOnly: true,
+    draft: false,
+  },
+  {
+    slug: 'yoga-pack-6',
+    eyebrow: 'Yoga, pakej 6 kelas',
+    name: 'Pakej yoga enam kelas',
+    description:
+      'Boleh dikongsi antara dua orang, sah tiga bulan. Boleh digunakan untuk Chair Yoga, Posture Core Yoga atau campuran kedua-duanya.',
+    price: 248,
+    compareAt: 330,
+    lines: [{ label: 'Enam kelas tunggal pada RM55 sekelas', price: 330 }],
+    who: 'Mereka yang datang tetap, dan pasangan atau rakan yang mahu datang bersama, kerana dua orang boleh menggunakan pakej yang sama. Ini yang paling murah sekelas antara ketiga-tiganya.',
+    image: {
+      src: '/img/yoga-class-group.webp',
+      alt: 'Tujuh pelajar tersenyum bergambar bersama selepas kelas yoga di Persistence Chiropractic Care, Cheras, Kuala Lumpur, dengan patung yoga perak dan rak alatan di belakang mereka',
+    },
+    websiteExclusive: false,
+    services: ['yoga-classes'],
+    offersPageOnly: true,
+    draft: false,
+  },
 ]

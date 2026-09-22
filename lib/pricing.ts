@@ -31,7 +31,12 @@ import { bundlesMs } from './pricing.ms.ts'
 export type BundleLine = { label: string; price: number }
 
 export type Bundle = {
-  slug: 'chiro-physio' | 'electromodalities-sports-massage'
+  slug:
+    | 'chiro-physio'
+    | 'electromodalities-sports-massage'
+    | 'yoga-drop-in'
+    | 'yoga-pack-3'
+    | 'yoga-pack-6'
   /** Small caps label above the heading — what kind of offer this is. */
   eyebrow: string
   /** The <h2>. */
@@ -50,6 +55,12 @@ export type Bundle = {
    * The struck-through comparison. MUST equal the sum of `lines` — see the header warning.
    * This is a price-reduction claim and the clinic is the regulated party standing behind it,
    * so it may only ever be the total of prices the clinic genuinely charges separately.
+   *
+   * SET IT EQUAL TO `price` when the card is a single item at its own rate rather than a set
+   * sold below the sum of its parts — the yoga drop in class is one. `BundleOffer` then drops
+   * the struck total and the savings badge instead of printing "worth RM55, save RM0 (0% off)",
+   * which is what a card with nothing to compare would otherwise say. Do not invent a higher
+   * `compareAt` to make a card look like the others.
    */
   compareAt: number
   lines: readonly BundleLine[]
@@ -68,8 +79,19 @@ export type Bundle = {
    * Local modifier belongs in it (AGENTS.md § Non-negotiables), the sales pitch does not.
    */
   image: { src: string; alt: string }
-  /** Service slugs whose page renders this bundle. */
+  /**
+   * Service slugs this offer belongs to. Two jobs: the service page renders the card (unless
+   * `offersPageOnly`), and /offers links each card to those pages under "Read more about".
+   */
   services: readonly string[]
+  /**
+   * True when the card belongs on /offers but NOT on its service page, because that page
+   * already publishes the same figures another way. The yoga cards set it: the yoga page
+   * carries the full `priceList` (fees, the Saturday timetable and private sessions), and a
+   * bundle card above it would state the same three prices a second time and give the hero
+   * two competing price links. `bundleForService` filters these out; /offers does not.
+   */
+  offersPageOnly?: boolean
   /**
    * True when the offer exists only for people who arrive through the website. BOTH bundles
    * are (client, 2026-09-03).
@@ -187,6 +209,83 @@ export const bundles: Bundle[] = [
      */
     draft: false,
   },
+  /**
+   * THE THREE YOGA CARDS, added 2026-09-22 at the client's request ("include the yoga bundle
+   * inside the offer page too"). One card per price on the client's 2026-09-12 price list, at
+   * their direction: the drop in, the pack of three and the pack of six.
+   *
+   * NOT WEBSITE ONLY, confirmed with the client the same day. The packs came off a printed
+   * price list at the clinic and a walk-in can buy them, so `websiteExclusive` is false and no
+   * badge renders. That is also why /offers no longer calls itself "website-only offers" —
+   * three of its five cards are not. Do not add the badge back to make the row look uniform.
+   *
+   * THE COMPARISON IS THE DROP IN FEE, which is the only honest one available: a pack of three
+   * is three classes the clinic genuinely sells at RM55 each. The drop in card compares against
+   * nothing, so its `compareAt` equals its `price` and the card renders without a saving.
+   *
+   * `offersPageOnly` keeps all three off /services/yoga-classes, which already publishes these
+   * figures in its `priceList` along with the timetable and the private session line.
+   *
+   * Photographs are the client's own, of real classes in the clinic's yoga room, and the alt
+   * text is lifted verbatim from the matching frames in lib/services.ts.
+   */
+  {
+    slug: 'yoga-drop-in',
+    eyebrow: 'Yoga, single class',
+    name: 'Yoga drop in class',
+    description:
+      'One class, paid on the day. Chair Yoga and Posture Core Yoga alternate on Saturdays at 4:00pm, so message us to check which one is on before you come.',
+    price: 55,
+    compareAt: 55,
+    lines: [{ label: 'One yoga class, Chair Yoga or Posture Core Yoga', price: 55 }],
+    who: 'Anyone who wants to try a class before buying a pack, or who can only make the odd Saturday. No experience needed, and you do not have to be a patient of the clinic.',
+    image: {
+      src: '/img/yoga-chair-side-stretch.webp',
+      alt: 'A smiling woman seated on a folding chair with her feet on yoga blocks, reaching one arm overhead in a side stretch, during a chair yoga class at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
+    },
+    websiteExclusive: false,
+    services: ['yoga-classes'],
+    offersPageOnly: true,
+    draft: false,
+  },
+  {
+    slug: 'yoga-pack-3',
+    eyebrow: 'Yoga, pack of 3',
+    name: 'Yoga pack of three classes',
+    description:
+      'For one person, valid two months from the first class. Use it on Chair Yoga, Posture Core Yoga, or a mix of the two.',
+    price: 138,
+    compareAt: 165,
+    lines: [{ label: 'Three drop in classes at RM55 each', price: 165 }],
+    who: 'Someone ready to start but not ready to book out three months. One person only, so it does not stretch to a friend.',
+    image: {
+      src: '/img/yoga-class-side-angle.webp',
+      alt: 'Students in a wide standing lunge with one arm reaching overhead, each beside a folding chair, during a yoga class at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
+    },
+    websiteExclusive: false,
+    services: ['yoga-classes'],
+    offersPageOnly: true,
+    draft: false,
+  },
+  {
+    slug: 'yoga-pack-6',
+    eyebrow: 'Yoga, pack of 6',
+    name: 'Yoga pack of six classes',
+    description:
+      'Can be shared between two people, valid three months. Use it on Chair Yoga, Posture Core Yoga, or a mix of the two.',
+    price: 248,
+    compareAt: 330,
+    lines: [{ label: 'Six drop in classes at RM55 each', price: 330 }],
+    who: 'Regulars, and pairs who want to come together, since two people can use the one pack. It works out cheapest per class of the three.',
+    image: {
+      src: '/img/yoga-class-group.webp',
+      alt: 'Seven smiling students posing for a group photo after a yoga class at Persistence Chiropractic Care in Cheras, Kuala Lumpur, with a silver yoga figurine and shelves of props behind them',
+    },
+    websiteExclusive: false,
+    services: ['yoga-classes'],
+    offersPageOnly: true,
+    draft: false,
+  },
 ]
 
 const bundlesByLocale: Record<Locale, Bundle[]> = {
@@ -203,6 +302,13 @@ export const publishedBundlesFor = (locale: Locale) =>
 /**
  * The bundle a given service page renders, if any. Absent in a locale means the copy has not
  * been written there yet — the same gate every other content module uses.
+ *
+ * `offersPageOnly` cards are skipped: they belong to a service whose page already publishes
+ * the same figures through its own `priceList`. See the flag on the type.
  */
 export const bundleForService = (locale: Locale, serviceSlug: string) =>
-  publishedBundlesFor(locale).find((b) => b.services.includes(serviceSlug))
+  publishedBundlesFor(locale).find((b) => !b.offersPageOnly && b.services.includes(serviceSlug))
+
+/** Every service slug carded on /offers, so that page does not link the same service twice. */
+export const servicesWithBundleCard = (locale: Locale) =>
+  new Set(publishedBundlesFor(locale).flatMap((b) => b.services))
