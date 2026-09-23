@@ -76,6 +76,35 @@ export const bundlesZh: Bundle[] = [
     draft: false,
   },
   /**
+   * Physio assessment + one yoga class, RM188, added 2026-09-23 with the English record — see
+   * its comment for why this is a wide card rather than a fourth column in the yoga row, why
+   * the RM160 line is narrower than the RM588 card's, and why the two-month term renders.
+   *
+   * 物理治疗 is the approved discipline compound, never a verb for what is done to a patient.
+   * Unreviewed, like every other zh record, and this one carries a price.
+   */
+  {
+    slug: 'physio-yoga',
+    eyebrow: '首次物理治疗',
+    name: '物理治疗评估 + 一堂瑜伽课',
+    description: '两项都需在领取优惠后的两个月内使用。',
+    price: 188,
+    compareAt: 215,
+    lines: [
+      { label: '物理治疗初步评估', price: 160 },
+      { label: '瑜伽单堂课,椅子瑜伽或体态核心瑜伽', price: 55 },
+    ],
+    who: '第一次做物理治疗,同时也想上一堂瑜伽课的人。先做评估,瑜伽课在两个月内自己挑时间来上。',
+    image: {
+      src: '/img/therapy-neck.webp',
+      alt: '在 Cheras, Kuala Lumpur 的 Persistence Chiropractic Care,物理治疗师为坐着的病患处理颈部与肩膀',
+    },
+    websiteExclusive: true,
+    services: ['physiotherapy', 'yoga-classes'],
+    offersPageOnly: true,
+    draft: false,
+  },
+  /**
    * The three yoga cards, added 2026-09-22 with the English records — see their comment in
    * lib/pricing.ts for why there are three, why none of them is website only and why the drop
    * in card carries no saving.

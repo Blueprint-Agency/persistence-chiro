@@ -4,8 +4,9 @@ Work that is **blocked on a person, an asset or an access grant** — not on cod
 item below has its reasoning recorded in a comment next to the thing it governs; this file
 exists so the list can be found in one place instead of stumbled upon in four.
 
-Last updated **2026-09-22**, when the yoga class prices were carded on `/offers` (item 11), the
-pop-up copy was replaced with the client's own wording and "Offers" moved to the end of the nav.
+Last updated **2026-09-23**, when the physiotherapy-plus-yoga bundle was added (item 12), a day
+after the yoga class prices were carded on `/offers` (item 11), the pop-up copy was replaced
+with the client's own wording and "Offers" moved to the end of the nav.
 
 > Keep this file honest. When an item is resolved, delete it here *and* remove the
 > corresponding gate or comment in the code. A stale blocker is worse than no list.
@@ -465,3 +466,37 @@ Claims deliberately not carried over from the flyer: "prevents common injuries",
 health", "safe and effective for all ages", "faster progress". The back pain FAQ cites the
 Cochrane review honestly (small, clinically unimportant improvement versus no exercise) rather
 than selling the class as pain relief.
+
+---
+
+## 12. Physio assessment + yoga class, RM188 — LIVE 2026-09-23, two things to confirm
+
+The client's figures, verbatim: "Physiotherapy Initial Assessment + Yoga 1 time class : RM160 +
+RM55, Total of RM215, Website Offer: RM188 [patient saves RM 27], T&C : redeem within 2 months".
+The arithmetic checks out and `content.test.ts` holds it. Live as a full-width card on `/offers`
+in all three locales, badged website-only, with the two-month term rendered in the card's
+`description` — unlike the RM588 and RM200 terms, which the client asked to keep off the page.
+The difference is that "no expiry" and "one per person" are a generosity and a counter rule,
+while a redemption window is a restriction the buyer has to plan around, and the yoga packs on
+the same page already print their validity periods.
+
+It is a **wide card, not a fourth column in the yoga row**, although the client called it a
+yoga bundle: the row is one decision priced three ways, and this pairs two services from two
+disciplines the way the RM588 and RM200 cards do.
+
+Needs the client:
+
+1. **Is this RM160 the same RM160 the RM588 card sells?** That card describes it as "initial
+   assessment, first hands-on session and a home exercise programme". The client wrote only
+   "Physiotherapy Initial Assessment" here, so this card promises only that — the safe
+   direction, but it means the site currently prices RM160 at two different scopes. If they are
+   the same product, widen this card's line to match; never narrow the other one.
+2. **Is "First physio visit" right as the eligibility line?** An initial assessment implies a
+   patient who has not been assessed here, which is the same shape as "New patient bundle" on
+   the RM588. Nobody has said so outright.
+
+Open decision, not a blocker: **should this card also render on `/services/yoga-classes`?** It
+sets `offersPageOnly`, so today it does not. `/services/physiotherapy` would show the RM588 card
+regardless (`bundleForService` takes the first match), so nothing is lost there, but the yoga
+page could carry this one. The cost is that its hero button would swap from "See class fees and
+times" to the bundle anchor, demoting the fee table that page was built around.

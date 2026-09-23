@@ -70,7 +70,7 @@ const zh: Dictionary = {
       '所有以配套方式定价的项目,都在这一页。每张卡都列出包含的内容,以及各部分单独的收费,省下多少可以自己算。标着「官网专属优惠」的,只有通过官网才有。',
     offersHowHeading: '一则信息就能领取',
     offersStep1Title: '选择优惠',
-    offersStep1Body: '看清楚内容和上方的标签:其中一项是给首次看诊的新患者,其余的任何人都可以领取。',
+    offersStep1Body: '看清楚内容和上方的标签:有些限首次到诊,其余的任何人都可以领取。',
     offersStep2Title: '点击 WhatsApp 按钮',
     offersStep2Body: '信息已经写好优惠名称和价格,不用多解释。加上你想来的日期和时间,发送即可。',
     offersStep3Title: '我们在 WhatsApp 上确认',

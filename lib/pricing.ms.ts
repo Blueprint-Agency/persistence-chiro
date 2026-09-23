@@ -80,6 +80,35 @@ export const bundlesMs: Bundle[] = [
     draft: false,
   },
   /**
+   * Physio assessment + one yoga class, RM188, added 2026-09-23 with the English record — see
+   * its comment for why this is a wide card rather than a fourth column in the yoga row, why
+   * the RM160 line is narrower than the RM588 card's, and why the two-month term renders.
+   *
+   * No "rawatan"/"merawat": "penilaian" and "kelas" say what is actually on offer. Unreviewed,
+   * like every other ms record, and this one carries a price.
+   */
+  {
+    slug: 'physio-yoga',
+    eyebrow: 'Lawatan fisioterapi pertama',
+    name: 'Penilaian fisioterapi dan satu kelas yoga',
+    description: 'Kedua-dua bahagian perlu digunakan dalam masa dua bulan selepas menuntut tawaran ini.',
+    price: 188,
+    compareAt: 215,
+    lines: [
+      { label: 'Penilaian awal fisioterapi', price: 160 },
+      { label: 'Satu kelas yoga, Chair Yoga atau Posture Core Yoga', price: 55 },
+    ],
+    who: 'Sesiapa yang baru dengan fisioterapi dan juga mahu mencuba satu kelas yoga. Penilaian dahulu, dan kelas itu milik anda untuk digunakan dalam tempoh dua bulan.',
+    image: {
+      src: '/img/therapy-neck.webp',
+      alt: 'Fisioterapis mengendalikan leher dan bahu pesakit yang sedang duduk di Persistence Chiropractic Care, Cheras, Kuala Lumpur',
+    },
+    websiteExclusive: true,
+    services: ['physiotherapy', 'yoga-classes'],
+    offersPageOnly: true,
+    draft: false,
+  },
+  /**
    * The three yoga cards, added 2026-09-22 with the English records — see their comment in
    * lib/pricing.ts for why there are three, why none of them is website only and why the drop
    * in card carries no saving.

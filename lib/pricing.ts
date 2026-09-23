@@ -41,6 +41,7 @@ export type Bundle = {
   slug:
     | 'chiro-physio'
     | 'electromodalities-sports-massage'
+    | 'physio-yoga'
     | 'yoga-drop-in'
     | 'yoga-pack-3'
     | 'yoga-pack-6'
@@ -225,6 +226,70 @@ export const bundles: Bundle[] = [
      * per-person cap is handled at the counter instead, which means the front desk has to know
      * the offer exists, and that is the one failure mode no markup on this page prevents.
      */
+    draft: false,
+  },
+  /**
+   * PHYSIO ASSESSMENT + ONE YOGA CLASS, RM188, added 2026-09-23 from the client's figures:
+   * RM160 + RM55 = RM215, sold at RM188, "patient saves RM27". The arithmetic is theirs and
+   * it checks out; `content.test.ts` holds it either way.
+   *
+   * A WIDE CARD, NOT A FOURTH COLUMN IN THE YOGA ROW, although the client called it a yoga
+   * bundle. The row is one decision priced three ways (how often will I come to class?) and
+   * this is a different decision entirely: it pairs two services from two disciplines, which
+   * is exactly what the RM588 and the RM200 cards do. A fourth column would also orphan
+   * itself on a three-up grid. It sits last of the wide cards so it leads into the yoga row.
+   *
+   * ⚠️ THE RM160 LINE IS DELIBERATELY NARROWER THAN THE RM588 CARD'S. That card sells the
+   * same RM160 as "initial assessment, first hands-on session and a home exercise programme".
+   * The client wrote only "Physiotherapy Initial Assessment" here, so that is what this card
+   * promises. If the two are the same product, widen this label to match; do not narrow the
+   * other one. Under-promising is the safe direction for a priced claim, and the question is
+   * logged in OPEN-ITEMS.md.
+   *
+   * THE TWO-MONTH TERM IS RENDERED, in `description`. That is not a reversal of the
+   * "deliberately NOT rendered" terms on the RM588 and RM200 cards: those were "no expiry"
+   * and "one per person", one of which is generous and the other enforced at the counter.
+   * This one is a restriction the buyer has to plan around, the yoga packs on this same page
+   * already print their validity periods, and a redemption window a patient discovers after
+   * paying is the kind of surprise this site exists not to create.
+   */
+  {
+    slug: 'physio-yoga',
+    /**
+     * An eligibility line, like "New patient bundle" is on the RM588. An initial assessment is
+     * by definition your first physiotherapy visit here, so a returning physio patient cannot
+     * claim this. Confirm with the clinic if they read it differently.
+     */
+    eyebrow: 'First physio visit',
+    name: 'Physiotherapy assessment and a yoga class',
+    description: 'Both parts to be used within two months of claiming the offer.',
+    price: 188,
+    compareAt: 215,
+    lines: [
+      { label: 'Physiotherapy initial assessment', price: 160 },
+      { label: 'One yoga class, Chair Yoga or Posture Core Yoga', price: 55 },
+    ],
+    who: 'Someone new to physiotherapy who also wants to try a class. The assessment comes first, and the class is yours to use inside the two months.',
+    /**
+     * A real photograph of this clinic, so the alt carries the local modifier. Shared with the
+     * physiotherapy service page, which is the half of this bundle a visitor is least likely
+     * to have seen. No yoga frame here: the assessment is the part that leads.
+     */
+    image: {
+      src: '/img/therapy-neck.webp',
+      alt: 'Physiotherapist working on a seated patient neck and shoulder at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
+    },
+    websiteExclusive: true,
+    services: ['physiotherapy', 'yoga-classes'],
+    /**
+     * /services/physiotherapy would show the RM588 card anyway (`bundleForService` takes the
+     * first match and chiro-physio is listed earlier), so nothing is lost there. The yoga page
+     * is the one this would change: it would gain a wide bundle card and its hero button would
+     * swap from "See class fees and times" to the bundle anchor, demoting the fee table that
+     * page was built around. Rendering it there is a live option — ask the client — but it is
+     * a bigger change than "put it on the offers page".
+     */
+    offersPageOnly: true,
     draft: false,
   },
   /**

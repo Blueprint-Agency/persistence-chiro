@@ -57,7 +57,7 @@ const en: Dictionary = {
     offersHowHeading: 'Claiming one takes a single message',
     offersStep1Title: 'Pick your offer',
     offersStep1Body:
-      'Read what is included and check the label above it. One is for new patients on their first visit, the rest are open to anyone.',
+      'Read what is included and check the label above it. Some are for a first visit, the rest are open to anyone.',
     offersStep2Title: 'Tap the WhatsApp button',
     offersStep2Body:
       'The message already names the offer and its price, so there is nothing to explain. Add the day and time you would like and send it.',

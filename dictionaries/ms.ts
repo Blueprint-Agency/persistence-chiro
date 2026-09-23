@@ -63,7 +63,7 @@ const ms: Dictionary = {
     offersHowHeading: 'Satu mesej sahaja untuk menuntutnya',
     offersStep1Title: 'Pilih tawaran anda',
     offersStep1Body:
-      'Baca apa yang termasuk dan lihat label di atasnya. Satu untuk pesakit baharu pada lawatan pertama, selebihnya terbuka kepada sesiapa sahaja.',
+      'Baca apa yang termasuk dan lihat label di atasnya. Sebahagiannya untuk lawatan pertama, selebihnya terbuka kepada sesiapa sahaja.',
     offersStep2Title: 'Tekan butang WhatsApp',
     offersStep2Body:
       'Mesej itu sudah menamakan tawaran dan harganya, jadi tiada apa yang perlu dijelaskan. Tambah hari dan masa yang anda mahu, kemudian hantar.',
