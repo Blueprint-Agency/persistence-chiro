@@ -408,7 +408,12 @@ Outstanding:
    which is why both cards set `offersPageOnly`.
 
    Both photographs needed `objectPosition: 'top'` — their subjects sit in the upper third and a
-   centred banner crop cut both heads off. New field on `Bundle.image`; set it per locale.
+   centred banner crop cut both heads off. New field on `Bundle.image`; set it per locale. The
+   client then flagged the images as cropped anyway, which they were: a row card's image box was
+   a fixed `h-40`, a 3.5:1 letterbox throwing away about two thirds of a 4:3 photograph. **It is
+   now `aspect-[4/3]`**, matching every photograph these rows use (all five measure 1.33 to 1.40),
+   so they show whole and grow with their column. Check a new photograph's ratio against that box
+   before adding it to a row.
 4. ~~zh/ms.~~ **BUILT 2026-09-12** as direct translations (no keyword measured any volume in
    either language), per the client's rule of the same day. Unreviewed, like every zh/ms record.
 5. Physiotherapist naming follows item 1; this page sets `practitionersWithheld` like the

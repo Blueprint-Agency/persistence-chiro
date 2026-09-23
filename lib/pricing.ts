@@ -462,7 +462,8 @@ export const bundles: Bundle[] = [
     image: {
       src: '/img/physio-house-call-hero.webp',
       alt: 'Physiotherapist standing behind a seated woman at home, hands on her shoulders, as she holds a resistance band out in front of her',
-      // Subjects sit in the upper third; a centred banner crop takes both heads off.
+      // Subjects sit in the upper third. Near-neutral now the card's box is 4:3 like the
+      // file, and kept as insurance: it is what stopped a shallower crop beheading them.
       objectPosition: 'top',
     },
     websiteExclusive: false,
@@ -487,7 +488,8 @@ export const bundles: Bundle[] = [
     image: {
       src: '/img/physio-house-call-rehab.webp',
       alt: 'Physiotherapist kneeling beside a woman on an exercise mat in a living room, guiding her through a bridge exercise',
-      // Subjects sit in the upper third; a centred banner crop takes both heads off.
+      // Subjects sit in the upper third. Near-neutral now the card's box is 4:3 like the
+      // file, and kept as insurance: it is what stopped a shallower crop beheading them.
       objectPosition: 'top',
     },
     websiteExclusive: false,

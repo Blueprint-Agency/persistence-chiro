@@ -206,7 +206,8 @@ export const bundlesZh: Bundle[] = [
     image: {
       src: '/img/physio-house-call-hero.webp',
       alt: '治疗师站在一位坐着的女性身后,双手放在她的肩膀上,她在家中双手向前拉着弹力带',
-      // Subjects sit in the upper third; a centred banner crop takes both heads off.
+      // Subjects sit in the upper third. Near-neutral now the card's box is 4:3 like the
+      // file, and kept as insurance: it is what stopped a shallower crop beheading them.
       objectPosition: 'top',
     },
     websiteExclusive: false,
@@ -227,7 +228,8 @@ export const bundlesZh: Bundle[] = [
     image: {
       src: '/img/physio-house-call-rehab.webp',
       alt: '治疗师跪在客厅运动垫旁,指导一位女性做臀桥运动',
-      // Subjects sit in the upper third; a centred banner crop takes both heads off.
+      // Subjects sit in the upper third. Near-neutral now the card's box is 4:3 like the
+      // file, and kept as insurance: it is what stopped a shallower crop beheading them.
       objectPosition: 'top',
     },
     websiteExclusive: false,

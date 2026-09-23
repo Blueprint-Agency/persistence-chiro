@@ -107,14 +107,21 @@ function BundleCard({
       id={bundle.slug}
       className="flex scroll-mt-28 flex-col overflow-hidden rounded-3xl border border-line bg-white shadow-ambient"
     >
-      {/* Shorter than the wide card's crop. The photograph is here to tell three otherwise
-          identical-looking columns apart at a glance, not to be looked at. */}
-      <div className="relative h-40">
+      {/* A 4:3 BOX, NOT A FIXED-HEIGHT BAND. It was `h-40`, which on a card 380px wide is a
+          3.5:1 letterbox that threw away about two thirds of the picture: the client saw the
+          house call photographs reduced to a strip and said so. Every photograph these rows
+          use is between 4:3 and 1.4:1, so a 4:3 box shows the 4:3 ones whole and takes a sliver
+          off the sides of the rest.
+
+          A ratio rather than pixels so the image grows with its column: taller in a two-card
+          row, shorter in a three-card one, and proportionate on a phone. Check the ratio of any
+          new photograph against this box before adding it to a row. */}
+      <div className="relative aspect-[4/3]">
         <Image
           src={bundle.image.src}
           alt={bundle.image.alt}
           fill
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 380px"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 600px"
           className="object-cover"
           // Per-photograph, from the record, because the right crop depends on where the
           // subjects sit in the frame and no class can know that. See `objectPosition` on

@@ -219,7 +219,8 @@ export const bundlesMs: Bundle[] = [
     image: {
       src: '/img/physio-house-call-hero.webp',
       alt: 'Ahli fisioterapi berdiri di belakang seorang wanita yang duduk di rumah, tangan di bahunya, sementara wanita itu memegang jalur rintangan di hadapannya',
-      // Subjects sit in the upper third; a centred banner crop takes both heads off.
+      // Subjects sit in the upper third. Near-neutral now the card's box is 4:3 like the
+      // file, and kept as insurance: it is what stopped a shallower crop beheading them.
       objectPosition: 'top',
     },
     websiteExclusive: false,
@@ -243,7 +244,8 @@ export const bundlesMs: Bundle[] = [
     image: {
       src: '/img/physio-house-call-rehab.webp',
       alt: 'Ahli fisioterapi melutut di sebelah seorang wanita di atas tikar senaman di ruang tamu, membimbingnya melakukan senaman bridge',
-      // Subjects sit in the upper third; a centred banner crop takes both heads off.
+      // Subjects sit in the upper third. Near-neutral now the card's box is 4:3 like the
+      // file, and kept as insurance: it is what stopped a shallower crop beheading them.
       objectPosition: 'top',
     },
     websiteExclusive: false,
