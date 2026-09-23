@@ -84,7 +84,7 @@ const zh: Dictionary = {
     offersCtaHeading: '不确定哪一项适合你?',
     offersCtaBody: '把你的主要问题告诉我们,我们会建议哪项优惠合适,或者先单独做评估会更好。',
     offerPopupBadge: '首次看诊优惠!',
-    offerPopupHeading: '第一次接触脊椎矫正与物理治疗?和 Persistence Chiropractic Care 一起开始。',
+    offerPopupHeading: '第一次接触脊椎矫正与物理治疗?和我们一起开始。',
     offerPopupBody:
       '脊椎矫正与物理治疗一起进行,优惠价格只在官网才有。',
     offerPopupAsk:

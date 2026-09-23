@@ -80,7 +80,7 @@ const ms: Dictionary = {
     offersCtaBody:
       'Mesej kami tentang masalah utama anda dan kami akan beritahu tawaran mana yang sesuai, atau sama ada penilaian sahaja lebih baik untuk permulaan.',
     offerPopupBadge: 'Tawaran kali pertama!',
-    offerPopupHeading: 'Baru dengan kiropraktik & fisioterapi? Mulakan perjalanan anda dengan Persistence Chiropractic Care.',
+    offerPopupHeading: 'Baru dengan kiropraktik & fisioterapi? Mulakan perjalanan anda dengan kami.',
     offerPopupBody:
       'Rasai kiropraktik dan fisioterapi sekali gus, pada harga istimewa yang hanya ada melalui laman web kami.',
     offerPopupAsk:

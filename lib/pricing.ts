@@ -268,12 +268,16 @@ export const bundles: Bundle[] = [
   {
     slug: 'physio-yoga',
     /**
-     * An eligibility line, like "New patient bundle" is on the RM588, and confirmed by the
-     * client on 2026-09-23: "correct label since it is for first-time customer only". Their
-     * phrase was first-time CUSTOMER while the label says first PHYSIO VISIT, which are not
-     * quite the same person — a returning chiropractic patient who has never had physio here
-     * reads this label as including them. Worth one line back to the clinic before anyone
-     * turns that patient away at the counter; see OPEN-ITEMS.md item 12.
+     * An eligibility line, like "New patient bundle" is on the RM588. Confirmed twice by the
+     * client on 2026-09-23, the second time settling who exactly it excludes: "yes for first
+     * physio visit, a person can come for chiro treatment but never have physio + yoga will
+     * qualify for this web-only promo".
+     *
+     * So it is NOT new-patients-only, and it must not drift into saying so. An existing
+     * chiropractic patient qualifies; what has to be new is the physiotherapy and the yoga.
+     * That is wider than the RM588's "New patient bundle" and is the whole point of this card
+     * — it is the one offer the clinic's existing patients can still claim. `who` says it in
+     * the reader's words, because a label alone cannot carry a condition this specific.
      */
     eyebrow: 'First physio visit',
     name: 'Physiotherapy assessment and a yoga class',
@@ -284,7 +288,7 @@ export const bundles: Bundle[] = [
       physioFirstVisit,
       { label: 'One yoga class, Chair Yoga or Posture Core Yoga', price: 55 },
     ],
-    who: 'Someone new to physiotherapy who also wants to try a class. The assessment comes first, and the class is yours to use inside the two months.',
+    who: 'Someone new to physiotherapy who also wants to try a class. The assessment comes first. Already seeing us for chiropractic does not rule you out, as long as the physiotherapy and the yoga are both new to you.',
     /**
      * A real photograph of this clinic, so the alt carries the local modifier. Shared with the
      * physiotherapy service page, which is the half of this bundle a visitor is least likely

@@ -74,7 +74,7 @@ const en: Dictionary = {
     offersCtaBody:
       'Message us with your main concern and we will tell you which offer makes sense, or whether an assessment on its own is the better start.',
     offerPopupBadge: 'First time deal!',
-    offerPopupHeading: 'New to Chiro & Physio? Start your journey with Persistence Chiropractic Care.',
+    offerPopupHeading: 'New to Chiro & Physio? Start your journey with us.',
     offerPopupBody:
       'Experience chiropractic and physiotherapy together at a special rate only available through our website.',
     offerPopupAsk:

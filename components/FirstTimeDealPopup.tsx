@@ -146,12 +146,25 @@ export function FirstTimeDealPopup({ href, copy }: { href: string; copy: FirstTi
         className="offer-popup relative max-h-[calc(100dvh-2rem)] w-full max-w-md overflow-y-auto rounded-3xl bg-white shadow-overlay outline-none sm:grid sm:max-w-2xl sm:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]"
       >
         <div className="relative h-40 sm:h-full sm:min-h-[19rem]">
+          {/* `object-position`, not the default centre. This frame is a 3:2 landscape of a
+              practitioner on the LEFT and a patient on the RIGHT, and the box it fills is a
+              tall narrow column from `sm` up and a short wide banner below it. Centred, the
+              column's crop ran straight down the middle of the patient's head and the banner's
+              crop took the top off the practitioner's. The client flagged it on 2026-09-23.
+
+              10% across puts the column's window over the practitioner and stops it before the
+              patient starts, so nobody is sliced in half. 25% down keeps the practitioner's
+              whole head inside the mobile banner, which crops vertically rather than
+              horizontally. Each viewport ignores the axis it does not crop on, which is why one
+              pair of values can serve both.
+
+              Tied to THIS photograph's composition. Swap the image and re-check the numbers. */}
           <Image
             src="/img/hero-consult-spine-model.webp"
             alt={copy.imageAlt}
             fill
             sizes="(min-width: 640px) 300px, 100vw"
-            className="object-cover"
+            className="object-cover object-[10%_25%]"
           />
           <span className="absolute left-4 top-4 rounded-full bg-brand-gold px-3 py-1 text-xs font-bold uppercase tracking-wide text-ink shadow-ambient">
             {copy.badge}

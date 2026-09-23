@@ -469,7 +469,7 @@ than selling the class as pain relief.
 
 ---
 
-## 12. Physio assessment + yoga class, RM188 — LIVE 2026-09-23, both confirmations in
+## 12. Physio assessment + yoga class, RM188 — LIVE 2026-09-23, confirmed and settled
 
 The client's figures, verbatim: "Physiotherapy Initial Assessment + Yoga 1 time class : RM160 +
 RM55, Total of RM215, Website Offer: RM188 [patient saves RM 27], T&C : redeem within 2 months".
@@ -490,14 +490,17 @@ disciplines the way the RM588 and RM200 cards do.
    two are no longer two hand-typed strings: each locale file defines `physioFirstVisit` once
    and both bundles reference that object, so the wording cannot drift the way two copies of a
    sentence silently do. **Never retype it into a third bundle.**
-2. ~~Is "First physio visit" right as the eligibility line?~~ **CONFIRMED 2026-09-23** —
-   "correct label since it is for first-time customer only".
+2. ~~Is "First physio visit" right as the eligibility line?~~ **CONFIRMED 2026-09-23**, and
+   the follow-up settled exactly who it excludes: *"yes for first physio visit, a person can
+   come for chiro treatment but never have physio + yoga will qualify for this web-only
+   promo."*
 
-   One nuance left, not a blocker: the client's phrase was first-time **customer**, and the
-   label says first **physio visit**. A returning chiropractic patient who has never had physio
-   here reads the label as including them, and the counter may not. Worth one line back before
-   somebody is turned away at reception, which is the only place this cap is enforced — the
-   same failure mode recorded against the RM200 bundle in item 8.
+   **So this is NOT new-patients-only, and nobody should later "tidy" it into matching the
+   RM588's "New patient bundle".** An existing chiropractic patient qualifies; what must be new
+   is the physiotherapy and the yoga. That makes it the one offer on the page the clinic's
+   current patients can still claim, which is worth telling reception, since the counter is the
+   only place this cap is enforced (same failure mode as the RM200 bundle, item 8). The card's
+   `who` line now says it in the reader's words rather than leaving the label to carry it.
 
 Open decision, not a blocker: **should this card also render on `/services/yoga-classes`?** It
 sets `offersPageOnly`, so today it does not. `/services/physiotherapy` would show the RM588 card

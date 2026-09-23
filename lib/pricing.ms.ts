@@ -107,7 +107,7 @@ export const bundlesMs: Bundle[] = [
       physioFirstVisit,
       { label: 'Satu kelas yoga, Chair Yoga atau Posture Core Yoga', price: 55 },
     ],
-    who: 'Sesiapa yang baru dengan fisioterapi dan juga mahu mencuba satu kelas yoga. Penilaian dahulu, dan kelas itu milik anda untuk digunakan dalam tempoh dua bulan.',
+    who: 'Sesiapa yang baru dengan fisioterapi dan juga mahu mencuba satu kelas yoga. Penilaian dahulu. Sudah datang kepada kami untuk kiropraktik tidak menghalang anda, asalkan fisioterapi dan yoga kedua-duanya baharu bagi anda.',
     image: {
       src: '/img/therapy-neck.webp',
       alt: 'Fisioterapis mengendalikan leher dan bahu pesakit yang sedang duduk di Persistence Chiropractic Care, Cheras, Kuala Lumpur',

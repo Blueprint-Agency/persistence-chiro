@@ -103,7 +103,7 @@ export const bundlesZh: Bundle[] = [
       physioFirstVisit,
       { label: '瑜伽单堂课,椅子瑜伽或体态核心瑜伽', price: 55 },
     ],
-    who: '第一次做物理治疗,同时也想上一堂瑜伽课的人。先做评估,瑜伽课在两个月内自己挑时间来上。',
+    who: '第一次做物理治疗,同时也想上一堂瑜伽课的人。先做评估。已经在这里看脊椎矫正也不影响,只要物理治疗和瑜伽都是第一次。',
     image: {
       src: '/img/therapy-neck.webp',
       alt: '在 Cheras, Kuala Lumpur 的 Persistence Chiropractic Care,物理治疗师为坐着的病患处理颈部与肩膀',
