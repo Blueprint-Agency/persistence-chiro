@@ -177,6 +177,9 @@ export function BundleOffer({
             fill
             sizes="(max-width: 1024px) 100vw, 520px"
             className="object-cover"
+            // Honoured here too, so the field means one thing wherever a bundle renders. This
+            // box is tall enough that centring usually works; a record that needs it says so.
+            style={bundle.image.objectPosition ? { objectPosition: bundle.image.objectPosition } : undefined}
           />
         </div>
       </div>

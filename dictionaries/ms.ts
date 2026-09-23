@@ -74,6 +74,9 @@ const ms: Dictionary = {
     offersGroupYogaTitle: 'Kelas dan pakej yoga',
     offersGroupYogaIntro:
       'Chair Yoga dan Posture Core Yoga berjalan setiap Sabtu jam 4:00 petang, satu demi satu minggu demi minggu. Datang untuk satu kelas, atau beli pakej dan turunkan harga sekelas.',
+    offersGroupHouseCallTitle: 'Pakej fisioterapi panggilan ke rumah',
+    offersGroupHouseCallIntro:
+      'Fisioterapi di rumah anda, untuk pesakit wanita, tanpa caj perjalanan dalam lingkungan 10 km dari klinik. Kedua-dua pakej termasuk penilaian awal dan sah selama enam minggu. Harga lawatan tunggal ada di halaman panggilan ke rumah.',
     offersFrom: (price) => `dari ${price}`,
     offersLearnMore: 'Baca lagi tentang',
     offersCtaHeading: 'Tak pasti yang mana satu?',

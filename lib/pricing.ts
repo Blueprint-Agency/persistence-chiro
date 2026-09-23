@@ -35,7 +35,7 @@ export type BundleLine = { label: string; price: number }
  * and as the dictionary suffix for its heading (`offersGroupYoga*`), so adding a group means
  * adding the key here, the three dictionary strings, and nothing else.
  */
-export type BundleGroup = 'yoga'
+export type BundleGroup = 'yoga' | 'house-call'
 
 export type Bundle = {
   slug:
@@ -45,6 +45,8 @@ export type Bundle = {
     | 'yoga-drop-in'
     | 'yoga-pack-3'
     | 'yoga-pack-6'
+    | 'house-call-3'
+    | 'house-call-5'
   /** Small caps label above the heading — what kind of offer this is. */
   eyebrow: string
   /** The <h2>. */
@@ -86,7 +88,21 @@ export type Bundle = {
    * the one place a screen-reader user would be told something the sighted reader cannot see.
    * Local modifier belongs in it (AGENTS.md § Non-negotiables), the sales pitch does not.
    */
-  image: { src: string; alt: string }
+  image: {
+    src: string
+    alt: string
+    /**
+     * `object-position` for the crop, when centring cuts the wrong thing. A grouped row's card
+     * shows the photograph as a short wide banner, and a frame with its subjects in the upper
+     * third loses their heads entirely to a centred crop — which is what both house call photos
+     * did on the day they were carded.
+     *
+     * A property of the PHOTOGRAPH, not of the locale, so the same value has to be set on every
+     * locale's copy of this record. `content.test.ts` asserts prices match across locales but
+     * says nothing about this, so check by eye when you add a frame.
+     */
+    objectPosition?: string
+  }
   /**
    * Service slugs this offer belongs to. Two jobs: the service page renders the card (unless
    * `offersPageOnly`), and /offers links each card to those pages under "Read more about".
@@ -160,6 +176,17 @@ export const savingPercent = (bundle: Bundle) =>
  * drift no arithmetic test can catch — a reader comparing the two cards would find the site
  * selling RM160 as two different things. Reference this; do not retype it.
  */
+/**
+ * The house call initial assessment, RM190, shared by both house call packages. One object for
+ * the reason `physioFirstVisit` is one: two hand-typed copies of a line drift in wording while
+ * every arithmetic guard stays green. The note that it includes the first hands-on session is
+ * the clinic's own, from the `priceList` on lib/services.ts, and belongs wherever RM190 appears.
+ */
+const houseCallAssessment = {
+  label: 'Initial assessment, including the first hands-on session',
+  price: 190,
+} as const
+
 const physioFirstVisit = {
   label: 'Physiotherapy initial assessment, first hands-on session and a home exercise programme',
   price: 160,
@@ -389,6 +416,84 @@ export const bundles: Bundle[] = [
     services: ['yoga-classes'],
     offersPageOnly: true,
     group: 'yoga',
+    draft: false,
+  },
+  /**
+   * THE TWO HOUSE CALL PACKAGES, added 2026-09-23 at the client's request — they sent a picture
+   * of the electromodalities card and asked for the house call "in this format too". Until then
+   * the house call was the one price on this page that was a bare link rather than a card, in
+   * the "Also priced on this site" section, which is what they were really objecting to. That
+   * section now has nothing left to list and stops rendering; its job moved to the "Read more
+   * about" link under each row. This closes item 10.3 in OPEN-ITEMS.md, open since 2026-09-12.
+   *
+   * A GROUPED ROW, NOT TWO WIDE CARDS, though the card they pointed at is a wide one. Three and
+   * five visits of the same service is one decision priced two ways, the same shape as the yoga
+   * packs, and as wide cards they would be near-identical twins a full screen apart — same
+   * photograph, same sentence, two numbers different. Side by side is where a three-versus-five
+   * comparison belongs. Every claim the wide card makes is still on them.
+   *
+   * NOT WEBSITE-ONLY: this is the clinic's published rate card, not a web offer, so no badge.
+   *
+   * THE ROW'S INTRO CARRIES WHAT BOTH CARDS SHARE — female patients only, no travel charge
+   * within 10 km, six weeks — so neither `who` has to repeat it. Female patients only is an
+   * eligibility fact, not a detail: do not let it slide out of the intro.
+   *
+   * Per-visit fees (assessment RM190, follow-up RM180, travel) stay on the service page's
+   * `priceList`, which is why these set `offersPageOnly`.
+   */
+  {
+    slug: 'house-call-3',
+    eyebrow: 'Package of 3 visits',
+    name: 'Three house call visits',
+    description: 'The initial assessment plus two follow-up visits, used within six weeks.',
+    price: 510,
+    compareAt: 550,
+    lines: [
+      houseCallAssessment,
+      { label: 'Two follow-up rehab visits at RM180 each', price: 360 },
+    ],
+    who: 'Someone who wants rehab at home and would rather start with three visits than commit to five.',
+    /**
+     * ⚠️ AI GENERATED, SO THE ALT CLAIMS NO LOCATION — the same rule the house call page itself
+     * follows. Not this clinic, these physiotherapists or these patients, and this card sells
+     * something for money, which is the worst place on the site to imply provenance it does not
+     * have. Alt text lifted verbatim from the matching frame in lib/services.ts.
+     */
+    image: {
+      src: '/img/physio-house-call-hero.webp',
+      alt: 'Physiotherapist standing behind a seated woman at home, hands on her shoulders, as she holds a resistance band out in front of her',
+      // Subjects sit in the upper third; a centred banner crop takes both heads off.
+      objectPosition: 'top',
+    },
+    websiteExclusive: false,
+    services: ['physiotherapy-house-call'],
+    offersPageOnly: true,
+    group: 'house-call',
+    draft: false,
+  },
+  {
+    slug: 'house-call-5',
+    eyebrow: 'Package of 5 visits',
+    name: 'Five house call visits',
+    description: 'The initial assessment plus four follow-up visits, used within six weeks.',
+    price: 840,
+    compareAt: 910,
+    lines: [
+      houseCallAssessment,
+      { label: 'Four follow-up rehab visits at RM180 each', price: 720 },
+    ],
+    who: 'Someone with a longer-standing problem who already knows three visits will not be enough.',
+    /** AI generated, so no location in the alt. See the note on the package of three. */
+    image: {
+      src: '/img/physio-house-call-rehab.webp',
+      alt: 'Physiotherapist kneeling beside a woman on an exercise mat in a living room, guiding her through a bridge exercise',
+      // Subjects sit in the upper third; a centred banner crop takes both heads off.
+      objectPosition: 'top',
+    },
+    websiteExclusive: false,
+    services: ['physiotherapy-house-call'],
+    offersPageOnly: true,
+    group: 'house-call',
     draft: false,
   },
 ]

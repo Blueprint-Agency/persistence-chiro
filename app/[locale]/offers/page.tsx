@@ -14,6 +14,8 @@ import {
   ringgit,
   servicesWithBundleCard,
   type Bundle,
+  // Aliased: `BundleGroup` is also the component rendering a grouped row, imported below.
+  type BundleGroup as BundleGroupKey,
 } from '@/lib/pricing'
 import { publishedServicesFor, serviceBySlugFor } from '@/lib/services'
 import { BundleOffer } from '@/components/BundleOffer'
@@ -159,6 +161,19 @@ export default async function OffersPage({ params }: Props) {
   }
 
   const claimMessage = (b: Bundle) => waMessage.bundle(locale, b.name, ringgit(b.price))
+
+  /**
+   * Heading and standfirst per grouped row. One entry per `BundleGroup` key, so adding a group
+   * to lib/pricing.ts without its copy is a type error here rather than a blank heading in
+   * production. The row's own cards come from the bundles; only these two strings are page copy.
+   */
+  const groupCopy: Record<BundleGroupKey, { heading: string; intro: string }> = {
+    yoga: { heading: dict.page.offersGroupYogaTitle, intro: dict.page.offersGroupYogaIntro },
+    'house-call': {
+      heading: dict.page.offersGroupHouseCallTitle,
+      intro: dict.page.offersGroupHouseCallIntro,
+    },
+  }
   // Services priced by the visit (`priceList` on lib/services.ts). Not offers, so they are
   // not cards here and not in the CollectionPage list; they get a link so this page stays the
   // one place every published price can be reached from. Empty in a locale where no such
@@ -214,7 +229,7 @@ export default async function OffersPage({ params }: Props) {
               </GhostButton>
             ) : (
               <GhostButton key={row.group} href={`#${row.group}`} tone="light">
-                {dict.page.offersGroupYogaTitle} &middot;{' '}
+                {groupCopy[row.group].heading} &middot;{' '}
                 {dict.page.offersFrom(ringgit(Math.min(...row.bundles.map((b) => b.price))))}
               </GhostButton>
             ),
@@ -240,8 +255,8 @@ export default async function OffersPage({ params }: Props) {
               <BundleGroup
                 dict={dict}
                 id={row.group}
-                heading={dict.page.offersGroupYogaTitle}
-                intro={dict.page.offersGroupYogaIntro}
+                heading={groupCopy[row.group].heading}
+                intro={groupCopy[row.group].intro}
                 bundles={row.bundles}
                 messageFor={claimMessage}
               >

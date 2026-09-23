@@ -64,10 +64,20 @@ export function BundleGroup({
         <p className="mt-4 leading-relaxed text-ink-muted">{intro}</p>
       </div>
 
-      {/* Three across from `lg`, two from `sm`, stacked on a phone. `items-stretch` plus the
-          `mt-auto` on each card's footer is what keeps the asks on one baseline when one
-          card's description runs a line longer than its neighbour's. */}
-      <ul className="mt-10 grid items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {/* Two from `sm`, stacked on a phone, and at `lg` as many columns as there are cards up
+          to three — a two-card row left an empty third column when the house call packages
+          arrived, which read as a card that had failed to load. Full literal class strings per
+          branch, never a template-built prefix: Tailwind's scanner needs "lg:grid-cols-2" to
+          appear verbatim in source. A fourth card would wrap to a second line; if a group ever
+          grows that big, decide deliberately rather than letting it wrap.
+
+          `items-stretch` plus the `mt-auto` on each card's footer is what keeps the asks on one
+          baseline when one card's description runs a line longer than its neighbour's. */}
+      <ul
+        className={`mt-10 grid items-stretch gap-6 sm:grid-cols-2 ${
+          bundles.length === 2 ? 'lg:grid-cols-2' : 'lg:grid-cols-3'
+        }`}
+      >
         {bundles.map((bundle) => (
           <BundleCard key={bundle.slug} dict={dict} bundle={bundle} message={messageFor(bundle)} />
         ))}
@@ -106,6 +116,11 @@ function BundleCard({
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 380px"
           className="object-cover"
+          // Per-photograph, from the record, because the right crop depends on where the
+          // subjects sit in the frame and no class can know that. See `objectPosition` on
+          // the Bundle type. Inline rather than a Tailwind class: the value is data, and
+          // Tailwind can only emit classes it can see spelled out in source.
+          style={bundle.image.objectPosition ? { objectPosition: bundle.image.objectPosition } : undefined}
         />
       </div>
 

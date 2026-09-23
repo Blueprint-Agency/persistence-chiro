@@ -21,6 +21,12 @@ import type { Bundle } from './pricing'
  */
 const physioFirstVisit = { label: '物理治疗初步评估、首次疗程与居家运动指导', price: 160 } as const
 
+/**
+ * The RM190 house call initial assessment, shared by both packages. One object rather than two
+ * copies, for the reason spelled out on `houseCallAssessment` in lib/pricing.ts.
+ */
+const houseCallAssessment = { label: '初次评估,含首次疗程', price: 190 } as const
+
 export const bundlesZh: Bundle[] = [
   {
     slug: 'chiro-physio',
@@ -178,6 +184,56 @@ export const bundlesZh: Bundle[] = [
     services: ['yoga-classes'],
     offersPageOnly: true,
     group: 'yoga',
+    draft: false,
+  },
+  /**
+   * The two house call packages, added 2026-09-23 with the English records — see their comment
+   * in lib/pricing.ts for why they are a grouped row rather than two wide cards, and why the
+   * female-patients-only and six-week facts live in the row's intro instead of on each card.
+   *
+   * 物理治疗 is the approved discipline compound; nothing here uses 治疗 as a verb. Unreviewed,
+   * like every other zh record, and these carry prices.
+   */
+  {
+    slug: 'house-call-3',
+    eyebrow: '三次配套',
+    name: '上门三次配套',
+    description: '包含初次评估与两次复诊,六周内用完。',
+    price: 510,
+    compareAt: 550,
+    lines: [houseCallAssessment, { label: '两次复诊,每次 RM180', price: 360 }],
+    who: '想在家做复健,又觉得先来三次比一次订五次更安心的人。',
+    image: {
+      src: '/img/physio-house-call-hero.webp',
+      alt: '治疗师站在一位坐着的女性身后,双手放在她的肩膀上,她在家中双手向前拉着弹力带',
+      // Subjects sit in the upper third; a centred banner crop takes both heads off.
+      objectPosition: 'top',
+    },
+    websiteExclusive: false,
+    services: ['physiotherapy-house-call'],
+    offersPageOnly: true,
+    group: 'house-call',
+    draft: false,
+  },
+  {
+    slug: 'house-call-5',
+    eyebrow: '五次配套',
+    name: '上门五次配套',
+    description: '包含初次评估与四次复诊,六周内用完。',
+    price: 840,
+    compareAt: 910,
+    lines: [houseCallAssessment, { label: '四次复诊,每次 RM180', price: 720 }],
+    who: '问题拖得比较久,自己也清楚三次不够的人。',
+    image: {
+      src: '/img/physio-house-call-rehab.webp',
+      alt: '治疗师跪在客厅运动垫旁,指导一位女性做臀桥运动',
+      // Subjects sit in the upper third; a centred banner crop takes both heads off.
+      objectPosition: 'top',
+    },
+    websiteExclusive: false,
+    services: ['physiotherapy-house-call'],
+    offersPageOnly: true,
+    group: 'house-call',
     draft: false,
   },
 ]

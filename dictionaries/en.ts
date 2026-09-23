@@ -63,11 +63,14 @@ const en: Dictionary = {
       'The message already names the offer and its price, so there is nothing to explain. Add the day and time you would like and send it.',
     offersStep3Title: 'We confirm on WhatsApp',
     offersStep3Body:
-      'You get a reply with your appointment, and the offer is noted on it before you walk in. Nothing to print, no code to remember.',
+      'You get a reply with your appointment, and the offer is noted on it before the visit. Nothing to print, no code to remember.',
     offersWhoSuits: 'Who it suits',
     offersGroupYogaTitle: 'Yoga classes and packages',
     offersGroupYogaIntro:
       'Chair Yoga and Posture Core Yoga run on Saturdays at 4:00pm, one or the other week by week. Come for a single class, or buy a pack and bring the price per class down.',
+    offersGroupHouseCallTitle: 'Physiotherapy house call packages',
+    offersGroupHouseCallIntro:
+      'Physiotherapy at your home, for female patients, with no travel charge within 10 km of the clinic. Both packages include the initial assessment and run for six weeks. Single visits are priced on the house call page.',
     offersFrom: (price) => `from ${price}`,
     offersLearnMore: 'Read more about',
     offersCtaHeading: 'Not sure which one fits?',

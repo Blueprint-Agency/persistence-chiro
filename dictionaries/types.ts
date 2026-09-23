@@ -95,6 +95,13 @@ export type Dictionary = {
      */
     offersGroupYogaTitle: string
     offersGroupYogaIntro: string
+    offersGroupHouseCallTitle: string
+    /**
+     * Carries what both house call cards share so neither has to repeat it: female patients
+     * only, no travel charge within 10 km, six weeks. The eligibility half of that is not
+     * decoration — do not trim it.
+     */
+    offersGroupHouseCallIntro: string
     /** Hero jump chip for a group, where one price cannot stand for the row: "from RM55". */
     offersFrom: (price: string) => string
     /** "Read more about" — followed by links to the service pages the offer belongs to. */

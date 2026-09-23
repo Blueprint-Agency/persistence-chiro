@@ -4,9 +4,10 @@ Work that is **blocked on a person, an asset or an access grant** — not on cod
 item below has its reasoning recorded in a comment next to the thing it governs; this file
 exists so the list can be found in one place instead of stumbled upon in four.
 
-Last updated **2026-09-23**, when the physiotherapy-plus-yoga bundle was added (item 12), a day
-after the yoga class prices were carded on `/offers` (item 11), the pop-up copy was replaced
-with the client's own wording and "Offers" moved to the end of the nav.
+Last updated **2026-09-23**, when the house call packages were carded on `/offers` (item 10.3,
+open since 2026-09-12) and the physiotherapy-plus-yoga bundle was added (item 12), a day after
+the yoga class prices were carded (item 11), the pop-up copy was replaced with the client's own
+wording and "Offers" moved to the end of the nav.
 
 > Keep this file honest. When an item is resolved, delete it here *and* remove the
 > corresponding gate or comment in the code. A stale blocker is worse than no list.
@@ -390,13 +391,24 @@ Outstanding:
    clinic, so their alt text names no location; do not add the modifier.** Three of the four
    concern cards are still borrowed stock composites. A real photograph of a physiotherapist on
    an actual house call would replace all of it.
-3. **Does the client want the packages as cards on `/offers`?** Still a link, not a card. The
-   original objection (the cards make a saving claim and carry a "website-only" badge, and this
-   rate card does neither) half dissolved on 2026-09-22, when the yoga cards landed without the
-   badge and `offersPageOnly` let a service keep its own price list while being carded on
-   `/offers`. So the plumbing now exists and the only open question is editorial: the two
-   packages fit the `Bundle` shape honestly (3 visits RM510 against RM550 separately; 5 visits
-   RM840 against RM910), and `/offers` would go from five cards to seven. Ask before building.
+3. ~~Does the client want the packages as cards on `/offers`?~~ **YES, BUILT 2026-09-23.** They
+   forwarded a picture of the electromodalities card and asked for the house call "in this
+   format too" — the real objection being that this was the one price on the page that was a
+   bare link rather than a card. Both packages are now `Bundle` records (3 visits RM510 against
+   RM550, 5 visits RM840 against RM910), rendered as a **grouped row of two** rather than two
+   wide cards: three-versus-five visits of one service is one decision priced two ways, and as
+   wide cards they would have been near-identical twins a screen apart. Say so if the client
+   would rather have the wide format; it is a one-line change.
+
+   Two consequences to know about. **The "Also priced on this site" section no longer renders**
+   anywhere — the house call was its last entry, and the section hides itself when empty. Its
+   job moved to the "Read more about Physiotherapy House Call" link under the row, and the row's
+   intro says outright that single visits are priced on the service page. **The per-visit fees
+   (RM190, RM180, travel) are unchanged and still live only in the `priceList` on that page**,
+   which is why both cards set `offersPageOnly`.
+
+   Both photographs needed `objectPosition: 'top'` — their subjects sit in the upper third and a
+   centred banner crop cut both heads off. New field on `Bundle.image`; set it per locale.
 4. ~~zh/ms.~~ **BUILT 2026-09-12** as direct translations (no keyword measured any volume in
    either language), per the client's rule of the same day. Unreviewed, like every zh/ms record.
 5. Physiotherapist naming follows item 1; this page sets `practitionersWithheld` like the

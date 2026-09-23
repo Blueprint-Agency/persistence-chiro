@@ -24,6 +24,15 @@ const physioFirstVisit = {
   price: 160,
 } as const
 
+/**
+ * The RM190 house call initial assessment, shared by both packages. One object rather than two
+ * copies, for the reason spelled out on `houseCallAssessment` in lib/pricing.ts.
+ */
+const houseCallAssessment = {
+  label: 'Penilaian awal, termasuk sesi pertama secara langsung',
+  price: 190,
+} as const
+
 export const bundlesMs: Bundle[] = [
   {
     slug: 'chiro-physio',
@@ -185,6 +194,62 @@ export const bundlesMs: Bundle[] = [
     services: ['yoga-classes'],
     offersPageOnly: true,
     group: 'yoga',
+    draft: false,
+  },
+  /**
+   * The two house call packages, added 2026-09-23 with the English records — see their comment
+   * in lib/pricing.ts for why they are a grouped row rather than two wide cards, and why the
+   * female-patients-only and six-week facts live in the row's intro instead of on each card.
+   *
+   * No "rawatan"/"merawat": "penilaian", "lawatan" and "pemulihan" name what is actually done.
+   * Unreviewed, like every other ms record, and these carry prices.
+   */
+  {
+    slug: 'house-call-3',
+    eyebrow: 'Pakej 3 lawatan',
+    name: 'Tiga lawatan ke rumah',
+    description: 'Penilaian awal berserta dua lawatan susulan, digunakan dalam masa enam minggu.',
+    price: 510,
+    compareAt: 550,
+    lines: [
+      houseCallAssessment,
+      { label: 'Dua lawatan susulan pemulihan pada RM180 setiap satu', price: 360 },
+    ],
+    who: 'Sesiapa yang mahu pemulihan di rumah dan lebih selesa bermula dengan tiga lawatan berbanding terus lima.',
+    image: {
+      src: '/img/physio-house-call-hero.webp',
+      alt: 'Ahli fisioterapi berdiri di belakang seorang wanita yang duduk di rumah, tangan di bahunya, sementara wanita itu memegang jalur rintangan di hadapannya',
+      // Subjects sit in the upper third; a centred banner crop takes both heads off.
+      objectPosition: 'top',
+    },
+    websiteExclusive: false,
+    services: ['physiotherapy-house-call'],
+    offersPageOnly: true,
+    group: 'house-call',
+    draft: false,
+  },
+  {
+    slug: 'house-call-5',
+    eyebrow: 'Pakej 5 lawatan',
+    name: 'Lima lawatan ke rumah',
+    description: 'Penilaian awal berserta empat lawatan susulan, digunakan dalam masa enam minggu.',
+    price: 840,
+    compareAt: 910,
+    lines: [
+      houseCallAssessment,
+      { label: 'Empat lawatan susulan pemulihan pada RM180 setiap satu', price: 720 },
+    ],
+    who: 'Sesiapa dengan masalah yang sudah lama dan sedia tahu tiga lawatan tidak mencukupi.',
+    image: {
+      src: '/img/physio-house-call-rehab.webp',
+      alt: 'Ahli fisioterapi melutut di sebelah seorang wanita di atas tikar senaman di ruang tamu, membimbingnya melakukan senaman bridge',
+      // Subjects sit in the upper third; a centred banner crop takes both heads off.
+      objectPosition: 'top',
+    },
+    websiteExclusive: false,
+    services: ['physiotherapy-house-call'],
+    offersPageOnly: true,
+    group: 'house-call',
     draft: false,
   },
 ]
