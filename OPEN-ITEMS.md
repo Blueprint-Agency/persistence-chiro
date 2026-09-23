@@ -469,7 +469,7 @@ than selling the class as pain relief.
 
 ---
 
-## 12. Physio assessment + yoga class, RM188 — LIVE 2026-09-23, two things to confirm
+## 12. Physio assessment + yoga class, RM188 — LIVE 2026-09-23, both confirmations in
 
 The client's figures, verbatim: "Physiotherapy Initial Assessment + Yoga 1 time class : RM160 +
 RM55, Total of RM215, Website Offer: RM188 [patient saves RM 27], T&C : redeem within 2 months".
@@ -484,16 +484,20 @@ It is a **wide card, not a fourth column in the yoga row**, although the client 
 yoga bundle: the row is one decision priced three ways, and this pairs two services from two
 disciplines the way the RM588 and RM200 cards do.
 
-Needs the client:
+1. ~~Is this RM160 the same RM160 the RM588 card sells?~~ **RESOLVED 2026-09-23.** The client
+   confirmed it is the same product, so this card's line was widened to the RM588's full
+   wording ("initial assessment, first hands-on session and a home exercise programme"). The
+   two are no longer two hand-typed strings: each locale file defines `physioFirstVisit` once
+   and both bundles reference that object, so the wording cannot drift the way two copies of a
+   sentence silently do. **Never retype it into a third bundle.**
+2. ~~Is "First physio visit" right as the eligibility line?~~ **CONFIRMED 2026-09-23** —
+   "correct label since it is for first-time customer only".
 
-1. **Is this RM160 the same RM160 the RM588 card sells?** That card describes it as "initial
-   assessment, first hands-on session and a home exercise programme". The client wrote only
-   "Physiotherapy Initial Assessment" here, so this card promises only that — the safe
-   direction, but it means the site currently prices RM160 at two different scopes. If they are
-   the same product, widen this card's line to match; never narrow the other one.
-2. **Is "First physio visit" right as the eligibility line?** An initial assessment implies a
-   patient who has not been assessed here, which is the same shape as "New patient bundle" on
-   the RM588. Nobody has said so outright.
+   One nuance left, not a blocker: the client's phrase was first-time **customer**, and the
+   label says first **physio visit**. A returning chiropractic patient who has never had physio
+   here reads the label as including them, and the counter may not. Worth one line back before
+   somebody is turned away at reception, which is the only place this cap is enforced — the
+   same failure mode recorded against the RM200 bundle in item 8.
 
 Open decision, not a blocker: **should this card also render on `/services/yoga-classes`?** It
 sets `offersPageOnly`, so today it does not. `/services/physiotherapy` would show the RM588 card

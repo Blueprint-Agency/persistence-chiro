@@ -149,6 +149,22 @@ export const ringgit = (amount: number) => `RM${amount}`
 export const savingPercent = (bundle: Bundle) =>
   Math.round(((bundle.compareAt - bundle.price) / bundle.compareAt) * 100)
 
+/**
+ * The physiotherapy first visit, RM160, shared by the two bundles that contain it: the RM588
+ * chiro-and-physio and the RM188 physio-and-yoga.
+ *
+ * ONE OBJECT, NOT TWO COPIES, on purpose. The RM188 card shipped on 2026-09-23 describing this
+ * as "Physiotherapy initial assessment" because that is all the client wrote when they sent the
+ * bundle; they confirmed the same day it is the same product the RM588 sells. Two hand-typed
+ * copies of one line is exactly the drift `compareAt` is asserted against, except a wording
+ * drift no arithmetic test can catch — a reader comparing the two cards would find the site
+ * selling RM160 as two different things. Reference this; do not retype it.
+ */
+const physioFirstVisit = {
+  label: 'Physiotherapy initial assessment, first hands-on session and a home exercise programme',
+  price: 160,
+} as const
+
 export const bundles: Bundle[] = [
   {
     slug: 'chiro-physio',
@@ -159,10 +175,7 @@ export const bundles: Bundle[] = [
     lines: [
       { label: 'Chiropractic initial consultation and first adjustment', price: 310 },
       { label: 'X-ray', price: 190 },
-      {
-        label: 'Physiotherapy initial assessment, first hands-on session and a home exercise programme',
-        price: 160,
-      },
+      physioFirstVisit,
     ],
     who: 'New patients whose pain has been around a while and has never been assessed. The chiropractor assesses and adjusts first, then the physiotherapist takes over the strength and movement side.',
     image: {
@@ -239,12 +252,11 @@ export const bundles: Bundle[] = [
    * is exactly what the RM588 and the RM200 cards do. A fourth column would also orphan
    * itself on a three-up grid. It sits last of the wide cards so it leads into the yoga row.
    *
-   * ⚠️ THE RM160 LINE IS DELIBERATELY NARROWER THAN THE RM588 CARD'S. That card sells the
-   * same RM160 as "initial assessment, first hands-on session and a home exercise programme".
-   * The client wrote only "Physiotherapy Initial Assessment" here, so that is what this card
-   * promises. If the two are the same product, widen this label to match; do not narrow the
-   * other one. Under-promising is the safe direction for a priced claim, and the question is
-   * logged in OPEN-ITEMS.md.
+   * THE RM160 LINE MATCHES THE RM588 CARD'S WORD FOR WORD, and must keep matching. The client
+   * wrote only "Physiotherapy Initial Assessment" when they sent this bundle, so it shipped
+   * narrow on 2026-09-23 and was widened the same day once they confirmed it is the same RM160
+   * product the RM588 card sells. One price, one scope, one sentence describing it: if that
+   * sentence ever changes, change it in both places or the site sells RM160 as two things.
    *
    * THE TWO-MONTH TERM IS RENDERED, in `description`. That is not a reversal of the
    * "deliberately NOT rendered" terms on the RM588 and RM200 cards: those were "no expiry"
@@ -256,9 +268,12 @@ export const bundles: Bundle[] = [
   {
     slug: 'physio-yoga',
     /**
-     * An eligibility line, like "New patient bundle" is on the RM588. An initial assessment is
-     * by definition your first physiotherapy visit here, so a returning physio patient cannot
-     * claim this. Confirm with the clinic if they read it differently.
+     * An eligibility line, like "New patient bundle" is on the RM588, and confirmed by the
+     * client on 2026-09-23: "correct label since it is for first-time customer only". Their
+     * phrase was first-time CUSTOMER while the label says first PHYSIO VISIT, which are not
+     * quite the same person — a returning chiropractic patient who has never had physio here
+     * reads this label as including them. Worth one line back to the clinic before anyone
+     * turns that patient away at the counter; see OPEN-ITEMS.md item 12.
      */
     eyebrow: 'First physio visit',
     name: 'Physiotherapy assessment and a yoga class',
@@ -266,7 +281,7 @@ export const bundles: Bundle[] = [
     price: 188,
     compareAt: 215,
     lines: [
-      { label: 'Physiotherapy initial assessment', price: 160 },
+      physioFirstVisit,
       { label: 'One yoga class, Chair Yoga or Posture Core Yoga', price: 55 },
     ],
     who: 'Someone new to physiotherapy who also wants to try a class. The assessment comes first, and the class is yours to use inside the two months.',

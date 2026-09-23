@@ -15,6 +15,12 @@
  */
 import type { Bundle } from './pricing'
 
+/**
+ * The RM160 physiotherapy first visit, shared by the RM588 and RM188 bundles. One object rather
+ * than two copies, for the reason spelled out on `physioFirstVisit` in lib/pricing.ts.
+ */
+const physioFirstVisit = { label: '物理治疗初步评估、首次疗程与居家运动指导', price: 160 } as const
+
 export const bundlesZh: Bundle[] = [
   {
     slug: 'chiro-physio',
@@ -25,7 +31,7 @@ export const bundlesZh: Bundle[] = [
     lines: [
       { label: '脊骨神经科初诊咨询与首次调整', price: 310 },
       { label: 'X光检查', price: 190 },
-      { label: '物理治疗初步评估、首次疗程与居家运动指导', price: 160 },
+      physioFirstVisit,
     ],
     who: '疼痛已经拖了一段时间、还没做过评估的新患者。先由脊椎矫正师评估和调整,再由物理治疗师接手肌力和活动度的部分。',
     image: {
@@ -80,6 +86,9 @@ export const bundlesZh: Bundle[] = [
    * its comment for why this is a wide card rather than a fourth column in the yoga row, why
    * the RM160 line is narrower than the RM588 card's, and why the two-month term renders.
    *
+   * The RM160 line is the same sentence this file's RM588 record uses, per the client's
+   * 2026-09-23 confirmation that it is the same product. Keep the two identical.
+   *
    * 物理治疗 is the approved discipline compound, never a verb for what is done to a patient.
    * Unreviewed, like every other zh record, and this one carries a price.
    */
@@ -91,7 +100,7 @@ export const bundlesZh: Bundle[] = [
     price: 188,
     compareAt: 215,
     lines: [
-      { label: '物理治疗初步评估', price: 160 },
+      physioFirstVisit,
       { label: '瑜伽单堂课,椅子瑜伽或体态核心瑜伽', price: 55 },
     ],
     who: '第一次做物理治疗,同时也想上一堂瑜伽课的人。先做评估,瑜伽课在两个月内自己挑时间来上。',

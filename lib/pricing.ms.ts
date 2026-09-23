@@ -15,6 +15,15 @@
  */
 import type { Bundle } from './pricing'
 
+/**
+ * The RM160 physiotherapy first visit, shared by the RM588 and RM188 bundles. One object rather
+ * than two copies, for the reason spelled out on `physioFirstVisit` in lib/pricing.ts.
+ */
+const physioFirstVisit = {
+  label: 'Penilaian awal fisioterapi, sesi pertama dan program senaman di rumah',
+  price: 160,
+} as const
+
 export const bundlesMs: Bundle[] = [
   {
     slug: 'chiro-physio',
@@ -25,10 +34,7 @@ export const bundlesMs: Bundle[] = [
     lines: [
       { label: 'Konsultasi awal kiropraktik dan pelarasan pertama', price: 310 },
       { label: 'X-ray', price: 190 },
-      {
-        label: 'Penilaian awal fisioterapi, sesi pertama dan program senaman di rumah',
-        price: 160,
-      },
+      physioFirstVisit,
     ],
     who: 'Pesakit baharu yang sakitnya sudah lama dan belum pernah dinilai. Kiropraktor menilai dan melaras dahulu, kemudian fisioterapis mengambil alih bahagian kekuatan dan pergerakan.',
     image: {
@@ -84,6 +90,9 @@ export const bundlesMs: Bundle[] = [
    * its comment for why this is a wide card rather than a fourth column in the yoga row, why
    * the RM160 line is narrower than the RM588 card's, and why the two-month term renders.
    *
+   * The RM160 line is the same sentence this file's RM588 record uses, per the client's
+   * 2026-09-23 confirmation that it is the same product. Keep the two identical.
+   *
    * No "rawatan"/"merawat": "penilaian" and "kelas" say what is actually on offer. Unreviewed,
    * like every other ms record, and this one carries a price.
    */
@@ -95,7 +104,7 @@ export const bundlesMs: Bundle[] = [
     price: 188,
     compareAt: 215,
     lines: [
-      { label: 'Penilaian awal fisioterapi', price: 160 },
+      physioFirstVisit,
       { label: 'Satu kelas yoga, Chair Yoga atau Posture Core Yoga', price: 55 },
     ],
     who: 'Sesiapa yang baru dengan fisioterapi dan juga mahu mencuba satu kelas yoga. Penilaian dahulu, dan kelas itu milik anda untuk digunakan dalam tempoh dua bulan.',
