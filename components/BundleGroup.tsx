@@ -15,17 +15,18 @@ import { Eyebrow, WhatsAppButton } from '@/components/ui'
  * thousand pixels apart.
  *
  * WHAT IT KEEPS FROM THE WIDE CARD, because these are the same commercial claims:
- *   - The line items still add up in front of the reader, and the struck total still sits
- *     under them behind a heavier rule. Narrower column, same receipt.
+ *   - The line items still add up in front of the reader, one tap away, and they sum to the
+ *     struck figure printed beside the price. Same arithmetic, checkable the same way.
  *   - The saving is still a figure AND a percentage, both derived from `price`/`compareAt`.
- *   - A card whose `compareAt` equals its `price` still drops the struck total and the badge
- *     rather than printing "Save RM0". The yoga drop in is that card.
+ *   - A card whose `compareAt` equals its `price` shows no struck figure and no badge rather
+ *     than printing "Save RM0". The yoga drop in is that card.
  *   - One gold element per card, the WhatsApp ask. The savings badge stays slate.
  *   - No manufactured urgency, no countdown, no "only N left".
  *
- * WHAT IT DROPS, on purpose: the "website only" badge is not rendered here, because a grouped
- * row is for offers that share a heading and these do not carry the flag. If a website-only
- * offer ever joins a group, add the badge back rather than letting it go unsaid.
+ * WHAT IT DROPS, on purpose: the "website only" badge. A grouped card would carry it three
+ * times under a heading that already says "Website-only bundles", which is the duplication the
+ * wide card's own notes warn against. THE HEADING IS THEREFORE THE CLAIM, and `content.test.ts`
+ * asserts every member of that group really is `websiteExclusive` so it cannot start lying.
  *
  * `id` per card is NOT decorative. `offerNode` in lib/schema.ts points each Offer's `url` at
  * `/offers#<slug>`, so every slug must remain an anchor on this page whichever shape it is
@@ -138,59 +139,87 @@ function BundleCard({
           <p className="mt-3 text-sm leading-relaxed text-ink-muted">{bundle.description}</p>
         )}
 
-        <p className="mt-6 text-sm font-semibold">{dict.page.bundleIncluded}</p>
-        {/* `divide-y` only draws BETWEEN rows, so a one-line list on a card with no total row
-            under it (the drop in) ended with an open bottom edge while its neighbours were
-            closed by the heavier total rule. Close it explicitly in that case. */}
-        <ul
-          className={`mt-2 divide-y divide-line border-t border-line ${
-            hasSaving ? '' : 'border-b'
-          }`}
-        >
-          {bundle.lines.map((line) => (
-            <li key={line.label} className="flex items-baseline justify-between gap-4 py-3">
-              <span className="text-sm leading-relaxed text-ink-muted">{line.label}</span>
-              <span className="flex-none text-sm font-semibold tabular-nums">
-                {ringgit(line.price)}
-              </span>
-            </li>
-          ))}
-        </ul>
-        {hasSaving && (
-          <div className="flex items-baseline justify-between gap-4 border-t-2 border-ink/15 py-3">
-            <span className="label text-ink-muted">{dict.page.bundleWorth}</span>
-            <s className="flex-none text-sm font-semibold tabular-nums text-ink-muted">
+        {/* THE ASK AND THE CLAIM, ALWAYS VISIBLE. What a reader decides on is the price, what
+            it was, and how much comes off; those never hide behind a tap. The struck figure
+            moved up here from a "Total worth" row inside the receipt, which means the receipt
+            below has no total line any more: its items sum to the struck number in plain view,
+            which is the same arithmetic in one place instead of two. */}
+        <div className="mt-auto flex flex-wrap items-baseline gap-x-4 gap-y-2 pt-6">
+          <p className="text-4xl font-extrabold leading-none tracking-tight tabular-nums">
+            {ringgit(bundle.price)}
+          </p>
+          {hasSaving && (
+            <s className="text-sm font-semibold tabular-nums text-ink-muted">
               {ringgit(bundle.compareAt)}
             </s>
-          </div>
+          )}
+        </div>
+        {hasSaving && (
+          <p className="mt-3">
+            <span className="label rounded-full bg-brand-slate px-3 py-1.5 text-white">
+              {dict.page.bundleSave(ringgit(saving), `${savingPercent(bundle)}%`)}
+            </span>
+          </p>
         )}
 
-        {/* Who it suits sits INSIDE the card here. On the wide cards it runs underneath in its
-            own column, which does not survive a three-up grid: three loose paragraphs below
-            three cards leave a reader matching paragraph to card by position. */}
-        <p className="mt-5 text-sm leading-relaxed text-ink-muted">
-          <span className="label mr-2 text-brand-slate">{dict.page.offersWhoSuits}</span>
-          {bundle.who}
-        </p>
+        {/* THE PROOF, ONE TAP AWAY. A native <details>, reusing the FAQ accordion's styling, so
+            there is no client component and every line still ships in the static HTML — Google
+            and any assistant reading this page get the full breakdown whether or not a human
+            ever opens it. That is the whole reason this is a disclosure and not a modal.
 
-        <div className="mt-auto pt-6">
-          {/* STACKED, not side by side like the wide card. At three columns the badge sits
-              beside a four-digit-wide price on one card and wraps under it on the next, off a
-              few pixels of difference, and a row of three where one is misaligned looks like
-              a bug. Below the price it is the same shape every time. */}
-          <div className="flex flex-col items-start gap-3">
-            <p className="text-4xl font-extrabold leading-none tracking-tight tabular-nums">
-              {ringgit(bundle.price)}
-            </p>
-            {hasSaving && (
-              <span className="label rounded-full bg-brand-slate px-3 py-1.5 text-white">
-                {dict.page.bundleSave(ringgit(saving), `${savingPercent(bundle)}%`)}
-              </span>
-            )}
-          </div>
-          <div className="mt-5">
-            <WhatsAppButton message={message}>{dict.page.bundleClaim}</WhatsAppButton>
-          </div>
+            Collapsed at the client's request (2026-09-23): eight offers as full receipts made a
+            page nobody would scroll to the end of. What folds is the itemisation and who it
+            suits. What does NOT fold is anything above: the price, the comparison, the saving,
+            and `description`, which is where a card's TERMS live — "used within six weeks",
+            "valid two months", "both parts within two months". A term a buyer only discovers
+            after tapping is the kind of surprise this site exists not to create. If a future
+            card carries a condition, put it in `description`, not in here. */}
+        <details className="faq mt-6 border-t border-line pt-4">
+          <summary className="flex items-center justify-between gap-4">
+            <span className="text-sm font-semibold text-ink">{dict.page.bundleIncluded}</span>
+            <span
+              aria-hidden="true"
+              className="faq-sign flex-none text-2xl font-light leading-none text-brand-slate transition-transform"
+            >
+              +
+            </span>
+          </summary>
+
+          <ul className="mt-3 divide-y divide-line border-y border-line">
+            {bundle.lines.map((line) => (
+              <li key={line.label} className="flex items-baseline justify-between gap-4 py-3">
+                <span className="text-sm leading-relaxed text-ink-muted">{line.label}</span>
+                <span className="flex-none text-sm font-semibold tabular-nums">
+                  {ringgit(line.price)}
+                </span>
+              </li>
+            ))}
+          </ul>
+
+          {/* Who it suits sits INSIDE each card rather than in a paragraph under the row: three
+              loose paragraphs below three cards leave a reader matching paragraph to card by
+              position. Inside the disclosure because it helps someone already weighing one
+              card, not someone scanning five. */}
+          <p className="mt-4 text-sm leading-relaxed text-ink-muted">
+            <span className="label mr-2 text-brand-slate">{dict.page.offersWhoSuits}</span>
+            {bundle.who}
+          </p>
+        </details>
+
+        {/* ANCHORED TO THE FOOT OF THE CARD, from the price down. `mt-auto` is on the price
+            block rather than on this button, which is where it started: with it here, only the
+            buttons lined up and the prices floated wherever each card's description left them,
+            up to sixty pixels apart across one row. A row of prices is a comparison, and a
+            comparison that does not share a baseline is harder to read than it needs to be.
+
+            The one card that still sits low is a card with no saving badge, which is a shorter
+            stack by exactly one badge. Reserving empty space for a badge it does not have would
+            be worse: the gap would read as something that failed to render.
+
+            Opening a disclosure pushes only that card's button down, which is correct — the
+            reader who opened it is looking at that card, not comparing baselines. */}
+        <div className="pt-6">
+          <WhatsAppButton message={message}>{dict.page.bundleClaim}</WhatsAppButton>
         </div>
       </div>
     </li>

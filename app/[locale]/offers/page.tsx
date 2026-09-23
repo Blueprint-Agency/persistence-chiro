@@ -168,6 +168,10 @@ export default async function OffersPage({ params }: Props) {
    * production. The row's own cards come from the bundles; only these two strings are page copy.
    */
   const groupCopy: Record<BundleGroupKey, { heading: string; intro: string }> = {
+    'website-only': {
+      heading: dict.page.offersGroupWebsiteOnlyTitle,
+      intro: dict.page.offersGroupWebsiteOnlyIntro,
+    },
     yoga: { heading: dict.page.offersGroupYogaTitle, intro: dict.page.offersGroupYogaIntro },
     'house-call': {
       heading: dict.page.offersGroupHouseCallTitle,

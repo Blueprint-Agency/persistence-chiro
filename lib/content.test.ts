@@ -834,6 +834,28 @@ test('price-list figures are identical in every locale', () => {
   assert.deepEqual(mismatched, [], `price-list drift: ${mismatched.join('; ')}`)
 })
 
+/**
+ * `/offers` renders every bundle inside a group, and a grouped card shows NO "website only"
+ * badge — the row's heading carries that fact for all of its members ("Website-only bundles").
+ * So the heading is the claim, and nothing in the markup checks that its members deserve it.
+ *
+ * A bundle added to that group without `websiteExclusive` would be advertised as unavailable
+ * anywhere else on the strength of a heading nobody re-read. That is a commercial claim about
+ * where a patient can buy something, made by a regulated clinic, so it is asserted rather than
+ * remembered. Either set the flag or put the offer in a different group.
+ */
+test('every offer in the website-only row really is website-only', () => {
+  const wrong: string[] = []
+  for (const locale of LOCALES) {
+    for (const b of bundlesFor(locale)) {
+      if (b.group === 'website-only' && !b.websiteExclusive) {
+        wrong.push(`${locale} ${b.slug}`)
+      }
+    }
+  }
+  assert.deepEqual(wrong, [], `in the website-only row but not websiteExclusive: ${wrong.join('; ')}`)
+})
+
 /** Same contract `draft` has with `holdReason` in lib/posts.ts: withheld means say why. */
 test('a withheld bundle records its reason', () => {
   for (const b of bundles.filter((e) => e.draft)) {

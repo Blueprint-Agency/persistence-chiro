@@ -4,10 +4,11 @@ Work that is **blocked on a person, an asset or an access grant** — not on cod
 item below has its reasoning recorded in a comment next to the thing it governs; this file
 exists so the list can be found in one place instead of stumbled upon in four.
 
-Last updated **2026-09-23**, when the house call packages were carded on `/offers` (item 10.3,
-open since 2026-09-12) and the physiotherapy-plus-yoga bundle was added (item 12), a day after
-the yoga class prices were carded (item 11), the pop-up copy was replaced with the client's own
-wording and "Offers" moved to the end of the nav.
+Last updated **2026-09-23**, when `/offers` was rebuilt as three rows of compact cards (item
+13), after the house call packages were carded (item 10.3, open since 2026-09-12) and the
+physiotherapy-plus-yoga bundle was added (item 12), a day after the yoga class prices were
+carded (item 11), the pop-up copy was replaced with the client's own wording and "Offers" moved
+to the end of the nav.
 
 > Keep this file honest. When an item is resolved, delete it here *and* remove the
 > corresponding gate or comment in the code. A stale blocker is worse than no list.
@@ -524,3 +525,35 @@ sets `offersPageOnly`, so today it does not. `/services/physiotherapy` would sho
 regardless (`bundleForService` takes the first match), so nothing is lost there, but the yoga
 page could carry this one. The cost is that its hero button would swap from "See class fees and
 times" to the bundle anchor, demoting the fee table that page was built around.
+
+---
+
+## 13. `/offers` is three rows of compact cards — REBUILT 2026-09-23, nothing outstanding
+
+Recorded because the shape is the client's decision, not a passing implementation detail, and
+the next person to add an offer needs to know what they are adding to.
+
+The page grew from two offers to eight in two days and reached roughly seven thousand pixels,
+one full-width card at a time. The client asked to shorten the cards, hide the detail behind a
+toggle, and put the top three "into multiple cards per row". All three are done, and the page
+is about a third shorter.
+
+**Every published bundle is now grouped** (`Bundle.group`), and `/offers` renders nothing but
+rows: **Website-only bundles** (RM588, RM200, RM188), **Yoga classes and packages** (3), and
+**Physiotherapy house call packages** (2). The hero shows one jump chip per row.
+
+**The wide card is not gone.** `BundleOffer` is still what a SERVICE page renders, where there
+is one offer and room for it. Only `/offers` uses the compact `BundleGroup` card.
+
+**What a compact card hides, and what it must never hide.** A native `<details>` (the FAQ
+accordion's styling, so no client component and every line still ships in the static HTML for
+Google and assistants) holds the line items and "who it suits". Always visible: the price, the
+struck comparison, the saving badge, and **`description`, which is where a card's TERMS live**
+("used within six weeks", "valid two months"). A term a buyer only meets after tapping is the
+surprise this site exists not to create. Put a condition in `description`, never in the fold.
+
+**The "website only" badge is gone from these cards** and its row heading carries the fact for
+all three members. `content.test.ts` asserts every member of that group really is
+`websiteExclusive`, so the heading cannot quietly start lying.
+
+If the client ever wants the wide format back on `/offers`, it is a `group` field away.

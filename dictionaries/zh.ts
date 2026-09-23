@@ -67,7 +67,7 @@ const zh: Dictionary = {
     offersEyebrow: '优惠',
     offersTitle: '优惠与课程配套',
     offersIntro:
-      '所有以配套方式定价的项目,都在这一页。每张卡都列出包含的内容,以及各部分单独的收费,省下多少可以自己算。标着「官网专属优惠」的,只有通过官网才有。',
+      '所有以配套方式定价的项目,都在这一页。点开任何一张卡,就能看到包含的内容和各部分单独的收费,省下多少可以自己算。',
     offersHowHeading: '一则信息就能领取',
     offersStep1Title: '选择优惠',
     offersStep1Body: '看清楚内容和上方的标签:有些限首次到诊,其余的任何人都可以领取。',
@@ -76,6 +76,9 @@ const zh: Dictionary = {
     offersStep3Title: '我们在 WhatsApp 上确认',
     offersStep3Body: '你会收到预约确认,优惠会在看诊前记录在预约上。无需打印,也不用记任何代码。',
     offersWhoSuits: '适合谁',
+    offersGroupWebsiteOnlyTitle: '官网专属配套',
+    offersGroupWebsiteOnlyIntro:
+      '把服务搭配在一起的配套价,只有通过官网预约才有。每张卡都写明包含什么,以及各部分单独的收费。',
     offersGroupYogaTitle: '瑜伽课程与配套',
     offersGroupYogaIntro:
       '椅子瑜伽与体态核心瑜伽每逢星期六下午四点开课,两堂隔周轮换。可以单堂来上,也可以买配套,平均每堂就便宜下来。',

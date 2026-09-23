@@ -93,6 +93,13 @@ export type Dictionary = {
      * Heading and standfirst over a grouped row of offers (`BundleGroup`). One pair per
      * `BundleGroup` key in lib/pricing.ts; `yoga` is the only one so far.
      */
+    /**
+     * The website-only row. Its heading is what tells a reader these exist nowhere else, since
+     * a grouped card renders no "website only" badge — `content.test.ts` asserts every member
+     * of that group really is `websiteExclusive`, so the heading cannot quietly start lying.
+     */
+    offersGroupWebsiteOnlyTitle: string
+    offersGroupWebsiteOnlyIntro: string
     offersGroupYogaTitle: string
     offersGroupYogaIntro: string
     offersGroupHouseCallTitle: string

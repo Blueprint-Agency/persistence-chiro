@@ -59,7 +59,7 @@ const ms: Dictionary = {
     offersEyebrow: 'Tawaran',
     offersTitle: 'Tawaran dan pakej kelas',
     offersIntro:
-      'Semua yang kami hargakan sebagai satu pakej, di satu halaman. Setiap kad menyenaraikan apa yang termasuk dan harga setiap bahagian jika diambil berasingan, jadi anda boleh kira sendiri jimatannya. Yang bertanda promosi laman web sahaja tidak boleh didapati di tempat lain.',
+      'Semua yang kami hargakan sebagai satu pakej, di satu halaman. Buka mana-mana kad untuk melihat apa yang termasuk dan harga setiap bahagian secara berasingan, jadi anda boleh kira sendiri jimatannya.',
     offersHowHeading: 'Satu mesej sahaja untuk menuntutnya',
     offersStep1Title: 'Pilih tawaran anda',
     offersStep1Body:
@@ -71,6 +71,9 @@ const ms: Dictionary = {
     offersStep3Body:
       'Anda akan terima balasan dengan temu janji anda, dan tawaran itu dicatat sebelum anda tiba. Tiada apa yang perlu dicetak, tiada kod untuk diingat.',
     offersWhoSuits: 'Sesuai untuk siapa',
+    offersGroupWebsiteOnlyTitle: 'Pakej khas laman web',
+    offersGroupWebsiteOnlyIntro:
+      'Perkhidmatan yang digabungkan pada satu harga, hanya melalui laman web ini. Setiap kad menunjukkan apa yang termasuk dan berapa harganya secara berasingan.',
     offersGroupYogaTitle: 'Kelas dan pakej yoga',
     offersGroupYogaIntro:
       'Chair Yoga dan Posture Core Yoga berjalan setiap Sabtu jam 4:00 petang, satu demi satu minggu demi minggu. Datang untuk satu kelas, atau beli pakej dan turunkan harga sekelas.',

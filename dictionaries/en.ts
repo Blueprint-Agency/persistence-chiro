@@ -53,7 +53,7 @@ const en: Dictionary = {
     offersEyebrow: 'Offers',
     offersTitle: 'Offers and class packs',
     offersIntro:
-      'Everything we price as a set, on one page. Each card lists what is included and what those parts cost on their own, so you can check the saving yourself. The ones marked website only are not available any other way.',
+      'Everything we price as a set, on one page. Open any card to see what is included and what those parts cost on their own, so you can check the saving for yourself.',
     offersHowHeading: 'Claiming one takes a single message',
     offersStep1Title: 'Pick your offer',
     offersStep1Body:
@@ -65,6 +65,9 @@ const en: Dictionary = {
     offersStep3Body:
       'You get a reply with your appointment, and the offer is noted on it before the visit. Nothing to print, no code to remember.',
     offersWhoSuits: 'Who it suits',
+    offersGroupWebsiteOnlyTitle: 'Website-only bundles',
+    offersGroupWebsiteOnlyIntro:
+      'Services paired at one price, available only through this website. Each card shows what is in it and what those parts would cost separately.',
     offersGroupYogaTitle: 'Yoga classes and packages',
     offersGroupYogaIntro:
       'Chair Yoga and Posture Core Yoga run on Saturdays at 4:00pm, one or the other week by week. Come for a single class, or buy a pack and bring the price per class down.',

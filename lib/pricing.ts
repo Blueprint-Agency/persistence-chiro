@@ -35,7 +35,7 @@ export type BundleLine = { label: string; price: number }
  * and as the dictionary suffix for its heading (`offersGroupYoga*`), so adding a group means
  * adding the key here, the three dictionary strings, and nothing else.
  */
-export type BundleGroup = 'yoga' | 'house-call'
+export type BundleGroup = 'website-only' | 'yoga' | 'house-call'
 
 export type Bundle = {
   slug:
@@ -109,14 +109,19 @@ export type Bundle = {
    */
   services: readonly string[]
   /**
-   * Offers that belong together on /offers. A group renders as one heading over a row of
-   * compact cards instead of one full-width card each — the client asked for that on
-   * 2026-09-22, once the three yoga prices made five full-width cards out of what a reader
-   * reads as a single choice ("which yoga option?"). Ungrouped bundles keep the wide card.
+   * Which row this offer sits in on /offers. A group renders as one heading over a row of
+   * compact cards; see components/BundleGroup.tsx.
    *
-   * A group is a set of prices for ONE thing that a visitor picks between. Do not reach for
-   * it to tidy a long page: the chiro and the sports bundles are separate decisions and each
-   * still earns its own card and its own photograph.
+   * EVERY PUBLISHED BUNDLE IS NOW GROUPED, as of 2026-09-23. The page began as one full-width
+   * card per offer, which at eight offers ran to about seven thousand pixels — the client
+   * asked for the cards shortened and the top three put "into multiple cards per row". The
+   * wide card is not gone: it is still what a SERVICE page renders, where there is one offer
+   * and all the room in the world for it. This field only decides the offers page's layout.
+   *
+   * `website-only` is the exception to "a group is one decision priced several ways", which is
+   * what `yoga` and `house-call` are. Its three members are separate decisions that share an
+   * eligibility fact, and its heading is what tells a reader they exist nowhere else — which is
+   * why `content.test.ts` asserts every member of it actually is `websiteExclusive`.
    */
   group?: BundleGroup
   /**
@@ -209,6 +214,7 @@ export const bundles: Bundle[] = [
       src: '/img/first-visit-consultation.webp',
       alt: 'A practitioner supporting a patient’s neck during an assessment at Persistence Chiropractic in Cheras, Kuala Lumpur',
     },
+    group: 'website-only',
     websiteExclusive: true,
     services: ['chiropractic-care', 'physiotherapy'],
     draft: false,
@@ -249,6 +255,7 @@ export const bundles: Bundle[] = [
       src: '/img/shockwave-session.webp',
       alt: 'Gloved clinician holding a shockwave applicator against a patient lower leg',
     },
+    group: 'website-only',
     websiteExclusive: true,
     services: ['sports-massage', 'sports-injury-rehabilitation'],
     /**
@@ -325,6 +332,7 @@ export const bundles: Bundle[] = [
       src: '/img/therapy-neck.webp',
       alt: 'Physiotherapist working on a seated patient neck and shoulder at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
     },
+    group: 'website-only',
     websiteExclusive: true,
     services: ['physiotherapy', 'yoga-classes'],
     /**
