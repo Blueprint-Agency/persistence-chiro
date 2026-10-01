@@ -95,6 +95,7 @@ const en: Dictionary = {
     goodFitIf: 'This is likely a good fit if…',
     notRightFitIf: 'It is likely not the right fit if…',
     choosingBetweenThem: 'Choosing between them',
+    tellingThemApart: 'Telling them apart',
     whereToGoNext: 'Where to go next',
     relatedConditionsAndServices: 'Related conditions and services',
     allOurServicesInCheras: 'All our services in Cheras',

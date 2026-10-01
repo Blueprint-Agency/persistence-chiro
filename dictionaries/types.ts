@@ -146,6 +146,7 @@ export type Dictionary = {
     goodFitIf: string
     notRightFitIf: string
     choosingBetweenThem: string
+    tellingThemApart: string
     whereToGoNext: string
     relatedConditionsAndServices: string
     allOurServicesInCheras: string

@@ -439,6 +439,25 @@ covered it, but the page had to answer "who teaches this" somewhere, so the FAQ 
 the profile is not published yet and to ask on WhatsApp. When a service arrives with no named
 deliverer, the honest FAQ answer is the placeholder, not a guessed role.
 
+**A refresh starts from GSC's page-level queries, not from the schedule's keyword (learned 2026-10-01, slipped disc / neck pain / migraine).**
+`content-schedule.md`, `kpi-keyword-map.md` and the page's own `targetKeyword` named three
+different keywords for the same page, and one of them measured 0/mo. Pull GSC queries filtered
+to the page URL before choosing: the slipped disc page was already earning impressions at
+positions 15 to 20 for a whole cluster of disc variants (bulging, prolapsed, protruded) that
+its title never named, and the migraine page ranked for "cervicogenic headache", not "migraine".
+Those queries are the cheapest wins a refresh has, and they decide what the title and new
+sections should say. An informational keyword on the schedule ("slipped disc remedy") belongs
+to a blog post, not to the condition page the schedule attached it to.
+
+**Condition pages now take a `comparison` table and FAQ `links` (same refresh).**
+The condition template had no table block and no in-answer links. `Condition.comparison`
+reuses the service `ComparisonTable` (now two to four columns, type in `lib/comparison.ts`),
+and a column `href` is how a "telling them apart" table carries links to sibling conditions.
+`faqs[].links` works exactly as on services, and may point at a published blog post.
+Editing clinical copy on a page with `lastReviewed` set makes that date a claim about copy
+the reviewer has not read: list the clinical changes for the client and move the date only
+once they confirm.
+
 ## Quick reference
 - Client: **Persistence Chiropractic** (single clinic, Cheras/Maluri, KL). NAP + CTAs: `lib/clinic.ts`.
 - Booking: SweetPew (`clinic.bookingUrl`). WhatsApp: `clinic.whatsappUrl`.

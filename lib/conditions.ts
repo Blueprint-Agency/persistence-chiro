@@ -11,6 +11,7 @@
  * indexed page.
  */
 import type { Locale } from './i18n.ts'
+import type { ComparisonData } from './comparison.ts'
 import { conditionsZh } from './conditions.zh.ts'
 import { conditionsMs } from './conditions.ms.ts'
 
@@ -56,7 +57,21 @@ export type Condition = {
    * language is already how the clinic describes its own practice in gonstead.ts.
    */
   redFlags: string[]
-  faqs: { q: string; a: string }[]
+  /**
+   * `links` wraps a phrase of the answer in an internal link, the same contract as
+   * `Service.faqs[].links`: the phrase must occur exactly once (content.test.ts checks it), and
+   * a target not live in this locale renders as plain text.
+   */
+  faqs: { q: string; a: string; links?: readonly { phrase: string; href: string }[] }[]
+
+  /**
+   * "Telling them apart" table, for a page whose reader is often unsure which of two to four
+   * neighbouring problems they have (disc in the back or the neck, migraine or a neck
+   * headache). A column `href` links to the sibling page that covers that problem in full.
+   *
+   * Optional and English-first: a locale without it renders the page exactly as before.
+   */
+  comparison?: ComparisonData
 
   /**
    * ---------------------------------------------------------------------------------------
@@ -245,16 +260,22 @@ export const conditions: Condition[] = [
   },
   {
     slug: 'slipped-disc',
-    title: 'Slipped Disc Care in Cheras, Kuala Lumpur',
-    metaTitle: 'Slipped Disc Care in Cheras, KL',
+    title: 'Slipped Disc in the Lumbar Region and Neck, Cheras KL',
+    metaTitle: 'Slipped Disc (Lower Back & Neck) Care, Cheras KL',
     metaDescription:
-      'Non-surgical slipped disc and herniated disc care in Cheras, Maluri. Gonstead assessment, X-ray analysis and a staged plan built around what it shows.',
-    targetKeyword: 'slipped disc treatment malaysia',
-    related: ['back-pain', 'sciatica'],
+      'Bulging, prolapsed or herniated disc in your lower back or neck? Non-surgical assessment and care in Cheras, Maluri, with X-ray and a staged plan.',
+    /**
+     * Was `slipped disc treatment malaysia`, which measures 0/mo. `slipped disc lumbar region`
+     * (590/mo, difficulty 10) is the tracked KPI keyword in kpi-keyword-map.md. The content
+     * schedule's `slipped disc remedy` (1,000/mo, difficulty 50, informational) is left for a
+     * blog post: a home-remedy searcher is not looking for a clinic page. Decided 2026-10-01.
+     */
+    targetKeyword: 'slipped disc lumbar region',
+    related: ['back-pain', 'sciatica', 'pinched-nerve'],
     helpedBy: ['physiotherapy', 'chiropractic-care'],
 
     intro:
-      '"Slipped disc" is the everyday name for a disc that has bulged or herniated. The soft centre of a spinal disc pushes outward against the tougher ring around it, sometimes far enough to press on a nearby nerve. Nothing has actually slipped out of place, which is why the term sounds more alarming than it needs to. Many discs settle with time and the right loading, and most people never need surgery. The plan depends on which level is involved and how the nerve is behaving, so that is what the first appointment sets out to establish.',
+      '"Slipped disc" is the everyday name for a disc that has bulged or herniated. The soft centre of a spinal disc pushes outward against the tougher ring around it, sometimes far enough to press on a nearby nerve. Nothing has actually slipped out of place, which is why the term sounds more alarming than it needs to. Most happen in the lumbar region, the lower back, where the spine carries the most load, and most of the rest in the neck. Many discs settle with time and the right loading, and most people never need surgery. The plan depends on which level is involved and how the nerve is behaving, so that is what the first appointment sets out to establish.',
     symptoms: [
       'Back pain with pain, tingling or numbness travelling into the buttock, leg or foot',
       'Pain that spikes when you cough, sneeze or strain',
@@ -311,7 +332,18 @@ export const conditions: Condition[] = [
       },
       {
         q: 'Is chiropractic adjustment safe with a herniated disc?',
-        a: 'It depends on the presentation. The assessment comes first for that reason. Some disc cases are suitable for adjustment, others need imaging or a medical opinion first, and the approach is adapted accordingly. Tell us about any numbness, weakness or bladder and bowel changes when you book.',
+        a: 'It depends on the presentation, which is why the assessment comes first. You may read that a disc should never be adjusted, or that any twisting technique is unsafe. The reality is less absolute. A Gonstead adjustment is specific to one segment and delivered by hand, the position is chosen for the case in front of us, and some disc presentations are better served by leaving the involved level alone, or by imaging or a medical opinion before anything else. X-ray, where indicated, helps rule out other causes before any adjustment. Tell us about any numbness, weakness or bladder and bowel changes when you book.',
+      },
+      {
+        q: 'Bulging, protruding, prolapsed or herniated: what does my scan report mean?',
+        a: 'These words describe how far the disc material has pushed outward. A bulge spreads a little beyond its usual edge all round, a protrusion or herniation pushes further out at one point, and an extrusion means material has broken through the outer wall. "Prolapsed" and "slipped" are everyday names for the same group. The word on the report matters less than how the nerve is behaving, and our post on bulging disc vs herniated disc goes through the terms in more detail.',
+        links: [
+          { phrase: 'bulging disc vs herniated disc', href: '/blog/bulging-disc-vs-herniated-disc' },
+        ],
+      },
+      {
+        q: 'What can I do at home for a slipped disc?',
+        a: 'Stay as active as you comfortably can, and break up long spells of sitting every 30 minutes or so. Notice which positions ease the leg or arm symptoms and which bring them on: lying on your back with your knees bent, or on your side with a pillow between your knees, suits many people. Hold off on heavy lifting and long forward bending until it settles. If the symptoms keep spreading further down the leg or arm, or any weakness appears, book in rather than waiting it out.',
       },
       {
         q: 'Do I need an MRI before coming in?',
@@ -364,7 +396,57 @@ export const conditions: Condition[] = [
         source: 'NICE guideline NG59, Low back pain and sciatica',
         url: 'https://www.nice.org.uk/guidance/ng59',
       },
+      {
+        claim:
+          'Herniated discs most often occur in the lower back, and most people feel better within a few weeks or months without surgery.',
+        source: 'American Academy of Orthopaedic Surgeons, OrthoInfo',
+        url: 'https://orthoinfo.aaos.org/en/diseases--conditions/herniated-disk-in-the-lower-back/',
+      },
     ],
+    comparison: {
+      heading: 'Slipped disc in the lumbar region or the neck: how they differ',
+      intro:
+        'The disc problem is the same in both places. Where it sits changes where you feel it, what aggravates it and which nerve is involved, which is why the assessment starts by finding the level.',
+      columns: ['Lumbar region (lower back)', { label: 'Neck', href: '/conditions/pinched-nerve' }],
+      rows: [
+        {
+          label: 'Where the disc usually is',
+          cells: [
+            'Most often the lowest two levels of the lower back, where the spine carries the most load',
+            'Most often the lower half of the neck',
+          ],
+        },
+        {
+          label: 'Where you feel it',
+          cells: [
+            'Low back pain, often with pain, tingling or numbness into the buttock, leg or foot',
+            'Neck pain, often with pain, tingling or numbness into the shoulder blade, arm or hand',
+          ],
+        },
+        {
+          label: 'What tends to aggravate it',
+          cells: [
+            'Long sitting, bending forward, lifting, coughing or sneezing',
+            'Looking down for long periods, sustained desk work, some head turns',
+          ],
+        },
+        {
+          label: 'Weakness to watch for',
+          cells: [
+            'A foot that drags, or difficulty lifting the toes or ankle',
+            'A weaker grip, or dropping things from one hand',
+          ],
+        },
+        {
+          label: 'When it is urgent',
+          cells: [
+            'Bladder or bowel changes, or numbness around the groin: seek emergency care',
+            'Clumsiness or unsteadiness in both hands or both legs: seek medical care promptly',
+          ],
+        },
+      ],
+      note: 'A table cannot tell you which level is involved, or whether your symptoms come from a disc at all. Plenty of leg and arm pain has other causes, and sorting that out is what the assessment is for.',
+    },
     lastReviewed: '2026-08-08',
     draft: false,
   },
@@ -620,11 +702,12 @@ export const conditions: Condition[] = [
   {
     slug: 'neck-pain',
     title: 'Neck Pain and Stiffness in Cheras, Kuala Lumpur',
-    metaTitle: 'Neck Pain & Stiffness Care in Cheras, KL',
+    metaTitle: 'Stiff Neck & Neck Pain Care in Cheras, KL',
     metaDescription:
-      'Neck pain, stiffness and tech neck in desk workers, assessed in Cheras, Maluri. Gonstead chiropractic, dry needling and practical ergonomic guidance.',
+      'Stiff neck after a desk day, or woke up unable to turn your head? Neck pain assessment and care in Cheras, Maluri, with Gonstead chiropractic and dry needling.',
     targetKeyword: 'stiffness neck pain',
-    related: ['migraine', 'scoliosis'],
+    // The hub of the neck cluster: every sibling a neck pain reader might actually have.
+    related: ['pinched-nerve', 'whiplash', 'tension-headache', 'migraine'],
     helpedBy: ['dry-needling', 'physiotherapy'],
 
     intro:
@@ -634,6 +717,7 @@ export const conditions: Condition[] = [
       'Tightness that eases on holiday or at the weekend and returns by Tuesday',
       'Headaches that begin at the back of the skull and wrap forward',
       'Reduced ability to turn your head fully to one side, or to check your blind spot when driving',
+      'Waking up with a stiff neck that will not turn one way',
       'A rounded upper back and head that sits forward of your shoulders in photographs',
       'Tingling or pins and needles into the shoulder blade or arm',
       'Clicking or grinding when you roll your neck',
@@ -695,6 +779,10 @@ export const conditions: Condition[] = [
         q: 'How should I set up my desk?',
         a: 'The short version: top of the screen roughly at eye level, forearms supported, feet flat, and a laptop raised onto a stand with a separate keyboard. No setup is good enough to sit in for eight unbroken hours, though. Stand and move every 30 to 45 minutes. We will go through your own setup with you during your visit.',
       },
+      {
+        q: 'I woke up with a stiff neck. What should I do?',
+        a: 'Keep it moving gently within what is comfortable rather than holding it still, and a warm or cold pack for short spells may help. Most of these settle within days to a few weeks. Avoid driving until you can turn your head far enough to check your blind spot. If it has not started easing within a week or two, keeps coming back, or arrives with arm symptoms, a fever or a severe headache, it is worth having it looked at.',
+      },
     ],
     /**
      * `stiffness neck pain` runs 1,600/mo in Malaysia at difficulty 22, the largest keyword
@@ -747,18 +835,74 @@ export const conditions: Condition[] = [
         source: 'NICE Clinical Knowledge Summaries, Neck pain',
         url: 'https://cks.nice.org.uk/topics/neck-pain-non-specific/',
       },
+      {
+        claim:
+          'Most neck pain lasts only a few weeks, and keeping the neck moving is generally advised over wearing a collar.',
+        source: 'NHS, Neck pain',
+        url: 'https://www.nhs.uk/symptoms/neck-pain-and-stiff-neck/',
+      },
     ],
+    comparison: {
+      heading: 'Stiff neck, pinched nerve, whiplash or a headache from the neck?',
+      intro:
+        'Neck pain tends to fall into a few common patterns, and each is looked after a little differently. This is a rough guide to which one you might be dealing with, and each column links to the page that covers it in full.',
+      columns: [
+        'Stiff or aching neck',
+        { label: 'Pinched nerve', href: '/conditions/pinched-nerve' },
+        { label: 'Whiplash', href: '/conditions/whiplash' },
+        { label: 'Headache from the neck', href: '/conditions/migraine' },
+      ],
+      rows: [
+        {
+          label: 'How it usually starts',
+          cells: [
+            'Gradually over a working week, or overnight from an awkward sleeping position',
+            'Often gradually, sometimes after a sudden movement or a lift',
+            'After a sudden jolt, most often a road accident or a fall',
+            'Builds through the day, often alongside a stiff neck',
+          ],
+        },
+        {
+          label: 'Where you feel it',
+          cells: [
+            'Base of the neck and across the tops of the shoulders',
+            'Neck, then into the shoulder blade, arm or hand on one side',
+            'Neck and upper back, sometimes with headache or dizziness',
+            'Base of the skull, spreading towards the temple or eye, usually on one side',
+          ],
+        },
+        {
+          label: 'Arm symptoms',
+          cells: [
+            'Usually none',
+            'Typical: pain, tingling, numbness or weakness in one arm',
+            'Sometimes',
+            'Usually none',
+          ],
+        },
+        {
+          label: 'What to do first',
+          cells: [
+            'Keep it moving gently, and book in if it is not easing after a week or two',
+            'Book an assessment, sooner if there is weakness or numbness',
+            'Get a medical check after any accident, then an assessment',
+            'Book an assessment, and see a doctor first for any sudden or severe headache',
+          ],
+        },
+      ],
+      note: 'Real necks do not always fit one column. A stiff neck and a headache often arrive together, and whiplash can irritate a nerve. The table tells you where to start reading; the assessment is what tells the patterns apart.',
+    },
     lastReviewed: '2026-08-08',
     draft: false,
   },
   {
     slug: 'migraine',
-    title: 'Migraine and Headache Care in Cheras, Kuala Lumpur',
-    metaTitle: 'Migraine & Headache Care in Cheras, KL',
+    title: 'Migraine Headache and Neck Headache in Cheras, Kuala Lumpur',
+    metaTitle: 'Migraine or Neck Headache? Assessment, Cheras KL',
     metaDescription:
-      'Migraine and headache assessment in Cheras, Maluri. Chiropractic is not the direct treatment, but a consultation can tell you whether your neck is involved.',
+      'Migraine, tension headache or one coming from your neck? A headache assessment in Cheras, Maluri that helps work out which, and when your doctor is the right call.',
     targetKeyword: 'migraine headache',
-    related: ['neck-pain', 'shoulder-imbalance'],
+    related: ['neck-pain', 'tension-headache', 'shoulder-imbalance'],
     helpedBy: ['chiropractic-care', 'physiotherapy'],
 
     intro:
@@ -816,6 +960,7 @@ export const conditions: Condition[] = [
       'A new headache beginning after the age of 50, or one that is steadily worsening over days and weeks',
       'Headache that is worse on lying down, coughing or straining, or that wakes you from sleep',
       'Headache alongside a history of cancer, a compromised immune system, or unexplained weight loss',
+      'A new or severe headache during pregnancy or in the weeks after giving birth',
     ],
     faqs: [
       {
@@ -837,6 +982,10 @@ export const conditions: Condition[] = [
       {
         q: 'Should I stop my migraine medication?',
         a: 'That is not our decision to make, and nothing we do should be taken as a reason to change it. Medication decisions sit with the doctor who prescribed it. Bring a list of what you are taking to your first visit so we have the full picture.',
+      },
+      {
+        q: 'Can taking painkillers often make headaches worse?',
+        a: 'It can. Medication overuse headache is a recognised condition in which regular use of headache medicines, on 10 or 15 or more days a month for over three months depending on the medicine, keeps the headaches going. If you are taking something for headaches on most days, raise it with your doctor rather than cutting down on your own.',
       },
     ],
     /**
@@ -888,7 +1037,66 @@ export const conditions: Condition[] = [
         source: 'World Health Organization',
         url: 'https://www.who.int/news-room/fact-sheets/detail/headache-disorders',
       },
+      {
+        claim:
+          'Medication overuse headache is classified as headache on 15 or more days a month that develops from regular overuse of acute headache medication for more than three months.',
+        source: 'International Classification of Headache Disorders, ICHD-3, 8.2',
+        url: 'https://ichd-3.org/8-headache-attributed-to-a-substance-or-its-withdrawal/8-2-medication-overuse-headache-moh/',
+      },
     ],
+    comparison: {
+      heading: 'Migraine, tension headache or a headache from the neck?',
+      intro:
+        'These three account for most of the recurring headaches people bring to a first visit, and they can feel alike. This is the textbook split, and the tension headache column links to its own page.',
+      columns: [
+        'Migraine',
+        { label: 'Tension headache', href: '/conditions/tension-headache' },
+        'Headache from the neck',
+      ],
+      rows: [
+        {
+          label: 'Where it is felt',
+          cells: [
+            'Often one side of the head, though it can be both',
+            'Both sides, like a band or a tight hat',
+            'One side, starting at the base of the skull and spreading forward',
+          ],
+        },
+        {
+          label: 'What it feels like',
+          cells: [
+            'Throbbing or pulsing, moderate to severe',
+            'A dull, steady pressure, mild to moderate',
+            'A steady ache that tracks with the neck',
+          ],
+        },
+        {
+          label: 'What comes with it',
+          cells: [
+            'Nausea, sensitivity to light and sound, sometimes a visual aura beforehand',
+            'Usually nothing else',
+            'Neck stiffness or a restricted turn on the same side',
+          ],
+        },
+        {
+          label: 'What brings it on',
+          cells: [
+            'Varies from person to person: sleep, hormones, missed meals, stress. Moving about makes it worse',
+            'Stress, long screen days, tired muscles',
+            'Neck positions, sustained desk work or driving',
+          ],
+        },
+        {
+          label: 'Who looks after it',
+          cells: [
+            'Your doctor or a neurologist',
+            'Often managed at home; we can assess whether the neck and upper back are adding to it',
+            'A neck assessment is relevant here, and this is where chiropractic fits',
+          ],
+        },
+      ],
+      note: 'Plenty of people have more than one kind, and the patterns overlap. A diagnosis of migraine belongs with your doctor. What a consultation here can do is check whether your neck is part of the picture.',
+    },
     lastReviewed: '2026-08-08',
     draft: false,
   },

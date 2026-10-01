@@ -129,6 +129,17 @@ test('no promissory medical claims in published copy', () => {
           ...c.redFlags,
           ...(c.qualifierConcerns ?? []),
           ...(c.citations ?? []).map((x) => x.claim),
+          ...(c.comparison
+            ? [
+                c.comparison.heading,
+                c.comparison.intro,
+                c.comparison.note,
+                ...c.comparison.columns.map((col) => (typeof col === 'string' ? col : col.label)),
+                ...c.comparison.rows.flatMap((r) =>
+                  'cells' in r ? [r.label, ...r.cells] : [r.label, r.a, r.b],
+                ),
+              ]
+            : []),
         ].join(' '),
       ] as [string, string],
       ...c.faqs.map((f) => [`conditions/${c.slug} faq`, `${f.q} ${f.a}`] as [string, string]),
@@ -261,6 +272,16 @@ test('every in-prose link phrase occurs exactly once in its body', () => {
         }
       }
     }
+    for (const c of conditionsFor(locale)) {
+      for (const faq of c.faqs) {
+        for (const link of faq.links ?? []) {
+          const count = faq.a.split(link.phrase).length - 1
+          if (count !== 1) {
+            hits.push(`[${locale}] conditions/${c.slug} "${faq.q}": phrase "${link.phrase}" occurs ${count}x`)
+          }
+        }
+      }
+    }
   }
   assert.deepEqual(hits, [], `in-prose link problem(s):\n  ${hits.join('\n  ')}`)
 })
@@ -281,9 +302,24 @@ test('every in-prose link points at a published route', () => {
     ...staticRoutes,
     ...conditions.map((c) => `/conditions/${c.slug}`),
     ...services.map((m) => `/services/${m.slug}`),
+    // Condition FAQs and comparison columns may point a reader at the blog post that owns a
+    // topic in depth (e.g. the disc-terminology post), so published posts count too.
+    ...publishedPosts().map((p) => `/blog/${p.slug}`),
   ])
   const hits: string[] = []
   for (const locale of LOCALES) {
+    for (const c of conditionsFor(locale)) {
+      const targets = [
+        ...c.faqs.flatMap((f) => (f.links ?? []).map((l) => l.href)),
+        ...(c.comparison?.columns ?? []).flatMap((col) =>
+          typeof col === 'object' && col.href ? [col.href] : [],
+        ),
+      ]
+      for (const href of targets) {
+        if (!published.has(href)) hits.push(`[${locale}] conditions/${c.slug} -> ${href}`)
+        if (href === `/conditions/${c.slug}`) hits.push(`[${locale}] conditions/${c.slug} links to itself`)
+      }
+    }
     for (const s of servicesFor(locale)) {
       for (const faq of s.faqs) {
         for (const link of faq.links ?? []) {

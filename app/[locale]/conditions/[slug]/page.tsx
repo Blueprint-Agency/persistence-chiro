@@ -19,7 +19,9 @@ import {
 import { pageMetadata } from '@/lib/seo'
 import { CheckIcon, CtaBand, Eyebrow, WhatsAppButton, Vertebrae } from '@/components/ui'
 import {
+  ComparisonTable,
   KeyTakeaways,
+  linkifyBody,
   References,
   ReviewedBy,
   StickyCta,
@@ -270,7 +272,9 @@ export default async function ConditionPage({ params }: Props) {
                           +
                         </span>
                       </summary>
-                      <p className="mt-4 leading-relaxed text-ink-muted">{faq.a}</p>
+                      <p className="mt-4 leading-relaxed text-ink-muted">
+                        {linkifyBody(locale, faq.a, faq.links)}
+                      </p>
                     </details>
                   ))}
                 </div>
@@ -339,6 +343,17 @@ export default async function ConditionPage({ params }: Props) {
           </aside>
         </div>
       </article>
+
+      {/* Full width rather than in the article column: a three or four way table does not fit
+          the narrow column at a readable size. Placed after the FAQ so the symptom list still
+          leads, and before the qualifier so a reader who has just worked out which problem
+          they have meets the way to ask about it next. */}
+      <ComparisonTable
+        dict={dict}
+        data={condition.comparison}
+        locale={locale}
+        eyebrow={dict.page.tellingThemApart}
+      />
 
       {/* ----------------------------------------------------------- Qualifier */}
       {/* Sits after the article rather than mid-grid: the symptom list is the recognition

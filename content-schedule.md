@@ -33,9 +33,9 @@ Keep the ID column. It is how the tracker matches rows. A new row needs a new, u
 | pc013 | Areas We Serve (Greater KL) page | chiropractor near me | Other | `areas-we-serve` | Not started | /locate-us exists but is a directions page, not an areas page |
 | pc014 | Chiropractor vs Doctor: When to See Which | when to see a chiropractor | Blog | `chiropractor-vs-doctor` | Not started |  |
 | pc015 | Dry Needling page (complete "coming soon" page) | dry needling kl | Service |  | Built | /services/dry-needling, full page in EN/ZH/MS |
-| pc016 | Slipped Disc page (refresh + internal links) | slipped disc remedy | Condition |  | Not started | Page exists at /conditions/slipped-disc; refresh not yet verified |
-| pc017 | Neck Pain page (refresh + internal links) | neck pain | Condition |  | Not started | Page exists at /conditions/neck-pain; refresh not yet verified |
-| pc018 | Migraine page (refresh + internal links) | migraine | Condition |  | Not started | Page exists at /conditions/migraine; refresh not yet verified |
+| pc016 | Slipped Disc page (refresh + internal links) | slipped disc remedy | Condition |  | Built | Refreshed 2026-10-01: retargeted to "slipped disc lumbar region" (590/mo; "slipped disc remedy" left for a blog post), lower back vs neck table, disc terms and at home FAQs, links to pinched nerve and the disc terms post. Awaiting Valerie's re-review |
+| pc017 | Neck Pain page (refresh + internal links) | neck pain | Condition |  | Built | Refreshed 2026-10-01: stiff neck vs pinched nerve vs whiplash vs neck headache table, woke up stiff FAQ, now links all four neck siblings. Keyword kept as "stiffness neck pain". Awaiting Valerie's re-review |
+| pc018 | Migraine page (refresh + internal links) | migraine | Condition |  | Built | Refreshed 2026-10-01: migraine vs tension vs neck headache table, medication overuse FAQ, pregnancy red flag, links tension headache. Keyword kept as "migraine headache". Awaiting Valerie's re-review |
 
 ## Month 2: Condition Pillars & Comparisons
 

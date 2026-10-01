@@ -105,6 +105,7 @@ const zh: Dictionary = {
     goodFitIf: '以下情况可能适合……',
     notRightFitIf: '以下情况可能不适合……',
     choosingBetweenThem: '如何选择',
+    tellingThemApart: '如何分辨',
     whereToGoNext: '接下来可以看看',
     relatedConditionsAndServices: '相关症状与服务',
     allOurServicesInCheras: '查看 Cheras 的所有服务',

@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { credentialsText, googleReviews, practitionerBySlug } from '@/lib/clinic'
 import { accreditations } from '@/lib/home'
 import type { Outcome } from '@/lib/services'
+import type { ComparisonData, ComparisonRow } from '@/lib/comparison'
 import { type Locale, pathFor, shortTitle } from '@/lib/i18n'
 import { pathExistsIn } from '@/lib/locale-availability'
 import type { Dictionary } from '@/dictionaries/types'
@@ -284,7 +285,7 @@ export function KeyTakeaways({
  * `content.test.ts` is what fails the build, which keeps a copy edit from taking the site
  * down while still making the mistake impossible to ship unnoticed.
  */
-function linkifyBody(
+export function linkifyBody(
   locale: Locale,
   body: string,
   links?: readonly { phrase: string; href: string }[],
@@ -716,7 +717,8 @@ export function WhereToGoNext({
 }
 
 /**
- * Side-by-side comparison of two disciplines the clinic actually offers.
+ * Side-by-side comparison: two disciplines the clinic offers (service pages), or two to four
+ * conditions a reader is trying to tell apart (condition pages).
  *
  * The table scrolls inside its own container rather than letting the page scroll sideways —
  * a full row of prose will not fit a phone at a readable size, and a body that pans
@@ -725,44 +727,62 @@ export function WhereToGoNext({
  * `note` renders after the table and is not optional in the type: a comparison that stops at
  * the last row invites the reader to total up the columns and pick a winner, which is not
  * what an assessment led clinic can honestly tell them to do.
+ *
+ * A column `href` that is not live in this locale renders as plain text, the same "skip
+ * rather than 404" contract `linkifyBody` keeps.
  */
 export function ComparisonTable({
   dict,
   data,
+  locale,
+  eyebrow,
 }: {
   dict: Dictionary
-  data?: {
-    heading: string
-    intro: string
-    columns: readonly [string, string]
-    rows: readonly { label: string; a: string; b: string }[]
-    note: string
-  }
+  data?: ComparisonData
+  locale?: Locale
+  eyebrow?: string
 }) {
   if (!data) return null
+  const columns = data.columns.map((c) => (typeof c === 'string' ? { label: c } : c))
+  const cellsOf = (row: ComparisonRow) => ('cells' in row ? row.cells : [row.a, row.b])
+  // The label column keeps its 22%; the rest is shared evenly, so a four-way table gets
+  // narrower columns rather than a wider page.
+  const colWidth = `${78 / columns.length}%`
+  const minWidth = columns.length > 2 ? `${14 + columns.length * 12}rem` : '42rem'
+
   return (
     <section className="border-t border-line bg-brand-aqua/40">
       <div className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
-        <Eyebrow>{dict.page.choosingBetweenThem}</Eyebrow>
+        <Eyebrow>{eyebrow ?? dict.page.choosingBetweenThem}</Eyebrow>
         <h2 className="mt-5 max-w-4xl text-3xl font-extrabold leading-tight sm:text-4xl">
           {data.heading}
         </h2>
         <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink-muted">{data.intro}</p>
 
         <div className="mt-10 overflow-x-auto">
-          <table className="w-full min-w-[42rem] border-collapse text-left">
+          <table className="w-full border-collapse text-left" style={{ minWidth }}>
             <thead>
               <tr className="border-b-2 border-brand-slate/20">
                 <th scope="col" className="w-[22%] py-4 pr-6">
                   <span className="sr-only">What is being compared</span>
                 </th>
-                {data.columns.map((c) => (
+                {columns.map((c) => (
                   <th
-                    key={c}
+                    key={c.label}
                     scope="col"
-                    className="w-[39%] py-4 pr-6 text-base font-bold text-ink"
+                    style={{ width: colWidth }}
+                    className="py-4 pr-6 text-base font-bold text-ink"
                   >
-                    {c}
+                    {c.href && locale && pathExistsIn(locale, c.href) ? (
+                      <Link
+                        href={pathFor(locale, c.href)}
+                        className="text-brand-slate underline underline-offset-4 hover:text-ink"
+                      >
+                        {c.label}
+                      </Link>
+                    ) : (
+                      c.label
+                    )}
                   </th>
                 ))}
               </tr>
@@ -776,8 +796,11 @@ export function ComparisonTable({
                   >
                     {row.label}
                   </th>
-                  <td className="py-5 pr-6 leading-relaxed text-ink-muted">{row.a}</td>
-                  <td className="py-5 pr-6 leading-relaxed text-ink-muted">{row.b}</td>
+                  {cellsOf(row).map((cell, i) => (
+                    <td key={i} className="py-5 pr-6 leading-relaxed text-ink-muted">
+                      {cell}
+                    </td>
+                  ))}
                 </tr>
               ))}
             </tbody>

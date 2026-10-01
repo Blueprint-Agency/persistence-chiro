@@ -101,6 +101,7 @@ const ms: Dictionary = {
     goodFitIf: 'Ini mungkin sesuai untuk anda jika…',
     notRightFitIf: 'Ini mungkin tidak sesuai untuk anda jika…',
     choosingBetweenThem: 'Memilih antara kedua-duanya',
+    tellingThemApart: 'Cara membezakannya',
     whereToGoNext: 'Ke mana seterusnya',
     relatedConditionsAndServices: 'Simptom dan perkhidmatan berkaitan',
     allOurServicesInCheras: 'Semua perkhidmatan kami di Cheras',
