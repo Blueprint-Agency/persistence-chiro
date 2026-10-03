@@ -558,7 +558,7 @@ all three members. `content.test.ts` asserts every member of that group really i
 
 If the client ever wants the wide format back on `/offers`, it is a `group` field away.
 
-## 14. Sciatica exercises post — IMAGES PARTLY IN 2026-10-03, two frames and a review outstanding
+## 14. Sciatica exercises post — IMAGES IN 2026-10-03, desk frame is a stand-in, review outstanding
 
 `/blog/sciatica-exercises` (schedule pc032) now carries an AI-generated hero (glowing sciatic
 nerve path, same family as the posture page's glow frames) and five exercise figures via
@@ -566,13 +566,11 @@ nerve path, same family as the posture page's glow frames) and five exercise fig
 generated on Higgsfield from prompts written in-session, **not photographed at this clinic**, so
 no alt text carries the Cheras modifier (same rule as the stock service frames).
 
-**Still missing, both rejected on review for the wrong pose:**
-- **Knee to chest.** The first render rested the lifted foot on the other knee, which made it a
-  second figure-4. Regenerate with one knee drawn up, the other foot flat, legs not crossed.
-- **Seated figure-4 at a desk.** The first render crossed knee over knee in heels. Regenerate with
-  the ankle resting on the opposite knee and a forward lean from the hips.
-When they arrive: convert to WebP in `public/img/` as `sciatica-ex-knee-to-chest.webp` and
-`sciatica-ex-desk-figure-4.webp`, and add a `<PostFigure>` under each H3.
+**Knee to chest added 2026-10-03** on the third render (other leg straight, so the lifted foot
+has nothing to rest on). **The desk frame is a setting shot, not the stretch:** three renders of
+the seated figure-4 all crossed knee over knee, and the user chose to use the last one anyway
+(`sciatica-ex-desk.webp`). Its alt text describes the workstation only. A correct render
+(ankle on the opposite knee, shin horizontal, forward lean) can replace it file for file.
 
 **Resolution:** the exercise frames came in at 500x500. `<PostFigure>` caps display at the
 source width so they are never stretched; a 1000px re-export would look sharper on phones.

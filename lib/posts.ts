@@ -156,7 +156,9 @@ export const posts: Post[] = [
     // Hero and exercise figures are AI-generated (Higgsfield, 2026-10-03, prompts written to
     // match the posture page's "glow" frames), NOT photographs of this clinic, so no alt text
     // carries the Cheras modifier. Same rule as the stock frames on the service pages.
-    // Knee to chest and the desk figure-4 frames are still missing: see OPEN-ITEMS 14.
+    // The desk frame (sciatica-ex-desk.webp) shows the workstation, NOT the seated figure-4:
+    // three renders could not produce the pose, and the user chose to use it as a setting
+    // shot. Its alt text describes only what is in it. Swap it if a correct render arrives.
     slug: 'sciatica-exercises',
     title: 'Sciatica Exercises: 7 Stretches to Try at Home',
     description:
