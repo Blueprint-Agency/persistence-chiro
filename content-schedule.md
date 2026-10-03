@@ -43,7 +43,7 @@ Keep the ID column. It is how the tracker matches rows. A new row needs a new, u
 |---|---|---|---|---|---|---|
 | pc019 | Spinal Stenosis page | spinal stenosis | Condition | `spinal-stenosis` | Not started |  |
 | pc020 | Spondylolisthesis page | spondylolisthesis | Condition | `spondylolisthesis` | Not started |  |
-| pc021 | Upper Back Pain page | upper back pain | Condition | `upper-back-pain` | Not started |  |
+| pc021 | Upper Back Pain page | upper back pain | Condition | `upper-back-pain` | Dropped | Folded into /conditions/back-pain (pc033, 2026-10-03): no measured demand for "upper back pain" in Malaysia and no GSC queries; between the shoulder blades is also covered by /blog/tech-neck |
 | pc022 | Carpal Tunnel Syndrome page | carpal tunnel syndrome | Condition | `carpal-tunnel-syndrome` | Not started |  |
 | pc023 | Frozen Shoulder page | frozen shoulder | Condition | `frozen-shoulder` | Not started |  |
 | pc024 | Text Neck / Tech Neck page | text neck | Blog | `tech-neck` | Built | /blog/tech-neck (2026-10-03). Built as a blog post, not a condition page (informational SERP; a condition page would overlap /conditions/neck-pain). Targets "tech neck" (590/mo) over "text neck" (170/mo) |
@@ -55,7 +55,7 @@ Keep the ID column. It is how the tracker matches rows. A new row needs a new, u
 | pc030 | Tit Tar vs Chiropractic | tit tar vs chiropractic | Blog | `tit-tar-vs-chiropractic` | Built | /blog/tit-tar-vs-chiropractic (2026-10-02). Targets "tit tar" (1,000/mo) as primary; fair comparison, Act 775 practice areas, no price row |
 | pc031 | Lower Back Pain Exercises & Relief | lower back pain exercises | Blog | `lower-back-pain-exercises` | Not started |  |
 | pc032 | Sciatica Exercises & Stretches | sciatica exercises | Blog | `sciatica-exercises` | Built | /blog/sciatica-exercises (2026-10-03). Exercise to cause table and stop rule; no exercise photos yet (OPEN-ITEMS 14) |
-| pc033 | Back Pain page (refresh + split Upper Back) | lower back pain | Condition |  | Not started | Page exists at /conditions/back-pain; refresh not yet verified |
+| pc033 | Back Pain page (refresh + split Upper Back) | lower back pain | Condition |  | Built | Refreshed 2026-10-03: GSC showed 0 impressions here while the homepage ranks 3 to 6 for back pain searches, so the homepage keeps those and this page goes deeper. Upper back folded in (not split): lower vs upper back vs sciatica vs slipped disc table, upper back cause, symptom and red flag, three FAQs linking tech neck and slipped disc. Awaiting Valerie re-review |
 | pc034 | Scoliosis page (refresh + internal links) | scoliosis | Condition |  | Not started | Page exists at /conditions/scoliosis; refresh not yet verified |
 | pc035 | Sciatica page (refresh + internal links) | sciatica treatment malaysia | Condition |  | Built | Refreshed 2026-10-03 from GSC page queries: retargeted to "sciatica treatment kl" (81 impressions, pos 35; "malaysia" had 3), "sciatic nerve pain" in title and H1, sciatica vs hip vs lower back table, specialist, physio and piriformis FAQs, links the exercises post. Awaiting Valerie re-review |
 | pc036 | Hip Pain page (add "vs sciatica" section) | hip pain | Condition |  | Not started | Page exists at /conditions/hip-pain; refresh not yet verified |

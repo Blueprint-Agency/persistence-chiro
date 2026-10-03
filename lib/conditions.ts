@@ -137,16 +137,21 @@ export type Condition = {
 export const conditions: Condition[] = [
   {
     slug: 'back-pain',
-    title: 'Back Pain Care in Cheras, Kuala Lumpur',
-    metaTitle: 'Back Pain Care in Cheras, KL',
+    title: 'Lower and Upper Back Pain Care in Cheras, Kuala Lumpur',
+    metaTitle: 'Lower & Upper Back Pain Care in Cheras, KL',
     metaDescription:
-      'Gonstead chiropractic for lower and upper back pain in Cheras, Maluri. Segment-by-segment assessment, adjustment and rehab from registered chiropractors.',
+      'Lower back ache after sitting, or stiffness between the shoulder blades? Back pain assessment and care in Cheras, Maluri, with Gonstead chiropractic and rehab.',
+    // Refreshed 2026-10-03 (schedule pc033). GSC: this page earned no impressions in 90 days
+    // while the homepage ranked 3 to 6 for "back pain", "back pain treatment near me" and
+    // "back treatment". The homepage is left to keep those; this page is the in-depth one.
+    // Upper back folded in rather than split out (pc021 dropped): no measured demand for
+    // "upper back pain" in Malaysia and no GSC queries for it.
     targetKeyword: 'back pain treatment kl',
-    related: ['slipped-disc', 'sciatica'],
+    related: ['slipped-disc', 'sciatica', 'hip-pain', 'shoulder-imbalance'],
     helpedBy: ['physiotherapy', 'chiropractic-care'],
 
     intro:
-      'Most back pain is mechanical. The joints, discs and muscles of the spine stop moving the way they should, and the tissue around them gets irritated. It is very common, and it rarely means something is seriously wrong. Most of it settles without surgery. It is still worth finding out precisely what is going on rather than guessing at it.',
+      'Most back pain is mechanical. The joints, discs and muscles of the spine stop moving the way they should, and the tissue around them gets irritated. That is as true of a lower back that aches after a day in the chair as of an upper back that stiffens between the shoulder blades after hours on a laptop. It is very common, and it rarely means something is seriously wrong. Most of it settles without surgery. It is still worth finding out precisely what is going on rather than guessing at it.',
     symptoms: [
       'A dull ache low in the back that worsens through the day or after sitting',
       'Sharp pain on one particular movement, such as bending, twisting or standing up from a chair',
@@ -154,6 +159,7 @@ export const conditions: Condition[] = [
       'Pain that spreads into the buttock or thigh',
       'Difficulty standing straight, or a sense that your back is "locked"',
       'Muscle spasm on one side of the spine',
+      'Stiffness or a burning ache between the shoulder blades after long hours at a screen',
     ],
     causes: [
       {
@@ -167,6 +173,10 @@ export const conditions: Condition[] = [
       {
         heading: 'Joint restriction',
         body: 'When one spinal segment stops moving properly, the segments above and below compensate by moving more. Over time those neighbouring joints become irritated. Finding the restricted segment is what the Gonstead assessment is for.',
+      },
+      {
+        heading: 'Upper back stiffness from screen work',
+        body: 'The middle of the spine, between the shoulder blades, is built to rotate and extend, and long hours hunched over a laptop or phone ask it to do neither. The joints there stiffen, the muscles between the shoulder blades tire, and the ache often travels up into the neck. It is assessed segment by segment in the same way as the lower back.',
       },
       {
         heading: 'Deconditioning',
@@ -193,6 +203,7 @@ export const conditions: Condition[] = [
       'Back pain following a significant fall or accident',
       'Unexplained weight loss, fever, or night pain that wakes you',
       'A history of cancer, osteoporosis, or long-term steroid use alongside new back pain',
+      'Upper back pain together with chest pain, shortness of breath or sweating',
     ],
     faqs: [
       {
@@ -206,6 +217,20 @@ export const conditions: Condition[] = [
       {
         q: 'Should I rest or keep moving?',
         a: 'For most mechanical back pain, gentle movement helps more than bed rest. Light walking stimulates blood flow and stops the area stiffening further. Avoid movements that clearly aggravate it, and hold off on vigorous exercise for a few days after an adjustment.',
+      },
+      {
+        q: 'Is upper back pain different from lower back pain?',
+        a: 'Often, yes. Lower back pain tends to come from long sitting, bending and lifting, and can spread into the buttock or leg. Upper back pain, between the shoulder blades, is more often tied to hours at a screen and usually travels up into the neck and shoulders instead. Upper back pain that comes with chest pain or shortness of breath is a different matter and needs a doctor first.',
+      },
+      {
+        q: 'Why does my upper back ache after a day on my laptop or phone?',
+        a: 'Hours of looking down keep the joints between the shoulder blades still and the muscles around them working without a break. Raising the screen and moving every half hour usually helps. Our post on tech neck covers the setup and four simple exercises.',
+        links: [{ phrase: 'tech neck', href: '/blog/tech-neck' }],
+      },
+      {
+        q: 'Is it just back pain, or could it be a slipped disc?',
+        a: 'Most back pain is not a disc problem. A disc becomes more likely when the pain shoots down one leg past the knee, or comes with tingling, numbness or weakness in the leg. Our slipped disc page goes through those signs, and the assessment is what tells them apart.',
+        links: [{ phrase: 'slipped disc page', href: '/conditions/slipped-disc' }],
       },
       {
         q: 'Is chiropractic safe if my back pain is severe?',
@@ -255,6 +280,56 @@ export const conditions: Condition[] = [
         url: 'https://www.nice.org.uk/guidance/ng59',
       },
     ],
+    comparison: {
+      heading: 'Lower back pain, upper back pain, sciatica or a slipped disc?',
+      intro:
+        'Back pain falls into a few common patterns, and each is looked after a little differently. This is a rough guide to which one you might be dealing with, and the linked columns go to the page that covers it in full.',
+      columns: [
+        'Lower back pain',
+        'Upper back pain',
+        { label: 'Sciatica', href: '/conditions/sciatica' },
+        { label: 'Slipped disc', href: '/conditions/slipped-disc' },
+      ],
+      rows: [
+        {
+          label: 'Where you feel it',
+          cells: [
+            'Across the lower back, sometimes into the buttock',
+            'Between the shoulder blades, often up into the neck',
+            'Buttock and down the back of one leg, often past the knee',
+            'Lower back or neck, often with pain into one leg or arm',
+          ],
+        },
+        {
+          label: 'Often linked to',
+          cells: [
+            'Long sitting, bending and lifting',
+            'Long hours at a laptop or phone',
+            'An irritated nerve, from a disc, a tight buttock muscle or a narrowed canal',
+            'Repeated bending or a sudden lift',
+          ],
+        },
+        {
+          label: 'Tingling or numbness',
+          cells: [
+            'Usually none',
+            'Usually none',
+            'Common, in the calf, foot or toes',
+            'Common when a nerve is involved',
+          ],
+        },
+        {
+          label: 'What to do first',
+          cells: [
+            'Keep moving gently, and book in if it is not easing after a week or two',
+            'Change your screen setup and move more; book in if it keeps returning',
+            'Book an assessment, sooner if a leg is weak or numb',
+            'Book an assessment, and see a doctor the same day for any bladder or bowel change',
+          ],
+        },
+      ],
+      note: 'Real backs overlap. A stiff lower back and sciatica often arrive together, and a disc is one of the things that can cause sciatica. The table tells you where to start reading; the assessment is what tells them apart.',
+    },
     lastReviewed: '2026-08-08',
     draft: false,
   },
