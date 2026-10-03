@@ -763,7 +763,7 @@ export const conditions: Condition[] = [
   },
   {
     slug: 'neck-pain',
-    title: 'Neck Pain and Stiffness in Cheras, Kuala Lumpur',
+    title: 'Neck Pain and Stiffness Care in Cheras, Kuala Lumpur',
     metaTitle: 'Stiff Neck & Neck Pain Care in Cheras, KL',
     metaDescription:
       'Stiff neck after a desk day, or woke up unable to turn your head? Neck pain assessment and care in Cheras, Maluri, with Gonstead chiropractic and dry needling.',

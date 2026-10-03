@@ -66,6 +66,88 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    // Month 2 content schedule item pc024, scheduled as a condition page and built as a blog
+    // post by user decision (2026-10-03): the SERP is entirely informational (Physiopedia,
+    // Yale, WebMD, a PMC review), and a condition page would split desk and phone neck pain
+    // searches with /conditions/neck-pain, whose FAQ already calls tech neck "an informal
+    // term, not a medical diagnosis". Targets "tech neck" (590/mo, SD 30, Ubersuggest
+    // Malaysia) over the schedule's "text neck" (170/mo). Angle: what the research actually
+    // shows, against competitors' unsourced "your head weighs 60 pounds" claims, which are
+    // deliberately not repeated here. No heroImage: the posture photographs are stock.
+    slug: 'tech-neck',
+    title: 'Tech Neck: What It Is and What Actually Helps',
+    description:
+      'Tech neck, or text neck, is neck and shoulder ache from long hours looking down at screens. What the research says, and what helps, from a Cheras clinic.',
+    datePublished: '2026-10-03',
+    author: 'Persistence Chiropractic Care',
+    linksTo: 'neck-pain',
+    keyTakeaways: [
+      {
+        q: 'What is tech neck?',
+        a: 'Tech neck, or text neck, is an informal name for the neck, shoulder and upper back ache that builds up from long hours looking down at a phone, tablet or laptop. It describes a pattern rather than being a medical diagnosis.',
+      },
+      {
+        q: 'Does using a phone cause neck pain?',
+        a: 'The evidence is weaker than most articles suggest. A systematic review found only limited evidence linking phone and tablet use with neck symptoms, and a study of young adults found no link between texting posture and neck pain.',
+      },
+      {
+        q: 'What helps tech neck most?',
+        a: 'Raising the screen towards eye level, changing position every 30 to 45 minutes, and a few simple exercises such as chin tucks and shoulder blade squeezes. Long periods of stillness seem to matter as much as the angle of your neck.',
+      },
+      {
+        q: 'How is tech neck different from a pinched nerve?',
+        a: 'Tech neck usually stays in the neck, shoulders and upper back. Pain, tingling, numbness or weakness travelling into one arm points more towards an irritated nerve and is worth having assessed.',
+      },
+      {
+        q: 'When should I get tech neck checked?',
+        a: 'If it has not eased after a week or two of better habits, keeps coming back, spreads into an arm, or comes with worsening headaches, or after a fall or road accident.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Is tech neck permanent?',
+        a: 'Usually not. For most people it is muscle and joint discomfort that eases as screen habits change and the neck gets moving again. Long standing stiffness can take longer to change, which is when an assessment and a structured exercise plan tend to be worth it.',
+      },
+      {
+        q: 'Can tech neck give you a hump at the base of the neck?',
+        a: 'A rounded upper back and a forward head are common in people who spend long hours at screens, and that can make the base of the neck look more prominent. A hump that is fixed and does not straighten when you stand tall, especially in older adults, can have other causes such as changes in the bones, and is worth having checked rather than assumed to be posture.',
+      },
+      {
+        q: 'Do posture correctors help with tech neck?',
+        a: 'A brace can remind you to sit up for a while, but it does not build the strength and endurance needed to hold a better position on your own. Regular movement breaks and exercises for the neck and upper back tend to be a better use of the money.',
+      },
+      {
+        q: 'Can children get tech neck?',
+        a: 'Children and teenagers use screens for long stretches too, and can get sore necks from it. Interestingly, research has not found the same link between a forward head and neck pain in teenagers that it has in adults. Screen breaks and holding devices higher are sensible habits at any age.',
+      },
+      {
+        q: 'How long does tech neck take to ease?',
+        a: 'Mild cases often settle within a week or two once the setup and habits change. If it has gone on for months, or keeps returning, it generally takes longer, and finding out what is driving it is a better next step than waiting.',
+      },
+    ],
+    citations: [
+      {
+        claim:
+          'A systematic review of 45 studies found limited evidence that mobile touch screen device use, including the amount of use and the positions used, is associated with musculoskeletal symptoms, mainly because of low quality studies.',
+        source: 'Toh, Coenen, Howie & Straker (2017), PLOS ONE',
+        url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC5546699/',
+      },
+      {
+        claim:
+          'A cross-sectional study of 150 young adults aged 18 to 21 found no association between neck posture while texting on a mobile phone and neck pain.',
+        source: 'Damasceno et al. (2018), European Spine Journal',
+        url: 'https://pubmed.ncbi.nlm.nih.gov/29306972/',
+      },
+      {
+        claim:
+          'A systematic review and meta-analysis found adults with neck pain showed more forward head posture than adults without it, with forward head posture correlated with pain and disability in adults, but no such association for most neck pain measures in adolescents.',
+        source: 'Mahmoud et al. (2019), Current Reviews in Musculoskeletal Medicine',
+        url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC6942109/',
+      },
+    ],
+    draft: false,
+  },
+  {
     // Month 2 content schedule item pc032, built via the persistence-content-builder skill.
     // Targets "sciatica exercises" (1,300/mo, SD 48, Ubersuggest Malaysia locId 2458). Page
     // one is all international publishers (NHS, HSS, Harvard, Healthline), none of which

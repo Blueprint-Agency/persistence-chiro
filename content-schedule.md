@@ -46,7 +46,7 @@ Keep the ID column. It is how the tracker matches rows. A new row needs a new, u
 | pc021 | Upper Back Pain page | upper back pain | Condition | `upper-back-pain` | Not started |  |
 | pc022 | Carpal Tunnel Syndrome page | carpal tunnel syndrome | Condition | `carpal-tunnel-syndrome` | Not started |  |
 | pc023 | Frozen Shoulder page | frozen shoulder | Condition | `frozen-shoulder` | Not started |  |
-| pc024 | Text Neck / Tech Neck page | text neck | Condition | `text-neck` | Not started |  |
+| pc024 | Text Neck / Tech Neck page | text neck | Blog | `tech-neck` | Built | /blog/tech-neck (2026-10-03). Built as a blog post, not a condition page (informational SERP; a condition page would overlap /conditions/neck-pain). Targets "tech neck" (590/mo) over "text neck" (170/mo) |
 | pc025 | Slipped Disc vs Sciatica | slipped disc vs sciatica | Blog | `slipped-disc-vs-sciatica` | Not started |  |
 | pc026 | Slipped Disc vs Herniated Disc | slipped disc vs herniated disc | Blog | `slipped-disc-vs-herniated-disc` | Not started | Overlaps /blog/bulging-disc-vs-herniated-disc; check before writing |
 | pc027 | Sciatica vs Piriformis Syndrome | sciatica vs piriformis syndrome | Blog | `sciatica-vs-piriformis-syndrome` | Not started |  |
