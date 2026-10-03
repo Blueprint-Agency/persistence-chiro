@@ -558,19 +558,28 @@ all three members. `content.test.ts` asserts every member of that group really i
 
 If the client ever wants the wide format back on `/offers`, it is a `group` field away.
 
-## 14. Sciatica exercises post — BUILT 2026-10-03, needs exercise photography and a review
+## 14. Sciatica exercises post — IMAGES PARTLY IN 2026-10-03, two frames and a review outstanding
 
-`/blog/sciatica-exercises` (schedule pc032) ships with written steps only and **no
-`heroImage`**. Every competitor on that page one shows the moves (NHS video, Healthline GIFs,
-Harvard drawings), and that is the one gap row we lose. The only exercise photographs in
-`public/img` (`physio-tailored-exercise.webp`, `physio-house-call-hero.webp`) are stock, not
-this clinic, so neither was reused.
+`/blog/sciatica-exercises` (schedule pc032) now carries an AI-generated hero (glowing sciatic
+nerve path, same family as the posture page's glow frames) and five exercise figures via
+`<PostFigure>`: prone press-up, figure-4, seated nerve glide, glute bridge, bird dog. They were
+generated on Higgsfield from prompts written in-session, **not photographed at this clinic**, so
+no alt text carries the Cheras modifier (same rule as the stock service frames).
 
-**Ask the clinic for:** a physiotherapist demonstrating the seven moves in the clinic
-(walking excluded): prone press-up, knee to chest, figure-4 stretch, seated nerve glide, glute
-bridge, bird dog, and a seated figure-4 at a desk. One clear frame each is enough, plus one
-landscape frame for the hero. Then set `heroImage` on the post and place the frames under
-each H3; alt text gets the Cheras modifier because they will be real clinic photos.
+**Still missing, both rejected on review for the wrong pose:**
+- **Knee to chest.** The first render rested the lifted foot on the other knee, which made it a
+  second figure-4. Regenerate with one knee drawn up, the other foot flat, legs not crossed.
+- **Seated figure-4 at a desk.** The first render crossed knee over knee in heels. Regenerate with
+  the ankle resting on the opposite knee and a forward lean from the hips.
+When they arrive: convert to WebP in `public/img/` as `sciatica-ex-knee-to-chest.webp` and
+`sciatica-ex-desk-figure-4.webp`, and add a `<PostFigure>` under each H3.
+
+**Resolution:** the exercise frames came in at 500x500. `<PostFigure>` caps display at the
+source width so they are never stretched; a 1000px re-export would look sharper on phones.
+
+**Real photography is still the better end state.** If the clinic can later shoot a
+physiotherapist doing these moves in the treatment room, swap the files and add the Cheras
+modifier to the alt text then.
 
 **Review:** the "which exercises suit which cause" table is clinical guidance. Leave
 `lastReviewed` unset until Valerie (or a physiotherapist) has read it.

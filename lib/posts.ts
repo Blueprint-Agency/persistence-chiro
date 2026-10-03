@@ -153,8 +153,10 @@ export const posts: Post[] = [
     // one is all international publishers (NHS, HSS, Harvard, Healthline), none of which
     // match an exercise to the cause or give a stop rule; those two are this post's angle.
     // Links up to /conditions/sciatica, which targets "sciatica treatment" (no collision).
-    // No heroImage: the only exercise photographs in public/img are stock, not this clinic.
-    // Real photos of a physiotherapist demonstrating the seven moves are an open item.
+    // Hero and exercise figures are AI-generated (Higgsfield, 2026-10-03, prompts written to
+    // match the posture page's "glow" frames), NOT photographs of this clinic, so no alt text
+    // carries the Cheras modifier. Same rule as the stock frames on the service pages.
+    // Knee to chest and the desk figure-4 frames are still missing: see OPEN-ITEMS 14.
     slug: 'sciatica-exercises',
     title: 'Sciatica Exercises: 7 Stretches to Try at Home',
     description:
@@ -162,6 +164,10 @@ export const posts: Post[] = [
     datePublished: '2026-10-03',
     author: 'Persistence Chiropractic Care',
     linksTo: 'sciatica',
+    heroImage: {
+      src: '/img/blog-sciatica-hero.webp',
+      alt: 'Office worker rising from a desk chair, hand on his lower back, with a glowing line tracing sciatic nerve pain down the back of one leg',
+    },
     keyTakeaways: [
       {
         q: 'Do sciatica exercises help?',
