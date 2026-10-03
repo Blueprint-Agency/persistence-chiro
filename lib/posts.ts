@@ -66,6 +66,87 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    // Month 2 content schedule item pc032, built via the persistence-content-builder skill.
+    // Targets "sciatica exercises" (1,300/mo, SD 48, Ubersuggest Malaysia locId 2458). Page
+    // one is all international publishers (NHS, HSS, Harvard, Healthline), none of which
+    // match an exercise to the cause or give a stop rule; those two are this post's angle.
+    // Links up to /conditions/sciatica, which targets "sciatica treatment" (no collision).
+    // No heroImage: the only exercise photographs in public/img are stock, not this clinic.
+    // Real photos of a physiotherapist demonstrating the seven moves are an open item.
+    slug: 'sciatica-exercises',
+    title: 'Sciatica Exercises: 7 Stretches to Try at Home',
+    description:
+      'Seven sciatica exercises and stretches, which ones suit which cause, and the one sign that tells you to stop. From a chiropractic and physio clinic in Cheras.',
+    datePublished: '2026-10-03',
+    author: 'Persistence Chiropractic Care',
+    linksTo: 'sciatica',
+    keyTakeaways: [
+      {
+        q: 'Do sciatica exercises help?',
+        a: 'For most people, gentle exercise and staying active help more than bed rest, though over weeks rather than in a single session. The NHS says sciatica usually gets better in a few weeks to a few months.',
+      },
+      {
+        q: 'Is there one best sciatica stretch?',
+        a: 'No. Sciatica can come from a disc, a tight buttock muscle or a narrowed spinal canal, and a stretch that eases one cause can aggravate another. Prone press-ups and knee to chest stretches, for example, pull in opposite directions.',
+      },
+      {
+        q: 'Which sciatica exercises are worth starting with?',
+        a: 'Walking little and often, plus two or three gentle moves such as a figure-4 stretch, a glute bridge or a seated nerve glide. Add more only once you know how your leg responds.',
+      },
+      {
+        q: 'How do I know if a sciatica exercise is making it worse?',
+        a: 'Watch where the leg pain goes. If symptoms spread further down the leg, or numbness and pins and needles increase, stop that exercise. Pain retreating towards the buttock or back is often a good sign.',
+      },
+      {
+        q: 'When should I see a doctor instead of exercising?',
+        a: 'Straight away with loss of bladder or bowel control, numbness around the groin, sciatica in both legs, worsening leg weakness, or fever or weight loss alongside new sciatica. Otherwise, get assessed if things have not improved after a few weeks.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Should I stretch through sciatica pain?',
+        a: 'No. Aim for a mild stretch, never sharp or spreading pain. Pushing through pain that travels further down the leg tends to irritate the nerve more, not less.',
+      },
+      {
+        q: 'How often should I do sciatica exercises?',
+        a: 'Twice a day is a sensible start, with short walks in between. Little and often generally suits an irritated nerve better than one long session.',
+      },
+      {
+        q: 'Is walking good for sciatica?',
+        a: 'Usually, yes. Short walks on flat ground keep you moving without loading the nerve for long. If walking itself brings the leg pain on, as can happen with a narrowed spinal canal, build in sitting breaks.',
+      },
+      {
+        q: 'Which exercises should I avoid with sciatica?',
+        a: 'It depends on the cause. Forward bends and long sitting often aggravate disc related sciatica, while back bends often aggravate a narrowed spinal canal. Any exercise that sends symptoms further down your leg is one to drop, whatever the cause.',
+      },
+      {
+        q: 'How long before sciatica exercises start to help?',
+        a: 'Many people notice a difference over a few weeks, but it varies with the cause and how long symptoms have been there. If there is no improvement after a few weeks, an assessment is a better next step than more of the same exercises.',
+      },
+    ],
+    citations: [
+      {
+        claim:
+          'UK guidance advises keeping active for low back pain with or without sciatica, and recommends considering a structured exercise programme for a specific episode or flare-up.',
+        source: 'National Institute for Health and Care Excellence (NICE), guideline NG59',
+        url: 'https://www.nice.org.uk/guidance/ng59/chapter/Recommendations',
+      },
+      {
+        claim:
+          'Sciatica usually gets better in a few weeks to a few months, though it can sometimes last longer, and the NHS advises starting gentle exercise as soon as you can.',
+        source: 'NHS, "Sciatica"',
+        url: 'https://www.nhs.uk/conditions/sciatica/',
+      },
+      {
+        claim:
+          'A systematic review found centralisation, where spinal pain retreats towards the spine with repeated movement, in about 40 percent of patients, and confirmed it as a positive prognostic factor in low back pain.',
+        source: 'May, Runge & Aina (2018), Musculoskeletal Science and Practice',
+        url: 'https://pubmed.ncbi.nlm.nih.gov/30273918/',
+      },
+    ],
+    draft: false,
+  },
+  {
     // Month 2 content schedule item pc030, built via the persistence-content-builder skill.
     // Targets "tit tar" (1,000/mo, SD 9, Ubersuggest Malaysia locId 2458) with "tit tar vs
     // chiropractic" as the secondary. The SERP is split between chiropractic clinics and tit

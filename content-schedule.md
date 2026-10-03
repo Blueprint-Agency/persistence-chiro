@@ -54,7 +54,7 @@ Keep the ID column. It is how the tracker matches rows. A new row needs a new, u
 | pc029 | Chiropractic vs Massage | chiropractic vs massage | Blog | `chiropractic-vs-massage` | Not started |  |
 | pc030 | Tit Tar vs Chiropractic | tit tar vs chiropractic | Blog | `tit-tar-vs-chiropractic` | Built | /blog/tit-tar-vs-chiropractic (2026-10-02). Targets "tit tar" (1,000/mo) as primary; fair comparison, Act 775 practice areas, no price row |
 | pc031 | Lower Back Pain Exercises & Relief | lower back pain exercises | Blog | `lower-back-pain-exercises` | Not started |  |
-| pc032 | Sciatica Exercises & Stretches | sciatica exercises | Blog | `sciatica-exercises` | Not started |  |
+| pc032 | Sciatica Exercises & Stretches | sciatica exercises | Blog | `sciatica-exercises` | Built | /blog/sciatica-exercises (2026-10-03). Exercise to cause table and stop rule; no exercise photos yet (OPEN-ITEMS 14) |
 | pc033 | Back Pain page (refresh + split Upper Back) | lower back pain | Condition |  | Not started | Page exists at /conditions/back-pain; refresh not yet verified |
 | pc034 | Scoliosis page (refresh + internal links) | scoliosis | Condition |  | Not started | Page exists at /conditions/scoliosis; refresh not yet verified |
 | pc035 | Sciatica page (refresh + internal links) | sciatica treatment malaysia | Condition |  | Not started | Page exists at /conditions/sciatica; refresh not yet verified |

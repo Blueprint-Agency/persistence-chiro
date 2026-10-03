@@ -557,3 +557,20 @@ all three members. `content.test.ts` asserts every member of that group really i
 `websiteExclusive`, so the heading cannot quietly start lying.
 
 If the client ever wants the wide format back on `/offers`, it is a `group` field away.
+
+## 14. Sciatica exercises post — BUILT 2026-10-03, needs exercise photography and a review
+
+`/blog/sciatica-exercises` (schedule pc032) ships with written steps only and **no
+`heroImage`**. Every competitor on that page one shows the moves (NHS video, Healthline GIFs,
+Harvard drawings), and that is the one gap row we lose. The only exercise photographs in
+`public/img` (`physio-tailored-exercise.webp`, `physio-house-call-hero.webp`) are stock, not
+this clinic, so neither was reused.
+
+**Ask the clinic for:** a physiotherapist demonstrating the seven moves in the clinic
+(walking excluded): prone press-up, knee to chest, figure-4 stretch, seated nerve glide, glute
+bridge, bird dog, and a seated figure-4 at a desk. One clear frame each is enough, plus one
+landscape frame for the hero. Then set `heroImage` on the post and place the frames under
+each H3; alt text gets the Cheras modifier because they will be real clinic photos.
+
+**Review:** the "which exercises suit which cause" table is clinical guidance. Leave
+`lastReviewed` unset until Valerie (or a physiotherapist) has read it.
