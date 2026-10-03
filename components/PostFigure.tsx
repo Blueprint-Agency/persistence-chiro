@@ -27,6 +27,9 @@ export function PostFigure({
         width={width}
         height={height}
         sizes={`(max-width: ${width}px) 100vw, ${width}px`}
+        // 95 (allowed in next.config.ts): these frames are small at source, so the default 75
+        // re-compression on top of the WebP showed visible artifacts.
+        quality={95}
         className="h-auto w-full rounded-2xl"
       />
     </figure>

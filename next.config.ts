@@ -10,8 +10,10 @@ const nextConfig: NextConfig = {
     // Next 16 allows only the qualities listed here and silently coerces any other
     // `quality` prop to the nearest one (default: 75 alone). 85 is the service hero
     // (components/service.tsx), the one image on those pages a visitor looks at rather
-    // than past. Add a value here before using it in a component, or it will not apply.
-    qualities: [75, 85],
+    // than past. 95 is <PostFigure>, the small AI-generated exercise frames on blog posts,
+    // where any extra compression shows. Add a value here before using it in a component,
+    // or it will not apply.
+    qualities: [75, 85, 95],
   },
 
   turbopack: {
