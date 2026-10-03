@@ -164,6 +164,7 @@ const zh: Dictionary = {
     googleReviewsSuffix: '则评价',
     isThisRightForYou: '这适合您吗?',
     notSureIfIsRightForYou: (name) => `不确定${name}是否适合您?`,
+    notSureIfWeCanHelpWith: (condition) => `不确定您的${condition.replace(/(护理|评估)$/, '')}是否适合来找我们?`,
     tickAnythingBody: '勾选任何符合您情况的选项。我们会诚实回覆,并告诉您该从哪里开始,即使答案是别的服务。',
     selectConcernsAriaLabel: '选择符合您情况的选项',
     askUsOnWhatsapp: '透过 WhatsApp 询问我们',

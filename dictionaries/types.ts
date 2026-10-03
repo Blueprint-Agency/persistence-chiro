@@ -206,8 +206,14 @@ export type Dictionary = {
     googleReviewsSuffix: string
     // ServiceQualifier:
     isThisRightForYou: string
-    /** "Not sure if {name} is right for you?" */
+    /** "Not sure if {name} is right for you?" Services: the name is the thing on offer. */
     notSureIfIsRightForYou: (name: string) => string
+    /**
+     * "Not sure if we can help with {condition}?" Conditions only. A condition's short title
+     * names the problem, not the care, so the service phrasing read "Not sure if pinched nerve
+     * is right for you?". Each locale strips its own trailing care word (Care / Jagaan / 护理).
+     */
+    notSureIfWeCanHelpWith: (condition: string) => string
     tickAnythingBody: string
     selectConcernsAriaLabel: string
     askUsOnWhatsapp: string

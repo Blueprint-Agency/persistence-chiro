@@ -8,10 +8,17 @@
 import type { Dictionary } from '../dictionaries/types'
 import type { ServiceQualifierCopy } from '@/components/ServiceQualifier'
 
-export function qualifierCopyFrom(dict: Dictionary, serviceName: string): ServiceQualifierCopy {
+export function qualifierCopyFrom(
+  dict: Dictionary,
+  serviceName: string,
+  kind: 'service' | 'condition' = 'service',
+): ServiceQualifierCopy {
   return {
     isThisRightForYou: dict.page.isThisRightForYou,
-    notSureIfIsRightForYou: dict.page.notSureIfIsRightForYou(serviceName),
+    notSureIfIsRightForYou:
+      kind === 'condition'
+        ? dict.page.notSureIfWeCanHelpWith(serviceName)
+        : dict.page.notSureIfIsRightForYou(serviceName),
     tickAnythingBody: dict.page.tickAnythingBody,
     selectConcernsAriaLabel: dict.page.selectConcernsAriaLabel,
     askUsOnWhatsapp: dict.page.askUsOnWhatsapp,

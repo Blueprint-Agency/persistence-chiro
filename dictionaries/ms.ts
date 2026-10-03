@@ -161,6 +161,8 @@ const ms: Dictionary = {
     googleReviewsSuffix: 'ulasan',
     isThisRightForYou: 'Adakah ini sesuai untuk anda?',
     notSureIfIsRightForYou: (name) => `Tidak pasti sama ada ${name.toLowerCase()} sesuai untuk anda?`,
+    notSureIfWeCanHelpWith: (condition) =>
+      `Tidak pasti sama ada kami boleh bantu dengan ${condition.replace(/^jagaan\s+/i, '').toLowerCase()}?`,
     tickAnythingBody:
       'Tandakan mana-mana yang kedengaran seperti anda. Kami akan membaca semula dengan jujur dan memberitahu anda tempat untuk bermula, walaupun jawapannya di tempat lain.',
     selectConcernsAriaLabel: 'Pilih kebimbangan yang berkenaan dengan anda',

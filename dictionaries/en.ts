@@ -155,6 +155,8 @@ const en: Dictionary = {
     googleReviewsSuffix: 'reviews',
     isThisRightForYou: 'Is this right for you?',
     notSureIfIsRightForYou: (name) => `Not sure if ${name.toLowerCase()} is right for you?`,
+    notSureIfWeCanHelpWith: (condition) =>
+      `Not sure if we can help with ${condition.replace(/\s+care$/i, '').toLowerCase()}?`,
     tickAnythingBody:
       'Tick anything that sounds like you. We will read it back honestly and tell you where to start, even if that is somewhere else.',
     selectConcernsAriaLabel: 'Select the concerns that apply to you',

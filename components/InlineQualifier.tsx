@@ -20,13 +20,14 @@ import enDict from '@/dictionaries/en'
  * MDX file referencing a target that hasn't been filled in yet fails quietly, not broken.
  */
 export function InlineQualifier({ slug }: { slug: string }) {
-  const target = conditionBySlug(slug) ?? serviceBySlug(slug)
+  const condition = conditionBySlug(slug)
+  const target = condition ?? serviceBySlug(slug)
   if (!target?.qualifierConcerns || target.qualifierConcerns.length === 0) return null
 
   const serviceName = target.title.split(' in ')[0]
   return (
     <ServiceQualifier
-      copy={qualifierCopyFrom(enDict, serviceName)}
+      copy={qualifierCopyFrom(enDict, serviceName, condition ? 'condition' : 'service')}
       concerns={target.qualifierConcerns}
     />
   )

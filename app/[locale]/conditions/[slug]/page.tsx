@@ -364,7 +364,7 @@ export default async function ConditionPage({ params }: Props) {
         <section className="border-y border-line bg-brand-aqua/40">
           <div className="mx-auto max-w-3xl px-4 py-16 lg:py-24">
             <ServiceQualifier
-              copy={qualifierCopyFrom(dict, shortName)}
+              copy={qualifierCopyFrom(dict, shortName, 'condition')}
               concerns={condition.qualifierConcerns}
             />
           </div>
