@@ -66,6 +66,93 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    // Month 2 content schedule item pc030, built via the persistence-content-builder skill.
+    // Targets "tit tar" (1,000/mo, SD 9, Ubersuggest Malaysia locId 2458) with "tit tar vs
+    // chiropractic" as the secondary. The SERP is split between chiropractic clinics and tit
+    // tar centres, each arguing for its own side; this post's angle is the fair version
+    // nobody on that page wrote. /services/chiropractic-care answers "is chiropractic the same
+    // as tit tar?" in one FAQ paragraph, shallow enough to coexist (same as gonstead-technique).
+    // Deliberately no price comparison: the only tit tar prices on the SERP have no source.
+    slug: 'tit-tar-vs-chiropractic',
+    title: "Tit Tar (跌打) vs Chiropractic: What's Actually Different",
+    description:
+      'Tit tar and chiropractic both use hands-on joint work, but the training, registration and assessment differ. A fair comparison from a Cheras clinic.',
+    datePublished: '2026-10-02',
+    author: 'Persistence Chiropractic Care',
+    linksTo: 'chiropractic-care',
+    // Real clinic photography, reused from the chiropractic-care service page's mid-article
+    // slot (lib/services.ts) rather than sourcing anything new.
+    heroImage: {
+      src: '/img/hero-consult-spine-model.webp',
+      alt: 'Chiropractor explaining a spine model to a patient beside an X-ray at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
+    },
+    keyTakeaways: [
+      {
+        q: 'Is tit tar the same as chiropractic?',
+        a: 'No. Tit tar (跌打) is the bone setting and injury branch of traditional Chinese medicine, with roots in the martial arts. Chiropractic is a separate profession with its own degree. Both use hands-on joint work, which is why they get confused.',
+      },
+      {
+        q: 'How are tit tar and chiropractic regulated in Malaysia?',
+        a: 'Both sit under the Traditional and Complementary Medicine Act 2016 (Act 775), but as different recognised practice areas: traditional Chinese medicine and chiropractic. Since 1 March 2021, practitioners in either area have had to apply to register with the T&CM Council.',
+      },
+      {
+        q: 'Does the crack mean a bone went back into place?',
+        a: 'Usually not. Imaging research links the sound to a gas cavity forming inside the joint as its surfaces separate. It says nothing about whether a bone moved back, or how good the session was.',
+      },
+      {
+        q: 'What is the biggest practical difference between tit tar and chiropractic?',
+        a: 'How the problem is worked out. Chiropractic assessment follows a set sequence of history, physical and neurological checks and, when needed, an X-ray before any adjustment. Tit tar assessment varies much more from one practitioner to the next.',
+      },
+      {
+        q: 'When should I see a doctor instead of either?',
+        a: 'After a fall where you cannot bear weight or the area looks out of shape, with spreading numbness or weakness, any change in bladder or bowel control, back pain with fever, or pain after a road accident. Those need ruling out before anyone manipulates a joint.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Is tit tar safe?',
+        a: 'It depends a great deal on who is doing it. Ask about their training and which practice area they are registered in, and tell them about any recent fall, osteoporosis or blood thinning medication. Firm manipulation over an undiagnosed fracture or fragile bone can cause harm, which is why a suspected fracture needs an X-ray first. The same caution applies to chiropractic.',
+      },
+      {
+        q: 'Can I see a chiropractor after going for tit tar?',
+        a: 'Yes, and many of our patients have. Tell us what was done and when, and mention any liniments or plasters you are still using. If an area is still bruised or very tender from a recent session, we may wait or work elsewhere first.',
+      },
+      {
+        q: 'Is tit tar or chiropractic better for back pain?',
+        a: 'We are not aware of good research comparing the two directly, so anyone claiming one is clearly better is going beyond the evidence. What tends to matter more is whether the cause of your back pain was properly worked out first, and whether the plan includes what you do between visits.',
+      },
+      {
+        q: 'Do chiropractors use herbal liniments like dit da jow?',
+        a: 'No. Chiropractic care uses adjustments, soft tissue work and exercise advice, not herbs or ointments. If you are using a liniment at home, that is fine to mention, and it does not stop you having a chiropractic assessment.',
+      },
+      {
+        q: 'How do I check whether a tit tar practitioner or chiropractor is registered?',
+        a: 'Ask for their T&CM Council registration number and which practice area it covers, traditional Chinese medicine or chiropractic. For a chiropractor, membership of the Association of Chiropractic Malaysia is a separate thing worth asking about too.',
+      },
+    ],
+    citations: [
+      {
+        claim:
+          'Under the Traditional and Complementary Medicine (Recognized Practice Areas) Order 2017, the recognised practice areas include traditional Chinese medicine and chiropractic as separate areas, and practitioners in any recognised area have had to apply to the T&CM Council for registration since 1 March 2021.',
+        source: 'Thoo & Partners, "Registration of Traditional and Complementary Medicine Practitioners"',
+        url: 'https://www.thoopartners.com/registration-of-traditional-and-complementary-medicine-practitioners/',
+      },
+      {
+        claim:
+          "A 2023 survey of adults in Malaysia's Klang Valley found that only 4.8 percent were aware of the Act that regulates chiropractic practice, despite almost half of respondents holding a university degree.",
+        source: 'Wong, Haneline & Tan (2023), Journal of Chiropractic Humanities',
+        url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC10562678/',
+      },
+      {
+        claim:
+          'Real-time MRI of finger joints showed the cracking sound coincides with a gas cavity forming as the joint surfaces separate, rather than the collapse of an existing bubble.',
+        source: 'Kawchuk et al. (2015), PLOS ONE',
+        url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC4398549/',
+      },
+    ],
+    draft: false,
+  },
+  {
     // Month 1 content schedule item, built as a blog post rather than the sixth service
     // page the schedule specified: /services/chiropractic-care already owns "Gonstead"
     // (dedicated route, six-step walkthrough, an FAQ literally titled "What is the Gonstead

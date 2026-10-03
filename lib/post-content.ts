@@ -13,6 +13,7 @@ import DryNeedlingVsAcupuncture from '@/content/blog/dry-needling-vs-acupuncture
 import ChiropracticVsPhysiotherapy from '@/content/blog/chiropractic-vs-physiotherapy.mdx'
 import BulgingDiscVsHerniatedDisc from '@/content/blog/bulging-disc-vs-herniated-disc.mdx'
 import MuscleKnots from '@/content/blog/muscle-knots.mdx'
+import TitTarVsChiropractic from '@/content/blog/tit-tar-vs-chiropractic.mdx'
 import ADeeperUnderstandingOfScoliosis from '@/content/blog/a-deeper-understanding-of-scoliosis.mdx'
 import AreHouseChores from '@/content/blog/are-house-chores-a-pain-in-the-back-here-s-what-chiropractors-say.mdx'
 import BoneHealthWebinar from '@/content/blog/blog-boost-your-bone-health-webinar.mdx'
@@ -35,6 +36,7 @@ export const postBodies: Record<string, ComponentType> = {
   'chiropractic-vs-physiotherapy': ChiropracticVsPhysiotherapy,
   'bulging-disc-vs-herniated-disc': BulgingDiscVsHerniatedDisc,
   'muscle-knots': MuscleKnots,
+  'tit-tar-vs-chiropractic': TitTarVsChiropractic,
   'a-deeper-understanding-of-scoliosis': ADeeperUnderstandingOfScoliosis,
   'are-house-chores-a-pain-in-the-back-here-s-what-chiropractors-say': AreHouseChores,
   'blog-boost-your-bone-health-webinar': BoneHealthWebinar,

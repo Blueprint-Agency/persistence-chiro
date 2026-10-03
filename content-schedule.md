@@ -52,7 +52,7 @@ Keep the ID column. It is how the tracker matches rows. A new row needs a new, u
 | pc027 | Sciatica vs Piriformis Syndrome | sciatica vs piriformis syndrome | Blog | `sciatica-vs-piriformis-syndrome` | Not started |  |
 | pc028 | Migraine vs Tension Headache | migraine vs tension headache | Blog | `migraine-vs-tension-headache` | Not started |  |
 | pc029 | Chiropractic vs Massage | chiropractic vs massage | Blog | `chiropractic-vs-massage` | Not started |  |
-| pc030 | Tit Tar vs Chiropractic | tit tar vs chiropractic | Blog | `tit-tar-vs-chiropractic` | Not started |  |
+| pc030 | Tit Tar vs Chiropractic | tit tar vs chiropractic | Blog | `tit-tar-vs-chiropractic` | Built | /blog/tit-tar-vs-chiropractic (2026-10-02). Targets "tit tar" (1,000/mo) as primary; fair comparison, Act 775 practice areas, no price row |
 | pc031 | Lower Back Pain Exercises & Relief | lower back pain exercises | Blog | `lower-back-pain-exercises` | Not started |  |
 | pc032 | Sciatica Exercises & Stretches | sciatica exercises | Blog | `sciatica-exercises` | Not started |  |
 | pc033 | Back Pain page (refresh + split Upper Back) | lower back pain | Condition |  | Not started | Page exists at /conditions/back-pain; refresh not yet verified |
