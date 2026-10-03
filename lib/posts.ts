@@ -76,8 +76,10 @@ export const posts: Post[] = [
     // deliberately not repeated here. Hero and figures are AI-generated flat illustrations
     // (2026-10-03), chosen over photorealism to avoid the uncanny look and because arrows
     // can show direction of movement. Site palette: slate-blue arrows, a gold (not red) pain
-    // glow per DESIGN.md's Diagnostic Signal Rule. The doorway stretch frame was rejected
-    // (doorway drawn face-on with the figure in profile) and is still to come.
+    // glow per DESIGN.md's Diagnostic Signal Rule. The doorway frame is a stand-in by user
+    // decision (2026-10-03, no credits to regenerate): the doorway is drawn face-on with the
+    // figure in profile, and it shows hands on the frame where the steps say forearms. Swap
+    // it for a render matching the steps (corrected prompt given 2026-10-03) when possible.
     slug: 'tech-neck',
     title: 'Tech Neck: What It Is and What Actually Helps',
     description:
