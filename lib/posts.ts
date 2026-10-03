@@ -73,7 +73,11 @@ export const posts: Post[] = [
     // term, not a medical diagnosis". Targets "tech neck" (590/mo, SD 30, Ubersuggest
     // Malaysia) over the schedule's "text neck" (170/mo). Angle: what the research actually
     // shows, against competitors' unsourced "your head weighs 60 pounds" claims, which are
-    // deliberately not repeated here. No heroImage: the posture photographs are stock.
+    // deliberately not repeated here. Hero and figures are AI-generated flat illustrations
+    // (2026-10-03), chosen over photorealism to avoid the uncanny look and because arrows
+    // can show direction of movement. Site palette: slate-blue arrows, a gold (not red) pain
+    // glow per DESIGN.md's Diagnostic Signal Rule. The doorway stretch frame was rejected
+    // (doorway drawn face-on with the figure in profile) and is still to come.
     slug: 'tech-neck',
     title: 'Tech Neck: What It Is and What Actually Helps',
     description:
@@ -81,6 +85,10 @@ export const posts: Post[] = [
     datePublished: '2026-10-03',
     author: 'Persistence Chiropractic Care',
     linksTo: 'neck-pain',
+    heroImage: {
+      src: '/img/blog-tech-neck-hero.webp',
+      alt: 'Illustration of a man bent over his phone with a golden glow over the back of his neck and upper back, beside a dashed outline of an upright posture',
+    },
     keyTakeaways: [
       {
         q: 'What is tech neck?',
