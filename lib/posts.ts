@@ -167,8 +167,9 @@ export const posts: Post[] = [
     // style as /blog/tech-neck: slate-blue arrows, a GOLD pain glow (DESIGN.md keeps red for
     // animated diagrams). They replaced an earlier photorealistic set. Not clinic photos, so
     // no alt text carries the Cheras modifier. The bird dog arrows were mirrored by hand (the
-    // render pointed them inwards). The figure-4 frame is still the old 500px photo until a
-    // correct illustration arrives: see OPEN-ITEMS 14.
+    // render pointed them inwards). The figure-4 section reuses the knee to chest
+    // illustration by user decision (2026-10-03): no correct figure-4 render exists yet. Its
+    // alt text describes what it shows, not the figure-4. See OPEN-ITEMS 14.
     slug: 'sciatica-exercises',
     title: 'Sciatica Exercises: 7 Stretches to Try at Home',
     description:

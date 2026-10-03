@@ -558,7 +558,7 @@ all three members. `content.test.ts` asserts every member of that group really i
 
 If the client ever wants the wide format back on `/offers`, it is a `group` field away.
 
-## 14. Sciatica exercises post — ILLUSTRATED 2026-10-03, one frame still a photo
+## 14. Sciatica exercises post — ILLUSTRATED 2026-10-03, figure-4 frame is a stand-in
 
 `/blog/sciatica-exercises` now uses flat AI-generated illustrations matching `/blog/tech-neck`
 (slate-blue arrows, gold pain glow): hero, prone press-up, knee to chest, seated nerve glide,
@@ -568,10 +568,12 @@ crossed legs instead of the stretch). Not clinic photos, so no alt text carries 
 modifier. The bird dog render pointed both arrows inwards; they were mirrored in place.
 
 **Still outstanding: the lying figure-4.** The illustrated render crossed the legs knee over
-knee and pointed its arrow away from the chest, so it was rejected. The page still shows the
-older 500px photorealistic figure-4 (`sciatica-ex-figure-4.webp`), which is the one style
-mismatch left. Replace file for file and raise its `<PostFigure>` to 640 when a correct
-illustration arrives (ankle on the opposite knee, shin across, arrow towards the chest).
+knee and was rejected. By user decision (2026-10-03) the figure-4 section shows the **knee to
+chest illustration** instead, so that picture appears twice and does not demonstrate the
+figure-4 the steps describe; its alt text describes what it shows. The old photorealistic
+figure-4 was deleted. When a correct illustration arrives (ankle on the opposite knee, shin
+across, knee out to the side), save it as `sciatica-ex-figure-4.webp` and point that
+`<PostFigure>` back at it.
 
 **Review: done.** Valerie reviewed the post, table included (confirmed by the user 2026-10-03);
 `lastReviewed` is set.
