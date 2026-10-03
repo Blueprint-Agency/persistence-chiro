@@ -33,16 +33,19 @@ ranks #16 for "chiro cheras" and holds most of the site's referring domains.
 | 8 | stiffness neck pain | 1,600 | `/conditions/neck-pain` | ✅ live |
 | 9 | slipped disc lumbar region | 590 | `/conditions/slipped-disc` | ✅ live |
 | 10 | migraine headache | 3,600 | `/conditions/migraine` | ✅ live |
-| 11 | sciatica and exercises | 1,300 | `/conditions/sciatica` | ✅ live |
-| 12 | tit tar near me | 1,600 | `/blog/tit-tar-vs-chiropractic` | ⏸️ **not built** |
-| 13 | tit tar | 1,000 | `/blog/tit-tar-vs-chiropractic` | ⏸️ **not built** |
-| 14 | muscle knots | 1,000 | `/blog/muscle-knots` | ⏸️ **not built** |
+| 11 | sciatica and exercises | 1,300 | `/blog/sciatica-exercises` — **was** `/conditions/sciatica` | ✅ built 2026-10-03 |
+| 12 | tit tar near me | 1,600 | `/blog/tit-tar-vs-chiropractic` | ✅ built 2026-10-02 |
+| 13 | tit tar | 1,000 | `/blog/tit-tar-vs-chiropractic` | ✅ built 2026-10-02 |
+| 14 | muscle knots | 1,000 | `/blog/muscle-knots` | ✅ built 2026-07-25 |
 
-**11 of 14 have a live page. 3 are blocked on the blog**, which is deferred by client
-decision. The KPI target is 7 of 14 on Page 1 — reachable without the blog, but it removes
-most of the margin, so the blog is a schedule risk rather than an optional extra.
+**All 14 now have a page** (as of 2026-10-03; the blog was the gap, and its four tracked
+targets are built). "Built" means in the repo; check `content-schedule.md` for what has
+reached the production domain. The KPI target is 7 of 14 on Page 1.
 
 ## ⚠️ Re-pull tit tar before committing to it
+
+**Settled 2026-10-02:** a fresh Ubersuggest pull (Malaysia, locId 2458) puts `tit tar` at
+**1,000/mo, SD 9**, back in line with the proposal. The section below is kept for history.
 
 The proposal prices `tit tar` at **SD 12–15**. The 2026-07-19 Ubersuggest re-pull recorded
 in `proposed-site-architecture.md` puts `tit tar` at **SD 31** and `tit tar near me` at
@@ -60,6 +63,7 @@ surface area against Ian The Chiro, who has no condition pages at all:
 | Page | Target |
 |---|---|
 | `/conditions/back-pain` | back pain treatment kl |
+| `/conditions/sciatica` | sciatica treatment kl (moved off #11 on 2026-10-03, from GSC page queries) |
 | `/conditions/scoliosis` | scoliosis treatment malaysia |
 | `/conditions/hip-pain` | lower back ache hip pain |
 | `/conditions/shoulder-imbalance` | shoulder and neck pain |

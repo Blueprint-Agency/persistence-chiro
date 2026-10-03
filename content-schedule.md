@@ -57,7 +57,7 @@ Keep the ID column. It is how the tracker matches rows. A new row needs a new, u
 | pc032 | Sciatica Exercises & Stretches | sciatica exercises | Blog | `sciatica-exercises` | Built | /blog/sciatica-exercises (2026-10-03). Exercise to cause table and stop rule; no exercise photos yet (OPEN-ITEMS 14) |
 | pc033 | Back Pain page (refresh + split Upper Back) | lower back pain | Condition |  | Not started | Page exists at /conditions/back-pain; refresh not yet verified |
 | pc034 | Scoliosis page (refresh + internal links) | scoliosis | Condition |  | Not started | Page exists at /conditions/scoliosis; refresh not yet verified |
-| pc035 | Sciatica page (refresh + internal links) | sciatica treatment malaysia | Condition |  | Not started | Page exists at /conditions/sciatica; refresh not yet verified |
+| pc035 | Sciatica page (refresh + internal links) | sciatica treatment malaysia | Condition |  | Built | Refreshed 2026-10-03 from GSC page queries: retargeted to "sciatica treatment kl" (81 impressions, pos 35; "malaysia" had 3), "sciatic nerve pain" in title and H1, sciatica vs hip vs lower back table, specialist, physio and piriformis FAQs, links the exercises post. Awaiting Valerie re-review |
 | pc036 | Hip Pain page (add "vs sciatica" section) | hip pain | Condition |  | Not started | Page exists at /conditions/hip-pain; refresh not yet verified |
 
 ## Month 3: Spokes, Trust, Audience & Local Fill

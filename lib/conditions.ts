@@ -452,16 +452,20 @@ export const conditions: Condition[] = [
   },
   {
     slug: 'sciatica',
-    title: 'Sciatica Care in Cheras, Kuala Lumpur',
-    metaTitle: 'Sciatica Care in Cheras, KL',
+    title: 'Sciatica and Sciatic Nerve Pain Care in Cheras, Kuala Lumpur',
+    metaTitle: 'Sciatica & Sciatic Nerve Pain Care in Cheras, KL',
     metaDescription:
-      'Sciatic nerve pain assessed and managed with Gonstead chiropractic and targeted rehab in Cheras, Maluri. Registered chiropractors, open seven days.',
-    targetKeyword: 'sciatica treatment',
-    related: ['slipped-disc', 'back-pain'],
+      'Sciatic nerve pain down the leg? Sciatica assessment and care in Cheras, KL, with Gonstead chiropractic and physiotherapy. Open seven days.',
+    // Refreshed 2026-10-03 from GSC page queries (90 days, 411 impressions): "sciatica
+    // treatment kl" (81, pos 35) is the strongest local term the page was already earning,
+    // with a "sciatic nerve ..." cluster (kuala lumpur, physiotherapy, compression) its old
+    // title never named. "sciatica exercises" belongs to /blog/sciatica-exercises, not here.
+    targetKeyword: 'sciatica treatment kl',
+    related: ['slipped-disc', 'hip-pain', 'back-pain'],
     helpedBy: ['dry-needling', 'physiotherapy'],
 
     intro:
-      'Sciatica is a description rather than a diagnosis. It names pain that travels along the path of the sciatic nerve, from the lower back through the buttock and down the back of the leg. Something is irritating or compressing that nerve, and the assessment has to work out what and where. The cause is usually mechanical. Most people settle with conservative care and never need surgery.',
+      'Sciatica is a description rather than a diagnosis. It names sciatic nerve pain that travels along the path of the sciatic nerve, from the lower back through the buttock and down the back of the leg. Something is irritating or compressing that nerve, and the assessment has to work out what and where. The cause is usually mechanical. Most people settle with conservative care and never need surgery.',
     symptoms: [
       'Pain running from the lower back or buttock down the back of one leg',
       'Burning, shooting or electric pain rather than a dull ache',
@@ -525,6 +529,19 @@ export const conditions: Condition[] = [
         a: 'Sometimes, though not always. A disc is one of several possible sources, and hip, pelvic and joint contributors are common too. Working out which one applies to you is the job of the assessment. We would not tell you the cause without examining you first.',
       },
       {
+        q: 'Should I see a doctor, a specialist or a chiropractor for sciatica?',
+        a: 'It depends on what comes with the leg pain. Any of the red flags above, such as bladder changes, numbness around the groin or a leg getting weaker, need a doctor or the emergency department the same day. For mechanical sciatica without those signs, a chiropractor or physiotherapist is a reasonable first stop, and we will refer you to a doctor or an orthopaedic specialist if the assessment points that way.',
+      },
+      {
+        q: 'Is physiotherapy or chiropractic better for sciatica?',
+        a: 'They tend to work best together rather than as rivals. Chiropractic care looks after spinal and pelvic joints that are not moving well, and physiotherapy builds the exercise programme and rebuilds tolerance for sitting, walking and lifting. Both are under one roof here, so the assessment decides which comes first. Our guide to sciatica exercises shows the kind of home programme physiotherapy starts from.',
+        links: [{ phrase: 'sciatica exercises', href: '/blog/sciatica-exercises' }],
+      },
+      {
+        q: 'Can a tight piriformis muscle cause sciatica?',
+        a: 'It can contribute. The piriformis is a deep buttock muscle the sciatic nerve runs close to, and when it is tight or overloaded it can produce a deep buttock ache with pain down the leg that looks a lot like sciatica from the spine. Telling the two apart matters because they are looked after differently, which is why the hip and pelvis are examined alongside the lower back.',
+      },
+      {
         q: 'Do I need an injection or surgery for sciatica?',
         a: 'Most people with sciatica are managed without either. Injections and surgery are typically considered where conservative care has not helped, or where there is progressive nerve weakness or a red-flag presentation. If your chiropractor feels another healthcare provider would better help you, you will be referred appropriately.',
       },
@@ -572,6 +589,51 @@ export const conditions: Condition[] = [
         url: 'https://cks.nice.org.uk/topics/sciatica/',
       },
     ],
+    comparison: {
+      heading: 'Sciatica, hip pain or lower back pain?',
+      intro:
+        'Pain in the lower back, buttock and leg can come from a few different places, and each is looked after a little differently. This is a rough guide to which one you might be dealing with, and the linked columns go to the page that covers it in full.',
+      columns: [
+        'Sciatica',
+        { label: 'Hip pain', href: '/conditions/hip-pain' },
+        { label: 'Lower back pain', href: '/conditions/back-pain' },
+      ],
+      rows: [
+        {
+          label: 'Where you feel it',
+          cells: [
+            'Buttock and down the back or side of one leg, often past the knee',
+            'Groin, the front or side of the hip, sometimes the buttock',
+            'Across the lower back, sometimes into the buttock',
+          ],
+        },
+        {
+          label: 'What the pain is like',
+          cells: [
+            'Burning, shooting or electric',
+            'A deep ache, often catching with certain movements',
+            'An ache or stiffness, sometimes a sharp catch',
+          ],
+        },
+        {
+          label: 'Tingling or numbness',
+          cells: [
+            'Common, in the calf, foot or toes',
+            'Usually none',
+            'Usually none',
+          ],
+        },
+        {
+          label: 'What tends to set it off',
+          cells: [
+            'Sitting, driving, bending, coughing or sneezing',
+            'Walking, stairs, getting in and out of a car, lying on that side',
+            'Long sitting or standing, bending and lifting',
+          ],
+        },
+      ],
+      note: 'Real cases overlap. A stiff lower back often comes with some buttock pain, and hip problems can refer pain down the thigh. The table tells you where to start reading; the assessment is what tells them apart.',
+    },
     lastReviewed: '2026-08-08',
     draft: false,
   },
