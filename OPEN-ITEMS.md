@@ -558,7 +558,7 @@ all three members. `content.test.ts` asserts every member of that group really i
 
 If the client ever wants the wide format back on `/offers`, it is a `group` field away.
 
-## 14. Sciatica exercises post — IMAGES IN 2026-10-03, desk frame is a stand-in, review outstanding
+## 14. Sciatica exercises post — IMAGES IN and REVIEWED 2026-10-03, desk frame is a stand-in
 
 `/blog/sciatica-exercises` (schedule pc032) now carries an AI-generated hero (glowing sciatic
 nerve path, same family as the posture page's glow frames) and five exercise figures via
@@ -579,5 +579,5 @@ source width so they are never stretched; a 1000px re-export would look sharper 
 physiotherapist doing these moves in the treatment room, swap the files and add the Cheras
 modifier to the alt text then.
 
-**Review:** the "which exercises suit which cause" table is clinical guidance. Leave
-`lastReviewed` unset until Valerie (or a physiotherapist) has read it.
+**Review: done.** Valerie reviewed the post, table included (confirmed by the user 2026-10-03);
+`lastReviewed` is set.
