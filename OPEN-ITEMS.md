@@ -558,26 +558,20 @@ all three members. `content.test.ts` asserts every member of that group really i
 
 If the client ever wants the wide format back on `/offers`, it is a `group` field away.
 
-## 14. Sciatica exercises post — IMAGES IN and REVIEWED 2026-10-03, desk frame is a stand-in
+## 14. Sciatica exercises post — ILLUSTRATED 2026-10-03, one frame still a photo
 
-`/blog/sciatica-exercises` (schedule pc032) now carries an AI-generated hero (glowing sciatic
-nerve path, same family as the posture page's glow frames) and five exercise figures via
-`<PostFigure>`: prone press-up, figure-4, seated nerve glide, glute bridge, bird dog. They were
-generated on Higgsfield from prompts written in-session, **not photographed at this clinic**, so
-no alt text carries the Cheras modifier (same rule as the stock service frames).
+`/blog/sciatica-exercises` now uses flat AI-generated illustrations matching `/blog/tech-neck`
+(slate-blue arrows, gold pain glow): hero, prone press-up, knee to chest, seated nerve glide,
+glute bridge, bird dog and the seated figure-4 at a desk, all from 1080px sources shown at up
+to 640px. They replaced a photorealistic set (500px sources, and a desk frame that showed
+crossed legs instead of the stretch). Not clinic photos, so no alt text carries the Cheras
+modifier. The bird dog render pointed both arrows inwards; they were mirrored in place.
 
-**Knee to chest added 2026-10-03** on the third render (other leg straight, so the lifted foot
-has nothing to rest on). **The desk frame is a setting shot, not the stretch:** three renders of
-the seated figure-4 all crossed knee over knee, and the user chose to use the last one anyway
-(`sciatica-ex-desk.webp`). Its alt text describes the workstation only. A correct render
-(ankle on the opposite knee, shin horizontal, forward lean) can replace it file for file.
-
-**Resolution:** the exercise frames came in at 500x500. `<PostFigure>` caps display at the
-source width so they are never stretched; a 1000px re-export would look sharper on phones.
-
-**Real photography is still the better end state.** If the clinic can later shoot a
-physiotherapist doing these moves in the treatment room, swap the files and add the Cheras
-modifier to the alt text then.
+**Still outstanding: the lying figure-4.** The illustrated render crossed the legs knee over
+knee and pointed its arrow away from the chest, so it was rejected. The page still shows the
+older 500px photorealistic figure-4 (`sciatica-ex-figure-4.webp`), which is the one style
+mismatch left. Replace file for file and raise its `<PostFigure>` to 640 when a correct
+illustration arrives (ankle on the opposite knee, shin across, arrow towards the chest).
 
 **Review: done.** Valerie reviewed the post, table included (confirmed by the user 2026-10-03);
 `lastReviewed` is set.

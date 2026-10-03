@@ -163,12 +163,12 @@ export const posts: Post[] = [
     // one is all international publishers (NHS, HSS, Harvard, Healthline), none of which
     // match an exercise to the cause or give a stop rule; those two are this post's angle.
     // Links up to /conditions/sciatica, which targets "sciatica treatment" (no collision).
-    // Hero and exercise figures are AI-generated (Higgsfield, 2026-10-03, prompts written to
-    // match the posture page's "glow" frames), NOT photographs of this clinic, so no alt text
-    // carries the Cheras modifier. Same rule as the stock frames on the service pages.
-    // The desk frame (sciatica-ex-desk.webp) shows the workstation, NOT the seated figure-4:
-    // three renders could not produce the pose, and the user chose to use it as a setting
-    // shot. Its alt text describes only what is in it. Swap it if a correct render arrives.
+    // Hero and exercise figures are AI-generated flat illustrations (2026-10-03), the same
+    // style as /blog/tech-neck: slate-blue arrows, a GOLD pain glow (DESIGN.md keeps red for
+    // animated diagrams). They replaced an earlier photorealistic set. Not clinic photos, so
+    // no alt text carries the Cheras modifier. The bird dog arrows were mirrored by hand (the
+    // render pointed them inwards). The figure-4 frame is still the old 500px photo until a
+    // correct illustration arrives: see OPEN-ITEMS 14.
     slug: 'sciatica-exercises',
     title: 'Sciatica Exercises: 7 Stretches to Try at Home',
     description:
@@ -178,7 +178,7 @@ export const posts: Post[] = [
     linksTo: 'sciatica',
     heroImage: {
       src: '/img/blog-sciatica-hero.webp',
-      alt: 'Office worker rising from a desk chair, hand on his lower back, with a glowing line tracing sciatic nerve pain down the back of one leg',
+      alt: 'Illustration of an office worker rising from a chair with a hand on his lower back, a golden line tracing sciatic nerve pain down one leg',
     },
     keyTakeaways: [
       {
