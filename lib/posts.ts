@@ -592,6 +592,8 @@ export const posts: Post[] = [
         url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC4101552/',
       },
     ],
+    // Reviewed by Valerie Na, confirmed by the user 2026-10-03.
+    lastReviewed: '2026-10-03',
     draft: false,
   },
   {
@@ -681,6 +683,8 @@ export const posts: Post[] = [
         url: 'https://www.nice.org.uk/guidance/ng59',
       },
     ],
+    // Reviewed by Valerie Na, confirmed by the user 2026-10-03.
+    lastReviewed: '2026-10-03',
     draft: false,
   },
   {

@@ -1081,6 +1081,8 @@ export const services: Service[] = [
         a: 'On WhatsApp. Tell us the area, roughly what the problem is and which days suit, and we reply with availability and confirm whether any travel fee applies. There is no online form for house calls, because the address and the timing need a quick conversation.',
       },
     ],
+    // Reviewed by Valerie Na, confirmed by the user 2026-10-03.
+    lastReviewed: '2026-10-03',
     draft: false,
   },
   {
@@ -1565,6 +1567,8 @@ export const services: Service[] = [
      */
     practitionersWithheld:
       'Sports massage and shockwave are delivered by either a chiropractor or a physiotherapist depending on the presentation (client, 2026-09-03), and the physiotherapists cannot be named while they are within their probation period. Naming only the chiropractors here would imply they are the only people who deliver this.',
+    // Reviewed by Valerie Na, confirmed by the user 2026-10-03.
+    lastReviewed: '2026-10-03',
     draft: false,
   },
   {
@@ -2052,6 +2056,8 @@ export const services: Service[] = [
         a: 'On WhatsApp. Tell us which Saturday, whether you are new, and whether you want a single class or a pack. We confirm the class that week and hold a place. Private sessions are arranged the same way, at a time that suits you.',
       },
     ],
+    // Reviewed by Valerie Na, confirmed by the user 2026-10-03.
+    lastReviewed: '2026-10-03',
     draft: false,
   },
   {

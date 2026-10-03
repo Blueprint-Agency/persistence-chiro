@@ -330,7 +330,7 @@ export const conditions: Condition[] = [
       ],
       note: 'Real backs overlap. A stiff lower back and sciatica often arrive together, and a disc is one of the things that can cause sciatica. The table tells you where to start reading; the assessment is what tells them apart.',
     },
-    lastReviewed: '2026-08-08',
+    lastReviewed: '2026-10-03',
     draft: false,
   },
   {
@@ -522,7 +522,7 @@ export const conditions: Condition[] = [
       ],
       note: 'A table cannot tell you which level is involved, or whether your symptoms come from a disc at all. Plenty of leg and arm pain has other causes, and sorting that out is what the assessment is for.',
     },
-    lastReviewed: '2026-08-08',
+    lastReviewed: '2026-10-03',
     draft: false,
   },
   {
@@ -709,7 +709,7 @@ export const conditions: Condition[] = [
       ],
       note: 'Real cases overlap. A stiff lower back often comes with some buttock pain, and hip problems can refer pain down the thigh. The table tells you where to start reading; the assessment is what tells them apart.',
     },
-    lastReviewed: '2026-08-08',
+    lastReviewed: '2026-10-03',
     draft: false,
   },
   {
@@ -1029,7 +1029,7 @@ export const conditions: Condition[] = [
       ],
       note: 'Real necks do not always fit one column. A stiff neck and a headache often arrive together, and whiplash can irritate a nerve. The table tells you where to start reading; the assessment is what tells the patterns apart.',
     },
-    lastReviewed: '2026-08-08',
+    lastReviewed: '2026-10-03',
     draft: false,
   },
   {
@@ -1234,7 +1234,7 @@ export const conditions: Condition[] = [
       ],
       note: 'Plenty of people have more than one kind, and the patterns overlap. A diagnosis of migraine belongs with your doctor. What a consultation here can do is check whether your neck is part of the picture.',
     },
-    lastReviewed: '2026-08-08',
+    lastReviewed: '2026-10-03',
     draft: false,
   },
   {
@@ -1638,6 +1638,8 @@ export const conditions: Condition[] = [
         url: 'https://www.ncbi.nlm.nih.gov/books/NBK441828/',
       },
     ],
+    // Reviewed by Valerie Na, confirmed by the user 2026-10-03.
+    lastReviewed: '2026-10-03',
     draft: false,
   },
   {
@@ -1779,6 +1781,8 @@ export const conditions: Condition[] = [
         url: 'https://www.who.int/news-room/fact-sheets/detail/headache-disorders',
       },
     ],
+    // Reviewed by Valerie Na, confirmed by the user 2026-10-03.
+    lastReviewed: '2026-10-03',
     draft: false,
   },
   {
@@ -1919,6 +1923,8 @@ export const conditions: Condition[] = [
         url: 'https://pubmed.ncbi.nlm.nih.gov/7604354/',
       },
     ],
+    // Reviewed by Valerie Na, confirmed by the user 2026-10-03.
+    lastReviewed: '2026-10-03',
     draft: false,
   },
 ]
