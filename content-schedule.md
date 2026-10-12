@@ -47,10 +47,10 @@ Keep the ID column. It is how the tracker matches rows. A new row needs a new, u
 | pc022 | Carpal Tunnel Syndrome page | carpal tunnel syndrome | Condition | `carpal-tunnel-syndrome` | Not started |  |
 | pc023 | Frozen Shoulder page | frozen shoulder | Condition | `frozen-shoulder` | Not started |  |
 | pc024 | Text Neck / Tech Neck page | text neck | Blog | `tech-neck` | Live | /blog/tech-neck (2026-10-03). Built as a blog post, not a condition page (informational SERP; a condition page would overlap /conditions/neck-pain). Targets "tech neck" (590/mo) over "text neck" (170/mo) |
-| pc025 | Slipped Disc vs Sciatica | slipped disc vs sciatica | Blog | `slipped-disc-vs-sciatica` | Not started |  |
-| pc026 | Slipped Disc vs Herniated Disc | slipped disc vs herniated disc | Blog | `slipped-disc-vs-herniated-disc` | Not started | Overlaps /blog/bulging-disc-vs-herniated-disc; check before writing |
-| pc027 | Sciatica vs Piriformis Syndrome | sciatica vs piriformis syndrome | Blog | `sciatica-vs-piriformis-syndrome` | Not started |  |
-| pc028 | Migraine vs Tension Headache | migraine vs tension headache | Blog | `migraine-vs-tension-headache` | Not started |  |
+| pc025 | Slipped Disc vs Sciatica | slipped disc vs sciatica | Blog | `slipped-disc-vs-sciatica` | Dropped | Covered by the sciatica page table (sciatica vs hip vs lower back) and the slipped disc page; a separate post would compete with both (2026-10-12) |
+| pc026 | Slipped Disc vs Herniated Disc | slipped disc vs herniated disc | Blog | `slipped-disc-vs-herniated-disc` | Dropped | Overlaps /blog/bulging-disc-vs-herniated-disc, which already explains the disc terms (2026-10-12) |
+| pc027 | Sciatica vs Piriformis Syndrome | sciatica vs piriformis syndrome | Blog | `sciatica-vs-piriformis-syndrome` | Dropped | Covered by the sciatica page piriformis FAQ and the cause table in /blog/sciatica-exercises (2026-10-12) |
+| pc028 | Migraine vs Tension Headache | migraine vs tension headache | Blog | `migraine-vs-tension-headache` | Dropped | Covered by the migraine vs tension vs neck headache table added to /conditions/migraine on 2026-10-01 (2026-10-12) |
 | pc029 | Chiropractic vs Massage | chiropractic vs massage | Blog | `chiropractic-vs-massage` | Not started |  |
 | pc030 | Tit Tar vs Chiropractic | tit tar vs chiropractic | Blog | `tit-tar-vs-chiropractic` | Live | /blog/tit-tar-vs-chiropractic (2026-10-02). Targets "tit tar" (1,000/mo) as primary; fair comparison, Act 775 practice areas, no price row |
 | pc031 | Lower Back Pain Exercises & Relief | lower back pain exercises | Blog | `lower-back-pain-exercises` | Built | /blog/lower-back-pain-exercises (2026-10-12). Split by stage: flare-up (gentle movement) vs recurring (strength), per Cochrane 2021 and Karlsson 2020; desk routine; no exercise repeats the sciatica post. Illustrated (8 AI images). Valerie review pending |
