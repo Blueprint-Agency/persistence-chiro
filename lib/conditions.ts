@@ -47,7 +47,11 @@ export type Condition = {
    */
   symptoms: string[]
   /** Common contributors. Descriptive only — this page does not diagnose anyone. */
-  causes: { heading: string; body: string }[]
+  /**
+   * `image` is optional: a small square illustration beside the cause (hip pain, 2026-10-12).
+   * Give every cause on a page one or none, so the rows stay even.
+   */
+  causes: { heading: string; body: string; image?: { src: string; alt: string } }[]
   /** What assessment and care actually involve here. */
   approach: { heading: string; body: string }[]
   /**
@@ -1263,18 +1267,22 @@ export const conditions: Condition[] = [
     causes: [
       {
         heading: 'Prolonged sitting and hip position',
+        image: { src: '/img/hip-cause-sitting.webp', alt: 'Illustration of a woman sitting at a desk working on a laptop, with a golden glow at her hip' },
         body: 'Long hours seated hold the hip in flexion, shorten the tissue at the front of it and let the gluteal muscles behind it do very little. Over years this reduces how much range the hip has available and shifts load into the lower back. Back ache and hip pain arrive together in desk workers for that reason.',
       },
       {
         heading: 'Gluteal tendon overload',
+        image: { src: '/img/hip-cause-tendon.webp', alt: 'Illustration of a woman stepping up a stair on one leg, with a golden glow on the outside of her hip' },
         body: 'The tendons on the outside of the hip take a lot of load during standing, walking and single-leg work. When that load rises faster than the tendon adapts, it becomes irritable. This is the pattern behind most outside-of-hip pain that hurts to lie on, and it tends to respond to graded loading rather than rest.',
       },
       {
         heading: 'Joint restriction in the lower back and pelvis',
+        image: { src: '/img/hip-cause-restriction.webp', alt: 'Illustration of a woman seen from behind, with a golden glow across her lower back and the base of her spine' },
         body: 'When a lumbar segment or a sacroiliac joint stops moving well, the hip on that side takes up the difference. We assess the spine and pelvis alongside the hip as standard for that reason. Working on the hip alone often leaves the driver untouched.',
       },
       {
         heading: 'Age-related joint change',
+        image: { src: '/img/hip-cause-age.webp', alt: 'Illustration of an older woman walking with a hand near the front of her hip, where a golden glow shows the hip joint' },
         body: 'Cartilage and joint surfaces change with time, and imaging findings become more common with age whether or not there is pain. A finding on a scan describes the joint. It does not on its own explain the symptom, so we read it alongside how the hip actually moves and what it tolerates.',
       },
     ],

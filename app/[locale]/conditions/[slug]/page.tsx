@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
@@ -195,10 +196,20 @@ export default async function ConditionPage({ params }: Props) {
                   {condition.causes.map((c) => (
                     <div key={c.heading} className="flex gap-5 py-6">
                       <Vertebrae className="mt-2 text-brand-gold" />
-                      <div>
+                      <div className="min-w-0 flex-1">
                         <dt className="text-xl font-bold text-ink">{c.heading}</dt>
                         <dd className="mt-2 leading-relaxed text-ink-muted">{c.body}</dd>
                       </div>
+                      {c.image && (
+                        <Image
+                          src={c.image.src}
+                          alt={c.image.alt}
+                          width={600}
+                          height={600}
+                          sizes="(max-width: 640px) 96px, 128px"
+                          className="h-24 w-24 flex-none rounded-2xl sm:h-32 sm:w-32"
+                        />
+                      )}
                     </div>
                   ))}
                 </dl>
