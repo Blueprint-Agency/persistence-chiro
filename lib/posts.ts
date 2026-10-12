@@ -66,6 +66,91 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    // Month 1 content schedule leftover pc014, built via the persistence-content-builder
+    // skill. Targets "when to see a chiropractor". Page one was US clinic blogs written to win
+    // the patient for one side; this post's angle is the Malaysian picture (Act 775 vs Medical
+    // Council vs Act 774, the Employment Act MC rule) and an honest "doctor first" list. It
+    // states plainly that a chiropractor is not a medical doctor, consistent with the client's
+    // "Reviewed by", not "Medically reviewed by", decision. Links up to chiropractic-care.
+    slug: 'chiropractor-vs-doctor',
+    title: 'Chiropractor vs Doctor: When to See Which in Malaysia',
+    description:
+      'When to see a chiropractor and when to see a doctor first in Malaysia: who does what, the signs that need a doctor, and how the two work together.',
+    datePublished: '2026-10-12',
+    author: 'Persistence Chiropractic Care',
+    linksTo: 'chiropractic-care',
+    // AI-generated flat illustration (Higgsfield, 2026-10-12), not a clinic photo.
+    heroImage: {
+      src: '/img/blog-chiro-vs-doctor-hero.webp',
+      alt: 'Illustration of a woman with lower back pain deciding between two doors, one marked with a stethoscope and one with a spine',
+    },
+    keyTakeaways: [
+      {
+        q: 'Is a chiropractor a doctor in Malaysia?',
+        a: 'No. Chiropractors train in a chiropractic degree and register under the Traditional and Complementary Medicine Act 2016 (Act 775). They are not medical doctors, and cannot prescribe medicine or issue an MC.',
+      },
+      {
+        q: 'When should I see a chiropractor first?',
+        a: 'For back, neck or joint pain that changes with how you move, sit or sleep, such as stiffness after desk work or pain on particular movements, with no warning signs.',
+      },
+      {
+        q: 'When should I see a doctor first?',
+        a: 'After an accident or fall, with spreading numbness or weakness, fever or feeling unwell, a sudden severe headache, any bladder or bowel change, or when you need medicine or an MC.',
+      },
+      {
+        q: 'What if I am not sure who to see?',
+        a: 'A GP is the safest first door. A chiropractor who finds something outside their scope should refer you to a doctor, and the two often work best together.',
+      },
+      {
+        q: 'Do I need a referral to see a chiropractor?',
+        a: 'No. You can book directly. If your assessment suggests you need a doctor or a scan first, a good chiropractor will tell you and help you arrange it.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Can a chiropractor give me an MC for work?',
+        a: 'No. Under the Employment Act 1955, paid sick leave is tied to certification by a registered medical practitioner, and chiropractors are not medical practitioners. If you need an MC, see a doctor.',
+      },
+      {
+        q: 'Can a chiropractor order an X-ray?',
+        a: 'Where an X-ray will change the plan, we send you for one at the radiology department of Sunway Medical Centre Velocity, a short walk from the clinic, and go through the results with you. It is not needed for everyone.',
+      },
+      {
+        q: 'Can I see a chiropractor and a doctor at the same time?',
+        a: 'Yes, and many people do. Tell each of them about the other, and bring any scan reports or letters with you, so neither is working with half the picture.',
+      },
+      {
+        q: 'Is it safe to see a chiropractor while I am on medication?',
+        a: 'Usually, but tell your chiropractor what you take. Blood thinning medication, long term steroids and some other conditions change what is appropriate, and the assessment takes them into account.',
+      },
+      {
+        q: 'Should I see a chiropractor or a physiotherapist?',
+        a: 'Both are reasonable for mechanical back and neck pain. Chiropractic focuses on how joints move, physiotherapy on exercise and rehabilitation, and at our clinic the two work together, so the assessment decides where to start.',
+      },
+    ],
+    citations: [
+      {
+        claim:
+          'Under the Traditional and Complementary Medicine (Recognized Practice Areas) Order 2017, chiropractic is a recognised practice area, and practitioners must apply to the T&CM Council for registration.',
+        source: 'Thoo & Partners, "Registration of Traditional and Complementary Medicine Practitioners"',
+        url: 'https://www.thoopartners.com/registration-of-traditional-and-complementary-medicine-practitioners/',
+      },
+      {
+        claim:
+          'Section 60F of the Employment Act 1955 ties paid sick leave to examination and certification by a registered medical practitioner.',
+        source: 'Pelim, "Sick Leave under the Employment Act 1955"',
+        url: 'https://pelim.my/sick-leave-under-the-employment-act-1955/',
+      },
+      {
+        claim:
+          'UK guidance suggests considering manual therapy, including spinal manipulation, for low back pain only as part of a package that includes exercise.',
+        source: 'National Institute for Health and Care Excellence (NICE), guideline NG59',
+        url: 'https://www.nice.org.uk/guidance/ng59/chapter/Recommendations',
+      },
+    ],
+    draft: false,
+  },
+  {
     // Month 2 content schedule item pc031, built via the persistence-content-builder skill.
     // Targets "lower back pain exercises". Volume unmeasured (Ubersuggest MY returned no data;
     // disconnected when built). Page one is international publishers with one flat list each;
