@@ -66,6 +66,94 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    // Month 2 content schedule item pc031, built via the persistence-content-builder skill.
+    // Targets "lower back pain exercises". Volume unmeasured (Ubersuggest MY returned no data;
+    // disconnected when built). Page one is international publishers with one flat list each;
+    // this post's angle is the split the evidence makes between a fresh flare (exercise adds
+    // little over staying active) and recurring/chronic pain (exercise helps). None of its
+    // seven exercises repeat /blog/sciatica-exercises, so the two posts do not compete; leg
+    // symptoms are handed off there. Links up to /conditions/back-pain.
+    // Images: AI-generated flat illustrations (Higgsfield Nano Banana 2, 2026-10-12), the
+    // same woman and style as /blog/sciatica-exercises, generated with that post's press-up
+    // frame as a style-only reference. Not clinic photos, so no Cheras modifier in alt text.
+    slug: 'lower-back-pain-exercises',
+    title: 'Lower Back Pain Exercises: For Flare-Ups and Desk Days',
+    description:
+      'Lower back pain exercises for a fresh flare-up and for a back that keeps coming back, what the research says about each, and when to stop. From Cheras.',
+    datePublished: '2026-10-12',
+    author: 'Persistence Chiropractic Care',
+    linksTo: 'back-pain',
+    heroImage: {
+      src: '/img/blog-lower-back-hero.webp',
+      alt: 'Illustration of an office worker rising from her chair with both hands on her lower back and a golden glow over the sore area',
+    },
+    keyTakeaways: [
+      {
+        q: 'Do lower back pain exercises help?',
+        a: 'It depends on the stage. For a fresh flare, research finds structured exercise adds little over simply staying active. For back pain lasting more than about three months, a Cochrane review found exercise reduces pain by an amount people notice.',
+      },
+      {
+        q: 'What should I do in the first days of a lower back pain flare?',
+        a: 'Keep moving gently: short walks, knee rolls, pelvic tilts and cat-camel, in whatever range is comfortable. Bed rest tends to leave the back stiffer.',
+      },
+      {
+        q: 'Which exercises help a back that keeps coming back?',
+        a: 'Building endurance around the trunk and hips, with moves such as the dead bug, side plank from the knees and hip hinge, increased gradually over weeks rather than days.',
+      },
+      {
+        q: 'When should I stop a lower back exercise?',
+        a: 'If it causes sharp pain, sends pain into your leg, or leaves your back worse the next morning. A mild ache while moving is normally fine.',
+      },
+      {
+        q: 'What helps lower back pain from sitting at a desk?',
+        a: 'Breaking up the sitting. Every 30 to 45 minutes, stand, walk, do a few gentle back bends and hip hinges, then sit back down with your lower back supported.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Should I rest or exercise with lower back pain?',
+        a: 'For most lower back pain, staying gently active is better than bed rest, which tends to leave the back stiffer. Rest from whatever clearly makes it worse, but keep moving in the ways that feel comfortable.',
+      },
+      {
+        q: 'How long until lower back pain exercises help?',
+        a: 'A fresh flare often settles over a few weeks whatever exercise you do. For back pain that keeps returning, strength work usually needs several weeks of steady practice before the difference shows.',
+      },
+      {
+        q: 'Is it normal for my back to ache after exercising?',
+        a: 'A mild ache that settles within a few hours is common when you start moving a sore back again. Pain that is sharp, spreads into your leg, or is worse the next morning means that exercise should be eased off or left out.',
+      },
+      {
+        q: 'Are sit-ups good for lower back pain?',
+        a: 'Not usually the best choice. Repeated sit-ups bend the lower back over and over under load. Exercises such as the dead bug and side plank build the same trunk muscles while keeping the back steadier.',
+      },
+      {
+        q: 'What if my lower back pain goes down my leg?',
+        a: 'Pain travelling down the leg, especially past the knee or with tingling or numbness, suggests a nerve is involved, and some of these exercises may not suit it. Our sciatica exercises guide covers that pattern, and it is worth having assessed.',
+      },
+    ],
+    citations: [
+      {
+        claim:
+          'A Cochrane review of 249 trials found moderate certainty evidence that exercise reduces pain in chronic non specific low back pain by a clinically important amount compared with no exercise programme, usual care or placebo.',
+        source: 'Hayden et al. (2021), Cochrane Database of Systematic Reviews',
+        url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC8477273/',
+      },
+      {
+        claim:
+          'A systematic review of systematic reviews found exercise therapy may make little or no important difference to pain or disability in acute low back pain compared with other options, including advice to stay active.',
+        source: 'Karlsson et al. (2020), Systematic Reviews',
+        url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC7427286/',
+      },
+      {
+        claim:
+          'UK guidance advises keeping active for low back pain and recommends considering a structured exercise programme for a specific episode or flare-up.',
+        source: 'National Institute for Health and Care Excellence (NICE), guideline NG59',
+        url: 'https://www.nice.org.uk/guidance/ng59/chapter/Recommendations',
+      },
+    ],
+    draft: false,
+  },
+  {
     // Month 2 content schedule item pc024, scheduled as a condition page and built as a blog
     // post by user decision (2026-10-03): the SERP is entirely informational (Physiopedia,
     // Yale, WebMD, a PMC review), and a condition page would split desk and phone neck pain
@@ -634,7 +722,7 @@ export const posts: Post[] = [
     // Real clinic photography, previously unused elsewhere on the site.
     heroImage: {
       src: '/img/treatment-room.webp',
-      alt: 'Treatment room at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
+      alt: 'Chiropractic room with adjustment tables at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
     },
     keyTakeaways: [
       {
