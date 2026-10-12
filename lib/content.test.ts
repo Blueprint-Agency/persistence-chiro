@@ -531,6 +531,49 @@ test('no verb-form banned word in zh/ms published copy', () => {
 })
 
 /**
+ * The English half of the same rule (AGENTS.md § Non-negotiables): no "treat", "treated",
+ * "treating", "treats" or "treatment" in published copy. Added 2026-10-12, after a new post
+ * shipped to review with "compared with no treatment" in its body and citation text; until
+ * then only the zh/ms sweep above existed, and English relied on remembering to grep.
+ *
+ * Unlike zh/ms, English HAS a confirmed carve-out: a line saying what chiropractic does NOT
+ * do keeps the word ("does not treat migraine", "refer you rather than treat you here"). The
+ * sweep therefore splits text into sentences and lets a sentence through only when it also
+ * carries a negation. That is a heuristic in the permissive direction: it can wave through a
+ * sentence that merely happens to contain "not", so a human read still matters, but it can
+ * never fail a genuine disclaimer. `targetKeyword` is skipped by collectStrings, as above.
+ *
+ * Scope: English conditions, services and bundles, and every post with structured Q&A (the
+ * new-format posts, MDX body included). Legacy migrated posts are left alone, the same gap
+ * the promissory-claims MDX guard already documents.
+ */
+test('no "treat" in English published copy outside a disclaimer', async () => {
+  const { readFileSync } = await import('node:fs')
+  const NEGATION = /\b(not|no|never|rather than|instead of|isn't|aren't|doesn't|don't|won't|cannot|can't)\b/i
+  const sources: [string, string][] = []
+  for (const c of conditions) sources.push([`conditions/${c.slug}`, collectStrings(c).join(' \n ')])
+  for (const s of services) sources.push([`services/${s.slug}`, collectStrings(s).join(' \n ')])
+  for (const b of bundles) sources.push([`pricing/${b.slug}`, collectStrings(b).join(' \n ')])
+  for (const p of publishedPosts()) {
+    if (!p.keyTakeaways && !p.faqs) continue
+    const body = readFileSync(new URL(`../content/blog/${p.slug}.mdx`, import.meta.url), 'utf8')
+    sources.push([`blog/${p.slug}`, collectStrings(p).join(' \n ') + ' \n ' + body])
+  }
+
+  const hits: string[] = []
+  for (const [where, text] of sources) {
+    for (const sentence of text.split(/(?<=[.!?])\s+|\n+/)) {
+      // URLs and file paths are not copy (a citation link, treatment-room.webp).
+      const prose = sentence.replace(/(https?:\/\/|\/)\S+/g, '')
+      if (/\btreat(s|ed|ing|ment|ments)?\b/i.test(prose) && !NEGATION.test(prose)) {
+        hits.push(`${where}: "${prose.trim().slice(0, 140)}"`)
+      }
+    }
+  }
+  assert.deepEqual(hits, [], `"treat" outside a disclaimer:\n  ${hits.join('\n  ')}`)
+})
+
+/**
  * A zh/ms slug with no English counterpart is almost always a typo, not a deliberate
  * locale-only page — the content model assumes English is the comprehensive source of
  * truth for which slugs exist at all (see AGENTS.md § Multilingual). Catching it here is

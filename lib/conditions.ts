@@ -1101,7 +1101,7 @@ export const conditions: Condition[] = [
     ],
     faqs: [
       {
-        q: 'Can a chiropractor treat my migraine?',
+        q: 'Can a chiropractor help with my migraine?',
         a: 'Not directly. Migraine is a neurological condition and its management belongs with a doctor or neurologist, so it is not what chiropractic sets out to treat. A consultation is still worth having, because it can work out whether part of your head pain is coming from the joints and muscles of the upper neck, which is a different problem that happens to feel similar. If the assessment says your headaches are migrainous, we will tell you and help you get to the right person.',
       },
       {
