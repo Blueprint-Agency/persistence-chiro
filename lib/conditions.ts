@@ -1379,11 +1379,39 @@ export const conditions: Condition[] = [
       heading: 'Hip joint, outer hip, sciatica or your lower back?',
       intro:
         'Pain around the hip can come from the joint, the tendons on the outside of the hip, an irritated nerve or the lower back, and each is looked after a little differently. This is a rough guide to which one you might be dealing with, and the linked columns go to the page that covers it in full.',
+      // Body maps: the same AI-generated figure in every column (Higgsfield, 2026-10-12), only
+      // the gold glow moves, so the pictures compare at a glance. Not clinic photos.
       columns: [
-        'Hip joint',
-        'Outer hip (tendon)',
-        { label: 'Sciatica', href: '/conditions/sciatica' },
-        { label: 'From the lower back', href: '/conditions/back-pain' },
+        {
+          label: 'Hip joint',
+          image: {
+            src: '/img/hip-map-joint.webp',
+            alt: 'Illustration of the hips and legs of a woman in side view, with a golden glow at the front of the hip, in the groin crease',
+          },
+        },
+        {
+          label: 'Outer hip (tendon)',
+          image: {
+            src: '/img/hip-map-outer.webp',
+            alt: 'Illustration of the hips and legs of a woman in side view, with a golden glow on the outside of the hip',
+          },
+        },
+        {
+          label: 'Sciatica',
+          href: '/conditions/sciatica',
+          image: {
+            src: '/img/hip-map-sciatica.webp',
+            alt: 'Illustration of the hips and legs of a woman in side view, with a golden line running from the lower back through the buttock and down the back of the leg',
+          },
+        },
+        {
+          label: 'From the lower back',
+          href: '/conditions/back-pain',
+          image: {
+            src: '/img/hip-map-lower-back.webp',
+            alt: 'Illustration of the hips and legs of a woman in side view, with a golden glow across the lower back and the top of the buttock',
+          },
+        },
       ],
       rows: [
         {

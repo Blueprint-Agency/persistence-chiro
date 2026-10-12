@@ -771,8 +771,18 @@ export function ComparisonTable({
                     key={c.label}
                     scope="col"
                     style={{ width: colWidth }}
-                    className="py-4 pr-6 text-base font-bold text-ink"
+                    className="py-4 pr-6 align-bottom text-base font-bold text-ink"
                   >
+                    {c.image && (
+                      <Image
+                        src={c.image.src}
+                        alt={c.image.alt}
+                        width={600}
+                        height={800}
+                        sizes="140px"
+                        className="mb-4 h-auto w-full max-w-[140px] rounded-xl"
+                      />
+                    )}
                     {c.href && locale && pathExistsIn(locale, c.href) ? (
                       <Link
                         href={pathFor(locale, c.href)}

@@ -9,7 +9,18 @@
  * form lets a condition page link a column to the sibling page that covers it in full, which
  * is how the neck and headache tables carry their internal links.
  */
-export type ComparisonColumn = string | { label: string; href?: string }
+export type ComparisonColumn =
+  | string
+  | {
+      label: string
+      href?: string
+      /**
+       * Optional picture above the column heading, e.g. a body map showing where that pain
+       * sits (/conditions/hip-pain). Portrait 3:4 source; every column in a table should
+       * carry one or none, so the headings stay level.
+       */
+      image?: { src: string; alt: string }
+    }
 
 /**
  * A comparison row. `{ a, b }` is the two-column service shape and stays valid so the service
