@@ -1243,6 +1243,9 @@ export const conditions: Condition[] = [
     metaTitle: 'Hip Pain Care in Cheras, KL',
     metaDescription:
       'Assessment and care for hip pain, groin ache and combined lower back and hip complaints in Cheras, Maluri. Gonstead chiropractic plus targeted rehab.',
+    // Refreshed 2026-10-12 (schedule pc036): "hip pain vs sciatica" comparison table and FAQ.
+    // Title and targetKeyword deliberately unchanged: Search Console was disconnected, and a
+    // refresh retargets only from the page's own GSC queries. Revisit once it is back.
     targetKeyword: 'lower back ache hip pain',
     related: ['back-pain', 'sciatica'],
     helpedBy: ['chiropractic-care', 'sports-injury-rehabilitation'],
@@ -1308,6 +1311,11 @@ export const conditions: Condition[] = [
         a: 'Often it is genuinely both, and telling them apart is one of the main reasons to be assessed rather than to guess. Groin pain more commonly points to the hip joint; pain across the buttock and into the back tends to involve the spine or pelvis. Neither is a rule, so the examination tests the hip and the lower back separately to see which reproduces your symptoms.',
       },
       {
+        q: 'Is it hip pain or sciatica?',
+        a: 'Hip pain from the joint itself usually sits in the groin, and pain from the tendons sits on the outside of the hip. Sciatica is different: it tends to run from the buttock down the back of the leg, often past the knee, and can bring tingling or numbness in the calf or foot. A deep buttock ache can belong to either, which is why the hip and the lower back are examined together. Our sciatica page covers that pattern in more detail.',
+        links: [{ phrase: 'sciatica page', href: '/conditions/sciatica' }],
+      },
+      {
         q: 'Do I need an X-ray or a scan for hip pain?',
         a: 'Where imaging is used, it is because it gives a clearer picture of what is happening in the joint and in the spine above it, which is what the Gonstead assessment works from. X-ray analysis is used where it will change what we do, such as ruling out pathology or clarifying the state of the joint, and it is avoided for pregnant women and children unless there is a clear reason. If your presentation suggests an MRI or a specialist opinion would alter the plan, your chiropractor will say so and arrange the referral.',
       },
@@ -1367,6 +1375,56 @@ export const conditions: Condition[] = [
         url: 'https://www.nice.org.uk/guidance/ng226',
       },
     ],
+    comparison: {
+      heading: 'Hip joint, outer hip, sciatica or your lower back?',
+      intro:
+        'Pain around the hip can come from the joint, the tendons on the outside of the hip, an irritated nerve or the lower back, and each is looked after a little differently. This is a rough guide to which one you might be dealing with, and the linked columns go to the page that covers it in full.',
+      columns: [
+        'Hip joint',
+        'Outer hip (tendon)',
+        { label: 'Sciatica', href: '/conditions/sciatica' },
+        { label: 'From the lower back', href: '/conditions/back-pain' },
+      ],
+      rows: [
+        {
+          label: 'Where you feel it',
+          cells: [
+            'Deep in the groin or the front of the hip',
+            'On the outside of the hip, over the bony point',
+            'Buttock and down the back of the leg, often past the knee',
+            'Lower back, spreading across the buttock and into the hip',
+          ],
+        },
+        {
+          label: 'What tends to set it off',
+          cells: [
+            'Getting out of a car, putting on socks, squatting',
+            'Lying on that side at night, stairs, standing on one leg',
+            'Sitting, driving, bending, coughing or sneezing',
+            'Long sitting or standing, bending and lifting',
+          ],
+        },
+        {
+          label: 'Tingling or numbness',
+          cells: [
+            'Usually none',
+            'Usually none',
+            'Common, in the calf, foot or toes',
+            'Usually none',
+          ],
+        },
+        {
+          label: 'What to do first',
+          cells: [
+            'Keep moving within comfort, and book in if it is not easing after a couple of weeks',
+            'Ease off lying on that side and long stairs, and book in if it lingers',
+            'Book an assessment, sooner if a leg is weak or numb',
+            'Keep moving gently, and book in if it is not easing after a week or two',
+          ],
+        },
+      ],
+      note: 'Real hips overlap. Back and hip problems often arrive together, and a deep buttock ache can belong to any of these. The table tells you where to start reading; the assessment is what tells them apart.',
+    },
     lastReviewed: '2026-08-08',
     draft: false,
   },

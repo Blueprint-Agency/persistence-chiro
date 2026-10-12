@@ -58,7 +58,7 @@ Keep the ID column. It is how the tracker matches rows. A new row needs a new, u
 | pc033 | Back Pain page (refresh + split Upper Back) | lower back pain | Condition |  | Live | Refreshed 2026-10-03: GSC showed 0 impressions here while the homepage ranks 3 to 6 for back pain searches, so the homepage keeps those and this page goes deeper. Upper back folded in (not split): lower vs upper back vs sciatica vs slipped disc table, upper back cause, symptom and red flag, three FAQs linking tech neck and slipped disc. Reviewed by Valerie 2026-10-03 |
 | pc034 | Scoliosis page (refresh + internal links) | scoliosis | Condition |  | Not started | Page exists at /conditions/scoliosis; refresh not yet verified |
 | pc035 | Sciatica page (refresh + internal links) | sciatica treatment malaysia | Condition |  | Live | Refreshed 2026-10-03 from GSC page queries: retargeted to "sciatica treatment kl" (81 impressions, pos 35; "malaysia" had 3), "sciatic nerve pain" in title and H1, sciatica vs hip vs lower back table, specialist, physio and piriformis FAQs, links the exercises post. Reviewed by Valerie 2026-10-03 |
-| pc036 | Hip Pain page (add "vs sciatica" section) | hip pain | Condition |  | Not started | Page exists at /conditions/hip-pain; refresh not yet verified |
+| pc036 | Hip Pain page (add "vs sciatica" section) | hip pain | Condition |  | Built | Refreshed 2026-10-12: hip joint vs outer hip vs sciatica vs lower back table (links sciatica and back pain), "Is it hip pain or sciatica?" FAQ. Title and keyword unchanged pending GSC (disconnected). Valerie re-review pending |
 
 ## Month 3: Spokes, Trust, Audience & Local Fill
 
