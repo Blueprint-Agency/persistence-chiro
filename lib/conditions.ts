@@ -722,8 +722,13 @@ export const conditions: Condition[] = [
     metaTitle: 'Scoliosis Care in Cheras, KL',
     metaDescription:
       'Scoliosis assessment and chiropractic management in Cheras, Maluri. Postural analysis, X-ray review and conditioning programmes for teens and adults.',
+    // Refreshed 2026-10-12 (schedule pc034): scoliosis vs pelvic curve vs uneven shoulders
+    // table with body maps, cause illustrations, a posture FAQ and a link to shoulder
+    // imbalance. Not linked to the legacy scoliosis post, whose migrated Wix copy has not been
+    // checked against the promissory-claims rules. Title and targetKeyword unchanged: GSC was
+    // disconnected.
     targetKeyword: 'scoliosis treatment malaysia',
-    related: ['neck-pain', 'back-pain'],
+    related: ['shoulder-imbalance', 'back-pain', 'neck-pain'],
     helpedBy: ['physiotherapy', 'chiropractic-care'],
 
     intro:
@@ -739,18 +744,22 @@ export const conditions: Condition[] = [
     causes: [
       {
         heading: 'Idiopathic scoliosis',
+        image: { src: '/img/scoliosis-cause-teen.webp', alt: 'Illustration of a teenage girl bending forward at the waist with her arms hanging down, the position used for a scoliosis forward bend check' },
         body: 'The majority of scoliosis has no identified cause. It most often becomes apparent during the adolescent growth spurt, which is also when monitoring matters most, because a growing spine can change more quickly than a mature one.',
       },
       {
         heading: 'Structural differences',
+        image: { src: '/img/scoliosis-cause-xray.webp', alt: 'Illustration of a spine X-ray on a lightbox showing a sideways S-shaped curve' },
         body: 'Some curves relate to how the vertebrae themselves formed, or to differences in leg length or pelvic position. We describe these rather than blame them. The point of the assessment is to understand what your spine is working with.',
       },
       {
         heading: 'Muscular imbalance around the curve',
+        image: { src: '/img/scoliosis-cause-muscle.webp', alt: 'Illustration of a woman seen from behind with a golden glow along the muscles on one side of her spine' },
         body: 'A curved spine loads the muscles on either side unevenly. Over time one side works harder and fatigues sooner, which is often what people actually feel as their scoliosis, rather than the curve itself.',
       },
       {
         heading: 'Daily loading patterns',
+        image: { src: '/img/scoliosis-cause-loading.webp', alt: 'Illustration of a woman walking with a heavy bag on one shoulder and a golden glow on that side of her back' },
         body: 'Prolonged sitting, carrying consistently on one side, and long hours in a fixed position do not cause scoliosis, but they can add to the discomfort a curve already produces.',
       },
     ],
@@ -784,6 +793,11 @@ export const conditions: Condition[] = [
       {
         q: 'My teenager has been told they have scoliosis. What should we do?',
         a: 'An adolescent curve should be assessed and monitored by an orthopaedic specialist, because curves can change while a child is still growing and the decisions at that stage are theirs to make. Chiropractic and physiotherapy can play a supporting role for comfort and conditioning alongside that care. We are happy to assess and to refer appropriately.',
+      },
+      {
+        q: 'Is it scoliosis or just bad posture?',
+        a: 'They can look alike from behind, because both can leave one shoulder or hip sitting higher. The usual first check is bending forward at the waist: true scoliosis rotates the spine, so a rib or lower back prominence shows on one side, which slouching does not produce. Uneven shoulders with a straight spine are covered on our shoulder imbalance page, and an X-ray is what confirms a curve and measures it.',
+        links: [{ phrase: 'shoulder imbalance page', href: '/conditions/shoulder-imbalance' }],
       },
       {
         q: 'Will I need an X-ray?',
@@ -832,11 +846,83 @@ export const conditions: Condition[] = [
       },
       {
         claim:
+          'The forward bending test looks for asymmetry in the contours of the back caused by the rotation of the spine, and a significant leg length difference can tilt the pelvis and produce a spinal curve.',
+        source: 'Janicki & Alman (2007), Paediatrics & Child Health',
+        url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC2532872/',
+      },
+      {
+        claim:
           'Specialist assessment is advised for curves that present during growth or that show signs of progressing.',
         source: 'Janicki & Alman (2007), Paediatrics & Child Health',
         url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC2532872/',
       },
     ],
+    comparison: {
+      heading: 'Scoliosis, a curve from the pelvis, or uneven shoulders?',
+      intro:
+        'Uneven shoulders or hips can come from a true scoliosis, from a pelvis that sits tilted, or from muscle tension with a straight spine, and each is looked after differently. This is a rough guide to which one you might be seeing. The dotted line in each picture is the spine.',
+      // Body maps: one AI-generated back-view figure (Higgsfield, 2026-10-12) edited so only
+      // the spine line and shoulders change. Not clinic photos.
+      columns: [
+        {
+          label: 'Scoliosis',
+          image: {
+            src: '/img/scoliosis-map-structural.webp',
+            alt: 'Illustration of a woman seen from behind with a dotted line showing her spine curving sideways in an S shape',
+          },
+        },
+        {
+          label: 'Curve from a tilted pelvis',
+          image: {
+            src: '/img/scoliosis-map-pelvis.webp',
+            alt: 'Illustration of a woman seen from behind with a dotted line showing her spine leaning in one long C-shaped curve',
+          },
+        },
+        {
+          label: 'Uneven shoulders',
+          href: '/conditions/shoulder-imbalance',
+          image: {
+            src: '/img/scoliosis-map-shoulder.webp',
+            alt: 'Illustration of a woman seen from behind with a straight dotted spine line and a golden glow over one tense, raised shoulder',
+          },
+        },
+      ],
+      rows: [
+        {
+          label: 'What the spine is doing',
+          cells: [
+            'Curving sideways, often in an S shape, and rotating',
+            'Leaning in one long curve above a pelvis that sits higher on one side',
+            'Straight; one shoulder is held higher by muscle tension or habit',
+          ],
+        },
+        {
+          label: 'Bending forward',
+          cells: [
+            'A rib or lower back prominence shows on one side',
+            'Usually little or no prominence',
+            'No prominence',
+          ],
+        },
+        {
+          label: 'Usually noticed',
+          cells: [
+            'Often during the teenage growth spurt',
+            'At any age, sometimes alongside a leg length difference',
+            'At any age, often with desk work or one-sided carrying',
+          ],
+        },
+        {
+          label: 'What to do first',
+          cells: [
+            'A growing child needs an orthopaedic check; adults, an assessment and X-ray',
+            'Book an assessment of the pelvis, hips and legs',
+            'Book an assessment, and look at how you sit and carry',
+          ],
+        },
+      ],
+      note: 'Only an examination and, where needed, an X-ray tell these apart for certain. A curve can also sit alongside muscle tension. The table tells you where to start; the assessment is what tells them apart.',
+    },
     lastReviewed: '2026-08-08',
     draft: false,
   },
