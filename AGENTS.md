@@ -42,6 +42,13 @@ path. There is no booking logic in this codebase and there shouldn't be — CTAs
 | `proposed-site-architecture.md` | Target URL map, redirects, internal linking, schema per template |
 | `current-url-structure.md` | What exists on Wix today — the migration source |
 | `OPEN-ITEMS.md` | Work blocked on the client, an asset or an access grant — read before proposing any of it as new |
+| `content-schedule.md` | The 3-month content sprint with a Status column. The SEO client tracker reads it on every push |
+
+**Keep `content-schedule.md` current.** When a commit builds, refreshes or drops a scheduled
+piece, update that row's Status in the same commit (Not started, In progress, Blocked, Built,
+Live, Dropped). A new post, condition or service page is published under the row's Slug, which
+is how the tracker finds it. If the page ships under a different slug, change the Slug cell in
+the same commit. Never change or reuse an ID. Unscheduled work gets a new row with a new ID.
 
 **Note:** `proposed-site-architecture.md` ends with a "Wix implementation constraint"
 about flat slugs and CMS dynamic pages. That constraint does not apply here — Next.js
