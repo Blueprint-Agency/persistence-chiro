@@ -66,29 +66,33 @@ Keep the ID column. It is how the tracker matches rows. A new row needs a new, u
 | pc035 | Sciatica page (refresh + internal links) | sciatica treatment malaysia | Condition |  | Live | Refreshed 2026-10-03 from GSC page queries: retargeted to "sciatica treatment kl" (81 impressions, pos 35; "malaysia" had 3), "sciatic nerve pain" in title and H1, sciatica vs hip vs lower back table, specialist, physio and piriformis FAQs, links the exercises post. Reviewed by Valerie 2026-10-03 |
 | pc036 | Hip Pain page (add "vs sciatica" section) | hip pain | Condition |  | Built | Refreshed 2026-10-12: hip joint vs outer hip vs sciatica vs lower back table (links sciatica and back pain), "Is it hip pain or sciatica?" FAQ. Title and keyword unchanged pending GSC (disconnected). Valerie re-review pending |
 
-## Month 3: Spokes, Trust & Comparisons
+## Month 3: Spokes, Trust, Comparisons & Yoga
+
+Keyword volumes are Ubersuggest, Malaysia (locId 2458), English, pulled 2026-10-13. Many long-tail
+chiropractic questions return 0 in Malaysia; those are kept only where they build trust or link a
+money page. Three yoga pieces support the Saturday classes (/services/yoga-classes).
 
 ### New content (10)
 
 | ID | Piece | Primary keyword | Type | Slug | Status | Evidence |
 |---|---|---|---|---|---|---|
-| pc037 | Is Chiropractic Safe? / Legit in Malaysia | is chiropractic safe | Blog | `is-chiropractic-safe` | Not started |  |
-| pc038 | How to Choose a Chiropractor in Malaysia | how to choose a chiropractor | Blog | `how-to-choose-a-chiropractor` | Not started |  |
-| pc039 | Chiropractic vs Osteopathy | chiropractic vs osteopathy | Blog | `chiropractic-vs-osteopathy` | Not started |  |
-| pc040 | Lower Back Pain vs Kidney Pain | lower back pain vs kidney pain | Blog | `lower-back-pain-vs-kidney-pain` | Not started |  |
-| pc041 | Migraine vs Cluster / Sinus / Vertigo | migraine vs cluster headache | Blog | `migraine-vs-cluster-headache` | Not started | Must not repeat the migraine vs tension vs neck headache table on /conditions/migraine |
-| pc042 | Slipped Disc Recovery & Exercises | slipped disc recovery time | Blog | `slipped-disc-recovery` | Not started | Also picks up "slipped disc remedy", left for a blog post by the pc016 refresh |
-| pc043 | Scoliosis in Adults: Exercises | scoliosis in adults | Blog | `scoliosis-in-adults` | Not started | Adult and exercise angle only; /conditions/scoliosis keeps "scoliosis treatment malaysia" |
-| pc044 | Migraine Triggers & Natural Relief | migraine triggers | Blog | `migraine-triggers` | Not started |  |
-| pc046 | Heat vs Ice for Back / Neck Pain | neck pain heat or ice | Blog | `heat-or-ice-for-back-pain` | Not started |  |
-| pc047 | Dry Needling: Does It Hurt / Worth It | does dry needling hurt | Blog | `does-dry-needling-hurt` | Not started | Check the /services/dry-needling FAQs first so the post goes deeper rather than repeating them |
+| pc041 | Migraine vs Cluster / Sinus / Vertigo | migraine vs cluster headache | Blog | `migraine-vs-cluster-headache` | Not started | "cluster headache" 2,900/mo (SD 51). Cluster headache is a doctor-first condition, so the post explains the difference and when to see a doctor. Must not repeat the migraine vs tension vs neck headache table on /conditions/migraine |
+| pc072 | Pilates vs Yoga: Which Suits Your Back? | pilates vs yoga | Blog | `pilates-vs-yoga` | Not started | Yoga. 480/mo, informational, SD 30; "yoga or pilates" 480. Fair comparison; the clinic runs yoga only, so it links /services/yoga-classes without knocking pilates |
+| pc071 | Chair Yoga: What It Is and Who It Suits | chair yoga | Blog | `chair-yoga` | Not started | Yoga. 260/mo, informational (books, apps, videos), SD 36; "yoga for seniors" 40. Informational spoke for the Chair Yoga class; /services/yoga-classes keeps "yoga cheras". Real class photos exist |
+| pc044 | Migraine Triggers & Natural Relief | migraine triggers | Blog | `migraine-triggers` | Not started | 140/mo, SD 53 |
+| pc073 | Yoga for Back Pain: What Helps and What to Skip | yoga for back pain | Blog | `yoga-for-back-pain` | Not started | Yoga. 90/mo, SD 17. Cite the Cochrane 2022 review already on the yoga page (small benefit, similar to other exercise). No poses that repeat /blog/lower-back-pain-exercises |
+| pc047 | Dry Needling: Does It Hurt / Worth It | does dry needling hurt | Blog | `does-dry-needling-hurt` | Not started | 20/mo. Check the /services/dry-needling FAQs first so the post goes deeper rather than repeating them |
+| pc037 | Is Chiropractic Safe? / Legit in Malaysia | is chiropractic safe | Blog | `is-chiropractic-safe` | Not started | 0/mo measured. Kept as a trust piece (Act 775 registration, risks, red flags) |
+| pc038 | How to Choose a Chiropractor in Malaysia | how to choose a chiropractor | Blog | `how-to-choose-a-chiropractor` | Not started | 0/mo measured. Kept as a trust piece; supports /blog/best-chiropractor-kuala-lumpur |
+| pc042 | Slipped Disc Recovery & Exercises | slipped disc recovery time | Blog | `slipped-disc-recovery` | Not started | 0/mo measured for this phrase. Also picks up "slipped disc remedy", left for a blog post by the pc016 refresh |
+| pc040 | Lower Back Pain vs Kidney Pain | lower back pain vs kidney pain | Blog | `lower-back-pain-vs-kidney-pain` | Not started | 0/mo measured. Red-flag piece: when back pain is not for a chiropractor |
 
 ### Improvements to existing content (5)
 
 | ID | Piece | Primary keyword | Type | Slug | Status | Evidence |
 |---|---|---|---|---|---|---|
 | pc053 | Shoulder Imbalance → Shoulder Pain (broaden) | shoulder pain | Condition |  | Not started | Page exists at /conditions/shoulder-imbalance; refresh not yet verified |
-| pc054 | What to Expect page (first visit): optimise | what to expect at chiropractor | Other |  | Not started | Page exists at /what-to-expect. Also settle the overlap with legacy /blog/what-to-expect-when-going-to-the-chiropractor-for-the-first-time (merge and 301, or retarget the post) |
+| pc054 | What to Expect page (first visit): optimise | what to expect at chiropractor | Other |  | Not started | Page exists at /what-to-expect. Also settle the overlap with legacy /blog/what-to-expect-when-going-to-the-chiropractor-for-the-first-time (merge and 301, or retarget the post). Add a "sore after an adjustment" FAQ |
 | pc055 | Chiropractic in Pregnancy: refresh | chiropractic during pregnancy | Blog |  | Not started | Nearest legacy post: /blog/chiropractic-care-through-the-stages-of-a-woman-s-life. MY volumes 2026-10-13: "pregnancy back pain" 210/mo, "chiropractic care pregnant" 90 |
 | pc050 | Chiropractic for Athletes & Runners: refresh legacy post | chiropractic for athletes | Blog |  | Not started | Changed from a new post to a refresh 2026-10-13: /blog/chiropractic-care-for-athletes-optimising-performance-and-preventing-injuries already holds this intent. Link /services/sports-injury-rehabilitation |
 | pc056 | Muscle Knots: add "how to get rid of" section | how to get rid of muscle knots | Blog |  | Not started | Refresh /blog/muscle-knots to absorb pc006 rather than publish a second muscle knots post |
@@ -102,34 +106,35 @@ Keep the ID column. It is how the tracker matches rows. A new row needs a new, u
 | pc049 | Chiropractic for Office Workers / WFH | desk job back pain | Blog | `chiropractic-for-office-workers` | Dropped | Desk setup and desk routines are already in /blog/tech-neck and /blog/lower-back-pain-exercises; the intent moves to the ergonomic chairs refresh, pc067 (2026-10-13) |
 | pc052 | Scoliosis Treatment Options in Malaysia | scoliosis treatment malaysia | Blog | `scoliosis-treatment-malaysia` | Dropped | Same keyword as /conditions/scoliosis (its targetKeyword); a post would cannibalise the condition page (2026-10-13) |
 
-## Month 4: Patient Questions, Trust & Legacy Clean-up
+## Month 4: Patient Questions, Yoga & Legacy Clean-up
 
 Keyword volumes are Ubersuggest, Malaysia (locId 2458), English, pulled 2026-10-13. Rows are in
-priority order, highest measured demand first.
+priority order, highest measured demand first. Three yoga pieces (two new, one improvement).
 
 ### New content (10)
 
 | ID | Piece | Primary keyword | Type | Slug | Status | Evidence |
 |---|---|---|---|---|---|---|
 | pc059 | Kinesiology Tape: What It Does and When It Helps | kinesiology tape | Blog | `kinesiology-tape` | Not started | 4,400/mo, informational, SD 25. The clinic tapes as part of physio (real taping photo already on /services/physiotherapy-house-call). Link physiotherapy and sports injury rehab |
-| pc060 | What Is Chiropractic? (and What a Chiropractor Actually Does) | define chiropractic | Blog | `what-is-chiropractic` | Not started | "define chiropractic" 480/mo, "what does a chiropractor do" 70, "benefits of chiropractic" 90. Plain explainer; must not repeat /blog/chiropractor-vs-doctor or /what-to-expect |
+| pc074 | Yoga for Stress: A Calmer Body After a Long Week | yoga for stress management | Blog | `yoga-for-stress` | Not started | Yoga. 720/mo and rising (peaked 2,400 in Aug 2026), SD 38; "stress yoga" 260, "relieve stress yoga" 260. Matches the yoga page's "stress in the shoulders" concern. No mental-health outcome promises |
 | pc063 | Do Posture Correctors Work? | posture corrector | Blog | `do-posture-correctors-work` | Not started | "posture corrector" 590/mo (transactional SERP, so an honest guide competes with shops), "posture corrector exercises" 140, "posture corrector malaysia" 50. /services/posture-correction keeps the commercial intent |
+| pc060 | What Is Chiropractic? (and What a Chiropractor Actually Does) | define chiropractic | Blog | `what-is-chiropractic` | Not started | "define chiropractic" 480/mo, "what does a chiropractor do" 70, "benefits of chiropractic" 90. Plain explainer; must not repeat /blog/chiropractor-vs-doctor or /what-to-expect |
 | pc062 | Knee Pain Exercises | knee pain and exercises | Blog | `knee-pain-exercises` | Not started | 480/mo, plus "knee pain when squat" 170 and "knee pain on inside of knee" 170. Exercise spoke for the knee pain page (pc064), same split as back pain and lower back pain exercises |
+| pc075 | Beginner Yoga Poses (and How Our First Class Runs) | beginner yoga positions | Blog | `beginner-yoga-poses` | Not started | Yoga. "yoga position for beginners" 320/mo, "beginner yoga positions" 260. "yoga for beginners" shows a 49,500 spike that is not stable (normally 140 to 260), so it is not the target. Poses taught in Posture Core and Chair Yoga, then what a first Saturday class is like |
 | pc064 | Knee Pain page | knee pain | Condition | `knee-pain` | Not started | Knee care confirmed in scope (user, 2026-10-13). Ubersuggest returns no figure for the head term, but "sakit lutut in english" 260/mo and "knee pain exercise physiotherapy" 90 show demand. Commercial page; pc062 takes the exercise queries |
 | pc065 | Best Pillow for Neck Pain | best pillow for neck pain | Blog | `best-pillow-for-neck-pain` | Not started | 210/mo, informational. Pillow choice only; sleeping positions stay in the pc066 refresh |
 | pc058 | Why Does My Back Crack? (and Is Self-Cracking Bad?) | is cracking your back bad | Blog | `is-cracking-your-back-bad` | Not started | 30/mo. Goes deeper than the popping answer in the /services/chiropractic-care FAQ |
 | pc061 | Why a Gonstead Chiropractor Takes an X-ray | chiropractic xray | Blog | `chiropractic-x-ray` | Not started | 20/mo. Low volume, kept as a trust piece for first-visit nerves. Needs Valerie input on when an X-ray is and is not indicated |
-| pc057 | How Often Should You See a Chiropractor? | how often should you see a chiropractor | Blog | `how-often-to-see-a-chiropractor` | Not started | 10/mo. Low volume, kept for conversion: answers the question people ask before buying a bundle. Link /offers; no promised visit counts |
-| pc051 | Chiropractic for Seniors / Students | chiropractic for seniors | Blog | `chiropractic-for-seniors` | Not started | Moved from Month 3 (2026-10-13). "chiropractor for elderly" 10/mo; "knee pain for old people" 50 suggests linking the knee pages. Lowest priority |
 
-### Improvements to existing content (5)
+### Improvements to existing content (6)
 
 | ID | Piece | Primary keyword | Type | Slug | Status | Evidence |
 |---|---|---|---|---|---|---|
 | pc066 | Sleeping position post: refresh legacy | good sleeping position | Blog |  | Not started | "good sleeping position" 880/mo, "proper sleeping position" 320, "best sleeping position for back pain" 170, "sciatica sleeping position" 140. Legacy /blog/sleeping-well-waking-better-the-key-to-spinal-health-and-quality-sleep. Takes the sleeping half of dropped pc048 |
 | pc067 | Ergonomic chairs post: refresh legacy | ergonomic chair | Blog |  | Not started | 6,600/mo but a transactional SERP; aim the refresh at choosing and setting up a chair, which a clinic can rank for. Legacy /blog/health-benefits-of-ergonomic-chairs. Takes the intent of dropped pc049; link tech neck and lower back exercises |
+| pc076 | Yoga Classes page: refresh | yoga class kl | Service |  | Not started | Yoga. "yoga classes" 1,300/mo, "yoga class kl" 170, "yoga cheras" 170 (current target). Add class length, instructor and private yoga price once OPEN-ITEMS 11 clears; link the five yoga posts |
 | pc069 | Legacy migraine post: consolidate | migraine | Blog |  | Not started | /blog/chiropractic-care-a-fresh-perspective-on-migraine-relief competes with /conditions/migraine. Merge and 301, or retarget to an angle the condition page does not cover |
-| pc070 | Legacy scoliosis post: consolidate | scoliosis | Blog |  | Not started | /blog/a-deeper-understanding-of-scoliosis competes with /conditions/scoliosis and pc043. Merge and 301, or retarget |
+| pc070 | Legacy scoliosis post: consolidate | scoliosis | Blog |  | Not started | /blog/a-deeper-understanding-of-scoliosis competes with /conditions/scoliosis. Merge and 301, or retarget (pc043, adult scoliosis, is in the backlog) |
 | pc068 | House chores post: refresh legacy | back pain from lifting | Blog |  | Not started | No measured volume for lifting or chores terms; lowest priority. Legacy /blog/are-house-chores-a-pain-in-the-back-here-s-what-chiropractors-say |
 
 ### Researched and not scheduled
@@ -140,4 +145,17 @@ pushed, so their IDs were reused above for the replacements.
 - "sore after chiropractic adjustment" (0): better as an FAQ on /what-to-expect (pc054).
 - "sacroiliac joint pain" / "si joint pain" (0 to 10): mention in the back pain and hip pain tables instead.
 - "chiropractic insurance malaysia" (0): better as an FAQ on /offers once the clinic confirms the facts.
-- Also checked: "plantar fasciitis" and "tennis elbow" (no data), "massage gun" (2,400/mo, transactional), "best mattress for back pain" (110).
+- Also checked: "plantar fasciitis" and "tennis elbow" (no data), "massage gun" (2,400/mo, transactional), "best mattress for back pain" (110), "yoga for neck pain" (20), "yoga for posture" (10), "office yoga" (10).
+
+## Backlog
+
+Displaced on 2026-10-13 to make room for the yoga pieces, lowest measured demand first out. Still
+open; pull one in when a month has a free slot.
+
+| ID | Piece | Primary keyword | Type | Slug | Status | Evidence |
+|---|---|---|---|---|---|---|
+| pc046 | Heat vs Ice for Back / Neck Pain | neck pain heat or ice | Blog | `heat-or-ice-for-back-pain` | Not started | "heat or ice for back pain" 10/mo. Moved from Month 3 |
+| pc039 | Chiropractic vs Osteopathy | chiropractic vs osteopathy | Blog | `chiropractic-vs-osteopathy` | Not started | "chiropractor vs osteopath" 0/mo. Moved from Month 3 |
+| pc043 | Scoliosis in Adults: Exercises | scoliosis in adults | Blog | `scoliosis-in-adults` | Not started | 0/mo. Adult and exercise angle only; /conditions/scoliosis keeps "scoliosis treatment malaysia". Moved from Month 3 |
+| pc057 | How Often Should You See a Chiropractor? | how often should you see a chiropractor | Blog | `how-often-to-see-a-chiropractor` | Not started | 10/mo. Conversion piece for bundle buyers; link /offers, no promised visit counts. Moved from Month 4 |
+| pc051 | Chiropractic for Seniors / Students | chiropractic for seniors | Blog | `chiropractic-for-seniors` | Not started | "chiropractor for elderly" 10/mo; the chair yoga post (pc071) now serves seniors. Moved from Month 4 |
