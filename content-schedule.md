@@ -5,7 +5,10 @@ Source: content-schedule.html (3-month content sprint, compiled 17 Aug 2026), ex
 client tracker reads it on every push.
 
 **Monthly cadence from Month 3 on:** 10 new pieces and at least 5 improvements to existing pages,
-split into two tables per month. A new piece is checked for overlap with live pages before it is
+with 2 or 3 of them supporting the yoga classes. Improvement rows start their Evidence with
+"Improvement.". Keep **one table directly under each `## Month N` heading**, with no sub-headings or
+prose between them: the tracker reads a row's month from that heading, and rows under a
+sub-heading were filed under Month 1 (2026-10-14). Notes go below the table. A new piece is checked for overlap with live pages before it is
 scheduled (one page, one intent). Anything that would compete with a live page is dropped or
 turned into an improvement of that page instead.
 
@@ -68,12 +71,6 @@ Keep the ID column. It is how the tracker matches rows. A new row needs a new, u
 
 ## Month 3: Spokes, Trust, Comparisons & Yoga
 
-Keyword volumes are Ubersuggest, Malaysia (locId 2458), English, pulled 2026-10-13. Many long-tail
-chiropractic questions return 0 in Malaysia; those are kept only where they build trust or link a
-money page. Three yoga pieces support the Saturday classes (/services/yoga-classes).
-
-### New content (10)
-
 | ID | Piece | Primary keyword | Type | Slug | Status | Evidence |
 |---|---|---|---|---|---|---|
 | pc041 | Migraine vs Cluster / Sinus / Vertigo | migraine vs cluster headache | Blog | `migraine-vs-cluster-headache` | Not started | "cluster headache" 2,900/mo (SD 51). Cluster headache is a doctor-first condition, so the post explains the difference and when to see a doctor. Must not repeat the migraine vs tension vs neck headache table on /conditions/migraine |
@@ -86,32 +83,21 @@ money page. Three yoga pieces support the Saturday classes (/services/yoga-class
 | pc038 | How to Choose a Chiropractor in Malaysia | how to choose a chiropractor | Blog | `how-to-choose-a-chiropractor` | Not started | 0/mo measured. Kept as a trust piece; supports /blog/best-chiropractor-kuala-lumpur |
 | pc042 | Slipped Disc Recovery & Exercises | slipped disc recovery time | Blog | `slipped-disc-recovery` | Not started | 0/mo measured for this phrase. Also picks up "slipped disc remedy", left for a blog post by the pc016 refresh |
 | pc040 | Lower Back Pain vs Kidney Pain | lower back pain vs kidney pain | Blog | `lower-back-pain-vs-kidney-pain` | Not started | 0/mo measured. Red-flag piece: when back pain is not for a chiropractor |
-
-### Improvements to existing content (5)
-
-| ID | Piece | Primary keyword | Type | Slug | Status | Evidence |
-|---|---|---|---|---|---|---|
-| pc053 | Shoulder Imbalance → Shoulder Pain (broaden) | shoulder pain | Condition |  | Not started | Page exists at /conditions/shoulder-imbalance; refresh not yet verified |
-| pc054 | What to Expect page (first visit): optimise | what to expect at chiropractor | Other |  | Not started | Page exists at /what-to-expect. Also settle the overlap with legacy /blog/what-to-expect-when-going-to-the-chiropractor-for-the-first-time (merge and 301, or retarget the post). Add a "sore after an adjustment" FAQ |
-| pc055 | Chiropractic in Pregnancy: refresh | chiropractic during pregnancy | Blog |  | Not started | Nearest legacy post: /blog/chiropractic-care-through-the-stages-of-a-woman-s-life. MY volumes 2026-10-13: "pregnancy back pain" 210/mo, "chiropractic care pregnant" 90 |
-| pc050 | Chiropractic for Athletes & Runners: refresh legacy post | chiropractic for athletes | Blog |  | Not started | Changed from a new post to a refresh 2026-10-13: /blog/chiropractic-care-for-athletes-optimising-performance-and-preventing-injuries already holds this intent. Link /services/sports-injury-rehabilitation |
-| pc056 | Muscle Knots: add "how to get rid of" section | how to get rid of muscle knots | Blog |  | Not started | Refresh /blog/muscle-knots to absorb pc006 rather than publish a second muscle knots post |
-
-### Dropped from the original Month 3 plan
-
-| ID | Piece | Primary keyword | Type | Slug | Status | Evidence |
-|---|---|---|---|---|---|---|
+| pc053 | Shoulder Imbalance → Shoulder Pain (broaden) | shoulder pain | Condition |  | Not started | Improvement. Page exists at /conditions/shoulder-imbalance; refresh not yet verified |
+| pc054 | What to Expect page (first visit): optimise | what to expect at chiropractor | Other |  | Not started | Improvement. Page exists at /what-to-expect. Also settle the overlap with legacy /blog/what-to-expect-when-going-to-the-chiropractor-for-the-first-time (merge and 301, or retarget the post). Add a "sore after an adjustment" FAQ |
+| pc055 | Chiropractic in Pregnancy: refresh | chiropractic during pregnancy | Blog |  | Not started | Improvement. Nearest legacy post: /blog/chiropractic-care-through-the-stages-of-a-woman-s-life. MY volumes 2026-10-13: "pregnancy back pain" 210/mo, "chiropractic care pregnant" 90 |
+| pc050 | Chiropractic for Athletes & Runners: refresh legacy post | chiropractic for athletes | Blog |  | Not started | Improvement. Changed from a new post to a refresh 2026-10-13: /blog/chiropractic-care-for-athletes-optimising-performance-and-preventing-injuries already holds this intent. Link /services/sports-injury-rehabilitation |
+| pc056 | Muscle Knots: add "how to get rid of" section | how to get rid of muscle knots | Blog |  | Not started | Improvement. Refresh /blog/muscle-knots to absorb pc006 rather than publish a second muscle knots post |
 | pc045 | Stiff Neck Relief / Won't Go Away | stiff neck relief | Blog | `stiff-neck-relief` | Dropped | /conditions/neck-pain targets "stiffness neck pain" and has the woke up stiff FAQ; a post would compete with it (2026-10-13) |
 | pc048 | Fix Forward Head Posture / Sleeping Position | how to fix forward head posture | Blog | `forward-head-posture` | Dropped | Forward head posture is covered by /blog/tech-neck and /services/posture-correction; the sleeping half moves to pc066 (2026-10-13) |
 | pc049 | Chiropractic for Office Workers / WFH | desk job back pain | Blog | `chiropractic-for-office-workers` | Dropped | Desk setup and desk routines are already in /blog/tech-neck and /blog/lower-back-pain-exercises; the intent moves to the ergonomic chairs refresh, pc067 (2026-10-13) |
 | pc052 | Scoliosis Treatment Options in Malaysia | scoliosis treatment malaysia | Blog | `scoliosis-treatment-malaysia` | Dropped | Same keyword as /conditions/scoliosis (its targetKeyword); a post would cannibalise the condition page (2026-10-13) |
 
+Keyword volumes are Ubersuggest, Malaysia (locId 2458), English, pulled 2026-10-13. Many long-tail
+chiropractic questions return 0 in Malaysia; those are kept only where they build trust or link a
+money page. Three yoga pieces support the Saturday classes (/services/yoga-classes).
+
 ## Month 4: Patient Questions, Yoga & Legacy Clean-up
-
-Keyword volumes are Ubersuggest, Malaysia (locId 2458), English, pulled 2026-10-13. Rows are in
-priority order, highest measured demand first. Three yoga pieces (two new, one improvement).
-
-### New content (10)
 
 | ID | Piece | Primary keyword | Type | Slug | Status | Evidence |
 |---|---|---|---|---|---|---|
@@ -125,21 +111,17 @@ priority order, highest measured demand first. Three yoga pieces (two new, one i
 | pc065 | Best Pillow for Neck Pain | best pillow for neck pain | Blog | `best-pillow-for-neck-pain` | Not started | 210/mo, informational. Pillow choice only; sleeping positions stay in the pc066 refresh |
 | pc058 | Why Does My Back Crack? (and Is Self-Cracking Bad?) | is cracking your back bad | Blog | `is-cracking-your-back-bad` | Not started | 30/mo. Goes deeper than the popping answer in the /services/chiropractic-care FAQ |
 | pc061 | Why a Gonstead Chiropractor Takes an X-ray | chiropractic xray | Blog | `chiropractic-x-ray` | Not started | 20/mo. Low volume, kept as a trust piece for first-visit nerves. Needs Valerie input on when an X-ray is and is not indicated |
+| pc066 | Sleeping position post: refresh legacy | good sleeping position | Blog |  | Not started | Improvement. "good sleeping position" 880/mo, "proper sleeping position" 320, "best sleeping position for back pain" 170, "sciatica sleeping position" 140. Legacy /blog/sleeping-well-waking-better-the-key-to-spinal-health-and-quality-sleep. Takes the sleeping half of dropped pc048 |
+| pc067 | Ergonomic chairs post: refresh legacy | ergonomic chair | Blog |  | Not started | Improvement. 6,600/mo but a transactional SERP; aim the refresh at choosing and setting up a chair, which a clinic can rank for. Legacy /blog/health-benefits-of-ergonomic-chairs. Takes the intent of dropped pc049; link tech neck and lower back exercises |
+| pc076 | Yoga Classes page: refresh | yoga class kl | Service |  | Not started | Improvement. Yoga. "yoga classes" 1,300/mo, "yoga class kl" 170, "yoga cheras" 170 (current target). Add class length, instructor and private yoga price once OPEN-ITEMS 11 clears; link the five yoga posts |
+| pc069 | Legacy migraine post: consolidate | migraine | Blog |  | Not started | Improvement. /blog/chiropractic-care-a-fresh-perspective-on-migraine-relief competes with /conditions/migraine. Merge and 301, or retarget to an angle the condition page does not cover |
+| pc070 | Legacy scoliosis post: consolidate | scoliosis | Blog |  | Not started | Improvement. /blog/a-deeper-understanding-of-scoliosis competes with /conditions/scoliosis. Merge and 301, or retarget (pc043, adult scoliosis, is in the backlog) |
+| pc068 | House chores post: refresh legacy | back pain from lifting | Blog |  | Not started | Improvement. No measured volume for lifting or chores terms; lowest priority. Legacy /blog/are-house-chores-a-pain-in-the-back-here-s-what-chiropractors-say |
 
-### Improvements to existing content (6)
+Keyword volumes are Ubersuggest, Malaysia (locId 2458), English, pulled 2026-10-13. Rows are in
+priority order, highest measured demand first. Three yoga pieces (two new, one improvement).
 
-| ID | Piece | Primary keyword | Type | Slug | Status | Evidence |
-|---|---|---|---|---|---|---|
-| pc066 | Sleeping position post: refresh legacy | good sleeping position | Blog |  | Not started | "good sleeping position" 880/mo, "proper sleeping position" 320, "best sleeping position for back pain" 170, "sciatica sleeping position" 140. Legacy /blog/sleeping-well-waking-better-the-key-to-spinal-health-and-quality-sleep. Takes the sleeping half of dropped pc048 |
-| pc067 | Ergonomic chairs post: refresh legacy | ergonomic chair | Blog |  | Not started | 6,600/mo but a transactional SERP; aim the refresh at choosing and setting up a chair, which a clinic can rank for. Legacy /blog/health-benefits-of-ergonomic-chairs. Takes the intent of dropped pc049; link tech neck and lower back exercises |
-| pc076 | Yoga Classes page: refresh | yoga class kl | Service |  | Not started | Yoga. "yoga classes" 1,300/mo, "yoga class kl" 170, "yoga cheras" 170 (current target). Add class length, instructor and private yoga price once OPEN-ITEMS 11 clears; link the five yoga posts |
-| pc069 | Legacy migraine post: consolidate | migraine | Blog |  | Not started | /blog/chiropractic-care-a-fresh-perspective-on-migraine-relief competes with /conditions/migraine. Merge and 301, or retarget to an angle the condition page does not cover |
-| pc070 | Legacy scoliosis post: consolidate | scoliosis | Blog |  | Not started | /blog/a-deeper-understanding-of-scoliosis competes with /conditions/scoliosis. Merge and 301, or retarget (pc043, adult scoliosis, is in the backlog) |
-| pc068 | House chores post: refresh legacy | back pain from lifting | Blog |  | Not started | No measured volume for lifting or chores terms; lowest priority. Legacy /blog/are-house-chores-a-pain-in-the-back-here-s-what-chiropractors-say |
-
-### Researched and not scheduled
-
-These were in the first Month 4 draft (2026-10-13) and measured zero in Malaysia. They were never
+**Researched and not scheduled.** These were in the first Month 4 draft (2026-10-13) and measured zero in Malaysia. They were never
 pushed, so their IDs were reused above for the replacements.
 
 - "sore after chiropractic adjustment" (0): better as an FAQ on /what-to-expect (pc054).
@@ -149,9 +131,6 @@ pushed, so their IDs were reused above for the replacements.
 
 ## Backlog
 
-Displaced on 2026-10-13 to make room for the yoga pieces, lowest measured demand first out. Still
-open; pull one in when a month has a free slot.
-
 | ID | Piece | Primary keyword | Type | Slug | Status | Evidence |
 |---|---|---|---|---|---|---|
 | pc046 | Heat vs Ice for Back / Neck Pain | neck pain heat or ice | Blog | `heat-or-ice-for-back-pain` | Not started | "heat or ice for back pain" 10/mo. Moved from Month 3 |
@@ -159,3 +138,6 @@ open; pull one in when a month has a free slot.
 | pc043 | Scoliosis in Adults: Exercises | scoliosis in adults | Blog | `scoliosis-in-adults` | Not started | 0/mo. Adult and exercise angle only; /conditions/scoliosis keeps "scoliosis treatment malaysia". Moved from Month 3 |
 | pc057 | How Often Should You See a Chiropractor? | how often should you see a chiropractor | Blog | `how-often-to-see-a-chiropractor` | Not started | 10/mo. Conversion piece for bundle buyers; link /offers, no promised visit counts. Moved from Month 4 |
 | pc051 | Chiropractic for Seniors / Students | chiropractic for seniors | Blog | `chiropractic-for-seniors` | Not started | "chiropractor for elderly" 10/mo; the chair yoga post (pc071) now serves seniors. Moved from Month 4 |
+
+Displaced on 2026-10-13 to make room for the yoga pieces, lowest measured demand first out. Still
+open; pull one in when a month has a free slot.
