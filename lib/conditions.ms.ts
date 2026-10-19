@@ -1077,7 +1077,7 @@ export const conditionsMs: Condition[] = [
     // tails ("petua tradisional hilangkan kebas tangan" 590/mo) are remedy searches, not people
     // looking for an assessment, so "kebas tangan" sits in the title rather than as the target.
     targetKeyword: 'sakit saraf tangan',
-    related: ['neck-pain', 'slipped-disc'],
+    related: ['neck-pain', 'slipped-disc', 'carpal-tunnel-syndrome'],
     helpedBy: ['chiropractic-care', 'physiotherapy'],
 
     intro:
@@ -1145,6 +1145,7 @@ export const conditionsMs: Condition[] = [
       {
         q: 'Bagaimana saya tahu sama ada kebas tangan saya datang dari leher atau pergelangan tangan?',
         a: 'Coraknya biasanya memberitahu. Saraf yang tertekan di leher cenderung menghasilkan gejala yang mengikut satu jalur menuruni lengan dan melibatkan jari tertentu, dan selalunya tercetus oleh pergerakan leher. Saraf yang tertekan di pergelangan tangan cenderung kekal di tangan, dan selalunya lebih teruk pada waktu malam atau ketika menggenggam. Ada pertindihan yang sebenar, dan sesetengah orang mempunyai kedua-duanya sekali gus, jadi kami menguji kedua-duanya dan bukan mengandaikan.',
+        links: [{ phrase: 'tertekan di pergelangan tangan', href: '/conditions/carpal-tunnel-syndrome' }],
       },
       {
         q: 'Adakah pelarasan akan memburukkan saraf yang tersepit?',
@@ -1501,6 +1502,874 @@ export const conditionsMs: Condition[] = [
     ],
     // Same standing as every other ms record: adapted from clinic-reviewed English copy, not
     // yet read by a Malay-speaking reviewer. Flip to `true` if that review is required first.
+    draft: false,
+  },
+  {
+    slug: 'spinal-stenosis',
+    title: 'Stenosis Spinal Lumbar (Saluran Saraf Menyempit) di Cheras, Kuala Lumpur',
+    metaTitle: 'Jagaan Stenosis Spinal Lumbar di Cheras, KL',
+    metaDescription:
+      'Kaki berat atau kesemutan bila berjalan, lega bila duduk atau membongkok? Penilaian stenosis spinal lumbar dan jagaan konservatif di Cheras, Maluri.',
+    // stenosis spinal 1,300/mo, SD 20 (Ubersuggest, locId 2458, language ms, 2026-10-19), the
+    // Malay word order of the English term and the only variant with measured volume. The
+    // literal and symptom angles all measure low or nothing: "saraf tulang belakang tersepit"
+    // 30, "stenosis tulang belakang" 0, "penyempitan saluran tulang belakang" 0, and "spinal
+    // stenosis" in English word order 0 under the ms filter. The English page owns "lumbar
+    // spinal stenosis", so there is no overlap. Built 2026-10-19 from the clinic-reviewed English
+    // structure; English itself is not yet reviewed by Valerie, so lastReviewed stays unset.
+    targetKeyword: 'stenosis spinal',
+    related: ['sciatica', 'slipped-disc', 'spondylolisthesis'],
+    helpedBy: ['physiotherapy', 'chiropractic-care'],
+
+    intro:
+      'Stenosis spinal lumbar bermaksud ruang yang dilalui saraf di pinggang bawah telah menyempit. Biasanya ia berlaku perlahan-lahan dengan usia: ligamen di dalam saluran tulang belakang menebal, sendi kecil di belakang tulang belakang membesar, dan cakera sedikit membonjol. Corak gejalanya ada nama tersendiri, iaitu klaudikasi neurogenik: kaki terasa lenguh, berat atau kesemutan selepas berjalan pada jarak yang agak boleh dijangka, dan lega sebaik sahaja anda duduk atau membongkok ke hadapan. Penyempitan pada imbasan lazim dijumpai pada orang yang langsung tiada gejala, jadi imbasan sahaja tidak menentukan langkah seterusnya. Ramai orang menguruskan stenosis spinal tanpa pembedahan, sesetengahnya memerlukan pendapat pakar bedah, dan penilaian ialah cara kami menentukan yang mana satu sesuai untuk anda.',
+    symptoms: [
+      'Kaki terasa lenguh, berat atau kesemutan selepas berjalan pada jarak tertentu',
+      'Lega dalam beberapa minit selepas duduk atau membongkok ke hadapan',
+      'Lebih senang berjalan sambil bersandar pada troli pasar raya, dan berbasikal lebih mudah daripada berjalan',
+      'Berdiri lama ketika beratur mencetuskan gejala pada kaki',
+      'Pinggang terasa kaku, tetapi lebih ringan berbanding apa yang dirasai di kaki',
+      'Gejala pada satu kaki atau kedua-dua belah',
+      'Jarak berjalan yang semakin pendek dari bulan ke bulan',
+    ],
+    causes: [
+      {
+        heading: 'Ligamen di dalam saluran tulang belakang menebal',
+        image: { src: '/img/sten-cause-ligament.webp', alt: 'Ilustrasi tiga vertebra pinggang bawah dari sisi dengan saluran tulang belakang dipotong terbuka, ligamen yang menebal di bahagian belakang saluran dan cahaya keemasan di tempat ia menyempit di sekeliling saraf' },
+        body: 'Satu ligamen berjalan di sepanjang bahagian belakang saluran tulang belakang. Dari tahun ke tahun ia menebal dan kurang anjal, dan apabila anda berdiri tegak ia terlipat ke dalam ruang yang diperlukan oleh saraf. Inilah salah satu sebab gejala muncul ketika berdiri dan berjalan, bukan ketika duduk.',
+      },
+      {
+        heading: 'Artritis pada sendi faset pinggang bawah',
+        image: { src: '/img/sten-cause-facet.webp', alt: 'Ilustrasi tiga vertebra pinggang bawah dilihat dari belakang, dengan sendi kecil di bahagian belakang membesar kerana taji tulang dan cahaya keemasan di sekelilingnya' },
+        body: 'Sendi kecil di belakang setiap vertebra haus dan membesar dengan usia, kadangkala membentuk taji tulang. Sendi ini terletak betul-betul di sebelah bukaan yang dilalui akar saraf, jadi apabila ia membesar ia boleh menyesakkan saraf pada satu atau kedua-dua belah.',
+      },
+      {
+        heading: 'Cakera membonjol yang menyempitkan lagi saluran',
+        image: { src: '/img/sten-cause-disc.webp', alt: 'Ilustrasi dua vertebra pinggang bawah dari sisi dengan cakera di antaranya membonjol ke belakang ke arah saraf, ditanda dengan cahaya keemasan' },
+        body: 'Cakera kehilangan ketinggian dan sedikit membonjol dengan usia. Dengan sendirinya ia jarang menyebabkan stenosis, tetapi bonjolan di hadapan saluran yang sudah sesak akibat perubahan ligamen dan sendi boleh menjadi faktor yang mengubah ruang itu daripada sempit kepada bergejala.',
+      },
+      {
+        heading: 'Vertebra yang tergelincir ke hadapan',
+        image: { src: '/img/sten-cause-slip.webp', alt: 'Ilustrasi turus vertebra pinggang bawah dari sisi, dengan satu vertebra teranjak ke hadapan di atas vertebra di bawahnya dan cahaya keemasan pada anjakan itu' },
+        body: 'Apabila satu vertebra teranjak ke hadapan di atas vertebra di bawahnya, keadaan yang dipanggil spondilolistesis, saluran pada paras itu menjadi sempit akibat anjakan tersebut. Kedua-duanya kerap dijumpai bersama pada orang berusia lebih 50 tahun, sebab itulah penilaian melihat kedua-duanya.',
+      },
+    ],
+    approach: [
+      {
+        heading: 'Membezakan stenosis spinal daripada masalah peredaran darah',
+        body: 'Lawatan pertama anda mengikut penilaian enam langkah Gonstead: sejarah kesihatan, visualisasi, penggunaan nervoscope, palpasi, dan analisis X-ray jika perlu. Bagi gambaran ini kiropraktor anda menambah pemeriksaan neurologi pada refleks, kekuatan dan deria kaki, memeriksa nadi di kaki anda, dan melihat bagaimana postur dan berjalan mengubah gejala. Peredaran darah yang lemah di kaki boleh menghasilkan corak berjalan yang sangat serupa, dan itu memerlukan doktor, bukan kami.',
+      },
+      {
+        heading: 'Jagaan secara tangan sebagai sebahagian daripada pelan senaman',
+        body: 'Jika penilaian menyokongnya, segmen yang tersekat di atas dan di bawah paras yang menyempit mungkin dilaras dengan tangan, dan ada keadaan yang tidak dilaras langsung. Pelarasan tidak melebarkan saluran yang sudah sempit. Tugasnya ialah membantu tulang belakang bergerak lebih baik supaya kerja senaman lebih mudah dibuat. Garis panduan mengesyorkan jagaan secara tangan untuk sakit belakang hanya bersama senaman, dan begitulah cara kami menggunakannya.',
+      },
+      {
+        heading: 'Jarak berjalan sebagai ukuran kemajuan',
+        body: 'Bahagian fisioterapi kami membina program di sekeliling kedudukan yang membuka saluran: membongkok ke hadapan, berbasikal, dan berjalan secara berselang dengan rehat duduk yang dirancang, bersama latihan kekuatan untuk pinggul dan badan. Sejauh mana anda boleh berjalan sebelum kaki letih diuji semula dari semasa ke semasa, kerana ukuran itu lebih banyak memberitahu tentang stenosis berbanding rasa pinggang pada sesuatu hari.',
+      },
+      {
+        heading: 'Bila stenosis spinal perlu dirujuk kepada pakar',
+        body: 'Kelemahan yang semakin teruk, sebarang perubahan kawalan pundi kencing atau usus, atau jarak berjalan yang terus memendek walaupun anda konsisten berlatih, semuanya bermakna rujukan kepada pakar ortopedik atau pakar bedah saraf. Pendapat pembedahan ialah langkah yang sah bagi stenosis spinal, dan kami akan memberitahu anda dengan terus terang jika kami rasa anda memerlukannya.',
+      },
+    ],
+    redFlags: [
+      'Kehilangan kawalan pundi kencing atau usus, atau kebas di sekitar pangkal paha, punggung dan paha dalam',
+      'Kelemahan kaki yang semakin teruk, atau tapak kaki yang terseret ketika berjalan',
+      'Gejala kaki yang tiba-tiba menjadi jauh lebih teruk pada kedua-dua belah kaki',
+      'Sakit betis ketika berjalan dengan tapak kaki yang sejuk, pucat atau berubah warna, sakit kaki ketika berehat, atau luka pada kaki yang tidak sembuh',
+      'Tangan yang kekok, sukar membutang baju atau menulis, atau rasa tidak stabil ketika berdiri dan berjalan',
+      'Demam, penurunan berat badan tanpa sebab, atau sejarah kanser bersama sakit belakang atau kaki yang baharu',
+      'Sakit belakang baharu selepas terjatuh pada orang yang ada osteoporosis',
+    ],
+    faqs: [
+      {
+        q: 'Bolehkah kiropraktor membantu stenosis spinal?',
+        a: 'Sebahagiannya, dan lebih baik kami jujur tentang bahagian yang mana. Saluran yang menyempit ialah perubahan struktur, dan tiada pelarasan yang boleh melebarkannya. Apa yang disokong oleh bukti ialah program gabungan jagaan secara tangan dan senaman, yang telah ditunjukkan memperbaiki gejala dan fungsi dalam jangka pendek bagi ramai orang dengan stenosis spinal lumbar. Matlamatnya ialah supaya anda boleh berjalan lebih jauh dan berdiri lebih lama, dan penilaian memberitahu kami sama ada anda sesuai untuk pendekatan itu atau lebih baik dibantu oleh pakar.',
+      },
+      {
+        q: 'Perlukah saya dibedah untuk stenosis spinal lumbar?',
+        a: 'Tidak semestinya. Dalam satu kajian besar melibatkan orang berusia lebih 50 tahun yang sudah layak untuk pembedahan, mereka yang menjalani fisioterapi mempunyai fungsi fizikal yang serupa selepas dua tahun berbanding mereka yang menjalani pembedahan dekompresi. Kajian yang sama juga mengingatkan tentang hadnya: 57% daripada kumpulan fisioterapi akhirnya beralih kepada pembedahan sepanjang tempoh kajian. Pembedahan ialah pilihan yang munasabah apabila kelemahan semakin teruk, apabila kawalan pundi kencing atau usus berubah, atau apabila berjalan terus menjadi lebih sukar walaupun jagaan konservatif dibuat secara konsisten.',
+      },
+      {
+        q: 'Kenapa saya boleh berjalan lebih jauh bila bersandar pada troli pasar raya?',
+        a: 'Membongkok ke hadapan membuka saluran tulang belakang dan bukaan yang dilalui saraf, manakala berdiri tegak menyempitkannya semula. Bersandar pada troli, menolak kereta sorong bayi atau menunggang basikal mengekalkan badan anda sedikit membongkok, jadi saraf mendapat lebih ruang. Ia petunjuk yang berguna semasa penilaian, dan sesuatu yang boleh anda gunakan dengan sengaja setiap hari, bukan dilawan.',
+      },
+      {
+        q: 'Senaman apa yang sesuai untuk stenosis spinal?',
+        a: 'Pergerakan yang membongkokkan pinggang ke hadapan biasanya lebih sesuai untuk stenosis berbanding pergerakan yang melengkungkannya ke belakang. Regangan lutut ke dada, berbasikal, dan berjalan dalam jarak pendek dengan rehat duduk ialah titik permulaan yang lazim, bersama latihan kekuatan untuk pinggul dan badan. Hentikan apa-apa senaman yang menyebabkan gejala merebak lebih jauh ke bawah kaki. Ahli fisioterapi anda akan memilih dan menyusun senaman mengikut apa yang kaki anda boleh terima.',
+      },
+      {
+        q: 'Bolehkah stenosis spinal berlaku di leher?',
+        a: 'Boleh. Stenosis di leher berkelakuan berbeza daripada stenosis di pinggang. Penyempitan yang menekan satu akar saraf cenderung menghantar sakit atau kesemutan ke satu lengan, dan ini diterangkan di halaman kami tentang sakit saraf tangan dari leher. Penyempitan yang menekan saraf tunjang itu sendiri muncul sebagai tangan yang kekok, sukar membutang baju atau menulis, dan berjalan tidak stabil, dan itu memerlukan semakan perubatan segera, bukan temu janji dengan kami.',
+        links: [{ phrase: 'sakit saraf tangan dari leher', href: '/conditions/pinched-nerve' }],
+      },
+      {
+        q: 'Laporan MRI saya kata stenosis teruk. Adakah ia akan terus bertambah teruk?',
+        a: 'Tidak semestinya. Sesempit mana saluran itu kelihatan pada imbasan dan sebanyak mana ia mengganggu anda tidak sepadan dengan rapat, dan penyempitan dijumpai pada sebahagian besar orang berusia lebih 60 tahun yang langsung tiada gejala. Ramai orang dengan stenosis spinal lumbar kekal stabil selama bertahun-tahun. Apa yang lebih penting ialah sejauh mana anda boleh berjalan, sama ada ada kelemahan, dan bagaimana perkara itu berubah dari masa ke masa, dan itulah yang kami pantau.',
+      },
+      {
+        q: 'Adakah stenosis spinal sama dengan slip disc?',
+        a: 'Tidak. Slip disc ialah bahan cakera yang membonjol atau herniasi, lebih lazim antara umur 30 hingga 50 tahun, dan cenderung sakit ketika duduk dan membongkok. Stenosis spinal ialah penyempitan seluruh saluran akibat beberapa perubahan sekali gus, lebih lazim selepas umur 50 tahun, dan cenderung sakit ketika berdiri dan berjalan. Bonjolan cakera boleh menjadi sebahagian daripada penyempitan itu, jadi kedua-duanya memang bertindih, dan halaman slip disc kami menerangkan bahagian cakera dengan lengkap.',
+        links: [{ phrase: 'halaman slip disc kami', href: '/conditions/slipped-disc' }],
+      },
+    ],
+    keyTakeaways: [
+      {
+        q: 'Apakah itu stenosis spinal lumbar?',
+        a: 'Penyempitan ruang yang dilalui saraf di pinggang bawah, biasanya akibat ligamen yang menebal, sendi yang membesar dan cakera yang membonjol dengan usia, bukan satu kecederaan tunggal.',
+      },
+      {
+        q: 'Apakah itu klaudikasi neurogenik?',
+        a: 'Corak tipikal stenosis spinal lumbar: lenguh, berat atau kesemutan pada kaki yang muncul ketika berdiri atau berjalan dan lega ketika duduk atau membongkok ke hadapan.',
+      },
+      {
+        q: 'Adakah ia berbahaya?',
+        a: 'Biasanya tidak. Kebanyakan orang kekal stabil, tetapi perubahan pundi kencing atau usus, kebas di sekitar pangkal paha atau kaki yang semakin lemah memerlukan jagaan perubatan pada hari yang sama.',
+      },
+      {
+        q: 'Adakah tulang belakang saya akan dilaras?',
+        a: 'Hanya jika penilaian menyokongnya. Ada paras yang dibiarkan, ada keadaan yang tidak dilaras langsung, dan senaman tetap membuat sebahagian besar kerja.',
+      },
+      {
+        q: 'Bilakah anda dibuka?',
+        a: 'Tujuh hari seminggu, di Sunway Velocity, Maluri. Isnin hingga Khamis dan Sabtu sehingga 8 malam, Jumaat sehingga 5 petang, Ahad sehingga 3 petang.',
+      },
+    ],
+    qualifierConcerns: [
+      'Kaki saya jadi berat atau kesemutan bila berjalan',
+      'Duduk atau membongkok ke hadapan melegakannya',
+      'Saya tidak boleh berjalan sejauh dahulu',
+      'Saya telah diberitahu saya ada stenosis spinal',
+      'Saya mahu tahu sama ada saya perlu dibedah',
+    ],
+    citations: [
+      {
+        claim:
+          'Program gabungan terapi manual dan senaman mempunyai bukti berkualiti sederhana bagi penambahbaikan jangka pendek pada gejala dan fungsi untuk stenosis spinal lumbar dengan klaudikasi neurogenik, manakala kebanyakan pilihan bukan pembedahan lain mempunyai bukti berkualiti rendah.',
+        source: 'Ammendolia et al. (2022), BMJ Open, updated systematic review',
+        url: 'https://doi.org/10.1136/bmjopen-2021-057724',
+      },
+      {
+        claim:
+          'Dalam kalangan calon pembedahan berusia 50 tahun ke atas, pembedahan dekompresi dan terapi fizikal menghasilkan fungsi fizikal yang serupa selepas dua tahun, walaupun 57% daripada kumpulan terapi fizikal beralih kepada pembedahan.',
+        source: 'Delitto et al. (2015), Annals of Internal Medicine',
+        url: 'https://doi.org/10.7326/M14-1420',
+      },
+      {
+        claim:
+          'Penyempitan saluran tulang belakang lumbar yang berlaku dengan usia lazim dijumpai pada imbasan CT dalam sampel komuniti dan meningkat dengan usia, dengan stenosis relatif dijumpai pada 47% orang berusia 60 hingga 69 tahun.',
+        source: 'Kalichman et al. (2009), The Spine Journal, Framingham Study',
+        url: 'https://doi.org/10.1016/j.spinee.2009.03.005',
+      },
+      {
+        claim:
+          'Terapi manual untuk sakit belakang bawah, dengan atau tanpa sciatica, hanya patut dipertimbangkan sebagai sebahagian daripada pakej jagaan yang merangkumi senaman.',
+        source: 'NICE guideline NG59, Low back pain and sciatica',
+        url: 'https://www.nice.org.uk/guidance/ng59',
+      },
+    ],
+    comparison: {
+      heading: 'Stenosis spinal lumbar, slip disc, sciatica atau masalah peredaran darah?',
+      intro:
+        'Sakit kaki yang muncul ketika berjalan ada beberapa kemungkinan punca, dan salah satunya langsung bukan dari tulang belakang. Ini panduan kasar untuk mengenal pasti yang mana mungkin anda alami, dan lajur yang berpautan membawa anda ke halaman yang menerangkannya dengan lengkap.',
+      columns: [
+        'Stenosis spinal lumbar',
+        { label: 'Slip disc', href: '/conditions/slipped-disc' },
+        { label: 'Sciatica', href: '/conditions/sciatica' },
+        'Peredaran darah lemah di kaki',
+      ],
+      rows: [
+        {
+          label: 'Siapa yang biasa terkesan',
+          cells: [
+            'Kebanyakannya orang berusia lebih 50 tahun',
+            'Paling kerap orang dewasa berumur 30 hingga 50 tahun',
+            'Mana-mana orang dewasa, bergantung kepada punca',
+            'Kebanyakannya warga emas, terutamanya perokok atau penghidap diabetes',
+          ],
+        },
+        {
+          label: 'Apa yang mencetuskannya',
+          cells: [
+            'Berdiri dan berjalan',
+            'Duduk, membongkok ke hadapan, batuk atau bersin',
+            'Duduk, memandu atau membongkok',
+            'Berjalan, terutamanya mendaki atau berjalan laju',
+          ],
+        },
+        {
+          label: 'Apa yang melegakannya',
+          cells: [
+            'Duduk atau membongkok ke hadapan',
+            'Baring, atau berjalan sekejap',
+            'Menukar kedudukan',
+            'Berdiri diam, tanpa perlu duduk atau membongkok',
+          ],
+        },
+        {
+          label: 'Di mana anda merasainya',
+          cells: [
+            'Punggung, paha dan kaki, selalunya kedua-dua belah',
+            'Pinggang, selalunya dengan sakit ke satu kaki',
+            'Punggung dan ke bawah bahagian belakang satu kaki',
+            'Paling kerap di betis, kadangkala paha atau punggung',
+          ],
+        },
+        {
+          label: 'Siapa yang patut dijumpai dahulu',
+          cells: [
+            'Kiropraktor atau ahli fisioterapi, kecuali ada tanda bahaya',
+            'Kiropraktor atau ahli fisioterapi, kecuali ada tanda bahaya',
+            'Kiropraktor atau ahli fisioterapi, kecuali ada tanda bahaya',
+            'Doktor',
+          ],
+        },
+      ],
+      note: 'Kes sebenar bertindih. Stenosis boleh menyebabkan sciatica, dan slip disc boleh menjadi sebahagian daripada penyempitan. Jadual ini memberitahu anda di mana untuk mula membaca. Penilaian, termasuk memeriksa nadi di kaki anda, ialah apa yang membezakannya.',
+    },
+    // Same standing as every other ms record: adapted from the English page, not yet read by a
+    // Malay-speaking reviewer.
+    draft: false,
+  },
+  {
+    slug: 'spondylolisthesis',
+    title: 'Spondilolistesis (Vertebra Tergelincir) di Cheras, Kuala Lumpur',
+    metaTitle: 'Jagaan Spondilolistesis di Cheras, KL',
+    metaDescription:
+      'Diberitahu satu vertebra tergelincir ke hadapan? Penilaian spondilolistesis, semakan X-ray dan jagaan berasaskan senaman di Cheras, Maluri, dengan rujukan bila perlu.',
+    // spondilolistesis 3,600/mo, SD 32 (Ubersuggest, locId 2458, language ms, 2026-10-19), the
+    // Malay spelling of the medical term. Treat the figure with some caution: it may be a Google
+    // grouping bucket, the same doubt the English record records for "spondylolisthesis
+    // cervical". Every alternative measured 0: "tulang belakang tergelincir", and the English
+    // spelling "spondylolisthesis" under the ms filter. "vertebra tergelincir" sits in the h1 as
+    // the plain-language name. No collision: the English page owns "spondylolisthesis treatment".
+    targetKeyword: 'spondilolistesis',
+    related: ['spinal-stenosis', 'back-pain', 'slipped-disc'],
+    helpedBy: ['physiotherapy', 'chiropractic-care'],
+
+    intro:
+      'Spondilolistesis bermaksud satu vertebra telah teranjak ke hadapan di atas vertebra di bawahnya, paling kerap di pinggang bawah. Yang bergerak ialah tulang, bukan cakera, sebab itulah nama hariannya ialah vertebra tergelincir dan bukan slip disc. Dua jenis yang lazim agak berbeza. Spondilolistesis degeneratif datang daripada kehausan cakera dan sendi, dan biasanya muncul selepas umur 50 tahun. Spondilolistesis isthmik bermula dengan retakan tekanan kecil di bahagian belakang vertebra, dipanggil spondilolisis, selalunya akibat sukan semasa remaja. Banyak gelinciran adalah kecil dan stabil, dan banyak juga yang dijumpai secara kebetulan pada X-ray yang diambil untuk sebab lain. Gelinciran gred rendah biasanya diuruskan tanpa pembedahan. Penilaian menentukan sama ada gelinciran itu benar-benar punca sakit anda dan sama ada ia stabil.',
+    symptoms: [
+      'Sakit pinggang yang lebih teruk ketika berdiri atau melengkung ke belakang, dan lebih ringan ketika duduk atau membongkok ke hadapan',
+      'Otot hamstring yang terasa luar biasa tegang',
+      'Sakit, kesemutan atau rasa berat ke punggung atau kaki ketika berjalan',
+      'Sakit belakang pada remaja yang bertambah teruk dengan sukan seperti gimnastik, badminton, membaling laju dalam kriket atau angkat berat',
+      'Rasa pinggang seperti hendak terlepas atau tercekau',
+      'Kaku selepas berdiri lama',
+    ],
+    causes: [
+      {
+        heading: 'Kehausan cakera dan sendi (spondilolistesis degeneratif)',
+        image: { src: '/img/spondy-cause-wear.webp', alt: 'Ilustrasi seorang lelaki berusia enam puluhan berdiri dari sisi dengan sebelah tangan di pinggang, tempat cahaya keemasan berada' },
+        body: 'Apabila cakera kehilangan ketinggian dan sendi faset di belakangnya haus, segmen itu boleh menjadi cukup longgar sehingga satu vertebra teranjak sedikit ke hadapan. Ini jenis paling lazim pada orang dewasa, lebih kerap pada wanita, dan biasanya pada paras kedua terbawah pinggang.',
+      },
+      {
+        heading: 'Retakan tekanan akibat melengkung berulang kali (spondilolistesis isthmik)',
+        image: { src: '/img/spondy-cause-stress.webp', alt: 'Ilustrasi seorang pemain badminton remaja perempuan melengkung ke belakang untuk melakukan smash, dengan cahaya keemasan di pinggangnya' },
+        body: 'Sukan yang melengkungkan pinggang ke belakang berulang kali membebankan jambatan tulang yang nipis di bahagian belakang vertebra. Lama-kelamaan ia boleh retak, iaitu spondilolisis, dan jika retakan itu terpisah, vertebra boleh tergelincir ke hadapan. Ia biasanya melibatkan paras paling bawah pinggang.',
+      },
+      {
+        heading: 'Tempoh membesar dengan pesat pada remaja',
+        image: { src: '/img/spondy-cause-teen.webp', alt: 'Ilustrasi seorang remaja lelaki yang tinggi memegang bola keranjang di bawah sebelah lengan dan menekan pinggangnya dengan tangan yang sebelah lagi, tempat cahaya keemasan berada' },
+        body: 'Gelinciran yang berkaitan dengan retakan tekanan paling mungkin bertambah semasa tempoh membesar dengan pesat, sebab itulah sakit belakang pada remaja yang aktif diambil serius dan tidak dianggap sekadar sakit kerana membesar.',
+      },
+      {
+        heading: 'Kecederaan atau bentuk tulang belakang sejak lahir',
+        image: { src: '/img/spondy-cause-injury.webp', alt: 'Ilustrasi seorang lelaki duduk di anak tangga paling bawah selepas terjatuh, sebelah tangan di pinggang, tempat cahaya keemasan berada' },
+        body: 'Kurang kerap, gelinciran berlaku selepas kecederaan yang ketara, atau vertebra memang terbentuk sejak lahir dengan cara yang membolehkannya. Ini jarang berlaku, dan pengimejan digunakan antara lain untuk mengesahkan atau mengetepikannya.',
+      },
+    ],
+    approach: [
+      {
+        heading: 'Menentukan sama ada gelinciran itu puncanya, dan sama ada ia stabil',
+        body: 'Lawatan pertama anda mengikut penilaian enam langkah Gonstead: sejarah kesihatan, visualisasi, penggunaan nervoscope, palpasi, dan analisis X-ray jika perlu, ditambah pemeriksaan neurologi pada kaki bagi keadaan ini. Jika pengimejan lanjut diperlukan, atau imbasan yang anda sudah ada perlu dibaca bersama pemeriksaan, kami akan mengatur atau menyemaknya. Gelinciran gred tinggi, tanda bahawa segmen itu tidak stabil, atau tanda saraf yang semakin teruk bermakna rujukan kepada pakar ortopedik atau pakar tulang belakang.',
+      },
+      {
+        heading: 'Apa yang pelarasan buat, dan tidak buat, bagi spondilolistesis',
+        body: 'Penilaian menentukan sama ada sebarang pelarasan sesuai. Paras yang tergelincir itu sendiri tidak dipaksa kembali ke tempatnya, dan pelarasan tidak mengembalikan vertebra yang sudah teranjak ke hadapan ke kedudukan asalnya. Jika penilaian menyokongnya, paras jiran yang menjadi tersekat mungkin dilaras dengan tangan, dan ada keadaan yang tidak dilaras langsung.',
+      },
+      {
+        heading: 'Kekuatan badan dan cara paras yang tergelincir dibebankan',
+        body: 'Bahagian fisioterapi kami memimpin bahagian kerja yang lebih panjang: kekuatan otot dalam badan dan pinggul, kelenturan hamstring, dan mengubah tabiat yang mengekalkan pinggang melengkung untuk tempoh yang lama, seperti berdiri dengan pinggul ditolak ke hadapan. Bagi atlet, kembali bersukan dibuat secara berperingkat, bukan sekali gus.',
+      },
+      {
+        heading: 'Remaja yang disyaki ada retakan tekanan',
+        body: 'Jika spondilolisis disyaki pada atlet muda, pengimejan dan pendapat doktor datang dahulu, bersama rehat daripada sukan yang mencetuskannya. Pendakap kadangkala digunakan pada peringkat awal supaya retakan yang baharu dapat pulih. Kami berhubung dengan doktor dan membantu proses kembali bersukan selepas itu, dan tidak melaras pada retakan tekanan yang masih baharu.',
+      },
+    ],
+    redFlags: [
+      'Kehilangan kawalan pundi kencing atau usus, atau kebas di sekitar pangkal paha, punggung dan paha dalam',
+      'Kelemahan kaki yang semakin teruk, atau tapak kaki yang terseret ketika berjalan',
+      'Gejala pada kedua-dua belah kaki yang semakin teruk',
+      'Remaja dengan sakit belakang akibat sukan yang berlarutan lebih dua hingga tiga minggu, atau yang mengejutkannya daripada tidur',
+      'Kanak-kanak atau remaja yang cara berjalan atau posturnya berubah, dengan hamstring yang sangat tegang',
+      'Sakit belakang selepas terjatuh teruk, kemalangan jalan raya atau hentaman langsung',
+      'Demam, penurunan berat badan tanpa sebab, atau sejarah kanser bersama sakit belakang baharu',
+    ],
+    faqs: [
+      {
+        q: 'Bolehkah kiropraktor membetulkan spondilolistesis?',
+        a: 'Tidak, dan kami lebih suka berterus terang tentang perkara itu. Pelarasan tidak mengembalikan vertebra yang tergelincir ke tempatnya, dan tiada sesiapa patut menjanjikan begitu kepada anda. Apa yang jagaan sasarkan ialah sakitnya, kekakuan di sekitar paras yang tergelincir, dan kekuatan otot yang menyokongnya. Ramai orang dengan gelinciran gred rendah dapat menguruskannya dengan baik melalui cara ini, dan penilaian memberitahu kami sama ada anda berkemungkinan salah seorang daripada mereka.',
+      },
+      {
+        q: 'Adakah selamat untuk dilaras jika saya ada spondilolistesis?',
+        a: 'Ia bergantung kepada gred gelinciran dan sama ada segmen itu stabil, sebab itulah penilaian datang sebelum apa-apa lagi. Paras yang tergelincir itu sendiri tidak dipaksa kembali ke tempatnya. Paras jiran yang menjadi tersekat mungkin dilaras jika penilaian menyokongnya, ada keadaan yang tidak dilaras langsung, dan gelinciran gred tinggi atau tidak stabil dirujuk kepada pakar. Beritahu kami tentang sebarang kelemahan kaki, kebas atau perubahan pundi kencing semasa membuat temu janji.',
+      },
+      {
+        q: 'Apa maksud gred spondilolistesis?',
+        a: 'Gred menggambarkan sejauh mana vertebra telah tergelincir ke hadapan, sebagai peratusan lebar tulang di bawahnya. Gred 1 kurang daripada 25%, gred 2 antara 25 hingga 50%, dan gred 3 dan 4 melebihi 50%. Gelinciran gred rendah, iaitu gred 1 dan 2, jauh lebih lazim dan biasanya diuruskan tanpa pembedahan. Gelinciran gred tinggi lebih cenderung menekan saraf dan memerlukan pendapat pakar bedah.',
+      },
+      {
+        q: 'Adakah spondilolistesis saya akan bertambah teruk?',
+        a: 'Kebanyakan gelinciran tidak banyak berubah. Dalam satu kajian jangka panjang tentang spondilolistesis degeneratif, kira-kira satu pertiga gelinciran bertambah, dan sama ada gelinciran itu bertambah atau tidak tiada kaitan yang jelas dengan tahap sakitnya. Badan juga cenderung mengeraskan segmen yang longgar dengan usia, dan ini boleh menstabilkannya. Gejala kaki yang baharu atau semakin teruk ialah perkara yang patut diperhatikan, lebih daripada ukuran dalam laporan.',
+      },
+      {
+        q: 'Adakah vertebra tergelincir sama dengan slip disc?',
+        a: 'Tidak. Dalam spondilolistesis, seluruh vertebra telah teranjak ke hadapan. Slip disc pula ialah cakera lembut di antara dua vertebra yang membonjol atau herniasi, manakala tulangnya kekal di tempat. Rasanya juga berbeza: masalah cakera cenderung sakit ketika duduk dan membongkok ke hadapan, manakala vertebra tergelincir cenderung sakit ketika berdiri dan melengkung ke belakang. Halaman kami tentang slip disc menerangkan bahagian cakera dengan lengkap.',
+        links: [{ phrase: 'Halaman kami tentang slip disc', href: '/conditions/slipped-disc' }],
+      },
+      {
+        q: 'Anak remaja saya sakit belakang kerana sukan. Mungkinkah ia spondilolisis?',
+        a: 'Mungkin. Spondilolisis ialah antara punca lazim sakit pinggang yang berpanjangan pada remaja yang aktif, terutamanya dalam sukan yang melengkungkan belakang berulang kali. Sakit yang berlarutan lebih dua minggu, bertambah teruk ketika melengkung, atau datang bersama hamstring yang tegang patut diimbas oleh doktor dahulu. Setelah retakan tekanan diketepikan atau sudah pulih, kami boleh membantu dari segi kekuatan dan proses kembali bersukan.',
+      },
+      {
+        q: 'Senaman apa yang selamat dengan spondilolistesis?',
+        a: 'Senaman yang membina otot dalam badan dan pinggul tanpa melengkungkan pinggang ialah titik permulaan yang biasa, bersama regangan hamstring yang lembut. Lengkungan ke belakang yang berulang dan mengangkat beban berat di atas kepala cenderung membebankan paras yang tergelincir, jadi tinggalkan dahulu sehingga anda dinilai. Jika mana-mana senaman melengkungkan belakang anda atau menghantar gejala ke kaki, hentikan dan beritahu ahli fisioterapi anda.',
+      },
+      {
+        q: 'Bolehkah spondilolistesis menyebabkan stenosis spinal?',
+        a: 'Boleh. Apabila vertebra teranjak ke hadapan, ia menyempitkan saluran pada paras itu, dan kedua-duanya kerap dijumpai bersama pada orang berusia lebih 50 tahun. Corak pada kaki kemudiannya sama seperti stenosis spinal, dengan kaki yang berat atau kesemutan ketika berjalan dan lega ketika duduk atau membongkok ke hadapan.',
+        links: [{ phrase: 'stenosis spinal', href: '/conditions/spinal-stenosis' }],
+      },
+    ],
+    keyTakeaways: [
+      {
+        q: 'Apakah itu spondilolistesis?',
+        a: 'Satu vertebra yang teranjak ke hadapan di atas vertebra di bawahnya, paling kerap di pinggang bawah. Yang bergerak ialah tulang, bukan cakera yang membonjol.',
+      },
+      {
+        q: 'Adakah gelinciran pada X-ray saya menjelaskan sakit belakang saya?',
+        a: 'Tidak semestinya. Gelinciran dan retakan tekanan dijumpai pada ramai orang dewasa yang tiada sakit belakang, jadi pemeriksaan yang menentukan sama ada gelinciran itu punca sakit anda.',
+      },
+      {
+        q: 'Jenis mana yang paling lazim?',
+        a: 'Pada orang dewasa berusia lebih 50 tahun, spondilolistesis degeneratif akibat kehausan cakera dan sendi. Pada remaja yang aktif, jenis isthmik yang bermula dengan retakan tekanan.',
+      },
+      {
+        q: 'Bilakah pembedahan dipertimbangkan?',
+        a: 'Biasanya bagi gelinciran gred tinggi, gejala saraf yang terus bertambah teruk, atau sakit yang tidak reda selepas tempoh jagaan konservatif yang mencukupi.',
+      },
+      {
+        q: 'Bilakah anda dibuka?',
+        a: 'Tujuh hari seminggu, di Sunway Velocity, Maluri. Isnin hingga Khamis dan Sabtu sehingga 8 malam, Jumaat sehingga 5 petang, Ahad sehingga 3 petang.',
+      },
+    ],
+    qualifierConcerns: [
+      'Saya diberitahu satu vertebra saya tergelincir',
+      'Berdiri atau melengkungkan belakang memburukkannya',
+      'Kaki saya lenguh atau kesemutan bila berjalan',
+      'Anak remaja saya sakit belakang kerana sukan',
+      'Saya mahu tahu sama ada saya perlu dibedah',
+    ],
+    citations: [
+      {
+        claim:
+          'Pada imbasan CT sampel komuniti dewasa yang tidak dipilih, spondilolisis dijumpai pada 11.5% orang, dan tiada kaitan yang signifikan dijumpai antara spondilolisis atau spondilolistesis dengan sakit pinggang.',
+        source: 'Kalichman et al. (2009), Spine, Framingham Study',
+        url: 'https://doi.org/10.1097/BRS.0b013e31818edcfd',
+      },
+      {
+        claim:
+          'Dalam satu kajian spondilolistesis degeneratif, gelinciran bertambah pada 30% pesakit, dan pertambahan itu tidak berkait dengan gejala.',
+        source: 'Matsunaga et al. (1990), Spine',
+        url: 'https://doi.org/10.1097/00007632-199011010-00021',
+      },
+      {
+        claim:
+          'Spondilolisis dan spondilolistesis ialah punca lazim sakit pinggang pada kanak-kanak dan remaja, terutamanya dalam sukan yang membebankan pinggang, dan kebanyakan kes gred rendah bertambah baik dengan jagaan bukan pembedahan. Gelinciran gred tinggi, melebihi 50%, lebih cenderung memerlukan pembedahan.',
+        source: 'OrthoInfo, American Academy of Orthopaedic Surgeons',
+        url: 'https://orthoinfo.aaos.org/en/diseases--conditions/spondylolysis-and-spondylolisthesis/',
+      },
+      {
+        claim:
+          'Spondilolistesis paling lazim di pinggang bawah, selalunya lebih teruk ketika berdiri atau berjalan dan lega ketika duduk atau membongkok ke hadapan, dan fisioterapi ialah antara pendekatan pertama yang biasa.',
+        source: 'NHS, Spondylolisthesis',
+        url: 'https://www.nhs.uk/conditions/spondylolisthesis/',
+      },
+    ],
+    comparison: {
+      heading: 'Spondilolistesis, spondilolisis, slip disc atau stenosis spinal?',
+      intro:
+        'Keempat-empat keadaan ini sering dikelirukan kerana namanya hampir sama dan ia boleh wujud bersama. Ini panduan kasar tentang perbezaannya, dan lajur yang berpautan membawa anda ke halaman yang menerangkan setiap satunya dengan lengkap.',
+      columns: [
+        'Spondilolistesis',
+        'Spondilolisis',
+        { label: 'Slip disc', href: '/conditions/slipped-disc' },
+        { label: 'Stenosis spinal', href: '/conditions/spinal-stenosis' },
+      ],
+      rows: [
+        {
+          label: 'Apa yang berlaku',
+          cells: [
+            'Satu vertebra teranjak ke hadapan di atas vertebra di bawahnya',
+            'Retakan tekanan di bahagian belakang vertebra, tanpa anjakan lagi',
+            'Bahan cakera membonjol atau herniasi di antara dua vertebra',
+            'Saluran yang dilalui saraf telah menyempit',
+          ],
+        },
+        {
+          label: 'Siapa yang biasa terkesan',
+          cells: [
+            'Orang dewasa berusia lebih 50 tahun, atau remaja dan dewasa muda yang bersukan',
+            'Remaja yang aktif, terutamanya dalam sukan yang melengkungkan belakang',
+            'Paling kerap orang dewasa berumur 30 hingga 50 tahun',
+            'Kebanyakannya orang berusia lebih 50 tahun',
+          ],
+        },
+        {
+          label: 'Apa yang biasanya memburukkannya',
+          cells: [
+            'Berdiri lama dan melengkung ke belakang',
+            'Melengkung ke belakang dan memusing badan ketika bersukan',
+            'Duduk, membongkok ke hadapan, batuk atau bersin',
+            'Berdiri dan berjalan',
+          ],
+        },
+        {
+          label: 'Langkah pertama yang biasa',
+          cells: [
+            'Penilaian, dengan pengimejan disemak atau diatur jika perlu',
+            'Doktor dan pengimejan dahulu bagi atlet muda',
+            'Penilaian, dengan pengimejan hanya jika ia akan mengubah pelan',
+            'Penilaian, termasuk semakan untuk masalah peredaran darah',
+          ],
+        },
+      ],
+      note: 'Keadaan ini bertindih. Vertebra yang tergelincir boleh menyempitkan saluran, dan retakan tekanan selalunya permulaan bagi gelinciran isthmik. Pengimejan yang dibaca bersama pemeriksaan ialah apa yang membezakannya.',
+    },
+    // Same standing as every other ms record: adapted from the English page, not yet read by a
+    // Malay-speaking reviewer. The adjustment wording mirrors the English SAFE version.
+    draft: false,
+  },
+  {
+    slug: 'carpal-tunnel-syndrome',
+    title: 'Sindrom Terowong Karpal (Carpal Tunnel) di Cheras, Kuala Lumpur',
+    metaTitle: 'Jagaan Sindrom Terowong Karpal di Cheras, KL',
+    metaDescription:
+      'Sindrom terowong karpal (carpal tunnel) dinilai di Cheras, Maluri. Tangan kebas waktu malam, jari kesemutan atau genggaman lemah diperiksa di pergelangan tangan dan leher.',
+    // sindrom terowong karpal 70/mo, SD 17 (Ubersuggest, locId 2458, language ms, 2026-10-19),
+    // the Malay medical name. "carpal tunnel syndrome" reads 18,100 under the ms filter, but
+    // that is the identical figure the English record measured, so it is the country total for
+    // the English query rather than Malay-language demand, and it is the English page's exact
+    // target. Everything else measured 0: "sindrom carpal tunnel", "carpal tunnel", "carpal
+    // tunnel syndrome adalah", "tangan kebas", "kebas tangan", "kebas tangan waktu malam",
+    // "kebas jari tangan". "carpal tunnel" stays in the h1 because Malaysians use the English
+    // name, and the pinched-nerve record already owns "sakit saraf tangan".
+    targetKeyword: 'sindrom terowong karpal',
+    related: ['pinched-nerve', 'neck-pain'],
+    helpedBy: ['physiotherapy', 'chiropractic-care'],
+
+    intro:
+      'Sindrom terowong karpal, atau carpal tunnel syndrome, ialah saraf median yang tertekan ketika ia melalui saluran sempit di bahagian hadapan pergelangan tangan. Biasanya ia muncul sebagai kesemutan atau kebas pada ibu jari, jari telunjuk, jari tengah dan separuh jari manis, dan selalunya paling teruk pada waktu malam. Namun tangan yang kesemutan memang lazim, dan bukan setiap kes ialah carpal tunnel. Jari yang sama boleh menjadi kebas akibat saraf yang tersepit di leher, jadi penilaian memeriksa kedua-duanya sebelum memutuskan di mana masalahnya. Kes ringan dan sederhana biasanya diuruskan tanpa pembedahan pada permulaannya. Kebas yang berterusan atau otot ibu jari yang semakin susut ialah sebab untuk berjumpa pakar bedah tangan, bukan untuk menambah sesi dengan kami.',
+    symptoms: [
+      'Kesemutan atau kebas pada ibu jari, jari telunjuk dan jari tengah, tanpa melibatkan jari kelingking',
+      'Terjaga pada waktu malam dengan tangan kebas dan perlu mengibas-ngibasnya',
+      'Gejala tercetus apabila memegang telefon, stereng kereta atau tetikus dengan pergelangan tangan bengkok',
+      'Barang terlepas dari tangan, atau terkial-kial dengan butang dan barang kecil',
+      'Lenguh di pergelangan tangan yang boleh merebak ke lengan bawah',
+      'Genggaman yang lebih cepat letih berbanding dahulu',
+      'Bahagian di pangkal ibu jari yang kelihatan lebih leper dan lembik',
+    ],
+    causes: [
+      {
+        heading: 'Tekanan di dalam terowong pergelangan tangan yang sempit',
+        image: { src: '/img/cts-cause-tunnel.webp', alt: 'Ilustrasi tangan dilihat dari bahagian tapak, dengan saraf berjalan dari lengan bawah di bawah satu jalur merentasi pergelangan tangan ke jari dan cahaya keemasan di tempat ia melalui bawah jalur itu' },
+        body: 'Terowong karpal ialah saluran sempit yang dibentuk oleh tulang-tulang kecil pergelangan tangan dan berbumbungkan ligamen, dan saraf median berkongsi ruang itu dengan sembilan tendon. Ruang lebihnya sangat sedikit. Membengkokkan pergelangan tangan sepenuhnya ke mana-mana arah meningkatkan tekanan di dalamnya, sebab itulah pergelangan tangan yang terlipat di bawah bantal pada waktu malam begitu kerap mencetuskan gejala.',
+      },
+      {
+        heading: 'Menggenggam berulang kali dan pergelangan tangan yang ditahan lama',
+        image: { src: '/img/cts-cause-grip.webp', alt: 'Ilustrasi seorang wanita di meja menggunakan tetikus komputer dengan pergelangan tangan terlentur ke atas, dan cahaya keemasan di pergelangan tangannya' },
+        body: 'Berjam-jam dengan pergelangan tangan bengkok di atas tetikus atau telefon, menggenggam dengan kuat, dan alat yang bergetar semuanya membebankan terowong itu. Tiada satu pun daripadanya bermakna anda pasti akan mendapat sindrom terowong karpal, dan ramai orang melakukannya bertahun-tahun tanpa masalah. Namun apabila gejala sudah bermula, faktor inilah yang biasanya mengekalkannya, dan inilah bahagian yang boleh anda ubah.',
+      },
+      {
+        heading: 'Kehamilan, diabetes dan faktor kesihatan lain',
+        image: { src: '/img/cts-cause-pregnancy.webp', alt: 'Ilustrasi seorang wanita hamil berbaju tidur duduk di tepi katil pada waktu malam sambil mengibas tangannya, dengan cahaya keemasan pada jarinya' },
+        body: 'Pengumpulan cecair semasa hamil boleh menyesakkan terowong itu, dan gejala selalunya reda selepas bayi lahir. Diabetes, ketidakseimbangan tiroid dan artritis reumatoid juga dikaitkan dengan sindrom terowong karpal. Jika salah satu daripadanya berkenaan dengan anda, eloklah doktor anda tahu tentang gejala tangan itu juga.',
+      },
+      {
+        heading: 'Apabila pergelangan tangan langsung bukan puncanya',
+        image: { src: '/img/cts-cause-neck.webp', alt: 'Ilustrasi seorang lelaki dari sisi dengan cahaya keemasan mengalir dari tepi lehernya menuruni lengan ke tangan' },
+        body: 'Akar saraf yang teriritasi di leher, atau saraf yang tertekan di siku, boleh menghasilkan kesemutan pada sebahagian jari yang sama. Sebab itulah leher diperiksa bersama pergelangan tangan, dan tangan yang kesemutan tidak dianggap carpal tunnel sehingga coraknya menunjukkan begitu.',
+      },
+    ],
+    approach: [
+      {
+        heading: 'Menentukan sama ada puncanya pergelangan tangan, leher atau kedua-duanya',
+        body: 'Lawatan pertama anda mengikut penilaian enam langkah Gonstead: sejarah kesihatan, visualisasi, penggunaan instrumen, palpasi, dan analisis X-ray jika perlu. Bagi gejala tangan kami menambah ujian neurologi pada deria, kekuatan dan refleks, ujian provokasi di pergelangan tangan, dan saringan leher. Jari yang terlibat, dan kedudukan yang mencetuskan gejala, banyak memberitahu kami di mana saraf itu tertekan.',
+      },
+      {
+        heading: 'Menenangkan gejala waktu malam dahulu',
+        body: 'Terjaga pada waktu malam selalunya bahagian yang paling mengganggu. Splin yang mengekalkan pergelangan tangan lurus semasa tidur ialah cadangan pertama yang lazim, dan kami akan berterus terang bahawa bukti untuk splin adalah sederhana sahaja. Kedudukan tidur, dan sebanyak mana pergelangan tangan dibengkokkan sepanjang petang dan malam, turut dilihat bersamanya.',
+      },
+      {
+        heading: 'Fisioterapi untuk pergelangan tangan, tangan dan lengan bawah',
+        body: 'Bahagian fisioterapi kami mungkin menggunakan senaman gelongsor saraf dan tendon, kerja secara tangan pada lengan bawah dan pergelangan tangan, dan program berperingkat untuk genggaman dan daya tahan tangan. Tabiat meja, tetikus dan telefon anda turut disemak, kerana pergelangan tangan terus kembali ke kedudukan yang sama sebaik sahaja anda keluar dari klinik.',
+      },
+      {
+        heading: 'Leher, dan bila perlu berjumpa pakar bedah tangan',
+        body: 'Jika pemeriksaan menjumpai segmen yang tersekat di leher yang menyumbang kepada gambaran itu, pelarasan hanya digunakan jika penilaian menyokongnya. Itu berkaitan leher, dan ia bukan cara untuk melepaskan tekanan di pergelangan tangan. Jika kebas sudah berterusan, otot ibu jari semakin susut, atau gejala tidak berubah, kami akan merujuk anda kepada doktor atau pakar bedah tangan, yang mungkin mengatur ujian konduksi saraf. Jika kiropraktor anda merasakan penyedia kesihatan lain lebih sesuai membantu anda, anda akan dirujuk dengan sewajarnya.',
+      },
+    ],
+    redFlags: [
+      'Otot di pangkal ibu jari yang susut atau menjadi leper',
+      'Kebas yang sudah berterusan, bukan datang dan pergi',
+      'Kelemahan tangan yang semakin teruk, atau barang semakin kerap terlepas dari tangan',
+      'Gejala pada kedua-dua tangan bersama rasa kekok atau berjalan tidak stabil',
+      'Gejala tiba-tiba selepas kecederaan pergelangan tangan atau terjatuh, atau tangan yang menjadi bengkak, sejuk atau pucat',
+      'Gejala lengan atau tangan bersama sakit dada, sesak nafas atau berpeluh. Dapatkan bantuan kecemasan segera',
+    ],
+    faqs: [
+      {
+        q: 'Adakah sindrom terowong karpal sejenis saraf tersepit?',
+        a: 'Dalam satu segi, ya. Ia saraf median yang tertekan di pergelangan tangan. Apa yang kebanyakan orang maksudkan dengan saraf tersepit ialah akar saraf yang teriritasi ketika keluar dari tulang belakang di leher, yang diterangkan di halaman kami tentang sakit saraf tangan dari leher. Kedua-duanya boleh terasa serupa di tangan, dan sebab itulah kami memeriksa kedua-dua tempat.',
+        links: [{ phrase: 'sakit saraf tangan dari leher', href: '/conditions/pinched-nerve' }],
+      },
+      {
+        q: 'Bolehkah masalah di leher menyebabkan gejala carpal tunnel?',
+        a: 'Mungkin, dan jawapan jujurnya ialah tiada siapa tahu dengan tepat sekerap mana. Sebahagian orang dengan sindrom terowong karpal juga mengalami sakit leher atau penemuan akar saraf di leher. Idea bahawa saraf yang tertekan di dua tempat menjadi lebih sensitif di kedua-duanya, kadangkala dipanggil double crush, memang popular tetapi belum terbukti. Memeriksa leher bersama pergelangan tangan tetap berbaloi, kerana ia mengubah apa yang patut menjadi fokus pelan.',
+      },
+      {
+        q: 'Adakah splin pergelangan tangan membantu sindrom terowong karpal?',
+        a: 'Sedikit, paling banyak pun. Satu ulasan besar penyelidikan tidak dapat memastikan sama ada splin membantu, dan apa-apa penambahbaikan yang dijumpai adalah kecil. Ada bukti berkepastian rendah bahawa memakainya pada waktu malam lebih baik daripada tidak berbuat apa-apa. Oleh sebab splin murah dan tidak mungkin membawa mudarat, ia munasabah untuk dicuba sementara bahagian lain pelan dimulakan.',
+      },
+      {
+        q: 'Perlukah saya dibedah untuk carpal tunnel?',
+        a: 'Kebanyakan kes ringan dan sederhana mencuba jagaan bukan pembedahan dahulu. Keadaan berubah apabila kebas sudah berterusan, apabila otot di pangkal ibu jari semakin susut, atau apabila ujian menunjukkan perubahan saraf yang ketara, kerana saraf yang tertekan terlalu lama mungkin tidak pulih sepenuhnya. Dalam situasi itu kami akan menunjukkan jalan kepada pakar bedah tangan, bukan meneruskan sesi di sini.',
+      },
+      {
+        q: 'Tangan saya kebas waktu malam semasa hamil. Adakah itu carpal tunnel?',
+        a: 'Selalunya ya. Pengumpulan cecair semasa hamil boleh menyesakkan terowong pergelangan tangan, dan kesemutan waktu malam pada ibu jari dan jari-jari pertama ialah corak yang lazim, terutamanya pada peringkat akhir kehamilan. Ia kerap reda selepas bersalin. Beritahu doktor obstetrik anda, dan splin pergelangan tangan yang lurus pada waktu malam ialah salah satu langkah yang lebih lembut untuk dicuba sementara itu.',
+      },
+      {
+        q: 'Perlukah saya buat ujian konduksi saraf sebelum datang?',
+        a: 'Tidak. Kebanyakan orang tidak memerlukannya pada permulaan. Kajian konduksi saraf berguna apabila gambarannya tidak jelas, apabila gejala teruk atau berterusan, atau apabila pembedahan dipertimbangkan, dan dalam kes itu kami akan merujuk anda kepada doktor yang boleh mengaturnya. Bawa sebarang keputusan yang anda sudah ada.',
+      },
+    ],
+    keyTakeaways: [
+      {
+        q: 'Apakah itu sindrom terowong karpal?',
+        a: 'Saraf median yang tertekan ketika melalui saluran sempit di bahagian hadapan pergelangan tangan, menyebabkan kesemutan, kebas atau sakit di tangan.',
+      },
+      {
+        q: 'Jari mana yang terlibat?',
+        a: 'Biasanya ibu jari, jari telunjuk, jari tengah dan separuh jari manis. Jari kelingking biasanya tidak terlibat, dan ini membantu membezakannya daripada masalah saraf lain.',
+      },
+      {
+        q: 'Adakah setiap tangan yang kesemutan itu carpal tunnel?',
+        a: 'Tidak. Dalam satu kajian populasi, kira-kira satu daripada tujuh orang dewasa melaporkan kesemutan atau kebas pada jari-jari ini, dan jauh lebih sedikit yang disahkan ada sindrom terowong karpal melalui pemeriksaan dan ujian.',
+      },
+      {
+        q: 'Bilakah ia perlu segera berjumpa doktor?',
+        a: 'Apabila kebas menjadi berterusan, otot di pangkal ibu jari kelihatan lebih leper, atau tangan semakin lemah. Tanda-tanda ini menunjukkan saraf yang tertekan secara berterusan.',
+      },
+      {
+        q: 'Bilakah anda dibuka?',
+        a: 'Tujuh hari seminggu, di Sunway Velocity, Maluri. Isnin hingga Khamis dan Sabtu sehingga 8 malam, Jumaat sehingga 5 petang, Ahad sehingga 3 petang.',
+      },
+    ],
+    qualifierConcerns: [
+      'Jari saya kesemutan atau kebas, terutamanya waktu malam',
+      'Saya terjaga dan perlu mengibas tangan',
+      'Genggaman saya terasa lemah atau barang kerap terlepas',
+      'Saya guna tetikus, telefon atau alatan berjam-jam sehari',
+      'Saya mahu tahu sama ada puncanya pergelangan tangan atau leher',
+    ],
+    citations: [
+      {
+        claim:
+          'Gejala tangan di kawasan saraf median adalah lazim, manakala sindrom terowong karpal yang disahkan kurang lazim: 14.4% orang dewasa yang ditinjau melaporkannya, dan 2.7% disahkan ada sindrom terowong karpal melalui pemeriksaan dan ujian konduksi saraf.',
+        source: 'Atroshi I and others, JAMA, 1999',
+        url: 'https://pubmed.ncbi.nlm.nih.gov/10411196/',
+      },
+      {
+        claim:
+          'Bukti tentang penggunaan splin untuk sindrom terowong karpal adalah terhad dan sebarang manfaat mungkin kecil, dengan bukti berkepastian rendah yang memihak kepada splin waktu malam berbanding tiada intervensi.',
+        source: 'Splinting for carpal tunnel syndrome, Cochrane Database of Systematic Reviews, 2023',
+        url: 'https://pubmed.ncbi.nlm.nih.gov/36848651/',
+      },
+      {
+        claim:
+          'Sindrom terowong karpal yang sudah lama dengan kebas berterusan dan otot ibu jari yang susut mungkin memerlukan pembedahan untuk mengelakkan kerosakan kekal. Kehamilan, diabetes, artritis reumatoid dan ketidakseimbangan tiroid dikaitkan dengan keadaan ini.',
+        source: 'OrthoInfo, American Academy of Orthopaedic Surgeons',
+        url: 'https://www.orthoinfo.org/en/diseases--conditions/carpal-tunnel-syndrome/',
+      },
+      {
+        claim:
+          'Ramai orang dengan sindrom terowong karpal juga mengalami sakit leher atau penemuan akar saraf servikal, tetapi hipotesis double crush masih kontroversi, walaupun memeriksa lebih daripada satu tempat mungkin masih bernilai.',
+        source: 'Russell BS, Chiropractic & Osteopathy, 2008',
+        url: 'https://pubmed.ncbi.nlm.nih.gov/18426564/',
+      },
+    ],
+    comparison: {
+      heading: 'Carpal tunnel, saraf tersepit di leher, atau siku yang terlebih guna?',
+      intro:
+        'Kesemutan dan lenguh di tangan dan lengan bawah boleh bermula di pergelangan tangan, leher atau siku, dan setiap satunya dijaga secara berbeza. Ini panduan kasar untuk mengenal pasti yang mana mungkin anda alami, dan lajur yang berpautan membawa anda ke halaman yang menerangkannya dengan lengkap.',
+      columns: [
+        { label: 'Carpal tunnel (pergelangan tangan)' },
+        { label: 'Saraf tersepit di leher', href: '/conditions/pinched-nerve' },
+        { label: 'Siku dan lengan bawah terlebih guna' },
+      ],
+      rows: [
+        {
+          label: 'Di mana anda merasainya',
+          cells: [
+            'Ibu jari, jari telunjuk dan jari tengah, di bahagian tapak tangan',
+            'Satu jalur dari leher menuruni lengan ke jari tertentu',
+            'Bahagian luar siku dan bahagian atas lengan bawah',
+          ],
+        },
+        {
+          label: 'Bagaimana rasanya',
+          cells: [
+            'Kebanyakannya kesemutan dan kebas',
+            'Sakit terbakar atau menyengat, selalunya dengan kesemutan',
+            'Lenguh dan sakit bila ditekan, dengan sedikit kebas',
+          ],
+        },
+        {
+          label: 'Apa yang mencetuskannya',
+          cells: [
+            'Pergelangan tangan bengkok, menggenggam, dan berbaring di katil pada waktu malam',
+            'Memusing atau mencondongkan kepala',
+            'Menggenggam dan mengangkat dengan tapak tangan menghadap ke bawah',
+          ],
+        },
+        {
+          label: 'Sakit leher bersamanya',
+          cells: ['Biasanya tidak', 'Selalunya, walaupun mungkin ringan', 'Tidak'],
+        },
+        {
+          label: 'Pada waktu malam',
+          cells: [
+            'Mengejutkan anda dengan tangan kebas yang perlu dikibas',
+            'Sakit lengan yang reda apabila tangan diletakkan di atas kepala',
+            'Jarang menjadi masalah',
+          ],
+        },
+      ],
+      note: 'Sesetengah orang mengalami masalah pergelangan tangan dan masalah leher pada masa yang sama, sebab itulah kedua-duanya diuji dan bukan satu sahaja diandaikan.',
+    },
+    // Same standing as every other ms record: adapted from the English page, not yet read by a
+    // Malay-speaking reviewer.
+    draft: false,
+  },
+  {
+    slug: 'frozen-shoulder',
+    title: 'Frozen Shoulder (Bahu Beku) di Cheras, Kuala Lumpur',
+    metaTitle: 'Fisioterapi Frozen Shoulder di Cheras, KL',
+    metaDescription:
+      'Frozen shoulder (bahu beku, adhesive capsulitis) dinilai di Cheras, Maluri. Fisioterapi untuk sakit dan kekakuan, dengan gambaran jujur tentang perjalanannya.',
+    // frozen shoulder 8,100/mo, SD 33 (Ubersuggest, locId 2458, language ms, 2026-10-19). The
+    // English name is what Malay searchers type: its Malay-language long tails measure "apakah
+    // frozen shoulder berbahaya" 140 and "pantangan makanan frozen shoulder" 90, while the Malay
+    // name "bahu beku" measures 40 and "bahu keras" 10, so "bahu beku" sits in the h1 instead.
+    // No collision: the English page owns "frozen shoulder treatment", and the ms
+    // shoulder-imbalance record owns "sakit bahu".
+    targetKeyword: 'frozen shoulder',
+    related: ['shoulder-imbalance', 'neck-pain'],
+    helpedBy: ['physiotherapy', 'sports-injury-rehabilitation'],
+
+    intro:
+      'Frozen shoulder, atau bahu beku (nama klinikalnya adhesive capsulitis), ialah kapsul di sekeliling sendi bahu yang menebal dan mengetat sehingga lengan tidak lagi bergerak dengan bebas. Tanda utamanya ialah lengan tetap kaku walaupun orang lain cuba menggerakkannya untuk anda, dan itulah yang membezakannya daripada kebanyakan sakit bahu lain. Ia paling lazim antara umur 40 hingga 60 tahun, lebih kerap pada wanita, dan jauh lebih kerap pada penghidap diabetes. Secara umumnya ia bertambah baik dengan masa tanpa pembedahan, walaupun ia boleh mengambil masa yang lama dan kadarnya sangat berbeza dari seorang ke seorang. Jagaan di sini bertujuan menguruskan sakit dan mengekalkan seberapa banyak pergerakan yang dibenarkan oleh setiap peringkat, bukan mengikut jadual masa yang tetap.',
+    symptoms: [
+      'Sakit yang dalam di bahu, selalunya lebih teruk pada waktu malam atau ketika berbaring di sisi itu',
+      'Tidak dapat mencapai ke belakang badan, ke poket belakang atau tali coli',
+      'Sukar mencapai ke atas kepala atau ke sisi',
+      'Lengan tidak dapat dipusing ke luar, walaupun orang lain menggerakkannya untuk anda',
+      'Kekakuan yang datang perlahan-lahan dalam beberapa minggu, selalunya tanpa kecederaan yang menjelaskannya',
+      'Sakit tajam yang tercekau di hujung capaian',
+      'Berusia 40-an hingga 60-an, atau menghidap diabetes atau masalah tiroid',
+    ],
+    causes: [
+      {
+        heading: 'Kapsul bahu yang menebal dan ketat',
+        image: { src: '/img/fs-cause-capsule.webp', alt: 'Ilustrasi sendi bahu dilihat dari hadapan, dengan kapsul yang menebal membalut rapat bebola dan soketnya serta cahaya keemasan di sekelilingnya' },
+        body: 'Sendi bahu terletak di dalam kapsul tisu penghubung yang biasanya agak longgar. Dalam frozen shoulder kapsul itu meradang, kemudian menebal dan mengetat, jadi sendi kurang ruang untuk bergerak ke semua arah. Yang mengehadkan anda ialah kapsul itu, bukan otot yang lemah atau tendon yang koyak.',
+      },
+      {
+        heading: 'Diabetes dan masalah tiroid',
+        image: { src: '/img/fs-cause-diabetes.webp', alt: 'Ilustrasi seorang wanita duduk di meja memeriksa gula darahnya dengan meter glukosa kecil, dengan cahaya keemasan pada bahunya' },
+        body: 'Penghidap diabetes kira-kira lima kali lebih berkemungkinan mendapat frozen shoulder, dan bahu mereka cenderung lebih kaku dan lebih lambat pulih. Masalah tiroid juga dikaitkan. Jika anda menghidap diabetes, bincang dengan doktor anda tentang sejauh mana ia terkawal, kerana itu juga sebahagian daripada gambaran.',
+      },
+      {
+        heading: 'Tempoh lengan tidak digerakkan',
+        image: { src: '/img/fs-cause-still.webp', alt: 'Ilustrasi seorang wanita berdiri dengan lengannya dalam anduh, dan cahaya keemasan pada bahu itu' },
+        body: 'Frozen shoulder kadangkala berlaku selepas kecederaan, pembedahan atau penyakit yang membuatkan lengan tidak digerakkan untuk seketika. Mengekalkan bahu bergerak secara lembut dalam had selesa semasa pulih daripada masalah lain ialah salah satu daripada sedikit langkah yang mungkin mengurangkan risiko ia berlaku.',
+      },
+      {
+        heading: 'Selalunya tiada sebab yang jelas',
+        image: { src: '/img/fs-cause-unclear.webp', alt: 'Ilustrasi seorang wanita mencapai rak tinggi di dapur, dengan cahaya keemasan pada bahunya' },
+        body: 'Pada ramai orang ia bermula begitu sahaja, tanpa kecederaan dan tanpa pencetus yang jelas. Memang mengecewakan untuk mendengarnya. Ia tidak bermakna anda telah melakukan apa-apa kesilapan, dan ia tidak mengubah cara bahu itu dijaga.',
+      },
+    ],
+    approach: [
+      {
+        heading: 'Mengesahkan ia frozen shoulder, bukan rotator cuff atau leher anda',
+        body: 'Lawatan pertama anda bermula dengan sejarah kesihatan dan pemeriksaan bagaimana bahu bergerak dengan sendirinya dan apabila digerakkan untuk anda, iaitu ujian utamanya. Leher turut disaring, kerana sakit yang dirujuk dari leher boleh dirasai di bahu. Analisis X-ray hanya digunakan jika ia akan mengubah pelan, terutamanya untuk mengetepikan artritis pada sendi.',
+      },
+      {
+        heading: 'Menenangkan peringkat yang menyakitkan',
+        body: 'Apabila bahu berada pada tahap paling sakit, memaksanya cenderung memburukkan keadaan. Jagaan pada peringkat ini ialah pergerakan lembut dalam had selesa, nasihat tentang kedudukan tidur dan menyokong lengan pada waktu malam, dan memastikan bahagian lain lengan, leher dan belakang atas terus bergerak.',
+      },
+      {
+        heading: 'Mengembalikan pergerakan semasa bahu kaku dan mula longgar',
+        body: 'Apabila sakit mereda, bahagian fisioterapi kami beralih kepada mobilisasi sendi, regangan dan latihan kekuatan yang disesuaikan dengan apa yang bahu boleh terima, serta program ringkas di rumah yang anda buat hampir setiap hari. Kemajuan selalunya perlahan dan tidak sekata, dan kami akan memberitahu anda dengan jujur bagaimana bahu anda bertindak balas, bukan menjanjikan tarikh.',
+      },
+      {
+        heading: 'Bila doktor perlu terlibat',
+        body: 'Jika sakit waktu malam teruk atau pergerakan tidak berubah, doktor mungkin menawarkan suntikan steroid atau hidrodilatasi, iaitu kapsul sendi diregangkan dengan cecair. Penyelidikan menunjukkan suntikan mungkin melegakan sakit lebih daripada fisioterapi sahaja pada bulan-bulan awal, dan kami akan merujuk anda kepada doktor untuknya, bukan terus menahan anda di sini. Jika pengamal anda merasakan penyedia kesihatan lain lebih sesuai membantu anda, anda akan dirujuk dengan sewajarnya.',
+      },
+    ],
+    redFlags: [
+      'Sakit bahu bersama dada ketat, sesak nafas, berpeluh, atau sakit ke rahang atau lengan kiri. Dapatkan bantuan kecemasan segera',
+      'Sakit bahu selepas terjatuh atau cedera, terutamanya jika anda langsung tidak boleh mengangkat lengan',
+      'Bahu yang panas, merah atau bengkak, atau sakit bahu bersama demam',
+      'Penurunan berat badan tanpa sebab, sejarah kanser, atau sakit berterusan pada waktu malam yang tidak reda dengan apa-apa',
+      'Kebas, kesemutan atau kelemahan yang merebak menuruni lengan ke tangan',
+      'Tiba-tiba hilang keupayaan untuk mengangkat lengan',
+    ],
+    faqs: [
+      {
+        q: 'Adakah frozen shoulder akan hilang dengan sendirinya?',
+        a: 'Biasanya ia bertambah baik, tetapi perlahan. Kebanyakan frozen shoulder pulih dengan masa tanpa pembedahan, walaupun pemulihan penuh boleh mengambil masa sehingga kira-kira tiga tahun, dan sesetengah orang masih ada sedikit kekakuan selepas itu. Jagaan tidak boleh berjanji untuk memendekkan tempoh itu, dan sesiapa yang memberi anda bilangan minggu yang tetap sebenarnya hanya meneka. Apa yang disasarkan ialah kurang sakit dan lebih banyak pergerakan yang boleh digunakan sepanjang perjalanan itu.',
+      },
+      {
+        q: 'Bolehkah fisioterapi membantu frozen shoulder?',
+        a: 'Ia mungkin membantu dengan sakit dan pergerakan, dan kebanyakan panduan bermula dengannya, tetapi gambaran jujurnya ialah penyelidikan masih terhad. Satu ulasan besar mendapati fisioterapi sahaja mungkin tidak melegakan sakit sebanyak suntikan steroid dalam jangka pendek. Sebab itulah kami menggabungkan program senaman dengan rujukan kepada doktor apabila sakit teruk, supaya anda mendapat manfaat kedua-duanya.',
+      },
+      {
+        q: 'Perlukah saya teruskan regangan frozen shoulder walaupun sakit?',
+        a: 'Tidak, terutamanya pada peringkat awal yang menyakitkan. Meregang dengan kuat ke dalam sakit cenderung mencetuskan bahu dan melambatkan kemajuan anda. Pergerakan lembut dalam had selesa sesuai untuk peringkat yang sakit, dan regangan yang lebih tegas datang kemudian apabila bahu sudah boleh menerimanya. Ahli fisioterapi anda akan memberitahu peringkat mana anda berada dan menyesuaikan program apabila ia berubah.',
+      },
+      {
+        q: 'Adakah diabetes menyebabkan frozen shoulder?',
+        a: 'Ia tidak menyebabkannya secara langsung, tetapi kaitannya kuat. Penghidap diabetes kira-kira lima kali lebih berkemungkinan mendapat frozen shoulder, dan kira-kira satu daripada tujuh penghidap diabetes mengalaminya pada suatu ketika. Ia juga boleh lebih kaku dan lebih lambat pulih. Jika anda menghidap diabetes, pastikan doktor anda tahu tentang bahu anda dan tentang kawalan gula darah anda.',
+      },
+      {
+        q: 'Frozen shoulder atau masalah rotator cuff?',
+        a: 'Petunjuk paling cepat ialah sama ada orang lain boleh menggerakkan lengan anda lebih jauh daripada anda sendiri. Dengan masalah rotator cuff, sendi itu sendiri bebas, jadi lengan biasanya pergi lebih jauh apabila digerakkan untuk anda. Dengan frozen shoulder, kapsulnya ketat, jadi ia tetap kaku tidak kira siapa yang menggerakkannya, terutamanya ketika memusing lengan ke luar. Pemeriksaan mengesahkan yang mana satu.',
+      },
+      {
+        q: 'Siapa yang menjaga frozen shoulder di klinik anda?',
+        a: 'Kebanyakannya ahli fisioterapi berdaftar kami, kerana senaman dan mobilisasi membentuk sebahagian besar jagaan, dengan kiropraktor menyaring leher jika corak sakit menunjukkan ia terlibat. Profil ahli fisioterapi kami belum diterbitkan, jadi jika anda mahu tahu lebih lanjut sebelum menempah, tanya kami di WhatsApp. Anda boleh membaca cara kami bekerja di halaman fisioterapi kami.',
+        links: [{ phrase: 'halaman fisioterapi kami', href: '/services/physiotherapy' }],
+      },
+    ],
+    keyTakeaways: [
+      {
+        q: 'Apakah itu frozen shoulder?',
+        a: 'Kapsul di sekeliling sendi bahu yang menebal dan mengetat, juga dipanggil adhesive capsulitis atau bahu beku, yang menyebabkan sakit dan kehilangan pergerakan secara beransur-ansur.',
+      },
+      {
+        q: 'Siapa yang biasa mendapatnya?',
+        a: 'Kebanyakannya orang berumur kira-kira 40 hingga 60 tahun, wanita lebih daripada lelaki, dan penghidap diabetes atau masalah tiroid jauh lebih kerap daripada orang lain.',
+      },
+      {
+        q: 'Apakah peringkat frozen shoulder?',
+        a: 'Biasanya digambarkan sebagai peringkat membeku, apabila sakit meningkat dan pergerakan berkurang, peringkat beku, apabila sakit reda tetapi kekakuan kekal, dan peringkat mencair, apabila pergerakan kembali perlahan-lahan. Tempoh setiap peringkat sangat berbeza.',
+      },
+      {
+        q: 'Apakah tanda utamanya?',
+        a: 'Pergerakan hilang walaupun orang lain menggerakkan lengan untuk anda, terutamanya memusingnya ke luar. Kebanyakan masalah bahu lain masih membenarkan pergerakan pasif itu.',
+      },
+      {
+        q: 'Bilakah anda dibuka?',
+        a: 'Tujuh hari seminggu, di Sunway Velocity, Maluri. Isnin hingga Khamis dan Sabtu sehingga 8 malam, Jumaat sehingga 5 petang, Ahad sehingga 3 petang.',
+      },
+    ],
+    qualifierConcerns: [
+      'Bahu saya semakin kaku sejak beberapa minggu atau bulan',
+      'Saya tidak boleh mencapai ke belakang badan atau ke atas kepala',
+      'Sakitnya lebih teruk waktu malam atau bila berbaring di sisi itu',
+      'Saya menghidap diabetes atau masalah tiroid',
+      'Saya mahu tahu sama ada ini frozen shoulder atau masalah lain',
+    ],
+    citations: [
+      {
+        claim:
+          'Frozen shoulder secara umumnya bertambah baik dengan masa tanpa pembedahan, walaupun pemulihan penuh mungkin mengambil masa sehingga tiga tahun, dan terapi fizikal yang memberi tumpuan kepada kelenturan bahu ialah pendekatan utama yang disyorkan. Ia jauh lebih kerap berlaku pada penghidap diabetes.',
+        source: 'OrthoInfo, American Academy of Orthopaedic Surgeons',
+        url: 'https://www.orthoinfo.org/en/diseases--conditions/frozen-shoulder/',
+      },
+      {
+        claim:
+          'Penghidap diabetes kira-kira lima kali lebih berkemungkinan berbanding kumpulan kawalan untuk mengalami adhesive capsulitis, dengan anggaran prevalens 13.4% dalam kalangan penghidap diabetes.',
+        source: 'Zreik NH, Malik RA & Charalambous CP, Muscles, Ligaments and Tendons Journal, 2016',
+        url: 'https://pubmed.ncbi.nlm.nih.gov/27331029/',
+      },
+      {
+        claim:
+          'Gabungan terapi manual dan senaman mungkin tidak seberkesan suntikan glukokortikoid dalam jangka pendek, dan ujian klinikal berkualiti lebih tinggi diperlukan.',
+        source: 'Page MJ and others, Cochrane Database of Systematic Reviews, 2014',
+        url: 'https://pubmed.ncbi.nlm.nih.gov/25157702/',
+      },
+    ],
+    comparison: {
+      heading: 'Frozen shoulder, masalah rotator cuff, atau sakit dari leher?',
+      intro:
+        'Bahu yang sakit dan kaku boleh berpunca daripada kapsul sendi, tendon rotator cuff, leher, atau sekadar hari yang panjang di meja kerja, dan setiap satunya dijaga sedikit berbeza. Ini panduan kasar, dan lajur yang berpautan membawa anda ke halaman yang menerangkan corak itu dengan lengkap.',
+      columns: [
+        { label: 'Frozen shoulder' },
+        { label: 'Masalah rotator cuff' },
+        { label: 'Sakit dari leher', href: '/conditions/pinched-nerve' },
+        { label: 'Sakit bahu akibat kerja meja', href: '/conditions/shoulder-imbalance' },
+      ],
+      rows: [
+        {
+          label: 'Bolehkah orang lain menggerakkan lengan anda?',
+          cells: [
+            'Tidak, ia tetap kaku tidak kira siapa yang menggerakkannya',
+            'Ya, biasanya lebih jauh daripada yang anda boleh sendiri',
+            'Ya, bahu bergerak dengan bebas',
+            'Ya, walaupun mungkin terasa ketat',
+          ],
+        },
+        {
+          label: 'Di mana sakitnya',
+          cells: [
+            'Jauh di dalam bahu dan lengan atas',
+            'Bahagian luar lengan atas, paling teruk di pertengahan mengangkat lengan',
+            'Dari leher ke bahu dan menuruni lengan',
+            'Merentasi bahagian atas bahu dan ke leher',
+          ],
+        },
+        {
+          label: 'Pada waktu malam',
+          cells: [
+            'Selalunya lebih teruk, terutamanya berbaring di sisi itu',
+            'Berbaring di sisi itu menyakitkan',
+            'Gejala lengan boleh mengganggu tidur',
+            'Biasanya reda semalaman',
+          ],
+        },
+        {
+          label: 'Kesemutan ke tangan',
+          cells: ['Tidak', 'Tidak', 'Selalunya', 'Kadangkala'],
+        },
+        {
+          label: 'Bagaimana ia biasanya berkelakuan',
+          cells: [
+            'Perlahan, dalam tempoh berbulan-bulan dan kadangkala bertahun-tahun',
+            'Berubah mengikut cara bahu dibebankan',
+            'Berubah mengikut apa yang mengiritasi saraf',
+            'Bertambah sepanjang hari bekerja, reda pada hujung minggu',
+          ],
+        },
+      ],
+      note: 'Keadaan ini bertindih, dan lebih daripada satu boleh wujud serentak. Pemeriksaan, terutamanya bagaimana lengan bergerak apabila orang lain menggerakkannya, ialah apa yang membezakannya.',
+    },
+    // Same standing as every other ms record: adapted from the English page, not yet read by a
+    // Malay-speaking reviewer.
     draft: false,
   },
 ]

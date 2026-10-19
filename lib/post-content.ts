@@ -18,6 +18,8 @@ import SciaticaExercises from '@/content/blog/sciatica-exercises.mdx'
 import TechNeck from '@/content/blog/tech-neck.mdx'
 import LowerBackPainExercises from '@/content/blog/lower-back-pain-exercises.mdx'
 import ChiropractorVsDoctor from '@/content/blog/chiropractor-vs-doctor.mdx'
+import MigraineVsClusterHeadache from '@/content/blog/migraine-vs-cluster-headache.mdx'
+import ChiropracticVsMassage from '@/content/blog/chiropractic-vs-massage.mdx'
 import ADeeperUnderstandingOfScoliosis from '@/content/blog/a-deeper-understanding-of-scoliosis.mdx'
 import AreHouseChores from '@/content/blog/are-house-chores-a-pain-in-the-back-here-s-what-chiropractors-say.mdx'
 import BoneHealthWebinar from '@/content/blog/blog-boost-your-bone-health-webinar.mdx'
@@ -45,6 +47,8 @@ export const postBodies: Record<string, ComponentType> = {
   'tech-neck': TechNeck,
   'lower-back-pain-exercises': LowerBackPainExercises,
   'chiropractor-vs-doctor': ChiropractorVsDoctor,
+  'migraine-vs-cluster-headache': MigraineVsClusterHeadache,
+  'chiropractic-vs-massage': ChiropracticVsMassage,
   'a-deeper-understanding-of-scoliosis': ADeeperUnderstandingOfScoliosis,
   'are-house-chores-a-pain-in-the-back-here-s-what-chiropractors-say': AreHouseChores,
   'blog-boost-your-bone-health-webinar': BoneHealthWebinar,

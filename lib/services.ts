@@ -501,7 +501,16 @@ export const services: Service[] = [
         'Your problem is not mechanical. Chiropractic does not treat infection, fracture or disease of the organs, and we would refer you rather than adjust you.',
       ],
     },
-    helpsWith: ['back-pain', 'slipped-disc', 'sciatica', 'neck-pain', 'scoliosis', 'pinched-nerve'],
+    helpsWith: [
+      'back-pain',
+      'slipped-disc',
+      'sciatica',
+      'neck-pain',
+      'scoliosis',
+      'pinched-nerve',
+      'spinal-stenosis',
+      'spondylolisthesis',
+    ],
     /**
      * Were hardcoded as two <GhostButton>s inside the six-step section of the route file,
      * which meant the flagship page was the only service with no "Where to go next" block
@@ -768,6 +777,10 @@ export const services: Service[] = [
       'pinched-nerve',
       'tension-headache',
       'whiplash',
+      'spinal-stenosis',
+      'spondylolisthesis',
+      'carpal-tunnel-syndrome',
+      'frozen-shoulder',
     ],
     relatedLinks: [
       { href: '/services/chiropractic-care', label: 'Compare with chiropractic care' },
@@ -1242,7 +1255,7 @@ export const services: Service[] = [
         body: 'Targeted work for the deep stabilising muscles that support the spine and control the trunk under load. Good stability through the middle makes the limbs more efficient and the whole system more durable, lowering the chance of the injury coming back.',
       },
     ],
-    helpsWith: ['back-pain', 'shoulder-imbalance', 'hip-pain', 'whiplash'],
+    helpsWith: ['back-pain', 'shoulder-imbalance', 'hip-pain', 'whiplash', 'frozen-shoulder'],
     relatedLinks: [
       { href: '/services/physiotherapy', label: 'Our physiotherapy approach' },
       { href: '/services/dry-needling', label: 'Dry needling for muscle tension' },

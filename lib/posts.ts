@@ -66,6 +66,205 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    // Schedule pc029, built via the persistence-content-builder skill. "chiropractic vs
+    // massage" measures 10/mo in Ubersuggest MY; the cluster's volume is "chiropractic
+    // massage" (170/mo, a local-pack SERP), which gets its own H2. Every ranking page is a
+    // chiropractic clinic claiming chiro lasts and massage is temporary; this post's angle is
+    // evidence parity (Cochrane, BMJ, NICE NG59 all put the two on a similar footing), a
+    // symptom-pattern table, and massage-specific red flags. It deliberately does NOT restate
+    // the spa vs sports massage table on /services/sports-massage, the Act 775 and joint
+    // "crack" sections of tit-tar-vs-chiropractic, or the condition leanings in
+    // chiropractic-vs-physiotherapy; it links to each. The cost FAQ quotes BUNDLE totals only:
+    // lib/pricing.ts says standalone prices (sports massage RM120 an hour) must not be
+    // published. Citation source/claim strings are paraphrased because the BMJ title, the
+    // Cochrane conclusion and NICE's wording all contain the banned word. No lastReviewed
+    // until Valerie reads it.
+    slug: 'chiropractic-vs-massage',
+    title: 'Chiropractic vs Massage: How to Tell Which You Need',
+    description:
+      'Chiropractic works on how a stuck joint moves, massage on the muscle around it. How to tell which your pain leans towards, and when having both makes sense.',
+    datePublished: '2026-10-19',
+    author: 'Persistence Chiropractic Care',
+    linksTo: 'sports-massage',
+    // Hero is an AI-generated flat illustration (Higgsfield Nano Banana 2 Lite, 2026-10-19) in the
+    // tech neck style. Not a clinic photo, so no Cheras modifier in the alt text.
+    heroImage: {
+      src: '/img/blog-massage-hero.webp',
+      alt: 'Illustration of a practitioner in a navy polo shirt working on the upper back muscles of a patient lying face down on a clinic table, with a golden glow across the upper back',
+    },
+    keyTakeaways: [
+      {
+        q: 'What is the main difference between chiropractic and massage?',
+        a: 'Chiropractic care assesses and adjusts joints that have stopped moving well, mostly in the spine. Massage works on muscle, tendon and fascia, the soft tissue around those joints.',
+      },
+      {
+        q: 'Is chiropractic or massage better for back pain?',
+        a: 'Neither clearly. Research reviews find modest, mostly short term benefits for both, and the NICE guideline groups spinal manipulation and massage together as manual therapy to consider alongside exercise.',
+      },
+      {
+        q: 'What is chiropractic massage?',
+        a: 'It is not a separate discipline. It usually means soft tissue work done in a chiropractic clinic, often in the same visit as an adjustment.',
+      },
+      {
+        q: 'How can I tell which one my pain leans towards?',
+        a: 'A spot that feels locked, or a movement you cannot make, leans towards a joint assessment. Broad tightness from training or desk work that eases with pressure leans towards massage.',
+      },
+      {
+        q: 'When is neither chiropractic nor massage the right call?',
+        a: 'When the symptoms point to something medical, such as spreading numbness, a fever with back pain, or a swollen and painful calf. Those need a doctor first.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Should I get a massage before or after a chiropractic adjustment?',
+        a: 'Both orders are used. Some people find soft tissue work first helps them relax so the adjustment feels easier, and others prefer the adjustment first. No good research shows one order is better, so we decide from what the assessment finds and what you find comfortable.',
+      },
+      {
+        q: 'Can a chiropractor do massage?',
+        a: 'Yes. Soft tissue work is part of chiropractic training, and at our clinic sports massage is carried out by a chiropractor or a physiotherapist after an assessment, depending on what the area needs.',
+      },
+      {
+        q: 'Is it okay to have chiropractic and massage in the same week?',
+        a: 'For most people, yes. Feeling a little tender for a day after either one is common, and the research reviews describe side effects of both as mostly mild and short lived. Let each practitioner know about the other.',
+      },
+      {
+        q: 'Why does massage feel good but my pain keeps coming back?',
+        a: 'Research on massage for back pain finds its effect is mostly short term. If the same spot tightens again within days, something is probably still loading it, such as a stiff joint, a weak area or how you sit, and that is worth having assessed.',
+      },
+      {
+        q: 'How much do chiropractic and massage cost at your clinic?',
+        a: 'Our published prices are bundles, listed on our Offers page. The sports recovery bundle, one sports massage and one electromodalities session, is RM200 instead of RM240. The new patient bundle, a chiropractic initial consultation with the first adjustment, an X-ray and a physiotherapy first visit, is RM588 instead of RM660. Both are website prices, claimed by WhatsApp message before you come in.',
+      },
+    ],
+    citations: [
+      {
+        claim:
+          'A review of 25 trials found massage eased lower back pain compared with no care, but mostly in the short term, and rated the evidence low to very low quality.',
+        source:
+          'Furlan et al. (2015), Massage for low-back pain, Cochrane Database of Systematic Reviews',
+        url: 'https://doi.org/10.1002/14651858.CD001929.pub3',
+      },
+      {
+        claim:
+          'A review of 47 trials found spinal manipulation gave similar short term pain relief to other recommended options for chronic lower back pain, with a small improvement in function, and mostly mild, short lived side effects.',
+        source:
+          'Rubinstein et al. (2019), systematic review and meta-analysis of spinal manipulative therapy for chronic low back pain, BMJ',
+        url: 'https://www.bmj.com/content/364/bmj.l689',
+      },
+      {
+        claim:
+          'Manual therapy, meaning spinal manipulation, mobilisation or soft tissue techniques such as massage, should be considered for low back pain only as part of a package of care that includes exercise.',
+        source: 'NICE guideline NG59, Low back pain and sciatica in over 16s, recommendation 1.2.8',
+        url: 'https://www.nice.org.uk/guidance/ng59/chapter/Recommendations',
+      },
+    ],
+    draft: false,
+  },
+  {
+    // Schedule pc041, built via the persistence-content-builder skill. "migraine vs cluster
+    // headache" measures 0/mo in Ubersuggest MY; the demand is the head term "cluster headache"
+    // (2,900/mo, SD 51), so the title leads with it. Page one is all medical authorities and
+    // a drug brand, none of which covers red flags or the dentist/ENT/"sinus" misdiagnosis
+    // detour, which is what this post owns. Doctor first by design: it says plainly that
+    // chiropractic does not treat cluster headache. Its table (cluster vs migraine vs sinus
+    // infection) deliberately avoids repeating the migraine vs tension vs neck headache table
+    // on /conditions/migraine, and links to it instead. Vertigo was cut from the scheduled
+    // scope as a separate intent ("vertigo" 33,100/mo). No lastReviewed until Valerie reads it.
+    slug: 'migraine-vs-cluster-headache',
+    title: 'Cluster Headache vs Migraine: How to Tell Them Apart',
+    description:
+      'Cluster headache or migraine? How attack length, timing and eye or nose signs tell them apart, and when a doctor is the right first call.',
+    datePublished: '2026-10-19',
+    author: 'Persistence Chiropractic Care',
+    linksTo: 'migraine',
+    // Hero is an AI-generated flat illustration (Higgsfield Nano Banana 2 Lite, 2026-10-19) in the
+    // tech neck style. Not a clinic photo, so no Cheras modifier in the alt text.
+    heroImage: {
+      src: '/img/blog-cluster-hero.webp',
+      alt: 'Illustration of a man standing by a window at night pressing one hand over his eye, with a golden glow around that eye and temple',
+    },
+    keyTakeaways: [
+      {
+        q: 'What is the main difference between cluster headache and migraine?',
+        a: 'Attack length and timing. A cluster headache attack usually lasts 15 minutes to 3 hours and often comes at the same time each day for weeks. A migraine attack usually lasts 4 hours to 3 days and has no fixed clock.',
+      },
+      {
+        q: 'Is cluster headache as common as migraine?',
+        a: 'No. Cluster headache affects roughly 1 in 1,000 people over a lifetime, mostly men, while migraine is far more common and affects more women than men.',
+      },
+      {
+        q: 'How can I tell them apart during an attack?',
+        a: 'Restlessness plus a red or watering eye or a blocked nostril on the side of the pain points towards cluster headache. Wanting to lie still in a dark, quiet room, often with nausea, points towards migraine.',
+      },
+      {
+        q: 'Can a chiropractor help with cluster headache?',
+        a: 'No. Chiropractic does not treat cluster headache. It is a neurological condition that needs a doctor, often with a neurologist involved, and the main options are prescribed.',
+      },
+      {
+        q: 'When should I see a doctor?',
+        a: 'For any headache that might be cluster headache. Go to an emergency department for a first ever drooping eyelid or smaller pupil, or a sudden, severe headache unlike any before.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Is a cluster headache a type of migraine?',
+        a: 'No. Cluster headache is its own primary headache disorder, grouped with a family of headaches that cause eye and nose changes on the same side as the pain. Some people have both conditions, which is one reason a proper diagnosis matters.',
+      },
+      {
+        q: 'Are cluster headaches dangerous?',
+        a: 'Cluster headache itself is not considered life threatening, but the pain is severe and a few serious conditions can look similar. That is why a new pattern of one sided headaches with eye changes deserves a doctor’s assessment rather than a guess.',
+      },
+      {
+        q: 'Does alcohol trigger cluster headaches?',
+        a: 'Often, during a bout. Alcohol is one of the best known triggers while attacks are active, yet the same drink usually has no effect during the months between bouts.',
+      },
+      {
+        q: 'Can a neck problem cause cluster headache?',
+        a: 'There is no good evidence that it does. A headache coming from the neck is a separate, steadier pattern that starts at the base of the skull and follows neck position, and that is the kind of headache a neck assessment looks at.',
+      },
+      {
+        q: 'What should I tell my doctor about my headaches?',
+        a: 'When each attack starts, how long it lasts, which side it is on, any eye or nose changes, how often it happens, and what you were doing beforehand, including alcohol. A short diary and a photo of your eye during an attack make that much easier.',
+      },
+    ],
+    citations: [
+      {
+        claim:
+          'Cluster headache is defined as attacks of severe, strictly one sided pain around the eye or temple lasting 15 to 180 minutes, occurring from once every other day to eight times a day, with same side eye or nose signs or restlessness. About 10 to 15% of people have the chronic form without remission periods.',
+        source: 'International Classification of Headache Disorders, ICHD-3, 3.1 Cluster headache',
+        url: 'https://ichd-3.org/3-trigeminal-autonomic-cephalalgias/3-1-cluster-headache/',
+      },
+      {
+        claim:
+          'Pooled population studies put the lifetime prevalence of cluster headache at about 124 per 100,000 people, roughly 1 in 1,000, with a male to female ratio of about 4.3.',
+        source:
+          'Fischera M et al. (2008), The incidence and prevalence of cluster headache: a meta-analysis of population-based studies, Cephalalgia',
+        url: 'https://doi.org/10.1111/j.1468-2982.2008.01592.x',
+      },
+      {
+        claim:
+          'In a nationwide Dutch survey of 1,163 people with cluster headache, the median time to diagnosis was three years, and 34% had consulted a dentist and 33% an ENT specialist before the diagnosis was made.',
+        source:
+          'van Vliet JA et al. (2003), Features involved in the diagnostic delay of cluster headache, Journal of Neurology, Neurosurgery and Psychiatry',
+        url: 'https://doi.org/10.1136/jnnp.74.8.1123',
+      },
+      {
+        claim:
+          'Of 2,991 patients with a history of self described or physician diagnosed "sinus" headache and no sign of infection, 88% met the criteria for migraine-type headache.',
+        source:
+          'Schreiber CP et al. (2004), Prevalence of migraine in patients with a history of self-reported or physician-diagnosed "sinus" headache, Archives of Internal Medicine',
+        url: 'https://doi.org/10.1001/archinte.164.16.1769',
+      },
+      {
+        claim:
+          'A drooping eyelid or a smaller pupil in one eye for the first time needs emergency care, even in someone already diagnosed with cluster headaches.',
+        source: 'NHS, Cluster headaches',
+        url: 'https://www.nhs.uk/conditions/cluster-headaches/',
+      },
+    ],
+    draft: false,
+  },
+  {
     // Month 1 content schedule leftover pc014, built via the persistence-content-builder
     // skill. Targets "when to see a chiropractor". Page one was US clinic blogs written to win
     // the patient for one side; this post's angle is the Malaysian picture (Act 775 vs Medical

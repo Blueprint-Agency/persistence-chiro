@@ -6,6 +6,7 @@ import { GonsteadStepList } from '@/components/GonsteadStepList'
 import { InlineQualifier } from '@/components/InlineQualifier'
 import { KeyTakeawayList } from '@/components/KeyTakeawayList'
 import { PostFigure } from '@/components/PostFigure'
+import { PostFigurePair } from '@/components/PostFigurePair'
 
 /**
  * Required at the project root by @next/mdx.
@@ -51,5 +52,6 @@ export function useMDXComponents(): MDXComponents {
     KeyTakeawayList,
     FaqList,
     PostFigure,
+    PostFigurePair,
   }
 }

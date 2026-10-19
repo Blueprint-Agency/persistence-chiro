@@ -173,6 +173,10 @@ export const servicesZh: Service[] = [
       'scoliosis',
       'hip-pain',
       'shoulder-imbalance',
+      'spinal-stenosis',
+      'spondylolisthesis',
+      'carpal-tunnel-syndrome',
+      'frozen-shoulder',
     ],
     relatedLinks: [
       { href: '/services/chiropractic-care', label: '比较脊椎矫正护理' },
@@ -666,7 +670,15 @@ export const servicesZh: Service[] = [
         '您的问题不属于机械性问题。脊椎矫正护理不处理感染、骨折或器官疾病,遇到这类情况我们会转介,而不会为您调整。',
       ],
     },
-    helpsWith: ['back-pain', 'slipped-disc', 'sciatica', 'neck-pain', 'scoliosis'],
+    helpsWith: [
+      'back-pain',
+      'slipped-disc',
+      'sciatica',
+      'neck-pain',
+      'scoliosis',
+      'spinal-stenosis',
+      'spondylolisthesis',
+    ],
     relatedLinks: [
       { href: '/what-to-expect', label: '第一次会诊会经历什么' },
       { href: '/services/physiotherapy', label: '与物理治疗比较' },
@@ -1084,7 +1096,7 @@ export const servicesZh: Service[] = [
         body: '如果评估结果指向需要影像检查、外科意见或其他专科,我们会直接说,并协助你安排,而不是照原计划做下去。知道什么不该自己处理,是这份工作的一部分。',
       },
     ],
-    helpsWith: ['back-pain', 'shoulder-imbalance', 'hip-pain'],
+    helpsWith: ['back-pain', 'shoulder-imbalance', 'hip-pain', 'frozen-shoulder'],
     relatedLinks: [
       { href: '/services/sports-massage', label: 'Cheras 运动按摩' },
       { href: '/services/physiotherapy', label: '我们的物理治疗做法' },

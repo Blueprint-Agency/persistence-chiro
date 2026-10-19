@@ -345,6 +345,10 @@ export const servicesMs: Service[] = [
       'scoliosis',
       'hip-pain',
       'shoulder-imbalance',
+      'spinal-stenosis',
+      'spondylolisthesis',
+      'carpal-tunnel-syndrome',
+      'frozen-shoulder',
     ],
     relatedLinks: [
       { href: '/services/chiropractic-care', label: 'Bandingkan dengan jagaan kiropraktik' },
@@ -697,7 +701,7 @@ export const servicesMs: Service[] = [
         body: 'Kerja bersasar untuk otot penstabil dalam yang menyokong tulang belakang dan mengawal batang tubuh di bawah bebanan. Kestabilan yang baik pada bahagian tengah menjadikan anggota badan lebih cekap dan keseluruhan sistem lebih tahan lasak, mengurangkan kemungkinan kecederaan berulang.',
       },
     ],
-    helpsWith: ['back-pain', 'shoulder-imbalance', 'hip-pain'],
+    helpsWith: ['back-pain', 'shoulder-imbalance', 'hip-pain', 'frozen-shoulder'],
     relatedLinks: [
       { href: '/services/physiotherapy', label: 'Pendekatan fisioterapi kami' },
       { href: '/services/dry-needling', label: 'Jarum Kering untuk ketegangan otot' },
@@ -853,7 +857,15 @@ export const servicesMs: Service[] = [
         'Masalah anda bukan bersifat mekanikal. Kiropraktik tidak menangani jangkitan, patah tulang atau penyakit organ, dan kami akan merujuk anda berbanding melaras anda.',
       ],
     },
-    helpsWith: ['back-pain', 'slipped-disc', 'sciatica', 'neck-pain', 'scoliosis'],
+    helpsWith: [
+      'back-pain',
+      'slipped-disc',
+      'sciatica',
+      'neck-pain',
+      'scoliosis',
+      'spinal-stenosis',
+      'spondylolisthesis',
+    ],
     relatedLinks: [
       { href: '/what-to-expect', label: 'Apa yang dijangka pada lawatan pertama anda' },
       { href: '/services/physiotherapy', label: 'Bandingkan dengan fisioterapi' },

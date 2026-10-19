@@ -151,7 +151,7 @@ export const conditions: Condition[] = [
     // Upper back folded in rather than split out (pc021 dropped): no measured demand for
     // "upper back pain" in Malaysia and no GSC queries for it.
     targetKeyword: 'back pain treatment kl',
-    related: ['slipped-disc', 'sciatica', 'hip-pain', 'shoulder-imbalance'],
+    related: ['slipped-disc', 'sciatica', 'hip-pain', 'shoulder-imbalance', 'spinal-stenosis', 'spondylolisthesis'],
     helpedBy: ['physiotherapy', 'chiropractic-care'],
 
     intro:
@@ -540,7 +540,7 @@ export const conditions: Condition[] = [
     // with a "sciatic nerve ..." cluster (kuala lumpur, physiotherapy, compression) its old
     // title never named. "sciatica exercises" belongs to /blog/sciatica-exercises, not here.
     targetKeyword: 'sciatica treatment kl',
-    related: ['slipped-disc', 'hip-pain', 'back-pain'],
+    related: ['slipped-disc', 'hip-pain', 'back-pain', 'spinal-stenosis'],
     helpedBy: ['dry-needling', 'physiotherapy'],
 
     intro:
@@ -1695,7 +1695,7 @@ export const conditions: Condition[] = [
     metaDescription:
       'Pinched nerve in the neck assessed in Cheras, Maluri. Tingling, numbness or weakness into the arm and hand, examined before anything is adjusted.',
     targetKeyword: 'pinched nerve in neck',
-    related: ['neck-pain', 'slipped-disc'],
+    related: ['neck-pain', 'slipped-disc', 'carpal-tunnel-syndrome'],
     helpedBy: ['chiropractic-care', 'physiotherapy'],
 
     intro:
@@ -1763,6 +1763,7 @@ export const conditions: Condition[] = [
       {
         q: 'How do I know whether my arm symptoms come from my neck or my wrist?',
         a: 'The pattern usually gives it away. A nerve compressed at the neck tends to produce symptoms that follow one strip down the arm and involve particular fingers, and it is often provoked by neck movement. A nerve compressed at the wrist tends to stay in the hand, and is often worse at night or when gripping. There is genuine overlap, and some people have both at once, so we test for both rather than assuming.',
+        links: [{ phrase: 'compressed at the wrist', href: '/conditions/carpal-tunnel-syndrome' }],
       },
       {
         q: 'Will an adjustment make a pinched nerve worse?',
@@ -2107,6 +2108,859 @@ export const conditions: Condition[] = [
     ],
     // Reviewed by Valerie Na, confirmed by the user 2026-10-03.
     lastReviewed: '2026-10-03',
+    draft: false,
+  },
+  {
+    slug: 'spinal-stenosis',
+    title: 'Lumbar Spinal Stenosis Care in Cheras, Kuala Lumpur',
+    metaTitle: 'Lumbar Spinal Stenosis Care in Cheras, KL',
+    metaDescription:
+      'Legs heavy or tingling when you walk, easier when you sit or lean forward? Lumbar spinal stenosis assessment and conservative care in Cheras, Maluri.',
+    // Built 2026-10-19 (schedule pc019). Ubersuggest MY: "spinal stenosis" measures 0/mo,
+    // "lumbar spinal stenosis" 480/mo (SD 15). "neurogenic claudication" (170) is named in the
+    // intro and "stenosis of the neck" (210) is answered by an FAQ that links pinched nerve.
+    // The Malaysian SERP is mostly hospitals and spine surgeons, so this page is the plain
+    // conservative-first one, honest about where surgery fits. Not yet reviewed by Valerie, so
+    // lastReviewed is deliberately unset.
+    targetKeyword: 'lumbar spinal stenosis',
+    related: ['sciatica', 'slipped-disc', 'spondylolisthesis'],
+    helpedBy: ['physiotherapy', 'chiropractic-care'],
+
+    intro:
+      'Lumbar spinal stenosis means the space the nerves run through in the lower back has narrowed. It usually builds slowly with age, as the ligament inside the spinal canal thickens, the small joints at the back of the spine enlarge and a disc bulges a little. The pattern it produces has a name, neurogenic claudication: legs that ache, feel heavy or tingle after a fairly predictable walking distance, and ease once you sit down or lean forward. Narrowing on a scan is common in people with no symptoms at all, so the scan alone does not decide what happens next. Many people manage spinal stenosis without surgery, some need a surgical opinion, and the assessment is how we work out which applies to you.',
+    symptoms: [
+      'Legs that ache, feel heavy or tingle after walking a certain distance',
+      'Relief within a few minutes of sitting down or bending forward',
+      'Walking is easier leaning on a shopping trolley, and cycling is easier than walking',
+      'Standing still in a queue brings the leg symptoms on',
+      'Lower back stiffness that is milder than what you feel in the legs',
+      'Symptoms in one leg or in both',
+      'A walking distance that has been shrinking over months',
+    ],
+    causes: [
+      {
+        heading: 'Thickening of the ligament inside the spinal canal',
+        image: { src: '/img/sten-cause-ligament.webp', alt: 'Illustration of three lower back vertebrae in side view with the spinal canal cut away, a thickened ligament at the back of the canal and a golden glow where it narrows around the nerves' },
+        body: 'A ligament runs along the back of the spinal canal. Over the years it thickens and loses some of its elasticity, and when you stand upright it folds inward into the space the nerves need. This is one reason symptoms come on with standing and walking rather than sitting.',
+      },
+      {
+        heading: 'Arthritis in the facet joints of the lower back',
+        image: { src: '/img/sten-cause-facet.webp', alt: 'Illustration of three lower back vertebrae seen from behind, with the small joints at the back enlarged by bone spurs and a golden glow around them' },
+        body: 'The small joints at the back of each vertebra wear and enlarge with age, sometimes forming bone spurs. They sit right beside the openings the nerve roots pass through, so as they grow they can crowd the nerves on one or both sides.',
+      },
+      {
+        heading: 'A bulging disc narrowing the canal further',
+        image: { src: '/img/sten-cause-disc.webp', alt: 'Illustration of two lower back vertebrae in side view with the disc between them bulging backward towards a nerve, marked by a golden glow' },
+        body: 'Discs lose height and bulge a little with age. On their own they rarely cause stenosis, but a bulge at the front of a canal that is already crowded by ligament and joint changes can be what tips the space from tight to symptomatic.',
+      },
+      {
+        heading: 'A vertebra slipped forward',
+        image: { src: '/img/sten-cause-slip.webp', alt: 'Illustration of a column of lower back vertebrae in side view, with one vertebra shifted forward over the one below and a golden glow at the step' },
+        body: 'When one vertebra has shifted forward on the one below, a condition called spondylolisthesis, the canal at that level is narrowed by the step. The two often turn up together in people over 50, which is why the assessment looks at both.',
+      },
+    ],
+    approach: [
+      {
+        heading: 'Telling spinal stenosis apart from a circulation problem',
+        body: 'Your first visit follows the Gonstead six-step assessment: history, visualisation, instrumentation with the nervoscope, palpation, and X-ray analysis where indicated. On this presentation your chiropractor adds a neurological examination of reflexes, strength and sensation in the legs, checks the pulses in your feet, and looks at how posture and walking change your symptoms. Poor circulation in the legs can produce a very similar walking pattern, and it needs a doctor rather than us.',
+      },
+      {
+        heading: 'Manual care as part of an exercise plan',
+        body: 'Where the assessment supports it, restricted segments above and below the narrowed level may be adjusted by hand, and some presentations are not adjusted at all. Adjustment does not widen a narrowed canal. Its job is to help the spine move better so the exercise work is easier to do, and guidelines recommend manual care for back pain only alongside exercise, which is how we use it.',
+      },
+      {
+        heading: 'Walking tolerance as the measure of progress',
+        body: 'Our physiotherapy side builds a programme around positions that open the canal: bending forward, cycling and walking in intervals with planned sitting breaks, along with strength work for the hips and trunk. How far you can walk before the legs tire is re-tested over time, because it says more about stenosis than how the back feels on a given day.',
+      },
+      {
+        heading: 'Knowing when spinal stenosis is not ours to treat',
+        body: 'Weakness that is getting worse, any change in bladder or bowel control, or a walking distance that keeps shrinking despite consistent work all mean a referral to an orthopaedic or neurosurgical specialist. A surgical opinion is a legitimate step for spinal stenosis, and we will tell you plainly if we think you need one.',
+      },
+    ],
+    redFlags: [
+      'Loss of bladder or bowel control, or numbness around the groin, buttocks and inner thighs',
+      'Weakness in a leg that is getting worse, or a foot that drags when you walk',
+      'Leg symptoms that suddenly get much worse in both legs',
+      'Calf pain on walking with cold, pale or discoloured feet, pain in the legs at rest, or sores on the feet that do not heal',
+      'Clumsy hands, difficulty with buttons or handwriting, or unsteadiness on your feet',
+      'Fever, unexplained weight loss, or a history of cancer alongside new back or leg pain',
+      'New back pain after a fall in someone with osteoporosis',
+    ],
+    faqs: [
+      {
+        q: 'Can a chiropractor help with spinal stenosis?',
+        a: 'Partly, and it is worth being honest about which part. A narrowed canal is a structural change, and no adjustment makes it wider. What the evidence does support is a combined programme of manual care and exercise, which has been shown to improve symptoms and function in the short term for many people with lumbar spinal stenosis. The goal is that you can walk further and stand longer, and the assessment tells us whether you are a good fit for that or would be better served by a specialist.',
+      },
+      {
+        q: 'Do I need surgery for lumbar spinal stenosis?',
+        a: 'Not necessarily. In one large trial of people over 50 who were already candidates for surgery, those given physiotherapy had similar physical function at two years to those who had decompression surgery. The same trial is also a reminder of its limits: 57% of the physiotherapy group crossed over to surgery during the study. Surgery is a reasonable choice when weakness is progressing, when bladder or bowel control changes, or when walking keeps getting harder despite consistent conservative care.',
+      },
+      {
+        q: 'Why can I walk further when I lean on a shopping trolley?',
+        a: 'Bending forward opens up the spinal canal and the openings the nerves pass through, and standing upright narrows them again. Leaning on a trolley, pushing a pram or riding a bicycle keeps you slightly bent, so the nerves get more room. It is a useful sign during the assessment, and something to use on purpose day to day rather than fight against.',
+      },
+      {
+        q: 'What exercises help spinal stenosis?',
+        a: 'Movements that bend the lower back forward tend to suit stenosis better than ones that arch it backward. Knee to chest stretches, cycling and walking in short stretches with sitting breaks are common starting points, along with strength work for the hips and trunk. Our guide to sciatica exercises has a column for a narrowed spinal canal showing which of its exercises tend to suit it. Drop anything that sends symptoms further down your legs.',
+        links: [{ phrase: 'sciatica exercises', href: '/blog/sciatica-exercises' }],
+      },
+      {
+        q: 'Can spinal stenosis happen in the neck?',
+        a: 'Yes. Stenosis of the neck behaves differently from the lower back version. Narrowing that presses on a single nerve root tends to send pain or tingling into one arm, which is covered on our page on a pinched nerve in the neck. Narrowing that presses on the spinal cord itself shows up as clumsy hands, trouble with buttons or handwriting, and unsteady walking, and that needs prompt medical review rather than an appointment with us.',
+        links: [{ phrase: 'pinched nerve in the neck', href: '/conditions/pinched-nerve' }],
+      },
+      {
+        q: 'My MRI report says severe stenosis. Will it keep getting worse?',
+        a: 'Not necessarily. How narrow a canal looks on a scan and how much it bothers you do not line up closely, and narrowing is found in a large share of people over 60 who have no symptoms at all. Many people with lumbar spinal stenosis stay stable for years. What matters more is how far you can walk, whether there is any weakness, and how that changes over time, which is what we track.',
+      },
+      {
+        q: 'Is spinal stenosis the same as a slipped disc?',
+        a: 'No. A slipped disc is disc material bulging or herniating, which is more common between 30 and 50 and tends to hurt with sitting and bending. Spinal stenosis is a narrowing of the whole canal from several changes at once, more common after 50, and it tends to hurt with standing and walking. A disc bulge can be one part of the narrowing, so the two do overlap, and our slipped disc page covers the disc side in full.',
+        links: [{ phrase: 'slipped disc page', href: '/conditions/slipped-disc' }],
+      },
+    ],
+    keyTakeaways: [
+      {
+        q: 'What is lumbar spinal stenosis?',
+        a: 'A narrowing of the space the nerves run through in the lower back, usually from age-related thickening of ligament, enlarged joints and disc bulging rather than a single injury.',
+      },
+      {
+        q: 'What is neurogenic claudication?',
+        a: 'The typical pattern of lumbar spinal stenosis: aching, heaviness or tingling in the legs that comes on with standing or walking and eases with sitting or bending forward.',
+      },
+      {
+        q: 'Is it dangerous?',
+        a: 'Usually not. Most people stay stable, but bladder or bowel changes, numbness around the groin or a leg that is getting weaker need same day medical care.',
+      },
+      {
+        q: 'Will my spine be adjusted?',
+        a: 'Only where the assessment supports it. Some levels are left alone, some presentations are not adjusted at all, and exercise does most of the work either way.',
+      },
+      {
+        q: 'When are you open?',
+        a: 'Seven days a week, at Sunway Velocity in Maluri. Monday to Thursday and Saturday until 8pm, Friday until 5pm, Sunday until 3pm.',
+      },
+    ],
+    qualifierConcerns: [
+      'My legs get heavy or tingle when I walk',
+      'Sitting down or leaning forward eases it',
+      'I can walk less far than I used to',
+      'I have been told I have spinal stenosis',
+      'I want to know whether I need surgery',
+    ],
+    citations: [
+      {
+        claim:
+          'A combined programme of manual therapy and exercise had moderate quality evidence of short term improvement in symptoms and function for lumbar spinal stenosis with neurogenic claudication, while most other non operative options had low quality evidence.',
+        source: 'Ammendolia et al. (2022), BMJ Open, updated systematic review',
+        url: 'https://doi.org/10.1136/bmjopen-2021-057724',
+      },
+      {
+        claim:
+          'Among surgical candidates aged 50 and over, decompression surgery and physical therapy produced similar physical function at two years, although 57% of the physical therapy group crossed over to surgery.',
+        source: 'Delitto et al. (2015), Annals of Internal Medicine',
+        url: 'https://doi.org/10.7326/M14-1420',
+      },
+      {
+        claim:
+          'Acquired narrowing of the lumbar spinal canal was common on CT in a community sample and increased with age, with relative stenosis found in 47% of people aged 60 to 69.',
+        source: 'Kalichman et al. (2009), The Spine Journal, Framingham Study',
+        url: 'https://doi.org/10.1016/j.spinee.2009.03.005',
+      },
+      {
+        claim:
+          'Manual therapy for low back pain with or without sciatica should be considered only as part of a package of care that includes exercise.',
+        source: 'NICE guideline NG59, Low back pain and sciatica',
+        url: 'https://www.nice.org.uk/guidance/ng59',
+      },
+    ],
+    comparison: {
+      heading: 'Lumbar spinal stenosis, slipped disc, sciatica or a circulation problem?',
+      intro:
+        'Leg pain that comes on with walking has a few possible sources, and one of them is not in the spine at all. This is a rough guide to which you might be dealing with, and the linked columns go to the page that covers it in full.',
+      columns: [
+        'Lumbar spinal stenosis',
+        { label: 'Slipped disc', href: '/conditions/slipped-disc' },
+        { label: 'Sciatica', href: '/conditions/sciatica' },
+        'Poor circulation in the legs',
+      ],
+      rows: [
+        {
+          label: 'Who it usually affects',
+          cells: [
+            'Mostly people over 50',
+            'Most often adults between 30 and 50',
+            'Any adult, depending on the cause',
+            'Mostly older adults, especially smokers or people with diabetes',
+          ],
+        },
+        {
+          label: 'What brings it on',
+          cells: [
+            'Standing and walking',
+            'Sitting, bending forward, coughing or sneezing',
+            'Sitting, driving or bending',
+            'Walking, especially uphill or fast',
+          ],
+        },
+        {
+          label: 'What eases it',
+          cells: [
+            'Sitting down or leaning forward',
+            'Lying down, or short walks',
+            'Changing position',
+            'Standing still, with no need to sit or bend',
+          ],
+        },
+        {
+          label: 'Where you feel it',
+          cells: [
+            'Buttocks, thighs and legs, often both sides',
+            'Lower back, often with pain into one leg',
+            'Buttock and down the back of one leg',
+            'Calves most often, sometimes thighs or buttocks',
+          ],
+        },
+        {
+          label: 'Who to see first',
+          cells: [
+            'A chiropractor or physiotherapist, unless a red flag is present',
+            'A chiropractor or physiotherapist, unless a red flag is present',
+            'A chiropractor or physiotherapist, unless a red flag is present',
+            'A doctor',
+          ],
+        },
+      ],
+      note: 'Real cases overlap. Stenosis can cause sciatica, and a slipped disc can be part of the narrowing. The table tells you where to start reading; the assessment, including checking the pulses in your feet, is what tells them apart.',
+    },
+    draft: false,
+  },
+  {
+    slug: 'spondylolisthesis',
+    title: 'Spondylolisthesis (Slipped Vertebra) Care in Cheras, Kuala Lumpur',
+    metaTitle: 'Spondylolisthesis & Slipped Vertebra Care, KL',
+    metaDescription:
+      'Told a vertebra has slipped forward? Spondylolisthesis assessment, X-ray review and exercise-led care in Cheras, Maluri, with referral when a slip needs it.',
+    // Built 2026-10-19 (schedule pc020). Ubersuggest MY: "spondylolisthesis" measures 0/mo and
+    // "spondylolisthesis cervical" (6,600) / "lumbosacral spondylolisthesis" (2,400) look like
+    // Google grouping buckets, so neither is targeted. "spondylolisthesis treatment" (50/mo, SD 36)
+    // is the measured local commercial term; "spondylolysis" (590) and "grades" (140) are covered
+    // by the table and FAQs. Clinical wording on adjustment is the SAFE version the user chose
+    // 2026-10-19 pending Valerie's review; lastReviewed is deliberately unset.
+    targetKeyword: 'spondylolisthesis treatment',
+    related: ['spinal-stenosis', 'back-pain', 'slipped-disc'],
+    helpedBy: ['physiotherapy', 'chiropractic-care'],
+
+    intro:
+      'Spondylolisthesis means one vertebra has shifted forward on the one below it, most often low in the back. It is a bone that has moved, not a disc, which is why the everyday name is a slipped vertebra rather than a slipped disc. The two common kinds look quite different. Degenerative spondylolisthesis comes from wear in the disc and joints and usually shows up after 50. Isthmic spondylolisthesis starts with a small stress crack in the back of the vertebra, called spondylolysis, often from sport in the teenage years. Many slips are small and stable, and plenty are found by chance on an X-ray taken for something else. Low grade slips are usually managed without surgery. The assessment works out whether the slip is actually the source of your pain and whether it is stable.',
+    symptoms: [
+      'A low back ache that is worse when standing or arching backward and easier when sitting or bending forward',
+      'Hamstrings that feel unusually tight',
+      'Pain, tingling or heaviness into the buttocks or legs when walking',
+      'Back pain in a teenager that gets worse with sport, such as gymnastics, badminton, fast bowling or weightlifting',
+      'A feeling that the lower back gives way or catches',
+      'Stiffness after standing for a long time',
+    ],
+    causes: [
+      {
+        heading: 'Wear in the disc and joints (degenerative spondylolisthesis)',
+        image: { src: '/img/spondy-cause-wear.webp', alt: 'Illustration of a man in his sixties standing in side profile with one hand on his lower back, where a golden glow sits' },
+        body: 'As a disc loses height and the facet joints behind it wear, the segment can loosen enough for one vertebra to drift forward a little. This is the most common kind in adults, more common in women, and usually at the second lowest level of the lower back.',
+      },
+      {
+        heading: 'A stress crack from repeated arching (isthmic spondylolisthesis)',
+        image: { src: '/img/spondy-cause-stress.webp', alt: 'Illustration of a teenage badminton player arching back to smash a shuttle, with a golden glow at her lower back' },
+        body: 'Sports that bend the lower back backward again and again load a thin bridge of bone at the back of the vertebra. Over time it can crack, which is spondylolysis, and if the crack separates the vertebra can slip forward. It usually affects the lowest level of the lower back.',
+      },
+      {
+        heading: 'Growth spurts in teenagers',
+        image: { src: '/img/spondy-cause-teen.webp', alt: 'Illustration of a tall teenage boy holding a basketball under one arm and pressing his other hand to his lower back, where a golden glow sits' },
+        body: 'A slip linked to a stress crack is most likely to progress during a period of rapid growth, which is why back pain in an active teenager is taken seriously rather than put down to growing pains.',
+      },
+      {
+        heading: 'Injury or the shape of the spine from birth',
+        image: { src: '/img/spondy-cause-injury.webp', alt: 'Illustration of a man sitting on the bottom step of a staircase after a fall, one hand on his lower back, where a golden glow sits' },
+        body: 'Less often, a slip follows a significant injury, or the vertebrae have been shaped in a way that allows it since birth. These are uncommon, and they are part of what imaging is used to rule in or out.',
+      },
+    ],
+    approach: [
+      {
+        heading: 'Finding out whether the slip is the source, and whether it is stable',
+        body: 'Your first visit follows the Gonstead six-step assessment: history, visualisation, instrumentation with the nervoscope, palpation, and X-ray analysis where indicated, with a neurological examination of the legs added on this presentation. Where further imaging is needed, or a scan you already have needs to be read alongside the examination, we arrange or review it. A high grade slip, signs that the segment is unstable, or nerve signs that are getting worse mean a referral to an orthopaedic or spine specialist.',
+      },
+      {
+        heading: 'What an adjustment does and does not do with spondylolisthesis',
+        body: 'The assessment decides whether any adjustment is appropriate. The slipped level itself is not forced back into place, and an adjustment does not reposition a vertebra that has moved forward. Where the assessment supports it, neighbouring levels that have become restricted may be adjusted by hand, and some presentations are not adjusted at all.',
+      },
+      {
+        heading: 'Trunk strength and how you load the slipped level',
+        body: 'Our physiotherapy side leads the longer part of the work: deep trunk and hip strength, hamstring flexibility, and changing habits that keep the lower back arched for long periods, such as standing with the hips pushed forward. For athletes, the return to sport is graded rather than all at once.',
+      },
+      {
+        heading: 'A teenager with a suspected stress crack',
+        body: 'If spondylolysis is suspected in a young athlete, imaging and a medical opinion come first, along with a break from the sport that provokes it. A brace is sometimes used early on to let a recent crack settle. We coordinate with the doctor and help with the return to sport afterwards, rather than adjusting through a fresh stress fracture.',
+      },
+    ],
+    redFlags: [
+      'Loss of bladder or bowel control, or numbness around the groin, buttocks and inner thighs',
+      'Weakness in a leg that is getting worse, or a foot that drags when you walk',
+      'Leg symptoms in both legs that are getting worse',
+      'A teenager with back pain from sport that has lasted more than two to three weeks, or that wakes them at night',
+      'A child or teenager whose walk or posture has changed, with very tight hamstrings',
+      'Back pain after a significant fall, road accident or direct blow',
+      'Fever, unexplained weight loss, or a history of cancer alongside new back pain',
+    ],
+    faqs: [
+      {
+        q: 'Can a chiropractor fix spondylolisthesis?',
+        a: 'No, and we would rather be plain about that. An adjustment does not move a slipped vertebra back into place, and nobody should promise you that it does. What care aims at is the pain, the stiffness around the slipped level and the strength of the muscles that support it. Many people with a low grade slip manage well this way, and the assessment tells us whether you are likely to be one of them.',
+      },
+      {
+        q: 'Is it safe to have a chiropractic adjustment with spondylolisthesis?',
+        a: 'It depends on the grade of the slip and whether the segment is stable, which is why the assessment comes before anything else. The slipped level itself is not forced back into place. Neighbouring levels that have become restricted may be adjusted where the assessment supports it, some presentations are not adjusted at all, and high grade or unstable slips are referred to a specialist. Tell us about any leg weakness, numbness or bladder changes when you book.',
+      },
+      {
+        q: 'What do the grades of spondylolisthesis mean?',
+        a: 'The grade describes how far the vertebra has slipped forward, as a share of the width of the bone below. Grade 1 is under 25%, grade 2 is 25 to 50%, and grades 3 and 4 are over 50%. Low grade slips, grades 1 and 2, are by far the most common and are usually managed without surgery. High grade slips are more likely to press on nerves and to need a surgical opinion.',
+      },
+      {
+        q: 'Will my spondylolisthesis get worse over time?',
+        a: 'Most slips change little. In a long term study of degenerative spondylolisthesis, about a third of slips progressed, and whether a slip progressed had no clear link to how much it hurt. The body also tends to stiffen a loose segment with age, which can steady it. New or worsening leg symptoms are the thing to watch, more than the measurement on a report.',
+      },
+      {
+        q: 'Is a slipped vertebra the same as a slipped disc?',
+        a: 'No. In spondylolisthesis a whole vertebra has shifted forward. A slipped disc is the soft disc between two vertebrae bulging or herniating, while the bones stay where they are. They feel different too: a disc problem tends to hurt with sitting and bending forward, while a slipped vertebra tends to hurt with standing and arching back. Our page on a slipped disc covers the disc side in full.',
+        links: [{ phrase: 'page on a slipped disc', href: '/conditions/slipped-disc' }],
+      },
+      {
+        q: 'My teenager has back pain from sport. Could it be spondylolysis?',
+        a: 'It could be. Spondylolysis is one of the more common causes of persistent low back pain in active teenagers, especially in sports that arch the back repeatedly. Pain that lasts more than a couple of weeks, gets worse with arching, or comes with tight hamstrings is worth having imaged by a doctor first. Once a stress fracture has been ruled out or has settled, we can help with strength and the return to sport.',
+      },
+      {
+        q: 'What exercises are safe with spondylolisthesis?',
+        a: 'Exercises that build the deep trunk and hip muscles without arching the lower back are the usual starting point, along with gentle hamstring stretches. Repeated back bends and heavy overhead lifting tend to load the slipped level, so leave those out until you have been assessed. Our post on lower back pain exercises has a strength stage that suits many people with a stable slip, but skip any exercise in it that arches your back.',
+        links: [{ phrase: 'lower back pain exercises', href: '/blog/lower-back-pain-exercises' }],
+      },
+      {
+        q: 'Can spondylolisthesis cause spinal stenosis?',
+        a: 'Yes. When a vertebra shifts forward, it narrows the canal at that level, and the two often turn up together in people over 50. The leg pattern then matches spinal stenosis, with heavy or tingling legs on walking that ease with sitting or leaning forward.',
+        links: [{ phrase: 'spinal stenosis', href: '/conditions/spinal-stenosis' }],
+      },
+    ],
+    keyTakeaways: [
+      {
+        q: 'What is spondylolisthesis?',
+        a: 'One vertebra shifted forward on the one below, most often in the lower back. It is a bone that has moved, not a disc that has bulged.',
+      },
+      {
+        q: 'Does a slip on my X-ray explain my back pain?',
+        a: 'Not always. Slips and stress cracks are found in many adults who have no back pain, so the examination decides whether the slip is the source of yours.',
+      },
+      {
+        q: 'Which kind is most common?',
+        a: 'In adults over 50, degenerative spondylolisthesis from wear in the disc and joints. In active teenagers, the isthmic kind that starts with a stress crack.',
+      },
+      {
+        q: 'When is surgery considered?',
+        a: 'Usually for a high grade slip, nerve symptoms that keep getting worse, or pain that has not settled with a good period of conservative care.',
+      },
+      {
+        q: 'When are you open?',
+        a: 'Seven days a week, at Sunway Velocity in Maluri. Monday to Thursday and Saturday until 8pm, Friday until 5pm, Sunday until 3pm.',
+      },
+    ],
+    qualifierConcerns: [
+      'I have been told a vertebra has slipped',
+      'Standing or arching my back makes it worse',
+      'My legs ache or tingle when I walk',
+      'My teenager has back pain from sport',
+      'I want to know whether I need surgery',
+    ],
+    citations: [
+      {
+        claim:
+          'On CT of an unselected adult community sample, spondylolysis was found in 11.5% of people, and no significant association was found between spondylolysis or spondylolisthesis and low back pain.',
+        source: 'Kalichman et al. (2009), Spine, Framingham Study',
+        url: 'https://doi.org/10.1097/BRS.0b013e31818edcfd',
+      },
+      {
+        claim:
+          'In a study of degenerative spondylolisthesis, slippage progressed in 30% of patients, and progression did not correlate with symptoms.',
+        source: 'Matsunaga et al. (1990), Spine',
+        url: 'https://doi.org/10.1097/00007632-199011010-00021',
+      },
+      {
+        claim:
+          'Spondylolysis and spondylolisthesis are common causes of low back pain in children and adolescents, particularly in sports that stress the lower back, and most low grade cases improve with nonsurgical care. High grade slips, over 50%, are more likely to need surgery.',
+        source: 'OrthoInfo, American Academy of Orthopaedic Surgeons',
+        url: 'https://orthoinfo.aaos.org/en/diseases--conditions/spondylolysis-and-spondylolisthesis/',
+      },
+      {
+        claim:
+          'Spondylolisthesis is most common in the lower back, is often worse when standing or walking and eased by sitting or bending forward, and physiotherapy is among the usual first approaches.',
+        source: 'NHS, Spondylolisthesis',
+        url: 'https://www.nhs.uk/conditions/spondylolisthesis/',
+      },
+    ],
+    comparison: {
+      heading: 'Spondylolisthesis, spondylolysis, slipped disc or spinal stenosis?',
+      intro:
+        'These four get confused because the names sound alike and they can turn up together. This is a rough guide to how they differ, and the linked columns go to the page that covers each in full.',
+      columns: [
+        'Spondylolisthesis',
+        'Spondylolysis',
+        { label: 'Slipped disc', href: '/conditions/slipped-disc' },
+        { label: 'Spinal stenosis', href: '/conditions/spinal-stenosis' },
+      ],
+      rows: [
+        {
+          label: 'What has happened',
+          cells: [
+            'A vertebra has shifted forward on the one below',
+            'A stress crack in the back of a vertebra, with no shift yet',
+            'Disc material bulging or herniating between two vertebrae',
+            'The canal the nerves run through has narrowed',
+          ],
+        },
+        {
+          label: 'Who it usually affects',
+          cells: [
+            'Adults over 50, or teenagers and young adults who play sport',
+            'Active teenagers, especially in sports that arch the back',
+            'Most often adults between 30 and 50',
+            'Mostly people over 50',
+          ],
+        },
+        {
+          label: 'What tends to aggravate it',
+          cells: [
+            'Standing for long and arching backward',
+            'Arching backward and twisting in sport',
+            'Sitting, bending forward, coughing or sneezing',
+            'Standing and walking',
+          ],
+        },
+        {
+          label: 'Usual first step',
+          cells: [
+            'Assessment, with imaging reviewed or arranged where needed',
+            'A doctor and imaging first in a young athlete',
+            'Assessment, with imaging only if it would change the plan',
+            'Assessment, including a check for a circulation problem',
+          ],
+        },
+      ],
+      note: 'They overlap. A slipped vertebra can narrow the canal, and a stress crack is often how an isthmic slip begins. Imaging read alongside the examination is what tells them apart.',
+    },
+    draft: false,
+  },
+  {
+    slug: 'carpal-tunnel-syndrome',
+    title: 'Carpal Tunnel Syndrome Care in Cheras, Kuala Lumpur',
+    metaTitle: 'Carpal Tunnel Syndrome Care, Cheras KL',
+    metaDescription:
+      'Carpal tunnel syndrome assessed in Cheras, Maluri. Night numbness, tingling fingers or a weak grip checked at the wrist and the neck before any care begins.',
+    // 18,100/mo in Ubersuggest MY (2026-10-19), SD 37. pinched-nerve owns the neck side of
+    // arm and hand symptoms; this page owns the wrist side, and the two link to each other.
+    targetKeyword: 'carpal tunnel syndrome',
+    related: ['pinched-nerve', 'neck-pain'],
+    helpedBy: ['physiotherapy', 'chiropractic-care'],
+
+    intro:
+      'Carpal tunnel syndrome is the median nerve being squeezed where it passes through a narrow channel at the front of the wrist. It usually shows up as tingling or numbness in the thumb, index and middle fingers and half of the ring finger, and it is often at its worst at night. Tingling hands are common, though, and not every case turns out to be carpal tunnel. The same fingers can go numb from a nerve pinched in the neck, so the assessment checks both before deciding where the problem sits. Mild and moderate cases are usually managed without surgery to begin with. Constant numbness or a thumb muscle that is wasting is a reason for a hand surgeon to have a look, not for more sessions with us.',
+    symptoms: [
+      'Tingling or numbness in the thumb, index and middle fingers, with the little finger left out',
+      'Waking at night with a numb hand and needing to shake it out',
+      'Symptoms set off by holding a phone, a steering wheel or a mouse with the wrist bent',
+      'Dropping things, or fumbling with buttons and small objects',
+      'An ache in the wrist that can spread up into the forearm',
+      'A grip that tires sooner than it used to',
+      'A flattened, softer area at the base of the thumb',
+    ],
+    causes: [
+      {
+        heading: 'Pressure inside a narrow wrist tunnel',
+        image: { src: '/img/cts-cause-tunnel.webp', alt: 'Illustration of a hand seen from the palm side, with a nerve running from the forearm under a band across the wrist into the fingers and a golden glow where it passes under the band' },
+        body: 'The carpal tunnel is a tight channel of small wrist bones roofed by a ligament, and the median nerve shares it with nine tendons. There is little spare room. Bending the wrist fully in either direction raises the pressure inside it, which is why a wrist curled under a pillow at night so often sets symptoms off.',
+      },
+      {
+        heading: 'Repeated gripping and sustained wrist positions',
+        image: { src: '/img/cts-cause-grip.webp', alt: 'Illustration of a woman at a desk using a computer mouse with her wrist bent upward, and a golden glow at her wrist' },
+        body: 'Long hours with the wrist held bent on a mouse or phone, forceful gripping, and vibrating tools all load the tunnel. None of these on its own means you will develop carpal tunnel syndrome, and plenty of people do them for years without trouble. Where symptoms have started, though, they are usually part of what keeps them going, and they are the part you can change.',
+      },
+      {
+        heading: 'Pregnancy, diabetes and other health factors',
+        image: { src: '/img/cts-cause-pregnancy.webp', alt: 'Illustration of a pregnant woman sitting on the edge of her bed at night in pyjamas, shaking out her hand, with a golden glow on her fingers' },
+        body: 'Fluid retention in pregnancy can crowd the tunnel, and symptoms often ease after the baby arrives. Diabetes, thyroid imbalance and rheumatoid arthritis are also associated with carpal tunnel syndrome. If one of these applies to you, it is worth your doctor knowing about the hand symptoms too.',
+      },
+      {
+        heading: 'When the wrist is not the source at all',
+        image: { src: '/img/cts-cause-neck.webp', alt: 'Illustration of a man in side profile with a golden glow running from the side of his neck down his arm into his hand' },
+        body: 'A nerve root irritated in the neck, or a nerve squeezed at the elbow, can produce tingling in some of the same fingers. That is why the neck is examined as well as the wrist, and why a hand that tingles is not assumed to be carpal tunnel until the pattern says so.',
+      },
+    ],
+    approach: [
+      {
+        heading: 'Working out whether it is the wrist, the neck or both',
+        body: 'Your first visit follows the Gonstead six-step assessment: history, visualisation, instrumentation, palpation, and X-ray analysis where indicated. For hand symptoms we add neurological testing of sensation, strength and reflexes, provocation tests at the wrist, and a screen of the neck. Which fingers are involved, and which positions bring the symptoms on, tells us a good deal about where the nerve is being squeezed.',
+      },
+      {
+        heading: 'Settling the night symptoms first',
+        body: 'Night waking is often the most disruptive part. A splint that keeps the wrist straight while you sleep is a common first suggestion, and we will be plain that the evidence for splints is modest. Sleeping position, and how much the wrist is bent through the evening, get looked at alongside it.',
+      },
+      {
+        heading: 'Physiotherapy for the wrist, hand and forearm',
+        body: 'Our physiotherapy side may use nerve and tendon gliding exercises, hands on work for the forearm and wrist, and a graded programme for grip and hand endurance. Your desk, mouse and phone habits are reviewed as well, because the wrist goes straight back into the same positions as soon as you leave the clinic.',
+      },
+      {
+        heading: 'The neck, and when to see a hand surgeon',
+        body: 'If the examination finds a restricted segment in the neck contributing to the picture, an adjustment is used only where the assessment supports it. That is about the neck, and it is not a way of releasing the wrist. Where numbness has become constant, the thumb muscle is wasting, or symptoms are not changing, we will refer you to a doctor or hand surgeon, who may arrange nerve conduction studies. If your chiropractor feels another healthcare provider would better help you, you will be referred appropriately.',
+      },
+    ],
+    redFlags: [
+      'Wasting or flattening of the muscle at the base of the thumb',
+      'Numbness that has become constant rather than coming and going',
+      'Weakness in the hand that is getting worse, or dropping things more and more often',
+      'Symptoms in both hands together with clumsiness or unsteady walking',
+      'Sudden symptoms after a wrist injury or fall, or a hand that turns swollen, cold or pale',
+      'Arm or hand symptoms with chest pain, breathlessness or sweating. Seek emergency care',
+    ],
+    faqs: [
+      {
+        q: 'Is carpal tunnel syndrome a pinched nerve?',
+        a: 'In a sense, yes. It is the median nerve under pressure at the wrist. What most people mean by a pinched nerve is a nerve root irritated where it leaves the spine in the neck, which is covered on our page on a pinched nerve in the neck. The two can feel alike in the hand, which is exactly why we examine both places.',
+        links: [{ phrase: 'pinched nerve in the neck', href: '/conditions/pinched-nerve' }],
+      },
+      {
+        q: 'Can a problem in my neck cause carpal tunnel symptoms?',
+        a: 'Possibly, and the honest answer is that nobody knows quite how often. A real share of people with carpal tunnel syndrome also have neck pain or nerve root findings in the neck. The idea that a nerve squeezed in two places becomes more sensitive at both, sometimes called double crush, is popular but unproven. Checking the neck as well as the wrist is still worthwhile, because it changes what the plan should focus on.',
+      },
+      {
+        q: 'Do wrist splints help carpal tunnel syndrome?',
+        a: 'Modestly, at best. A large review of the research could not say for certain whether splints help, and any improvement it found was small. There is some low certainty evidence that wearing one at night does better than doing nothing. Because a splint is cheap and unlikely to do harm, it is a reasonable thing to try while the rest of the plan gets going.',
+      },
+      {
+        q: 'Will I need surgery for carpal tunnel?',
+        a: 'Most mild and moderate cases try non surgical care first. That changes when numbness has become constant, when the muscle at the base of the thumb is wasting, or when testing shows significant nerve changes, because a nerve under pressure for too long may not fully recover. In those situations we will point you to a hand surgeon rather than keep going here.',
+      },
+      {
+        q: 'My hands go numb at night during pregnancy. Is that carpal tunnel?',
+        a: 'It often is. Fluid retention in pregnancy can crowd the wrist tunnel, and night tingling in the thumb and first fingers is a common pattern, particularly later in pregnancy. It frequently eases after delivery. Mention it to your obstetrician, and a neutral wrist splint at night is one of the gentler things to try in the meantime.',
+      },
+      {
+        q: 'Do I need a nerve conduction test before coming in?',
+        a: 'No. Most people do not need one to start with. A nerve conduction study is useful when the picture is unclear, when symptoms are severe or constant, or when surgery is being considered, and in those cases we will refer you to a doctor who can arrange it. Bring any results you already have.',
+      },
+    ],
+    keyTakeaways: [
+      {
+        q: 'What is carpal tunnel syndrome?',
+        a: 'The median nerve under pressure as it passes through a narrow channel at the front of the wrist, giving tingling, numbness or pain in the hand.',
+      },
+      {
+        q: 'Which fingers does it affect?',
+        a: 'Usually the thumb, index and middle fingers and half of the ring finger. The little finger is normally left out, which helps tell it apart from other nerve problems.',
+      },
+      {
+        q: 'Is every tingling hand carpal tunnel?',
+        a: 'No. In one population study, about one adult in seven reported tingling or numbness in these fingers, and far fewer had carpal tunnel syndrome confirmed on examination and testing.',
+      },
+      {
+        q: 'When does it need a doctor quickly?',
+        a: 'When numbness becomes constant, the muscle at the base of the thumb looks flatter, or the hand is getting weaker. Those signs point to a nerve under sustained pressure.',
+      },
+      {
+        q: 'When are you open?',
+        a: 'Seven days a week, at Sunway Velocity in Maluri. Monday to Thursday and Saturday until 8pm, Friday until 5pm, Sunday until 3pm.',
+      },
+    ],
+    qualifierConcerns: [
+      'My fingers tingle or go numb, especially at night',
+      'I wake up and have to shake my hand out',
+      'My grip feels weaker or I drop things',
+      'I use a mouse, phone or tools for hours a day',
+      'I want to know whether it is my wrist or my neck',
+    ],
+    citations: [
+      {
+        claim:
+          'Hand symptoms in the median nerve area are common, while confirmed carpal tunnel syndrome is less so: 14.4% of adults surveyed reported them, and 2.7% had carpal tunnel syndrome confirmed on both examination and nerve conduction testing.',
+        source: 'Atroshi I and others, JAMA, 1999',
+        url: 'https://pubmed.ncbi.nlm.nih.gov/10411196/',
+      },
+      {
+        claim:
+          'The evidence on splinting for carpal tunnel syndrome is limited and any benefit may be small, with low certainty evidence favouring night splints over no intervention.',
+        source: 'Splinting for carpal tunnel syndrome, Cochrane Database of Systematic Reviews, 2023',
+        url: 'https://pubmed.ncbi.nlm.nih.gov/36848651/',
+      },
+      {
+        claim:
+          'Long-standing carpal tunnel syndrome with constant numbness and wasting of the thumb muscles may need surgery to prevent irreversible damage. Pregnancy, diabetes, rheumatoid arthritis and thyroid imbalance are associated with the condition.',
+        source: 'OrthoInfo, American Academy of Orthopaedic Surgeons',
+        url: 'https://www.orthoinfo.org/en/diseases--conditions/carpal-tunnel-syndrome/',
+      },
+      {
+        claim:
+          'Many people with carpal tunnel syndrome also have neck pain or cervical nerve root findings, but the double crush hypothesis remains controversial, although examining more than one site may still be valuable.',
+        source: 'Russell BS, Chiropractic & Osteopathy, 2008',
+        url: 'https://pubmed.ncbi.nlm.nih.gov/18426564/',
+      },
+    ],
+    comparison: {
+      heading: 'Carpal tunnel, a pinched nerve in the neck, or an overworked elbow?',
+      intro:
+        'Tingling and aching in the hand and forearm can start at the wrist, the neck or the elbow, and each is looked after differently. This is a rough guide to which one you might be dealing with, and the linked column goes to the page that covers it in full.',
+      columns: [
+        { label: 'Carpal tunnel (wrist)' },
+        { label: 'Pinched nerve in the neck', href: '/conditions/pinched-nerve' },
+        { label: 'Elbow and forearm overuse' },
+      ],
+      rows: [
+        {
+          label: 'Where you feel it',
+          cells: [
+            'Thumb, index and middle fingers, on the palm side',
+            'A strip running from the neck down the arm into particular fingers',
+            'The outside of the elbow and the top of the forearm',
+          ],
+        },
+        {
+          label: 'What it feels like',
+          cells: [
+            'Mostly tingling and numbness',
+            'Burning or shooting pain, often with tingling',
+            'An ache and tenderness, with little numbness',
+          ],
+        },
+        {
+          label: 'What sets it off',
+          cells: [
+            'A bent wrist, gripping, and lying in bed at night',
+            'Turning or tilting the head',
+            'Gripping and lifting with the palm facing down',
+          ],
+        },
+        {
+          label: 'Neck pain alongside it',
+          cells: ['Usually not', 'Often, though it can be mild', 'No'],
+        },
+        {
+          label: 'At night',
+          cells: [
+            'Wakes you with a numb hand you need to shake out',
+            'Arm pain that eases with the hand resting on your head',
+            'Rarely a problem',
+          ],
+        },
+      ],
+      note: 'Some people have a wrist problem and a neck problem at the same time, which is why both get tested rather than one being assumed.',
+    },
+    draft: false,
+  },
+  {
+    slug: 'frozen-shoulder',
+    title: 'Frozen Shoulder (Adhesive Capsulitis) Care in Cheras, Kuala Lumpur',
+    metaTitle: 'Frozen Shoulder Physiotherapy in Cheras, KL',
+    metaDescription:
+      'Frozen shoulder (adhesive capsulitis) assessed in Cheras, Maluri. Physiotherapy for pain and stiffness, with an honest picture of how it tends to progress.',
+    // "frozen shoulder" measures 0 in Ubersuggest MY (sparse index); its merged form "frozen
+    // shoulder and treatment" measures 1,000/mo, and "adhesive capsulitis" 720/mo sits in the h1.
+    // The broadened shoulder pain page (pc053) should carry only a linked "Frozen shoulder"
+    // comparison column, not its own frozen shoulder section, so the two never compete.
+    targetKeyword: 'frozen shoulder treatment',
+    related: ['shoulder-imbalance', 'neck-pain'],
+    helpedBy: ['physiotherapy', 'sports-injury-rehabilitation'],
+
+    intro:
+      'Frozen shoulder, or adhesive capsulitis, is the capsule around the shoulder joint thickening and tightening until the arm stops moving freely. The telltale sign is that the arm stays stiff even when someone else tries to move it for you, and that is what sets it apart from most other shoulder pain. It is most common between about 40 and 60, more common in women, and far more common in people with diabetes. It generally improves over time without surgery, though that can take a long while and the pace varies a great deal from one person to the next. Care here aims at managing the pain and keeping as much movement as each stage allows, not at a fixed timetable.',
+    symptoms: [
+      'A deep ache in the shoulder that is often worse at night or when lying on that side',
+      'Being unable to reach behind your back, to a back pocket or a bra strap',
+      'Difficulty reaching overhead or out to the side',
+      'The arm will not turn outward, even when someone else moves it for you',
+      'Stiffness that has crept in over weeks, often with no injury to explain it',
+      'A sharp catch of pain at the end of a reach',
+      'Being in your 40s to 60s, or living with diabetes or a thyroid condition',
+    ],
+    causes: [
+      {
+        heading: 'A thickened, tight shoulder capsule',
+        image: { src: '/img/fs-cause-capsule.webp', alt: 'Illustration of a shoulder joint seen from the front, with a thickened capsule wrapped tightly around the ball and socket and a golden glow around it' },
+        body: 'The shoulder joint sits inside a capsule of connective tissue that normally has plenty of slack. In frozen shoulder that capsule becomes inflamed, then thickens and tightens, so the joint has less room to move in every direction. It is the capsule that limits you, rather than weak muscle or a torn tendon.',
+      },
+      {
+        heading: 'Diabetes and thyroid conditions',
+        image: { src: '/img/fs-cause-diabetes.webp', alt: 'Illustration of a woman sitting at a table checking her blood sugar with a small glucose meter, with a golden glow on her shoulder' },
+        body: 'People with diabetes are around five times more likely to develop frozen shoulder, and it tends to be stiffer and slower to ease in them. Thyroid conditions are also linked. If you have diabetes, talk to your doctor about how well controlled it is, because that is part of the picture as well.',
+      },
+      {
+        heading: 'A period of holding the arm still',
+        image: { src: '/img/fs-cause-still.webp', alt: 'Illustration of a woman standing with her arm resting in a sling, and a golden glow on that shoulder' },
+        body: 'Frozen shoulder sometimes follows an injury, surgery or an illness that kept the arm still for a while. Keeping the shoulder gently moving within comfort during recovery from something else is one of the few things that may lower the chance of it developing.',
+      },
+      {
+        heading: 'Often no clear reason at all',
+        image: { src: '/img/fs-cause-unclear.webp', alt: 'Illustration of a woman reaching up to a high kitchen shelf, with a golden glow on her shoulder' },
+        body: 'In many people it simply starts, with no injury and no obvious trigger. That can be frustrating to hear. It does not mean anything was done wrong, and it does not change how the shoulder is looked after.',
+      },
+    ],
+    approach: [
+      {
+        heading: 'Confirming it is frozen shoulder, not the rotator cuff or your neck',
+        body: 'Your first visit starts with a history and an examination of how the shoulder moves on its own and when it is moved for you, which is the key test. The neck is screened too, because pain referred from the neck can sit in the shoulder. X-ray analysis is used only where it would change the plan, mainly to rule out arthritis in the joint.',
+      },
+      {
+        heading: 'Calming the painful stage',
+        body: 'When the shoulder is at its most painful, forcing it tends to make things worse. Care at this stage is gentle range of movement within comfort, advice on sleeping positions and supporting the arm at night, and keeping the rest of the arm, neck and upper back moving.',
+      },
+      {
+        heading: 'Restoring movement as the shoulder stiffens and eases',
+        body: 'As the pain settles, our physiotherapy side moves towards joint mobilisation, stretching and strengthening matched to what the shoulder will tolerate, plus a short home programme you do most days. Progress is often slow and uneven, and we will tell you honestly how your shoulder is responding rather than promise a date.',
+      },
+      {
+        heading: 'When a doctor should be involved',
+        body: 'If night pain is severe or movement is not changing, a doctor may offer a steroid injection or hydrodilatation, where the joint capsule is stretched with fluid. The research suggests an injection may ease pain more than physiotherapy alone in the early months, and we will refer you to a doctor for it rather than hold on to you. If your practitioner feels another healthcare provider would better help you, you will be referred appropriately.',
+      },
+    ],
+    redFlags: [
+      'Shoulder pain with chest tightness, breathlessness, sweating, or pain into the jaw or left arm. Seek emergency care',
+      'Shoulder pain after a fall or injury, especially if you cannot lift the arm at all',
+      'A hot, red or swollen shoulder, or shoulder pain with a fever',
+      'Unexplained weight loss, a history of cancer, or constant pain at night that nothing eases',
+      'Numbness, tingling or weakness spreading down the arm into the hand',
+      'Sudden loss of the ability to raise the arm',
+    ],
+    faqs: [
+      {
+        q: 'Will my frozen shoulder go away on its own?',
+        a: 'Usually it improves, but slowly. Most frozen shoulders get better over time without surgery, though full recovery can take up to around three years, and some people keep a degree of stiffness afterwards. Care cannot promise to shorten that, and anyone who quotes you a fixed number of weeks is guessing. What it aims at is less pain and more usable movement along the way.',
+      },
+      {
+        q: 'Can physiotherapy help a frozen shoulder?',
+        a: 'It may help with pain and movement, and it is the approach most guidance starts with, but the honest picture is that the research is limited. A large review found that physiotherapy on its own may not ease pain as much as a steroid injection in the short term. That is why we combine an exercise programme with a referral to a doctor when pain is severe, so you get the benefit of both.',
+      },
+      {
+        q: 'Should I push through the pain when stretching a frozen shoulder?',
+        a: 'No, particularly in the early painful stage. Stretching hard into pain tends to flare the shoulder and set you back. Gentle movement within comfort suits the painful stage, and firmer stretching comes later once the shoulder will tolerate it. Your physiotherapist will tell you which stage you are in and adjust the programme as it changes.',
+      },
+      {
+        q: 'Does diabetes cause frozen shoulder?',
+        a: 'It does not cause it directly, but the link is strong. People with diabetes are around five times more likely to develop frozen shoulder, and roughly one in seven people with diabetes has it at some point. It can also be stiffer and slower to ease. If you have diabetes, keep your doctor in the loop about the shoulder and about your blood sugar control.',
+      },
+      {
+        q: 'Is it frozen shoulder or a rotator cuff problem?',
+        a: 'The quickest clue is whether someone else can move your arm further than you can. With a rotator cuff problem the joint itself is free, so the arm usually goes further when moved for you. With frozen shoulder the capsule is tight, so it is stiff whoever moves it, especially when turning the arm outward. The examination confirms which one it is.',
+      },
+      {
+        q: 'Who looks after frozen shoulder at your clinic?',
+        a: 'Mostly our registered physiotherapists, since exercise and mobilisation make up most of the care, with a chiropractor screening the neck where the pain pattern suggests it is involved. Our physiotherapist profiles are not published yet, so if you would like to know more before booking, ask us on WhatsApp. You can read how we work on our physiotherapy page.',
+        links: [{ phrase: 'physiotherapy page', href: '/services/physiotherapy' }],
+      },
+    ],
+    keyTakeaways: [
+      {
+        q: 'What is frozen shoulder?',
+        a: 'A thickening and tightening of the capsule around the shoulder joint, also called adhesive capsulitis, that causes pain and a steady loss of movement.',
+      },
+      {
+        q: 'Who tends to get it?',
+        a: 'Mostly people between about 40 and 60, women more than men, and people with diabetes or a thyroid condition far more than others.',
+      },
+      {
+        q: 'What are the stages of frozen shoulder?',
+        a: 'Usually described as freezing, when pain builds and movement drops, frozen, when pain eases but stiffness stays, and thawing, when movement slowly returns. How long each lasts varies widely.',
+      },
+      {
+        q: 'What is the telltale sign?',
+        a: 'Movement is lost even when someone else moves the arm for you, especially turning it outward. Most other shoulder problems still allow that passive movement.',
+      },
+      {
+        q: 'When are you open?',
+        a: 'Seven days a week, at Sunway Velocity in Maluri. Monday to Thursday and Saturday until 8pm, Friday until 5pm, Sunday until 3pm.',
+      },
+    ],
+    qualifierConcerns: [
+      'My shoulder has slowly stiffened over weeks or months',
+      'I cannot reach behind my back or overhead',
+      'The ache is worse at night or when I lie on that side',
+      'I have diabetes or a thyroid condition',
+      'I want to know whether it is frozen shoulder or something else',
+    ],
+    citations: [
+      {
+        claim:
+          'Frozen shoulder generally gets better over time without surgery, although full recovery may take up to three years, and physical therapy focused on shoulder flexibility is the main recommended approach. It occurs much more often in people with diabetes.',
+        source: 'OrthoInfo, American Academy of Orthopaedic Surgeons',
+        url: 'https://www.orthoinfo.org/en/diseases--conditions/frozen-shoulder/',
+      },
+      {
+        claim:
+          'People with diabetes were about five times more likely than controls to have adhesive capsulitis, with an estimated prevalence of 13.4% among people with diabetes.',
+        source: 'Zreik NH, Malik RA & Charalambous CP, Muscles, Ligaments and Tendons Journal, 2016',
+        url: 'https://pubmed.ncbi.nlm.nih.gov/27331029/',
+      },
+      {
+        claim:
+          'Manual therapy and exercise combined may not be as effective as a glucocorticoid injection in the short term, and higher quality trials are needed.',
+        source: 'Page MJ and others, Cochrane Database of Systematic Reviews, 2014',
+        url: 'https://pubmed.ncbi.nlm.nih.gov/25157702/',
+      },
+    ],
+    comparison: {
+      heading: 'Frozen shoulder, a rotator cuff problem, or pain from your neck?',
+      intro:
+        'A painful, stiff shoulder can come from the joint capsule, the rotator cuff tendons, the neck or simply a long day at a desk, and each is looked after a little differently. This is a rough guide, and the linked columns go to the page that covers that pattern in full.',
+      columns: [
+        { label: 'Frozen shoulder' },
+        { label: 'Rotator cuff problem' },
+        { label: 'Pain from the neck', href: '/conditions/pinched-nerve' },
+        { label: 'Desk shoulder ache', href: '/conditions/shoulder-imbalance' },
+      ],
+      rows: [
+        {
+          label: 'Can someone else move your arm?',
+          cells: [
+            'No, it is stiff whoever moves it',
+            'Yes, usually further than you can yourself',
+            'Yes, the shoulder moves freely',
+            'Yes, though it may feel tight',
+          ],
+        },
+        {
+          label: 'Where it hurts',
+          cells: [
+            'Deep in the shoulder and the upper arm',
+            'The outside of the upper arm, worst partway through raising it',
+            'From the neck into the shoulder and down the arm',
+            'Across the top of the shoulder and into the neck',
+          ],
+        },
+        {
+          label: 'At night',
+          cells: [
+            'Often worse, especially lying on that side',
+            'Lying on that side hurts',
+            'Arm symptoms can break your sleep',
+            'Usually settles overnight',
+          ],
+        },
+        {
+          label: 'Tingling into the hand',
+          cells: ['No', 'No', 'Often', 'Sometimes'],
+        },
+        {
+          label: 'How it tends to behave',
+          cells: [
+            'Slow, over months and sometimes years',
+            'Varies with how the shoulder is loaded',
+            'Varies with what is irritating the nerve',
+            'Builds through the working day, eases at weekends',
+          ],
+        },
+      ],
+      note: 'These overlap, and more than one can be present at once. The examination, especially how the arm moves when someone else moves it, is what tells them apart.',
+    },
     draft: false,
   },
 ]

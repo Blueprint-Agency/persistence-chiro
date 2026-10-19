@@ -458,6 +458,31 @@ Editing clinical copy on a page with `lastReviewed` set makes that date a claim 
 the reviewer has not read: list the clinical changes for the client and move the date only
 once they confirm.
 
+**Citation strings are copy too: paraphrase any source title containing "treat" (learned 2026-10-19, `chiropractic-vs-massage`).**
+The no-"treat" test walks every string on a post or condition, including `citations[].source` and
+`.claim`, and only exempts negation sentences. Real titles trip it ("…for the treatment of chronic
+low back pain", NICE's "treatment package"). Describe the paper instead ("systematic review of
+spinal manipulative therapy for chronic low back pain, BMJ"), keep the DOI or URL exact.
+
+**A "this vs that" picture needs real labels: use `<PostFigurePair>` (same post).** A two-panel AI
+illustration with no labels read as random to the user, and labels baked into an AI image come
+out garbled ("LEFT", "RIGHT"). `components/PostFigurePair.tsx` takes two square 640px images, each
+with a `label` and a one-line `caption` rendered as real text. Crop a two-panel render into two
+squares, padding with the image's own edge pixels (numpy `mode='edge'`), not a flat colour, or a
+visible seam appears. After replacing an image under the same filename, delete
+`.next/cache/images` before checking the preview, or next/image serves the old crop.
+
+**Prices on a page or post: bundles only (same post).** `lib/pricing.ts` records the client's
+2026-09-03 instruction that standalone prices are never published, only bundle cards. A cost FAQ
+quotes bundle totals and links `/offers`; it never states a single-session price, even one that
+appears as a line inside a bundle.
+
+**Re-measure a "no data" keyword before building, and try the clinical variant (same batch).**
+October's schedule said stenosis, spondylolisthesis, carpal tunnel and frozen shoulder had no
+Malaysian data. On 2026-10-19 "carpal tunnel syndrome" measured 18,100/mo, and the others had
+demand under variants ("lumbar spinal stenosis" 480, "adhesive capsulitis" 720, "frozen shoulder
+and treatment" 1,000). Bare head terms often read 0 while Google files the volume under a variant.
+
 ## Quick reference
 - Client: **Persistence Chiropractic** (single clinic, Cheras/Maluri, KL). NAP + CTAs: `lib/clinic.ts`.
 - Booking: SweetPew (`clinic.bookingUrl`). WhatsApp: `clinic.whatsappUrl`.
