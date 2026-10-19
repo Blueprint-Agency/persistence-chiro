@@ -923,7 +923,8 @@ export const conditions: Condition[] = [
       ],
       note: 'Only an examination and, where needed, an X-ray tell these apart for certain. A curve can also sit alongside muscle tension. The table tells you where to start; the assessment is what tells them apart.',
     },
-    lastReviewed: '2026-08-08',
+    // Refresh re-reviewed by Valerie Na, confirmed by the user 2026-10-19.
+    lastReviewed: '2026-10-19',
     draft: false,
   },
   {
@@ -1547,7 +1548,8 @@ export const conditions: Condition[] = [
       ],
       note: 'Real hips overlap. Back and hip problems often arrive together, and a deep buttock ache can belong to any of these. The table tells you where to start reading; the assessment is what tells them apart.',
     },
-    lastReviewed: '2026-08-08',
+    // Refresh re-reviewed by Valerie Na, confirmed by the user 2026-10-19.
+    lastReviewed: '2026-10-19',
     draft: false,
   },
   {

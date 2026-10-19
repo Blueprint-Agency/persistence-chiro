@@ -236,6 +236,8 @@ export const posts: Post[] = [
         url: 'https://www.nice.org.uk/guidance/ng59/chapter/Recommendations',
       },
     ],
+    // Reviewed by Valerie Na, confirmed by the user 2026-10-19.
+    lastReviewed: '2026-10-19',
     draft: false,
   },
   {
