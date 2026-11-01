@@ -18,6 +18,7 @@ import SciaticaExercises from '@/content/blog/sciatica-exercises.mdx'
 import TechNeck from '@/content/blog/tech-neck.mdx'
 import NeckHump from '@/content/blog/neck-hump.mdx'
 import PilatesVsYoga from '@/content/blog/pilates-vs-yoga.mdx'
+import ChairYoga from '@/content/blog/chair-yoga.mdx'
 import LowerBackPainExercises from '@/content/blog/lower-back-pain-exercises.mdx'
 import ChiropractorVsDoctor from '@/content/blog/chiropractor-vs-doctor.mdx'
 import MigraineVsClusterHeadache from '@/content/blog/migraine-vs-cluster-headache.mdx'
@@ -49,6 +50,7 @@ export const postBodies: Record<string, ComponentType> = {
   'tech-neck': TechNeck,
   'neck-hump': NeckHump,
   'pilates-vs-yoga': PilatesVsYoga,
+  'chair-yoga': ChairYoga,
   'lower-back-pain-exercises': LowerBackPainExercises,
   'chiropractor-vs-doctor': ChiropractorVsDoctor,
   'migraine-vs-cluster-headache': MigraineVsClusterHeadache,

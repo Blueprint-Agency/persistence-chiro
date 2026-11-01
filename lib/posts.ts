@@ -66,6 +66,98 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    // Schedule pc071, built via the persistence-content-builder skill (2026-11-01). Targets
+    // "chair yoga" (260/mo, SD 36, Ubersuggest Malaysia locId 2458) plus "yoga for seniors"
+    // (40). Page one is four YouTube videos, Healthline, Harvard Health, Brown Health, AARP and
+    // GoodRx: no Malaysian page, no clinic. None of them says the benefits fade when classes
+    // stop or that chair yoga showed no balance effect, both from the Park 2017 JAGS trial
+    // cited here; that and the group-vs-home finding are the post's angle. /services/yoga-classes
+    // keeps "yoga cheras" and the Chair vs Posture Core comparison; this post links it and does
+    // not repeat the table. Hero and class photo are real clinic frames; the five pose figures
+    // are Higgsfield illustrations. A seated forward fold was dropped after two NSFW refusals
+    // and replaced by a seated knee lift (forward flexion is a caution with osteoporosis anyway).
+    // No lastReviewed until Valerie reads it.
+    slug: 'chair-yoga',
+    title: 'Chair Yoga: What It Is and Who It Suits',
+    description:
+      'Chair yoga explained: what it is, who it suits, 5 seated poses to try at home, what the research shows, and how a chair yoga class runs in Cheras, KL.',
+    datePublished: '2026-11-01',
+    author: 'Persistence Chiropractic Care',
+    linksTo: 'yoga-classes',
+    heroImage: {
+      src: '/img/yoga-class-hero.webp',
+      alt: 'Five students seated on folding chairs on yoga mats, each reaching one arm overhead in a side stretch, during a chair yoga class at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
+    },
+    keyTakeaways: [
+      {
+        q: 'What is chair yoga?',
+        a: 'Chair yoga is yoga done sitting on a chair, or standing with a chair to hold for support. The poses, stretches and slow breathing are the same as in a mat class, without the need to get down to the floor.',
+      },
+      {
+        q: 'Who is chair yoga for?',
+        a: 'Older adults, beginners, people with stiff knees, hips or backs, pregnant women with their doctor’s go ahead, people easing back after an injury, and desk workers who want a stretch between meetings.',
+      },
+      {
+        q: 'Is chair yoga real exercise?',
+        a: 'Yes. A review of 25 studies found chair based exercise improved grip strength, arm strength and how often older adults could stand up from a chair in 30 seconds. How hard a class feels depends on how much strength work it includes.',
+      },
+      {
+        q: 'Do the benefits of chair yoga last?',
+        a: 'Mostly while you keep going. In an eight week trial in older adults with knee or hip arthritis, most improvements faded after the classes ended, and chair yoga did not change balance. A routine you stick with matters most.',
+      },
+      {
+        q: 'How do I start chair yoga?',
+        a: 'Use a sturdy chair with no wheels and no armrests, try a few simple seated poses slowly, and stop anything that hurts. A small group class makes it easier to keep going, and an instructor can adapt each pose.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Is chair yoga only for seniors?',
+        a: 'No. It is popular with older adults, but beginners, pregnant women, people with joint pain and office workers all use it. Anyone who would rather not get down to the floor can join a chair yoga class.',
+      },
+      {
+        q: 'How often should I do chair yoga?',
+        a: 'Two or three times a week is a sensible aim. The World Health Organization suggests adults aged 65 and over do activity that works on balance and strength on three or more days a week, and chair yoga can be one of those days.',
+      },
+      {
+        q: 'Can chair yoga help with weight loss?',
+        a: 'Only a little on its own. Chair yoga burns fewer calories than brisk walking or swimming. It is better thought of as a way to build strength and stay mobile, alongside eating well and moving more through the day.',
+      },
+      {
+        q: 'Can I do chair yoga with knee pain?',
+        a: 'Often, yes, because the chair takes weight off the knees. Keep movements within a comfortable range and skip any pose that makes the knee worse. If the knee is swollen, locking or giving way, get it assessed first.',
+      },
+      {
+        q: 'Can I do chair yoga at home?',
+        a: 'Yes, with a sturdy chair placed against a wall. The catch is keeping it up: in one trial fewer than half of older adults kept practising alone at home, so a class or a friend to practise with can help.',
+      },
+    ],
+    citations: [
+      {
+        claim:
+          'A systematic review and meta-analysis of 25 studies in adults aged 50 and over found that chair based exercise programmes improved handgrip strength, the 30 second arm curl test and the 30 second chair stand test.',
+        source:
+          'Klempel et al. (2021), The effect of chair-based exercise on physical function in older adults, International Journal of Environmental Research and Public Health',
+        url: 'https://doi.org/10.3390/ijerph18041902',
+      },
+      {
+        claim:
+          'In a randomised trial of older adults with lower limb osteoarthritis who could not do standing exercise, eight weeks of twice weekly chair yoga reduced pain, pain interference and fatigue and improved gait speed compared with a health education programme; only the reduction in pain interference was sustained three months later, and chair yoga had no effect on balance.',
+        source:
+          'Park et al. (2017), Journal of the American Geriatrics Society',
+        url: 'https://doi.org/10.1111/jgs.14717',
+      },
+      {
+        claim:
+          'The World Health Organization recommends that adults aged 65 and over include multicomponent physical activity that emphasises functional balance and strength training on three or more days a week.',
+        source:
+          'Bull et al. (2020), World Health Organization 2020 guidelines on physical activity and sedentary behaviour, British Journal of Sports Medicine',
+        url: 'https://doi.org/10.1136/bjsports-2020-102955',
+      },
+    ],
+    draft: false,
+  },
+  {
     // Schedule pc072, built via the persistence-content-builder skill (2026-11-01). Targets
     // "pilates vs yoga" (480/mo, SD 30, Ubersuggest Malaysia locId 2458) and "yoga or pilates"
     // (480). Page one is Reddit, Healthline, WebMD, Mayo Clinic Press, video and studios, with
