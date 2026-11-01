@@ -483,6 +483,16 @@ Malaysian data. On 2026-10-19 "carpal tunnel syndrome" measured 18,100/mo, and t
 demand under variants ("lumbar spinal stenosis" 480, "adhesive capsulitis" 720, "frozen shoulder
 and treatment" 1,000). Bare head terms often read 0 while Google files the volume under a variant.
 
+**A ranking case report is not automatically a citation (learned 2026-10-26, `neck-hump`).**
+Position 6 for "neck hump" was a chiropractic case report titled "Remission of Dowager's hump by
+manipulative correction". It is one patient, and citing "remission" puts an outcome claim on the
+page. A randomised trial with a small honest effect (SHEAF, about 3 degrees in six months) is the
+stronger and safer source. Prefer it, and say the small number out loud.
+
+**Post FAQs cannot carry links (same post).** `Post.faqs` is `{ q, a }` only, unlike condition and
+service FAQs. To point an older post's FAQ at a new post, add a sentence with a link to the older
+post's body near the related section instead.
+
 ## Quick reference
 - Client: **Persistence Chiropractic** (single clinic, Cheras/Maluri, KL). NAP + CTAs: `lib/clinic.ts`.
 - Booking: SweetPew (`clinic.bookingUrl`). WhatsApp: `clinic.whatsappUrl`.

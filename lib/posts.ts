@@ -66,6 +66,99 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    // Schedule pc077, built via the persistence-content-builder skill (2026-10-26). Targets
+    // "neck hump" (590/mo, SD 24, Ubersuggest Malaysia locId 2458) plus "dowager hump" (390,
+    // SD 11). The Malaysian top 10 has small clinics at DA 12 to 41 and no Malaysian page;
+    // every competitor either promises to "correct the curvature" or calls it "as simple as"
+    // lifestyle changes. This post's angle is telling the three kinds apart (posture, bone,
+    // fat), a wall self-check, and the honest size of the evidence (SHEAF: about 3 degrees
+    // after six months). "Buffalo hump" (590/mo) is deliberately NOT targeted: its SERP is
+    // Cushing's/fat intent, so the post explains it and sends it to a doctor. The chiro case
+    // report ranking #6 ("Remission of Dowager's hump...") is not cited: one patient, and
+    // "remission" reads as an outcome claim. Separate query from /blog/tech-neck, which now
+    // links here. The four exercise figures are reused from tech-neck (the doorway stand-in
+    // shows hands, so the steps say "hands or forearms"); the hero, the posture/fixed pair,
+    // the wall check and wall angels are new AI illustrations (Nano Banana 2 Lite, same style).
+    // The wall check had a gold haze and wall angels a stray arrow, both removed with PIL.
+    // Not clinic photos, so no alt text carries the Cheras modifier. No lastReviewed yet.
+    slug: 'neck-hump',
+    title: 'Neck Hump: What Causes It and What Helps',
+    description:
+      'A neck hump can come from posture, bone or fat, and each needs a different plan. How to tell them apart, exercises to try, and when to get it checked.',
+    datePublished: '2026-10-26',
+    author: 'Persistence Chiropractic Care',
+    linksTo: 'posture-correction',
+    heroImage: {
+      src: '/img/blog-neck-hump-hero.webp',
+      alt: 'Illustration of a woman in side profile with her head forward and upper back rounded, touching a golden glow on the hump at the base of her neck',
+    },
+    keyTakeaways: [
+      {
+        q: 'What is a neck hump?',
+        a: 'A neck hump, also called a dowager’s hump, is a rounded bump where the neck meets the upper back. It usually comes from an exaggerated forward curve at the top of the spine, which doctors call hyperkyphosis.',
+      },
+      {
+        q: 'What causes a neck hump?',
+        a: 'Most often posture, from years of leaning forward over desks and phones. Changes in the bones, such as compression fractures from osteoporosis, and a pad of fat known as a buffalo hump are less common causes.',
+      },
+      {
+        q: 'How can I tell if my neck hump is from posture?',
+        a: 'Stand with your back against a wall and try to rest the back of your head on it with your chin level. If the hump flattens easily, posture is probably a big part of it. It is a rough home check, not a diagnosis.',
+      },
+      {
+        q: 'Do neck hump exercises work?',
+        a: 'They can help, slowly. In a six month trial in older adults, supervised strength and posture training reduced the curve by about 3 degrees. Posture related humps tend to respond better than curves from bone changes.',
+      },
+      {
+        q: 'When should a neck hump be checked?',
+        a: 'When it is new or growing, comes with height loss or sudden upper back pain, or causes arm symptoms. A soft hump that comes with weight gain or a rounder face should go to a doctor first.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Is a neck hump permanent?',
+        a: 'Not always. The part that comes from posture often softens with months of regular strength work and changes to how you sit and use your phone. A curve from changes in the bones tends to stay, though keeping strong can help stop it getting worse and ease the ache around it.',
+      },
+      {
+        q: 'Can a chiropractor help with a neck hump?',
+        a: 'A chiropractor can assess which kind of hump you have, help with stiff joints in the neck and upper back, and give you an exercise plan. What chiropractic cannot do is reshape bone, and a soft fatty hump is a matter for your doctor. We would rather tell you which group you are in than promise a result.',
+      },
+      {
+        q: 'Do neck hump pillows or posture correctors work?',
+        a: 'A pillow or brace may make you more aware of your position for a while, but neither builds the strength needed to hold a better posture on its own, and there is little good evidence that either flattens a hump. Exercise and fewer hours in one position are a better bet.',
+      },
+      {
+        q: 'Is a neck hump dangerous?',
+        a: 'Usually not. A posture hump on its own is mostly a matter of comfort and appearance. It is worth checking when it appears quickly, comes with height loss or sudden back pain, which can point to a compression fracture, or is a soft lump that comes with other changes in your body.',
+      },
+      {
+        q: 'Can young people get a neck hump?',
+        a: 'Yes. A milder, posture related version is common in students and office workers who spend long hours over phones and laptops. At that age it tends to be flexible, which is good news, and regular movement breaks and strength work usually matter more than any gadget.',
+      },
+    ],
+    citations: [
+      {
+        claim:
+          'Reported prevalence of hyperkyphosis, an exaggerated forward curve of the upper back, ranges from roughly 20% to 40% of older men and women, and it is associated with low bone mass, vertebral compression fractures and degenerative disc disease.',
+        source: 'Katzman, Wanek, Shepherd & Sellmeyer (2010), Journal of Orthopaedic & Sports Physical Therapy',
+        url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC2907357/',
+      },
+      {
+        claim:
+          'A systematic review of 13 studies in adults aged 45 and over with hyperkyphosis found that 8 reported an improvement in at least one measure of posture with exercise, but the data were too limited to estimate the size of the effect.',
+        source: 'Bansal, Katzman & Giangregorio (2014), Archives of Physical Medicine and Rehabilitation',
+        url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC3997126/',
+      },
+      {
+        claim:
+          'In a randomised controlled trial of 99 adults aged 60 and over, six months of spine strengthening exercise and posture training reduced the kyphosis angle by about 3 degrees compared with a health education group, and improved self image.',
+        source: 'Katzman et al. (2017), Osteoporosis International (SHEAF trial)',
+        url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC5873977/',
+      },
+    ],
+    draft: false,
+  },
+  {
     // Schedule pc029, built via the persistence-content-builder skill. "chiropractic vs
     // massage" measures 10/mo in Ubersuggest MY; the cluster's volume is "chiropractic
     // massage" (170/mo, a local-pack SERP), which gets its own H2. Every ranking page is a
