@@ -66,6 +66,92 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    // Schedule pc072, built via the persistence-content-builder skill (2026-11-01). Targets
+    // "pilates vs yoga" (480/mo, SD 30, Ubersuggest Malaysia locId 2458) and "yoga or pilates"
+    // (480). Page one is Reddit, Healthline, WebMD, Mayo Clinic Press, video and studios, with
+    // no Malaysian page and no clinic; all three articles say both "ease back pain" without
+    // saying by how much. This post's angle is the two Cochrane reviews (each beats no
+    // exercise a little, neither beats other exercise), a by-situation table, and when to get
+    // checked first. It says plainly that the clinic runs yoga, not Pilates, and links
+    // /services/yoga-classes without knocking Pilates. A BJSM network meta-analysis ranking
+    // Pilates first was not cited: it carried an expression of concern (later rescinded), so
+    // it is contested. Hero and pair are Higgsfield illustrations (Nano Banana 2 Lite); the
+    // first Pilates prompt was refused as NSFW until the clothing was described as loose
+    // t-shirt and track pants. No lastReviewed until Valerie reads it.
+    slug: 'pilates-vs-yoga',
+    title: 'Pilates vs Yoga: Which Suits Your Back?',
+    description:
+      'Pilates vs yoga compared for back pain, posture and beginners: what each involves, what the research shows, and how to choose between them in KL.',
+    datePublished: '2026-11-01',
+    author: 'Persistence Chiropractic Care',
+    linksTo: 'yoga-classes',
+    heroImage: {
+      src: '/img/blog-pilates-vs-yoga-hero.webp',
+      alt: 'Illustration of two women on separate mats, one reclining in a Pilates core exercise with knees lifted and the other standing in the warrior two yoga pose',
+    },
+    keyTakeaways: [
+      {
+        q: 'What is the main difference between Pilates and yoga?',
+        a: 'Pilates builds control of your core through slow, repeated movements with the trunk held steady. Yoga moves into poses and holds them for a few breaths, or flows between them, with more stretch and more focus on the breath.',
+      },
+      {
+        q: 'Is Pilates or yoga better for back pain?',
+        a: 'Neither has a clear lead. Reviews of the research found both help long standing low back pain a little compared with no exercise, and neither did clearly better than other kinds of exercise. The one you keep doing matters most.',
+      },
+      {
+        q: 'Is Pilates or yoga better for posture and core strength?',
+        a: 'Pilates is built around core control, so it leans that way, but a strength focused yoga class works the core too. If posture is the goal, how you sit and work all day matters as much as either class.',
+      },
+      {
+        q: 'Which is better for a beginner who is not flexible?',
+        a: 'Pilates usually asks for less range of movement at the start. A beginner or chair yoga class is also a fair place to begin, because poses can be adapted with a block or a chair.',
+      },
+      {
+        q: 'Can I do Pilates and yoga together?',
+        a: 'Yes. Many people do Pilates for strength on one day and yoga for stretch on another. Tell each instructor about any back, neck or joint problem before the class starts.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Is Pilates harder than yoga?',
+        a: 'It depends on the class. Pilates often feels harder on the stomach and hips because of the repeated small movements, while a fast flow or hot yoga class can feel harder overall. A beginner class in either should feel manageable.',
+      },
+      {
+        q: 'Which is better for weight loss, Pilates or yoga?',
+        a: 'Neither burns as many calories as brisk walking, cycling or swimming. Both can support weight loss as part of a wider routine, mainly by building strength and helping you stay active, but diet and overall movement matter more.',
+      },
+      {
+        q: 'Can I do yoga or Pilates with a slipped disc?',
+        a: 'Often yes, once the worst of the pain has settled and the movements are chosen with care. Deep forward bends and loaded twists may need to wait. If pain spreads down a leg or you notice numbness or weakness, get assessed before starting a class.',
+      },
+      {
+        q: 'Is reformer Pilates better than mat Pilates?',
+        a: 'Not better, just different. The reformer machine can add resistance or help you through a movement, which makes it easy to adjust. Mat Pilates costs less and can be done at home. Both train the same core control.',
+      },
+      {
+        q: 'Does your clinic run Pilates classes?',
+        a: 'No. We run two yoga classes on Saturday afternoons in Cheras: Posture Core Yoga, which focuses on the core and the spine, and Chair Yoga, which is gentler and done from a chair. If you want Pilates, choose a studio with well trained instructors and tell them about any back problem.',
+      },
+    ],
+    citations: [
+      {
+        claim:
+          'A Cochrane review of ten trials found low quality evidence that Pilates reduces low back pain with a medium effect size in the short term compared with minimal intervention, and moderate quality evidence of no significant difference in disability between Pilates and other exercise.',
+        source:
+          'Yamato et al. (2015), Pilates for low back pain, Cochrane Database of Systematic Reviews',
+        url: 'https://doi.org/10.1002/14651858.CD010265.pub2',
+      },
+      {
+        claim:
+          'A Cochrane review of yoga for chronic non-specific low back pain found low to moderate certainty evidence that, compared with no exercise, yoga produces small improvements in back-related function and pain which the authors judged clinically unimportant, and probably little or no difference from other back-related exercise at three months.',
+        source:
+          'Wieland et al. (2022), Yoga for chronic non-specific low back pain, Cochrane Database of Systematic Reviews',
+        url: 'https://doi.org/10.1002/14651858.CD010671.pub3',
+      },
+    ],
+    draft: false,
+  },
+  {
     // Schedule pc077, built via the persistence-content-builder skill (2026-10-26). Targets
     // "neck hump" (590/mo, SD 24, Ubersuggest Malaysia locId 2458) plus "dowager hump" (390,
     // SD 11). The Malaysian top 10 has small clinics at DA 12 to 41 and no Malaysian page;

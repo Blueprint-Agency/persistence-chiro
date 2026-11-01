@@ -154,7 +154,9 @@ const en: Dictionary = {
     readMoreReviews: 'Read more',
     googleReviewsSuffix: 'reviews',
     isThisRightForYou: 'Is this right for you?',
-    notSureIfIsRightForYou: (name) => `Not sure if ${name.toLowerCase()} is right for you?`,
+    // "Yoga Classes" is the one plural service name; it read "yoga classes is right for you".
+    notSureIfIsRightForYou: (name) =>
+      `Not sure if ${name.toLowerCase()} ${/s$/i.test(name) ? 'are' : 'is'} right for you?`,
     notSureIfWeCanHelpWith: (condition) =>
       `Not sure if we can help with ${condition.replace(/\s+care$/i, '').toLowerCase()}?`,
     tickAnythingBody:
