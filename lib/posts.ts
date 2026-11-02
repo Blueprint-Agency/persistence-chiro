@@ -66,6 +66,104 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    // Schedule pc042, built via the persistence-content-builder skill (2026-11-03). Targets
+    // "slipped disc remedy" (1,000/mo, SD 50, Ubersuggest MY), the phrase the pc016 refresh left
+    // for a blog post because a home-remedy searcher is not looking for a clinic page;
+    // "prolapsed disc exercises" (480) is served by the by-stage table, which links the existing
+    // exercise posts instead of repeating their moves. Benchmarked on global page one (US and UK
+    // health sites, a hospital in India) and Malaysian results (a KL chiropractor, two KL
+    // private hospitals, KL and PJ physios). The local pages are treatment-option pages; none
+    // uses the disc regression evidence (Rashed 2023: the larger the herniation, the more often
+    // it shrank) or gives a view on urut, balms, back belts and supplements, which is this
+    // post's angle. The withdrawn Cochrane bed rest review is NOT cited; NICE NG59 carries the
+    // stay-active point. /conditions/slipped-disc keeps "slipped disc lumbar region". No
+    // lastReviewed until Valerie reads it.
+    slug: 'slipped-disc-remedy',
+    title: 'Slipped Disc Remedy: What Helps at Home and What to Skip',
+    description:
+      'Slipped disc remedies that help at home, positions that ease the pain, exercises by stage, urut and back belts, recovery time, and when to get checked.',
+    datePublished: '2026-11-03',
+    author: 'Persistence Chiropractic Care',
+    linksTo: 'slipped-disc',
+    heroImage: {
+      src: '/img/blog-slipped-disc-remedy-hero.webp',
+      alt: 'Illustration of a man standing beside a sofa with one hand pressed to his lower back, with a golden glow at his lower back and a faint line down the back of one leg',
+    },
+    keyTakeaways: [
+      {
+        q: 'What is the best remedy for a slipped disc?',
+        a: 'Gentle movement, positions that ease the pain, short walks, breaking up sitting and gradual exercise. Heat, cold and painkillers from a pharmacist can make that easier. There is no quick fix, but most people improve.',
+      },
+      {
+        q: 'Can a slipped disc heal on its own?',
+        a: 'Often. In a review of repeat scans, the disc material shrank in about half of protruded discs, 70% of extruded discs and 93% of sequestered discs. Pain often eases before a scan would look different.',
+      },
+      {
+        q: 'Should I rest in bed with a slipped disc?',
+        a: 'Only briefly during the worst of a flare. Guidelines recommend staying as active as you can, because long bed rest tends to slow recovery.',
+      },
+      {
+        q: 'How long does a slipped disc take to heal?',
+        a: 'Most people feel clearly better within six weeks to three months, though leg pain can take longer. Flare ups along the way are common.',
+      },
+      {
+        q: 'When should I see someone about a slipped disc?',
+        a: 'Straight away for bladder or bowel changes or weakness in both legs. Soon if leg pain or numbness is spreading, a foot drags, or there is no improvement after two to three weeks.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Is walking good for a slipped disc?',
+        a: 'For most people, yes. Short walks of five to ten minutes a few times a day keep the back moving without loading it for long. If walking sends pain further down your leg, shorten the walks and build up slowly.',
+      },
+      {
+        q: 'Is urut good for a slipped disc?',
+        a: 'Gentle massage of the muscles around the back may ease spasm and help you feel looser. Strong pressure or forceful cracking over a fresh disc flare can make it worse, so tell the masseur about any leg pain or numbness first.',
+      },
+      {
+        q: 'Should I wear a back belt for a slipped disc?',
+        a: 'A belt can make a few days of standing or heavy tasks feel steadier. Wearing it for weeks is not recommended, because the back muscles you need for recovery do less work while it is on.',
+      },
+      {
+        q: 'Is heat or ice better for a slipped disc?',
+        a: 'Either can ease pain for a while, and neither changes the disc itself. Use whichever feels better for 15 to 20 minutes, wrapped in a towel so it does not burn or chill the skin.',
+      },
+      {
+        q: 'What should I avoid with a slipped disc?',
+        a: 'Long spells of slumped sitting, heavy lifting, repeated forward bending, sit ups and toe touches with straight legs, until the leg pain settles. Long bed rest is also best avoided.',
+      },
+    ],
+    citations: [
+      {
+        claim:
+          'A systematic review and meta-analysis of 360 cases of lumbar disc herniation managed without surgery, with repeat imaging at a mean of 11.5 months, found probabilities of spontaneous regression of 13.3% for bulging, 52.5% for protruded, 70.4% for extruded and 93.0% for sequestered discs.',
+        source:
+          'Rashed et al. (2023), Systematic review and meta-analysis of predictive factors for spontaneous regression in lumbar disc herniation, Journal of Neurosurgery: Spine',
+        url: 'https://doi.org/10.3171/2023.6.SPINE23367',
+      },
+      {
+        claim:
+          'In a randomised trial of 283 people with severe sciatica for 6 to 12 weeks, one year outcomes were similar for early surgery and for prolonged non surgical care with surgery if needed. Leg pain eased faster after early surgery, and 39% of the non surgical group had an operation.',
+        source:
+          'Peul et al. (2007), a randomised trial of early surgery or prolonged non surgical care for sciatica, New England Journal of Medicine',
+        url: 'https://doi.org/10.1056/NEJMoa064039',
+      },
+      {
+        claim:
+          'Clinical guidelines recommend staying active and using exercise based care for most low back pain and sciatica, rather than prolonged rest.',
+        source: 'NICE guideline NG59, Low back pain and sciatica',
+        url: 'https://www.nice.org.uk/guidance/ng59',
+      },
+      {
+        claim:
+          'Imaging findings such as disc bulges and protrusions are commonly present in people without any symptoms, and increase with age.',
+        source: 'Brinjikji et al. (2015), American Journal of Neuroradiology',
+        url: 'https://doi.org/10.3174/ajnr.A4173',
+      },
+    ],
+    draft: false,
+  },
+  {
     // Schedule pc047, built via the persistence-content-builder skill (2026-11-02). Targets
     // "does dry needling hurt" (20/mo). Benchmarked against global results (a US hospital, US
     // physio and chiro blogs) and Malaysian ones (KL physio and chiro service pages, a TCM chain,
