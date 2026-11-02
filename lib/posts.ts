@@ -66,6 +66,97 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    // Schedule pc044, built via the persistence-content-builder skill (2026-11-02). Targets
+    // "migraine triggers" (140/mo, SD 53, Ubersuggest Malaysia locId 2458). The schedule title
+    // said "& Natural Relief"; dropped, because the 2024 migraine relief post already holds that
+    // angle and "natural relief" pulls copy towards outcome promises. Page one is foundations,
+    // charities and US health publishers: lists of ten with no figures, nothing Malaysian, and
+    // only one page separates triggers from warning signs. The angle here is neck pain as BOTH a
+    // reported trigger (Kelman 2007, 38%) and a common prodrome symptom (Giffin 2003, 50%),
+    // which bridges honestly to /conditions/migraine without implying chiropractic acts on
+    // migraine. Red flags are a shortened list that links to the condition page for the full
+    // one. Both figures are Higgsfield illustrations. No lastReviewed until Valerie reads it.
+    slug: 'migraine-triggers',
+    title: 'Migraine Triggers: The Common Ones and How to Find Yours',
+    description:
+      'The most common migraine triggers and how often people report them, heat and haze in Malaysia, trigger vs warning sign, neck pain, and a simple diary.',
+    datePublished: '2026-11-02',
+    author: 'Persistence Chiropractic Care',
+    linksTo: 'migraine',
+    heroImage: {
+      src: '/img/blog-migraine-triggers-hero.webp',
+      alt: 'Illustration of a woman at her desk with her eyes closed and a hand pressed to her temple, a cup of coffee and a laptop beside her and a hazy sun in the window, with a golden glow at the side of her head',
+    },
+    keyTakeaways: [
+      {
+        q: 'What are the most common migraine triggers?',
+        a: 'Stress, hormonal changes, skipping meals, weather changes and disturbed sleep are the triggers people with migraine report most often. Strong smells, neck pain, bright light, alcohol, smoke and heat are also common.',
+      },
+      {
+        q: 'Do migraine triggers act alone?',
+        a: 'Usually not. Triggers tend to add up until they cross your personal threshold, which is why the same coffee or late night can be fine one week and set off an attack the next.',
+      },
+      {
+        q: 'Can a trigger actually be a warning sign?',
+        a: 'Yes. Food cravings, light sensitivity and a stiff neck can be early symptoms of an attack that has already started, so the thing you ate or saw before the headache may get blamed unfairly.',
+      },
+      {
+        q: 'Is neck pain a migraine trigger?',
+        a: 'It can be a trigger, an early warning sign, or a sign of a different headache that starts in the neck. A diary shows when it appears, and an assessment can check whether the neck is involved.',
+      },
+      {
+        q: 'How do I find my own migraine triggers?',
+        a: 'Keep a daily diary for six to eight weeks covering sleep, meals, drinks, stress, surroundings and warning signs, then look for what comes before attacks more often than before headache free days.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Can stress alone trigger a migraine?',
+        a: 'It can, and it is the trigger people report most often. Many people also notice attacks when stress drops suddenly, such as the first day of a holiday or the weekend after a deadline, so keeping sleep and meals steady during busy weeks may help.',
+      },
+      {
+        q: 'Is chocolate a migraine trigger?',
+        a: 'Probably less often than people think. A craving for sweet food is a common early warning sign of an attack, so the chocolate eaten during that craving often gets the blame. A diary can show whether it is a real trigger for you.',
+      },
+      {
+        q: 'Does coffee trigger migraines?',
+        a: 'For some people a lot of caffeine does, but a sudden drop is often the bigger problem. Keeping your daily amount steady, and cutting down slowly over a couple of weeks if you want to, tends to work better than stopping overnight.',
+      },
+      {
+        q: 'Can hot weather or haze trigger a migraine?',
+        a: 'For many people, yes. Heat, weather changes and smoke are all commonly reported triggers. Drinking water before you feel thirsty, avoiding the hottest part of the day and keeping indoor air clean during haze season are reasonable steps.',
+      },
+      {
+        q: 'Does neck stiffness before a migraine mean my neck is causing it?',
+        a: 'Not necessarily. A stiff neck is one of the most common early symptoms of a migraine attack, so it may be part of the migraine itself. It can also add to your threshold, or point to a headache that starts in the neck. An assessment can help tell these apart.',
+      },
+    ],
+    citations: [
+      {
+        claim:
+          'In a study of 1,207 people with migraine, 75.9% reported triggers. The most frequent were stress (79.7%), hormones in women (65.1%), not eating (57.3%), weather (53.2%) and sleep disturbance (49.8%), with neck pain reported by 38.4%.',
+        source:
+          'Kelman (2007), The triggers or precipitants of the acute migraine attack, Cephalalgia',
+        url: 'https://doi.org/10.1111/j.1468-2982.2007.01303.x',
+      },
+      {
+        claim:
+          'In an electronic diary study, people who reported premonitory symptoms correctly predicted their migraine headache from 72% of those entries. The most common premonitory symptoms were tiredness (72%), difficulty concentrating (51%) and a stiff neck (50%).',
+        source:
+          'Giffin et al. (2003), Premonitory symptoms in migraine: an electronic diary study, Neurology',
+        url: 'https://doi.org/10.1212/01.wnl.0000052998.58526.a9',
+      },
+      {
+        claim:
+          'Analysing 90 day diaries from 326 people with migraine, researchers found an average of four factors associated with each person’s attacks, and the profile was unique in 85% of people with at least one association.',
+        source:
+          'Peris et al. (2017), Towards improved migraine management: Determining potential trigger factors in individual patients, Cephalalgia',
+        url: 'https://doi.org/10.1177/0333102416649761',
+      },
+    ],
+    draft: false,
+  },
+  {
     // Schedule pc071, built via the persistence-content-builder skill (2026-11-01). Targets
     // "chair yoga" (260/mo, SD 36, Ubersuggest Malaysia locId 2458) plus "yoga for seniors"
     // (40). Page one is four YouTube videos, Healthline, Harvard Health, Brown Health, AARP and
