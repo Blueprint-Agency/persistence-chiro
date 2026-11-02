@@ -66,6 +66,122 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    // Schedule pc047, built via the persistence-content-builder skill (2026-11-02). Targets
+    // "does dry needling hurt" (20/mo). Benchmarked against global results (a US hospital, US
+    // physio and chiro blogs) and Malaysian ones (KL physio and chiro service pages, a TCM chain,
+    // a clinic FAQ). Every page answers in a paragraph, gives "24 to 72 hours" for soreness
+    // without a source, and none quantifies pain, says what makes it worse or lists the pain
+    // that is not normal. Some claim soreness "is a sign your body is healing"; this post does
+    // not. Goes deeper than the /services/dry-needling FAQ (one paragraph) and the feel section
+    // of /blog/dry-needling-vs-acupuncture, and its FAQs avoid both. The "worth it" section is
+    // deliberately honest (Gattie 2021: no added benefit for neck pain over manual therapy and
+    // exercise), consistent with the service page saying needling alone does not change what
+    // let the muscle tighten. Does not say who performs needling: OPEN-ITEMS item 2 still asks
+    // whether it is chiropractor or physiotherapist delivered. Hero is the real clinic photo
+    // from /services/dry-needling; one Higgsfield illustration. No lastReviewed until Valerie
+    // reads it.
+    slug: 'does-dry-needling-hurt',
+    title: 'Does Dry Needling Hurt? What You Feel During and After',
+    description:
+      'Does dry needling hurt? What each moment feels like, how long the soreness lasts, how to ease it, which pain is not normal, and whether it is worth it.',
+    datePublished: '2026-11-02',
+    author: 'Persistence Chiropractic Care',
+    linksTo: 'dry-needling',
+    heroImage: {
+      src: '/img/dry-needling.webp',
+      alt: 'Gloved practitioner performing dry needling on a patient upper back and shoulder at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
+    },
+    keyTakeaways: [
+      {
+        q: 'Does dry needling hurt?',
+        a: 'Usually a little. Most people feel a small prick, a deep dull ache when the needle reaches the tight spot, and sometimes a brief twitch. Sharp or lasting pain is uncommon.',
+      },
+      {
+        q: 'How long does soreness last after dry needling?',
+        a: 'Usually less than 72 hours. The needled area tends to feel bruised or tired, much like muscle soreness after exercise, and eases over one to three days.',
+      },
+      {
+        q: 'What makes dry needling hurt more?',
+        a: 'A very tender knot, thick muscles like the calf or buttock, a technique that brings on repeated twitches, more needles in one session, and feeling anxious beforehand.',
+      },
+      {
+        q: 'How can I ease soreness after dry needling?',
+        a: 'Firm pressure on the spot, gentle stretching and normal movement, and warmth all tend to help. In one trial, pressure straight after needling reduced both the soreness and how long it lasted.',
+      },
+      {
+        q: 'Is dry needling worth the discomfort?',
+        a: 'It can ease muscle pain in the short term, but works best as part of a plan with exercise and other care. On its own, the effect tends to fade.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Does dry needling hurt more than an injection or a blood test?',
+        a: 'Usually the needle going in hurts less, because dry needling needles are much thinner and solid, with nothing injected. The deep ache when the needle reaches a knot is a different feeling, more like firm massage pressure than a sharp jab.',
+      },
+      {
+        q: 'Can I exercise after dry needling?',
+        a: 'Yes, light activity and walking are fine and often help the soreness ease. Many people leave a hard workout for the needled muscle until the next day, since it can feel tired or weaker for a few hours.',
+      },
+      {
+        q: 'Is it normal to feel tired after dry needling?',
+        a: 'Some people feel drowsy or a little drained for a few hours afterwards, though in one large survey it was recorded in well under 1% of sessions. A rest and something to eat usually help. Feeling faint during the session is different, and you should say so straight away.',
+      },
+      {
+        q: 'Can I drive or go back to work after dry needling?',
+        a: 'Most people can. If you felt faint or very sore during the session, wait until you feel steady before driving. Desk work is fine, and short breaks to move the needled area can help it feel less stiff.',
+      },
+      {
+        q: 'Does dry needling hurt less after the first session?',
+        a: 'For many people, yes, partly because they know what to expect and partly because the muscle is often less irritable. It varies, and a later session in a different area can feel stronger. Tell your practitioner how the last one felt so they can adjust.',
+      },
+    ],
+    citations: [
+      {
+        claim:
+          'In a prospective survey of 7,629 trigger point dry needling sessions by 39 physiotherapists, mild adverse events were reported in 19.18%, including bruising (7.55%), bleeding (4.65%), pain during needling (3.01%) and pain afterwards (2.19%). No significant adverse events were reported.',
+        source:
+          'Brady et al. (2014), Adverse events following trigger point dry needling: a prospective survey of chartered physiotherapists, Journal of Manual & Manipulative Therapy',
+        url: 'https://doi.org/10.1179/2042618613Y.0000000044',
+      },
+      {
+        claim:
+          'In a survey of 420 physical therapists covering more than 20,000 dry needling sessions, the most common minor adverse events were bleeding (16%), bruising (7.7%) and pain during needling (5.9%). Twenty major adverse events were reported.',
+        source:
+          'Boyce et al. (2020), Adverse events associated with therapeutic dry needling, International Journal of Sports Physical Therapy',
+        url: 'https://doi.org/10.26603/ijspt20200103',
+      },
+      {
+        claim:
+          'Post-needling soreness is a very frequent effect after deep dry needling, usually lasting less than 72 hours.',
+        source:
+          'Martín-Pintado-Zugasti et al. (2018), Post-needling soreness after myofascial trigger point dry needling: current status and future research, Journal of Bodywork and Movement Therapies',
+        url: 'https://doi.org/10.1016/j.jbmt.2018.01.003',
+      },
+      {
+        claim:
+          'In a randomised trial of 90 volunteers, ischemic compression applied after dry needling of the upper trapezius reduced post-needling soreness intensity and duration compared with placebo and control.',
+        source:
+          'Martín-Pintado-Zugasti et al. (2015), Ischemic compression after dry needling of a latent myofascial trigger point reduces postneedling soreness intensity and duration, PM&R',
+        url: 'https://doi.org/10.1016/j.pmrj.2015.03.021',
+      },
+      {
+        claim:
+          'A meta-analysis of 28 trials found dry needling reduced pain immediately and in the short term compared with sham, placebo or waiting list in people with neck pain associated with trigger points, with no difference from other physical therapy interventions and no effect at mid term.',
+        source:
+          'Navarro-Santana et al. (2020), Effectiveness of dry needling for myofascial trigger points associated with neck pain symptoms: an updated systematic review and meta-analysis, Journal of Clinical Medicine',
+        url: 'https://doi.org/10.3390/jcm9103300',
+      },
+      {
+        claim:
+          'In a randomised trial of 77 adults with mechanical neck pain receiving manual therapy and exercise, adding trigger point dry needling gave no difference in disability, pain or perceived improvement compared with sham dry needling, up to one year.',
+        source:
+          'Gattie et al. (2021), a sham-controlled randomised trial of dry needling for neck pain with 1-year follow-up, Journal of Orthopaedic & Sports Physical Therapy',
+        url: 'https://doi.org/10.2519/jospt.2021.9864',
+      },
+    ],
+    draft: false,
+  },
+  {
     // Schedule pc073, built via the persistence-content-builder skill (2026-11-02). Targets
     // "yoga for back pain" (90/mo, SD 17, Ubersuggest Malaysia locId 2458). Benchmarked against
     // the Malaysian results specifically (user asked, 2026-11-02): a syndicated wire piece in a

@@ -21,6 +21,7 @@ import PilatesVsYoga from '@/content/blog/pilates-vs-yoga.mdx'
 import ChairYoga from '@/content/blog/chair-yoga.mdx'
 import MigraineTriggers from '@/content/blog/migraine-triggers.mdx'
 import YogaForBackPain from '@/content/blog/yoga-for-back-pain.mdx'
+import DoesDryNeedlingHurt from '@/content/blog/does-dry-needling-hurt.mdx'
 import LowerBackPainExercises from '@/content/blog/lower-back-pain-exercises.mdx'
 import ChiropractorVsDoctor from '@/content/blog/chiropractor-vs-doctor.mdx'
 import MigraineVsClusterHeadache from '@/content/blog/migraine-vs-cluster-headache.mdx'
@@ -55,6 +56,7 @@ export const postBodies: Record<string, ComponentType> = {
   'chair-yoga': ChairYoga,
   'migraine-triggers': MigraineTriggers,
   'yoga-for-back-pain': YogaForBackPain,
+  'does-dry-needling-hurt': DoesDryNeedlingHurt,
   'lower-back-pain-exercises': LowerBackPainExercises,
   'chiropractor-vs-doctor': ChiropractorVsDoctor,
   'migraine-vs-cluster-headache': MigraineVsClusterHeadache,
