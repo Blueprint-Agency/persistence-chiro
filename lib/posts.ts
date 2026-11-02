@@ -66,6 +66,99 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    // Schedule pc073, built via the persistence-content-builder skill (2026-11-02). Targets
+    // "yoga for back pain" (90/mo, SD 17, Ubersuggest Malaysia locId 2458). Benchmarked against
+    // the Malaysian results specifically (user asked, 2026-11-02): a syndicated wire piece in a
+    // national daily, a regional health publisher, an online studio in India selling to
+    // Malaysians and a KL hot yoga studio. None is a clinic, none cites a study, and both
+    // content pages recommend downward dog, pigeon or a standing forward bend. So the angle is
+    // poses to skip or modify, plus the head to head trials (Saper 2017 yoga vs physio, Sherman
+    // 2011 yoga vs stretching) that nothing local covers. The Cochrane yoga review stays on
+    // /blog/pilates-vs-yoga and gets one line here. A 2024 IIUM review was found but could not
+    // be verified (journal page errors, not indexed), so it is not cited. None of the five poses
+    // repeats a move in /blog/lower-back-pain-exercises. All figures are Higgsfield
+    // illustrations. No lastReviewed until Valerie reads it.
+    slug: 'yoga-for-back-pain',
+    title: 'Yoga for Back Pain: Poses That Help and Ones to Skip',
+    description:
+      'Yoga for back pain: what the trials show, 5 gentle poses, which poses to skip or modify, hot yoga vs Hatha, and yoga classes in Cheras, KL.',
+    datePublished: '2026-11-02',
+    author: 'Persistence Chiropractic Care',
+    linksTo: 'yoga-classes',
+    heroImage: {
+      src: '/img/blog-yoga-back-pain-hero.webp',
+      alt: 'Illustration of a man standing beside a rolled up yoga mat with one hand pressed to his lower back, with a golden glow around his lower back',
+    },
+    keyTakeaways: [
+      {
+        q: 'Does yoga help back pain?',
+        a: 'For long standing low back pain, yoga helps about as much as other good exercise. In one trial, 12 weekly yoga classes did as well as 15 physiotherapy visits, and in another yoga did no better than ordinary stretching classes.',
+      },
+      {
+        q: 'Which yoga poses are good for lower back pain?',
+        a: 'Gentle poses that need little flexibility are a good start: supported child’s pose, sphinx, bridge, a low lunge for tight hip flexors and a lying hamstring stretch with a strap.',
+      },
+      {
+        q: 'Which yoga poses should I avoid with back pain?',
+        a: 'While your back is sore, skip or modify downward dog with straight legs, pigeon, straight leg standing forward bends, headstand, shoulder stand, lotus, deep backbends and twisting while arching.',
+      },
+      {
+        q: 'Is hot yoga good for back pain?',
+        a: 'It is not the best place to start. The heat makes it easy to stretch further than a sore back is ready for, and it adds dehydration and dizziness. A slow Hatha, gentle or chair class is safer.',
+      },
+      {
+        q: 'When should I get my back checked before yoga?',
+        a: 'If pain spreads down a leg, you have had a recent slipped disc, you have osteoporosis, the pain is new or worsening, or it started after a fall or accident.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'How often should I do yoga for back pain?',
+        a: 'Two or three times a week is a sensible start. The trials that found a benefit used one weekly class plus practice at home, over about 12 weeks. Short, regular sessions tend to help more than an occasional long one.',
+      },
+      {
+        q: 'Can yoga make back pain worse?',
+        a: 'It can, usually when a pose goes deeper than the back is ready for or the class moves too fast. Mild aches after a session are common and settle. Sharp pain, or pain spreading into a leg, is a sign to stop that pose and get it checked.',
+      },
+      {
+        q: 'Is yoga or physiotherapy better for back pain?',
+        a: 'In a trial of 320 adults, 12 weekly yoga classes did as well as 15 physiotherapy visits for pain and function, with gains lasting a year in both. Physiotherapy suits a recent injury or nerve symptoms better, and yoga suits ongoing stiffness. Many people do both.',
+      },
+      {
+        q: 'Can I do yoga with a slipped disc?',
+        a: 'Often, once the worst pain has settled, but some poses should wait. Deep forward bends, strong twists and straight leg folds tend to aggravate a disc. Get the back assessed first so you know which poses to leave out.',
+      },
+      {
+        q: 'Is downward dog bad for back pain?',
+        a: 'Not for everyone, but tight hamstrings can pull the lower back into a rounded position while it carries weight. Bending the knees well takes much of that load off, or you can swap it for supported child’s pose until your back settles.',
+      },
+    ],
+    citations: [
+      {
+        claim:
+          'In a randomised trial of 320 adults with chronic low back pain, 12 weekly yoga classes were noninferior to 15 physical therapy visits for back related function and pain at 12 weeks, and improvements in both groups were maintained at one year. Yoga was not superior to an educational book.',
+        source:
+          'Saper et al. (2017), Yoga, physical therapy, or education for chronic low back pain: a randomized noninferiority trial, Annals of Internal Medicine',
+        url: 'https://doi.org/10.7326/M16-2579',
+      },
+      {
+        claim:
+          'In a randomised trial of 228 adults with chronic low back pain, 12 weekly yoga classes were more effective than a self-care book but not more effective than conventional stretching classes, with benefits lasting at least several months.',
+        source:
+          'Sherman et al. (2011), A randomized trial comparing yoga, stretching, and a self-care book for chronic low back pain, Archives of Internal Medicine',
+        url: 'https://doi.org/10.1001/archinternmed.2011.524',
+      },
+      {
+        claim:
+          'A systematic review of 76 published cases of adverse events associated with yoga found headstand, shoulder stand and lotus position among the most commonly cited postures, and advised beginners to avoid extreme practices such as headstand and lotus.',
+        source:
+          'Cramer et al. (2013), Adverse events associated with yoga: a systematic review of published case reports and case series, PLoS One',
+        url: 'https://doi.org/10.1371/journal.pone.0075515',
+      },
+    ],
+    draft: false,
+  },
+  {
     // Schedule pc044, built via the persistence-content-builder skill (2026-11-02). Targets
     // "migraine triggers" (140/mo, SD 53, Ubersuggest Malaysia locId 2458). The schedule title
     // said "& Natural Relief"; dropped, because the 2024 migraine relief post already holds that

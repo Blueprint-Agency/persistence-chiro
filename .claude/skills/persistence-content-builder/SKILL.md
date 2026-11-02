@@ -238,7 +238,12 @@ Never present an outline without it.
 skill (extracted from here 2026-09-03, so the table shapes and guards stop being one client's
 private property). What follows is the same method plus this project's specifics; load that skill
 when the analysis needs to go deeper or when you want the rules restated.
-1. `WebSearch` the primary keyword(s). Prioritise Malaysia/KL results.
+1. `WebSearch` the primary keyword(s). Prioritise Malaysia/KL results. A search with the
+   location set to Malaysia still returns mostly US/UK pages, so **also run a Malaysia-scoped
+   query** (`<keyword> Malaysia OR KL OR "Kuala Lumpur"`) and put the local pages in the 8a
+   table. Caught 2026-11-02 on `yoga-for-back-pain`: the user asked why the benchmark was all
+   overseas, and the local results (the poses local pages recommend, a KL hot yoga studio
+   targeting the keyword) changed the outline.
 2. `WebFetch` the top 2–3 ranking pages.
 3. For each: heading hierarchy (every H2), topics covered, depth/length, unique angles, CTAs.
 4. Build a **gap analysis** — what they all miss that we can own.
