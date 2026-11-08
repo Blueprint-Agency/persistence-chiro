@@ -66,6 +66,386 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    // Schedule pc057, built via the persistence-content-builder skill (2026-11-08). Targets "how
+    // often should you see a chiropractor" (10/mo, Ubersuggest MY); a conversion piece for bundle
+    // buyers. A Cheras neighbour already owns the "honest, no lifetime plan" framing in a long
+    // post, so this one wins on the trial numbers nobody quotes properly: Haas 2014 (more visits,
+    // modest effect), Pasquier 2019 (frequency made no significant difference) and Eklund 2018
+    // (maintenance helped early responders, about 13 fewer bad days a year, at about two more
+    // visits). The Eklund title and finding contain the banned word, so both are paraphrased.
+    // No visit count is promised anywhere; the RM588 bundle is quoted as a bundle total only
+    // (lib/pricing.ts) and framed as a starting point. The legacy FAQ "How many sessions will I
+    // need?" in lib/faqs.ts ("months in fact") and the meta description of
+    // less-pain-more-gain-with-regular-chiropractic-care ("stopping early tends to undo the
+    // progress") read more promissory than this post; flagged for the client, not changed here.
+    // Hero is an AI illustration (Higgsfield Z Image, 2026-11-08). No lastReviewed until Valerie
+    // reads it.
+    slug: 'how-often-to-see-a-chiropractor',
+    title: 'How Often Should You See a Chiropractor? What Research Says',
+    description:
+      'How often to see a chiropractor at the start and later, what research says about more visits and maintenance care, how a plan is reviewed, and when to stop.',
+    datePublished: '2026-11-08',
+    author: 'Persistence Chiropractic Care',
+    linksTo: 'chiropractic-care',
+    heroImage: {
+      src: '/img/blog-how-often-chiropractor-hero.webp',
+      alt: 'Illustration of a woman in a headscarf marking days on a large wall calendar with a pen',
+    },
+    keyTakeaways: [
+      {
+        q: 'How often should you see a chiropractor?',
+        a: 'It depends on the assessment. Visits are often once or twice a week for the first few weeks of a new problem, then spread out as you improve, and many people stop once they are managing on their own.',
+      },
+      {
+        q: 'Do more chiropractic visits give better results?',
+        a: 'Not by much. In a trial of chronic low back pain, the number of visits had only modest effects, and a review found frequency made no significant difference to outcomes.',
+      },
+      {
+        q: 'Do I need maintenance chiropractic care?',
+        a: 'Not necessarily. A trial found regular maintenance visits gave about 13 fewer days of bothersome back pain a year, but only in people who had already responded well, and at the cost of extra visits.',
+      },
+      {
+        q: 'How do I know when to stop seeing a chiropractor?',
+        a: 'When you have reached your goals and know what to do if it flares. A good plan has review points where spacing out or stopping is discussed openly.',
+      },
+      {
+        q: 'Should I buy a package of visits upfront?',
+        a: 'Start with an assessment instead. A fixed number of visits sold before anyone knows how you respond is hard to justify from the research.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Is it bad to see a chiropractor too often?',
+        a: 'Frequent visits are not usually harmful in themselves, but they may not add much. Research suggests more visits give only modest extra benefit, so a plan that relies on very frequent visits for months without review is worth questioning.',
+      },
+      {
+        q: 'How often should I see a chiropractor for lower back pain?',
+        a: 'Often once or twice a week for the first few weeks, then less often as it settles. Most guidelines put exercise and staying active at the centre of lower back pain care, so the visits should come with a home programme.',
+      },
+      {
+        q: 'How often should I see a chiropractor for neck pain or posture?',
+        a: 'Similar to back pain at the start, then spaced out. Posture work in particular depends on the exercises you do between visits, so expect the visits to taper while the exercise continues.',
+      },
+      {
+        q: 'Can I see a chiropractor only when I have pain?',
+        a: 'Yes. Coming back when symptoms return is a reasonable approach, and in the main maintenance trial it was what the comparison group did. Maintenance visits are an option for some people with recurring pain, not a requirement.',
+      },
+      {
+        q: 'How long is each chiropractic visit?',
+        a: 'At our clinic, a first visit is longer because it includes the full assessment. Most follow up chiropractic visits take around 15 to 30 minutes, and physiotherapy follow ups around 45 to 60 minutes.',
+      },
+    ],
+    citations: [
+      {
+        claim:
+          'In a randomised trial of people with chronic low back pain given 0, 6, 12 or 18 sessions of spinal manipulation, the number of visits had modest effects. Twelve visits gave the most favourable results but was not well distinguished from the other doses.',
+        source: 'Haas, Vavrek, Peterson, Polissar & Neradilek (2014), The Spine Journal',
+        url: 'https://doi.org/10.1016/j.spinee.2013.07.468',
+      },
+      {
+        claim:
+          'A scoping review of spinal manipulation frequency and dosage found that frequency did not significantly affect clinical outcomes during and after a period of care in the studies included.',
+        source: 'Pasquier, Daneau, Marchand, Lardon & Descarreaux (2019), Chiropractic & Manual Therapies',
+        url: 'https://doi.org/10.1186/s12998-019-0244-0',
+      },
+      {
+        claim:
+          'In a pragmatic randomised trial of people with recurrent or persistent low back pain who had responded well to initial chiropractic care, scheduled maintenance visits led to about 12.8 fewer days with bothersome pain over a year compared with symptom guided care, with about 1.7 more visits. The authors concluded maintenance care should be considered an option.',
+        source: 'Eklund et al. (2018), the Nordic Maintenance Care trial, PLoS One',
+        url: 'https://doi.org/10.1371/journal.pone.0203029',
+      },
+    ],
+    draft: false,
+  },
+  {
+    // Schedule pc027, built via the persistence-content-builder skill (2026-11-08). Targets
+    // "sciatica vs piriformis syndrome" (140/mo, SD 7, Ubersuggest MY). Existing coverage was
+    // shallow: one FAQ and one cause bullet on /conditions/sciatica, and an exercise table on
+    // /blog/sciatica-exercises, which this post links to rather than repeats. Competitors present
+    // piriformis syndrome as settled and use keyword stuffing; none rates how much each clue tells
+    // you or explains the debate. This post's table does the first, and Hopayian 2010 and Smoll
+    // 2010 carry the second. Deliberately NOT said: that the nerve running through the muscle
+    // causes the syndrome (Smoll: no more common in patients), or that a nerve "never" pierces it.
+    // "Diagnosis of exclusion" is paraphrased as "spinal causes are usually ruled out first",
+    // since no cited source uses the phrase. The Gregory 2008 citation title contains the banned
+    // word, so it is described instead. Images are AI illustrations (Higgsfield Z Image,
+    // 2026-11-08). No lastReviewed until Valerie reads it.
+    slug: 'sciatica-vs-piriformis-syndrome',
+    title: 'Sciatica vs Piriformis Syndrome: How to Tell Them Apart',
+    description:
+      'Sciatica vs piriformis syndrome: the difference, why the diagnosis is debated, the clues and how much each tells you, how a clinician checks, and red flags.',
+    datePublished: '2026-11-08',
+    author: 'Persistence Chiropractic Care',
+    linksTo: 'sciatica',
+    heroImage: {
+      src: '/img/blog-sciatica-vs-piriformis-hero.webp',
+      alt: 'Illustration of a man sitting on an office chair, leaning forward uncomfortably with his hands on his thighs',
+    },
+    keyTakeaways: [
+      {
+        q: 'What is the difference between sciatica and piriformis syndrome?',
+        a: 'Sciatica is the symptom, nerve pain down the back of the leg. Piriformis syndrome is one possible cause, where the sciatic nerve is irritated by a muscle deep in the buttock rather than in the spine.',
+      },
+      {
+        q: 'Which is more common, sciatica from the spine or piriformis syndrome?',
+        a: 'Sciatica from the spine, usually a disc. Research estimates of piriformis syndrome range from under 1% to around 15% of the number of disc herniations.',
+      },
+      {
+        q: 'Is piriformis syndrome a real diagnosis?',
+        a: 'Probably, but it is debated. There is no agreed test, so spinal causes are usually ruled out first before it is considered.',
+      },
+      {
+        q: 'What is the best clue that it is coming from the spine?',
+        a: 'Numbness, weakness or a reflex change in the leg points towards a nerve root in the spine. Pain past the knee and pain on coughing also lean that way.',
+      },
+      {
+        q: 'Can you have both at once?',
+        a: 'Yes. When a nerve root in the back is irritated, the buttock muscles often tighten too, so a sore piriformis can sit on top of a spinal problem.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Does piriformis syndrome show up on an MRI?',
+        a: 'Usually not in a way that confirms it. An MRI is mainly used to look at the lower spine, and a normal spine scan with a matching buttock pattern is part of what makes piriformis syndrome more likely. Specialised scans of the buttock exist but are not routine.',
+      },
+      {
+        q: 'Can sitting on a wallet cause piriformis syndrome?',
+        a: 'Sitting for long periods on a thick wallet or a hard seat presses on the buttock and is a commonly reported trigger for buttock and leg pain. Moving the wallet to a front pocket and breaking up long drives is an easy change worth trying.',
+      },
+      {
+        q: 'Does stretching the piriformis help sciatica?',
+        a: 'It may ease buttock tightness for some people, but if the nerve is being irritated in the spine, buttock stretches alone are unlikely to settle it. Our sciatica exercises guide matches the exercises to the likely cause.',
+      },
+      {
+        q: 'How long does piriformis syndrome last?',
+        a: 'It varies. Many people improve over a few weeks to a few months as the muscle settles and sitting habits change. Pain that keeps returning, or that comes with numbness or weakness, should be reassessed, because the cause may be in the spine instead.',
+      },
+      {
+        q: 'Should I see a chiropractor or a physiotherapist for piriformis syndrome?',
+        a: 'Either can assess it. What matters most is that the lower back is checked as well as the buttock. At our clinic, chiropractors and physiotherapists work together, so the assessment decides whether care focuses on the spine, the hip and buttock muscles, or both.',
+      },
+    ],
+    citations: [
+      {
+        claim:
+          'A systematic review of the clinical features of piriformis syndrome noted the condition has been described for over 70 years yet remains controversial, cited a survey in which only 21 of 29 rehabilitation specialists in the USA believed it exists, and found the most common features were buttock pain, tenderness over the greater sciatic notch and pain aggravated by sitting.',
+        source: 'Hopayian, Song, Riera & Sambandan (2010), European Spine Journal',
+        url: 'https://doi.org/10.1007/s00586-010-1504-9',
+      },
+      {
+        claim:
+          'Across 6,062 cadavers, the sciatic nerve passed through or around the piriformis in an unusual way in 16.9%, compared with 16.2% in surgical cases of piriformis syndrome, suggesting the variation may not be as important in causing the syndrome as previously thought.',
+        source: 'Smoll (2010), Clinical Anatomy',
+        url: 'https://doi.org/10.1002/ca.20893',
+      },
+      {
+        claim: 'Acute lumbar disc herniations are the most common cause of sciatica.',
+        source: 'Gregory, Seto, Wortley & Shugart (2008), a review of acute lumbar disc pain in American Family Physician',
+        url: 'https://pubmed.ncbi.nlm.nih.gov/18841731/',
+      },
+      {
+        claim:
+          'The diagnosis of piriformis syndrome is not easy and is based on clinical history and presentation, with spinal stenosis and disc problems among the conditions that can mimic it.',
+        source: 'Hicks, Lam & Varacallo, Piriformis Syndrome, StatPearls',
+        url: 'https://www.ncbi.nlm.nih.gov/books/NBK448172/',
+      },
+    ],
+    draft: false,
+  },
+  {
+    // Schedule pc048, built via the persistence-content-builder skill (2026-11-08). Targets
+    // "forward head posture" (320/mo, SD 38, informational, Ubersuggest MY), retargeted from
+    // "how to fix forward head posture" (70). /services/posture-correction already ranks #8 MY
+    // for this phrase, so the post stays informational and passes clinic intent up to it.
+    // Every competitor leads with model based head weight figures; this post explains they come
+    // from a computer model (Hansraj 2014) instead of repeating them. Angles nobody else has: a
+    // phone side photo self-check (not the wall check, which neck-hump owns), the honest
+    // "linked in adults, snapshot data, absent in teens" reading of Mahmoud 2019 (NOT "weakly
+    // linked": r is about -0.55), and the realistic size of change (Xing 2026: about 3.4 degrees
+    // CVA, low to moderate certainty). The five exercises repeat nothing from tech-neck,
+    // neck-hump or the posture-correction FAQ. Sleep is left to pc066. Images are AI
+    // illustrations (Higgsfield Z Image, 2026-11-08). No lastReviewed until Valerie reads it.
+    slug: 'forward-head-posture',
+    title: 'Forward Head Posture: Causes, a Self-Check and Exercises',
+    description:
+      'What forward head posture is, a quick side photo check, what causes it, what the research says about neck pain, five exercises, and how long change takes.',
+    datePublished: '2026-11-08',
+    author: 'Persistence Chiropractic Care',
+    linksTo: 'posture-correction',
+    heroImage: {
+      src: '/img/blog-forward-head-posture-hero.webp',
+      alt: 'Illustration of a man standing in side profile with his head carried forward and looking down, with a golden glow at the back of his neck',
+    },
+    keyTakeaways: [
+      {
+        q: 'What is forward head posture?',
+        a: 'When the head sits in front of the shoulders instead of balanced on top. From the side, the ear lines up ahead of the middle of the shoulder.',
+      },
+      {
+        q: 'How can I check for forward head posture at home?',
+        a: 'Ask someone to take a side photo of you standing relaxed, with the phone at shoulder height. If your ear sits clearly in front of the middle of your shoulder, your head is carried forward.',
+      },
+      {
+        q: 'Does forward head posture cause neck pain?',
+        a: 'It is linked with neck pain in adults, but the studies are snapshots that cannot show cause, and there is no link in teenagers. Many people with a forward head have no pain.',
+      },
+      {
+        q: 'Can exercise fix forward head posture?',
+        a: 'Exercise can improve it, modestly. Trials in people with neck pain found about 3 degrees of change in the head and neck angle, with programmes of eight weeks or more doing better.',
+      },
+      {
+        q: 'Do posture correctors help forward head posture?',
+        a: 'They hold the shoulders back while worn but do not build the muscles that hold posture afterwards. Use one only as a short reminder, alongside exercise.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'How long does it take to improve forward head posture?',
+        a: 'Most trials ran for six to twelve weeks, and longer programmes tended to show more change. Expect to notice your neck tiring less within a few weeks, and a measurable change in posture over two to three months of regular exercise.',
+      },
+      {
+        q: 'Is forward head posture permanent?',
+        a: 'Usually not. For most people it is a position they settle into rather than a fixed shape, which is why it often looks worse at the end of the day. A long standing rounded upper back with stiff joints changes more slowly, and an assessment can tell you how much of yours is habit.',
+      },
+      {
+        q: 'Can forward head posture cause headaches?',
+        a: 'It may contribute in some people, because the muscles at the base of the skull work harder when the head juts forward. The research link is not strong, though, and headaches have many causes. Headaches that are new, severe or changing should be checked by a doctor.',
+      },
+      {
+        q: 'What is the best sleeping position for forward head posture?',
+        a: 'Sleep has less effect on forward head posture than how you spend your waking hours. A pillow that keeps your head roughly level with your spine is sensible, but daytime habits and exercise matter more.',
+      },
+      {
+        q: 'Can a chiropractor help with forward head posture?',
+        a: 'A chiropractor can assess your posture, help free stiff joints in the neck and upper back that make it harder to sit tall, and give you an exercise plan. Changing posture still depends on the exercises and habits you keep up between visits, so we will not promise a corrected posture from adjustments alone.',
+      },
+    ],
+    citations: [
+      {
+        claim:
+          'A systematic review and meta-analysis of 15 cross sectional studies found adults with neck pain show more forward head posture than adults without, and forward head posture correlated with neck pain measures in adults and older adults. No association was found in adolescents.',
+        source: 'Mahmoud, Hassan, Abdelmajeed, Moustafa & Silva (2019), Current Reviews in Musculoskeletal Medicine',
+        url: 'https://doi.org/10.1007/s12178-019-09594-y',
+      },
+      {
+        claim:
+          'In 1,108 adolescents aged 17 grouped by neck posture, there was no significant difference in the odds of neck pain or headache between the posture groups.',
+        source: 'Richards, Beales, Smith, O’Sullivan & Straker (2016), Physical Therapy',
+        url: 'https://doi.org/10.2522/ptj.20150660',
+      },
+      {
+        claim:
+          'A meta-analysis of 10 randomised trials in people with neck pain found exercise improved the craniovertebral angle by a mean of about 3.4 degrees, with low to moderate certainty of evidence, and programmes of eight weeks or longer appeared more effective.',
+        source: 'Xing, Wang, Zhao & Xu (2026), Journal of Pain Research',
+        url: 'https://doi.org/10.2147/jpr.s614524',
+      },
+      {
+        claim:
+          'A systematic review of seven trials of exercise for forward head posture concluded that the precise relationship between forward head posture, musculoskeletal pain and improvements in both after exercise remains to be established.',
+        source: 'Sheikhhoseini, Shahrbanian, Sayyadi & O’Sullivan (2018), Journal of Manipulative and Physiological Therapeutics',
+        url: 'https://doi.org/10.1016/j.jmpt.2018.02.002',
+      },
+    ],
+    draft: false,
+  },
+  {
+    // Schedule pc045, built via the persistence-content-builder skill (2026-11-08). Targets
+    // "stiff neck" (880/mo, SD 52, informational, Ubersuggest MY), retargeted from "stiff neck
+    // relief" (110). Global page one is US hospital and health publisher pages; the Malaysian
+    // results are all clinic money pages, and none is a self-help guide or uses the local
+    // "salah bantal" framing. This post's angle is the first 48 hours as a table, a sourced
+    // recovery course (HUNT 2013) and a sourced heat vs cold answer (Garra 2010: similar, pick
+    // either). The movements are range of motion only, so nothing repeats the strength
+    // exercises in tech-neck or neck-hump; screen setup stays with tech-neck, arm symptoms with
+    // /conditions/pinched-nerve, trauma with /conditions/whiplash. /conditions/neck-pain keeps
+    // the clinic searches. The cracking line says "do not force it yourself or let someone
+    // untrained do it" and deliberately does NOT claim neck manipulation causes stroke.
+    // Images are AI illustrations (Higgsfield Z Image, 2026-11-08), not clinic photos, so no
+    // Cheras modifier in the alt text. No lastReviewed until Valerie reads it.
+    slug: 'stiff-neck',
+    title: 'Stiff Neck: Causes and How to Ease It at Home',
+    description:
+      'Woke up with a stiff neck? Common causes, a plan for the first 48 hours, heat or cold, gentle movements, how long it lasts and when to get it checked.',
+    datePublished: '2026-11-08',
+    author: 'Persistence Chiropractic Care',
+    linksTo: 'neck-pain',
+    heroImage: {
+      src: '/img/blog-stiff-neck-hero.webp',
+      alt: 'Illustration of a woman sitting on the edge of her bed in the morning, holding the side of her stiff neck, with a soft golden glow where it hurts',
+    },
+    keyTakeaways: [
+      {
+        q: 'What causes a stiff neck?',
+        a: 'Usually the neck muscles and small joints tightening after an awkward sleep, long hours in one position, stress or an unusual effort. It is rarely a sign of anything serious on its own.',
+      },
+      {
+        q: 'How long does a stiff neck last?',
+        a: 'Many ease within two or three days, and most settle within a few weeks. A large population study found neck pain dropped sharply within the first month after it started.',
+      },
+      {
+        q: 'Is heat or cold better for a stiff neck?',
+        a: 'Either can ease pain for a while. A trial found heat and cold packs gave a similar mild benefit, so use whichever you prefer for 15 to 20 minutes, wrapped in a towel.',
+      },
+      {
+        q: 'Should I rest a stiff neck?',
+        a: 'Keep it moving gently instead. Slow turns and tilts within comfort, done every hour or two, usually help more than holding the neck still.',
+      },
+      {
+        q: 'When is a stiff neck serious?',
+        a: 'Go to an emergency department for a stiff neck with fever, a bad headache, light sensitivity, vomiting or a rash, or after an injury. Get it assessed if it has not eased after a week or spreads into your arm.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Why do I keep waking up with a stiff neck?',
+        a: 'Most often it is the way you sleep. Sleeping on your front with your head turned, a pillow that is too high or too flat for your position, or falling asleep on the sofa can all leave the neck twisted for hours. Changing sleep position and pillow height is usually the first thing to try.',
+      },
+      {
+        q: 'Can I crack my own neck to loosen it?',
+        a: 'It is better not to while it is sore. Forcing a stiff neck, or letting someone untrained pull or twist it, can make the guarding worse. Gentle movement within comfort does the same job more safely. If you want hands on help, see someone trained who will assess the neck first.',
+      },
+      {
+        q: 'Can stress cause a stiff neck?',
+        a: 'Yes. When you are stressed, the muscles across the shoulders and neck tend to stay tense for long periods, which can leave the neck stiff and sore by evening. Movement breaks, sleep and anything that helps you unwind tend to ease it.',
+      },
+      {
+        q: 'Is a stiff neck a sign of meningitis?',
+        a: 'Rarely. Meningitis causes a stiff neck together with fever, a severe headache, sensitivity to light, vomiting or confusion, and the person usually feels very unwell. A stiff neck after a bad night, with no fever, is almost always muscular. If those other signs are present, go to an emergency department straight away.',
+      },
+      {
+        q: 'Should I see a chiropractor or a physiotherapist for a stiff neck?',
+        a: 'Most stiff necks do not need either and settle on their own within days. If yours has not eased after about a week or keeps coming back, both can assess it. At our clinic, chiropractors and physiotherapists work together, so the assessment decides which approach suits you.',
+      },
+    ],
+    citations: [
+      {
+        claim:
+          'In a large Norwegian population study of people with a new episode of neck or low back pain, pain declined rapidly within one month, with little change thereafter. Pain was more likely to persist in people reporting four or more pain sites.',
+        source: 'Vasseljen, Woodhouse, Bjørngaard & Leivseth (2013), Pain (HUNT study)',
+        url: 'https://doi.org/10.1016/j.pain.2013.03.032',
+      },
+      {
+        claim:
+          'In a randomised trial in people with acute neck or back strain, heat packs and cold packs added to ibuprofen gave a mild and similar improvement in pain. The authors suggested the choice between them be based on preference.',
+        source: 'Garra et al. (2010), Academic Emergency Medicine',
+        url: 'https://doi.org/10.1111/j.1553-2712.2010.00735.x',
+      },
+      {
+        claim:
+          'In a cross sectional study, adults who woke with spinal symptoms spent more time in provocative sleep postures and reported poorer sleep quality than those without waking symptoms.',
+        source: 'Cary, Jacques & Briffa (2021), PLoS One',
+        url: 'https://doi.org/10.1371/journal.pone.0260582',
+      },
+      {
+        claim:
+          'Common symptoms of meningitis are fever, neck stiffness, confusion or altered mental status, headache, sensitivity to light, nausea and vomiting.',
+        source: 'World Health Organization, Meningitis fact sheet',
+        url: 'https://www.who.int/news-room/fact-sheets/detail/meningitis',
+      },
+    ],
+    draft: false,
+  },
+  {
     // Schedule pc042, built via the persistence-content-builder skill (2026-11-03). Targets
     // "slipped disc remedy" (1,000/mo, SD 50, Ubersuggest MY), the phrase the pc016 refresh left
     // for a blog post because a home-remedy searcher is not looking for a clinic page;

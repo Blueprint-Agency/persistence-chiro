@@ -141,21 +141,24 @@ export type Condition = {
 export const conditions: Condition[] = [
   {
     slug: 'back-pain',
-    title: 'Lower and Upper Back Pain Care in Cheras, Kuala Lumpur',
-    metaTitle: 'Lower & Upper Back Pain Care in Cheras, KL',
+    title: 'Back Pain Care in Cheras, Kuala Lumpur',
+    metaTitle: 'Back & Lower Back Pain Care in Cheras, KL',
     metaDescription:
-      'Lower back ache after sitting, or stiffness between the shoulder blades? Back pain assessment and care in Cheras, Maluri, with Gonstead chiropractic and rehab.',
+      'Lower back ache after sitting, or back pain that keeps coming back? Back pain assessment and care in Cheras, Maluri, with Gonstead chiropractic and rehab.',
     // Refreshed 2026-10-03 (schedule pc033). GSC: this page earned no impressions in 90 days
     // while the homepage ranked 3 to 6 for "back pain", "back pain treatment near me" and
     // "back treatment". The homepage is left to keep those; this page is the in-depth one.
-    // Upper back folded in rather than split out (pc021 dropped): no measured demand for
-    // "upper back pain" in Malaysia and no GSC queries for it.
+    // Upper back was folded in here on 2026-10-03, then split back out on 2026-11-08 when pc021
+    // was revived ("upper back pain" re-measured at 590/mo). The upper back cause, symptom and
+    // laptop FAQ moved to /conditions/upper-back-pain; this page keeps a linked comparison column
+    // and a short FAQ. lastReviewed left at 2026-10-03: the changes are removals plus the title,
+    // listed for Valerie to confirm.
     targetKeyword: 'back pain treatment kl',
-    related: ['slipped-disc', 'sciatica', 'hip-pain', 'shoulder-imbalance', 'spinal-stenosis', 'spondylolisthesis'],
+    related: ['slipped-disc', 'sciatica', 'upper-back-pain', 'hip-pain', 'shoulder-imbalance', 'spinal-stenosis', 'spondylolisthesis'],
     helpedBy: ['physiotherapy', 'chiropractic-care'],
 
     intro:
-      'Most back pain is mechanical. The joints, discs and muscles of the spine stop moving the way they should, and the tissue around them gets irritated. That is as true of a lower back that aches after a day in the chair as of an upper back that stiffens between the shoulder blades after hours on a laptop. It is very common, and it rarely means something is seriously wrong. Most of it settles without surgery. It is still worth finding out precisely what is going on rather than guessing at it.',
+      'Most back pain is mechanical. The joints, discs and muscles of the spine stop moving the way they should, and the tissue around them gets irritated. That is as true of a lower back that aches after a day in the chair as of one that locks up after a lift. It is very common, and it rarely means something is seriously wrong. Most of it settles without surgery. It is still worth finding out precisely what is going on rather than guessing at it.',
     symptoms: [
       'A dull ache low in the back that worsens through the day or after sitting',
       'Sharp pain on one particular movement, such as bending, twisting or standing up from a chair',
@@ -163,7 +166,6 @@ export const conditions: Condition[] = [
       'Pain that spreads into the buttock or thigh',
       'Difficulty standing straight, or a sense that your back is "locked"',
       'Muscle spasm on one side of the spine',
-      'Stiffness or a burning ache between the shoulder blades after long hours at a screen',
     ],
     causes: [
       {
@@ -177,10 +179,6 @@ export const conditions: Condition[] = [
       {
         heading: 'Joint restriction',
         body: 'When one spinal segment stops moving properly, the segments above and below compensate by moving more. Over time those neighbouring joints become irritated. Finding the restricted segment is what the Gonstead assessment is for.',
-      },
-      {
-        heading: 'Upper back stiffness from screen work',
-        body: 'The middle of the spine, between the shoulder blades, is built to rotate and extend, and long hours hunched over a laptop or phone ask it to do neither. The joints there stiffen, the muscles between the shoulder blades tire, and the ache often travels up into the neck. It is assessed segment by segment in the same way as the lower back.',
       },
       {
         heading: 'Deconditioning',
@@ -224,12 +222,8 @@ export const conditions: Condition[] = [
       },
       {
         q: 'Is upper back pain different from lower back pain?',
-        a: 'Often, yes. Lower back pain tends to come from long sitting, bending and lifting, and can spread into the buttock or leg. Upper back pain, between the shoulder blades, is more often tied to hours at a screen and usually travels up into the neck and shoulders instead. Upper back pain that comes with chest pain or shortness of breath is a different matter and needs a doctor first.',
-      },
-      {
-        q: 'Why does my upper back ache after a day on my laptop or phone?',
-        a: 'Hours of looking down keep the joints between the shoulder blades still and the muscles around them working without a break. Raising the screen and moving every half hour usually helps. Our post on tech neck covers the setup and four simple exercises.',
-        links: [{ phrase: 'tech neck', href: '/blog/tech-neck' }],
+        a: 'Often, yes. Lower back pain tends to come from long sitting, bending and lifting, and can spread into the buttock or leg. Upper back pain, between the shoulder blades, is more often tied to hours at a screen and usually travels up into the neck and shoulders instead. Our upper back pain page covers it in full, including the chest pain and breathlessness that mean a doctor comes first.',
+        links: [{ phrase: 'upper back pain page', href: '/conditions/upper-back-pain' }],
       },
       {
         q: 'Is it just back pain, or could it be a slipped disc?',
@@ -290,7 +284,7 @@ export const conditions: Condition[] = [
         'Back pain falls into a few common patterns, and each is looked after a little differently. This is a rough guide to which one you might be dealing with, and the linked columns go to the page that covers it in full.',
       columns: [
         'Lower back pain',
-        'Upper back pain',
+        { label: 'Upper back pain', href: '/conditions/upper-back-pain' },
         { label: 'Sciatica', href: '/conditions/sciatica' },
         { label: 'Slipped disc', href: '/conditions/slipped-disc' },
       ],
@@ -618,7 +612,8 @@ export const conditions: Condition[] = [
       },
       {
         q: 'Can a tight piriformis muscle cause sciatica?',
-        a: 'It can contribute. The piriformis is a deep buttock muscle the sciatic nerve runs close to, and when it is tight or overloaded it can produce a deep buttock ache with pain down the leg that looks a lot like sciatica from the spine. Telling the two apart matters because they are looked after differently, which is why the hip and pelvis are examined alongside the lower back.',
+        a: 'It can contribute. The piriformis is a deep buttock muscle the sciatic nerve runs close to, and when it is tight or overloaded it can produce a deep buttock ache with pain down the leg that looks a lot like sciatica from the spine. Telling the two apart matters because they are looked after differently, which is why the hip and pelvis are examined alongside the lower back. Our guide to sciatica vs piriformis syndrome goes through the clues and how much each one tells you.',
+        links: [{ phrase: 'sciatica vs piriformis syndrome', href: '/blog/sciatica-vs-piriformis-syndrome' }],
       },
       {
         q: 'Do I need an injection or surgery for sciatica?',
@@ -935,7 +930,7 @@ export const conditions: Condition[] = [
       'Stiff neck after a desk day, or woke up unable to turn your head? Neck pain assessment and care in Cheras, Maluri, with Gonstead chiropractic and dry needling.',
     targetKeyword: 'stiffness neck pain',
     // The hub of the neck cluster: every sibling a neck pain reader might actually have.
-    related: ['pinched-nerve', 'whiplash', 'tension-headache', 'migraine'],
+    related: ['pinched-nerve', 'whiplash', 'tension-headache', 'migraine', 'upper-back-pain'],
     helpedBy: ['dry-needling', 'physiotherapy'],
 
     intro:
@@ -1009,7 +1004,8 @@ export const conditions: Condition[] = [
       },
       {
         q: 'I woke up with a stiff neck. What should I do?',
-        a: 'Keep it moving gently within what is comfortable rather than holding it still, and a warm or cold pack for short spells may help. Most of these settle within days to a few weeks. Avoid driving until you can turn your head far enough to check your blind spot. If it has not started easing within a week or two, keeps coming back, or arrives with arm symptoms, a fever or a severe headache, it is worth having it looked at.',
+        a: 'Keep it moving gently within what is comfortable rather than holding it still, and a warm or cold pack for short spells may help. Most of these settle within days to a few weeks. Avoid driving until you can turn your head far enough to check your blind spot. If it has not started easing within a week or two, keeps coming back, or arrives with arm symptoms, a fever or a severe headache, it is worth having it looked at. Our stiff neck guide has a simple plan for the first 48 hours.',
+        links: [{ phrase: 'stiff neck guide', href: '/blog/stiff-neck' }],
       },
     ],
     /**
@@ -2960,6 +2956,226 @@ export const conditions: Condition[] = [
         },
       ],
       note: 'These overlap, and more than one can be present at once. The examination, especially how the arm moves when someone else moves it, is what tells them apart.',
+    },
+    draft: false,
+  },
+  {
+    // Schedule pc021, built via the persistence-content-builder skill (2026-11-08). "upper back
+    // pain" measures 590/mo, SD 24 (Ubersuggest MY, 2026-11-02). Global page one is hospital and
+    // health library pages; in Malaysia one chiropractic chain holds three spots and has no red
+    // flag section at all. This page's angle is the comparison table (back joints vs neck vs desk
+    // shoulder ache vs pain from the heart, lungs or gallbladder, told apart by what changes the
+    // pain) and a full organ red flag list. /conditions/back-pain ranked #3 MY for this query as
+    // "Lower and Upper Back Pain Care"; in the same commit its upper back cause, symptom and
+    // laptop FAQ moved here and its title dropped "upper", so the two stop competing. Expect a
+    // short dip on the query until this page is indexed. Cause images are AI illustrations
+    // (Higgsfield Z Image, 2026-11-08), not clinic photos. No lastReviewed until Valerie reads it.
+    slug: 'upper-back-pain',
+    title: 'Upper Back Pain Care in Cheras, Kuala Lumpur',
+    metaTitle: 'Upper Back Pain Care in Cheras, KL',
+    metaDescription:
+      'Pain between the shoulder blades after a day at a screen? Upper back pain assessed in Cheras, Maluri, with the neck and ribs checked and red flags explained.',
+    targetKeyword: 'upper back pain',
+    related: ['back-pain', 'neck-pain', 'pinched-nerve', 'shoulder-imbalance'],
+    helpedBy: ['chiropractic-care', 'physiotherapy', 'dry-needling'],
+
+    intro:
+      'Upper back pain is pain anywhere from the base of the neck to the bottom of the ribs, most often a stiff ache or burning between the shoulder blades. It is less common than lower back pain, but it is very familiar to anyone who spends long days at a laptop, behind the wheel or carrying children. Most of it is mechanical, coming from stiff joints in the middle of the spine, the rib joints beside them, the muscles around the shoulder blades, or the lower neck referring pain downwards. A small share comes from organs such as the heart, lungs or gallbladder, which is why this page spends time on telling them apart. Most mechanical upper back pain settles, and it is worth finding out what is driving yours.',
+    symptoms: [
+      'A dull ache or burning between the shoulder blades that builds through the working day',
+      'Stiffness in the middle of the back when you twist, turn or reach',
+      'A sharp catch beside the spine when you take a deep breath, cough or turn in bed',
+      'A tight, knotted spot along the inside edge of one shoulder blade',
+      'Upper back ache that travels up into the neck or across the top of the shoulders',
+      'Pain that eases when you move around and returns after long sitting or driving',
+      'A rounded upper back or neck hump that you have noticed getting more obvious',
+    ],
+    causes: [
+      {
+        heading: 'A stiff middle back from screens and long sitting',
+        image: { src: '/img/ubp-cause-screen.webp', alt: 'Illustration of a man seen from behind hunched over a laptop at a desk, with a golden glow between his shoulder blades' },
+        body: 'The middle of the spine, between the shoulder blades, is built to rotate and extend. Long hours hunched over a laptop or phone ask it to do neither, so the joints there stiffen and the muscles between the shoulder blades tire from holding you up. A large review linked upper back pain with posture at work and with long spells in one position.',
+      },
+      {
+        heading: 'Pain referred from the lower neck',
+        image: { src: '/img/ubp-cause-neck.webp', alt: 'Illustration of a woman seen from behind rubbing the back of her neck, with a golden glow at the base of the neck' },
+        body: 'The joints and discs of the lower neck can send pain down to the inside edge of the shoulder blade, even when the neck itself feels fine. This is why an assessment of upper back pain always checks the neck. If there is also tingling into the arm, a pinched nerve in the neck becomes more likely.',
+      },
+      {
+        heading: 'Irritated rib joints',
+        image: { src: '/img/ubp-cause-rib.webp', alt: 'Illustration of a man seen from behind twisting to look over his shoulder with his hands on his back, and a golden glow on one side of his upper back' },
+        body: 'Each rib joins the spine at two small joints. When one of these gets irritated, often after an awkward twist, a cough or a night on a soft sofa, it gives a sharp, very local pain beside the spine that catches on a deep breath or when turning. It is uncomfortable but usually mechanical, as long as there is no fever, cough or breathlessness with it.',
+      },
+      {
+        heading: 'Carrying, driving and lifting',
+        image: { src: '/img/ubp-cause-carry.webp', alt: 'Illustration of a mother carrying a toddler on one hip and a shopping bag in each hand, with a golden glow at the top of her back' },
+        body: 'Carrying a child on one hip, a heavy bag on one shoulder, or long hours of driving all load the upper back unevenly. A study of working adults found long drives, sustained bending of the trunk and a lack of breaks were all linked with new upper back pain.',
+      },
+    ],
+    approach: [
+      {
+        heading: 'We check the neck and ribs, not only the sore spot',
+        body: 'Your first visit starts with a history and the Gonstead assessment of how each level of the neck and upper back moves, including the rib joints. We also ask the questions that screen for pain coming from somewhere other than the spine, and we will tell you plainly if anything points to a doctor first.',
+      },
+      {
+        heading: 'Adjustment by hand, specific to the stiff level',
+        body: 'Once the stiff segments are found, adjustments are delivered by hand to those levels. Your chiropractor explains what they found and what they intend to do before anything happens, and you can ask for a gentler approach at any point.',
+      },
+      {
+        heading: 'Rehab and dry needling for the muscles around the shoulder blades',
+        body: 'Where the muscles between and around the shoulder blades stay tight or tire quickly, our physiotherapy side adds strengthening for the upper back, dry needling for stubborn knots where suitable, and practical changes to your screen setup, driving position and how you carry things.',
+      },
+      {
+        heading: 'When we send you to a doctor first',
+        body: 'Upper back pain with chest pain, breathlessness, fever, pain linked to meals or a recent injury is not ours to manage first. In those cases we will refer you to a doctor or the emergency department before any chiropractic care, and pick things up afterwards if it turns out to be mechanical.',
+      },
+    ],
+    redFlags: [
+      'Upper back pain with chest pain or pressure, breathlessness, sweating, nausea, or pain into the jaw or arm. Call 999',
+      'Sudden, severe tearing pain between the shoulder blades. Call 999',
+      'Pain that is worse on a deep breath and comes with fever, cough or breathlessness',
+      'Pain under the right shoulder blade that comes in waves after meals, with pain under the right ribs, nausea, or yellowing of the skin or eyes',
+      'Upper back pain after a fall, or new pain with osteoporosis, long term steroid use or loss of height',
+      'Unexplained weight loss, a history of cancer, fever, or constant night pain that nothing eases',
+      'Weakness or numbness in the legs, unsteady walking, or a change in bladder or bowel control',
+      'A band of burning pain or a rash around one side of the chest',
+    ],
+    faqs: [
+      {
+        q: 'Why do I get pain between my shoulder blades?',
+        a: 'Most often it is the middle back joints stiffening and the muscles between the shoulder blades tiring after long hours at a laptop or phone. Raising the screen and moving every half hour usually helps, and our guide to tech neck covers the setup and four simple exercises. Pain from the lower neck or a rib joint can feel similar, which the assessment sorts out.',
+        links: [{ phrase: 'guide to tech neck', href: '/blog/tech-neck' }],
+      },
+      {
+        q: 'Can a problem in my neck cause upper back pain?',
+        a: 'Yes, and it is common. The lower neck can refer pain to the inside edge of the shoulder blade without the neck feeling sore. If you also have tingling, numbness or weakness in an arm, read our page on a pinched nerve in the neck, because that changes what we look at first.',
+        links: [{ phrase: 'pinched nerve in the neck', href: '/conditions/pinched-nerve' }],
+      },
+      {
+        q: 'Could upper back pain be my heart or gallbladder?',
+        a: 'Occasionally. Heart pain can be felt in the back, especially with chest pressure, breathlessness or sweating, and gallbladder pain often sits under the right shoulder blade and comes on after meals. Mechanical back pain usually changes with movement and position, while organ pain tends to follow exertion, breathing or eating. If you are unsure, see a doctor first. For chest pain, call 999.',
+      },
+      {
+        q: 'Is my rounded upper back or neck hump causing my pain?',
+        a: 'It can add to it, though plenty of people with a rounded upper back have no pain at all. Our neck hump guide explains the posture, bone and fat types and the exercises that tend to help. A curve that is changing, or one that runs sideways, is worth checking against our scoliosis page.',
+        links: [
+          { phrase: 'neck hump guide', href: '/blog/neck-hump' },
+          { phrase: 'scoliosis page', href: '/conditions/scoliosis' },
+        ],
+      },
+      {
+        q: 'Should I rest, use heat, or keep moving with upper back pain?',
+        a: 'For most mechanical upper back pain, keep moving gently. Short walks, shoulder rolls and breaks from sitting tend to help more than lying still. Heat is fine for comfort. Avoid heavy lifting and long spells in one position for a few days, and get it checked if it is not easing after a week or two.',
+      },
+    ],
+    keyTakeaways: [
+      {
+        q: 'What counts as upper back pain?',
+        a: 'Pain anywhere from the base of the neck to the bottom of the ribs, the part of the spine called the thoracic spine. It is most often felt between the shoulder blades.',
+      },
+      {
+        q: 'What usually causes upper back pain?',
+        a: 'Stiff middle back joints and tired muscles from screens, driving and carrying, pain referred from the lower neck, or an irritated rib joint. Most of it is mechanical.',
+      },
+      {
+        q: 'How can I tell muscle or joint pain from something more serious?',
+        a: 'Mechanical pain changes with movement and position. Pain that comes with chest pressure, breathlessness, fever, or after meals, or that does not change at all when you move, should be checked by a doctor first.',
+      },
+      {
+        q: 'Do I need a referral, and what happens on a first visit?',
+        a: 'No referral is needed. The first visit is mostly assessment of the neck, upper back and ribs, with screening questions for non spinal causes, before anything is adjusted.',
+      },
+      {
+        q: 'When are you open?',
+        a: 'Seven days a week, at Sunway Velocity in Maluri. Monday to Thursday and Saturday until 8pm, Friday until 5pm, Sunday until 3pm.',
+      },
+    ],
+    qualifierConcerns: [
+      'An ache between my shoulder blades after desk work',
+      'My upper back and neck ache together',
+      'It hurts when I twist or take a deep breath',
+      'It keeps coming back',
+      'I am not sure if I need a chiropractor or a physiotherapist',
+    ],
+    citations: [
+      {
+        claim:
+          'A systematic review of thoracic spine pain in the general population reported a one year prevalence of roughly 15% to 28%, and found it was associated with postural, psychological and environmental factors.',
+        source: 'Briggs, Smith, Straker & Bragge (2009), BMC Musculoskeletal Disorders',
+        url: 'https://doi.org/10.1186/1471-2474-10-77',
+      },
+      {
+        claim:
+          'In a cohort of French workers, new thoracic spine pain was more common in women than men, and in men was associated with frequent or sustained trunk bending, a lack of recovery periods and driving vehicles.',
+        source: 'Roquelaure et al. (2014), Arthritis Care & Research',
+        url: 'https://doi.org/10.1002/acr.22323',
+      },
+      {
+        claim:
+          'Warning signs of a heart attack include chest discomfort and discomfort in other areas of the upper body, such as pain in the shoulder, back or arm.',
+        source: 'American Heart Association, Warning Signs of a Heart Attack',
+        url: 'https://www.heart.org/en/health-topics/heart-attack/warning-signs-of-a-heart-attack',
+      },
+      {
+        claim:
+          'Gallstones need urgent medical advice when pain spreads from the tummy to the back with vomiting.',
+        source: 'NHS, Gallstones',
+        url: 'https://www.nhs.uk/conditions/gallstones/',
+      },
+    ],
+    comparison: {
+      heading: 'Upper back pain, your neck, desk shoulder ache, or something else?',
+      intro:
+        'Pain between the shoulder blades can come from the middle back, the lower neck, the muscles across the shoulders, or occasionally an organ. What changes the pain is the most useful clue. This is a rough guide, and the linked columns go to the page that covers that pattern in full.',
+      columns: [
+        { label: 'Upper back joints and muscles' },
+        { label: 'Pain from the neck', href: '/conditions/pinched-nerve' },
+        { label: 'Desk shoulder ache', href: '/conditions/shoulder-imbalance' },
+        { label: 'Heart, lungs or gallbladder' },
+      ],
+      rows: [
+        {
+          label: 'Where you feel it',
+          cells: [
+            'Between the shoulder blades, beside the spine',
+            'Inside edge of one shoulder blade, sometimes with neck stiffness',
+            'Across the top of the shoulders and into the neck',
+            'Chest and back together, or under the right shoulder blade',
+          ],
+        },
+        {
+          label: 'What changes it',
+          cells: [
+            'Twisting, sitting, a deep breath on a stiff rib',
+            'Turning or tilting the head, looking down',
+            'Long hours at a desk, eases at weekends',
+            'Exertion, breathing or meals, not how you move',
+          ],
+        },
+        {
+          label: 'Tingling into the arm',
+          cells: ['Usually none', 'Common', 'Sometimes', 'Arm or jaw pain with heart problems'],
+        },
+        {
+          label: 'Comes with',
+          cells: [
+            'Stiffness, a tight knot by the shoulder blade',
+            'Neck ache or headaches',
+            'Tight upper shoulders, uneven shoulders',
+            'Breathlessness, sweating, fever, nausea or yellow skin',
+          ],
+        },
+        {
+          label: 'What to do first',
+          cells: [
+            'Keep moving, change your setup, book in if it keeps returning',
+            'Book an assessment, sooner if an arm is weak or numb',
+            'Screen breaks and upper back strength, book in if it lingers',
+            'See a doctor first. For chest pain, call 999',
+          ],
+        },
+      ],
+      note: 'These can overlap, and a stiff upper back and a stiff neck often arrive together. The table tells you where to start reading. The assessment, and a doctor where the last column fits, is what tells them apart.',
     },
     draft: false,
   },

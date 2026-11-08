@@ -571,8 +571,11 @@ export const services: Service[] = [
       },
       {
         q: 'Will I be asked to buy a package or commit to a plan?',
-        a: 'No. There is no honest way to say how a case will progress before we have assessed you, so we will not quote a number of visits at the first visit or sell a course up front. Some people come for a defined stretch and stop, others choose to come occasionally once the original problem has settled, and we would rather review as we go and tell you when we think you no longer need us.',
-        links: [{ phrase: 'the first visit', href: '/what-to-expect' }],
+        a: 'No. There is no honest way to say how a case will progress before we have assessed you, so we will not quote a number of visits at the first visit or sell a course up front. Some people come for a defined stretch and stop, others choose to come occasionally once the original problem has settled, and we would rather review as we go and tell you when we think you no longer need us. Our guide to how often to see a chiropractor explains what the research says.',
+        links: [
+          { phrase: 'the first visit', href: '/what-to-expect' },
+          { phrase: 'how often to see a chiropractor', href: '/blog/how-often-to-see-a-chiropractor' },
+        ],
       },
       {
         q: 'Where exactly are you, and how do I get there?',
@@ -1763,8 +1766,11 @@ export const services: Service[] = [
       },
       {
         q: 'Which exercises help with forward head posture and rounded shoulders?',
-        a: 'Four come up most often. A chin tuck, drawing the chin straight back rather than tipping it down, works the deep neck flexors that hold the head over the shoulders. A doorway chest stretch opens the pectoral muscles that pull the shoulders forward. Wall angels, sliding the arms up a wall with the back flat against it, ask the upper back to extend and the shoulder blades to move. An upper trapezius stretch eases the neck to shoulder tension that builds through a day at a screen. These are common starting points rather than a prescription, and which of them apply to you, in what order and how often, is exactly what the assessment is for.',
-        links: [{ phrase: 'what the assessment is for', href: '/what-to-expect' }],
+        a: 'Four come up most often. A chin tuck, drawing the chin straight back rather than tipping it down, works the deep neck flexors that hold the head over the shoulders. A doorway chest stretch opens the pectoral muscles that pull the shoulders forward. Wall angels, sliding the arms up a wall with the back flat against it, ask the upper back to extend and the shoulder blades to move. An upper trapezius stretch eases the neck to shoulder tension that builds through a day at a screen. These are common starting points rather than a prescription, and which of them apply to you, in what order and how often, is exactly what the assessment is for. Our forward head posture guide adds five more exercises and a quick side photo check.',
+        links: [
+          { phrase: 'what the assessment is for', href: '/what-to-expect' },
+          { phrase: 'forward head posture guide', href: '/blog/forward-head-posture' },
+        ],
       },
       {
         q: 'Is my chair to blame?',

@@ -498,6 +498,15 @@ stronger and safer source. Prefer it, and say the small number out loud.
 service FAQs. To point an older post's FAQ at a new post, add a sentence with a link to the older
 post's body near the related section instead.
 
+**Cheapest image model: Higgsfield Z Image, good for scenes, poor for exercise poses (learned 2026-11-08, pc045/pc021/pc048/pc027/pc057).**
+At 0.15 credits an image, Z Image matches the flat house style well enough for heroes, cause
+illustrations and back-view body maps with a golden glow. It repeatedly failed specific exercise
+positions: a sideways neck tilt (four tries), a prone Y raise (three) and a figure-4 stretch (two,
+one with two heads). When a pose fails twice, ship that step as text only rather than publish a
+picture that shows the wrong movement. Generate two variants per subject in one batch and pick;
+the batch rate limits at about ten jobs, so a 12-job batch loses a couple. Check every image before
+using it and write the alt text to what is actually drawn, not to the prompt.
+
 ## Quick reference
 - Client: **Persistence Chiropractic** (single clinic, Cheras/Maluri, KL). NAP + CTAs: `lib/clinic.ts`.
 - Booking: SweetPew (`clinic.bookingUrl`). WhatsApp: `clinic.whatsappUrl`.
