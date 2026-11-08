@@ -185,6 +185,10 @@ export type Dictionary = {
     meetYourChiropractors: string
     theChiropractorsWhoWouldLookAfterYou: string
     threeRegisteredChiropractorsLine: string
+    meetYourPhysiotherapists: string
+    thePhysiotherapistsWhoWouldLookAfterYou: string
+    physiotherapistsLine: string
+    ctaBandPhysiotherapistBody: string
     readProfile: string
     // Practitioner bio page (app/[locale]/about/[slug]/page.tsx):
     aboutUsEyebrow: string

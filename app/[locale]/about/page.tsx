@@ -96,6 +96,9 @@ export default async function AboutPage({ params }: Props) {
           rather than a hand-duplicated copy of its markup — the duplicate had drifted to a
           smaller photo size (800x1000 vs 900x1125) and a different heading before this fix. */}
       <MeetDoctors locale={locale} dict={dict} />
+      {/* The physio team as its own section (since 2026-11-08), never merged into the
+          chiropractor cards above: the two professions are licensed for different work. */}
+      <MeetDoctors locale={locale} dict={dict} role="Physiotherapist" />
 
       {/*
         The one inbound link to /female-chiropractor, and the reason that page is not

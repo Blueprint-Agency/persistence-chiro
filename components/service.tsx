@@ -853,8 +853,10 @@ export function ReviewedBy({
   return (
     <div className="border-b border-line bg-white">
       <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-4">
+        {/* Valerie always has a photo; the `?? ''` only satisfies the roster type, where a
+            physio added before their headshot arrives has `photo: null`. */}
         <Image
-          src={reviewer.photo}
+          src={reviewer.photo ?? ''}
           alt={reviewer.name}
           width={44}
           height={44}

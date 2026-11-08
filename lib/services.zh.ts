@@ -48,8 +48,10 @@ export const servicesZh: Service[] = [
     },
     ogImage: '/og/cupping-therapy.jpg',
     midImage: {
-      src: '/img/therapy-neck.webp',
-      alt: '在 Cheras, Kuala Lumpur 的 Persistence Chiropractic Care,物理治疗师为坐着的病患处理颈部与肩膀',
+      src: '/img/chek-ru-e-spine-model.webp',
+      alt: '在 Cheras, Kuala Lumpur 的 Persistence Chiropractic Care,物理治疗师 Chek Ru-E 手持脊椎模型',
+      width: 900,
+      height: 1125,
     },
     assurances: ['任何护理方案前先评估', '运动方案针对您的问题设计,非一般讲义', '每周七天营业 · Cheras, Maluri'],
     outcomes: [
@@ -185,8 +187,9 @@ export const servicesZh: Service[] = [
       { href: '/services/posture-correction', label: '为办公族设计的姿势调整' },
       { href: '/what-to-expect', label: '第一次会诊会经历什么' },
     ],
-    practitionersWithheld:
-      "Same gate as the English record — client instruction, 2026-08-08. The clinic's physiotherapists are still within probation and are not to be named yet, and chiropractors are not licensed to deliver physiotherapy. Remove once the clinic supplies the physiotherapist list.",
+    // Was `practitionersWithheld` (physios in probation, 2026-08-08). Lifted 2026-11-08 when the
+    // clinic supplied Chek Ru-E's profile; the section now shows the physio, not the chiropractors.
+    teamRole: 'Physiotherapist',
     faqs: [
       {
         q: '「推拿」和物理治疗一样吗?',

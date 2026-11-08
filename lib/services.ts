@@ -96,8 +96,11 @@ export type Service = {
    * gives it something to hold while the steps scroll past it.
    *
    * Same alt rule as the hero: describe what is in the frame, never the service being sold.
+   *
+   * `width`/`height` default to 1400x1000 (landscape). Set them for a portrait frame, or the
+   * fixed landscape box will crop it.
    */
-  midImage?: { src: string; alt: string }
+  midImage?: { src: string; alt: string; width?: number; height?: number }
   /**
    * Short factual reassurances rendered beside the hero CTA — the things a visitor wants
    * settled before they will message anyone.
@@ -262,6 +265,12 @@ export type Service = {
    * implies the wrong profession provides the care.
    */
   practitionersWithheld?: string
+  /**
+   * Which profession the team section on this page shows. Absent means chiropractors.
+   * Set to 'Physiotherapist' on the physiotherapy page (2026-11-08), so the section there
+   * names the physio rather than the chiropractors. See `<MeetDoctors>`.
+   */
+  teamRole?: 'Physiotherapist'
   /**
    * True when the service has a hand-built route file instead of rendering through
    * app/services/[slug]/page.tsx. Only chiropractic-care does: it carries the
@@ -593,8 +602,12 @@ export const services: Service[] = [
     },
     ogImage: '/og/cupping-therapy.jpg',
     midImage: {
-      src: '/img/therapy-neck.webp',
-      alt: 'Physiotherapist working on a seated patient neck and shoulder at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
+      // Chek Ru-E, the clinic's physiotherapist, at the front desk (supplied 2026-11-08).
+      // Replaced `therapy-neck.webp`, which still appears on /offers.
+      src: '/img/chek-ru-e-spine-model.webp',
+      alt: 'Physiotherapist Chek Ru-E holding a spine model at Persistence Chiropractic Care in Cheras, Kuala Lumpur',
+      width: 900,
+      height: 1125,
     },
     /** Facts this page already substantiates, moved into the first viewport. */
     assurances: [
@@ -790,8 +803,9 @@ export const services: Service[] = [
       { href: '/services/physiotherapy-house-call', label: 'Physiotherapy at home for female patients' },
       { href: '/what-to-expect', label: 'What to expect on your first visit' },
     ],
-    practitionersWithheld:
-      'Client instruction, 2026-08-08. The clinic\'s physiotherapists are still within their probation period and are not to be named on the site yet, and chiropractors are not licensed to deliver physiotherapy, so the three practitioners in lib/clinic.ts cannot stand in for them. Until then this page names no individual: a section headed "Meet your chiropractors" on a physiotherapy page implies the wrong profession provides the care, which is a worse problem than an absent team section. Remove this field once the clinic supplies the physiotherapist list and lib/clinic.ts can filter by role.',
+    // Was `practitionersWithheld` (physios in probation, 2026-08-08). Lifted 2026-11-08 when the
+    // clinic supplied Chek Ru-E's profile; the section now shows the physio, not the chiropractors.
+    teamRole: 'Physiotherapist',
     faqs: [
       {
         q: 'What happens in a physiotherapy assessment?',

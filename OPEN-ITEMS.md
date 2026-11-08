@@ -15,24 +15,25 @@ to the end of the nav.
 
 ---
 
-## 1. Physiotherapist names — blocked until probation ends
+## 1. Physiotherapist profile — Chek Ru-E published 2026-11-08, two gaps left
 
-The clinic's physiotherapists are within their probation period and are not to be named on
-the site yet (client, 2026-08-08). **Chiropractors are not licensed to deliver
-physiotherapy**, so the three practitioners in `lib/clinic.ts` cannot stand in for them.
+The clinic supplied Chek Ru-E's profile on 2026-11-08. She is in `lib/clinic.ts` with role
+`'Physiotherapist'` and has her own page at `/about/chek-ru-e`. `<MeetDoctors>` now takes a
+`role`: `/services/physiotherapy` (all three locales) and `/about` show her in a separate
+"Meet your physiotherapist" section, and every other team section still shows chiropractors only.
 
-`/services/physiotherapy` therefore sets `practitionersWithheld` and shows no team section:
-a block headed "Meet your chiropractors" on a physiotherapy page implies the wrong
-profession provides the care, which is worse than an absent section.
+Still needed from the clinic:
 
-When the list arrives:
+1. ~~Headshot~~ **Done 2026-11-08**: `public/img/chek-ru-e.webp`.
+2. **Degree and institution** for her `credentials` line.
+3. **Allied-health registration number.** Add it to `registrations` and keep
+   `registrationsVerified: false` until it has been checked against the register.
 
-1. Add each physio with a `role` of `'Physiotherapist'`.
-2. Leave `registrationsVerified: false` until their MOH / allied-health numbers are checked
-   against the register.
-3. Give `<MeetDoctors>` a way to filter by role, and un-hardcode its "chiropractors" eyebrow
-   and default heading.
-4. Drop `practitionersWithheld` from the physiotherapy entry.
+Deliberately unchanged: `/services/physiotherapy-house-call` keeps `practitionersWithheld`,
+because the client said on 2026-09-12 not to name which physio does house calls.
+`/services/sports-massage` keeps it as well, since either profession delivers that service. Ask
+the client before showing her on either page. Her bio is English-only for now, so in zh/ms
+her card renders without a link to a profile page.
 
 ## 2. Three other team sections — needs a scope-of-practice answer
 

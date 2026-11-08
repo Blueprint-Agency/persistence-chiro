@@ -358,26 +358,39 @@ export const rynnBio = [
 ]
 
 /**
- * ⚠️ CHIROPRACTORS ONLY. NO PHYSIOTHERAPIST IS LISTED, AND ONE MUST NOT BE INVENTED.
+ * Physiotherapist bio. Supplied by the clinic 2026-11-08, published close to verbatim, the same
+ * way the associate chiropractors' were. Departures from the text as it arrived:
+ *
+ * 1. "crafting bespoke treatment pathways" is now "crafting care plans". Banned-word rule in
+ *    AGENTS.md; a bio gets no carve-out.
+ * 2. The em dash after "every individual is unique" is a comma, as with Kee Shan's.
+ * 3. The two emoji are dropped, and the closing "Chek Ru-E, Physiotherapist" sign-off is left
+ *    off because the page already puts her name and role in the hero.
+ */
+export const chekRuEBio = [
+  'Ru-E is a passionate physiotherapist dedicated to helping individuals move better, feel stronger, and regain absolute confidence in their bodies.',
+  'A devoted champion for the elderly, she blends immense warmth, gentle kindness, and deep patience to deliver the high-calibre care seniors truly deserve. As she embarks on her journey, she believes every individual is unique, listening intently, adapting continuously, and crafting care plans tailored to each patient’s distinct needs and goals.',
+  'From pain management and targeted exercise therapy to full functional recovery, Ru-E is committed to making every session a comfortable, empowering, and meaningful step toward a higher quality of life.',
+  'Still learning, still growing, but always here to help you move better. Your recovery, my commitment.',
+]
+
+/**
+ * The clinic roster: three chiropractors and, since 2026-11-08, one physiotherapist.
  *
  * ⚠️ CHIROPRACTORS ARE NOT LICENSED TO DELIVER PHYSIOTHERAPY. Client confirmation,
- * 2026-08-08. So this array cannot stand in for a physiotherapy team, and `<MeetDoctors>`
- * (hardcoded to "Meet your chiropractors") must not render on a physiotherapy page: doing so
- * implies the wrong profession provides the care. /services/physiotherapy therefore sets
- * `practitionersWithheld` in lib/services.ts and shows no team section at all.
+ * 2026-08-08. `<MeetDoctors>` therefore takes a `role` and shows one profession per section:
+ * chiropractors by default, physiotherapists only where a page asks for them (the
+ * physiotherapy service page and the /about hub). Never render a mixed section under either
+ * profession's heading.
  *
- * An earlier version of this note suggested the page could simply "say plainly" that the
- * chiropractors deliver physiotherapy. That was wrong and is recorded here so it is not
- * proposed again.
+ * Physiotherapists were held back during their probation period (client, 2026-08-08). The
+ * clinic supplied Chek Ru-E's profile for publication on 2026-11-08. Any other physio stays
+ * off the site until the clinic sends their profile the same way.
  *
- * The clinic does employ physiotherapists; they are within their probation period and are not
- * to be named on the site until it ends. Absent is the correct state, not a gap to paper over
- * — the same reasoning as the registration gate below.
- *
- * WHEN THE LIST ARRIVES: add each physio with a `role` of 'Physiotherapist', leave
- * `registrationsVerified` false until their MOH / allied-health numbers are confirmed against
- * the register, give `<MeetDoctors>` a way to filter by role, and un-hardcode its eyebrow and
- * default heading. Then drop `practitionersWithheld` from the physiotherapy entry.
+ * For a new physio: `role` 'Physiotherapist', `memberships` empty unless the clinic names one
+ * (the two chiropractic societies below do not apply), and `registrationsVerified` false
+ * until their allied-health registration is checked against the register. `photo` may be
+ * null until a headshot arrives; the cards and profile page render an initials tile instead.
  */
 export const practitioners = [
   {
@@ -457,6 +470,21 @@ export const practitioners = [
     ],
     bio: rynnBio,
   },
+  {
+    name: 'Chek Ru-E',
+    role: 'Physiotherapist',
+    slug: 'chek-ru-e',
+    // Supplied by the clinic 2026-11-08 (front desk, cropped to 900x1125 like the others).
+    photo: '/img/chek-ru-e.webp',
+    // Not supplied. Ask the clinic for her degree and institution.
+    credentials: [],
+    // Not supplied. Ask for her allied-health registration number, then verify it against
+    // the register before flipping `registrationsVerified`.
+    registrations: [],
+    registrationsVerified: false,
+    memberships: [],
+    bio: chekRuEBio,
+  },
 ] as const
 
 /**
@@ -465,6 +493,8 @@ export const practitioners = [
  * description, the reviewer byline, llms.txt — join through here so the separator is decided
  * once rather than per call site.
  */
+export type Practitioner = (typeof practitioners)[number]
+
 export const credentialsText = (p: { credentials: readonly string[] }) => p.credentials.join('; ')
 
 /** Practitioners whose page is substantial enough to submit for indexing. */

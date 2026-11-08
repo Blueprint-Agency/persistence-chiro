@@ -230,8 +230,8 @@ export default async function ServicePage({ params }: Props) {
                     <Image
                       src={service.midImage.src}
                       alt={service.midImage.alt}
-                      width={1400}
-                      height={1000}
+                      width={service.midImage.width ?? 1400}
+                      height={service.midImage.height ?? 1000}
                       sizes="(max-width: 1024px) 100vw, 420px"
                       className="w-full object-cover"
                     />
@@ -325,7 +325,9 @@ export default async function ServicePage({ params }: Props) {
       {/* `practitionersWithheld` carries the reason this is suppressed where it is. The team
           section is a first-order trust signal on a YMYL page, so it is only ever withheld
           when naming the people we CAN name would misrepresent who delivers the service. */}
-      {!service.practitionersWithheld && <MeetDoctors locale={locale} dict={dict} />}
+      {!service.practitionersWithheld && (
+        <MeetDoctors locale={locale} dict={dict} role={service.teamRole} />
+      )}
 
       {/* ------------------------------------------------------- Credentials */}
       {/* The accreditations sit directly under the people who hold them, which reads better

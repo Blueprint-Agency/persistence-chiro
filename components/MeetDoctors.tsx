@@ -1,10 +1,10 @@
-import Image from 'next/image'
 import Link from 'next/link'
 
-import { practitioners, publishedRegistrations, hasBioFor } from '@/lib/clinic'
+import { type Practitioner, practitioners, publishedRegistrations, hasBioFor } from '@/lib/clinic'
 import { type Locale, pathFor } from '@/lib/i18n'
 import type { Dictionary } from '@/dictionaries/types'
 import { Eyebrow, RegistrationList, Vertebrae } from '@/components/ui'
+import { PractitionerPhoto } from '@/components/PractitionerPhoto'
 
 /**
  * "Meet your chiropractors" — the three registered practitioners who would actually look after
@@ -22,29 +22,51 @@ import { Eyebrow, RegistrationList, Vertebrae } from '@/components/ui'
  * 2026-08-09. The gate stays for whoever arrives next, for the reason set out in lib/clinic.ts:
  * a mis-assigned professional registration is worse than an absent one. Expect an uneven number
  * of lines per card; Rynn Hoh holds an MOH registration and no ACM one.
+ *
+ * ONE PROFESSION PER SECTION. `role` defaults to 'Chiropractor', so every existing call site
+ * still shows the three chiropractors under the chiropractor heading. Pass 'Physiotherapist'
+ * for the physio team (since 2026-11-08). Chiropractors are not licensed to deliver
+ * physiotherapy, so the two lists are never merged under one heading.
  */
 export function MeetDoctors({
   locale,
   dict,
   heading,
+  role = 'Chiropractor',
 }: {
   locale: Locale
   dict: Dictionary
   heading?: string
+  role?: Practitioner['role']
 }) {
+  const team = practitioners.filter((p) => p.role === role)
+  if (team.length === 0) return null
+  const copy =
+    role === 'Physiotherapist'
+      ? {
+          eyebrow: dict.page.meetYourPhysiotherapists,
+          heading: dict.page.thePhysiotherapistsWhoWouldLookAfterYou,
+          line: dict.page.physiotherapistsLine,
+        }
+      : {
+          eyebrow: dict.page.meetYourChiropractors,
+          heading: dict.page.theChiropractorsWhoWouldLookAfterYou,
+          line: dict.page.threeRegisteredChiropractorsLine,
+        }
+
   return (
     <section className="border-t border-line bg-white">
       <div className="mx-auto max-w-6xl px-4 py-16 lg:py-24">
-        <Eyebrow>{dict.page.meetYourChiropractors}</Eyebrow>
+        <Eyebrow>{copy.eyebrow}</Eyebrow>
         <h2 className="mt-5 max-w-4xl text-3xl font-extrabold leading-tight sm:text-4xl">
-          {heading ?? dict.page.theChiropractorsWhoWouldLookAfterYou}
+          {heading ?? copy.heading}
         </h2>
         <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink-muted">
-          {dict.page.threeRegisteredChiropractorsLine}
+          {copy.line}
         </p>
 
         <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {practitioners.map((p) => {
+          {team.map((p) => {
             // A profile page only exists in this locale once `lib/practitioner-bios.zh.ts`/
             // `.ms.ts` has a real entry for it (see `hasBioFor`) — currently true for every
             // practitioner in English and none yet in zh/ms. Linking unconditionally to
@@ -54,9 +76,10 @@ export function MeetDoctors({
             const hasProfile = hasBioFor(locale, p.slug)
             const cardBody = (
               <>
-                <Image
-                  src={p.photo}
-                  alt={`${p.name}, ${p.role} at Persistence Chiropractic Care in Cheras, Kuala Lumpur`}
+                <PractitionerPhoto
+                  name={p.name}
+                  role={p.role}
+                  photo={p.photo}
                   width={900}
                   height={1125}
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 360px"

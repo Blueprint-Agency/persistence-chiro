@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import Image from 'next/image'
 import { notFound } from 'next/navigation'
 
 import {
@@ -11,6 +10,7 @@ import {
   publishedRegistrations,
 } from '@/lib/clinic'
 import { JsonLd } from '@/components/JsonLd'
+import { PractitionerPhoto } from '@/components/PractitionerPhoto'
 import { breadcrumbSchema, personSchema } from '@/lib/schema'
 import { pageMetadata } from '@/lib/seo'
 import { LOCALES, isLocale, pathFor } from '@/lib/i18n'
@@ -48,9 +48,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const p = practitionerBySlug(slug)
   if (!p || !hasBioFor(locale, slug)) return {}
 
-  const title = `${p.name}, Chiropractor in Cheras, KL`
+  const title = `${p.name}, ${p.role} in Cheras, KL`
   const description = `${p.name}, ${p.role} at Persistence Chiropractic Care in Cheras, Maluri. ${
-    credentialsText(p) || 'Gonstead-technique chiropractic in Kuala Lumpur.'
+    credentialsText(p) ||
+    (p.role === 'Physiotherapist'
+      ? 'Physiotherapy and exercise-based rehab in Kuala Lumpur.'
+      : 'Gonstead-technique chiropractic in Kuala Lumpur.')
   }`
 
   return pageMetadata({
@@ -91,9 +94,10 @@ export default async function PractitionerPage({ params }: Props) {
         <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
           <div>
             <div className="overflow-hidden rounded-3xl">
-              <Image
-                src={p.photo}
-                alt={`${p.name}, ${p.role} at Persistence Chiropractic Care in Cheras, Kuala Lumpur`}
+              <PractitionerPhoto
+                name={p.name}
+                role={p.role}
+                photo={p.photo}
                 width={800}
                 height={1000}
                 sizes="(max-width: 1024px) 100vw, 420px"
@@ -165,7 +169,11 @@ export default async function PractitionerPage({ params }: Props) {
       <CtaBand
         dict={dict}
         heading={dict.page.seeNameInCheras(p.name)}
-        body={dict.page.ctaBandPractitionerBody}
+        body={
+          p.role === 'Physiotherapist'
+            ? dict.page.ctaBandPhysiotherapistBody
+            : dict.page.ctaBandPractitionerBody
+        }
         message={waMessage.practitioner(locale, p.name)}
       />
     </>

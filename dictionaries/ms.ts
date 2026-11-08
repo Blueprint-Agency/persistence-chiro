@@ -144,6 +144,10 @@ const ms: Dictionary = {
     theChiropractorsWhoWouldLookAfterYou: 'Kiropraktor yang akan menjaga anda',
     threeRegisteredChiropractorsLine:
       'Tiga kiropraktor berdaftar, semuanya dilatih dalam kaedah Gonstead dan merupakan ahli Gonstead Chiropractic Society Australia serta Persatuan Kiropraktik Malaysia.',
+    meetYourPhysiotherapists: 'Kenali ahli fisioterapi kami',
+    thePhysiotherapistsWhoWouldLookAfterYou: 'Ahli fisioterapi yang akan menjaga anda',
+    physiotherapistsLine:
+      'Fisioterapi di sini dijalankan oleh ahli fisioterapi, bukan kiropraktor. Dia menilai cara anda bergerak dan menyusun pelan senaman mengikut apa yang anda mahu kembali lakukan.',
     readProfile: 'Lihat profil',
     aboutUsEyebrow: 'Tentang kami',
     registrationLabel: 'Pendaftaran',
@@ -153,6 +157,7 @@ const ms: Dictionary = {
     backToTheTeam: 'Kembali ke pasukan',
     seeNameInCheras: (name) => `Jumpa ${name} di Cheras.`,
     ctaBandPractitionerBody: 'Kiropraktik Gonstead bersebelahan Sunway Velocity. Buka tujuh hari.',
+    ctaBandPhysiotherapistBody: 'Fisioterapi bersebelahan Sunway Velocity. Buka tujuh hari.',
     aboutBreadcrumbLabel: 'Tentang Kami',
     fromOurPatientsInCheras: 'Daripada pesakit kami di Cheras',
     whatPeopleSayAfterBeingSeenHere: 'Apa yang mereka kata selepas datang ke sini',

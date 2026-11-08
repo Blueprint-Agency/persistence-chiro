@@ -147,6 +147,10 @@ const zh: Dictionary = {
     theChiropractorsWhoWouldLookAfterYou: '将为您提供护理的脊医',
     threeRegisteredChiropractorsLine:
       '三位注册脊医,皆受过 Gonstead 疗法训练,并为澳洲 Gonstead 脊椎矫正学会及马来西亚脊椎矫正协会会员。',
+    meetYourPhysiotherapists: '认识我们的物理治疗师',
+    thePhysiotherapistsWhoWouldLookAfterYou: '将为您提供护理的物理治疗师',
+    physiotherapistsLine:
+      '这里的物理治疗由物理治疗师负责,而不是脊医。她会评估您的活动方式,并根据您想恢复的日常活动制定运动计划。',
     readProfile: '查看简介',
     aboutUsEyebrow: '关于我们',
     registrationLabel: '注册资格',
@@ -156,6 +160,7 @@ const zh: Dictionary = {
     backToTheTeam: '返回团队页面',
     seeNameInCheras: (name) => `在 Cheras 与 ${name} 见面。`,
     ctaBandPractitionerBody: 'Gonstead 脊椎矫正,就在 Sunway Velocity 旁,每周七天营业。',
+    ctaBandPhysiotherapistBody: '物理治疗,就在 Sunway Velocity 旁,每周七天营业。',
     aboutBreadcrumbLabel: '关于我们',
     fromOurPatientsInCheras: '来自 Cheras 病患的评价',
     whatPeopleSayAfterBeingSeenHere: '来诊后,他们这么说',

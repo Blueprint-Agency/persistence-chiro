@@ -197,8 +197,10 @@ export const servicesMs: Service[] = [
     },
     ogImage: '/og/cupping-therapy.jpg',
     midImage: {
-      src: '/img/therapy-neck.webp',
-      alt: 'Ahli fisioterapi menjaga leher dan bahu pesakit yang sedang duduk di Persistence Chiropractic Care, Cheras, Kuala Lumpur',
+      src: '/img/chek-ru-e-spine-model.webp',
+      alt: 'Ahli fisioterapi Chek Ru-E memegang model tulang belakang di Persistence Chiropractic Care, Cheras, Kuala Lumpur',
+      width: 900,
+      height: 1125,
     },
     assurances: [
       'Penilaian sebelum sebarang pelan jagaan',
@@ -357,8 +359,9 @@ export const servicesMs: Service[] = [
       { href: '/services/posture-correction', label: 'Pembetulan postur untuk pekerja pejabat' },
       { href: '/what-to-expect', label: 'Apa yang dijangka pada lawatan pertama anda' },
     ],
-    practitionersWithheld:
-      "Same gate as the English record — client instruction, 2026-08-08. The clinic's physiotherapists are still within probation and are not to be named yet, and chiropractors are not licensed to deliver physiotherapy. Remove once the clinic supplies the physiotherapist list.",
+    // Was `practitionersWithheld` (physios in probation, 2026-08-08). Lifted 2026-11-08 when the
+    // clinic supplied Chek Ru-E's profile; the section now shows the physio, not the chiropractors.
+    teamRole: 'Physiotherapist',
     faqs: [
       {
         q: 'Apa yang berlaku semasa penilaian fisioterapi?',

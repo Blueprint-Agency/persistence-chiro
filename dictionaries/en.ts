@@ -138,6 +138,10 @@ const en: Dictionary = {
     theChiropractorsWhoWouldLookAfterYou: 'The chiropractors who would look after you',
     threeRegisteredChiropractorsLine:
       'Three registered chiropractors, all trained in the Gonstead method and all members of the Gonstead Chiropractic Society Australia and the Association of Chiropractic Malaysia.',
+    meetYourPhysiotherapists: 'Meet your physiotherapist',
+    thePhysiotherapistsWhoWouldLookAfterYou: 'The physiotherapist who would look after you',
+    physiotherapistsLine:
+      'Physiotherapy here is delivered by a physiotherapist, not a chiropractor. She assesses how you move and builds an exercise plan around what you need to get back to.',
     readProfile: 'Read profile',
     aboutUsEyebrow: 'About us',
     registrationLabel: 'Registration',
@@ -147,6 +151,7 @@ const en: Dictionary = {
     backToTheTeam: 'Back to the team',
     seeNameInCheras: (name) => `See ${name} in Cheras.`,
     ctaBandPractitionerBody: 'Gonstead chiropractic next to Sunway Velocity. Open seven days.',
+    ctaBandPhysiotherapistBody: 'Physiotherapy next to Sunway Velocity. Open seven days.',
     aboutBreadcrumbLabel: 'About',
     fromOurPatientsInCheras: 'From our patients in Cheras',
     whatPeopleSayAfterBeingSeenHere: 'What people say after being seen here',
