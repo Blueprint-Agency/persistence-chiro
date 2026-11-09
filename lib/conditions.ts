@@ -1768,10 +1768,9 @@ export const conditions: Condition[] = [
       ],
       note: 'More than one of these can be present at once, and a desk worker with a stiff neck and an irritated rotator cuff is common. The assessment looks at the neck, upper back and shoulder together to tell them apart.',
     },
-    // Clinical copy edited 2026-11-09 (pc053: shoulder pain causes, two FAQs, comparison
-    // table, prevalence citation). Valerie reviewed the 2026-08-08 version; move this date only
-    // once she confirms the new sections.
-    lastReviewed: '2026-08-08',
+    // pc053 refresh (shoulder pain causes, two FAQs, comparison table, prevalence citation)
+    // re-reviewed by Valerie Na, confirmed by the user 2026-11-09.
+    lastReviewed: '2026-11-09',
     draft: false,
   },
   {
