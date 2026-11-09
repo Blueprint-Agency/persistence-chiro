@@ -74,8 +74,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...publishedPosts().map((p) => ({
       url: `${SITE_URL}/blog/${p.slug}`,
       // The original publish date, not the migration date — resetting these would tell
-      // Google 14 old posts are brand new.
-      lastModified: new Date(p.datePublished),
+      // Google 14 old posts are brand new. A post that was genuinely rewritten carries a
+      // real `dateModified`, which wins.
+      lastModified: new Date(p.dateModified ?? p.datePublished),
       changeFrequency: 'yearly' as const,
       priority: 0.5,
     })),

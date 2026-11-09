@@ -50,6 +50,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     availableIn: ['en'],
     type: 'article',
     publishedTime: post.datePublished,
+    modifiedTime: post.dateModified,
     // Post titles are editorial headlines, not composed SEO strings — the brand suffix
     // pushed eleven of thirteen past what Google renders, and the brand is what got cut.
     // See the note on `brand` in lib/seo.ts before copying this to another route.
@@ -88,6 +89,7 @@ export default async function PostPage({ params }: Props) {
           description: post.description,
           slug: post.slug,
           datePublished: post.datePublished,
+          dateModified: post.dateModified,
           author: post.author,
         })}
       />
@@ -164,6 +166,12 @@ export default async function PostPage({ params }: Props) {
               <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-white/60">
                 <span>
                   <time dateTime={post.datePublished}>{formatDate(post.datePublished)}</time>
+                  {post.dateModified && (
+                    <>
+                      {' · Updated '}
+                      <time dateTime={post.dateModified}>{formatDate(post.dateModified)}</time>
+                    </>
+                  )}
                   {' · '}
                   {post.author}
                 </span>

@@ -357,6 +357,7 @@ export function blogPostingSchema(o: {
   description: string
   slug: string
   datePublished: string
+  dateModified?: string
   author: string
 }) {
   const isClinic = o.author === clinic.name
@@ -368,6 +369,7 @@ export function blogPostingSchema(o: {
     description: o.description,
     url: `${SITE_URL}/blog/${o.slug}`,
     datePublished: o.datePublished,
+    dateModified: o.dateModified ?? o.datePublished,
     author: isClinic
       ? { '@type': 'Organization', '@id': `${SITE_URL}/#clinic` }
       : { '@type': 'Person', name: o.author },

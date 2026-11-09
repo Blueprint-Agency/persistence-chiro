@@ -62,6 +62,14 @@ export type Post = {
    * appear.
    */
   lastReviewed?: string
+  /**
+   * ISO date the post's content was last substantially rewritten or extended. Feeds the
+   * sitemap `lastmod`, `BlogPosting.dateModified`, `article:modified_time` and the "Updated"
+   * line on the page. Set it only when the copy genuinely changed (a refresh, a new section),
+   * never for a typo fix or a build, for the same reason sitemap.ts refuses `new Date()`.
+   * Unset means the post is as first published.
+   */
+  dateModified?: string
 }
 
 export const posts: Post[] = [
@@ -2234,6 +2242,7 @@ export const posts: Post[] = [
     description:
       'How to get rid of muscle knots at home: a step by step routine with timings, how to reach your upper back, how long knots last and when to get checked.',
     datePublished: '2026-07-25',
+    dateModified: '2026-11-09',
     author: 'Persistence Chiropractic Care',
     linksTo: 'dry-needling',
     keyTakeaways: [
@@ -2325,6 +2334,7 @@ export const posts: Post[] = [
     description:
       'Chiropractic during pregnancy: why back and pelvic pain happen, when it is safe and when it is not, what the research says, and help after birth.',
     datePublished: '2025-09-01',
+    dateModified: '2026-11-09',
     author: 'Persistence Chiropractic Care',
     linksTo: 'back-pain',
     keyTakeaways: [
@@ -2419,6 +2429,7 @@ export const posts: Post[] = [
     description:
       'Chiropractic for athletes and runners, honestly: what the evidence says on performance, why running injuries happen, common injuries and what to do.',
     datePublished: '2024-12-09',
+    dateModified: '2026-11-09',
     author: 'Persistence Chiropractic Care',
     linksTo: 'sports-injury-rehabilitation',
     keyTakeaways: [

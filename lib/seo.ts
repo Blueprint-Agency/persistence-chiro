@@ -59,6 +59,7 @@ type PageMetadataInput = {
   type?: 'website' | 'article'
   /** ISO date — only meaningful alongside type: 'article'. */
   publishedTime?: string
+  modifiedTime?: string
   /** Reachable but not submitted for indexing. Used for pages still awaiting real copy. */
   noindex?: boolean
   /**
@@ -89,6 +90,7 @@ export function pageMetadata({
   image = OG_IMAGE,
   type = 'website',
   publishedTime,
+  modifiedTime,
   noindex,
   brand = true,
 }: PageMetadataInput): Metadata {
@@ -118,6 +120,7 @@ export function pageMetadata({
       description,
       images: [image],
       ...(publishedTime ? { publishedTime } : {}),
+      ...(modifiedTime ? { modifiedTime } : {}),
     },
     twitter: {
       // 'summary' (the default) renders a 120px thumbnail and wastes a 1200x630 image.
