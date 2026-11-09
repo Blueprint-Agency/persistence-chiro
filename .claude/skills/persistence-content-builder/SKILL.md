@@ -507,6 +507,22 @@ picture that shows the wrong movement. Generate two variants per subject in one 
 the batch rate limits at about ten jobs, so a 12-job batch loses a couple. Check every image before
 using it and write the alt text to what is actually drawn, not to the prompt.
 
+**Merging a legacy post into a page: use `MERGED_POSTS` (learned 2026-11-09, pc054).**
+GSC showed the legacy first-visit post collecting the "first chiropractic visit" queries at
+positions 60 to 99 while /what-to-expect got only brand searches. Folding it in meant: the post
+stays in `lib/posts.ts` as `draft: true` with a `holdReason` (the legacy index test needs the
+entry), its slug goes in `MERGED_POSTS` in `redirects.ts` (which 301s BOTH `/post/<slug>` and
+`/blog/<slug>` to the page, ahead of the wildcard), the MDX and its `post-content.ts` import are
+deleted, and any internal link to `/blog/<slug>` is repointed. Check page-level GSC queries on
+both URLs before deciding a page and a post coexist.
+
+**Refreshing a legacy post: the guards will not catch you (same batch).** `content.test.ts`
+skips the 14 `LEGACY_POST_SLUGS` in its promissory-claims and banned-word sweeps, so a rewritten
+legacy post ships with whatever you wrote. Run the `treat` and dash greps by hand on the MDX and
+the `posts.ts` entry. A legacy post written under a practitioner's name and then rewritten
+should move to the clinic byline until that person reviews it, and an in-body "Author:" line
+goes with the old copy.
+
 ## Quick reference
 - Client: **Persistence Chiropractic** (single clinic, Cheras/Maluri, KL). NAP + CTAs: `lib/clinic.ts`.
 - Booking: SweetPew (`clinic.bookingUrl`). WhatsApp: `clinic.whatsappUrl`.

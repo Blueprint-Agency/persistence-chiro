@@ -1550,20 +1550,29 @@ export const conditions: Condition[] = [
   },
   {
     slug: 'shoulder-imbalance',
-    title: 'Shoulder Imbalance and Postural Strain in Cheras, Kuala Lumpur',
-    metaTitle: 'Shoulder Pain & Uneven Shoulders in Cheras',
+    title: 'Shoulder Pain and Uneven Shoulders in Cheras, Kuala Lumpur',
+    metaTitle: 'Shoulder Pain & Uneven Shoulders Care, Cheras KL',
     metaDescription:
-      'Care for uneven shoulders, shoulder pain and postural strain in Cheras, Maluri. Assessment, dry needling and a posture-focused rehabilitation programme.',
+      'Shoulder pain and uneven shoulders assessed in Cheras, Maluri. Find out if it comes from the joint, your posture or your neck, and what care looks like.',
     // Was 'shoulder and neck pain', which /conditions/neck-pain already owns — two pages
     // competing for one query is the cannibalisation the one-page-one-intent rule exists
     // to prevent. This page's h1 and body are about imbalance, so the keyword follows them.
-    targetKeyword: 'uneven shoulders',
-    related: ['neck-pain', 'back-pain'],
+    //
+    // Broadened 2026-11-09 (schedule pc053) to "shoulder pain". GSC showed the page already
+    // at position 10 for "shoulder pain chiropractor malaysia" and 14 for "uneven shoulders
+    // chiropractor"; bare "shoulder pain" is held by health authorities, so the real target is
+    // the KL/Malaysia clinic variants. "uneven shoulders" stays in the h1 and title. Frozen
+    // shoulder keeps "frozen shoulder treatment", pinched nerve keeps the neck-to-arm searches;
+    // the comparison table routes to both instead of repeating them.
+    targetKeyword: 'shoulder pain',
+    related: ['neck-pain', 'frozen-shoulder', 'pinched-nerve'],
     helpedBy: ['dry-needling', 'posture-correction'],
 
     intro:
-      'Almost nobody is perfectly symmetrical, and a shoulder sitting slightly higher than the other rarely needs attention on its own. It becomes worth looking at once symptoms come with it: an ache across one side of the neck and shoulder that builds through the working day, tightness that never fully clears, or a shoulder that no longer moves as freely as the other one. Most of what people call shoulder imbalance is a loading pattern. One side is doing more work, for more hours, than it has the endurance for. An assessment can describe that accurately, and how you work and train can change it.',
+      'Shoulder pain is one of the most common reasons people come to see us, and it rarely comes from one place. It can start in the shoulder joint and the rotator cuff tendons around it, in the neck, which often refers pain into the shoulder, or in a working day that asks one side to do more than the other. That last pattern often shows up as uneven shoulders, with one sitting higher, aching across the top by late afternoon and never quite clearing. Almost nobody is perfectly symmetrical, and a slight difference rarely matters on its own. It becomes worth looking at once pain, stiffness or a change comes with it. The assessment works out which of these is driving your shoulder pain, because each one is looked after differently.',
     symptoms: [
+      'Pain on the outside of the upper arm, worst partway through lifting the arm or reaching behind you',
+      'Shoulder pain when lying on that side at night',
       'One shoulder or shoulder blade visibly sitting higher, or clothes and bag straps sliding off one side',
       'An ache across the top of one shoulder and into the neck that worsens through the working day',
       'Tightness that eases at the weekend and has returned by Tuesday afternoon',
@@ -1572,6 +1581,14 @@ export const conditions: Condition[] = [
       'Tingling or pins and needles into the shoulder blade, arm or hand',
     ],
     causes: [
+      {
+        heading: 'Rotator cuff related shoulder pain',
+        body: 'The rotator cuff is the group of tendons that holds the ball of the shoulder in its socket while the arm moves. When they are irritated, usually after doing more overhead work, lifting or sport than they are used to, the classic sign is an ache on the outside of the upper arm that catches partway through raising it and bothers you lying on that side. Graded strengthening is the main way this is managed, which is why the physiotherapy side does much of the work here.',
+      },
+      {
+        heading: 'Pain referred from the neck',
+        body: 'The nerves and joints of the lower neck can send pain into the shoulder and shoulder blade, so a shoulder that hurts is not always a shoulder problem. Clues are pain that changes when you move your neck, and tingling or numbness that runs past the elbow into the hand. That pattern is covered in full on the pinched nerve page, and the neck is checked on every shoulder assessment for this reason.',
+      },
       {
         heading: 'Asymmetric daily loading',
         body: 'A mouse on one side, a bag always on the same shoulder, a monitor set off-centre, a child carried on one hip. None of these does harm in isolation. Repeated for eight hours a day over years, they ask one side to hold a position the other never has to, and the tissue adapts to what it is asked to do most.',
@@ -1618,6 +1635,16 @@ export const conditions: Condition[] = [
     ],
     faqs: [
       {
+        q: 'Is my shoulder pain coming from my neck?',
+        a: 'It may be. Pain that changes when you turn or tilt your head, pain that starts at the neck and travels into the shoulder blade, and tingling or numbness past the elbow all point towards the neck rather than the shoulder joint. A shoulder that hurts mainly when you lift the arm, with a neck that moves freely, points the other way. The assessment checks both, and our pinched nerve page covers the neck pattern in detail.',
+        links: [{ phrase: 'pinched nerve page', href: '/conditions/pinched-nerve' }],
+      },
+      {
+        q: 'How long does shoulder pain take to settle?',
+        a: 'It depends on the cause. Postural strain and a mildly irritated rotator cuff often ease over a few weeks once the load changes and the right exercises start. Rotator cuff problems that have built up over months can take a few months of steady strengthening. Frozen shoulder runs on a much longer timescale, often a year or more. Your practitioner will tell you which you have and what is realistic, rather than quote a fixed number of visits.',
+        links: [{ phrase: 'Frozen shoulder', href: '/conditions/frozen-shoulder' }],
+      },
+      {
         q: 'Is one shoulder being higher than the other a problem?',
         a: 'Not necessarily. Mild asymmetry is extremely common and plenty of people have it with no symptoms at all. What makes it worth assessing is pain, restricted movement, or an asymmetry that has changed. If you have no symptoms and nothing has changed, that is usually reassuring rather than something to act on.',
       },
@@ -1640,6 +1667,10 @@ export const conditions: Condition[] = [
     ],
     keyTakeaways: [
       {
+        q: 'What usually causes shoulder pain?',
+        a: 'Most often an irritated rotator cuff, pain referred from the neck, or one side being loaded more than the other through the working day. Frozen shoulder is less common and behaves very differently.',
+      },
+      {
         q: 'How common is a small difference?',
         a: 'Very. Most people are slightly asymmetric, and a difference you can see in a photograph is not on its own a sign that something is wrong.',
       },
@@ -1655,10 +1686,6 @@ export const conditions: Condition[] = [
         q: 'What can realistically change?',
         a: 'Comfort, and how easily you hold a level position, often improve. A fixed structural difference is another matter, and your practitioner will say plainly which one you have.',
       },
-      {
-        q: 'When are you open?',
-        a: 'Seven days a week, at Sunway Velocity in Maluri. Monday to Thursday and Saturday until 8pm, Friday until 5pm, Sunday until 3pm.',
-      },
     ],
     qualifierConcerns: [
       'One of my shoulders sits higher than the other',
@@ -1668,6 +1695,12 @@ export const conditions: Condition[] = [
       'I want to know whether it means scoliosis',
     ],
     citations: [
+      {
+        claim:
+          'A systematic review of 61 studies found a median community prevalence of shoulder pain of 16 percent, with a median incidence of 37.8 new cases per 1,000 people a year.',
+        source: 'Lucas, van Doorn, Hegedus, Lewis & van der Windt (2022), BMC Musculoskeletal Disorders',
+        url: 'https://doi.org/10.1186/s12891-022-05973-8',
+      },
       {
         claim:
           'Mild postural asymmetry is common in the general population and is not by itself an indication of underlying disease.',
@@ -1681,6 +1714,63 @@ export const conditions: Condition[] = [
         url: 'https://www.srs.org/Patients/Diagnosis-And-Treatment/Diagnosing-Scoliosis',
       },
     ],
+    comparison: {
+      heading: 'Where your shoulder pain is, and what it points to',
+      intro:
+        'Shoulder pain from posture, the rotator cuff, a frozen shoulder or the neck can feel alike at first. Where it hurts and what sets it off are the quickest clues. This is a rough guide, and the linked columns go to the page that covers that pattern in full.',
+      columns: [
+        { label: 'One-sided postural strain' },
+        { label: 'Rotator cuff related pain' },
+        { label: 'Frozen shoulder', href: '/conditions/frozen-shoulder' },
+        { label: 'Pain from the neck', href: '/conditions/pinched-nerve' },
+      ],
+      rows: [
+        {
+          label: 'Where you feel it',
+          cells: [
+            'Across the top of one shoulder and up into the neck',
+            'The outside of the upper arm',
+            'Deep in the shoulder, sometimes down the upper arm',
+            'Neck and shoulder blade, sometimes down the arm',
+          ],
+        },
+        {
+          label: 'What sets it off',
+          cells: [
+            'Long hours at a desk, a bag on one side, a phone held to one ear',
+            'Lifting the arm, reaching overhead or behind your back',
+            'Almost any movement once it has stiffened, especially turning the arm outward',
+            'Turning or tilting the head, or holding it still for long',
+          ],
+        },
+        {
+          label: 'In the mirror',
+          cells: [
+            'One shoulder often sits higher',
+            'Usually nothing obvious',
+            'The shoulder may hitch up as you lift the arm',
+            'Usually nothing obvious',
+          ],
+        },
+        {
+          label: 'Tingling past the elbow',
+          cells: ['Rarely', 'No', 'No', 'Often'],
+        },
+        {
+          label: 'Usual first step',
+          cells: [
+            'Change the desk setup and build endurance in the shoulder blade muscles',
+            'Graded strengthening of the rotator cuff',
+            'Keep moving within comfort and get it assessed',
+            'Get the neck assessed, sooner if the arm is weak',
+          ],
+        },
+      ],
+      note: 'More than one of these can be present at once, and a desk worker with a stiff neck and an irritated rotator cuff is common. The assessment looks at the neck, upper back and shoulder together to tell them apart.',
+    },
+    // Clinical copy edited 2026-11-09 (pc053: shoulder pain causes, two FAQs, comparison
+    // table, prevalence citation). Valerie reviewed the 2026-08-08 version; move this date only
+    // once she confirms the new sections.
     lastReviewed: '2026-08-08',
     draft: false,
   },

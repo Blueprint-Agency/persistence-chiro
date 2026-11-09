@@ -16,6 +16,7 @@ import { services, servicesFor } from './services.ts'
 import { posts, publishedPosts } from './posts.ts'
 import {
   HELD_POST_SLUGS,
+  MERGED_POSTS,
   LEGACY_PAGE_URLS,
   LEGACY_POST_SLUGS,
   redirects,
@@ -744,11 +745,12 @@ test('legacy post slugs stay byte-identical; new posts claim no /post/ redirect'
  * post's history, which is strictly worse than leaving the old URL alone.
  */
 test('every held-back post has an explicit redirect ahead of the wildcard', () => {
+  // A draft post is either held (redirects to /blog) or merged into a page (redirects there).
   const drafts = posts.filter((p) => p.draft).map((p) => p.slug).sort()
   assert.deepEqual(
-    [...HELD_POST_SLUGS].sort(),
+    [...HELD_POST_SLUGS, ...Object.keys(MERGED_POSTS)].sort(),
     drafts,
-    'HELD_POST_SLUGS in redirects.ts is out of sync with draft posts in lib/posts.ts',
+    'HELD_POST_SLUGS + MERGED_POSTS in redirects.ts are out of sync with draft posts in lib/posts.ts',
   )
 
   const wildcardIndex = redirects.findIndex((r) => r.source === '/post/:slug')

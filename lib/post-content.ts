@@ -44,7 +44,6 @@ import LessPainMoreGain from '@/content/blog/less-pain-more-gain-with-regular-ch
 import SleepingWell from '@/content/blog/sleeping-well-waking-better-the-key-to-spinal-health-and-quality-sleep.mdx'
 import SpikeHigher from '@/content/blog/spike-higher-play-longer.mdx'
 import ThreeYears from '@/content/blog/three-years-of-gratitude-and-growth-celebrating-wellness-world-spine-day-and-our-community.mdx'
-import FirstTimeVisit from '@/content/blog/what-to-expect-when-going-to-the-chiropractor-for-the-first-time.mdx'
 
 export const postBodies: Record<string, ComponentType> = {
   'gonstead-technique': GonsteadTechnique,
@@ -85,5 +84,4 @@ export const postBodies: Record<string, ComponentType> = {
   'spike-higher-play-longer': SpikeHigher,
   'three-years-of-gratitude-and-growth-celebrating-wellness-world-spine-day-and-our-community':
     ThreeYears,
-  'what-to-expect-when-going-to-the-chiropractor-for-the-first-time': FirstTimeVisit,
 }

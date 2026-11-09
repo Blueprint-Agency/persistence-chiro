@@ -3,7 +3,14 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
-import { clinicFaqsFor, aftercareFor, aftercareIntroFor } from '@/lib/faqs'
+import {
+  clinicFaqsFor,
+  aftercareFor,
+  aftercareIntroFor,
+  firstVisitQuickAnswerFor,
+  firstVisitTimelineFor,
+  firstVisitTimelineTitleFor,
+} from '@/lib/faqs'
 import { JsonLd } from '@/components/JsonLd'
 import { breadcrumbSchema, faqSchema } from '@/lib/schema'
 import { pageMetadata } from '@/lib/seo'
@@ -55,6 +62,9 @@ export default async function WhatToExpectPage({ params }: Props) {
   const clinicFaqs = clinicFaqsFor(locale)
   const aftercare = aftercareFor(locale)
   const aftercareIntro = aftercareIntroFor(locale)
+  const quickAnswer = firstVisitQuickAnswerFor(locale)
+  const timeline = firstVisitTimelineFor(locale)
+  const timelineTitle = firstVisitTimelineTitleFor(locale)
 
   return (
     <>
@@ -71,7 +81,7 @@ export default async function WhatToExpectPage({ params }: Props) {
       <PageHero
         eyebrow={dict.page.whatToExpectEyebrow}
         title={dict.page.whatHappensOnYourFirstVisit}
-        intro={dict.page.recoveryTakesTimeIntro}
+        intro={quickAnswer ?? dict.page.recoveryTakesTimeIntro}
       />
 
       {/* ------------------------------------------------------- Your first visit */}
@@ -109,6 +119,35 @@ export default async function WhatToExpectPage({ params }: Props) {
           </div>
         </div>
       </section>
+
+      {/* ------------------------------------------------------ Visit timeline */}
+      {/* English only for now (see firstVisitTimeline in lib/faqs.ts). The Gonstead six
+          steps are linked above rather than repeated, since /services/chiropractic-care
+          publishes them in full. */}
+      {timelineTitle && timeline.length > 0 && (
+        <section className="mx-auto max-w-6xl px-4 pb-16 lg:pb-24">
+          <Eyebrow>{timelineTitle.eyebrow}</Eyebrow>
+          <h2 className="mt-5 text-3xl font-extrabold leading-tight sm:text-4xl">
+            {timelineTitle.heading}
+          </h2>
+          <ol className="mt-10 grid gap-x-10 gap-y-8 sm:grid-cols-2">
+            {timeline.map((step, i) => (
+              <li key={step.heading} className="flex gap-5">
+                <span
+                  aria-hidden="true"
+                  className="flex h-10 w-10 flex-none items-center justify-center rounded-full bg-brand-slate font-bold text-white"
+                >
+                  {i + 1}
+                </span>
+                <div>
+                  <h3 className="text-lg font-bold text-ink">{step.heading}</h3>
+                  <p className="mt-2 leading-relaxed text-ink-muted">{step.body}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </section>
+      )}
 
       {/* ------------------------------------------------------------- Aftercare */}
       <section className="border-y border-line bg-white">

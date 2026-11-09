@@ -2223,13 +2223,81 @@ export const posts: Post[] = [
   {
     // First net-new SEO post (not a migrated Wix post, so not in LEGACY_POST_SLUGS and it
     // needs no /post/ redirect). Written 2026-07-25 via the persistence-content-builder skill.
+    // Refreshed 2026-11-09 (schedule pc056, absorbing pc006): a "how to get rid of" routine
+    // with timings, hard-to-reach spots, how long knots last and an "are they real" section,
+    // after benchmarking Houston Methodist, UW Health and Cleveland Clinic (global top 3) and
+    // the thin Malaysian results. GSC showed "are muscle knots real" queries landing here.
+    // Freehand takeaways and FAQ moved into structured arrays for FAQPage schema. No
+    // lastReviewed until Valerie reads it.
     slug: 'muscle-knots',
-    title: 'Muscle Knots: Causes, Symptoms and What Actually Helps',
+    title: 'Muscle Knots: How to Get Rid of Them and What Causes Them',
     description:
-      'What causes muscle knots, what genuinely helps, how to ease one at home, and the signs that mean you should get checked. Cheras, Kuala Lumpur.',
+      'How to get rid of muscle knots at home: a step by step routine with timings, how to reach your upper back, how long knots last and when to get checked.',
     datePublished: '2026-07-25',
     author: 'Persistence Chiropractic Care',
     linksTo: 'dry-needling',
+    keyTakeaways: [
+      {
+        q: 'What is a muscle knot?',
+        a: 'A muscle knot, or myofascial trigger point, is a tight, tender spot in a muscle that can feel like a firm lump and sometimes sends a dull ache into a nearby area.',
+      },
+      {
+        q: 'How do you get rid of a muscle knot?',
+        a: 'Warm the area, press on the knot for 5 to 10 seconds at a time, stretch part of the way for 30 to 60 seconds, keep moving through the day, and change whatever set it off. Once or twice a day for a few days is usually enough to tell whether it is responding.',
+      },
+      {
+        q: 'How long does a muscle knot last?',
+        a: 'A new knot often settles within a few days and usually within two weeks. One you have had for months tends to take longer and needs the daily habit behind it to change.',
+      },
+      {
+        q: 'Heat or ice for a muscle knot?',
+        a: 'Heat usually feels better on an established knot because it helps the muscle relax. Ice suits a fresh strain from a specific injury more than a knot that built up over weeks.',
+      },
+      {
+        q: 'When should I see someone about a knot?',
+        a: 'If a week or two of self care changes nothing, it keeps coming back, or it comes with numbness, weakness, fever or pain after an injury, have it assessed rather than keep pressing on it.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Are muscle knots dangerous?',
+        a: 'Almost never, even when they are uncomfortable. The exceptions are the warning signs such as numbness, weakness, a growing or hot lump, fever, or pain after an injury, which are less about the knot and more about ruling out something else.',
+      },
+      {
+        q: 'Can a muscle knot last for years?',
+        a: 'A tender spot can keep returning for years if whatever loads it stays the same, such as the same desk setup, the same bag shoulder or the same stress. It is usually the habit that persists rather than one knot that never changes. Changing the load, along with regular self care, is what tends to break the cycle.',
+      },
+      {
+        q: 'Does massaging a knot get rid of it?',
+        a: 'Massage can ease a knot in the moment, and many people find that helpful. Whether it stays settled usually depends on changing what caused it, so relief on the table is a start rather than the whole answer.',
+      },
+      {
+        q: 'Can muscle knots cause numbness or tingling?',
+        a: 'A knot can refer a dull ache to a nearby area, but true numbness, pins and needles or weakness points more towards an irritated nerve. If you have those, get it assessed rather than assume it is a knot.',
+      },
+      {
+        q: 'Is dry needling painful?',
+        a: 'Most people describe a brief twitch or a dull ache rather than sharp pain, and some feel a little sore the next day. Tell your practitioner if anything feels worse than uncomfortable, because the technique can be adjusted.',
+      },
+      {
+        q: 'Can bad posture really cause muscle knots?',
+        a: 'Holding one posture for hours is one of the most common contributors, particularly desk work. Movement breaks generally matter more than finding one perfect position, since the body tolerates most positions better than it tolerates holding any of them for hours.',
+      },
+    ],
+    citations: [
+      {
+        claim:
+          'In a cohort of 19 office workers with mild neck and shoulder complaints, eight sessions of sustained pressure on the four most painful trigger points over four weeks were followed by less general neck and shoulder pain, with the improvement still present at six months. The study had no separate control group.',
+        source: 'Cagnie et al. (2013), Journal of Manipulative and Physiological Therapeutics',
+        url: 'https://doi.org/10.1016/j.jmpt.2013.07.001',
+      },
+      {
+        claim:
+          'A critical review argued that the trigger point theory of myofascial pain lacks a scientific basis, while stating that this does not deny the existence of the clinical symptoms themselves.',
+        source: 'Quintner, Bove & Cohen (2015), Rheumatology',
+        url: 'https://doi.org/10.1093/rheumatology/keu471',
+      },
+    ],
     draft: false,
   },
   {
@@ -2243,13 +2311,92 @@ export const posts: Post[] = [
     draft: false,
   },
   {
+    // Rewritten 2026-11-09 (schedule pc055) as a pregnancy-led post, user's choice over a
+    // separate new post. The Wix version made unhedged claims ("helps regulate their cycle",
+    // "supports hormonal balance", "lasting relief is possible"); those and the in-body byline
+    // for Pristencia Chow are gone, since the words are no longer hers. Benchmarked against
+    // Healthline, the American Pregnancy Association and a KL clinic's pregnancy page. The
+    // breech, shorter labour and nausea claims they repeat are deliberately absent (practitioner
+    // surveys, not trials). Webster is explained, not offered: we have no record the clinic
+    // practises it. Targets "chiropractic during pregnancy" / "pregnancy back pain" (210/mo MY).
+    // Slug is a legacy Wix URL, keep it byte-identical. No lastReviewed until Valerie reads it.
     slug: 'chiropractic-care-through-the-stages-of-a-woman-s-life',
-    title: 'Chiropractic Care Through the Stages of a Woman’s Life',
+    title: 'Chiropractic During Pregnancy: Back Pain, Safety, After Birth',
     description:
-      'How spinal care needs change through adolescence, pregnancy, postpartum and menopause, and what to raise with a chiropractor at each stage.',
+      'Chiropractic during pregnancy: why back and pelvic pain happen, when it is safe and when it is not, what the research says, and help after birth.',
     datePublished: '2025-09-01',
     author: 'Persistence Chiropractic Care',
     linksTo: 'back-pain',
+    keyTakeaways: [
+      {
+        q: 'Is chiropractic safe during pregnancy?',
+        a: 'For most women with an uncomplicated pregnancy, care from a trained, registered chiropractor is generally considered safe. Check with your doctor first, and avoid it with bleeding, placenta problems, an ectopic pregnancy or pre-eclampsia.',
+      },
+      {
+        q: 'How common is back pain in pregnancy?',
+        a: 'Very. Around 45 percent of pregnant women have pelvic girdle pain, low back pain or both, and about a quarter still have it after giving birth.',
+      },
+      {
+        q: 'Does chiropractic help pregnancy back pain?',
+        a: 'It may help some women, but the evidence is limited. Exercise has the strongest support, which is why chiropractic in pregnancy works best alongside it.',
+      },
+      {
+        q: 'What changes at a chiropractor when you are pregnant?',
+        a: 'No X-rays, positioning on your side or seated with pillows as the bump grows, nothing pressing on the abdomen, and gentler techniques adapted to softer ligaments.',
+      },
+      {
+        q: 'What helps pregnancy back pain at home?',
+        a: 'Staying active, sleeping on your side with a pillow between your knees, keeping your knees together when you turn over, taking smaller steps and not carrying loads on one hip.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Which trimester is best to see a chiropractor?',
+        a: 'There is no single best trimester. Many women come in during the second or third trimester, when the bump and the load on the back and pelvis increase. If pain starts earlier, it is fine to be assessed earlier, with your doctor’s agreement.',
+      },
+      {
+        q: 'Can a chiropractor turn a breech baby?',
+        a: 'We do not claim that. The idea comes mainly from practitioner surveys rather than controlled trials. If your baby is breech, talk to your obstetrician, who can explain the options that have been properly studied.',
+      },
+      {
+        q: 'Will chiropractic make labour easier or shorter?',
+        a: 'There is no good evidence that it does, and we do not promise it. The aim of care in pregnancy is to help you feel more comfortable and move more easily while you are pregnant.',
+      },
+      {
+        q: 'Can I lie on my front for an adjustment while pregnant?',
+        a: 'Not once the bump is growing. You are positioned on your side or seated, with pillows and supports, so nothing presses on your abdomen. Early in pregnancy, some positions can be used as usual.',
+      },
+      {
+        q: 'When can I see a chiropractor after giving birth?',
+        a: 'It is sensible to wait until your postnatal check with your doctor, and longer after a caesarean. Gentle movement and pelvic floor exercises usually come first. Pain that is getting worse, fever, or leg weakness or numbness after birth needs your doctor before anyone else.',
+      },
+    ],
+    citations: [
+      {
+        claim:
+          'About 45 percent of all pregnant women and 25 percent of all women postpartum have pregnancy related pelvic girdle pain and/or low back pain, and these figures drop by about 20 percent if mild complaints are excluded.',
+        source: 'Wu et al. (2004), European Spine Journal',
+        url: 'https://doi.org/10.1007/s00586-003-0615-y',
+      },
+      {
+        claim:
+          'A systematic review of chiropractic care for pregnancy related low back, pelvic girdle or combination pain found a lack of conclusive evidence, rating chiropractic care for low back pain as inconclusive but favourable.',
+        source: 'Weis et al. (2020), Journal of Manipulative and Physiological Therapeutics',
+        url: 'https://doi.org/10.1016/j.jmpt.2020.05.005',
+      },
+      {
+        claim:
+          'Across 34 randomised trials in 5,121 women, evidence quality ranged from moderate to low. Land based exercise reduced pain and disability, and manual therapy or a combined programme of manual therapy, exercise and education may also be of benefit.',
+        source: 'Liddle & Pennick (2015), Cochrane review of interventions for low back and pelvic pain in pregnancy',
+        url: 'https://doi.org/10.1002/14651858.CD001139.pub4',
+      },
+      {
+        claim:
+          'A critical review found only a few published cases of adverse events from spinal manipulation in pregnancy and after birth, suggesting such injuries are relatively rare, while noting that reporting is limited.',
+        source: 'Stuber, Wynd & Weis (2012), Chiropractic & Manual Therapies',
+        url: 'https://doi.org/10.1186/2045-709X-20-8',
+      },
+    ],
     // Licensed stock carried over from the original Wix post cover: a flat teal silhouette
     // illustration, not clinic photography or a real patient, so no local modifier in the alt.
     heroImage: {
@@ -2259,13 +2406,91 @@ export const posts: Post[] = [
     draft: false,
   },
   {
+    // Rewritten 2026-11-09 (schedule pc050) after benchmarking the Cheras sports chiropractor
+    // ranking first in Malaysia and two US runner/athlete pages: all three overclaim and none
+    // cites the performance evidence. The Wix version leaned on celebrity quotes (Bolt, Jordan,
+    // Schwarzenegger) and unhedged performance claims; both are gone. The Olympic line says
+    // sports chiropractors worked in the Paris 2024 polyclinic, NOT that FICS ran it (Dynamic
+    // Chiropractic credits the IOC's COPS programme). Author moved from Kee Shan Lim to the
+    // clinic because the copy is no longer hers; restore her byline if she reviews and adopts
+    // it. Slug is a legacy Wix URL, keep it byte-identical. No lastReviewed until reviewed.
     slug: 'chiropractic-care-for-athletes-optimising-performance-and-preventing-injuries',
-    title: 'Chiropractic Care for Athletes: Optimising Performance and Preventing Injuries',
+    title: 'Chiropractic for Athletes and Runners: An Honest Guide',
     description:
-      'How chiropractic care fits into an athlete training schedule, what a pre-season assessment looks at, and the injury patterns worth catching early.',
+      'Chiropractic for athletes and runners, honestly: what the evidence says on performance, why running injuries happen, common injuries and what to do.',
     datePublished: '2024-12-09',
-    author: 'Kee Shan Lim',
+    author: 'Persistence Chiropractic Care',
     linksTo: 'sports-injury-rehabilitation',
+    keyTakeaways: [
+      {
+        q: 'Does chiropractic make athletes perform better?',
+        a: 'There is not enough evidence to say it directly improves sport performance. A review of the research found only a few small studies of mixed quality.',
+      },
+      {
+        q: 'What can chiropractic do for athletes and runners?',
+        a: 'Help work out why something hurts, restore movement to stiff joints, catch injuries early and, together with physiotherapy, plan a staged return to full training.',
+      },
+      {
+        q: 'What causes most running injuries?',
+        a: 'Doing too much too soon. Rapid jumps in training load are linked to a large share of non-contact soft tissue injuries, and novice runners are injured at more than twice the rate of recreational runners.',
+      },
+      {
+        q: 'Which running injuries are most common?',
+        a: 'Runner’s knee, IT band pain, shin splints, plantar heel pain and Achilles pain. Most settle with a change in training load and targeted strength work.',
+      },
+      {
+        q: 'When should a runner get an injury assessed?',
+        a: 'When pain has not eased after two or three weeks of lighter training, when it stops you running, or straight away for a pop, swelling, a joint giving way or pinpoint shin pain at rest.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Should I see a chiropractor or a physiotherapist for a sports injury?',
+        a: 'Often both have a part to play. A chiropractor focuses on how the joints of the spine and limbs are moving, and a physiotherapist on strength, control and the loading plan. At our clinic they work together, and the assessment decides who does what for your injury.',
+      },
+      {
+        q: 'Can I keep training while I have an injury?',
+        a: 'In many cases, yes, with changes. Running or training at a level that keeps pain mild and settles by the next morning is often better than stopping completely. Your practitioner will tell you what is safe to keep doing and what to pause.',
+      },
+      {
+        q: 'Do professional athletes see chiropractors?',
+        a: 'Many do, and sports chiropractors worked in the athlete polyclinic at the Paris 2024 Olympic Village. That shows the profession has a place in sports medicine teams, but it is not evidence that chiropractic improves performance.',
+      },
+      {
+        q: 'How quickly can I get back to running after an injury?',
+        a: 'It depends on the injury and how long it has been building. Mild overuse problems may only need a few weeks of lighter running, while tendon problems and stress fractures take longer. A staged return with clear milestones is safer than going back on a fixed date.',
+      },
+      {
+        q: 'Is it worth seeing a chiropractor when I am not injured?',
+        a: 'If you are healthy and training well, you do not need to. A check can be useful if you are about to increase your training a lot, have a niggle that keeps coming back, or want a second opinion on how you move before a big race block.',
+      },
+    ],
+    citations: [
+      {
+        claim:
+          'A narrative review found only seven relevant articles, of variable quality, on chiropractic and sport performance, and concluded there is insufficient evidence to convincingly support the notion that care provided by chiropractors can directly improve sport performance.',
+        source: 'Miners (2010), Journal of the Canadian Chiropractic Association',
+        url: 'https://pubmed.ncbi.nlm.nih.gov/21120012/',
+      },
+      {
+        claim:
+          'A systematic review and meta-analysis found 17.8 running-related injuries per 1,000 hours of running in novice runners, compared with 7.7 in recreational runners.',
+        source: 'Videbæk, Bueno, Nielsen & Rasmussen (2015), Sports Medicine',
+        url: 'https://doi.org/10.1007/s40279-015-0333-8',
+      },
+      {
+        claim:
+          'Excessive and rapid increases in training loads are likely responsible for a large proportion of non-contact, soft tissue injuries, while high chronic workloads built up gradually appear protective.',
+        source: 'Gabbett (2016), British Journal of Sports Medicine',
+        url: 'https://doi.org/10.1136/bjsports-2015-095788',
+      },
+      {
+        claim:
+          'Chiropractic was available to athletes in the polyclinic of the Olympic Village at the Paris 2024 Olympic and Paralympic Games.',
+        source: 'Dynamic Chiropractic (2024), Chiropractic at the Olympic and Paralympic Games',
+        url: 'https://dynamicchiropractic.com/article/102495-chiropractic-at-the-olympic-and-paralympic-games',
+      },
+    ],
     draft: false,
   },
   {
@@ -2357,7 +2582,9 @@ export const posts: Post[] = [
     datePublished: '2023-06-20',
     author: 'Persistence Chiropractic Care',
     linksTo: 'back-pain',
-    draft: false,
+    draft: true,
+    holdReason:
+      'Merged into /what-to-expect on 2026-11-09 (pc054): it was splitting the first-visit queries with that page. Both its /post/ and /blog/ URLs 301 there via MERGED_POSTS in redirects.ts.',
   },
   {
     slug: 'are-house-chores-a-pain-in-the-back-here-s-what-chiropractors-say',

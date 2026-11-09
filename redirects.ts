@@ -173,6 +173,28 @@ const HELD_POST_REDIRECTS: Redirect[] = HELD_POST_SLUGS.map((slug) => ({
   statusCode: 301,
 }))
 
+/**
+ * Legacy posts folded into a page that now owns their intent. Both the Wix /post/ URL and the
+ * rebuild's own /blog/ URL 301 to the page, so neither the old crawl history nor any link
+ * earned by /blog/<slug> since launch is lost. Like held posts, these are `draft: true` in
+ * lib/posts.ts and must precede the wildcard.
+ *
+ * - what-to-expect-when-going-to-the-chiropractor-for-the-first-time (2026-11-09, pc054):
+ *   GSC showed it collecting the first-visit queries at positions 60 to 99 while
+ *   /what-to-expect, the page meant to rank for them, got only brand searches. Its useful
+ *   content (the step list, the "does it hurt" worry) now lives on /what-to-expect.
+ */
+export const MERGED_POSTS: Record<string, string> = {
+  'what-to-expect-when-going-to-the-chiropractor-for-the-first-time': '/what-to-expect',
+}
+
+const MERGED_POST_REDIRECTS: Redirect[] = Object.entries(MERGED_POSTS).flatMap(
+  ([slug, destination]) => [
+    { source: `/post/${slug}`, destination, statusCode: 301 as const },
+    { source: `/blog/${slug}`, destination, statusCode: 301 as const },
+  ],
+)
+
 // ponytail: one wildcard rule instead of 12 rows. Slugs are preserved byte-identical,
 // so :slug passes straight through. Keep LEGACY_POST_SLUGS for the redirect-map
 // deliverable and the tests — Next never needs the explicit list.
@@ -182,7 +204,12 @@ const POST_REDIRECT: Redirect = {
   statusCode: 301,
 }
 
-export const redirects: Redirect[] = [...PAGE_REDIRECTS, ...HELD_POST_REDIRECTS, POST_REDIRECT]
+export const redirects: Redirect[] = [
+  ...PAGE_REDIRECTS,
+  ...HELD_POST_REDIRECTS,
+  ...MERGED_POST_REDIRECTS,
+  POST_REDIRECT,
+]
 
 /** Legacy URLs that must resolve, for the check script. */
 export const allLegacyUrls = (): string[] => [

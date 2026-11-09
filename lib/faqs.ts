@@ -30,6 +30,29 @@ export const clinicFaqs: Faq[] = [
     q: 'Is Chiropractic & Physiotherapy suitable for all ages?',
     a: 'We see patients of every age, from infants through to older adults, as well as teenagers and pregnant women. Our youngest patient was 4 months old and our eldest 96. Suitability still depends on the individual, and some presentations are not appropriate for adjustment, so an assessment always comes before anything is adjusted. If your chiropractor feels another healthcare provider would better help you, you will be referred appropriately.',
   },
+  /**
+   * The four below were added 2026-11-09 (pc054) when the legacy first-visit post was merged
+   * into this page. None of the ranking first-visit pages explained the cracking sound with
+   * evidence or said how long soreness lasts. Worded so they do not repeat the homepage's
+   * "Do chiropractic adjustments hurt?" or "What should I expect during my first visit?",
+   * which would put identical FAQPage answers on two routes.
+   */
+  {
+    q: 'Will I be adjusted on my first visit?',
+    a: 'Usually, yes, but only once the assessment is done and only if it is appropriate. If the history, examination or X-ray suggests adjustment is not the right call, for example a recent fracture or a problem that belongs with a doctor, your chiropractor will explain why and refer you instead. You can also say you would rather wait, and nothing is adjusted without your agreement.',
+  },
+  {
+    q: 'What is the cracking sound during an adjustment?',
+    a: 'It is thought to come from a small gas cavity forming in the fluid inside the joint as the joint surfaces separate slightly, the same thing that happens when you crack your knuckles. Imaging studies of finger joints support this explanation. It is not bones grinding or anything breaking, and the sound on its own does not tell you whether an adjustment went well. Some adjustments make no sound at all.',
+  },
+  {
+    q: 'Is it normal to feel sore after my first adjustment?',
+    a: 'Yes, mild soreness is common, especially after the first few visits. A large study of chiropractic patients found that about half noticed some reaction, most often local soreness, mild or moderate in most cases. Most reactions appeared within a few hours and about three quarters had gone within 24 hours. Gentle walking, staying hydrated and the aftercare advice on this page usually help.',
+  },
+  {
+    q: 'When is soreness after an adjustment not normal?',
+    a: 'Call us if soreness is getting worse rather than better after two days, or if it is severe. Seek medical help straight away for new numbness, weakness, tingling in your arms or legs, a sudden severe headache, dizziness, slurred speech, trouble swallowing or changes to your vision, or any loss of bladder or bowel control. These are rare, but they are not ordinary post-adjustment soreness.',
+  },
   {
     q: 'What are the benefits of getting a Chiropractic adjustment?',
     a: 'Adjustments aim to improve how well a restricted joint moves, and patients often report less discomfort and easier movement afterwards. How much changes, and how quickly, varies from person to person and depends on what is causing the problem in the first place. Your chiropractor will tell you what is realistic for your case after assessing you, rather than promising a particular result beforehand.',
@@ -179,6 +202,71 @@ export const aftercare = [
     body: 'Apply an ice pack wrapped in cloth for 3 rounds of 5 minutes, with 5 minute rests between. This helps settle pain and swelling. Avoid heat on a freshly irritated joint, and check with your chiropractor if you are unsure.',
   },
 ] as const
+
+/**
+ * The first visit in order, from booking to the drive home. Added 2026-11-09 (pc054) from the
+ * merged legacy first-visit post and the new patient bundle in lib/pricing.ts. Deliberately a
+ * visit timeline rather than the Gonstead six steps, which live on /services/chiropractic-care
+ * and are linked from here instead of repeated. English only until zh/ms copy is written: the
+ * page renders the section only when the locale has one.
+ */
+export const firstVisitQuickAnswer =
+  'A first chiropractic visit at our Cheras clinic takes about 30 to 60 minutes. Your chiropractor takes a full history, examines how your spine moves, arranges an X-ray if it is indicated, explains what they found, and adjusts only if it is appropriate. Wear loose clothes you can move in and bring any previous scans or reports.'
+
+export const firstVisitTimelineTitle = {
+  eyebrow: 'Step by step',
+  heading: 'Your first chiropractic visit, from booking to going home',
+}
+
+export const firstVisitTimeline = [
+  {
+    heading: 'Before you arrive',
+    body: 'Book online or on WhatsApp and tell us your main concern, and whether you are pregnant. Wear loose, comfortable clothing, and bring any previous X-rays, MRI scans or doctor’s reports, plus a list of medications you take.',
+  },
+  {
+    heading: 'When you arrive',
+    body: 'Come 5 to 10 minutes early to fill in a short health form without rushing. You are welcome to bring a partner, parent or friend into the room.',
+  },
+  {
+    heading: 'History',
+    body: 'Your chiropractor asks where it hurts, how it started, what makes it better or worse, and what it has stopped you doing, along with your general health and past injuries.',
+  },
+  {
+    heading: 'Examination',
+    body: 'They look at how you stand and move, take nervoscope readings along your spine, and feel each spinal and pelvic joint to find the ones not moving as they should. You stay in your clothes, and a gown is offered if your back needs to be seen.',
+  },
+  {
+    heading: 'X-ray, where it is indicated',
+    body: 'Many patients have a spinal X-ray to rule out anything that would change the plan and to show the joints themselves. It is not done for everyone, and it is avoided in pregnancy and for children unless there is a clear reason.',
+  },
+  {
+    heading: 'Findings and a plan',
+    body: 'Your chiropractor explains what they found in plain language, what is realistic, and what they suggest next. You can take time to think it over before booking anything further.',
+  },
+  {
+    heading: 'Your first adjustment',
+    body: 'If it is appropriate and you agree, you are adjusted, usually lying on a padded adjusting table or seated on an adjusting chair. You may hear a click. If the findings point elsewhere, you are referred rather than adjusted.',
+  },
+  {
+    heading: 'Afterwards',
+    body: 'Mild soreness for a day is common. The aftercare tips below cover what helps, and you can message us with any questions once you are home.',
+  },
+] as const
+
+const firstVisitQuickAnswerByLocale: Record<Locale, string | null> = {
+  en: firstVisitQuickAnswer,
+  zh: null,
+  ms: null,
+}
+const firstVisitTimelineByLocale: Record<Locale, readonly { heading: string; body: string }[]> = {
+  en: firstVisitTimeline,
+  zh: [],
+  ms: [],
+}
+export const firstVisitQuickAnswerFor = (locale: Locale) => firstVisitQuickAnswerByLocale[locale]
+export const firstVisitTimelineFor = (locale: Locale) => firstVisitTimelineByLocale[locale]
+export const firstVisitTimelineTitleFor = (locale: Locale) =>
+  locale === 'en' ? firstVisitTimelineTitle : null
 
 /**
  * Locale dispatch for the /what-to-expect and homepage content — see the matching comment

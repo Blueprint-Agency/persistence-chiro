@@ -226,7 +226,7 @@ const en: Dictionary = {
       ', or message us your main concern and we will point you to the right one.',
     whatToExpectBreadcrumbLabel: 'What to Expect',
     whatToExpectEyebrow: 'What to expect',
-    whatHappensOnYourFirstVisit: 'What happens on your first visit',
+    whatHappensOnYourFirstVisit: 'What to Expect at Your First Chiropractic Visit',
     recoveryTakesTimeIntro:
       'Recovery takes time. Knowing what happens before you walk in makes the first visit a lot easier.',
     yourFirstVisitEyebrow: 'Your first visit',
