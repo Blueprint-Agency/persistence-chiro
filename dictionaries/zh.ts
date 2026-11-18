@@ -310,7 +310,7 @@ const zh: Dictionary = {
     wantToKnowWhichOfUsToSee: '想知道该找我们哪一位吗?',
     wantToKnowWhichOfUsToSeeBody: '告诉我们您主要的困扰,我们会在您预约前为您配对合适的治疗师。',
     homeHeroEyebrow: 'Gonstead 脊椎矫正与物理治疗 · Cheras, Maluri',
-    homeH1: 'Cheras 的脊椎矫正师与物理治疗师,同一屋檐下即可完成。',
+    homeH1: 'Cheras 的脊椎矫正师与物理治疗师',
     homeHeroLead: 'Cheras 提供不靠药物、以徒手为主的脊椎矫正与物理治疗。个人化护理,以评估结果为依据。',
     homeAssessmentNote: '第一次会诊从评估开始。在检查您之前,不会进行任何调整。',
     homeFactOpenSevenDays: '每周七天营业',

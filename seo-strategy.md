@@ -78,7 +78,8 @@ Traffic has decayed ~90% since mid-2024 (300+ → 24/mo) — likely stale/thin c
 - **Homepage retitle:** `Chiropractor in Cheras (Maluri), Kuala Lumpur | Persistence Chiropractic`. H1 must contain "Chiropractor in Cheras". Currently the site doesn't anchor itself to Cheras/Maluri strongly enough to rank for proximity terms.
 
   > **⚠️ OVERRIDDEN BY THE CLIENT, 2026-08-01 — the build no longer follows this rule.**
-  > The homepage h1 reads *"Chiropractor and Physiotherapist in Cheras, under one roof."*
+  > The homepage h1 reads *"Chiropractor and Physiotherapist in Cheras"* (", under one
+  > roof." dropped at the client's request, 2026-11-18).
   > The mandatory phrase is not contiguous in it, on the page that holds most of the
   > site's referring domains.
   >

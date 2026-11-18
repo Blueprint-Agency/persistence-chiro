@@ -277,8 +277,8 @@ export default async function Home({ params }: Props) {
              * trade-offs spelled out. Do not "correct" it — raise it with them.
              *
              * It answers the client's actual objection (the clinic is not chiropractors
-             * alone) in the fewest words available, and "under one roof" carries a real
-             * benefit rather than a claim: you are not referred out for the other half.
+             * alone) in the fewest words available. The original tail ", under one roof."
+             * was removed at the client's request on 2026-11-18, in all three locales.
              *
              * ⚠️ ONE RULE STILL BROKEN, deliberately. seo-strategy.md § Phase 1 says this h1
              * MUST contain "Chiropractor in Cheras" contiguously; "Chiropractor and
@@ -300,8 +300,8 @@ export default async function Home({ params }: Props) {
              * anything, and it is the class of claim stripped from this site in July and
              * again this session.
              *
-             * zh/ms (`dict.page.homeH1`) are natural translations of the same wording and
-             * carry the same "under one roof" benefit, but the English-specific mitigation
+             * zh/ms (`dict.page.homeH1`) are natural translations of the same wording, but
+             * the English-specific mitigation
              * above (the exact phrase surviving in <title>) does not apply to them — their
              * SEO strategy targets real zh/ms search terms, not an English ranking signal,
              * per AGENTS.md § Multilingual, so there is nothing to mitigate.

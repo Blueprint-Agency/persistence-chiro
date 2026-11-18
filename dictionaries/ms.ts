@@ -324,7 +324,7 @@ const ms: Dictionary = {
     wantToKnowWhichOfUsToSeeBody:
       'Beritahu kami kebimbangan utama anda dan kami akan padankan anda dengan pengamal yang sesuai sebelum anda menempah.',
     homeHeroEyebrow: 'Kiropraktik & fisioterapi Gonstead · Cheras, Maluri',
-    homeH1: 'Kiropraktor dan Ahli Fisioterapi di Cheras, di bawah satu bumbung.',
+    homeH1: 'Kiropraktor dan Ahli Fisioterapi di Cheras',
     homeHeroLead:
       'Kiropraktik dan Fisioterapi bebas dadah, secara tangan, di Cheras. Jagaan diperibadikan berdasarkan apa yang penilaian anda sebenarnya tunjukkan.',
     homeAssessmentNote:

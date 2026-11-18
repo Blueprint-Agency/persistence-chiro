@@ -319,7 +319,7 @@ const en: Dictionary = {
     wantToKnowWhichOfUsToSeeBody:
       "Tell us your main concern and we'll match you to the right practitioner before you book.",
     homeHeroEyebrow: 'Gonstead chiropractic & physiotherapy · Cheras, Maluri',
-    homeH1: 'Chiropractor and Physiotherapist in Cheras, under one roof.',
+    homeH1: 'Chiropractor and Physiotherapist in Cheras',
     homeHeroLead:
       'Drug-free, hands-on Chiropractic and Physiotherapy in Cheras. Personalised care built around what your assessment actually shows.',
     homeAssessmentNote:
