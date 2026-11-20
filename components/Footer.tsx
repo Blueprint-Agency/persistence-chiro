@@ -49,7 +49,7 @@ export function Footer({ locale, dict }: { locale: Locale; dict: Dictionary }) {
                 column below — removing the button does not remove the number, which local
                 SEO depends on appearing on every page. */}
             <div className="mt-7">
-              <WhatsAppButton tone="green" message={waMessage.general(locale)}>{dict.header.enquireOnWhatsapp}</WhatsAppButton>
+              <WhatsAppButton message={waMessage.general(locale)}>{dict.header.enquireOnWhatsapp}</WhatsAppButton>
             </div>
 
             <ul className="mt-8 flex gap-5 text-sm text-white/70">
