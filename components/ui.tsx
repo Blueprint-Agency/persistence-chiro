@@ -156,6 +156,7 @@ export function WhatsAppButton({
   message,
   children,
   attention = false,
+  tone = 'gold',
 }: {
   message: string
   // No default: every call site passes localized text, and a default here would silently
@@ -171,13 +172,22 @@ export function WhatsAppButton({
    * highest-intent CTA on a page, which on the service pages is the hero.
    */
   attention?: boolean
+  /**
+   * `gold` is the site default. `green` is WhatsApp's own #25D366, used only where the client
+   * asked for it (the footer). Ink text, not white: white on #25D366 is ~2:1 and fails AA.
+   */
+  tone?: 'gold' | 'green'
 }) {
+  const toneClass =
+    tone === 'green'
+      ? 'bg-[#25D366] text-ink hover:bg-[#1fb857]'
+      : 'bg-brand-gold text-ink hover:bg-[#d4b00d]'
   return (
     <a
       href={whatsappLink(message)}
       target="_blank"
       rel="noopener"
-      className={`${BUTTON_BASE} bg-brand-gold text-ink hover:bg-[#d4b00d] ${
+      className={`${BUTTON_BASE} ${toneClass} ${
         attention ? 'cta-attention' : ''
       }`}
     >
