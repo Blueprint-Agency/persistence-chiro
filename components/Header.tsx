@@ -5,7 +5,7 @@ import { clinic, hoursSummaryFor } from '@/lib/clinic'
 import { mainNav } from '@/lib/nav'
 import { NavLink, WhatsAppButton, WhatsAppIcon } from '@/components/ui'
 import { waMessage } from '@/lib/whatsapp'
-import { type Locale, pathFor } from '@/lib/i18n'
+import { LOCALE_LABEL, type Locale, pathFor } from '@/lib/i18n'
 import type { Dictionary } from '@/dictionaries/types'
 import { LocaleSwitcher } from '@/components/LocaleSwitcher'
 import { localizedPaths } from '@/lib/locale-availability'
@@ -76,7 +76,7 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   const desktopNavListClass =
     locale === 'ms' ? 'ml-auto hidden items-center gap-6 xl:flex' : 'ml-auto hidden items-center gap-6 lg:flex'
   const ctaGroupClass =
-    locale === 'ms' ? 'ml-auto flex shrink-0 items-center gap-3 xl:ml-0' : 'ml-auto flex shrink-0 items-center gap-3 lg:ml-0'
+    locale === 'ms' ? 'ml-auto flex shrink-0 items-center gap-2 sm:gap-3 xl:ml-0' : 'ml-auto flex shrink-0 items-center gap-2 sm:gap-3 lg:ml-0'
   const mobileMenuClass = locale === 'ms' ? 'xl:hidden' : 'lg:hidden'
 
   return (
@@ -118,7 +118,7 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
       </div>
 
       <div className="border-b border-line bg-background/95 backdrop-blur">
-        <nav aria-label={dict.page.mainNavAriaLabel} className="mx-auto flex max-w-6xl items-center gap-8 px-4 py-3">
+        <nav aria-label={dict.page.mainNavAriaLabel} className="mx-auto flex max-w-6xl items-center gap-4 px-4 py-3 sm:gap-8">
           <Link href={pathFor(locale, '/')} className="flex-none">
             <Image
               src="/img/logo-persistence.png"
@@ -126,7 +126,7 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
               width={480}
               height={107}
               priority
-              className="h-9 w-auto"
+              className="h-8 w-auto sm:h-9"
             />
           </Link>
 
@@ -177,6 +177,38 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
             <div className="hidden sm:block">
               <WhatsAppButton message={waMessage.general(locale)}>{dict.header.enquireOnWhatsapp}</WhatsAppButton>
             </div>
+
+            {/* Language pill for phones, where the utility bar (and its switcher) is hidden.
+                Same <details> pattern as the menu, and the same `data-mobile-nav` hook, so
+                MobileNavClose dismisses it after a tap and opening one closes the other.
+                Shows the current language; the dropdown lists all of them. */}
+            <details data-mobile-nav className="relative md:hidden">
+              <summary
+                className="flex h-11 cursor-pointer list-none items-center gap-1 rounded-full border border-line px-3 text-sm font-medium text-ink"
+                aria-label={`${dict.header.language}: ${LOCALE_LABEL[locale]}`}
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.75"
+                  className="h-4 w-4"
+                  aria-hidden="true"
+                >
+                  <circle cx="12" cy="12" r="9" />
+                  <path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9s1.3-6.4 3.8-9z" />
+                </svg>
+                {LOCALE_LABEL[locale]}
+              </summary>
+              <div className="absolute right-0 top-full mt-2 w-40 rounded-xl border border-line bg-background p-2 shadow-overlay">
+                <LocaleSwitcher
+                  locale={locale}
+                  paths={localizedPaths()}
+                  tone="stack"
+                  label={dict.header.language}
+                />
+              </div>
+            </details>
 
             {/* Mobile menu. <details> is the whole implementation — no state, no bundle.
                 `data-mobile-nav` is the hook MobileNavClose uses to dismiss it after a link
@@ -231,6 +263,18 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
                     and the footer, both of which are NAP citations rather than buttons. */}
                 <div className="mt-5 flex flex-col gap-2">
                   <WhatsAppButton message={waMessage.general(locale)}>{dict.header.enquireOnWhatsapp}</WhatsAppButton>
+                </div>
+
+                {/* The utility bar carrying the switcher is hidden below md, so the drawer
+                    is the only way a phone visitor can change language. */}
+                <div className="mt-5 flex items-center justify-between gap-4 border-t border-line pt-4">
+                  <span className="text-sm text-ink-muted">{dict.header.language}</span>
+                  <LocaleSwitcher
+                    locale={locale}
+                    paths={localizedPaths()}
+                    tone="light"
+                    label={dict.header.language}
+                  />
                 </div>
               </div>
             </details>

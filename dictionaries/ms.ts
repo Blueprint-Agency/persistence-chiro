@@ -27,6 +27,7 @@ const ms: Dictionary = {
     enquireOnWhatsapp: 'Tanya di WhatsApp',
     menu: 'Menu',
     skipToContent: 'Langkau ke kandungan',
+    language: 'Bahasa',
   },
   footer: {
     tagline:

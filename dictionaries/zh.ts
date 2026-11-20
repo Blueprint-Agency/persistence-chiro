@@ -36,6 +36,7 @@ const zh: Dictionary = {
     enquireOnWhatsapp: 'WhatsApp咨询',
     menu: '菜单',
     skipToContent: '跳至内容',
+    language: '语言',
   },
   footer: {
     tagline:

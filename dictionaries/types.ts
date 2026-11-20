@@ -30,6 +30,8 @@ export type Dictionary = {
     enquireOnWhatsapp: string
     menu: string
     skipToContent: string
+    /** Label for the language switcher in the mobile menu, where it has no utility bar around it. */
+    language: string
   }
   footer: {
     tagline: string

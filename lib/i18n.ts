@@ -25,6 +25,9 @@ export const LOCALE_TAG: Record<Locale, string> = {
 }
 
 /** Underscore form Open Graph expects (`og:locale`). */
+/** What the language switcher shows for each locale, in that locale's own script. */
+export const LOCALE_LABEL: Record<Locale, string> = { en: 'EN', zh: '中文', ms: 'BM' }
+
 export const OG_LOCALE: Record<Locale, string> = {
   en: 'en_MY',
   zh: 'zh_MY',

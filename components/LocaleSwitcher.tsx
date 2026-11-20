@@ -3,10 +3,8 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
-import { LOCALES, type Locale, pathFor } from '@/lib/i18n'
+import { LOCALES, LOCALE_LABEL, type Locale, pathFor } from '@/lib/i18n'
 import type { LocalizedPaths } from '@/lib/locale-availability'
-
-const LOCALE_LABEL: Record<Locale, string> = { en: 'EN', zh: '中文', ms: 'BM' }
 
 /**
  * Strips the locale segment off whatever `usePathname` returns, giving the unprefixed
@@ -37,8 +35,45 @@ const unprefixed = (pathname: string) => pathname.replace(LOCALE_PREFIX, '') || 
  * browser bundle and the switcher can never point at a locale that would 404 — it is the
  * same `pathExistsIn` check `generateMetadata` uses for hreflang.
  */
-export function LocaleSwitcher({ locale, paths }: { locale: Locale; paths: LocalizedPaths }) {
+/**
+ * `dark` sits in the slate utility bar (md and up). `light` sits in the mobile menu drawer,
+ * because the utility bar is hidden below md and phones would otherwise have no switcher.
+ * The light variant uses 44px pill targets since it is tapped, not clicked. `stack` is the
+ * dropdown behind the globe pill in the phone header.
+ */
+const TONE = {
+  dark: {
+    list: 'items-center gap-3 text-xs',
+    current: 'text-white',
+    link: 'text-white/60 hover:text-white',
+  },
+  light: {
+    list: 'items-center gap-2 text-sm',
+    current:
+      'flex h-11 min-w-11 items-center justify-center rounded-full bg-brand-slate px-4 text-white',
+    link: 'flex h-11 min-w-11 items-center justify-center rounded-full border border-line px-4 text-ink hover:border-brand-slate hover:text-brand-slate',
+  },
+  // The dropdown under the globe pill in the phone header: one full-width row per language.
+  stack: {
+    list: 'flex-col items-stretch gap-1 text-sm',
+    current: 'flex h-11 items-center rounded-lg bg-brand-aqua px-3 text-brand-slate',
+    link: 'flex h-11 items-center rounded-lg px-3 text-ink hover:bg-brand-aqua hover:text-brand-slate',
+  },
+} as const
+
+export function LocaleSwitcher({
+  locale,
+  paths,
+  tone = 'dark',
+  label,
+}: {
+  locale: Locale
+  paths: LocalizedPaths
+  tone?: keyof typeof TONE
+  label?: string
+}) {
   const path = unprefixed(usePathname())
+  const style = TONE[tone]
 
   const targetFor = (l: Locale) => {
     if (l === 'en') return pathFor(l, path)
@@ -46,15 +81,18 @@ export function LocaleSwitcher({ locale, paths }: { locale: Locale; paths: Local
   }
 
   return (
-    <ul className="flex shrink-0 items-center gap-3 whitespace-nowrap text-xs font-medium">
+    <ul
+      aria-label={label}
+      className={`flex shrink-0 whitespace-nowrap font-medium ${style.list}`}
+    >
       {LOCALES.filter((l) => l === locale || l === 'en' || paths[l].includes('/')).map((l) => (
         <li key={l}>
           {l === locale ? (
-            <span aria-current="true" className="text-white">
+            <span aria-current="true" className={style.current}>
               {LOCALE_LABEL[l]}
             </span>
           ) : (
-            <Link href={targetFor(l)} hrefLang={l} className="text-white/60 hover:text-white">
+            <Link href={targetFor(l)} hrefLang={l} className={style.link}>
               {LOCALE_LABEL[l]}
             </Link>
           )}

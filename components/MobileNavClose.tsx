@@ -47,6 +47,11 @@ export function MobileNavClose() {
       // must keep its native toggle behaviour.
       if (drawer) {
         if (target.closest('a')) drawer.open = false
+        // The header has two of these (menu, language). Opening one closes the other so
+        // their panels never stack on top of each other.
+        document.querySelectorAll<HTMLDetailsElement>(DRAWER).forEach((d) => {
+          if (d !== drawer) d.open = false
+        })
         return
       }
 

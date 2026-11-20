@@ -21,6 +21,7 @@ const en: Dictionary = {
     enquireOnWhatsapp: 'Enquire on WhatsApp',
     menu: 'Menu',
     skipToContent: 'Skip to content',
+    language: 'Language',
   },
   footer: {
     tagline:
