@@ -161,6 +161,7 @@ export default async function ChiropracticPage({ params }: Props) {
         image={service.heroImage}
         assurances={service.assurances}
         message={waMessage.service(locale, shortName)}
+        cta={dict.header.scheduleConsultation}
         // Only where a bundle actually renders further down, and the percentage comes off the
         // same helper the card uses, so the button cannot advertise a discount the card
         // contradicts. No bundle in this locale means no button rather than a dead anchor.
@@ -189,6 +190,7 @@ export default async function ChiropracticPage({ params }: Props) {
         heading={dict.page.notSureWhatYouNeed}
         body={dict.page.notSureWhatYouNeedBody}
         message={waMessage.service(locale, shortName)}
+        cta={dict.header.scheduleConsultation}
         secondary={{
           href: pathFor(locale, '/what-to-expect'),
           label: dict.page.firstVisitLabel,
@@ -410,7 +412,11 @@ export default async function ChiropracticPage({ params }: Props) {
         message={waMessage.service(locale, shortName)}
       />
 
-      <StickyCta dict={dict} message={waMessage.service(locale, shortName)} />
+      <StickyCta
+        dict={dict}
+        message={waMessage.service(locale, shortName)}
+        cta={dict.header.scheduleConsultation}
+      />
       {/* Clears the fixed mobile bar so it never covers the footer. Slate, not the page
           ground — as cream it read as an empty white band between the gold CTA and the
           footer; in the footer's own colour it is simply where the footer starts. */}

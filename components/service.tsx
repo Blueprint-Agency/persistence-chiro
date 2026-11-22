@@ -517,6 +517,7 @@ export function InlineCta({
   meta,
   message,
   secondary,
+  cta,
 }: {
   dict: Dictionary
   heading?: string
@@ -525,6 +526,8 @@ export function InlineCta({
   meta?: string
   message: string
   secondary?: { href: string; label: string }
+  /** Button label. Defaults to "Enquire on WhatsApp"; services pages override it. */
+  cta?: string
 }) {
   return (
     <section className="mx-auto max-w-6xl px-4">
@@ -539,7 +542,7 @@ export function InlineCta({
           <p className="mt-3 text-sm text-ink-muted/80">{meta ?? dict.page.openSevenDaysNoReferral}</p>
         </div>
         <div className="mt-7 flex flex-wrap gap-3 lg:mt-0 lg:flex-none lg:flex-col">
-          <WhatsAppButton message={message}>{dict.header.enquireOnWhatsapp}</WhatsAppButton>
+          <WhatsAppButton message={message}>{cta ?? dict.header.enquireOnWhatsapp}</WhatsAppButton>
           {secondary && <GhostButton href={secondary.href}>{secondary.label}</GhostButton>}
         </div>
       </div>
@@ -936,10 +939,13 @@ export function References({
 export function StickyCta({
   dict,
   message,
+  cta,
 }: {
   dict: Dictionary
   // No default — see the matching note on <CtaBand> in components/ui.tsx.
   message: string
+  /** Bar label. Defaults to "Enquire on WhatsApp"; services pages override it. */
+  cta?: string
 }) {
   return (
     <div className="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-white/95 shadow-overlay-up backdrop-blur lg:hidden">
@@ -953,7 +959,7 @@ export function StickyCta({
           className="inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-brand-gold px-5 py-3 text-center text-sm font-semibold text-ink"
         >
           <WhatsAppIcon />
-          {dict.header.enquireOnWhatsapp}
+          {cta ?? dict.header.enquireOnWhatsapp}
         </a>
       </div>
     </div>

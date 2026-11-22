@@ -19,6 +19,7 @@ const en: Dictionary = {
     openSevenDays: 'Open 7 days',
     whatsapp: 'WhatsApp',
     enquireOnWhatsapp: 'Enquire on WhatsApp',
+    scheduleConsultation: 'Schedule a consultation now',
     menu: 'Menu',
     skipToContent: 'Skip to content',
     language: 'Language',

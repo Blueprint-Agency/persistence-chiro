@@ -156,6 +156,7 @@ export default async function ServicePage({ params }: Props) {
         image={service.heroImage}
         assurances={service.assurances}
         message={waMessage.service(locale, shortName)}
+        cta={dict.header.scheduleConsultation}
         // Only where a bundle actually renders further down, and the percentage comes off the
         // same helper the card uses, so the button cannot advertise a discount the card
         // contradicts. No bundle in this locale means no button rather than a dead anchor.
@@ -193,6 +194,7 @@ export default async function ServicePage({ params }: Props) {
         body={service.midCta?.body}
         meta={service.midCta?.meta}
         message={waMessage.service(locale, shortName)}
+        cta={dict.header.scheduleConsultation}
         secondary={
           service.midCta?.secondary === 'priceList' && priceList
             ? { href: `#${PRICE_LIST_ANCHOR}`, label: priceList.ctaLabel }
@@ -221,7 +223,7 @@ export default async function ServicePage({ params }: Props) {
                 </p>
                 <div className="mt-8">
                   <WhatsAppButton message={waMessage.service(locale, shortName)}>
-                    {dict.header.enquireOnWhatsapp}
+                    {dict.header.scheduleConsultation}
                   </WhatsAppButton>
                 </div>
 
@@ -369,7 +371,11 @@ export default async function ServicePage({ params }: Props) {
         message={waMessage.service(locale, shortName)}
       />
 
-      <StickyCta dict={dict} message={waMessage.service(locale, shortName)} />
+      <StickyCta
+        dict={dict}
+        message={waMessage.service(locale, shortName)}
+        cta={dict.header.scheduleConsultation}
+      />
       {/* Clears the fixed mobile bar so it never covers the footer. Slate, not the page
           ground — as cream it read as an empty white band between the gold CTA and the
           footer; in the footer's own colour it is simply where the footer starts. */}

@@ -25,6 +25,7 @@ const ms: Dictionary = {
     openSevenDays: 'Buka 7 hari seminggu',
     whatsapp: 'WhatsApp',
     enquireOnWhatsapp: 'Tanya di WhatsApp',
+    scheduleConsultation: 'Jadualkan konsultasi sekarang',
     menu: 'Menu',
     skipToContent: 'Langkau ke kandungan',
     language: 'Bahasa',

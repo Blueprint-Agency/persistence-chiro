@@ -28,6 +28,8 @@ export type Dictionary = {
     openSevenDays: string
     whatsapp: string
     enquireOnWhatsapp: string
+    /** Services pages only (user, 2026-11-22). Everywhere else keeps enquireOnWhatsapp. */
+    scheduleConsultation: string
     menu: string
     skipToContent: string
     /** Label for the language switcher in the mobile menu, where it has no utility bar around it. */

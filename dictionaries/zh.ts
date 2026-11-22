@@ -34,6 +34,7 @@ const zh: Dictionary = {
     openSevenDays: '每周七天营业',
     whatsapp: 'WhatsApp',
     enquireOnWhatsapp: 'WhatsApp咨询',
+    scheduleConsultation: '立即预约咨询',
     menu: '菜单',
     skipToContent: '跳至内容',
     language: '语言',

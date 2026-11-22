@@ -46,7 +46,7 @@ export function PriceList({
           {/* `mt-auto` pins the ask and the closer to the foot of the column so the card does
               not look cut short beside the longer list. */}
           <div className="mt-auto pt-8">
-            <WhatsAppButton message={message}>{dict.header.enquireOnWhatsapp}</WhatsAppButton>
+            <WhatsAppButton message={message}>{dict.header.scheduleConsultation}</WhatsAppButton>
             <p className="mt-6 text-sm leading-relaxed text-ink-muted">{data.note}</p>
           </div>
         </div>
