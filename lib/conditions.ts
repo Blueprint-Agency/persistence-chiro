@@ -1000,7 +1000,8 @@ export const conditions: Condition[] = [
       },
       {
         q: 'How should I set up my desk?',
-        a: 'The short version: top of the screen roughly at eye level, forearms supported, feet flat, and a laptop raised onto a stand with a separate keyboard. No setup is good enough to sit in for eight unbroken hours, though. Stand and move every 30 to 45 minutes. We will go through your own setup with you during your visit.',
+        a: 'The short version: top of the screen roughly at eye level, forearms supported, feet flat, and a laptop raised onto a stand with a separate keyboard. No setup is good enough to sit in for eight unbroken hours, though. Stand and move every 30 to 45 minutes. We will go through your own setup with you during your visit. If your head tends to drift forward of your shoulders as the day goes on, our forward head posture guide has a quick self-check and exercises.',
+        links: [{ phrase: 'forward head posture guide', href: '/blog/forward-head-posture' }],
       },
       {
         q: 'I woke up with a stiff neck. What should I do?',
@@ -1403,8 +1404,11 @@ export const conditions: Condition[] = [
       },
       {
         q: 'Is it hip pain or sciatica?',
-        a: 'Hip pain from the joint itself usually sits in the groin, and pain from the tendons sits on the outside of the hip. Sciatica is different: it tends to run from the buttock down the back of the leg, often past the knee, and can bring tingling or numbness in the calf or foot. A deep buttock ache can belong to either, which is why the hip and the lower back are examined together. Our sciatica page covers that pattern in more detail.',
-        links: [{ phrase: 'sciatica page', href: '/conditions/sciatica' }],
+        a: 'Hip pain from the joint itself usually sits in the groin, and pain from the tendons sits on the outside of the hip. Sciatica is different: it tends to run from the buttock down the back of the leg, often past the knee, and can bring tingling or numbness in the calf or foot. A deep buttock ache can belong to either, which is why the hip and the lower back are examined together. Our sciatica page covers that pattern in more detail, and our guide to sciatica vs piriformis syndrome explains how a buttock ache from the nerve differs from one in the muscle.',
+        links: [
+          { phrase: 'sciatica page', href: '/conditions/sciatica' },
+          { phrase: 'sciatica vs piriformis syndrome', href: '/blog/sciatica-vs-piriformis-syndrome' },
+        ],
       },
       {
         q: 'Do I need an X-ray or a scan for hip pain?',
@@ -1636,8 +1640,11 @@ export const conditions: Condition[] = [
     faqs: [
       {
         q: 'Is my shoulder pain coming from my neck?',
-        a: 'It may be. Pain that changes when you turn or tilt your head, pain that starts at the neck and travels into the shoulder blade, and tingling or numbness past the elbow all point towards the neck rather than the shoulder joint. A shoulder that hurts mainly when you lift the arm, with a neck that moves freely, points the other way. The assessment checks both, and our pinched nerve page covers the neck pattern in detail.',
-        links: [{ phrase: 'pinched nerve page', href: '/conditions/pinched-nerve' }],
+        a: 'It may be. Pain that changes when you turn or tilt your head, pain that starts at the neck and travels into the shoulder blade, and tingling or numbness past the elbow all point towards the neck rather than the shoulder joint. A shoulder that hurts mainly when you lift the arm, with a neck that moves freely, points the other way. The assessment checks both, and our pinched nerve page covers the neck pattern in detail. If the ache sits mostly between the shoulder blades rather than in the shoulder itself, our upper back pain page is the better place to start.',
+        links: [
+          { phrase: 'pinched nerve page', href: '/conditions/pinched-nerve' },
+          { phrase: 'upper back pain page', href: '/conditions/upper-back-pain' },
+        ],
       },
       {
         q: 'How long does shoulder pain take to settle?',
@@ -1985,7 +1992,8 @@ export const conditions: Condition[] = [
       },
       {
         q: 'Can a tight neck really cause a headache?',
-        a: 'Muscles and joints in the neck and upper back can refer pain into the head, and that is well recognised. Whether it is what is driving your headaches specifically is a question for the examination rather than something to assume. Some features point that way, such as pain starting at the base of the skull, tenderness in those muscles, and headaches that track your working day, but none of them is conclusive on its own.',
+        a: 'Muscles and joints in the neck and upper back can refer pain into the head, and that is well recognised. Whether it is what is driving your headaches specifically is a question for the examination rather than something to assume. Some features point that way, such as pain starting at the base of the skull, tenderness in those muscles, and headaches that track your working day, but none of them is conclusive on its own. A head held forward of the shoulders for hours is one common source of that load, and our forward head posture guide shows how to check for it.',
+        links: [{ phrase: 'forward head posture guide', href: '/blog/forward-head-posture' }],
       },
       {
         q: 'Will chiropractic stop my headaches?',

@@ -241,7 +241,8 @@ export const firstVisitTimeline = [
   },
   {
     heading: 'Findings and a plan',
-    body: 'Your chiropractor explains what they found in plain language, what is realistic, and what they suggest next. You can take time to think it over before booking anything further.',
+    body: 'Your chiropractor explains what they found in plain language, what is realistic, and what they suggest next. You can take time to think it over before booking anything further. Our guide to how often to see a chiropractor explains how visits are usually spaced and when they should stop.',
+    links: [{ phrase: 'how often to see a chiropractor', href: '/blog/how-often-to-see-a-chiropractor' }],
   },
   {
     heading: 'Your first adjustment',
@@ -258,7 +259,14 @@ const firstVisitQuickAnswerByLocale: Record<Locale, string | null> = {
   zh: null,
   ms: null,
 }
-const firstVisitTimelineByLocale: Record<Locale, readonly { heading: string; body: string }[]> = {
+const firstVisitTimelineByLocale: Record<
+  Locale,
+  readonly {
+    heading: string
+    body: string
+    links?: readonly { phrase: string; href: string }[]
+  }[]
+> = {
   en: firstVisitTimeline,
   zh: [],
   ms: [],

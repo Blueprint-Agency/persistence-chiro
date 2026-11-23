@@ -18,6 +18,7 @@ import { LOCALES, isLocale, pathFor } from '@/lib/i18n'
 import { pathExistsIn } from '@/lib/locale-availability'
 import { getDictionary } from '@/lib/dictionaries'
 import { CtaBand, Eyebrow, PageHero, Vertebrae } from '@/components/ui'
+import { linkifyBody } from '@/components/service'
 import { waMessage } from '@/lib/whatsapp'
 
 type Props = { params: Promise<{ locale: string }> }
@@ -141,7 +142,9 @@ export default async function WhatToExpectPage({ params }: Props) {
                 </span>
                 <div>
                   <h3 className="text-lg font-bold text-ink">{step.heading}</h3>
-                  <p className="mt-2 leading-relaxed text-ink-muted">{step.body}</p>
+                  <p className="mt-2 leading-relaxed text-ink-muted">
+                    {linkifyBody(locale, step.body, step.links)}
+                  </p>
                 </div>
               </li>
             ))}
