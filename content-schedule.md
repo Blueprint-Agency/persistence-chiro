@@ -27,24 +27,24 @@ Keep the ID column. It is how the tracker matches rows. A new row needs a new, u
 
 | ID | Piece | Primary keyword | Type | Slug | Status | Evidence |
 |---|---|---|---|---|---|---|
-| pc001 | Pricing / Fees page | how much does a chiropractor cost in malaysia | Other | `offers` | Built | /offers ("Offers and Prices, Cheras KL"), with cost FAQ |
-| pc002 | Best Chiropractor in KL (2026) | best chiropractor kuala lumpur | Blog | `best-chiropractor-kuala-lumpur` | Built | /blog/best-chiropractor-kuala-lumpur (2026-08-26) |
+| pc001 | Pricing / Fees page | how much does a chiropractor cost in malaysia | Other | `offers` | Live | /offers ("Offers and Prices, Cheras KL"), with cost FAQ Live on persistencechiropractic.com (checked 2026-11-23) |
+| pc002 | Best Chiropractor in KL (2026) | best chiropractor kuala lumpur | Blog | `best-chiropractor-kuala-lumpur` | Live | /blog/best-chiropractor-kuala-lumpur (2026-08-26) Live on persistencechiropractic.com (checked 2026-11-23) |
 | pc003 | Best Chiropractor in Cheras / Maluri | best chiropractor cheras | Blog | `best-chiropractor-cheras` | Not started |  |
-| pc004 | Gonstead Technique page | gonstead chiropractor kuala lumpur | Service | `gonstead-technique` | Built | /blog/gonstead-technique (2026-08-26). Built as a blog post, not a service page |
-| pc005 | Muscle Knots / Trigger Points page | muscle knots | Condition | `muscle-knots` | Built | /blog/muscle-knots (2026-07-25). Built as a blog post, not a condition page |
+| pc004 | Gonstead Technique page | gonstead chiropractor kuala lumpur | Service | `gonstead-technique` | Live | /blog/gonstead-technique (2026-08-26). Built as a blog post, not a service page Live on persistencechiropractic.com (checked 2026-11-23) |
+| pc005 | Muscle Knots / Trigger Points page | muscle knots | Condition | `muscle-knots` | Live | /blog/muscle-knots (2026-07-25). Built as a blog post, not a condition page Live on persistencechiropractic.com (checked 2026-11-23) |
 | pc006 | How to Get Rid of Muscle Knots | how to get rid of muscle knots | Blog | `how-to-get-rid-of-muscle-knots` | Dropped | Dropped 2026-11-09: merged into /blog/muscle-knots by pc056, which now carries the "how to get rid of" routine. May already be covered by /blog/muscle-knots ("What Actually Helps"). Planned as a merge into that post (pc056, Month 3); drop this row once pc056 ships |
-| pc007 | Dry Needling vs Acupuncture | dry needling vs acupuncture | Blog | `dry-needling-vs-acupuncture` | Built | /blog/dry-needling-vs-acupuncture (2026-08-27) |
-| pc008 | Chiropractic vs Physiotherapy | chiropractic vs physiotherapy | Blog | `chiropractic-vs-physiotherapy` | Built | /blog/chiropractic-vs-physiotherapy (2026-08-27) |
-| pc009 | Herniated / Bulging Disc page | herniated disc | Condition | `bulging-disc-vs-herniated-disc` | Built | /blog/bulging-disc-vs-herniated-disc (2026-08-27). Delivered as a comparison blog post, not a condition page |
-| pc010 | Pinched Nerve page | pinched nerve | Condition | `pinched-nerve` | Built | /conditions/pinched-nerve (commit 2026-09-08) |
-| pc011 | Tension Headache page | tension headache | Condition | `tension-headache` | Built | /conditions/tension-headache (commit 2026-09-08) |
-| pc012 | Whiplash page | whiplash | Condition | `whiplash` | Built | /conditions/whiplash (commit 2026-09-08) |
+| pc007 | Dry Needling vs Acupuncture | dry needling vs acupuncture | Blog | `dry-needling-vs-acupuncture` | Live | /blog/dry-needling-vs-acupuncture (2026-08-27) Live on persistencechiropractic.com (checked 2026-11-23) |
+| pc008 | Chiropractic vs Physiotherapy | chiropractic vs physiotherapy | Blog | `chiropractic-vs-physiotherapy` | Live | /blog/chiropractic-vs-physiotherapy (2026-08-27) Live on persistencechiropractic.com (checked 2026-11-23) |
+| pc009 | Herniated / Bulging Disc page | herniated disc | Condition | `bulging-disc-vs-herniated-disc` | Live | /blog/bulging-disc-vs-herniated-disc (2026-08-27). Delivered as a comparison blog post, not a condition page Live on persistencechiropractic.com (checked 2026-11-23) |
+| pc010 | Pinched Nerve page | pinched nerve | Condition | `pinched-nerve` | Live | /conditions/pinched-nerve (commit 2026-09-08) Live on persistencechiropractic.com (checked 2026-11-23) |
+| pc011 | Tension Headache page | tension headache | Condition | `tension-headache` | Live | /conditions/tension-headache (commit 2026-09-08) Live on persistencechiropractic.com (checked 2026-11-23) |
+| pc012 | Whiplash page | whiplash | Condition | `whiplash` | Live | /conditions/whiplash (commit 2026-09-08) Live on persistencechiropractic.com (checked 2026-11-23) |
 | pc013 | Areas We Serve (Greater KL) page | chiropractor near me | Other | `areas-we-serve` | Not started | /locate-us exists but is a directions page, not an areas page |
 | pc014 | Chiropractor vs Doctor: When to See Which | when to see a chiropractor | Blog | `chiropractor-vs-doctor` | Live | /blog/chiropractor-vs-doctor (2026-10-12). Malaysian angle: Act 775 vs Medical Council vs Act 774 table, Employment Act MC rule, doctor-first list, symptom-by-symptom guide. Reviewed by Valerie 2026-10-19. Live on persistencechiropractic.com (checked 2026-10-19) |
-| pc015 | Dry Needling page (complete "coming soon" page) | dry needling kl | Service |  | Built | /services/dry-needling, full page in EN/ZH/MS |
-| pc016 | Slipped Disc page (refresh + internal links) | slipped disc remedy | Condition |  | Built | Refreshed 2026-10-01: retargeted to "slipped disc lumbar region" (590/mo; "slipped disc remedy" left for a blog post), lower back vs neck table, disc terms and at home FAQs, links to pinched nerve and the disc terms post. Reviewed by Valerie 2026-10-03 |
-| pc017 | Neck Pain page (refresh + internal links) | neck pain | Condition |  | Built | Refreshed 2026-10-01: stiff neck vs pinched nerve vs whiplash vs neck headache table, woke up stiff FAQ, now links all four neck siblings. Keyword kept as "stiffness neck pain". Reviewed by Valerie 2026-10-03 |
-| pc018 | Migraine page (refresh + internal links) | migraine | Condition |  | Built | Refreshed 2026-10-01: migraine vs tension vs neck headache table, medication overuse FAQ, pregnancy red flag, links tension headache. Keyword kept as "migraine headache". Reviewed by Valerie 2026-10-03 |
+| pc015 | Dry Needling page (complete "coming soon" page) | dry needling kl | Service |  | Live | /services/dry-needling, full page in EN/ZH/MS Live on persistencechiropractic.com (checked 2026-11-23) |
+| pc016 | Slipped Disc page (refresh + internal links) | slipped disc remedy | Condition |  | Live | Refreshed 2026-10-01: retargeted to "slipped disc lumbar region" (590/mo; "slipped disc remedy" left for a blog post), lower back vs neck table, disc terms and at home FAQs, links to pinched nerve and the disc terms post. Reviewed by Valerie 2026-10-03 Live on persistencechiropractic.com (checked 2026-11-23) |
+| pc017 | Neck Pain page (refresh + internal links) | neck pain | Condition |  | Live | Refreshed 2026-10-01: stiff neck vs pinched nerve vs whiplash vs neck headache table, woke up stiff FAQ, now links all four neck siblings. Keyword kept as "stiffness neck pain". Reviewed by Valerie 2026-10-03 Live on persistencechiropractic.com (checked 2026-11-23) |
+| pc018 | Migraine page (refresh + internal links) | migraine | Condition |  | Live | Refreshed 2026-10-01: migraine vs tension vs neck headache table, medication overuse FAQ, pregnancy red flag, links tension headache. Keyword kept as "migraine headache". Reviewed by Valerie 2026-10-03 Live on persistencechiropractic.com (checked 2026-11-23) |
 
 ## Month 2: Condition Pillars & Comparisons
 
