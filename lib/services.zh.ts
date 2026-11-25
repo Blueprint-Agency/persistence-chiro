@@ -407,10 +407,6 @@ export const servicesZh: Service[] = [
         a: '这取决于评估的结果,而且两者经常是搭配使用,而非二选一。大致来说,干针处理的是紧绷、敏感的肌肉,调整处理的是脊椎关节的活动方式。若不确定,欢迎透过 WhatsApp 告诉我们您主要的困扰,我们会为您指出正确的起点。',
       },
     ],
-    // Client request 2026-08-09, menu only and deliberately so: the page stays live, indexed
-    // and bookable, and "(Coming Soon)" is a title for now. Same client instruction applies
-    // per locale — see the English record.
-    navBadge: '(即将推出)',
     // Flipped for local preview only, at the user's request — still needs a Chinese-speaking
     // reviewer before this ships to production. Flip back to `true` if that hasn't happened.
     draft: false,

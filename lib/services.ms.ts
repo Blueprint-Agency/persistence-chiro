@@ -575,10 +575,6 @@ export const servicesMs: Service[] = [
         a: 'Ini bergantung kepada dapatan penilaian, dan kedua-duanya sering digunakan bersama berbanding sebagai alternatif. Secara umum, menjarum menangani otot yang tegang dan sensitif manakala pelarasan menangani cara sendi tulang belakang bergerak. Jika tidak pasti, mesej kami tentang kebimbangan utama anda dan kami akan tunjukkan titik permulaan yang betul.',
       },
     ],
-    // Client request 2026-08-09, menu only and deliberately so: the page stays live, indexed
-    // and bookable, and "(Coming Soon)" is a title for now. Same client instruction applies
-    // per locale — see the English record.
-    navBadge: '(Akan Datang)',
     // Flipped for local preview only, at the user's request — still needs a Malay-speaking
     // reviewer before this ships to production. Flip back to `true` if that hasn't happened.
     draft: false,

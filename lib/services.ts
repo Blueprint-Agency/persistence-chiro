@@ -282,9 +282,9 @@ export type Service = {
    * Marker appended to this service's row in the nav dropdown, and nowhere else.
    *
    * IT LABELS THE MENU. IT DOES NOT GATE THE PAGE. A service carrying this keeps a fully
-   * live, indexed route with a working booking CTA, which is the confirmed intent for dry
-   * needling (client, 2026-08-09: the page should be live and indexed, the badge is a title
-   * for now). Do not add a `noindex`, pull the sitemap entry or soften the CTA to "match"
+   * live, indexed route with a working booking CTA, which was the confirmed intent for dry
+   * needling (client, 2026-08-09; launched and badge removed 2026-11-25, so nothing carries
+   * one now). Do not add a `noindex`, pull the sitemap entry or soften the CTA to "match"
    * the badge — that would undo the decision.
    *
    * The field that actually withholds a service is `draft`, which pulls the page, the nav
@@ -2288,9 +2288,6 @@ export const services: Service[] = [
         a: 'It depends on what the assessment finds, and the two are often used together rather than as alternatives. Broadly, needling addresses tight, irritable muscle while an adjustment addresses how a spinal joint moves. If you are unsure, message us your main concern and we will point you to the right starting point.',
       },
     ],
-    // Client request 2026-08-09, menu only and deliberately so: the page stays live, indexed
-    // and bookable, and "(Coming Soon)" is a title for now. See `navBadge` on the type.
-    navBadge: '(Coming Soon)',
     draft: false,
   },
 ]
